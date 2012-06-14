@@ -1,4 +1,5 @@
 require "rizzo/version"
+require "rizzo/url_encryptor"
 
 module Rizzo
 
