@@ -21,7 +21,7 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'guard-rspec'
   gem.add_development_dependency 'rails'
   gem.add_development_dependency 'haml', '3.1.4'
-  gem.add_development_dependency 'sass'
+  gem.add_development_dependency 'sass', '3.2.0.alpha.237'
   gem.add_development_dependency 'capybara'
   gem.add_development_dependency 'cucumber', '1.1.9'
   gem.add_development_dependency 'guard-cucumber'

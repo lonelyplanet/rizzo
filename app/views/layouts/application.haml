@@ -6,7 +6,6 @@
     .wrap
       = render 'layouts/partials/header'
       = render 'layouts/partials/title_bar', { title: 'Hotels', local: 'Ho Chi Minh City', style: 'green' }
-      = render 'layouts/partials/unsupported_browser' if is_client_browser_unsupported?(request.user_agent)
       .content
         = yield
       = render 'layouts/partials/footer'
