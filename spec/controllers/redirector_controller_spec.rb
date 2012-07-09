@@ -7,8 +7,6 @@ describe RedirectorController do
 
     before do
       Rizzo::UrlEncryptor.stub(decrypt: url)
-      Stats = double unless defined? Stats
-      Stats.stub(:increment)
     end
     
     it "decrypts the encrypted url" do
@@ -23,7 +21,7 @@ describe RedirectorController do
       end
 
       it "increments the redirector url stat" do
-        Stats.should_receive(:increment).with("redirector.foo-bar-com.zip.zap")
+        controller.should_receive(:increment_stats_bucket_for_redirected_url).with(url)
         get :show, encrypted_url: encrypted_url
       end
 
@@ -40,7 +38,7 @@ describe RedirectorController do
       end
 
       it "increments the redirector.bad_url stat" do
-        Stats.should_receive(:increment).with("redirector.bad_url.#{encrypted_url}")
+        controller.should_receive(:increment_stats_bucket_for_bad_redirected_url).with(encrypted_url)
         get :show, encrypted_url: encrypted_url
       end
     end
