@@ -5,7 +5,7 @@
   %body{class: client_browser(request.user_agent) }
     .wrap
       = render 'layouts/partials/header'
-      = render 'layouts/partials/title_bar', { title: 'Hotels', local: 'Ho Chi Minh City', style: 'green' }
+      = render 'layouts/partials/title_bar', { style: 'green' }
       .content
         = yield
       = render 'layouts/partials/footer'

@@ -28,7 +28,7 @@
       self.loadRequired("<%= javascript_path('application.js') %>");
       self.initUserStatus();
       self.initShoppingCart();
-      self.initBreadcrumbs();
+      // self.initBreadcrumbs();
       self.bindEvents();
       self.initLeaderBoard();
       self.initDestinationsNav();
@@ -84,7 +84,7 @@
       var s = document.getElementById('ad_masthead');
       s.appendChild(iframe);
     };
-
+    
     self.initBreadcrumbs = function(){
       jQuery(document).ready(function($){
         var location = window.location;

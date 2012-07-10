@@ -38,4 +38,38 @@ module GlobalResourcesHelper
     end
   end
 
+  def show_arrow(style)
+    if style=='destinations' ||  style=='destinations current'
+      capture_haml do
+        haml_tag(:span, class: 'arrow')
+      end
+    end
+  end
+  
+  def title_for(title_content,span_content='')
+    capture_haml do
+      haml_tag(:h1) do
+        haml_tag(:span) { haml_concat title_content }
+        haml_concat span_content
+      end
+    end
+  end
+  
+  def breadcrumb_for(breadcrumb_content=[])
+    capture_haml do
+      haml_tag(:div, id: 'breadcrumbWrap', class: 'posChange') do
+        haml_tag(:ol, id: 'breadcrumb') do
+          breadcrumb_content.each_with_index do |item, index|
+            li_class = index == current_place.breadcrumb.size-1 ? "breadcrumb-item last" : "breadcrumb-item twoCol"
+            if item[:slug].blank?
+              haml_tag(:li, class: li_class) { haml_tag(:span, class: 'breadcrumb-item-title') { haml_concat item[:place] } }
+            else
+              haml_tag(:li, class: li_class) { haml_tag(:a, class: 'breadcrumb-item-title', href: "http://www.lonelyplanet.com/#{item[:slug]}") { haml_concat item[:place] } }
+            end
+          end
+        end
+      end
+    end
+  end  
+  
 end

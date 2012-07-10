@@ -21,9 +21,8 @@
         %li{ class: [n[:style]] << ('current' if n[:style] == current_section) }
           %a{ href: n[:uri] }
             %span= n[:title]
-          - if n[:style]=='destinations' ||  n[:style]=='destinations current'
-            %span.arrow
+          = show_arrow(n[:style])
       = membership_item_element
       = cart_item_element
 
-#breadcrumbWrap.posChange
+= yield :breadcrumbs
