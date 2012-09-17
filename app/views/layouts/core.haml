@@ -1,0 +1,13 @@
+!!! 5
+%html
+  %head
+    = render 'layouts/core_partials/head'
+  %body{class: "lp-core #{client_browser(request.user_agent)}" }
+    .wrap
+      = render 'layouts/core_partials/master_head'
+      .content
+        = yield
+    .js-config.is-hidden   
+      = js_configuration        
+      = requirejs_include_tag 'app_core' 
+      = yield :scripts

@@ -15,6 +15,17 @@ module GlobalResourcesHelper
       {style:'insurance', title:'Insurance', uri: www_url("bookings/insurance.do")}
     ]
   end
+  
+  def core_navigation_items
+    [
+      {title:'Destinations', uri: "//www.lonelyplanet.com/testinations"},
+      {title:'Themes', uri: "//www.lonelyplanet.com/themes"},
+      {title:'Travel Guides', uri: "//shop.lonelyplanet.com"},
+      {title:'Travel Bookings', uri: "//www.lonelyplanet.com/hotels"},
+      {title:'Thorn Tree', uri: "//www.lonelyplanet.com/thorntree"},
+      {title:'Propaganda', uri: "//www.lonelyplanet.com/"}
+    ]
+  end
 
   def cart_item_element
     capture_haml do

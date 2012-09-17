@@ -1,0 +1,31 @@
+%meta(charset='utf-8')
+%meta(name="author" content='Lonely Planet')
+= yield :meta
+
+%meta(name="robots" content="noindex")
+
+%title 
+  = content_for?(:head_title) ? yield(:head_title) : 'Lonely Planet Travel Guides and Travel Information'
+
+- if is_client_browser_less_then_ie9?(request.user_agent)
+  :javascript
+    document.createElement('header');
+    document.createElement('nav');
+    document.createElement('section');
+    document.createElement('article');
+    document.createElement('aside');
+    document.createElement('footer');
+    document.createElement('figure');
+    document.createElement('figurecap');
+    document.createElement('hgroup');
+
+:javascript
+  document.documentElement.className += ' js';
+
+= stylesheet_link_tag 'application_core', :media => "all"
+
+= yield :stylesheets
+
+%link(rel="icon" type="image/gif" href="http://www.lonelyplanet.com/favicon.ico")
+= csrf_meta_tags
+

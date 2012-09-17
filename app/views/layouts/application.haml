@@ -7,7 +7,11 @@
       = render 'layouts/partials/header'
       = render 'layouts/partials/title_bar', { style: 'green' }
       .content
+        = yield :secondary
         = yield
       = render 'layouts/partials/footer'
-    = js_configuration
-    = yield :scripts
+    .js-config.is-hidden   
+      = js_configuration        
+      = requirejs_include_tag 'app_common' 
+      = yield :scripts
+

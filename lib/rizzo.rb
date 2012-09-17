@@ -6,3 +6,4 @@ module Rizzo
 end
 
 require "rizzo/engine" if defined?(Rails)
+
