@@ -1,0 +1,20 @@
+.primary
+  .container
+    %a.logo(href='http://www.lonelyplanet.com')
+    %nav.global-nav
+      - core_navigation_items.each do |n|
+        %a{ href: n[:uri] }
+          = n[:title]
+
+    .search-box
+      %form.global-search-form{:action => host_with_subdomain_and_path("www", "searchResult"), :method => "get" }
+        %label.accessibility(for='search-q')
+          Search
+        %input.global-search-type.js-global-search(type="search" id="search" maxlength="2048" name="q" value="" autocomplete="off" tabindex="1")
+          %button.search-submit.is-hidden(type="submit" id="search-q-submit" name="search-q-submit")
+
+    - if user_nav
+      %nav.user-nav.js-user-nav
+        .auth-box.js-auth-box
+        %a.user-basket.js-user-basket(href='//shop.lonelyplanet.com/cart/view')
+          %span.basket-items.js-basket-items

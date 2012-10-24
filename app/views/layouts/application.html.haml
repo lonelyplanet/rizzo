@@ -1,15 +1,15 @@
 !!! 5
 %html
   %head
-    = render 'layouts/partials/head'
+    = render 'layouts/application_partials/head'
   %body{class: client_browser(request.user_agent) }
     .wrap
-      = render 'layouts/partials/header'
-      = render 'layouts/partials/title_bar', { style: 'green' }
+      = render 'layouts/application_partials/header'
+      = render 'layouts/application_partials/title_bar', { style: 'green' }
       .content
         = yield :secondary
         = yield
-      = render 'layouts/partials/footer'
+      = render 'layouts/application_partials/footer'
     .js-config.is-hidden   
       = js_configuration        
       = requirejs_include_tag 'app_common' 

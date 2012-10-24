@@ -50,6 +50,10 @@ module GlobalResourcesHelper
     end
   end
 
+  def secondary_nav_bar(args)
+    render :partial=>'layouts/core_partials/secondary_navigation_bar', :locals=>{:title=>args[:title], :collection=>args[:collection] || [], :current=> args[:current] || nil}
+  end
+
   def membership_item_element
     capture_haml do
       haml_tag(:li, class: 'signInRegister cartDivider')

@@ -5,15 +5,3 @@
 %script(type="text/javascript" src="http://static.lonelyplanet.com/static-ui/js/lp-js-library-legacy.js")
 %link(rel="icon" type="image/gif" href="http://www.lonelyplanet.com/favicon.ico")
 
-- if is_client_browser_less_then_ie9?(request.user_agent)
-  :javascript
-    document.createElement('header');
-    document.createElement('nav');
-    document.createElement('section');
-    document.createElement('article');
-    document.createElement('aside');
-    document.createElement('footer');
-    document.createElement('figure');
-    document.createElement('figurecap');
-    document.createElement('hgroup');
-

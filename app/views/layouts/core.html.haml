@@ -1,10 +1,10 @@
 !!! 5
 %html
   %head
-    = render 'layouts/core/head'
+    = render 'layouts/core_partials/head'
   %body{class: "lp-core #{client_browser(request.user_agent)}" }
     .wrap
-      = render 'layouts/core/master_head'
+      = render 'layouts/core_partials/master_head', :user_nav => user_nav 
       .content
         = yield
     .js-config.is-hidden   

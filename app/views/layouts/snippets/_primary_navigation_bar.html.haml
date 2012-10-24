@@ -12,8 +12,9 @@
           Search
         %input.global-search-type.js-global-search(type="search" id="search" maxlength="2048" name="q" value="" autocomplete="off" tabindex="1")
         %button.search-submit.is-hidden(type="submit" id="search-q-submit" name="search-q-submit")
-
-    %nav.user-nav.js-user-nav
-      .auth-box.js-auth-box
-      %a.user-basket.js-user-basket(href='//shop.lonelyplanet.com/cart/view')
-        %span.basket-items.js-basket-items
+          
+    - if user_nav
+      %nav.user-nav.js-user-nav
+        .auth-box.js-auth-box
+        %a.user-basket.js-user-basket(href='//shop.lonelyplanet.com/cart/view')
+          %span.basket-items.js-basket-items
