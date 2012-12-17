@@ -8,30 +8,29 @@ end
 
 Then /^the global\-body\-header response should have the correct content$/ do
   page.should have_selector 'div.accessibility'
-  page.should have_selector 'div.ad-leaderboard'
-  page.should have_selector 'nav.global-nav'
-  page.should have_selector 'div.search-box'
-  page.should have_selector 'nav.user-nav'
+  page.should have_selector 'div.row--leaderboard'
+  page.should have_selector 'nav.nav--primary'
+  page.should have_selector 'div.search--primary'
+  page.should have_selector 'nav.nav-primary--user'
 end
 
 Then /^the secure global\-body\-header response should have the correct content$/ do
   page.should have_selector 'div.accessibility'
-  page.should have_selector 'nav.global-nav'
-  page.should have_selector 'div.search-box'
-  page.should_not have_selector 'div.ad-leaderboard'
-  page.should have_selector 'nav.user-nav'
+  page.should have_selector 'nav.nav--primary'
+  page.should have_selector 'div.search--primary'
+  page.should have_selector 'nav.nav-primary--user'
 end
 
 Then /^the global\-body\-footer should response have the correct content$/ do
   page.should have_selector 'div.js-config' 
-  page.should have_xpath("//script", "data-main"=>"/assets/app_core_legacy", :src=>"/assets/require.js")
+  page.should have_xpath("//script", "data-main"=>"/assets/app_core", :src=>"/assets/require.js")
 end
 
 Then /^the secure global\-body\-footer response should have the correct content$/ do
   page.should have_selector 'div.js-config' 
-  page.should_not have_xpath("//script", "data-main"=>"/assets/app_core_legacy", :src=>"/assets/require.js")
+  page.should have_xpath("//script", "data-main"=>"/assets/app_secure_core", :src=>"/assets/require.js")
 end
 
 Then /^the global\-body\-header response should not have the user nav box$/ do
-  page.should_not have_selector 'nav.user-nav'
+  page.should_not have_selector 'nav.nav-primary--user'
 end

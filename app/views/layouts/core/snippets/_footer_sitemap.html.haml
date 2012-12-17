@@ -1,0 +1,45 @@
+.row.row--footer
+  .row__inner.row__inner--footer
+    %nav.col--footer
+      - ['Destinations', 'Africa','Antarctica','Asia','Caribbean Islands','Central America','Europe','Middle East','North America','Pacific','South America'].each do |d|
+        %a.nav__item--vertical--footer(href=d)
+          = d
+    
+    %nav.col--footer
+      - ['Shop','Destination Guides','eBooks','Pictorial & Gifts','Phrase Books','Activity Guides','Special Offers'].each do |d|
+        %a.nav__item--vertical--footer(href=d)
+          = d
+  
+    %nav.col--footer
+      - ['Thorn Tree Forum','Departure Lounge','The Lobby','Check in with Lonely Planet','Tree House','Sell, Swap & Meet Up'].each do |d|
+        %a.nav__item--vertical--footer(href=d)
+          = d
+
+    %nav.col--footer
+      - ['Themes','Adventure travel','Big Trips','Honeymoons','Photography','Road Trips','Value Travel','Wildlife','World food'].each do |d|
+        %a.nav__item--vertical--footer(href=d)
+          = d
+
+    %nav.col--footer
+      - ['Travel Booking','Hotels','Flights','Insurance'].each do |d|
+        %a.nav__item--vertical--footer(href=d)
+          = d
+
+    .col--footer--last
+      .box-description--footer
+        %h3.box-description__title--footer
+          Join our mailling list
+        %p.box-description__lead--footer
+          Sign up here to receive all your travel inspiration, trips and exclusive offers
+        %form.box-description__inner
+          %input.input--small--footer(type='text' id='newsletter-email' autocomplete='off' name='newsletter[email]' placeholder='your@email.com')
+          %input.btn-submit--regular.btn--cyan(type='submit' name='newsletter[email]' title='Subscribe Newsletter' value='Sign up')
+
+      .box-description--footer
+        .box-description__title--footer
+          Follow us
+        .box-description__inner
+          - ['twitter','facebook','google-plus','flicr','rss'].each do |d|
+            %nav
+              %a.nav__item(href='' class="icon--regular sprite-core--standard icon--#{d}")
+

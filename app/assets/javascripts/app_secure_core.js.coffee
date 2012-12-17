@@ -6,7 +6,9 @@ require.config(
 
 require ['jquery', 'lib/core/base'], ($, Base) ->
   $ ->
-    base = new Base()
+    config = 
+      secure: true
+    base = new Base(config)
 
 
 

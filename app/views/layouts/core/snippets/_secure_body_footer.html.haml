@@ -1,0 +1,8 @@
+.wrap--footer
+  = render 'layouts/core/snippets/footer_breadcrumbs'
+  = render 'layouts/core/snippets/footer_sitemap'
+  = render 'layouts/core/snippets/footer_about'
+
+.js-config.is-hidden   
+  = requirejs_include_tag 'app_secure_core' 
+

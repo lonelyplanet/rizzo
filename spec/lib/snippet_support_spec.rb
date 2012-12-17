@@ -7,11 +7,11 @@ describe SnippetSupport do
   context ', checking a template snippet' do 
 
     it ' returns the default snippet' do
-      subject.template_for(:head).should eq('layouts/snippets/_head')
+      subject.template_for(:head).should eq('layouts/core/snippets/_head')
     end
 
     it ' returns the secure snippet' do
-      subject.template_for(:head, true).should eq('layouts/snippets/_secure_head')
+      subject.template_for(:head, true).should eq('layouts/core/snippets/_secure_head')
     end
 
   end

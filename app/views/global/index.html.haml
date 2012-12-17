@@ -1,5 +1,10 @@
 - content_for(:title) do
-  Buenos Aires
+  - if params[:layout] == 'legacy'
+    %h1
+      Buenos Aires
+  - else 
+    Buenos Aires
 
 - content_for(:secondary) do
-  = secondary_nav_bar({:title=>'Buenos Aires', :current=>'Hotels', :collection=>default_secondary_nav})
+  - unless params[:layout]
+    = secondary_nav_bar({:title=>'Buenos Aires', :current=>'Hotels', :collection=>default_secondary_nav})

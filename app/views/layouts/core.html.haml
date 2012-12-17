@@ -1,12 +1,15 @@
 !!! 5
 %html.no-js
   %head
-    = render 'layouts/core_partials/head'
+    = render 'layouts/core/head'
   %body{class: "lp-core #{client_browser(request.user_agent)}" }
     .wrap
-      = render 'layouts/core_partials/master_head', :user_nav => defined?(user_nav) ? user_nav : true
-      .content
-        = yield
+      = render 'layouts/core/master_head', :user_nav => defined?(user_nav) ? user_nav : true
+      .row.row--content
+        .row__inner.row__inner--content
+          = yield
+    .wrap--footer  
+      = render 'layouts/core/footer'
     .js-config.is-hidden   
       = js_configuration        
       = requirejs_include_tag 'app_core' 

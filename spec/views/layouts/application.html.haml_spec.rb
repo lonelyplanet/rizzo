@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "layouts/application" do
+describe "layouts/legacy" do
 
   before do 
     view.stub(:current_title, 'some')

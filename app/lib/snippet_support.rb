@@ -1,10 +1,10 @@
 module SnippetSupport
 
-  def template_for(snippet, secure=false)
+  def template_for(snippet, secure=false, scope='core')
     if secure
-      "layouts/snippets/_secure_#{snippet}"
+      "layouts/#{scope}/snippets/_secure_#{snippet}"
     else
-      "layouts/snippets/_#{snippet}"
+      "layouts/#{scope}/snippets/_#{snippet}"
     end  
   end
 

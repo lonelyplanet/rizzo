@@ -53,15 +53,15 @@ describe GlobalResourcesHelper do
     end
 
     it 'renders the secondary bar' do
-      helper.secondary_nav_bar(@args).should have_css('div.secondary')
+      helper.secondary_nav_bar(@args).should have_css('div.row--secondary')
     end
 
     it "renders the secondary navigation" do
-      helper.secondary_nav_bar(@args).should have_css('nav.secondary-nav')
+      helper.secondary_nav_bar(@args).should have_css('nav.nav--secondary')
     end
 
     it "renders a title section on the secondary nav-bar" do 
-      helper.secondary_nav_bar(@args).should have_css('div.secondary h1[class="head-title"]')
+      helper.secondary_nav_bar(@args).should have_css('div.row--secondary h1[class="row__title--secondary"]')
     end
 
     it "renders a list of navigation anchors" do 
@@ -69,8 +69,8 @@ describe GlobalResourcesHelper do
     end
 
     it "sets the current section" do 
-      helper.secondary_nav_bar(@args).should have_css("a[class='current']", text: 'b')
-      helper.secondary_nav_bar(@args).should_not have_css("a[class='current']", text: 'c')
+      helper.secondary_nav_bar(@args).should have_css("a[class='current nav__item--secondary']", text: 'b')
+      helper.secondary_nav_bar(@args).should_not have_css("a[class='current nav__item--secondary']", text: 'c')
     end
 
 

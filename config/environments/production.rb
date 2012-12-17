@@ -14,5 +14,6 @@ Rizzo::Application.configure do
   config.active_support.deprecation = :notify
   config.requirejs.run_config['baseUrl'] = '//rizzo.lonelyplanet.com/assets'
   config.action_controller.asset_host = "//rizzo.lonelyplanet.com"
+
 end if defined?(Rizzo::Application)
 

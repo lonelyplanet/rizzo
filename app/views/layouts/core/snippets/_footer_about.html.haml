@@ -1,0 +1,27 @@
+.row.row--footer--darker
+  .row__inner
+    .split--footer
+      %nav.nav--footer--base
+        - ['About us','Work for us', 'Contact Us', 'Press centre, trade & advertising'].each do |d|
+          %a.nav__item.nav__item--footer--darker(href="d")
+            = d
+        %a.nav__item.nav__item--footer--darker
+          = "Terms & Conditions"
+      %form.form--language.js-language-form(action="http://www.lonelyplanet.com/international")
+        %fieldset
+          .dropdown
+            %input.dropdown__input.dropdown__input--small.js-select-language(type='text' id='select-language' autocomplete='off' name='language[select]' placeholder='English' readonly)
+            %select.form__select--language.js-select-language(name="select-language")
+              - [['en','English'],['de','Deutsch'],['fr','Français'],['es','Español'],['it','Italiano'],['co','中文简体'],['jp','日本語']].each do |d|
+                %option(value="#{d[0]}")
+                  = d[1]
+          %label.label--footer(for="select-language")
+            International:
+          %input.form__submit--language(name="Go" type="submit" value="Go")
+
+    %p.text--legal.media--lp-logo--footer
+      &copy; 2012 Lonely Planet. All rights reserved. No part of this site may be reproduced without our written permission.
+      This website is owned by BBC Worldwide, which is a commercial company owned by the BBC.
+            
+
+

@@ -51,7 +51,7 @@ module GlobalResourcesHelper
   end
 
   def secondary_nav_bar(args)
-    render :partial=>'layouts/core_partials/secondary_navigation_bar', :locals=>{:title=>args[:title], :collection=>args[:collection] || [], :current=> args[:current] || nil}
+    render :partial=>'layouts/core/snippets/secondary_navigation_bar', :locals=>{:title=>args[:title], :collection=>args[:collection] || [], :current=> args[:current] || nil}
   end
 
   def membership_item_element

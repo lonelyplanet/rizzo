@@ -4,4 +4,5 @@ paths:
 
 modules:
   - name: 'app_core'
-  - name: 'app_core_legacy'
+  - name: 'app_legacy'
+  - name: 'app_secure_core'

@@ -25,7 +25,8 @@
   }
   (function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement);
 
-= stylesheet_link_tag 'application', :media => "all"
+= stylesheet_link_tag 'common_legacy', :media => "all"
+= yield :stylesheets
 
 = yield :place_hotels_link
 
