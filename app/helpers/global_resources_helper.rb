@@ -85,6 +85,10 @@ module GlobalResourcesHelper
     end
   end
   
+  def breadcrumbs_nav(breadcrumb_content)
+    render :partial=>'layouts/core/snippets/footer_breadcrumbs', locals: {breadcrumbs: breadcrumb_content || []}
+  end
+  
   def breadcrumb_for(breadcrumb_content=[])
     capture_haml do
       haml_tag(:div, id: 'breadcrumbWrap', class: 'posChange') do

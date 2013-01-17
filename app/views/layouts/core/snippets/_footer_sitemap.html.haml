@@ -3,53 +3,53 @@
     %nav.col--footer
       %a.title--list--footer.nav__item--vertical--footer(href='/destinations')
         Destinations
-      - [ 'Africa','Antarctica','Asia','Caribbean Islands','Central America','Europe','Middle East','North America','Pacific','South America'].each do |d|
-        %a.nav__item--vertical--footer(href=d)
-          = d
+      - footer_nav_destination_items.each do |destination|
+        %a.nav__item--vertical--footer{href: "/#{destination[:url]}"}
+          = destination[:title]
     
     %nav.col--footer
       %a.title--list--footer.nav__item--vertical--footer(href='/shop')
         Shop
-      - ['Destination Guides','eBooks','Pictorial & Gifts','Phrase Books','Activity Guides','Special Offers'].each do |d|
-        %a.nav__item--vertical--footer(href=d)
-          = d
+      - footer_nav_shop_items.each do |shop|
+        %a.nav__item--vertical--footer{href: "/shop/#{shop[:url]}"}
+          = shop[:title]
   
     %nav.col--footer
-      %a.title--list--footer.nav__item--vertical--footer(href='/forum')
+      %a.title--list--footer.nav__item--vertical--footer(href='/thorntree')
         Thorn Tree Forum
-      - ['Departure Lounge','The Lobby','Check in with Lonely Planet','Tree House','Sell, Swap & Meet Up'].each do |d|
-        %a.nav__item--vertical--footer(href=d)
-          = d
+      - footer_nav_thorntree_items.each do |thorntree|
+        %a.nav__item--vertical--footer{href: "/thorntree/#{thorntree[:url]}"}
+          = thorntree[:title]
 
     %nav.col--footer
-      %a.title--list--footer.nav__item--vertical--footer(href='/theme')
+      %a.title--list--footer.nav__item--vertical--footer(href='/themes')
         Themes
-      - ['Adventure travel','Big Trips','Honeymoons','Photography','Road Trips','Value Travel','Wildlife','World food'].each do |d|
-        %a.nav__item--vertical--footer(href=d)
-          = d
+      - footer_nav_themes_items.each do |theme|
+        %a.nav__item--vertical--footer{href: "/themes/#{theme[:url]}"}
+          = theme[:title]
 
     %nav.col--footer
-      %a.title--list--footer.nav__item--vertical--footer(href='/theme')
+      %a.title--list--footer.nav__item--vertical--footer(href='/bookings')
         Travel Booking
-      - ['Travel Booking','Hotels','Flights','Insurance'].each do |d|
-        %a.nav__item--vertical--footer(href=d)
-          = d
+      - footer_nav_travel_bookings_items.each do |booking|
+        %a.nav__item--vertical--footer{href: "/#{booking[:url]}"}
+          = booking[:title]
 
     .col--footer--last
       .box-description--footer
         %h3.box-description__title--footer
-          Join our mailling list
+          Join our mailing list
         %p.box-description__lead--footer
-          Sign up here to receive all your travel inspiration, trips and exclusive offers
+          Add your email here to receive all your travel inspiration, trips and exclusive offers
         %form.box-description__inner
           %input.input--small--footer(type='text' id='newsletter-email' autocomplete='off' name='newsletter[email]' placeholder='your@email.com')
-          %input.btn-submit--small.btn--cyan(type='submit' name='newsletter[email]' title='Subscribe Newsletter' value='Sign up')
+          %input.btn--submit--small.btn--green(type='submit' name='newsletter[email]' title='Subscribe Newsletter' value='Sign up')
 
       .box-description--footer
         .box-description__title--footer
           Follow us
         .box-description__inner
-          - ['twitter','facebook','google-plus','flicr','rss'].each do |d|
-            %nav
-              %a.nav__item(href='' class="icon--regular sprite-core--standard icon--#{d}")
+          %nav
+            - [['twitter', 'https://twitter.com/lonelyplanet'], ['facebook', 'https://www.facebook.com/lonelyplanet'], ['google-plus', 'https://plus.google.com/+LonelyPlanet/'], ['flickr', 'http://www.flickr.com/groups/lonelyplanetpublications/'], ['rss', '/blog/feed/atom/']].each do |d|
+              %a.nav__item{href: "#{d[1]}", class: "icon--regular sprite-core--standard icon--#{d[0]}"}
 
