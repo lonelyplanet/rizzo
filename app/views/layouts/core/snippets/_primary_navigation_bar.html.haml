@@ -3,8 +3,17 @@
     %a.media--lp-logo--head(href='http://www.lonelyplanet.com')
     %nav.nav--primary
       - core_navigation_items.each do |n|
-        %a.nav__item--primary{ href: n[:uri] }
-          = n[:title]
+        - if n[:submenu]
+          .nav__item--submenu.nav__submenu__trigger
+            = n[:title]
+            .nav__submenu
+              %nav.nav__submenu__content.nav__submenu__content--bookings.js-submenu
+                - n[:submenu].each do |sub|
+                  %a{ href: sub[:uri], class: "nav__submenu__item nav__submenu__item--#{sub[:style]}"}
+                    = sub[:title]
+        - else
+          %a.nav__item--primary{ href: n[:uri] }
+            = n[:title]
 
     .search--primary
       %form.search__form{:action => host_with_subdomain_and_path("www", "searchResult"), :method => "get" }
@@ -17,4 +26,3 @@
       %nav.nav-primary--user.js-user-nav
         %a.nav-user__item--primary--basket.js-user-basket(href='//shop.lonelyplanet.com/cart/view')
           %span.basket__items.js-basket-items
-
