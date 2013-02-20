@@ -1,36 +1,41 @@
 .row.row--footer
   .row__inner.row__inner--footer
     %nav.col--footer
-      %a.title--list--footer.nav__item--vertical--footer(href='/destinations')
-        Destinations
+      %h6
+        %a.title--list--footer.nav__item--vertical--footer(href='/destinations')
+          Destinations
       - footer_nav_destination_items.each do |destination|
         %a.nav__item--vertical--footer{href: "/#{destination[:url]}"}
           = destination[:title]
     
     %nav.col--footer
-      %a.title--list--footer.nav__item--vertical--footer(href='/shop')
-        Shop
+      %h6
+        %a.title--list--footer.nav__item--vertical--footer(href='/shop')
+          Shop
       - footer_nav_shop_items.each do |shop|
         %a.nav__item--vertical--footer{href: "/shop/#{shop[:url]}"}
           = shop[:title]
   
     %nav.col--footer
-      %a.title--list--footer.nav__item--vertical--footer(href='/thorntree')
-        Thorn Tree Forum
+      %h6
+        %a.title--list--footer.nav__item--vertical--footer(href='/thorntree')
+          Thorn Tree Forum
       - footer_nav_thorntree_items.each do |thorntree|
         %a.nav__item--vertical--footer{href: "/thorntree/#{thorntree[:url]}"}
           = thorntree[:title]
 
     %nav.col--footer
-      %a.title--list--footer.nav__item--vertical--footer(href='/themes')
-        Themes
+      %h6
+        %a.title--list--footer.nav__item--vertical--footer(href='/themes')
+          Themes
       - footer_nav_themes_items.each do |theme|
         %a.nav__item--vertical--footer{href: "/themes/#{theme[:url]}"}
           = theme[:title]
 
     %nav.col--footer
-      %a.title--list--footer.nav__item--vertical--footer(href='/bookings')
-        Travel Booking
+      %h6
+        %a.title--list--footer.nav__item--vertical--footer(href='/bookings')
+          Travel Booking
       - footer_nav_travel_bookings_items.each do |booking|
         %a.nav__item--vertical--footer{href: "/#{booking[:url]}"}
           = booking[:title]
@@ -53,10 +58,10 @@
           %input.btn--submit--small.btn--green(type='submit' title='Subscribe Newsletter' value='Sign up')
 
       .box-description--footer
-        .box-description__title--footer
-          Follow us
-        .box-description__inner
-          %nav
+        %nav
+          .box-description__title--footer
+            %h3 Follow us
+          .box-description__inner
             - social_media_nav.each do |item|
               %a.nav__item{href: "#{item[:url]}", class: "icon--regular sprite-core--standard icon--#{item[:title]}"}
 

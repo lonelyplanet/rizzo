@@ -2,12 +2,13 @@
   .row__inner
     %a.media--lp-logo--head(href='http://www.lonelyplanet.com')
     %nav.nav--primary
+      %h6.accessibility Global navigation
       - core_navigation_items.each do |n|
         - if n[:submenu]
           .nav__item--submenu.nav__submenu__trigger
             = n[:title]
             .nav__submenu
-              %nav.nav__submenu__content.nav__submenu__content--bookings.js-submenu
+              .nav__submenu__content.nav__submenu__content--bookings.js-submenu
                 - n[:submenu].each do |sub|
                   %a{ href: sub[:uri], class: "nav__submenu__item nav__submenu__item--#{sub[:style]}"}
                     = sub[:title]
@@ -24,5 +25,6 @@
 
     - if user_nav
       %nav.nav-primary--user.js-user-nav
+        %h6.accessibility User Navigation
         %a.nav-user__item--primary--basket.js-user-basket(href='//shop.lonelyplanet.com/cart/view')
           %span.basket__items.js-basket-items

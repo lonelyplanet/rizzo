@@ -1,6 +1,7 @@
 .row.row--footer--darker
   .row__inner.row__inner--footer.row__inner--break--light
     %nav.nav--footer--base
+      %h6.accessibility About Lonely Planet Navigation
       - footer_nav_about_items.each do |item|
         %a.nav__item.nav__item--footer--darker{href: "http://www.lonelyplanet.com#{item[:url]}"}
           = item[:title].html_safe

@@ -1,6 +1,7 @@
 .row.row--footer.row--breadcrumbs
   .row__inner.row__inner--footer.row__inner--break--dark.row__inner--breadcrumbs
     %nav.nav--breadcrumbs--footer{itemscope: true, itemtype: "http://data-vocabulary.org/Breadcrumb"}
+      %h6.accessibility Breadcrumb Navigation
       %a.nav__item--footer.nav__item--breadcrumbs--home{href: '/', itemprop:"url"}
       - breadcrumbs.each do |breadcrumb|
         %a.nav__item--footer{href: "/#{breadcrumb[:slug]}", class: (breadcrumb == breadcrumbs.last) ? 'nav__item--breadcrumbs--current' : 'nav__item--breadcrumbs', itemprop:"url"}
