@@ -2,7 +2,8 @@
 = stylesheet_link_tag 'common_core_overrides', :media => "all"
 %link(rel="stylesheet" href="http://static.lonelyplanet.com/static-ui/style/app-core-legacy.css" type="text/css" media="screen,projection")
 
-= airbrake_javascript_notifier unless params[:errbit] == 'false'
+- errbit_notifier
+
 
 %script(type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js")
 %script(type="text/javascript" src="http://static.lonelyplanet.com/static-ui/js/lp-js-library-legacy.js")

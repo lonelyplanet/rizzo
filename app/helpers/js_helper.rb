@@ -49,4 +49,5 @@ module JsHelper
     output = keys.reduce("#{config.root_namespace} = {};") {|out, k| "#{out} #{k} = #{config.configurations[k].to_json};"}
     javascript_tag output
   end
+
 end
