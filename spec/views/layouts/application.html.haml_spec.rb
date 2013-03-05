@@ -35,5 +35,11 @@ describe "layouts/legacy" do
     rendered.should include tag
   end
 
+  it "yields content for build" do
+    content = "some info"
+    view.content_for(:build) { content }
+    render
+    rendered.should include content
+  end
 end
 
