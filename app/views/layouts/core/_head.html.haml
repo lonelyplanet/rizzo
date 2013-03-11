@@ -9,23 +9,10 @@
 = yield :meta
 = csrf_meta_tags
 
-:javascript
-  // Using feature detection to work around page caching
-  if (!window.navigator.geolocation) {
-    document.createElement('header');
-    document.createElement('nav');
-    document.createElement('section');
-    document.createElement('article');
-    document.createElement('aside');
-    document.createElement('footer');
-    document.createElement('figure');
-    document.createElement('figurecap');
-    document.createElement('hgroup');
-  }
-  (function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement);
+= render 'layouts/core/snippets/head_js'
 
 = stylesheet_link_tag 'common_core', :media => "all"
 = yield :stylesheets
-
+= yield :place_hotels_link
 %link(rel="icon" type="image/gif" href="http://www.lonelyplanet.com/favicon.ico")
 

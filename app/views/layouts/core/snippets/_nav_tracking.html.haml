@@ -1,0 +1,10 @@
+-# This is to support legacy apps link tracking in the subnav and breadcrumbs
+
+%script
+  $('.row--secondary').on('click', '.nav__item--secondary', function() {
+  window.s.linkstacker($(this).text() + "-sub");
+  });
+
+  $('.row--breadcrumbs').on('click', '.nav__item--breadcrumbs', function(){
+  window.s.linkstacker("breadcrumbs")
+  });

@@ -1,4 +1,4 @@
-.row.row--primary
+.row.row--primary#js-primary-nav
   .row__inner
     %a.media--lp-logo--head(href='http://www.lonelyplanet.com')
     %nav.nav--primary
@@ -10,14 +10,14 @@
             .nav__submenu
               .nav__submenu__content.nav__submenu__content--bookings.js-submenu
                 - n[:submenu].each do |sub|
-                  %a{ href: sub[:uri], class: "nav__submenu__item nav__submenu__item--#{sub[:style]}"}
+                  %a.js-nav-item{ href: sub[:uri], class: "nav__submenu__item nav__submenu__item--#{sub[:style]}"}
                     = sub[:title]
         - else
-          %a.nav__item--primary{ href: n[:uri] }
+          %a.nav__item--primary.js-nav-item{ href: n[:uri] }
             = n[:title]
 
     .search--primary
-      %form.search__form{:action => host_with_subdomain_and_path("www", "searchResult"), :method => "get" }
+      %form.search__form.js-nav-search{:action => host_with_subdomain_and_path("www", "searchResult"), :method => "get" }
         %label.accessibility(for='search-q')
           Search
         %input.search__input.search__input--primary.js-primary-search(type="search" id="search" maxlength="2048" name="q" value="" autocomplete="off" tabindex="1")
@@ -26,5 +26,5 @@
     - if user_nav
       %nav.nav-primary--user.js-user-nav
         %h6.accessibility User Navigation
-        %a.nav-user__item--primary--basket.js-user-basket(href='//shop.lonelyplanet.com/cart/view')
+        %a.nav-user__item--primary--basket.js-user-basket.js-nav-cart(href='//shop.lonelyplanet.com/cart/view')
           %span.basket__items.js-basket-items
