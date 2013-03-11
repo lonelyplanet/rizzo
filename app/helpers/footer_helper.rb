@@ -28,7 +28,8 @@ module FooterHelper
   def footer_nav_thorntree_items
     [
       {:title=>'Departure Lounge', :url=>'category.jspa?categoryID=2'},
-      {:title=>'Check in with Lonely Planet', :url=>'category.jspa?categoryID=11'}
+      {:title=>'Check in with Lonely Planet', :url=>'category.jspa?categoryID=11'},
+      {:title=>'The Lobby', :url=>'category.jspa?categoryID=3'}
     ]
   end
 
@@ -36,7 +37,7 @@ module FooterHelper
     [
       {:title=>'Adventure travel', :url=>'adventure-travel'},
       {:title=>'Beaches', :url=>'beaches'},
-      {:title=>'Best in Travel', :url=>'best-in-travel'},
+      {:title=>'Best in Travel', :url=>'best-in-travel-2013'},
       {:title=>'Family travel', :url=>'family-travel'},
       {:title=>'Honeymoons', :url=>'honeymoons'},
       {:title=>'Photography', :url=>'photography'},

@@ -7,6 +7,10 @@ Rizzo::Application.routes.draw do
   match 'global-head'                  => 'global_resources#show', :defaults => { :snippet => "head" }
   match 'global-body-header'           => 'global_resources#show', :defaults => { :snippet => "body_header" }
   match 'global-body-footer'           => 'global_resources#show', :defaults => { :snippet => "body_footer" }
+
+  match 'noscript/global-head'         => 'global_resources#show', :defaults => { :snippet => "head", :noscript => "true"}
+  match 'noscript/global-body-footer'  => 'global_resources#show', :defaults => { :snippet => "body_footer", :noscript => "true"}
+
   match 'secure/global-head'           => 'global_resources#show', :defaults => { :snippet => "head", :secure => "true" }
   match 'secure/global-body-header'    => 'global_resources#show', :defaults => { :snippet => "body_header", :secure => "true" }
   match 'secure/global-body-footer'    => 'global_resources#show', :defaults => { :snippet => "body_footer", :secure => "true" }

@@ -6,7 +6,7 @@ class GlobalResourcesController < GlobalController
   layout nil
 
   def show
-    render template_for(params[:snippet], params[:secure], params[:layout] == 'legacy' ? 'legacy' : 'core' ),  :locals => { :user_nav => user_nav?(params) }
+    render template_for(params[:snippet], params[:secure], params[:noscript], params[:layout] == 'legacy' ? 'legacy' : 'core' ),  :locals => { :user_nav => user_nav?(params) }
   end
 
   def index

@@ -11,6 +11,10 @@ Feature: Global Resources
     Given I go to "/secure/global-head"
     Then the global-head should have the correct content
 
+  Scenario: it serves the noscript global header
+    Given I go to "/noscript/global-head"
+    Then the noscript global-head should have the correct content
+
   Scenario: it serves the global-body-header
     Given I go to "/global-body-header"
     Then the global-body-header response should have the correct content
@@ -23,9 +27,13 @@ Feature: Global Resources
     Given I go to "/global-body-footer"
     Then the global-body-footer should response have the correct content
   
-  Scenario: it serves the secure-global-header
+  Scenario: it serves the secure-global-footer
     Given I go to "/secure/global-body-footer"
     Then the secure global-body-footer response should have the correct content
+
+  Scenario: it serves the noscript global footer
+    Given I go to "/noscript/global-body-footer"
+    Then the secure noscript body-footer response should have the correct content
 
   Scenario: it serves the global-header without user navigation box
     Given I go to "/secure/global-body-header?displaySignonWidget=false"
