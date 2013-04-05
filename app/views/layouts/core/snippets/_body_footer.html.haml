@@ -1,6 +1,6 @@
 .wrap--footer
   = render 'layouts/core/snippets/footer_sitemap'
-  = render 'layouts/core/snippets/footer_about'
+  = render 'layouts/core/snippets/footer_about', :language_select => true
 
 - unless defined? no_scripts
   .js-config.is-hidden   

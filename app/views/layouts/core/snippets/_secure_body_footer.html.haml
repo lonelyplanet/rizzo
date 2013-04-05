@@ -1,6 +1,6 @@
 .wrap--footer
   = render 'layouts/core/snippets/footer_sitemap'
-  = render 'layouts/core/snippets/footer_about'
+  = render 'layouts/core/snippets/footer_about', :language_select => true
 
 .js-config.is-hidden   
   = requirejs_include_tag('app_secure_core_legacy'){|c|{'main' => 'app_secure_core_legacy'}}

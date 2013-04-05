@@ -25,15 +25,16 @@
         = Time.now.year 
         Lonely Planet. All rights reserved. No part of this site may be reproduced without our written permission.<br />
         This website is owned by BBC Worldwide, which is a commercial company owned by the BBC.
-
-    .split--right
-      %form.split--right__inner.nav--inline#js-language.form--language(action="http://www.lonelyplanet.com/international")
-        %label.nav__item.form--language__label.title--footer(for="select-language") International
-        .nav__item.dropdown.dropdown--language.js-select-language
-          %label.dropdown__value.dropdown__value--language.js-select-overlay(href='#select-language')
-            English
-          %select.dropdown__select.js-select{name: "language", id: 'languageSelect'}
-            - language_options.each do |d|
-              %option(value="#{d[0]}")
-                = d[1].html_safe
-        %input.input--submit.submit--language(name="Go" type="submit" value="Go")
+    
+    - if language_select
+      .split--right
+        %form.split--right__inner.nav--inline#js-language.form--language(action="http://www.lonelyplanet.com/international")
+          %label.nav__item.form--language__label.title--footer(for="select-language") International
+          .nav__item.dropdown.dropdown--language.js-select-language
+            %label.dropdown__value.dropdown__value--language.js-select-overlay(href='#select-language')
+              English
+            %select.dropdown__select.js-select{name: "language", id: 'languageSelect'}
+              - language_options.each do |d|
+                %option(value="#{d[0]}")
+                  = d[1].html_safe
+          %input.input--submit.submit--language(name="Go" type="submit" value="Go")

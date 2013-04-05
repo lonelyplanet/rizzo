@@ -8,6 +8,10 @@ Rizzo::Application.routes.draw do
   match 'global-body-header'           => 'global_resources#show', :defaults => { :snippet => "body_header" }
   match 'global-body-footer'           => 'global_resources#show', :defaults => { :snippet => "body_footer" }
 
+  match 'client-solutions/global-head'        => 'global_resources#show', :defaults => { :snippet => "head", :cs => "true" }
+  match 'client-solutions/global-body-header' => 'global_resources#show', :defaults => { :snippet => "body_header", :cs => "true" }
+  match 'client-solutions/global-body-footer' => 'global_resources#show', :defaults => { :snippet => "body_footer", :cs => "true" }
+
   match 'noscript/global-head'         => 'global_resources#show', :defaults => { :snippet => "head", :noscript => "true"}
   match 'noscript/global-body-footer'  => 'global_resources#show', :defaults => { :snippet => "body_footer", :noscript => "true"}
 
