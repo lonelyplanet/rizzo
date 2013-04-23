@@ -43,7 +43,8 @@ module GlobalResourcesHelper
           {title:'Hotels', uri:'http://www.lonelyplanet.com/hotels', style:'hotels'},
           {title:'Flights', uri:'http://www.lonelyplanet.com/flights/', style:'flights'},
           {title:'Adventure tours', uri:'http://www.lonelyplanet.com/adventure-tours/', style:'adventure-tours'},
-          {title:'Sightseeing tours', uri:'http://www.lonelyplanet.com/sightseeing-tours/', style:'sightseeing-tours'}
+          {title:'Sightseeing tours', uri:'http://www.lonelyplanet.com/sightseeing-tours/', style:'sightseeing-tours'},
+          {title:'Travel Deals', uri:'http://www.lonelyplanet.com/travel-deals/', style:'travel-deals', country:'US'}
         ]
       },
       {title:'Insurance', uri: "http://www.lonelyplanet.com/travel-insurance"}
