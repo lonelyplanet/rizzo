@@ -31,9 +31,15 @@
           = booking[:title]
 
     .col--footer--last
-      %span.title--footer.title--list--footer Join our mailing list
+      %span.title--footer.title--list--footer
+        Newsletter sign up
       %p.nav__item--footer
-        Add your email here to receive all your travel inspiration, trips and exclusive offers
+        %strong
+          Subscribe now
+        and receive a
+        %strong
+          20% discount
+        on your next guidebook purchase
       %form.newsletter--footer(action='http://www.lonelyplanet.com/newsletter/subscribe_footer.php' method='post')
         %label.title--footer.polyfill--placeholder.newsletter--placeholder Email
         %input.input--small--newsletter(type='text' id='newsletter-email' autocomplete='off' name='newsletter-email' placeholder='your@email.com')
