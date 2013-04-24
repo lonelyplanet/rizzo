@@ -28,8 +28,10 @@
     
       %form.nav__item.search--primary.js-nav-search{:action => host_with_subdomain_and_path("www", "searchResult"), :method => "get" }
         %label.accessibility(for='search-q') Search
-        %input.search__input.search__input--primary.js-primary-search(type="search" id="search" maxlength="2048" name="q" value="" autocomplete="off" tabindex="1")
-        %button.accessibility(type="submit" id="search-q-submit" name="search-q-submit")
+        %input.search__input.search__input--primary.js-primary-search(type="search" id="search" maxlength="2048" name="q" value="" autocomplete="off" tabindex="1")>
+        %button(class="search__button" type="submit" id="search-q-submit" name="search-q-submit")
+          %span.search__button--icon
+            Search
 
       - if user_nav
         .nav__item.nav--inline.nav--primary--user.js-user-nav.split--right__inner
