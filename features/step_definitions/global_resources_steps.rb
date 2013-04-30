@@ -22,8 +22,12 @@ Then /^the secure global\-body\-header response should have the correct content$
 end
 
 Then /^the global\-body\-footer should response have the correct content$/ do
+  page.should have_selector 'div.wrap--footer'
+  page.should have_selector 'div.row--sitemap'
+  page.should have_selector 'div.row--footer--about'
+  page.should have_selector 'div.row--smallprint'
   page.should have_selector 'div.js-config' 
-  page.should have_xpath("//script", "data-main"=>"/assets/app_core", :src=>"/assets/require.js")
+  page.should have_xpath("//script", "data-main"=>"/assets/app_core_legacy", :src=>"/assets/require.js")
 end
 
 Then /^the secure global\-body\-footer response should have the correct content$/ do

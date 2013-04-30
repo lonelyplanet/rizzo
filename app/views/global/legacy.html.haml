@@ -1,0 +1,29 @@
+= render 'layouts/legacy/snippets/head'
+= render 'layouts/core/snippets/body_header', user_nav: user_nav
+
+-# Secondary navigation bar
+.row.row--secondary#js-secondary-nav
+  .row__inner.row__inner--secondary
+    .row__title--secondary
+      Buenos Aires
+
+    .nav--secondary
+      - ['Hotels', 'Things to do', 'Overview'].each_with_index do |n, v|
+        %a.nav__item--secondary.js-nav-item{:class=>(v == 0 ? 'current' : ''), :href=> "#"}
+          = n
+
+.row.row--content
+  .row__inner.row__inner--content
+  .row--footer-push
+
+
+-# Breadcrumbs navigation
+.row.row--footer.row--breadcrumbs#js-breadcrumbs
+  .row__inner.row__inner--footer.row__inner--break--dark.row__inner--breadcrumbs
+    .nav--breadcrumbs--footer{itemscope: true, itemtype: "http://data-vocabulary.org/Breadcrumb"}
+      %a.nav__item--footer.nav__item--breadcrumbs--home{href: '/', itemprop:"url"}
+      - ['South America', 'Argentina', 'Buenos Aires'].each_with_index do |breadcrumb, v|
+        %a.nav__item--footer.js-nav-item{href: "#", class: (v == 2) ? 'nav__item--breadcrumbs--current' : 'nav__item--breadcrumbs', itemprop:"url"}
+          = breadcrumb
+
+= render 'layouts/legacy/snippets/body_footer'

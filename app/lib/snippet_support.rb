@@ -1,6 +1,6 @@
 module SnippetSupport
 
-  def template_for(snippet, secure=false, noscript=false, cs=false, scope='legacy')
+  def template_for(snippet, secure=false, noscript=false, cs=false, scope="legacy")
     if secure
       "layouts/legacy/snippets/_secure_#{snippet}"
     elsif noscript

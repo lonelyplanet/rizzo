@@ -7,7 +7,7 @@ describe "global service routes" do
   end
 
   it "routes /global-body-header to global service" do
-    get('/global-body-header').should route_to("global_resources#show", {:snippet=>'body_header'})
+    get('/global-body-header').should route_to("global_resources#show", {:snippet=>'body_header', :scope => 'core'})
   end
 
   it "routes /global-body-footer to global service" do

@@ -1,7 +1,0 @@
-.row.row--footer.row--breadcrumbs#js-breadcrumbs
-  .row__inner.row__inner--footer.row__inner--break--dark.row__inner--breadcrumbs
-    .nav--breadcrumbs--footer{itemscope: true, itemtype: "http://data-vocabulary.org/Breadcrumb"}
-      %a.nav__item--footer.nav__item--breadcrumbs--home{href: '/', itemprop:"url"}
-      - breadcrumbs.each do |breadcrumb|
-        %a.nav__item--footer.js-nav-item{href: "/#{breadcrumb[:slug]}", class: (breadcrumb == breadcrumbs.last) ? 'nav__item--breadcrumbs--current' : 'nav__item--breadcrumbs', itemprop:"url"}
-          = breadcrumb[:place]
