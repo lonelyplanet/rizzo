@@ -5,18 +5,29 @@ Feature: Global Resources
 
   Scenario: it serves the global-head
     Given I go to "/global-head"
-    Then the global-head should have the correct content
+    Then the base global-head content should be displayed
+    And the non-secure global-head content should be displayed
+    And the tynt tag should be displayed
+
+  Scenario: it serves the global-head-thorntree
+    Given I go to "/global-head-thorntree"
+    Then the base global-head content should be displayed
+    And the non-secure global-head content should be displayed
+    And the tynt tag should not be displayed
 
   Scenario: it serves the secure global head
     Given I go to "/secure/global-head"
-    Then the global-head should have the correct content
-    Then the global-head should serve a secure static-ui stylesheet
-    Then the global-head should serve a secure static-ui script
+    Then the base global-head content should be displayed
+    And the secure global-head content should be displayed
+    And the global-head should serve a secure static-ui stylesheet
+    And the global-head should serve a secure static-ui script
+    And the tynt tag should not be displayed
 
   Scenario: it serves the noscript global head
     Given I go to "/noscript/global-head"
     Then the noscript global-head should have the correct content
-    Then the global-head should serve a secure static-ui stylesheet
+    And the global-head should serve a secure static-ui stylesheet
+    And the tynt tag should not be displayed
 
   Scenario: it serves the client solutions global head
     Given I go to "/client-solutions/global-head"
