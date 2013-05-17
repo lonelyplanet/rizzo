@@ -105,7 +105,7 @@ module GlobalResourcesHelper
     
     capture_haml do
       haml_tag(:div, class: 'place-title') do
-        haml_tag(:a, class: 'place-title-heading', href: "http://www.lonelyplanet.com/#{slug}/hotels") do
+        haml_tag(:a, class: 'place-title-heading', href: "/#{slug}") do
           haml_concat(title)
         end
         unless section_name.nil?
@@ -114,7 +114,7 @@ module GlobalResourcesHelper
           end
         end
         unless parent.nil?
-          haml_tag(:a, class: 'place-title__parent', href: "http://www.lonelyplanet.com/#{parent_slug}/hotels") do
+          haml_tag(:a, class: 'place-title__parent', href: "/#{parent_slug}") do
             haml_concat(", " + parent)
           end
         end
