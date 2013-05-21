@@ -23,6 +23,9 @@
     - if defined?($JS_VARS)
       :javascript
         #{js_hash($JS_VARS)}
+    - if is_lp_office?(true_client_ip(request))
+      :javascript
+        window.lpOffice = true;
     = yield :scripts
   
   %div.ad-oneByOne#js-ad-oneByOne

@@ -2,7 +2,7 @@ require 'browser_support'
 require 'host_support'
 
 module GlobalResourcesHelper
-  include BrowserSupport, HostSupport
+  include BrowserSupport, HostSupport, IpSupport
 
   def primary_navigation_items
     [
