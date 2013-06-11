@@ -5,7 +5,7 @@
         %h1.place-title 
           = title
       - else
-        = place_heading(title, section_name, slug, (defined? parent) ? parent : nil, (defined? parent_slug) ? parent_slug : nil)
+        = place_heading(title, section_name, slug, (defined? parent) ? parent : nil, (defined? parent_slug) ? parent_slug : nil, (defined? no_place_link) ? no_place_link : false)
     
     - if defined?(collection)
       .split--right.nav--inline.nav--secondary

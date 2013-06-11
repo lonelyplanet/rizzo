@@ -101,12 +101,16 @@ module GlobalResourcesHelper
     end
   end
 
-  def place_heading(title, section_name, slug, parent, parent_slug)
+  def place_heading(title, section_name, slug, parent, parent_slug, no_place_link = false)
     
     capture_haml do
       haml_tag(:div, class: 'place-title') do
-        haml_tag(:a, class: 'place-title-heading', href: "/#{slug}") do
+        if no_place_link == true
           haml_concat(title)
+        else
+          haml_tag(:a, class: 'place-title-heading', href: "/#{slug}") do
+            haml_concat(title)
+          end
         end
         unless section_name.nil?
           haml_tag(:span, class: 'accessibility') do
