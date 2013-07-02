@@ -17,4 +17,8 @@ class GlobalResourcesController < GlobalController
     render '/global/legacy', :layout=> false,  :locals => { :user_nav => true }
   end
 
+  def responsive
+    render '/global/responsive', :layout=> 'responsive'
+  end
+
 end

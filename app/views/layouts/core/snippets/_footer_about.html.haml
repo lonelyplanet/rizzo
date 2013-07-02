@@ -1,33 +1,35 @@
 .row.row--footer--about
   .row__inner.row__inner--footer
-    .split--left.nav--inline
-      %a.nav__item.media--lp-logo.media--lp-logo--dark(href='http://www.lonelyplanet.com')
-      .nav__item.nav--inline
+    .wv--split--left.nav--inline
+      %a.wv--inline-block.nav__item.row--footer--about__logo.media--lp-logo.media--lp-logo--dark(href='http://www.lonelyplanet.com')
+      .nav__item.wv--nav--inline
         - footer_nav_about_items.each do |item|
           %a.nav__item.nav__item--about{href: "http://www.lonelyplanet.com#{item[:url]}"}<
             = item[:title].html_safe
 
-    .split--right
+    .wv--split--right
       .nav--inline.nav--social.split--right__inner
+        - if defined? responsive
+          %a.wv--hidden.row--footer--social__logo.media--lp-logo.media--lp-logo--dark(href='http://www.lonelyplanet.com')
         .title--footer.title--social.nav__item Follow us
         .nav--social__inner.nav__item
           .nav--inline
             - social_media_nav.each do |item|
-              %a.nav__item.nav__item--social{href: "#{item[:url]}", class: "icon--regular icon--#{item[:title]}"}
+              %a.nav__item.nav__item--social{href: "#{item[:url]}", class: "icon--#{item[:title]}"}
                 = item[:title].capitalize
 
 
 
 .row.row--smallprint
   .row__inner.row__inner--footer.row--smallprint__inner
-    .split--left.text--legal
+    .wv--split--left.text--legal
       %p
         &copy; 
         = Time.now.year 
         Lonely Planet. All rights reserved. No part of this site may be reproduced without our written permission.
     
     - if language_select
-      .split--right
+      .wv--split--right
         %form.split--right__inner.nav--inline#js-language.form--language(action="http://www.lonelyplanet.com/international")
           %label.nav__item.form--language__label.title--footer(for="select-language") International
           .nav__item.dropdown.dropdown--language.js-select-language
