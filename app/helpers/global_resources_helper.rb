@@ -106,7 +106,9 @@ module GlobalResourcesHelper
     capture_haml do
       haml_tag(:div, class: 'place-title') do
         if no_place_link == true
-          haml_concat(title)
+          haml_tag(:span, class: 'place-title-heading') do
+            haml_concat(title)
+          end
         else
           haml_tag(:a, class: 'place-title-heading', href: "/#{slug}") do
             haml_concat(title)
