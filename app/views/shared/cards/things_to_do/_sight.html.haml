@@ -1,0 +1,13 @@
+%article.card.card--single.card--poi.card--poi--sight.js-card.js-single{class: stack_item.image_url ? 'card--small-image card--extended-content' : 'card--no-image' }
+  %a.link--wrapper(href="#{stack_item.slug}")
+    = render :partial => '/shared/cards/things_to_do/card_tags', :locals => { :stack_item => stack_item }
+    - if stack_item.image_url
+      %figure.card__hero.obj-media__img
+        = image_tag(stack_item.image_url, class: 'portrait card__image')
+    %section.card__content.obj-media__body
+      %span.card__context
+        Sight
+      %h1.card__name.js-card-name
+        = stack_item.name
+      %p.card__description
+        = stack_item.review

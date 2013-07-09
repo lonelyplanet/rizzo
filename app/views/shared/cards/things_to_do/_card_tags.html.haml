@@ -1,0 +1,19 @@
+- if stack_item.topchoice or stack_item.prices
+  .card__tags
+    - if stack_item.prices
+      .card__tag.card__tag--price
+        .card__tag__inner--price
+          from
+          %span.card__tag__price--price
+            %span.card__tag__price--curr
+              = raw(currency.to_symbol)
+            %span.js-price
+              = stack_item.prices[currency.to_s].ceil
+          - if stack_item.on_sale?
+            %span.card__tag__price--discount
+              = raw(currency.to_symbol)
+              = stack_item.retail_prices[currency.to_s].ceil
+    - if stack_item.topchoice
+      .card__tag.card__tag--badge
+        %span.card__badge--top-choice
+          Top Choice

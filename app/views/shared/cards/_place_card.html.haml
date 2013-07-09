@@ -1,0 +1,21 @@
+%article.card.card--place.card--single.card--destination.js-card{class: !stack_item.image_url ? 'card--no-image' : stack_item.strapline ? 'card--extended-content' : '' }
+  %a.link--wrapper(href="/#{stack_item.slug}")
+    - if stack_item.image_url
+      %figure.card__hero
+        - if overlay_url = stack_item.overlay_url
+          .card__hero__overlay
+            = image_tag(overlay_url, :alt => stack_item.title)
+        = safe_image_tag(stack_item.image_url, class: 'portrait card__image', :alt => "#{presenter.name} #{stack_item.title}")
+    .card__content
+      %span.card__context
+        Destination
+      %h2.card__name.js-card-name
+        = stack_item.title
+      - if stack_item.strapline
+        %p.card__description
+          = stack_item.strapline
+    %footer.card__footer
+      %span.destination__item-count.destination__item-count--sights
+        = stack_item.things_to_do_count
+      %span.destination__item-count.destination__item-count--lodgings
+        = stack_item.lodging_count

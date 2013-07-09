@@ -1,0 +1,14 @@
+%article.card.card--link.card--single.js-single.js-card{ class: "card--link--#{stack_item.title.downcase}"}
+  %a.link--wrapper(href="#{stack_item.url}")
+    - if stack_item.count
+      %span.card__item-count
+        = stack_item.count
+    %figure.card__hero
+      = image_tag("cards/#{stack_item.title.downcase}.png", class: 'portrait card__image', :alt => "#{presenter.name} #{stack_item.title}")
+    .card__content
+      %span.card__context
+        Collection
+      %h2.card__name.js-card-name
+        = stack_item.title
+        %span.accessibility
+          in #{presenter.place.name}

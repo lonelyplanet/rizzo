@@ -1,0 +1,9 @@
+%article.card.card--single.card--info.card--no-image.card--info.js-single.js-card
+  .card__content
+    %h2.card__name.js-card-name
+      Need to know
+    %ul.card__list
+      - stack_item.links.each do |link|
+        %li
+          %a{href: link[:url].chomp('/when-to-go'), class: 'card__list__item', :title => "#{presenter.name} - #{link[:title]}"}
+            = link[:title]

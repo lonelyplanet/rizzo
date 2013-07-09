@@ -1,0 +1,16 @@
+- item = CollectionCardPresenter.new(stack_item)
+%article.card.card--collection.js-card{class: "#{(item.hero) ? 'card--double card--full-image' : 'card--single'} card--collection--#{item.topic} #{(item.filter) ? "js-stack-card-filter" : ""}"}
+  %a.link--wrapper{:href => "/#{item.slug}", :data => { 'stack-kind' => item.stack_kind, :filter => item.filter }}
+    - if item.count
+      %span.card__item-count
+        = item.count
+    %figure.card__hero{class: (item.hero) ? "card__hero--#{item.topic}" : ''}
+      = safe_image_tag(item.image_url, class: 'portrait card__image', :alt => "#{presenter.name} #{item.title}")
+    .card__content
+      %span.card__context
+        Collection
+      %h2.card__name.js-card-name
+        = item.title
+        - unless item.hero
+          %span.accessibility
+            in #{presenter.place.name}
