@@ -5,5 +5,5 @@
     %ul.card__list
       - stack_item.links.each do |link|
         %li
-          %a{href: link[:url].chomp('/when-to-go'), class: 'card__list__item', :title => "#{presenter.name} - #{link[:title]}"}
+          %a{href: link[:url].chomp('/when-to-go'), class: 'card__list__item', :title => "#{link[:title]}"}
             = link[:title]

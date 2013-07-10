@@ -5,12 +5,10 @@
         %a.link--wrapper{href: stack_item.image_href, title: "Image Gallery"}
           %span.card--media__badge
           %figure.card__hero
-            = safe_image_tag(stack_item.resized_image_url, class: 'portrait card__image', :alt => "#{presenter.name} Image Gallery")
+            = safe_image_tag(stack_item.resized_image_url, class: 'portrait card__image', :alt => "Image Gallery")
           .card__content
-            %h2.card__name
-              %span.accessibility
-                = presenter.place.name
-                Image gallery
+            %h2.card__name.accessibility
+              Image gallery
             %p
               = stack_item.image_description
 
@@ -19,11 +17,9 @@
         %a.link--wrapper{href: stack_item.video_href, title: "Video Gallery"}
           %span.card--media__badge
           %figure.card__hero
-            = safe_image_tag(stack_item.resized_video_url, class: 'portrait card__image', :alt => "#{presenter.name} Video Gallery")
+            = safe_image_tag(stack_item.resized_video_url, class: 'portrait card__image', :alt => "Video Gallery")
           .card__content
-            %h2.card__name
-              %span.accessibility
-                = presenter.place.name
-                Video gallery
+            %h2.card__name.accessibility
+              Video gallery
             %p
               = stack_item.video_description
