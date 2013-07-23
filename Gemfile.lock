@@ -1,12 +1,12 @@
 GIT
   remote: git@github.com:lonelyplanet/avocado.git
-  revision: 7782c42858543ebc8dc481349ad86191159210f3
+  revision: cda005031bb5197242442062dcdad03c6595c15a
   specs:
     avocado (0.0.31)
 
 GIT
   remote: git@github.com:lonelyplanet/beaker.git
-  revision: e53c816efe5f5671aeebe7a1a12e8c7285b23114
+  revision: c429cab39bdbe503d388319a03a7a012efe4e7b8
   specs:
     beaker (0.1.0)
 
@@ -117,6 +117,10 @@ GEM
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
       rb-kqueue (>= 0.2)
+    lograge (0.2.0)
+      actionpack
+      activesupport
+    logstash-event (1.1.5)
     lumberjack (1.0.3)
     mail (2.5.3)
       i18n (>= 0.4.0)
@@ -230,6 +234,8 @@ DEPENDENCIES
   haml
   haml-rails
   launchy
+  lograge
+  logstash-event
   rails
   rake
   rb-fsevent (~> 0.9.1)

@@ -7,13 +7,17 @@
   = render 'layouts/core/head'
 %body
   .wrap--footer-push
-    = render 'layouts/core/master_head', :user_nav => defined?(user_nav) ? user_nav : true
+    = render 'layouts/core/snippets/body_header', user_nav: defined?(user_nav) ? user_nav : true
+    = yield :secondary
+
     .row.row--content#js-row--content
       .row__inner.row__inner--content.copy--freight
         = yield
       .row--footer-push
   .wrap--footer
-    = render 'layouts/core/footer'
+    = yield :breadcrumbs
+    = render 'layouts/core/snippets/body_footer'
+  
   .js-config.is-hidden
     = render 'layouts/core/snippets/fs_init'
     = js_configuration

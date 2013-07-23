@@ -34,3 +34,8 @@ group :test do
   gem 'guard-cucumber'
   gem 'rb-fsevent', '~> 0.9.1'
 end
+
+group :production do
+  gem "lograge"
+  gem "logstash-event"
+end

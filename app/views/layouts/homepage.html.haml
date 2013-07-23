@@ -14,13 +14,12 @@
   = render 'layouts/mobile/require_js_async'
 
 %body.responsive.homepage
-
   = render 'layouts/core/snippets/responsive_header', user_nav: defined?(user_nav) ? user_nav : true, homepage: true
   .row.row--content.copy--freight#js-row--content
     = yield
 
   .wrap--footer
-    = render 'layouts/core/responsive_footer'
+    = render 'layouts/core/snippets/body_footer', responsive: true
     - if cookies[:_fullsite] != "true"
       = render 'layouts/mobile/view_full_site'
 

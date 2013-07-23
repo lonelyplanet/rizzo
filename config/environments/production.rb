@@ -13,6 +13,9 @@ Rizzo::Application.configure do
   config.i18n.fallbacks = true
   config.active_support.deprecation = :notify
 
+  config.lograge.enabled = true
+  config.lograge.log_format = :logstash
+
   # Enable serving of images, stylesheets, and JavaScripts from an asset server
   config.action_controller.asset_host = "//" << (ENV['RAILS_ASSET_DOMAIN'] || "assets.staticlp.com")
 
