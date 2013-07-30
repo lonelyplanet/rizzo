@@ -4,7 +4,7 @@
 <!--[if IE 9]><html class="no-js ie9" lang="en"><![endif]-->
 <!--[if gt IE 9]><!--><html class='no-js' lang="en"><!--<![endif]-->
 %head
-  = render 'layouts/core/head'
+  = render 'layouts/core/head', responsive: false
 %body
   .wrap--footer-push
     = render 'layouts/core/snippets/body_header', user_nav: defined?(user_nav) ? user_nav : true

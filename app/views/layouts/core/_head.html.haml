@@ -5,7 +5,9 @@
   = content_for?(:head_title) ? yield(:head_title) : 'Lonely Planet Travel Guides and Travel Information'
 
 %meta(name="fb:app_id" content="111537044496")
-%meta(name="viewport" content="width=1024")
+
+- unless responsive
+  %meta(name="viewport" content="width=1024")
 
 = yield :dns_prefetch
 = yield :meta
