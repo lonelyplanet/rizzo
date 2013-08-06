@@ -15,7 +15,7 @@
         .nav--social__inner.nav__item
           .nav--inline
             - social_media_nav.each do |item|
-              %a.nav__item.nav__item--social{href: "#{item[:url]}", class: "icon--#{item[:title]}"}
+              %a.nav__item.nav__item--social{href: "#{item[:url]}", class: "icon--#{item[:title]}--grey"}
                 = item[:title].capitalize
 
 
@@ -27,13 +27,15 @@
         &copy; 
         = Time.now.year 
         Lonely Planet. All rights reserved. No part of this site may be reproduced without our written permission.
+        - if responsive && cookies[:_fullsite] != "true"
+          = render 'layouts/mobile/view_full_site'
     
     - if language_select
       .wv--split--right
         %form.split--right__inner.nav--inline#js-language.form--language(action="http://www.lonelyplanet.com/international")
           %label.nav__item.form--language__label.title--footer(for="select-language") International
           .nav__item.dropdown.dropdown--language.js-select-language
-            %label.dropdown__value.dropdown__value--language.js-select-overlay(href='#select-language')
+            %label.dropdown__value.dropdown__value--language.icon--chevron-down--grey--after.js-select-overlay(href='#select-language')
               English
             %select.dropdown__select.js-select{name: "language", id: 'languageSelect'}
               - language_options.each do |d|

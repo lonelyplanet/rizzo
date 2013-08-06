@@ -1,8 +1,10 @@
 :javascript
-  var removeTouch = function(){
-    (function(H){H.className=H.className.replace(/\btouch\b/,'no-touch')})(document.documentElement);
-    window.lp = window.lp || {};
-    window.lp.touch = false;
-    document.removeEventListener('mousemove', removeTouch);
-  };
-  document.addEventListener('mousemove', removeTouch, false);
+  (function(){
+    var removeTouch = function(){
+      (function(H){H.className=H.className.replace(/\btouch\b/,'no-touch')})(document.documentElement);
+      window.lp = window.lp || {};
+      window.lp.touch = false;
+      document.removeEventListener('mousemove', removeTouch);
+    };
+    document.addEventListener('mousemove', removeTouch, false);
+  })()

@@ -16,7 +16,13 @@
 = render 'layouts/core/snippets/head_js'
 = render 'layouts/core/snippets/tynt'
 
-= smart_stylesheet('common_core')
+- if homepage
+  = smart_stylesheet('common_core_no_font')
+  - if cookies[:_lpfont] == "true"
+    = stylesheet_link_tag "fonts", :media => "all"
+- else
+  = smart_stylesheet('common_core')
+
 = yield :stylesheets
 = yield :place_hotels_link
 

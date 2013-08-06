@@ -2,14 +2,15 @@
 <!--[if IE 7]><html class="no-js ie7" lang="en"><![endif]-->
 <!--[if IE 8]><html class="no-js ie8" lang="en"><![endif]-->
 <!--[if IE 9]><html class="no-js ie9" lang="en"><![endif]-->
-<!--[if gt IE 9]><!--><html class='no-js base touch' lang="en"><!--<![endif]-->
+<!--[if gt IE 9]><!--><html class="no-js base touch #{cookies[:_lpfont] == 'true' ? 'freight' : 'no-freight'}" lang="en"><!--<![endif]-->
 %head
-  = render 'layouts/core/head', responsive: true
+  = render 'layouts/core/head', responsive: true, homepage: true
   - if cookies[:_fullsite] == "true"
     %meta{name:"viewport", content:"width=1024"}
   - else
     %meta{name:"viewport", content:"width=device-width, initial-scale=1"}
   = render 'layouts/mobile/cut_the_mustard'
+  = render 'layouts/mobile/grunticon'
   = render 'layouts/mobile/detect_touch'
   = render 'layouts/mobile/require_js_config'
   = render 'layouts/mobile/require_js_async'
@@ -24,12 +25,12 @@
 
     .wrap--footer
       = render 'layouts/core/snippets/body_footer', responsive: true
-      - if cookies[:_fullsite] != "true"
-        = render 'layouts/mobile/view_full_site'
 
     .js-config.is-hidden
       = render 'layouts/mobile/img_loader'
       = render 'layouts/core/snippets/fs_init'
+      - unless cookies[:_lpfont] == "true"
+        = render 'layouts/mobile/fonts_async'
       = js_configuration
       - unless Rails.env.production?
         :javascript

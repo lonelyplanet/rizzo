@@ -17,7 +17,7 @@
         %input(type='hidden' name='Source' value='homepagefooter')
         %input(type='hidden' name='type' value='subscribe')
         .dropdown.dropdown--country.js-select-country
-          %label.dropdown__value.dropdown__value--country.js-select-overlay(href='#select-country')
+          %label.dropdown__value.dropdown__value--country.icon--chevron-down--grey--after.js-select-overlay(href='#select-country')
             Select country
           %select.dropdown__select.js-select(name='sailthru_Country' id='countrySelect')
             - footer_newsletter_country_items.each do |country|
@@ -29,7 +29,7 @@
     .col--footer
       %input{type: "checkbox", id: 'ac-destinations', class: "accordion__input"}
       .nav--stacked.accordion__target.accordion__target--mid
-        %label{for: 'ac-destinations', class: 'accordion__title accordion__title--footer'}
+        %label{for: 'ac-destinations', class: 'accordion__title accordion__title--footer icon--chevron-down--grey--after'}
         %a.js-nav-item.title--footer.title--list--footer(href='http://www.lonelyplanet.com/destinations') Destinations
         - footer_nav_destination_items.each do |destination|
           %a.js-nav-item.nav__item.nav__item--sitemap.nav__item--footer{href: "http://www.lonelyplanet.com/#{destination[:url]}"}<
@@ -38,7 +38,7 @@
     .col--footer
       %input{type: "checkbox", id: 'ac-shop', class: "accordion__input"}
       .nav--stacked.accordion__target.accordion__target--mid
-        %label{for: 'ac-shop', class: 'accordion__title accordion__title--footer'}
+        %label{for: 'ac-shop', class: 'accordion__title accordion__title--footer icon--chevron-down--grey--after'}
         %a.js-nav-item.title--footer.title--list--footer(href='http://www.lonelyplanet.com/shop') Shop
         - footer_nav_shop_items.each do |shop|
           %a.js-nav-item.nav__item.nav__item--sitemap.nav__item--footer{href: "http://www.lonelyplanet.com/shop/#{shop[:url]}"}<
@@ -47,7 +47,7 @@
     .col--footer
       %input{type: "checkbox", id: 'ac-thorntree', class: "accordion__input"}
       .nav--stacked.accordion__target.accordion__target--mid
-        %label{for: 'ac-thorntree', class: 'accordion__title accordion__title--footer'}
+        %label{for: 'ac-thorntree', class: 'accordion__title accordion__title--footer icon--chevron-down--grey--after'}
         %a.js-nav-item.title--footer.title--list--footer(href='http://www.lonelyplanet.com/thorntree') Thorn Tree Forum
         - footer_nav_thorntree_items.each do |thorntree|
           %a.js-nav-item.nav__item.nav__item--sitemap.nav__item--footer{href: "http://www.lonelyplanet.com/thorntree/#{thorntree[:url]}"}<
@@ -56,7 +56,7 @@
     .col--footer
       %input{type: "checkbox", id: 'ac-themes', class: "accordion__input"}
       .nav--stacked.accordion__target.accordion__target--mid
-        %label{for: 'ac-themes', class: 'accordion__title accordion__title--footer'}
+        %label{for: 'ac-themes', class: 'accordion__title accordion__title--footer icon--chevron-down--grey--after'}
         %a.js-nav-item.title--footer.title--list--footer(href='http://www.lonelyplanet.com/themes') Themes
         - footer_nav_themes_items.each do |theme|
           %a.js-nav-item.nav__item.nav__item--sitemap.nav__item--footer{href: "http://www.lonelyplanet.com/themes/#{theme[:url]}"}<
@@ -65,7 +65,7 @@
     .col--footer
       %input{type: "checkbox", id: 'ac-bookings', class: "accordion__input"}
       .nav--stacked.accordion__target.accordion__target--mid
-        %label{for: 'ac-bookings', class: 'accordion__title accordion__title--footer'}
+        %label{for: 'ac-bookings', class: 'accordion__title accordion__title--footer icon--chevron-down--grey--after'}
         %a.js-nav-item.title--footer.title--list--footer(href='http://www.lonelyplanet.com/bookings') Travel Booking
         - footer_nav_travel_bookings_items.each do |booking|
           %a.js-nav-item.nav__item.nav__item--sitemap.nav__item--footer{href: "http://www.lonelyplanet.com/#{booking[:url]}"}<

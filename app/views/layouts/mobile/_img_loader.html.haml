@@ -1,10 +1,12 @@
 :javascript
-  if (window.lp && window.lp.enhanced) {
-    var images = document.querySelectorAll('[data-img]'),
-        len = images.length;
+  (function(){
+    if (window.lp && window.lp.enhanced) {
+      var images = document.querySelectorAll('[data-img]'),
+          len = images.length;
 
-    for (i = 0; i < len; i++) {
-      uncommented = images[i].innerHTML.replace('<!--', '').replace('-->', '');
-      images[i].parentNode.innerHTML = uncommented;
+      for (i = 0; i < len; i++) {
+        uncommented = images[i].innerHTML.replace('<!--', '').replace('-->', '');
+        images[i].parentNode.innerHTML = uncommented;
+      }
     }
-  }
+  })()
