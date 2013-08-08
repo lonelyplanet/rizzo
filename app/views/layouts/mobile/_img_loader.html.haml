@@ -1,6 +1,6 @@
 :javascript
   (function(){
-    if (window.lp && window.lp.enhanced) {
+    if ((window.lp && window.lp.enhanced) || document.documentElement.className.match(/ie([0-9]+)/)) {
       var images = document.querySelectorAll('[data-img]'),
           len = images.length;
 

@@ -8,7 +8,7 @@
     js.src = "#{asset_path('requirejs/require.js')}";
     ie = document.documentElement.className.match(/ie([0-9]+)/);
 
-    if (document.documentElement.clientWidth < 990 && !ie) {
+    if (document.documentElement.clientWidth < 1025 && !ie) {
       main = "#{asset_path('app_homepage_mobile.js')}";
       window.lp = window.lp || {}
       window.lp.isMobile = true;

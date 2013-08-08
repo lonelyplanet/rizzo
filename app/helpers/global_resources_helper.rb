@@ -21,7 +21,7 @@ module GlobalResourcesHelper
     [
       {title:'Destinations',
         uri: "http://www.lonelyplanet.com/destinations",
-        icon_class: "icon--pin-inline--grey--before",
+        icon_class: "icon--destination-line--grey--before",
         submenu: [
           {title:'Africa', uri:'http://www.lonelyplanet.com/africa'},
           {title:'Antarctica', uri:'http://www.lonelyplanet.com/antarctica'},
@@ -35,12 +35,12 @@ module GlobalResourcesHelper
           {title:'South America', uri:'http://www.lonelyplanet.com/south-america'}
         ]
       },
-      {title:'Themes', uri: "http://www.lonelyplanet.com/themes", icon_class: "icon--camera-inline--grey--before",},
-      {title:'Shop', uri: "http://shop.lonelyplanet.com", icon_class: "icon--shop-basket-inline--grey--before"},
-      {title:'Thorn Tree Forum', uri: "http://www.lonelyplanet.com/thorntree", icon_class: "icon--speech-bubble-inline--grey--before"},
+      {title:'Themes', uri: "http://www.lonelyplanet.com/themes", icon_class: "icon--themes-line--grey--before",},
+      {title:'Shop', uri: "http://shop.lonelyplanet.com", icon_class: "icon--shop-basket-line--grey--before"},
+      {title:'Thorn Tree Forum', uri: "http://www.lonelyplanet.com/thorntree", icon_class: "icon--thorntree-line--grey--before"},
       {title:'Bookings',
         uri: 'http://www.lonelyplanet.com/hotels/',
-        icon_class: 'icon--plane-inline--grey--before',
+        icon_class: 'icon--flights-line--grey--before',
         submenu: [
           {title:'Hotels', uri:'http://www.lonelyplanet.com/hotels', style:'hotels'},
           {title:'Flights', uri:'http://www.lonelyplanet.com/flights/', style:'flights'},
@@ -48,7 +48,7 @@ module GlobalResourcesHelper
           {title:'Sightseeing tours', uri:'http://www.lonelyplanet.com/sightseeing-tours/', style:'sightseeing-tours'}
         ]
       },
-      {title:'Insurance', uri: "http://www.lonelyplanet.com/travel-insurance", icon_class: 'icon--insurance-umbrella-inline--grey--before'}
+      {title:'Insurance', uri: "http://www.lonelyplanet.com/travel-insurance", icon_class: 'icon--insurance-line--grey--before'}
     ]
   end
 
