@@ -1,4 +1,4 @@
-%article.card.card--collection.js-card{class: "#{(stack_item.hero) ? 'card--double card--full-image' : 'card--single card--extended-content--half js-single'} card--collection--#{stack_item.topic} #{(stack_item.filter) ? "js-stack-card-filter" : ""}"}
+%article.card.card--collection.js-card{class: "#{(stack_item.hero || stack_item.size == "double") ? 'card--double card--full-image' : 'card--single card--extended-content--half js-single'} card--collection--#{stack_item.topic} #{(stack_item.filter) ? "js-stack-card-filter" : ""}"}
   %a.link--wrapper{:href => "/#{stack_item.slug}", :data => { 'stack-kind' => stack_item.stack_kind, :filter => stack_item.filter }}
     - if stack_item.count
       %span.card__item-count

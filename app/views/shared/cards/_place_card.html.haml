@@ -14,8 +14,9 @@
       - if stack_item.strapline
         %p.card__description
           = stack_item.strapline
-    %footer.card__footer
-      %span.destination__item-count.destination__item-count--sights
-        = stack_item.things_to_do_count
-      %span.destination__item-count.destination__item-count--lodgings
-        = stack_item.lodging_count
+    - if stack_item.things_to_do_count && stack_item.lodging_count
+      %footer.card__footer
+        %span.destination__item-count.destination__item-count--sights
+          = stack_item.things_to_do_count
+        %span.destination__item-count.destination__item-count--lodgings
+          = stack_item.lodging_count
