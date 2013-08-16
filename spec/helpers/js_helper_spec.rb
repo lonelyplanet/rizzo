@@ -44,7 +44,7 @@ describe JsHelper do
       helper.configure_js('foo', {:bar=>'bizz'})
       helper.configure_js('bot', {:lot=>'op'})
       helper.js_configuration.should match(/script/)
-      helper.js_configuration.should eq "<script type=\"text/javascript\">\n//<![CDATA[\nwindow.lp = {}; window.lp.foo = {\"bar\":\"bizz\"}; window.lp.bot = {\"lot\":\"op\"};\n//]]>\n</script>"
+      helper.js_configuration.should eq "<script type=\"text/javascript\">\n//<![CDATA[\nwindow.lp = window.lp || {}; window.lp.foo = {\"bar\":\"bizz\"}; window.lp.bot = {\"lot\":\"op\"};\n//]]>\n</script>"
     end
 
   end

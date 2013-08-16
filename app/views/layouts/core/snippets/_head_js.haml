@@ -14,8 +14,11 @@
   // Switch no-js class for js
   (function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement);
 
+  // Setup our namespace
+  window.lp = {}
+
   // Initialise a flamsteed buffer
-  window.fs = {
+  window.lp.fs = {
     buffer: [], 
     log : function(x){this.buffer.push({e: x})},
     time: function(x){!!window.performance && !!window.performance.now && this.buffer.push({e: x, t: window.performance.now()})}
