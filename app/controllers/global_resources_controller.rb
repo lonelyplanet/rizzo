@@ -1,5 +1,5 @@
 class GlobalResourcesController < GlobalController
-  
+
   include SnippetSupport
   helper GlobalResourcesHelper
 
@@ -10,19 +10,23 @@ class GlobalResourcesController < GlobalController
   end
 
   def index
-    render '/global/index', :layout=> 'core',  :locals => { :user_nav => user_nav?(params) }
+    render '/global-nav/index', :layout=> 'core',  :locals => { :user_nav => user_nav?(params) }
   end
-  
+
   def legacy
-    render '/global/legacy', :layout=> false,  :locals => { :user_nav => true }
+    render '/global-nav/legacy', :layout=> false,  :locals => { :user_nav => true }
   end
 
   def responsive
-    render '/global/responsive', :layout=> 'responsive'
+    render '/global-nav/responsive', :layout=> 'responsive'
   end
 
   def homepage
-    render '/global/homepage', :layout=> 'homepage'
+    render '/global-nav/homepage', :layout=> 'homepage'
+  end
+
+  def styleguide
+    render '/styleguide/index', :layout=> 'styleguide'
   end
 
 end

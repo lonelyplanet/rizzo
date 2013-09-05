@@ -2,7 +2,7 @@
   - stack_item.cards.each do |card|
 
     - if card.resized_image_url
-      = render 'shared/cards/image_card', card: card
+      = render 'components/cards/image_card', card: card
 
     - if card.resized_video_url
-      = render 'shared/cards/video_card', card: card
+      = render 'components/cards/video_card', card: card

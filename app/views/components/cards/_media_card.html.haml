@@ -2,7 +2,7 @@
   .card--single.card--media-container.js-card.js-single
 
     - if stack_item.resized_image_url
-      = render 'shared/cards/image_card', card: stack_item
+      = render 'components/cards/image_card', card: stack_item
 
     - if stack_item.resized_video_url
-      = render 'shared/cards/video_card', card: stack_item
+      = render 'components/cards/video_card', card: stack_item

@@ -33,5 +33,10 @@ module AssetHelper
     end
   end
 
+  def safe_image_tag(image_url, opts={})
+    return if image_url.blank?
+    image_tag(image_url, opts)
+  end
+
 end
 

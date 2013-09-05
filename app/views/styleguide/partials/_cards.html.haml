@@ -1,0 +1,22 @@
+- require "ostruct"
+
+.cards
+  = render 'components/cards/article_card', stack_item: OpenStruct.new(cards_stub[0])
+  = render 'components/cards/blog_card', stack_item: OpenStruct.new(cards_stub[0])
+  = render 'components/cards/collection_card', stack_item: OpenStruct.new(cards_stub[2])
+  = render 'components/cards/collection_card', stack_item: OpenStruct.new(cards_stub[3])
+  = render 'components/cards/media_card', stack_item: OpenStruct.new(cards_stub[4])
+  = render 'components/cards/need_to_know_card', stack_item: OpenStruct.new(cards_stub[1])
+  = render 'components/cards/place_card', stack_item: OpenStruct.new(cards_stub[5])
+  -# = render 'components/cards/double_link_card', stack_item: OpenStruct.new(cards_stub[2])
+  = render 'components/cards/link_card', stack_item: OpenStruct.new(link_cards[0])
+  = render 'components/cards/link_card', stack_item: OpenStruct.new(link_cards[1])
+  = render 'components/cards/link_card', stack_item: OpenStruct.new(link_cards[2])
+  = render 'components/cards/link_card', stack_item: OpenStruct.new(link_cards[3])
+  = render 'components/cards/link_card', stack_item: OpenStruct.new(link_cards[4])
+  = render 'components/cards/link_card', stack_item: OpenStruct.new(link_cards[5])
+  = render 'components/cards/link_card', stack_item: OpenStruct.new(link_cards[6])
+  = render 'components/cards/shop_card', stack_item: OpenStruct.new(cards_stub[0])
+  = render 'components/cards/ad_sense_card', stack_item: OpenStruct.new(cards_stub[0])
+  = render 'components/cards/mpu_card', stack_item: OpenStruct.new(cards_stub[0])
+  = render 'components/cards/traffic_driver_card', stack_item: OpenStruct.new(cards_stub[0])

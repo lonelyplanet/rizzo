@@ -24,10 +24,11 @@ Rizzo::Application.routes.draw do
 
   get 'secure/noscript/global-head'         => 'global_resources#show', :defaults => { :snippet => "head", :noscript => "true"}
   get 'secure/noscript/global-body-footer'  => 'global_resources#show', :defaults => { :snippet => "body_footer", :noscript => "true"}
-  
+
   get 'global'                       => 'global_resources#index'
   get 'secure/global'                => 'global_resources#index', :defaults => { :secure => "true" }
   get 'legacy'                       => 'global_resources#legacy'
   get 'responsive'                   => 'global_resources#responsive'
   get 'homepage'                     => 'global_resources#homepage'
+  get 'styleguide'                   => 'global_resources#styleguide'
 end if defined?(Rizzo::Application)

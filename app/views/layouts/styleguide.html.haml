@@ -1,0 +1,29 @@
+!!! 5
+%html{class: 'no-js freight js-hover', lang: "en", "ng-app" => "StyleSheetApp"}
+
+  %head
+    = render 'layouts/core/head', responsive: true, homepage: false
+
+  %body
+
+    .wrapper
+      .nav-container
+        .row.row--primary
+          .split--left
+            .wv--nav--inline.nav--primary#js-nav--primary
+              %a.media--lp-logo.logo--header(href='http://www.lonelyplanet.com')
+              %h1.title--primary Styleguide
+
+          .split--right
+            .wv--nav--inline.split--right__inner.nav--user
+              %form.nav__item.search--primary
+                %label.accessibility(for='search-q') Search
+                %input{id: "search", "ng-model" => "search", placeholder: "Search", class: "search__input search__input--primary", name: "q", value: "", autocomplete: "off", tabindex: "1"}
+
+      .row.row--content#js-row--content
+        .row__inner.row__inner--content.copy--freight
+          = yield
+        .row--footer-push
+
+    .js-config.is-hidden
+      = yield :scripts

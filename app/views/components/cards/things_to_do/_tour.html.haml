@@ -1,16 +1,18 @@
-%article.card.card--single.card--poi.card--poi--activity.js-card.js-single{class: stack_item.image_url ? 'card--small-image card--extended-content' : 'card--no-image' }
+%article.card.card--single.card--poi.card--poi--tour.js-card.js-single{class: stack_item.image_url ? 'card--small-image card--extended-content' : 'card--no-image' }
   %a.link--wrapper(href="/#{stack_item.slug}")
-    = render :partial => '/shared/cards/things_to_do/card_tags', :locals => { :stack_item => stack_item }
+    = render :partial => '/components/cards/things_to_do/card_tags', :locals => { :stack_item => stack_item }
     - if stack_item.image_url
       %figure.card__hero.obj-media__img
         = image_tag(stack_item.image_url, class: 'card__image')
     %section.card__content.obj-media__body
       %span.card__context
-        Activity
+        Tour
       %h1.card__name.js-card-name
         = stack_item.name
+      %p.card__tour-duration
+        = stack_item.duration
       %p.card__description
-        = raw sanitize(stack_item.card_description)
+        = stack_item.card_description
   - if stack_item.bookable?
     %footer.card__footer
       %span.btn--bookable

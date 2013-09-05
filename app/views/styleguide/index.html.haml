@@ -1,0 +1,21 @@
+.card-holder
+  .card--single
+    .card.left-nav
+      %a.current.nav__item--stack.obj-list__item{href: "/Home"} Home
+      %a.nav__item--stack.obj-list__item{href: "/components"} Components
+      %a.nav__item--stack.obj-list__item{href: "/inputs"} Form elements
+      %a.nav__item--stack.obj-list__item{href: "/grid"} Grid
+      %a.nav__item--stack.obj-list__item{href: "/mixins"} Mixins
+
+  .main-content.stack{ng: {view: true}}
+    = render 'styleguide/partials/cards'
+
+- content_for(:scripts) do
+  %script{src: "/javascripts/lib/angular/angular.js"}
+  %script{src: "/javascripts/services.js"}
+  %script{src: "/javascripts/controllers.js"}
+  %script{src: "/javascripts/lib/angular/angular-resource.js"}
+  %script{src: "/javascripts/app.js"}
+
+- content_for(:stylesheets) do
+  = stylesheet_link_tag 'styleguide', :media => "all"
