@@ -9,6 +9,7 @@
 
   .main-content.stack{ng: {view: true}}
     = render 'styleguide/partials/cards'
+    = render 'components/left_nav', left_nav: left_nav_stub
 
 - content_for(:scripts) do
   %script{src: "/javascripts/lib/angular/angular.js"}

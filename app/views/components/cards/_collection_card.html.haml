@@ -4,7 +4,7 @@
       %span.card__item-count
         = stack_item.count
     %figure.card__hero{class: (stack_item.hero) ? "card__hero--#{stack_item.topic}" : ''}
-      = safe_image_tag(stack_item.image_url, class: 'card__image', :alt => "#{stack_item.title}")
+      = safe_image_tag(stack_item.image_url, class: 'card__image', alt: "#{stack_item.title}", lazyload: defined?(lazyload))
     .card__content
       %span.card__context
         - if stack_item.respond_to?(:kind)

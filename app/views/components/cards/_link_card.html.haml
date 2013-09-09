@@ -4,7 +4,7 @@
       %span.card__item-count
         = stack_item.count
     %figure.card__hero
-      = safe_image_tag("cards/#{stack_item.title.downcase}.png", class: 'card__image', :alt => "#{stack_item.title}")
+      = safe_image_tag("cards/#{stack_item.title.downcase}.png", class: 'card__image', alt: "#{stack_item.title}", lazyload: defined?(lazyload))
     .card__content
       %span.card__context
         Collection

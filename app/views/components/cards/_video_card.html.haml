@@ -2,7 +2,8 @@
   %a.link--wrapper{href: card.video_href, title: "Video Gallery"}
     %span.card--media__badge
     %figure.card__hero
-      = safe_image_tag(card.resized_video_url, class: 'portrait card__image', :alt => "Video Gallery")
+      = safe_image_tag(card.resized_video_url, class: 'portrait card__image', alt: "Video Gallery", lazyload: defined?(lazyload))
+
     .card__content
       %h2.card__name.accessibility
         Video gallery

@@ -4,7 +4,7 @@
   %a.link--wrapper{href: url, title: "Image Gallery"}
     %span.card--media__badge.icon--camera--white
     %figure.card__hero
-      = safe_image_tag(card.resized_image_url, class: 'portrait card__image', :alt => "Image Gallery")
+      = safe_image_tag(card.resized_image_url, class: 'portrait card__image', alt: "Image Gallery", lazyload: defined?(lazyload))
     .card__content
       %h2.card__name.accessibility
         Image gallery

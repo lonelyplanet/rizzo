@@ -1,7 +1,7 @@
 %article.card.card--single.card--poi.card--small-image.card--extended-content.icon--blog--white--before.js-card
   %a.link--wrapper{href: stack_item.url}
     %figure.card__hero
-      = safe_image_tag(stack_item.image_url, class: 'card__image', :alt => "#{stack_item.title}")
+      = safe_image_tag(stack_item.image_url, class: 'card__image', alt: "#{stack_item.title}", lazyload: defined?(lazyload))
     .card__content
       %span.card__context
         Blog

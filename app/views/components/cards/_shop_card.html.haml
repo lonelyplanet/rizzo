@@ -1,7 +1,8 @@
 %article.card.card--shop.card--single.card--extended-content--half.js-card.js-single
   %a.link--wrapper{href: stack_item.shop_link}
     %figure.card__hero
-      = safe_image_tag("cards/shop.jpg", class: 'card__image', :alt => "destination guides")
+      = safe_image_tag("cards/shop.jpg", class: 'card__image', alt: "destination guides", lazyload: defined?(lazyload))
+
     .card__content
       %span.card__context
         Shop

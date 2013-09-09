@@ -4,8 +4,9 @@
       %figure.card__hero
         - if overlay_url = stack_item.overlay_url
           .card__hero__overlay
-            = image_tag(overlay_url, :alt => stack_item.title)
-        = safe_image_tag(stack_item.image_url, class: 'card__image', :alt => "#{stack_item.title}")
+            = safe_image_tag(overlay_url, :alt => stack_item.title)
+        = safe_image_tag(stack_item.image_url, class: 'card__image', alt: "#{stack_item.title}", lazyload: defined?(lazyload))
+
     .card__content
       %span.card__context
         Destination

@@ -1,0 +1,11 @@
+.card--single#js-left-nav
+
+  #js-stack-list-aside
+
+  - left_nav[:groups].each_with_index do |group, i|
+
+    .group--aside{class: (i > 0) ? "group--linked" : ""}
+      .group__inner
+        = grouped_content_for(group[:title], { section: '', use_accordion: false} ) do
+          - group[:items].each do |item|
+            = nav_item_aside(item, '', 'nav__item--delimited')
