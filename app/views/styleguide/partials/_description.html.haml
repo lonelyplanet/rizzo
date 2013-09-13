@@ -1,18 +1,13 @@
+- arguments = opts.values[0]
+
 .styleguide-block__description.card
   .styleguide-block__tabs
 
-    .copy--subtitle.styleguide-block__heading
-      Component
+    .copy--subtitle.styleguide-block__heading #{arguments.delete(:styleguide_title)}
     .styleguide__partial.copy--body
-      \= ui_component('#{component}')
+      \= ui_component('#{component}',
+      %b properties
+      )
 
-    .copy--subtitle
-      Properties
-
-    %pre.styleguide.copy--body.language-ruby<
-      %code<
-        - arguments = opts.values[0]
-        = JSON.pretty_generate arguments
-
-
-
+    %pre.styleguide.copy--body.language-ruby
+      %code #{JSON.pretty_generate arguments}

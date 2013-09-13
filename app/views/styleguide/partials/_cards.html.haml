@@ -1,22 +1,5 @@
-:ruby
-  require "ostruct"
-  cards = YAML.load(File.read(File.expand_path('../../../../data/styleguide/cards_stubs.yml', __FILE__)))
-  cards_stub = cards['cards'].map { |h| OpenStruct.new(h) }
-  link_cards = cards['link_cards'].map { |h| OpenStruct.new(h) }
+- require "ostruct"
+- cards = YAML.load(File.read(File.expand_path('../../../../data/styleguide/cards_stubs.yml', __FILE__)))
 
-
-= sg_component('cards/collection_card', stack_item: cards_stub[3], original_stub: cards['cards'][3])
-= sg_component('cards/collection_card', stack_item: cards_stub[2], original_stub: cards['cards'][2])
-= sg_component('cards/article_card', stack_item: cards_stub[0], original_stub: cards['cards'][0])
-= sg_component('cards/blog_card', stack_item: cards_stub[0], original_stub: cards['cards'][0])
-= sg_component('cards/media_card', stack_item: cards_stub[4], original_stub: cards['cards'][4])
-= sg_component('cards/need_to_know_card', stack_item: cards_stub[1], original_stub: cards['cards'][1])
-= sg_component('cards/place_card', stack_item: cards_stub[5], original_stub: cards['cards'][5])
-= sg_component('cards/shop_card', stack_item: cards_stub[0], original_stub: cards['cards'][0])
-
-- link_cards.each do |link_card|
-  = sg_component('cards/link_card', stack_item: link_card, original_stub: link_card)
-
-= sg_component('cards/ad_sense_card', stack_item: cards_stub[0], original_stub: cards['cards'][0])
-= sg_component('cards/mpu_card', stack_item: cards_stub[0], original_stub: cards['cards'][0])
-= sg_component('cards/traffic_driver_card', stack_item: cards_stub[0], original_stub: cards['cards'][0])
+- cards['cards'].each do |card|
+  = sg_component("cards/#{card[:styleguide_title].downcase.split(' ').join('_')}", stack_item: OpenStruct.new(card), original_stub: card)

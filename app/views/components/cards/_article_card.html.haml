@@ -1,12 +1,25 @@
-%article.card.card--single.card--poi.card--small-image.card--extended-content.icon--article--white--before.js-card
-  %a.link--wrapper{href: stack_item.url}
-    %figure.card__hero
-      = safe_image_tag(stack_item.image_url, class: 'card__image', alt: "#{stack_item.title}", lazyload: defined?(lazyload))
+- description = stack_item.post_content ? sanitize(stack_item.post_content,:tags => []) : stack_item.strapline
+- slug = defined?(articles_path) ? "#{articles_path}/#{stack_item.id}" : stack_item.url
+- title = stack_item.post_title ? stack_item.post_title : stack_item.title
+
+%article.card.card--single.card--poi.card--poi--article.icon--article--white--before.js-card.js-single{class: stack_item.thumbnail ? 'card--small-image card--extended-content' : 'card--no-image' }
+
+  %a.link--wrapper{href: slug}
+    - if stack_item.thumbnail
+      %figure.card__hero
+        = safe_image_tag(stack_item.thumbnail, class: 'card__image', alt: "#{title}", lazyload: defined?(lazyload))
+    
     .card__content
       %span.card__context
         Article
       %h2.card__name
-        = stack_item.title
-      - if stack_item.strapline
+        = title
+      
+      - if description
         %p.card__description
-          = stack_item.strapline
+          = raw description.truncate(330, omission: '.', separator: '.')
+
+    - if stack_item.post_date
+      .card__footer
+        %time.text-icon--clock{datetime: stack_item.post_date}
+          = @presenter.prettify_date(stack_item.post_date)
