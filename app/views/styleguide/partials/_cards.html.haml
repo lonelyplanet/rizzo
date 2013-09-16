@@ -1,5 +1,5 @@
 - require "ostruct"
 - cards = YAML.load(File.read(File.expand_path('../../../../data/styleguide/cards_stubs.yml', __FILE__)))
 
-- cards['cards'].each do |card|
-  = sg_component("cards/#{card[:styleguide_title].downcase.split(' ').join('_')}", stack_item: OpenStruct.new(card), original_stub: card)
+- cards['cards'].each_with_index do |card, i|
+  = sg_component("cards/#{card[:styleguide_title].downcase.split(' ').join('_')}", stack_item: OpenStruct.new(card), original_stub: card, count: i)

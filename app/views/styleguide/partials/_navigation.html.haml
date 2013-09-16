@@ -1,4 +1,4 @@
 - left_nav_stub = YAML.load(File.read(File.expand_path('../../../../data/styleguide/navigation_stubs.yml', __FILE__)))['left_nav_stub']
 
-- left_nav_stub.each do | stub |
-  = sg_component('left_nav', left_nav: stub)
+- left_nav_stub.each_with_index do | stub, i |
+  = sg_component('left_nav', left_nav: stub, count: i)

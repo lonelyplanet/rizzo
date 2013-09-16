@@ -20,4 +20,6 @@ log/*
 .rvmrc
 node_modules/
 .sass-cache/*
+spec/helpers/phantomcss/failures/
+spec/helpers/phantomcss/screenshots/*.diff.png
 node_modules/

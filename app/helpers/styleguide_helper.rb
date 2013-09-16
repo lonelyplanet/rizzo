@@ -31,9 +31,11 @@ module StyleguideHelper
   end
 
   def sg_component(path, opts)
+    count = opts.delete(:count)
+    item_class = count ? "styleguide-block__item styleguide-block__item--#{count}" : "styleguide-block__item"
     capture_haml do
       haml_tag(:div, class: "styleguide-block") do
-        haml_tag(:div, class: "styleguide-block__item") do
+        haml_tag(:div, class: item_class) do
           haml_concat ui_component(path, opts)
         end
         haml_concat render "styleguide/partials/description", component: path, opts: opts[:original_stub] ? {stack_item: opts[:original_stub]} : opts
