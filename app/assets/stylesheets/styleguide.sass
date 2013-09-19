@@ -58,17 +58,21 @@
   float: left
   margin-right: 20px
 
+.styleguide__subtitle
+  margin-left: 10px
+
 .styleguide-block__item--colour
   +border-radius(100)
   +vertically-center(100)
+  border: 2px solid #FFF
   width: 100px
   color: white
   text-align: center
   margin-top: 0
   margin-bottom: 0
 
-  &.is-white
-    border: 2px solid $ruled-separator
+  &.is-light
+    border-color: $ruled-separator
     color: $body-copy
 
 .styleguide-block__description
@@ -88,3 +92,8 @@ pre[class*="language-"]
   padding: 1em
   overflow: auto
   max-height: 300px
+
+.filter--links
+  min-width: 200px
+  +font-size(15)
+  line-height: 41px

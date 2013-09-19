@@ -48,5 +48,10 @@ module StyleguideHelper
     end
   end
 
+  def get_luminance(hex)
+    hex = "#{hex}#{hex.match(/[0-9A-Fa-f]{3}/)[0]}" if hex.length < 7
+    rgb = hex.scan(/[0-9A-Fa-f]{2}/).collect { |i| i.to_i(16) }
+    (0.2126*rgb[0]) + (0.7152*rgb[1]) + (0.0722*rgb[2])
+  end
 
 end
