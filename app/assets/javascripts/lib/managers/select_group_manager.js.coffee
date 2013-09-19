@@ -9,8 +9,13 @@ define ['jquery'], ($) ->
     addHandlers: ->
       @selectParent.on 'change', '.js-select', (e) =>
         e.preventDefault()
-        t = $(e.target).find("option:selected")
-        val = t.text()
-        t.closest(@parent).find('.js-select-overlay').text(val)
-        if @callback then @callback(e.target)
+        @showSelected(e.target)
+      @selectParent.find('select').each (index, el) =>
+        @showSelected(el)
+
+    showSelected: (target) ->
+      t = $(target).find("option:selected")
+      val = t.text()
+      t.closest(@parent).find('.js-select-overlay').text(val)
+      if @callback then @callback(target)
 

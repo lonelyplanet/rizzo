@@ -9,6 +9,11 @@ define ['jsmin'], ($) ->
     addHandlers: ->
       @parent.on 'change', (e) =>
         e.preventDefault()
-        result = e.target.options[e.target.selectedIndex].text
-        label = e.target.parentNode.find('.js-select-overlay').innerHTML = result
-        if @callback then @callback(e.target)
+        @showSelected(e.target)
+      @selectParent.find('select').each (index, el) =>
+        @showSelected(el)
+
+    showSelected: (target) ->
+      result = target.options[target.selectedIndex].text
+      label = target.parentNode.find('.js-select-overlay').innerHTML = result
+      if @callback then @callback(target)
