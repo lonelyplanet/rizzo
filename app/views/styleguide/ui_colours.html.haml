@@ -1,14 +1,12 @@
 .card.card--full-width.stack__intro.clearfix
-  %h1.split--left.copy--title Colour Palette
+  %h1.split--left.copy--title UI Colours
   .split--right.filter--links
     %a{ href: "javascript:sortBy(lightToDark)" } Light to dark
     |
     %a{ href: "javascript:sortBy(darkToLight)" } Dark to light
 
-
-- get_colours('_colour_palette').each do |group|
+- get_colours('_colour_theme').each do |group|
   = render 'styleguide/partials/colour', group: group
 
 = render 'styleguide/partials/shared'
 = render 'styleguide/javascripts/luminosity'
-

@@ -32,8 +32,9 @@ Rizzo::Application.routes.draw do
   get 'homepage'                     => 'global_resources#homepage'
 
   # Styleguide
-  get 'styleguide'                   => 'global_resources#styleguide'
-  get 'styleguide/navigation'        => 'global_resources#styleguideNavigation'
-  get 'styleguide/colours'           => 'global_resources#styleguideColours'
+  get 'styleguide'                   => 'styleguide#index'
+  get 'styleguide/navigation'        => 'styleguide#navigation'
+  get 'styleguide/colours'           => 'styleguide#colours'
+  get 'styleguide/ui-colours'        => 'styleguide#uiColours'
 
 end if defined?(Rizzo::Application)

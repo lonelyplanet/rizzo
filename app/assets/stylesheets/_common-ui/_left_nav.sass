@@ -40,7 +40,7 @@
 .group__title--aside
   +font-size(12)
   @extend %uppercase
-  color: $nav-search-btn-hover
+  color: $header-blue
   display: block
   font-weight: bold
   letter-spacing: 0.1em
@@ -65,11 +65,11 @@
   &:hover
     text-decoration: none
   .js-hover &:hover
-    background-color: $nav-bg--hover
+    background-color: $body-background-offset
     cursor: pointer
   &:before
     +font-size(30)
-    color: $body
+    color: $body-copy
     position: absolute
     top: 9px
     left: 12px
@@ -144,19 +144,3 @@
     content: ')'
   &:before
     content: '('
-
-.facet--count
-  +border-radius(4)
-  +font-size(11)
-  position: absolute
-  background: #fff
-  border: 1px solid $highlight
-  color: $highlight
-  display: block
-  font-weight: bold
-  line-height: 1em
-  padding: 4px 3px
-  right: 15px
-  text-align: right
-  top: 9px
-

@@ -26,32 +26,25 @@
 .filters__label--checkbox
   &.active
     font-weight: bold
-    color: $title
-
-.filters__disclaimer
-  +font-size(12)
-  color: $highlight-highlight
-  line-height: 1.5em
-  list-style: none
-  padding: 0.5em 0 0
+    color: $header-grey
 
 .filters__item--checkbox
   padding: 10px 0px
 
 .filters__label--checkbox
   +font-size(14)
-  color: $body
+  color: $body-copy
   display: block
   line-height: 1.4em
   padding: 0 10px 0 25px
   &.active
-    color: $title
+    color: $header-grey
     font-weight: bold
 
 .filters__item
   input[type='checkbox']:disabled 
     ~ label
-      color: $highlight
+      color: $disabled
       cursor: normal
 
 .filters__label--checkbox
@@ -78,6 +71,6 @@
 .js
   .filters__label, .filters__label--checkbox
     &.active a, a
-      color: $body
+      color: $body-copy
 
 

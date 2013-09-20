@@ -38,14 +38,14 @@
     margin-bottom: 12px
 
 .card--page__header
-  border-bottom: 1px solid $ruled-separator
+  border-bottom: 1px solid $body-background
   margin-bottom: 20px
   padding-bottom: 20px
 
 .card--page__footer
   @extend %clearfix
   clear: left
-  color: $new-header-grey
+  color: $header-grey
   margin-top: 20px
   padding-top: 20px
 
@@ -150,7 +150,7 @@
   width: 300px
 
   .booking-panel + .details-panel
-    border-top: 1px solid $ruled-separator
+    border-top: 1px solid $body-background
 
 // -----------------------------------------------------------------------------
 // Tour Itinerary
@@ -168,7 +168,7 @@
 // -----------------------------------------------------------------------------
 
 .booking-panel
-  background: $info-background
+  background: $details-panel-bg-darker
   padding: 20px
   position: relative
 
@@ -180,7 +180,7 @@
 // -----------------------------------------------------------------------------
 
 .details-panel
-  background: $secondary-content-bg
+  background: $details-panel-bg
   padding: 20px
   .section-glossary
     .section-title

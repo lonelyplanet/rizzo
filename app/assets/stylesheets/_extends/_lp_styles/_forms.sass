@@ -10,7 +10,7 @@
   @extend %empty-generated-content
   width: 14px
   height: 14px
-  border: 1px solid $soft-gray
+  border: 1px solid $input-border
 
 %lp-circle-active
   +border-radius(16)
@@ -23,7 +23,7 @@
   width: 11px
   height: 11px
   margin-left: 1px
-  border: 2px solid $soft-gray
+  border: 2px solid $input-border
 
 %lp-square-active
   width: 9px
@@ -43,7 +43,7 @@
     top: 1px
   &.active
     font-weight: bold
-    color: $header-gray
+    color: $header-grey
     &:before
       @extend %lp-circle-active
       top: 1px
@@ -56,7 +56,7 @@
     top: 1px
   &.active
     font-weight: bold
-    color: $header-gray
+    color: $header-grey
     &:before
       @extend %lp-square-active
       top: 1px      

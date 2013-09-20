@@ -27,9 +27,9 @@
   .slider__pagination
     display: none
   .slider__container
-    background: $body-background-light
+    background: $body-background
   .slider__slide
-    background: $body-background-light
+    background: $body-background
     text-align: center
 
 // This is all in a mixin because IE7/8 don't work when the :checked, and .is-checked selectors
@@ -67,7 +67,7 @@
 .media-gallery__resizer
   @extend %transition--base
   @extend %expand-arrows-before
-  background: $gallery-tab-background
+  background: $header-grey
   background: rgba(0,0,0,0.6)
   bottom: 0
   cursor: pointer
@@ -133,12 +133,12 @@
       width: 4px
     &::-webkit-scrollbar-thumb
       +border-radius(2)
-      background: $highlight
+      background: $details-panel-border
     &::-webkit-scrollbar-track
       background: none
 
   .obj-list__item
-    border-top: 1px solid $subdued-highlight
+    border-top: 1px solid $body-background-offset
     margin-bottom: 0
     padding: 10px 20px 15px 43px
 

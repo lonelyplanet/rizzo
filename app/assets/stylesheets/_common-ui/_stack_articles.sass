@@ -27,7 +27,7 @@
 
 .card--full-page__header
   margin-bottom: 20px
-  border-bottom: 1px solid $ruled-separator
+  border-bottom: 1px solid $body-background
   padding-bottom: 20px
 
 .card--full-page__title
@@ -91,7 +91,7 @@
   padding: 0 25px
 
 .stack__article__header
-  border-bottom: 1px solid $ruled-separator
+  border-bottom: 1px solid $body-background
   margin-bottom: 20px
   padding: 20px 0
 
@@ -139,20 +139,20 @@
 
 .sharing
   @extend %clearfix
-  border-top: 1px solid $ruled-separator
+  border-top: 1px solid $body-background
   padding: 20px 0
 
 .sharing__label
   +font-size(12)
   text-transform: uppercase
   font-weight: bold
-  color: $title
+  color: $header-grey
   line-height: 22px
 
 .sharing__icon
   @extend %left-icon
   @extend %left-icon--hidden-text
-  color: $title
+  color: $header-grey
   display: inline-block
   margin-left: 15px
   position: relative
@@ -170,7 +170,7 @@
     left: -63%
     text-indent: 0
     &:after
-      color: $new-header-grey
+      color: $header-grey
       left: 53%
 
 .icon--print
@@ -213,13 +213,13 @@
 
 .stack__article__table
   tr
-    border-bottom: 1px solid $ruled-separator
+    border-bottom: 1px solid $body-background
   th,
   td
     padding: 13px 13px 13px 0
     text-align: center
   th
-    color: $header-gray
+    color: $header-grey
     padding-bottom: 14px
   td
     .stack__article__table-align-left

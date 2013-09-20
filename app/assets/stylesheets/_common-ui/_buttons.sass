@@ -22,45 +22,41 @@
   @extend %base-button
   @extend %smooth-text
   background: white
-  color: $body
+  color: $body-copy
   cursor: pointer
   font-weight: 700
   padding: 10px 12px
   &.disabled
-    background-color: $subdued
+    background-color: $body-background-offset
     &:hover
-      background-color: $subdued  
+      background-color: $body-background-offset  
 
 .full-width
   width: 100%
 
 
 .btn--load
-  background-color: $body
+  background-color: $body-copy
   color: white
   &:hover
-    background: $body-highlight
+    background: #57636b
   &.disabled
-    color: $body
+    color: $body-copy
     
 .btn--action
   background-color: $green
   color: white
-  &:hover
-    background-color: $green-highlight
 
 .btn--submit
   @extend %lp-font-stack
   background-color: $yella 
-  color: $body
+  color: $body-copy
   &:hover
     background-color: $yella-highlight
 
 .btn--function
   background-color: $linkblue
   color: white
-  &:hover
-    background-color: $lpblue-highlight
 
 // start of button code ripped from waldorf
 
@@ -68,7 +64,7 @@
   @extend %base-button
   +font-size(15)
   background-color: $yella
-  color: $new-header-grey
+  color: $header-grey
   padding: 6px 15px
   font-weight: bold
   .js-hover &:hover
@@ -84,13 +80,13 @@
   border: 1px solid #c9d1d7
   color: $lpblue
   .js-hover &:hover
-    background-color: $lpblue-highlight
+    background-color: $linkblue
 
 .btn--load-more
   @extend .btn--functional
   width: 100%
   &.disabled
-    color: $title
+    color: $header-grey
 
 .btn--edit-dates
   +box-shadow(1, 1, 1, 0, rgba(0,0,0,0.1))
@@ -100,14 +96,14 @@
   font-weight: bold
   padding: 4px 6px
   .js-hover &:hover
-    color: $lpblue-highlight
+    color: $linkblue
 
 .btn--read-more
   .read-more-block &
     @extend %base-button
     +font-size(13)
-    border: 1px solid $soft-gray
-    color: $title
+    border: 1px solid $input-border
+    color: $header-grey
     font-weight: bold
     padding: 5px 7px
 

@@ -29,7 +29,7 @@
   &, &:active
     color: $nav-primary-type
   &:hover
-    color: $nav-primary-type-hover
+    color: #fff
 
 .nav__item--primary, .nav__item--user
   @extend %nav__item--look
@@ -43,7 +43,7 @@
     padding-left: 60px
     position: relative
     &:hover
-      background-color: $offscreen-nav-item-hover
+      background-color: $header-blue
       &:before
         border-right: 1px solid $offscreen-nav-border-hover
         color: $offscreen-nav-border-hover
@@ -99,9 +99,9 @@
 .nav__item--secondary
   padding: 6px 8px
   &, &:active
-    color: $nav-secondary-type
+    color: $body-copy
   &:hover
-    color: $nav-secondary-type-hover
+    color: $dark-blue-gray
   &.current
     @extend %active-background
     @extend %four-pixel-rounded
@@ -158,8 +158,8 @@
   top: 12px
   line-height: 16px
   margin: 0
-  color: $basket-item-type
-  background-color: $basket-item
+  color: $row-primary--darker
+  background-color: $yella
   font-weight: bold
   font-size: 10px
   .responsive &
@@ -168,8 +168,8 @@
       +box-shadow(0, 1, 3, 1, rgba(0, 0, 0, 0.5))
       display: inline-block
       font-size: 10px
-      color: $basket-item-type
-      background-color: $basket-item
+      color: $row-primary--darker
+      background-color: $yella
       position: absolute
       left: 0
 
@@ -205,7 +205,7 @@
 
 .user-box__img
   @extend %four-pixel-rounded
-  border: 2px solid $user-border
+  border: 2px solid $row-primary--darker
   height: 30px
   width: 30px
   .responsive &
@@ -215,7 +215,7 @@
     width: 50px
     +respond-to(wide-view)
       +border-radius(4)
-      border: 2px solid $user-border
+      border: 2px solid $row-primary--darker
       height: 30px
       width: 30px
   .homepage &
@@ -282,7 +282,7 @@
   @extend %left-icon
   @extend %chevron-right-before
   padding: 19px 8px 19px 20px
-  color: $header-gray
+  color: $header-grey
   &:before
     font-size: 16px
     line-height: 12px
@@ -308,7 +308,7 @@ a.nav__item--breadcrumbs
     font-size: 32px
     width: inherit
     text-align: center
-    color: $header-gray
+    color: $header-grey
   .ie7 &
     @extend .nav__item--breadcrumbs
     text-indent: 0
@@ -323,11 +323,11 @@ a.nav__item--breadcrumbs
 .nav__item--about
   margin-left: 15px
   padding: 26px 0
-  color: $header-gray
+  color: $header-grey
   .responsive &
     padding: 14px 0 14px 10px
     margin-left: 0
-    border-bottom: 1px solid $responsive-footer-border
+    border-bottom: 1px solid $input-border
     +respond-to(wide-view)
       padding: 26px 0
       margin-left: 15px
@@ -369,7 +369,7 @@ a.nav__item--breadcrumbs
   @extend %left-icon
   @extend %left-icon--hidden-text
   @extend %lp-font-stack
-  color: $header-gray
+  color: $header-grey
   margin: 16px 0 17px
   width: 32px
   height: 32px
@@ -462,7 +462,7 @@ a.nav__item--breadcrumbs
   @extend %smooth-text
   .responsive &
     float: none
-    border-bottom: 1px solid $responsive-footer-border
+    border-bottom: 1px solid $input-border
     +respond-to(wide-view)
       border: none
       padding: 0
@@ -516,7 +516,7 @@ a.nav__item--breadcrumbs
 .nav__item--sitemap
   color: $body-copy
   .js-hover &:hover
-    color: $header-gray
+    color: $header-grey
 
 .title--footer
   font-weight: bold
@@ -525,7 +525,7 @@ a.nav__item--breadcrumbs
 .title--list--footer
   display: block
   font-weight: bold
-  color: $title-footer--darker
+  color: $header-grey
   margin-bottom: 15px
   .responsive &
     padding: 14px 0

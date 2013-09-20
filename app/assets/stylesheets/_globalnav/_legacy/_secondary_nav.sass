@@ -1,7 +1,7 @@
 .row--secondary
-  @extend %secondary-gradient
   @extend %clearfix
   @include box-shadow(0, 2, 1, 1, rgba(0, 0, 0, 0.1), true)
+  background: #20374f
   padding: 11px 0
 
 .row__title--secondary
@@ -41,15 +41,15 @@
   @extend %inline-block
   padding: 7px 8px 7px
   line-height: 18px
-  color: $nav-secondary-type--legacy
+  color: #b0bac5
   &:hover
-    color: $nav-secondary-type-hover--legacy
+    color: #fff
     text-decoration: none
   &:active
-    color: $nav-secondary-type--legacy
+    color: #b0bac5
   &.current
     @include border-radius(4)
-    background-color: $nav-secondary-current-item-bck--legacy
-    color: $nav-secondary-type-active--legacy
+    background-color: $active
+    color: #fff
 
 

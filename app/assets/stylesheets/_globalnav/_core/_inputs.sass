@@ -32,8 +32,8 @@ input, textarea
 .input--regular--dark
   @extend %four-pixel-rounded
   border: none
-  background-color: $nav-bg--hover
-  color: $new-header-grey
+  background-color: $body-background-offset
+  color: $header-grey
   +placeholder
     color: $body-copy
 
@@ -91,7 +91,7 @@ input, textarea
 
 .search--primary
   @include border-radius(16)
-  background-color: $nav-search-bck
+  background-color: $row-primary--darker
   overflow: hidden
   margin: 13px 0 12px
   .responsive &
@@ -99,7 +99,7 @@ input, textarea
     width: 75%
     margin: 13px auto 12px
     +respond-to(wide-view)
-      background-color: $nav-search-bck
+      background-color: $row-primary--darker
       width: auto
       margin: 13px 0 12px
 
@@ -120,7 +120,7 @@ input, textarea
 .search__input--primary
   @extend %transition--base
   background: transparent
-  color: $nav-search-colour
+  color: $nav-primary-type
   display: inline-block
   height: 30px
   padding: 0 10px
@@ -129,7 +129,7 @@ input, textarea
   &:focus
     @extend %background-white
     +box-shadow(0, 1, 3, 1, rgba(0, 0, 0, 0.2), true)
-    color: $nav-search-bck-focus
+    color: $body-copy
     width: 210px
   .responsive &
     width: 80%
@@ -155,7 +155,7 @@ input, textarea
   padding: 0
   vertical-align: top
   &:hover
-    background-color: $nav-search-btn-hover
+    background-color: $header-blue
   .responsive &
     float: right
     +respond-to(wide-view)
@@ -243,7 +243,7 @@ input, textarea
   @extend %input--regular
   padding: 10px
   width: 100%
-  color: $header-gray
+  color: $header-grey
   +placeholder()
     color: $body-copy
   .homepage &
@@ -255,7 +255,7 @@ input, textarea
   margin: 7px 0
 
 .dropdown__value--country
-  color: $header-gray
+  color: $header-grey
   border: none
   padding-top: 11px
   padding-bottom: 11px

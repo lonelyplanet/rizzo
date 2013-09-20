@@ -4,21 +4,31 @@ module StyleguideHelper
     {
       groups: [
         {
-          title: "Sections",
+          title: "Components",
           items: [
             {
-              name: 'Cards',
-              path: '/styleguide',
+              name: "Cards",
+              path: "/styleguide",
               extra_style: "nav__item--delimited"
             },
             {
-              name: 'Navigation',
-              path: '/styleguide/navigation',
+              name: "Navigation",
+              path: "/styleguide/navigation",
+              extra_style: "nav__item--delimited"
+            }
+          ]
+        },
+        {
+          title: "Colours",
+          items: [
+            {
+              name: "Design palette",
+              path: "/styleguide/colours",
               extra_style: "nav__item--delimited"
             },
             {
-              name: 'Colour pallette',
-              path: '/styleguide/colours',
+              name: "UI Colours",
+              path: "/styleguide/ui-colours",
               extra_style: "nav__item--delimited"
             }
           ]
@@ -46,6 +56,23 @@ module StyleguideHelper
         haml_concat render "styleguide/partials/description", component: path, opts: opts[:original_stub] ? {stack_item: opts[:original_stub]} : opts
       end
     end
+  end
+
+  def get_colours(file)
+    colours = File.read(File.expand_path("../../assets/stylesheets/_variables/#{file}.sass", __FILE__))
+    colours = colours.split("// -----------------------------------------------------------------------------\n")
+    colours.delete_if(&:empty?)
+    groups = []
+    counter = -1
+    colours.each do |section|
+      if section[0..1] == "//"
+        groups.push({title: section})
+        counter = counter + 1
+      else
+        groups[counter][:body] = section
+      end
+    end
+    groups
   end
 
   def get_luminance(hex)

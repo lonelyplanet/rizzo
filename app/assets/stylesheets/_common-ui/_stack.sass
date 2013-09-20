@@ -55,8 +55,8 @@ $stack-intro-lines-to-show: 2
   @extend %left-icon-text
   +font-size(14)
   border-style: solid
-  border-color: $ruled-separator
-  color: $new-header-grey
+  border-color: $body-background
+  color: $header-grey
   font-weight: bold
   line-height: 1em
   overflow: hidden
@@ -81,13 +81,12 @@ $stack-intro-lines-to-show: 2
 
 .stack__view-type--selected
   background: $teal
-  border-color: $teal-highlight $teal $teal $teal-highlight
   box-shadow: 1px 1px 2px rgba(0,0,0,0.2) inset
   color: white
 
 .list-view__heading
   +font-size(30)
-  color: $highlight
+  color: $feature-copy
   clear: left
   line-height: 1em
   margin: 20px 0 10px 20px
@@ -102,7 +101,7 @@ $stack-intro-lines-to-show: 2
   @extend %warning-sign-before
   +font-size(15)
   background: #fffaca
-  color: $body
+  color: $body-copy
   line-height: 20px
   margin-top: 10px
   padding: 15px 15px 15px 38px
