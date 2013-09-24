@@ -1,0 +1,31 @@
+buttons:
+  -
+    :styleguide_title: "Bookable button"
+    :type: "bookable"
+    :text: "Bookable button"
+    :href: "#"
+    :modifiers: ""
+  -
+    :styleguide_title: "Functional button"
+    :type: "functional"
+    :text: "Functional button"
+    :href: "#"
+    :modifiers: ""
+  -
+    :styleguide_title: "Submit button"
+    :type: "submit"
+    :text: "Submit button"
+    :href: "#"
+    :modifiers: ""
+  -
+    :styleguide_title: "Action button"
+    :type: "action"
+    :text: "Action button"
+    :href: "#"
+    :modifiers: ""
+  -
+    :styleguide_title: "Load more button"
+    :type: "load"
+    :text: "Load more results"
+    :href: "#"
+    :modifiers: ""

@@ -10,6 +10,10 @@ class StyleguideController < GlobalController
     render '/styleguide/navigation'
   end
 
+  def buttons
+    render '/styleguide/buttons'
+  end
+
   def colours
     render '/styleguide/colours'
   end

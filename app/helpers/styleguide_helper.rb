@@ -12,6 +12,11 @@ module StyleguideHelper
               extra_style: "nav__item--delimited"
             },
             {
+              name: "Buttons",
+              path: "/styleguide/buttons",
+              extra_style: "nav__item--delimited"
+            },
+            {
               name: "Navigation",
               path: "/styleguide/navigation",
               extra_style: "nav__item--delimited"
