@@ -38,7 +38,7 @@
 
       - core_navigation_items.each do |n|
         - if n[:submenu]
-          .nav__item.nav__item--primary.nav__submenu__trigger{class: homepage ? n[:icon_class] : ""}
+          .nav__item.nav__item--primary.nav__submenu__trigger{class: responsive ? n[:icon_class] : ""}
             - if n[:uri]
               %a.nav__item.nav__item--submenu.js-nav-item{ href: n[:uri] }
                 = n[:title]
@@ -51,5 +51,5 @@
                   %a.js-nav-item{ href: sub[:uri], class: "nav__item nav__submenu__item nav__submenu__link nav__submenu__item--#{sub[:style]} #{sub[:icon_class] ? sub[:icon_class] : ''} "}<
                     = sub[:title]
         - else
-          %a.nav__item.nav__item--primary{ href: n[:uri], class: homepage ? n[:icon_class] : ""}<
+          %a.nav__item.nav__item--primary{ href: n[:uri], class: responsive ? n[:icon_class] : ""}<
             = n[:title]

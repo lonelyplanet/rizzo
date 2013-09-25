@@ -33,9 +33,12 @@ module AssetHelper
     end
   end
 
-  def safe_image_tag(image_url, opts={})
-    return if image_url.blank?
-    image_tag(image_url, opts)
+  def async_js_path (script_name, opts = {})
+    if opts[:mobile]
+      asset_path("#{script_name}_mobile.js")
+    else
+      asset_path("#{script_name}.js")
+    end
   end
 
 end

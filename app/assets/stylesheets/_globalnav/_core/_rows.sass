@@ -12,7 +12,7 @@ body
   background-color: $body-background
   display: table
   min-width: 100%
-  &.homepage
+  &.responsive
     display: block
 
 // Freight is applied to the main content row of the page
@@ -40,7 +40,7 @@ body
 
 .row--core
   @extend %helvetica-neue
-  .homepage &
+  .responsive &
     @extend %lp-font-stack
 
 .row--text-centered
@@ -275,10 +275,6 @@ body
       +respond-to(wide-view)
         border-top: 1px solid $input-border
         padding: 0 10px
-
-.row--footer--about__logo
-  .responsive &
-    margin-bottom: 20px
 
 .row--footer--social__logo
   .responsive &

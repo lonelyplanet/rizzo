@@ -12,9 +12,9 @@
 
       if (document.documentElement.clientWidth < 1025 && !ie) {
         window.lp.isMobile = true;
-        main = "#{asset_path('app_homepage_mobile.js')}";
+        main = "#{async_js_path(script_name, mobile: true)}";
       } else if (window.lp.enhanced || ie) {
-        main = "#{asset_path('app_homepage.js')}";
+        main = "#{async_js_path(script_name)}";
       } else {
         // Return false here rather than breaking the functionality of the site entirely.
         return false;
@@ -24,4 +24,4 @@
     })(document, 'script');
 
 - else
-  = requirejs_include_tag('app_homepage'){|c|{'main' => 'app_homepage'}}
+  = requirejs_include_tag("#{script_name}"){|c|{"main" => "#{script_name}"}}

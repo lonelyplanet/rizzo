@@ -1,25 +1,35 @@
 !!! 5
 <!--[if IE 7]><html class="no-js ie7" lang="en"><![endif]-->
 <!--[if IE 8]><html class="no-js ie8" lang="en"><![endif]-->
-<!--[if IE 9]><html class="no-js ie9" lang="en"><![endif]-->
-<!--[if gt IE 9]><!--><html class='no-js freight' lang="en"><!--<![endif]-->
+<!--[if IE 9]><html class="no-js ie9 no-freight" lang="en"><![endif]-->
+<!--[if gt IE 9]><!--><html class='no-js base no-touch no-freight' lang="en"><!--<![endif]-->
 %head
-  = render 'layouts/core/head', responsive: true, homepage: false
   %meta{name:"viewport", content:"width=device-width, initial-scale=1"}
-%body.responsive
+  = render 'layouts/core/head', responsive: true, homepage: false
+  = render 'layouts/mobile/grunticon'
+
+  <!--[if gt IE 8]><!-->
+  = render 'layouts/mobile/detect_touch'
+  <![endif]-->
+
+  = render 'layouts/mobile/require_js_config'
+  = render 'layouts/mobile/require_js_async', script_name: "app_destinations_landing"
+
+%body.responsive.copy--freight
   .wrapper
     = render 'layouts/core/snippets/accessibility'
     = render 'layouts/core/snippets/primary_navigation_bar', user_nav: true, responsive: true, homepage: false
     .row.row--content#js-row--content
-      .row__inner.row__inner--content
-        = yield
-      .row--footer-push
+      = yield
 
     .wrap--footer
       = render 'layouts/core/snippets/body_footer', responsive: true
 
     .js-config.is-hidden
+      -# = render 'layouts/mobile/img_loader'
       = render 'layouts/core/snippets/fs_init'
+      = render 'layouts/mobile/fonts_async'
+      = render 'layouts/mobile/base_js_async'
       = js_configuration
       - unless Rails.env.production?
         :javascript

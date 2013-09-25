@@ -23,7 +23,7 @@ $image-only-padding:                7px
 $card-content-vertical-padding:     13px
 $card-content-horizontal-padding:   15px
 
-// Homepage
+// responsive
 $mobile-card-grid-height:           296px
 $mobile-card-grid-half-height:      143px
 $mobile-standard-card-image-height: 192px
@@ -65,7 +65,7 @@ $mobile-standard-card-image-height: 192px
     left: 0
     top: 0
     width: 100%
-  .homepage &
+  .responsive &
     height: $mobile-standard-card-image-height
     +respond-to(medium-view)
       height: $standard-card-image-height
@@ -75,7 +75,7 @@ $mobile-standard-card-image-height: 192px
     &.is-portrait
       height: auto
       max-width: 100%
-    .homepage &
+    .responsive &
       width: 100%
       height: auto
       +respond-to(medium-view)
@@ -92,14 +92,14 @@ $mobile-standard-card-image-height: 192px
 
   .card--full-image &
     height: $card-grid-height
-    .homepage &
+    .responsive &
       height: $mobile-card-grid-height
       +respond-to(medium-view)
         height: $card-grid-height
 
   .card--image-only &
     height: $card-grid-half-height
-    .homepage &
+    .responsive &
       height: $mobile-card-grid-half-height
       +respond-to(medium-view)
         height: $card-grid-half-height
@@ -133,7 +133,7 @@ $mobile-standard-card-image-height: 192px
 
   .card--small-image &
     height: ($card-grid-height - $small-card-image-height - (2 * $card-content-vertical-padding) )
-    .homepage &
+    .responsive &
       height: ($mobile-card-grid-height - $small-card-image-height - (2 * $card-content-vertical-padding) )
       +respond-to(medium-view)
         height: ($card-grid-height - $small-card-image-height - (2 * $card-content-vertical-padding) )
@@ -173,7 +173,7 @@ $mobile-standard-card-image-height: 192px
 .card--extended-content,
 .card--extended-content--half
   height: $card-grid-height
-  .homepage &
+  .responsive &
     height: $mobile-card-grid-height
     +respond-to(medium-view)
       height: $card-grid-height
@@ -213,7 +213,7 @@ $mobile-standard-card-image-height: 192px
   .js-hover &:hover
     .card__content
       height: $card-grid-height - ( 2*$card-content-vertical-padding) - 40px
-  .js-hover.homepage &:hover
+  .js-hover.responsive &:hover
     .card__content
       height: $mobile-card-grid-height - ( 2*$card-content-vertical-padding) - 40px
       +respond-to(medium-view)
