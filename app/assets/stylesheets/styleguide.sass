@@ -1,7 +1,6 @@
 @import '_base_helpers'
 @import '_common-ui/_links'
 @import '_common-ui/_copy'
-@import '_common-ui/_buttons'
 @import '_common-ui/_tabs'
 @import '_common-ui/_pagination'
 @import '_common-ui/_gallery'
@@ -60,6 +59,12 @@
 
 .styleguide__subtitle
   margin-left: 10px
+
+.styleguide-block__buttons
+  margin-left: 10px
+  .styleguide-block__items
+    @extend %clearfix
+    margin-bottom: 20px
 
 .styleguide-block__item--colour
   +border-radius(100)

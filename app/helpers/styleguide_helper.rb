@@ -63,6 +63,31 @@ module StyleguideHelper
     end
   end
 
+  def sg_button(path, opts)
+    count = opts.delete(:count)
+    item_class = count ? "styleguide-block__item styleguide-block__item--#{count}" : "styleguide-block__item"
+    capture_haml do
+      haml_tag(:div, class: "styleguide-block styleguide-block__buttons") do
+        haml_tag(:div, class: "styleguide-block__items") do
+          modifiers = opts[:button].delete(:modifiers).split("|")
+          i = 0
+          haml_tag(:div, class: item_class) do
+            haml_concat ui_component(path, opts)
+          end
+          while i < modifiers.length do
+            haml_tag(:div, class: item_class) do
+              opts[:button][:modifiers] = modifiers[i]
+              haml_concat ui_component(path, opts)
+            end
+            i += 1
+          end
+          opts[:button][:modifiers] = "None | " + modifiers.join(' | ')
+        end
+        haml_concat render "styleguide/partials/description", component: path, opts: opts[:original_stub] ? {stack_item: opts[:original_stub]} : opts
+      end
+    end
+  end
+
   def get_colours(file)
     colours = File.read(File.expand_path("../../assets/stylesheets/_variables/#{file}.sass", __FILE__))
     colours = colours.split("// -----------------------------------------------------------------------------\n")

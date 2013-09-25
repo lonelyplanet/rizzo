@@ -1,4 +1,4 @@
 - buttons = YAML.load(File.read(File.expand_path('../../../data/styleguide/buttons_stubs.yml', __FILE__)))['buttons']
 
 - buttons.each_with_index do | button, i |
-  = sg_component("button", button: button)
+  = sg_button("button", button: button)
