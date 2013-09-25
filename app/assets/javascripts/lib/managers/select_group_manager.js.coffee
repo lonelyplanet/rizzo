@@ -4,6 +4,8 @@ define ['jquery'], ($) ->
 
     constructor: (@parent = null, @callback = false) ->
       @selectParent = (if @parent != null then $(@parent) else $('.js-select-group'))
+      @selectParent.find('.js-select').each (eltIndex) =>
+        @setOverlay(@selectParent[eltIndex])
       @addHandlers()
 
     addHandlers: ->
@@ -18,10 +20,12 @@ define ['jquery'], ($) ->
 
       @selectParent.on 'change', '.js-select', (e) =>
         e.preventDefault()
-        t = $(e.target).find("option:selected")
-        val = t.text()
-        @getOverlay(e.target).text(val)
+        @setOverlay(e.target)
         if @callback then @callback(e.target)
 
     getOverlay: (target) ->
       $(target).closest(@parent).find('.js-select-overlay')
+
+    setOverlay: (target) ->
+      t = $(target).find("option:selected")
+      @getOverlay(target).text(t.text())
