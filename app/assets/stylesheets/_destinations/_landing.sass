@@ -1,0 +1,184 @@
+// -----------------------------------------------------------------------------
+// Destination specific Colours
+// -----------------------------------------------------------------------------
+
+$section--countries        : #ff708e !default
+$section--regions          : #47a899 !default
+$section--cities           : #fa5e5b !default
+
+
+
+*
+  color: red
+  +respond-to(medium-view)
+    color: blue
+    @extend %border-box
+
+
+//----------------------------------------------------------
+// Introduction
+//
+// Landing text, top 10 lists 
+//----------------------------------------------------------
+
+
+
+.row--introduction
+  background-color: white
+  color: $header-grey
+  text-align: center
+  +respond-to(medium-view) // change to wide-view
+    height: 80px
+    @extend %clearfix
+
+
+
+
+.row--introduction__branding
+  +respond-to(medium-view) // change to wide-view
+    padding-top: 25px
+
+  +respond-to(medium-view) // change to wide-view
+    padding-top: 0
+    float: left
+    width: 20%
+    height: 80px
+    box-shadow: -1px 0 $body-background inset
+
+.media--best-in-travel-logo
+  +respond-to(medium-view) // change to wide-view
+    padding-top: 15px
+
+
+.row--introduction__blurb
+  +font-size(15)
+  padding: 25px 20px
+
+  +respond-to(medium-view) // change to wide-view
+    background-color: blue
+    color: white
+    position: absolute
+    top: -170px
+    left: 0
+    width: 380px
+    height: 90px
+
+.col--introduction__social
+  display: none
+  +respond-to(medium-view) // change to wide-view
+    background: yellow
+    display: block
+    width: 20%
+    float: left
+
+.top-tens
+  +respond-to(medium-view) // change to wide-view
+    float: left
+    @extend %clearfix
+    width: 60%
+
+.top-ten
+  border-left-width: 5px
+  border-left-style: solid
+  border-top: solid 1px $body-background
+  display: block
+
+  &.expanded
+    border-left-width: 0
+    .top-ten__category
+      color: white
+
+  +respond-to(medium-view) // change to wide-view
+    border-left-width: 0
+    border-bottom-width: 2px
+    border-bottom-style: solid
+    float: left
+    width: 33.33333%
+
+
+
+
+.top-ten__category__link
+  display: block
+  padding: 20px
+  text-align: center
+  text-transform: uppercase
+  +font-size(16)
+  +respond-to(medium-view) // change to wide-view
+    padding: 0
+    height: 78px // 80 - 30 - 2 (calc dynamically via sass?..)
+
+.top-ten.expanded
+  .top-ten__category__link
+    color: white
+
+.top-ten__category__link__inner
+  color: $header-grey
+  display: block
+  height: 100%
+  +respond-to(medium-view) // change to wide-view
+    box-shadow: -1px 0 $body-background inset
+    padding-top: 30px
+
+
+.top-ten--countries
+  border-left-color: $section--countries
+  &.expanded
+    background-color: $section--countries  
+  +respond-to(medium-view) // change to wide-view
+    border-bottom-color: $section--countries
+
+.top-ten--regions
+  border-left-color: $section--regions
+  &.expanded
+    background-color: $section--regions
+  +respond-to(medium-view) // change to wide-view
+    border-bottom-color: $section--regions
+
+.top-ten--cities
+  border-left-color: $section--cities
+  &.expanded
+    background-color: $section--cities
+  +respond-to(medium-view) // change to wide-view
+    border-bottom-color: $section--cities
+  
+
+
+///////////
+
+.top-ten__list__title
+  background-position: center center
+  background-repeat: no-repeat
+  text-indent: -9999px
+  height: 100%
+  width: 100%
+  position: absolute
+  top: 0
+
+.top-ten__list__item
+  height: 75px
+
+.top-ten__list--argentina
+  background-image: url(#{image_path('destinations/best-in-travel/bg--argentina.jpg')})
+  background-position: center
+  position: relative
+  .top-ten__list__title
+    background-image: url(#{image_path('destinations/best-in-travel/title--argentina.png')})
+
+.top-ten__list--brazil
+  background-image: url(#{image_path('destinations/best-in-travel/bg--brazil.jpg')})
+  background-position: center
+  position: relative
+  .top-ten__list__title
+    background-image: url(#{image_path('destinations/best-in-travel/title--brazil.png')})
+
+
+#temp-googlemap
+  display: none
+  +respond-to(medium-view) // change to wide-view
+    background-color: #cbdae7
+    display: block
+    width: 100%
+    height: 400px
+
+
