@@ -1,0 +1,28 @@
+.icon-gadventures {
+  background-image: url('png/gadventures.png');
+  background-repeat: no-repeat;
+  width: 142px;
+  height: 35px;
+  background-size: 100%;
+}
+.icon-intrepid {
+  background-image: url('png/intrepid.png');
+  background-repeat: no-repeat;
+  width: 48px;
+  height: 48px;
+  background-size: 100%;
+}
+.icon-viator {
+  background-image: url('png/viator.png');
+  background-repeat: no-repeat;
+  width: 92px;
+  height: 28px;
+  background-size: 100%;
+}
+.icon-worldexpeditions {
+  background-image: url('png/worldexpeditions.png');
+  background-repeat: no-repeat;
+  width: 113px;
+  height: 36px;
+  background-size: 100%;
+}
