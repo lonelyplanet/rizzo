@@ -1,4 +1,12 @@
 - buttons = YAML.load(File.read(File.expand_path('../../../data/styleguide/buttons_stubs.yml', __FILE__)))['buttons']
 
+.card.card--full-width.styleguide-intro.styleguide-block
+  %h1.copy--title Buttons
+  %h5.copy--subtitle Please note: 
+  %p.body--copy
+    Buttons do not call this component directly as the abstraction would be overkill. Buttons should always look like these through a combination of the modifier classes detailed below and in 
+    %a{href: 'https://github.com/lonelyplanet/rizzo/blob/master/app/assets/stylesheets/_common-ui/_buttons.sass'}
+      buttons.sass
+
 - buttons.each_with_index do | button, i |
   = sg_button("button", button: button)
