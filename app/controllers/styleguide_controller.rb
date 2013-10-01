@@ -14,6 +14,10 @@ class StyleguideController < GlobalController
     render '/styleguide/buttons'
   end
 
+  def typography
+    render '/styleguide/typography'
+  end
+
   def colours
     render '/styleguide/colours'
   end

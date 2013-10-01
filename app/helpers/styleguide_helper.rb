@@ -17,6 +17,11 @@ module StyleguideHelper
               extra_style: "nav__item--delimited"
             },
             {
+              name: "Typography",
+              path: "/styleguide/typography",
+              extra_style: "nav__item--delimited"
+            },
+            {
               name: "Navigation",
               path: "/styleguide/navigation",
               extra_style: "nav__item--delimited"

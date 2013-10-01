@@ -27,15 +27,15 @@ buttons:
     :modifiers: "btn--slim | disabled"
 
   -
-    :styleguide_title: "Clear button"
-    :type: "clear"
-    :text: "Eg. Read more"
+    :styleguide_title: "Grey button"
+    :type: "grey"
+    :text: "Load more"
     :href: "#"
     :modifiers: "btn--slim | disabled"
 
   -
-    :styleguide_title: "Grey button"
-    :type: "grey"
-    :text: "Load more"
+    :styleguide_title: "Clear button"
+    :type: "clear"
+    :text: "Eg. Read more"
     :href: "#"
     :modifiers: "btn--slim | disabled"

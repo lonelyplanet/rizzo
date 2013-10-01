@@ -35,6 +35,7 @@ Rizzo::Application.routes.draw do
   get 'styleguide'                   => 'styleguide#index'
   get 'styleguide/buttons'           => 'styleguide#buttons'
   get 'styleguide/navigation'        => 'styleguide#navigation'
+  get 'styleguide/typography'        => 'styleguide#typography'
   get 'styleguide/colours'           => 'styleguide#colours'
   get 'styleguide/ui-colours'        => 'styleguide#uiColours'
 
