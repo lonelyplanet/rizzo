@@ -30,10 +30,30 @@
     line-height: 0.6em
     margin-bottom: 12px
 
+.card--page__inner
+  @extend %clearfix
+
 .card--page__header
   border-bottom: 1px solid $body-background
   margin-bottom: 20px
   padding-bottom: 20px
+
+.card--top-choice
+  &:after
+    @extend %empty-abs-generated-content
+    background: url(image_path("lodgings-spt.png"))
+    top: -5px
+    left: 17px
+    height: 95px
+    width: 63px
+    +retinafy()
+      background: url(image_path("lodgings-spt-2x.png"))
+      background-size: $lodgings-sprite-size
+
+  .card--page__header
+    min-height: 60px
+    padding-left: 73px
+
 
 .card--page__footer
   @extend %clearfix

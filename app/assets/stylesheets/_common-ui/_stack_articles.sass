@@ -9,22 +9,6 @@
   position: relative
   @extend %box-off-double
 
-.lodging--top-choice
-  &:after
-    @extend %empty-abs-generated-content
-    background: url(image_path("lodgings-spt.png"))
-    top: -5px
-    left: 17px
-    height: 95px
-    width: 63px
-    +retinafy()
-      background: url(image_path("lodgings-spt-2x.png"))
-      background-size: $lodgings-sprite-size
-
-  .card--full-page__header
-    min-height: 60px
-    padding-left: 73px
-
 .card--full-page__header
   margin-bottom: 20px
   border-bottom: 1px solid $body-background
