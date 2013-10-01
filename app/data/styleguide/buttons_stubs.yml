@@ -34,6 +34,13 @@ buttons:
     :modifiers: "btn--slim | disabled"
 
   -
+    :styleguide_title: "Light Grey button"
+    :type: "light-grey"
+    :text: "Load more"
+    :href: "#"
+    :modifiers: "btn--slim | disabled"
+
+  -
     :styleguide_title: "Clear button"
     :type: "clear"
     :text: "Eg. Read more"
