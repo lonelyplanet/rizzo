@@ -81,7 +81,7 @@ require ['public/assets/javascripts/lib/components/load_more.js'], (LoadMore) ->
         lm._block()
 
       it 'adds the disabled and loading classes', ->
-        expect(lm.$btn).toHaveClass('loading disabled')
+        expect(lm.$btn).toHaveClass('loading is-disabled')
 
       it 'updates the loading text', ->
         expect(lm.$btn.text()).toBe(lm.config.idleTitle)
@@ -91,11 +91,11 @@ require ['public/assets/javascripts/lib/components/load_more.js'], (LoadMore) ->
       beforeEach ->
         loadFixtures('load_more.html')
         window.lm = new LoadMore({el: '.js-pagination'})
-        lm.$btn.addClass('loading disabled').text("some text")
+        lm.$btn.addClass('loading is-disabled').text("some text")
         lm._unblock()
 
       it 'adds the disabled and loading classes', ->
-        expect(lm.$btn).not.toHaveClass('loading disabled')
+        expect(lm.$btn).not.toHaveClass('loading is-disabled')
 
       it 'updates the loading text', ->
         expect(lm.$btn.text()).toBe(lm.config.title)

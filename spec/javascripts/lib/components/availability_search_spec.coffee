@@ -90,7 +90,7 @@ require ['public/assets/javascripts/lib/components/availability_search.js'], (Av
         av._block()
 
       it 'adds the disabled class', ->
-        expect(av.$submit).toHaveClass('disabled')
+        expect(av.$submit).toHaveClass('is-disabled')
 
       it 'adds the disabled attribute', ->
         expect(av.$submit.attr('disabled')).toBe("disabled")
@@ -104,9 +104,9 @@ require ['public/assets/javascripts/lib/components/availability_search.js'], (Av
         av._unblock()
 
       it 'removes the disabled class', ->
-        expect(av.$submit).not.toHaveClass('disabled')
+        expect(av.$submit).not.toHaveClass('is-disabled')
 
-      it 'adds the disabled attribute', ->
+      it 'removes the disabled attribute', ->
         expect(av.$submit.attr('disabled')).toBe(undefined)
 
 

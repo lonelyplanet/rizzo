@@ -79,10 +79,10 @@ define ['jquery','lib/extends/events'], ($, EventEmitter ) ->
       @currentPage = 1
 
     _block: ->
-      @$btn.addClass('loading disabled').text(@config.idleTitle)
+      @$btn.addClass('loading is-disabled').text(@config.idleTitle)
 
     _unblock: ->
-      @$btn.removeClass('loading disabled').text(@config.title)
+      @$btn.removeClass('loading is-disabled').text(@config.title)
 
     _serialize: ->
       params = if @currentPage > 1 then {page: @currentPage} else {}

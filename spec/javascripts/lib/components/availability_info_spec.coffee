@@ -100,7 +100,7 @@ require ['public/assets/javascripts/lib/components/availability_info.js'], (Avai
         avInfo._block()
 
       it 'adds the disabled class', ->
-        expect(avInfo.$btn).toHaveClass('disabled')
+        expect(avInfo.$btn).toHaveClass('is-disabled')
 
       it 'adds the disabled attribute', ->
         expect(avInfo.$btn.attr('disabled')).toBe("disabled")
@@ -113,9 +113,9 @@ require ['public/assets/javascripts/lib/components/availability_info.js'], (Avai
         avInfo._unblock()
 
       it 'removes the disabled class', ->
-        expect(avInfo.$btn).not.toHaveClass('disabled')
+        expect(avInfo.$btn).not.toHaveClass('is-disabled')
 
-      it 'adds the disabled attribute', ->
+      it 'removes the disabled attribute', ->
         expect(avInfo.$btn.attr('disabled')).toBe(undefined)
 
 
