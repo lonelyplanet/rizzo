@@ -39,6 +39,19 @@
   +box-sizing
   padding: 20px
 
+pre[class*="language-"]
+  @extend %border-box
+  padding: 1em
+  overflow: auto
+  max-height: 300px
+  .tag
+    +font-size(16)
+    margin: 0
+    float: none
+
+pre.styleguide.is-open
+  max-height: none
+
 .clearfix
   @extend %clearfix
 
@@ -70,6 +83,11 @@
     margin-bottom: 20px
   .copy--body
     margin-bottom: 40px
+  pre[class*="language-"]
+    margin: 0
+    padding: 7px
+    &, .tag
+      +font-size(14)
 
 .styleguide-block__item--colour
   +border-radius(100)
@@ -96,23 +114,6 @@
 .styleguide__partial
   border: 2px solid $body-background
   padding: 5px
-
-pre[class*="language-"]
-  @extend %border-box
-  padding: 1em
-  overflow: auto
-  max-height: 300px
-  .tag
-    +font-size(16)
-    margin: 0
-    float: none
-  .styleguide-block__buttons &
-    margin: 0
-    padding: 7px
-
-
-pre.styleguide.is-open
-  max-height: none
 
 .filter--links
   min-width: 200px

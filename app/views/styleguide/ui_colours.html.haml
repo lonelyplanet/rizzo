@@ -1,9 +1,14 @@
-.card.card--full-width.styleguide-intro.clearfix
-  %h1.split--left.copy--title UI Colours
-  .split--right.filter--links
-    %a{ href: "javascript:sortBy(lightToDark)" } Light to dark
-    |
-    %a{ href: "javascript:sortBy(darkToLight)" } Dark to light
+.card.card--full-width.styleguide-intro
+  .clearfix
+    %h1.split--left.copy--title UI Colours
+    .split--right.filter--links
+      %a{ href: "javascript:sortBy(lightToDark)" } Light to dark
+      |
+      %a{ href: "javascript:sortBy(darkToLight)" } Dark to light
+  %p.copy--body
+    These are the colours outside of the primary palettes that are used within the sass. They are defined in 
+    %a{href: 'https://github.com/lonelyplanet/rizzo/blob/master/app/assets/stylesheets/_variables/_colour_theme.sass'}
+      colour_theme.sass
 
 - get_colours('_colour_theme').each do |group|
   = render 'styleguide/partials/colour', group: group
