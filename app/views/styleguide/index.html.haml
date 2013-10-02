@@ -1,9 +1,10 @@
 - require "ostruct"
 - cards = YAML.load(File.read(File.expand_path('../../../data/styleguide/cards_stubs.yml', __FILE__)))
 
+.card.card--full-width.styleguide-intro
+  %h1.copy--title Cards
+  %p.copy--body
+    Cards should be included as components where possible, and always in rails apps. You can include the ui_component includes as detailed below.
+
 - cards['cards'].each_with_index do |card, i|
   = sg_component("cards/#{card[:styleguide_title].downcase.split(' ').join('_')}", stack_item: OpenStruct.new(card), original_stub: card, count: i)
-
-
-= render 'styleguide/partials/shared'
-

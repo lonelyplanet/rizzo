@@ -1,14 +1,19 @@
-.card.card--full-width.stack__intro.clearfix
-  %h1.split--left.copy--title Colour Palette
-  .split--right.filter--links
-    %a{ href: "javascript:sortBy(lightToDark)" } Light to dark
-    |
-    %a{ href: "javascript:sortBy(darkToLight)" } Dark to light
+.card.card--full-width.styleguide-intro
+  .clearfix
+    %h1.split--left.copy--title Colour Palette
+    .split--right.filter--links
+      %a{ href: "javascript:sortBy(lightToDark)" } Light to dark
+      |
+      %a{ href: "javascript:sortBy(darkToLight)" } Dark to light
+
+  %p.copy--body
+    This is the primary and secondary colour palettes as described in the PSD styleguide and in 
+    %a{href: 'https://github.com/lonelyplanet/rizzo/blob/master/app/assets/stylesheets/_variables/_colour_palette.sass'}
+      colour_palette.sass
 
 
 - get_colours('_colour_palette').each do |group|
   = render 'styleguide/partials/colour', group: group
 
-= render 'styleguide/partials/shared'
 = render 'styleguide/javascripts/luminosity'
 

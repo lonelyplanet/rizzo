@@ -64,7 +64,7 @@ define ['jquery','lib/extends/events'], ($, EventEmitter ) ->
       
     _add: ->
       container = $('<div>').css('text-align', 'center')
-      @$btn = $('<a>').attr('id', 'js-load-more').addClass('btn btn--load full-width').text(@config.title)
+      @$btn = $('<a>').attr('id', 'js-load-more').addClass('btn btn--grey btn--full-width').text(@config.title)
       @$el.append(container.append(@$btn))
 
     _show: ->
@@ -79,10 +79,10 @@ define ['jquery','lib/extends/events'], ($, EventEmitter ) ->
       @currentPage = 1
 
     _block: ->
-      @$btn.addClass('loading disabled').text(@config.idleTitle)
+      @$btn.addClass('loading is-disabled').text(@config.idleTitle)
 
     _unblock: ->
-      @$btn.removeClass('loading disabled').text(@config.title)
+      @$btn.removeClass('loading is-disabled').text(@config.title)
 
     _serialize: ->
       params = if @currentPage > 1 then {page: @currentPage} else {}

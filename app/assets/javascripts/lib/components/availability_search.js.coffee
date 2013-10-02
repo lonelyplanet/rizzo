@@ -70,10 +70,10 @@ define ['jquery', 'lib/extends/events', 'lib/utils/page_state', 'lib/utils/seria
         input.attr('value', value)
 
     _block : ->
-      @$submit.addClass('disabled').attr('disabled', true)
+      @$submit.addClass('is-disabled').attr('disabled', true)
 
     _unblock : ->
-       @$submit.removeClass('disabled').attr('disabled', false)
+       @$submit.removeClass('is-disabled').attr('disabled', false)
 
     _show : ->
       @$el.removeClass('is-hidden')

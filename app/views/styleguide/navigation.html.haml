@@ -1,7 +1,9 @@
 - left_nav_stub = YAML.load(File.read(File.expand_path('../../../data/styleguide/navigation_stubs.yml', __FILE__)))['left_nav_stub']
 
+.card.card--full-width.styleguide-intro
+  %h1.copy--title Navigation
+  %p.copy--body
+    This navigation is not currently being included as a component by any apps and is waiting for some Ruby refactoring. So far, this just represents where we want to get to. The styles are still up to date though and can be used as reference.
+
 - left_nav_stub.each_with_index do | stub, i |
   = sg_component('left_nav', left_nav: stub, count: i)
-
-
-= render 'styleguide/partials/shared'

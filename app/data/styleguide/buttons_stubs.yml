@@ -1,0 +1,51 @@
+buttons:
+  -
+    :styleguide_title: "Bookable button"
+    :type: "bookable"
+    :text: "Bookable button"
+    :href: "#"
+  -
+    :styleguide_title: "Green button"
+    :type: "green"
+    :text: "Eg. Register"
+    :href: "#"
+
+  -
+    :styleguide_title: "Blue button"
+    :type: "blue"
+    :text: "Eg. Search"
+    :href: "#"
+
+  -
+    :styleguide_title: "White button"
+    :type: "white"
+    :text: "Eg. Change dates"
+    :href: "#"
+
+  -
+    :styleguide_title: "Grey button"
+    :type: "grey"
+    :text: "Load more"
+    :href: "#"
+
+  -
+    :styleguide_title: "Light Grey button"
+    :type: "light-grey"
+    :text: "Load more"
+    :href: "#"
+
+  -
+    :styleguide_title: "Clear button"
+    :type: "clear"
+    :text: "Eg. Read more"
+    :href: "#"
+
+variation:
+  :styleguide_title: "Sizes and modifiers"
+  :type: "bookable"
+  :text: "Bookable button"
+  :href: "#"
+  :modifiers:
+    - "btn--slim"
+    - "disabled"
+    - "btn--full-width"

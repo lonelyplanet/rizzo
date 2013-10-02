@@ -31,6 +31,11 @@ group :test do
   gem 'rb-fsevent', '~> 0.9.1'
 end
 
+group :development do
+  gem 'better_errors'
+  gem "binding_of_caller"
+end
+
 group :production do
   gem "lograge"
   gem "logstash-event"

@@ -69,10 +69,10 @@ define ['jquery', 'lib/extends/events', 'lib/utils/page_state'], ($, EventEmitte
        @$el.addClass('is-hidden')
 
     _block: ->
-       @$btn.addClass('disabled').attr('disabled', true)
+       @$btn.addClass('is-disabled').attr('disabled', true)
   
     _unblock: ->
-       @$btn.removeClass('disabled').attr('disabled', false)
+       @$btn.removeClass('is-disabled').attr('disabled', false)
 
     _isHidden: ->
       @$el.hasClass('is-hidden')

@@ -1,7 +1,6 @@
 @import '_base_helpers'
 @import '_common-ui/_links'
 @import '_common-ui/_copy'
-@import '_common-ui/_buttons'
 @import '_common-ui/_tabs'
 @import '_common-ui/_pagination'
 @import '_common-ui/_gallery'
@@ -40,6 +39,19 @@
   +box-sizing
   padding: 20px
 
+pre[class*="language-"]
+  @extend %border-box
+  padding: 1em
+  overflow: auto
+  max-height: 300px
+  .tag
+    +font-size(16)
+    margin: 0
+    float: none
+
+pre.styleguide.is-open
+  max-height: none
+
 .clearfix
   @extend %clearfix
 
@@ -49,6 +61,9 @@
 .title--styleguide
   color: white
   padding: 10px 0
+
+.styleguide-intro
+  padding: 25px
 
 .styleguide-block
   @extend %clearfix
@@ -60,6 +75,19 @@
 
 .styleguide__subtitle
   margin-left: 10px
+
+.styleguide-block__buttons
+  margin-left: 10px
+  .styleguide-block__items
+    @extend %clearfix
+    margin-bottom: 20px
+  .copy--body
+    margin-bottom: 40px
+  pre[class*="language-"]
+    margin: 0
+    padding: 7px
+    &, .tag
+      +font-size(14)
 
 .styleguide-block__item--colour
   +border-radius(100)
@@ -86,15 +114,6 @@
 .styleguide__partial
   border: 2px solid $body-background
   padding: 5px
-
-pre[class*="language-"]
-  @extend %border-box
-  padding: 1em
-  overflow: auto
-  max-height: 300px
-
-pre.styleguide.open-up
-  max-height: none
 
 .filter--links
   min-width: 200px

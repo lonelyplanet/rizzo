@@ -1,39 +1,99 @@
-// ---------------------------------------------------
-//
-// Defaults
-//
-// ---------------------------------------------------
+// -----------------------------------------------------------------------------
+// Base button
+// -----------------------------------------------------------------------------
 
-.btn--regular
-  @extend %base-button
-  padding: 10px 15px
-
-.btn--large
+.btn
   +font-size(16)
-  @extend %base-button
-  padding: 12px 30px
+  @extend %four-pixel-rounded
+  @extend %border-box
+  @extend %inline-block
+  cursor: pointer
+  font-weight: bold
+  padding: 10px 12px
+  text-align: center
+  .js-hover &:hover
+    text-decoration: none
+  &.is-disabled, &[disabled]
+    background-color: $subdued
+    color: white
+    .js-hover &:hover
+      background-color: $subdued
 
 
-// ---------------------------------------------------
-//
-// Themes
-//
-// ---------------------------------------------------
+// -----------------------------------------------------------------------------
+// Button Size Modifiers
+// -----------------------------------------------------------------------------
 
-.btn--gray
-  color: #fff
-  background-color: #67747c
+.btn--full-width
+  display: block
+  width: 100% // Ensure inputs also stretch full width
 
+.btn--slim
+  padding: 4px 6px
+
+
+// -----------------------------------------------------------------------------
+// Button Types
+// -----------------------------------------------------------------------------
+
+.btn--bookable
+  background-color: $yella
+  color: $header-grey
+  .js-hover &:hover
+    background-color: $yella-highlight
+
+.btn--grey
+  background-color: $body-copy
+  color: white
+  .js-hover &:hover
+    background-color: #57636b
+
+.btn--light-grey
+  background-color: $disabled
+  color: white
+  .js-hover &:hover
+    background-color: $disabled
+    
 .btn--green
   background-color: $green
-  color: #fff
-  font-weight: bold
+  color: white
 
-.btn--accept
-  @extend %left-icon
-  @extend %tick-icon-before
-  padding-left: 35px
-  &:before
-    +font-size(18)
-    left: 15px
-    top: 4px
+.btn--blue
+  background-color: $linkblue
+  color: white
+
+.btn--white
+  background-color: #fff
+  color: $lpblue
+  .js-hover &:hover
+    color: $linkblue
+
+.btn--clear
+  border: 1px solid $input-border
+  color: $header-grey
+
+  .read-more-block &
+    +font-size(13)
+    padding: 5px 7px
+
+  .read-more-inline &
+    +font-size(14)
+    background-color: white
+    bottom: 0
+    box-shadow: -20px 0 10px 5px white
+    color: $header-blue
+    line-height: 31px
+    right: 0
+    padding: 0 0 0 20px
+    position: absolute
+    border: 0
+
+    &:after
+      font-weight: 400
+      margin-left: 5px
+
+    .is-closed &
+      @extend %chevron-down-after
+
+    .is-open &
+      @extend %chevron-up-after
