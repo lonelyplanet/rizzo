@@ -9,8 +9,10 @@
   @extend %four-pixel-rounded
   color: $body-copy
   margin: 0
-  padding: 25px
+  padding: 15px
   position: relative
+  .card--single + .stack &
+    padding: 25px
 
   .copy--title
     margin: 0
@@ -26,7 +28,7 @@
   .tag
     +font-size(14)
   .tag--price__amount
-    font-size: 30px
+    +font-size(30)
     line-height: 0.6em
     margin-bottom: 12px
 
@@ -123,7 +125,7 @@
 .card--page__content
   @extend %grid-column
   margin-right: 20px
-  width: 626px
+  width: 568px
   .card--single + .stack &
     width: 427px
 
@@ -140,11 +142,17 @@
   @extend %grid-column
   @extend %transition--base
   position: relative
-  width: 300px
+  width: 382px
+  .card--single + .stack &
+    width: 300px
 
   .booking-panel + .details-panel
     border-top: 1px solid $body-background
 
+.card--page__aside--right
+  float: right
+
+.aside__content
   .copy--subtitle
     +font-size(14)
     font-weight: bold
@@ -152,6 +160,10 @@
     margin-bottom: 0
     margin-top: 20px
     text-transform: none
+
+.aside__content--standout
+  background-color: $details-panel-bg-darker
+
 
 // -----------------------------------------------------------------------------
 // Tour Itinerary

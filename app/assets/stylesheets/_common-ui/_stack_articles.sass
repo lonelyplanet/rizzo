@@ -5,9 +5,8 @@
 //
 // -----------------------------------------------------------------------------
 
-.card--full-page
-  position: relative
-  @extend %box-off-double
+.lodging
+  padding: 15px
 
 .lodging--top-choice
   &:after
@@ -21,24 +20,24 @@
       background: url(image_path("lodgings-spt-2x.png"))
       background-size: $lodgings-sprite-size
 
-  .card--full-page__header
+  .lodging__header
     min-height: 60px
     padding-left: 73px
 
-.card--full-page__header
+.lodging__header
   margin-bottom: 20px
   border-bottom: 1px solid $body-background
   padding-bottom: 20px
 
-.card--full-page__title
+.lodging__title
   +font-size(42)
   color: $header-blue
   margin-bottom: 5px
 
-.card--full-page__link
+.lodging__link
   font-weight: bold
 
-.card--full-page__subtitle
+.lodging__subtitle
   +font-size(16)
   @extend %inline-block
   @extend %body-copy

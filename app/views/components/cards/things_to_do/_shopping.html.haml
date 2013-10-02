@@ -2,9 +2,9 @@
   %a.link--wrapper(href="/#{stack_item.slug}")
     = render :partial => '/components/cards/things_to_do/card_tags', :locals => { :stack_item => stack_item }
     - if stack_item.image_url
-      %figure.card__hero.obj-media__img
+      %figure.card__hero
         = image_tag(stack_item.image_url, class: 'card__image')
-    %section.card__content.obj-media__body
+    %section.card__content
       %span.card__context
         Shopping
       %h1.card__name.js-card-name
