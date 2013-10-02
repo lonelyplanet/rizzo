@@ -15,7 +15,7 @@
 
   &:after
     +font-size(38)
-    bottom: -22px
+    bottom: -27px
     color: #fff
     position: absolute
 
@@ -24,16 +24,24 @@
     font-weight: bold
     margin-bottom: 0
     &:before
-      margin-right: 0
-      position: relative
-      top: 1px
+      line-height: .8
+
   .copy--meta
     color: $header-grey
     line-height: 1.2em
     margin-bottom: 0
     margin-left: 18px
 
-.infobox__link--interesting-places
-  color: $lpblue
-  cursor: pointer
-  font-style: italic
+  .copy--body
+    +font-size(15)
+    color: $header-grey
+    margin-left: 1.2em
+    font-weight: 300
+    line-height: 1
+
+  .infobox__link--interesting-places
+    +font-size(14)
+    color: #07c
+    cursor: pointer
+    font-style: italic
+    font-weight: 300

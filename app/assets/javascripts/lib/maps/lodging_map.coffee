@@ -25,12 +25,13 @@
 #   lodgingMap.render()
 #
 #
-define ['jquery','lib/utils/css_helper'], ($, CssHelper) ->
+define ['jquery','lib/utils/css_helper', 'lib/maps/map_style'], ($, CssHelper, mapStyles) ->
  
   class LodgingMap
 
     markerDelay = 0
     markerDelayReset = false
+    topic = $(document.documentElement).data('topic')
 
     constructor: (@args={})->
       @prepare()
@@ -43,16 +44,17 @@ define ['jquery','lib/utils/css_helper'], ($, CssHelper) ->
         mapTypeId: google.maps.MapTypeId.ROADMAP
 
       if @args.minimalUI
-        opts.mapTypeControl = false
-        opts.panControl = false
-        opts.streetViewControl = false
-        opts.zoomControlOptions =
-          style: google.maps.ZoomControlStyle.SMALL
+        $.extend(opts,
+          mapTypeControl: false,
+          panControl: false
+          streetViewControl: false
+          zoomControlOptions:
+            style: google.maps.ZoomControlStyle.SMALL
+        )
 
       target = $(@args.target).get()[0]
       @map = new google.maps.Map(target, opts)
-      pinkParksStyles = [{"featureType": "water","elementType": "geometry","stylers": [{ "color": "#cbdae7" }]},{"featureType": "road.arterial","elementType": "geometry.fill","stylers": [{ "color": "#ffffff" }]},{"featureType": "road.arterial","elementType": "geometry.stroke","stylers": [{ "visibility": "off" }]},{"featureType": "road","elementType": "labels.text.stroke","stylers": [{ "color": "#ffffff" }]},{"featureType": "poi.park","elementType": "geometry.fill","stylers": [{ "color": "#c8e6aa" }]},{"featureType": "landscape.man_made","elementType": "geometry.fill","stylers": [{ "color": "#eff1f3" }]},{"featureType": "road.local","elementType": "geometry.stroke","stylers": [{ "visibility": "off" }]},{"featureType": "road.local","elementType": "labels","stylers": [{ "visibility": "off" }]},{"featureType": "poi.school","elementType": "geometry","stylers": [{ "color": "#dfdad3" }]},{"featureType": "poi.medical","elementType": "geometry","stylers": [{ "color": "#fa5e5b" },{ "saturation": -44 },{ "lightness": 25 }]},{"featureType": "road.highway","elementType": "geometry.fill","stylers": [{ "color": "#16c98d" }]},{"featureType": "road.highway","elementType": "geometry.stroke","stylers": [{ "visibility": "off" }]}]
-      @map.setOptions({styles: pinkParksStyles})
+      @map.setOptions({styles: mapStyles})
 
     setLodgingMarker: () ->
       opts =
@@ -61,29 +63,28 @@ define ['jquery','lib/utils/css_helper'], ($, CssHelper) ->
         title: @args.title
         optimized: @args.optimized
       
-      unless @args.lodgingLocation
-        opts.icon = @markerImageFor('hotel', 'large')
-        opts.animation = google.maps.Animation.DROP
+      if topic is 'lodging'
+        $.extend(opts,
+          icon: @markerImageFor('hotel', 'large')
+          animation: google.maps.Animation.DROP
+        )
+        marker = new google.maps.Marker()
       else
         opts.icon = @markerImageFor('location-marker', 'dot')
-
-      marker = new google.maps.Marker(opts)
-
-      if @args.lodgingLocation
-        ib = new InfoBox
+        marker = new google.maps.Marker(opts)
+        infobox = new InfoBox
           alignBottom: true
           boxStyle:
             maxWidth: 350
-            textOverflow: "ellipsis"
-            whiteSpace: "nowrap"
-            width: "auto"
+            textOverflow: 'ellipsis'
+            whiteSpace: 'nowrap'
+            width: 'auto'
           closeBoxURL: ''
-          content: '<div class="infobox--location"><p class="section-title info-list--icon info-list--location">Location</p><p class="copy--body">'+@args.lodgingLocation+'<span class="infobox__interesting-places is-hidden"> &middot; <label class="infobox__link--interesting-places js-resizer" for="js-resize">interesting places nearby</label></span></p></div>'
+          content: '<div class="infobox--location"><p class="section-title text-icon text-icon--address">Location</p><p class="copy--body">'+@args.lodgingLocation+'<span class="infobox__interesting-places"> &middot; <label class="infobox__link--interesting-places js-resizer" for="js-resize">interesting places nearby</label></span></p></div>'
           disableAutoPan: true
           maxWidth: 350
           zIndex: 50
-        
-        ib.open(@map, marker)
+        infobox.open(@map, marker)
 
     drawNearbyPOI: (poi) ->
       opts =
