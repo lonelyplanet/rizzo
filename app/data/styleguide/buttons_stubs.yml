@@ -4,45 +4,48 @@ buttons:
     :type: "bookable"
     :text: "Bookable button"
     :href: "#"
-    :modifiers: "btn--slim | disabled"
   -
     :styleguide_title: "Green button"
     :type: "green"
     :text: "Eg. Register"
     :href: "#"
-    :modifiers: "btn--slim | disabled"
 
   -
     :styleguide_title: "Blue button"
     :type: "blue"
     :text: "Eg. Search"
     :href: "#"
-    :modifiers: "btn--slim | disabled"
 
   -
     :styleguide_title: "White button"
     :type: "white"
     :text: "Eg. Change dates"
     :href: "#"
-    :modifiers: "btn--slim | disabled"
 
   -
     :styleguide_title: "Grey button"
     :type: "grey"
     :text: "Load more"
     :href: "#"
-    :modifiers: "btn--slim | disabled"
 
   -
     :styleguide_title: "Light Grey button"
     :type: "light-grey"
     :text: "Load more"
     :href: "#"
-    :modifiers: "btn--slim | disabled"
 
   -
     :styleguide_title: "Clear button"
     :type: "clear"
     :text: "Eg. Read more"
     :href: "#"
-    :modifiers: "btn--slim | disabled"
+
+variation:
+  :styleguide_title: "Sizes and modifiers"
+  :type: "bookable"
+  :text: "Bookable button"
+  :href: "#"
+  :modifiers:
+    - "btn--slim"
+    - "disabled"
+    - "btn--full-width"

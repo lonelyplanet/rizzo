@@ -1,4 +1,8 @@
-- buttons = YAML.load(File.read(File.expand_path('../../../data/styleguide/buttons_stubs.yml', __FILE__)))['buttons']
+:ruby
+  button_stub = YAML.load(File.read(File.expand_path('../../../data/styleguide/buttons_stubs.yml', __FILE__)))
+  buttons = button_stub['buttons']
+  variation = button_stub['variation']
+  template = File.read(File.expand_path("../../components/_button.html.haml", __FILE__))
 
 .card.card--full-width.styleguide-intro.styleguide-block
   %h1.copy--title Buttons
@@ -8,5 +12,33 @@
     %a{href: 'https://github.com/lonelyplanet/rizzo/blob/master/app/assets/stylesheets/_common-ui/_buttons.sass'}
       buttons.sass
 
-- buttons.each_with_index do | button, i |
-  = sg_button("button", button: button)
+.styleguide-block.styleguide-block__buttons
+  - count = 0
+  - buttons.each_with_index do | button, i |
+    .styleguide-block__description.card
+      %h2.copy--subtitle.styleguide-block__heading
+        = button[:styleguide_title]
+
+      .styleguide-block__items
+        .styleguide-block__item{class: "styleguide-block__item--#{count}"}
+          = ui_component("button", button: button)
+        %pre.styleguide.copy--body.language-markup
+          %code #{raw(CGI::escapeHTML(Haml::Engine.new(template).render(template, button: button)))}
+
+  .styleguide-block__description.card
+    %h2.copy--subtitle.styleguide-block__heading
+      = variation[:styleguide_title]
+    %p.copy--body
+      These classes are chained to achieve further effects.
+
+    - i = 0
+    - modifier_classes = variation.delete(:modifiers)
+
+    - while i < modifier_classes.length
+      - variation[:modifiers] = modifier_classes[i]
+      .styleguide-block__items
+        .styleguide-block__item{class: "styleguide-block__item--#{count}", style: variation[:modifiers] == "btn--full-width" ? "float: none; margin: 20px 0" : ""}
+          = ui_component("button", button: variation)
+        %pre.styleguide.copy--body.language-markup
+          %code #{raw(CGI::escapeHTML(Haml::Engine.new(template).render(template, button: variation)))}
+      - i += 1

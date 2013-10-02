@@ -68,6 +68,8 @@
   .styleguide-block__items
     @extend %clearfix
     margin-bottom: 20px
+  .copy--body
+    margin-bottom: 40px
 
 .styleguide-block__item--colour
   +border-radius(100)
@@ -100,8 +102,16 @@ pre[class*="language-"]
   padding: 1em
   overflow: auto
   max-height: 300px
+  .tag
+    +font-size(16)
+    margin: 0
+    float: none
+  .styleguide-block__buttons &
+    margin: 0
+    padding: 7px
 
-pre.styleguide.open-up
+
+pre.styleguide.is-open
   max-height: none
 
 .filter--links

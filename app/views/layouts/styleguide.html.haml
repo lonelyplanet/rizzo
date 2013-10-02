@@ -48,7 +48,7 @@
               button.className = "btn btn--blue btn--slim js-snippet-expand";
               button.textContent = "Expand snippet";
               button.on('click', function(e){
-                this.parentNode.find('pre').classList.toggle("open-up");
+                this.parentNode.find('pre').classList.toggle("is-open");
               }, false);
               snippet.parentNode.appendChild(button);
             }
