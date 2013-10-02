@@ -25,7 +25,7 @@
 #   lodgingMap.render()
 #
 #
-define ['jquery','lib/utils/css_helper', 'lib/maps/map_style'], ($, CssHelper, mapStyles) ->
+define ['jquery','lib/utils/css_helper', 'lib/maps/map_styles'], ($, CssHelper, mapStyles) ->
  
   class LodgingMap
 
