@@ -1,0 +1,67 @@
+.content-pane
+	background-color: gray
+	position: absolute
+	left: 0
+	top: 0
+	z-index: 30
+	height: 490px
+	width: 100%
+
+.content-pane__nav
+	background-color: red
+	display: block
+	height: 70%
+	position: absolute
+	top: 15%
+	width: 5%
+
+.content-pane__nav--back
+	left: 0
+
+.content-pane__nav--forward
+	right: 0
+
+.content-pane__hide
+	position: absolute
+	top: 5px
+	right: 5px
+	width: 50px
+	height: 50px
+	background-color: blue
+	display: block
+
+.content-pane__inner
+	background-color: blue
+	width: 1000px
+	margin: 160px auto 0 // refactor
+	@extend %clearfix
+	position: relative
+	display: none // temp
+
+.content-pane__content
+	float: left
+	width: 80%
+	position: relative
+
+.content-pane__links
+	float: right
+	width: 20%
+
+.content-pane__rank
+	position: absolute
+	left: -40px
+	width: 40px
+	height: 30px
+	background-color: green
+
+.content-pane__title
+	color: white
+	+font-size(120)
+	font-weight: 700
+	text-transform: uppercase
+
+.content-pane__copy
+	background-color: red
+	color: white
+	+font-size(16)
+	margin-right: 5%

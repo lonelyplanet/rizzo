@@ -11,8 +11,7 @@
     = render 'layouts/core/snippets/accessibility'
     = render 'layouts/core/snippets/primary_navigation_bar', user_nav: true, responsive: true, homepage: false
     .row.row--content#js-row--content
-      .row__inner.row__inner--content
-        = yield
+      = yield
       .row--footer-push
 
     .wrap--footer
