@@ -57,34 +57,37 @@ define ['jquery','lib/utils/css_helper', 'lib/maps/map_styles'], ($, CssHelper, 
       @map.setOptions(styles: mapStyles)
 
     setLodgingMarker: () ->
-      opts =
+      locationTitle = if topic is 'lodging' then @args.title else 'Location'
+      locationAddress = @args.lodgingLocation or lp.lodging.address[0] or ''
+      infobox = new InfoBox
+        alignBottom: true
+        boxStyle:
+          maxWidth: 350
+          textOverflow: 'ellipsis'
+          whiteSpace: 'nowrap'
+          width: 'auto'
+        closeBoxURL: null
+        content: "<div class='infobox--location'>
+          <p class='section-title text-icon text-icon--address'>#{locationTitle}</p>
+          <p class='copy--body'>
+            #{locationAddress or ''}
+            <span class='infobox__interesting-places'> &middot;
+              <label class='infobox__link--interesting-places js-resizer' for='js-resize'>
+                interesting places nearby
+              </label>
+            </span>
+          </p></div>"
+        disableAutoPan: true
+        maxWidth: 350
+        zIndex: 50
+
+      marker = new google.maps.Marker
+        icon: @markerImageFor('location-marker', 'dot')
         position: new google.maps.LatLng(@args.latitude, @args.longitude)
         map: @map
         title: @args.title
         optimized: @args.optimized
-      
-      if topic is 'lodging'
-        $.extend(opts,
-          icon: @markerImageFor('hotel', 'large')
-          animation: google.maps.Animation.DROP
-        )
-        marker = new google.maps.Marker(opts)
-      else
-        opts.icon = @markerImageFor('location-marker', 'dot')
-        marker = new google.maps.Marker(opts)
-        infobox = new InfoBox
-          alignBottom: true
-          boxStyle:
-            maxWidth: 350
-            textOverflow: 'ellipsis'
-            whiteSpace: 'nowrap'
-            width: 'auto'
-          closeBoxURL: ''
-          content: '<div class="infobox--location"><p class="copy--h3 infobox__title text-icon text-icon--address">Location</p><p class="copy--body">'+@args.lodgingLocation+'<span class="infobox__interesting-places"> &middot; <label class="infobox__link--interesting-places js-resizer" for="js-resize">interesting places nearby</label></span></p></div>'
-          disableAutoPan: true
-          maxWidth: 350
-          zIndex: 50
-        infobox.open(@map, marker)
+      infobox.open(@map, marker)
 
     drawNearbyPOI: (poi) ->
       opts =
