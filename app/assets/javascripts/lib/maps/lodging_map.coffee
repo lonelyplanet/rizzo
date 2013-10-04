@@ -66,7 +66,7 @@ define ['jquery','lib/utils/css_helper', 'lib/maps/map_styles'], ($, CssHelper, 
           textOverflow: 'ellipsis'
           whiteSpace: 'nowrap'
           width: 'auto'
-        closeBoxURL: null
+        closeBoxURL: ''
         content: "<div class='infobox--location'>
           <p class='section-title text-icon text-icon--address'>#{locationTitle}</p>
           <p class='copy--body'>
