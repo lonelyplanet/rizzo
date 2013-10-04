@@ -33,7 +33,7 @@ define ['jquery','lib/utils/css_helper', 'lib/maps/map_styles'], ($, CssHelper, 
     markerDelayReset = false
     topic = $(document.documentElement).data('topic')
 
-    constructor: (@args={})->
+    constructor: (@args={}) ->
       @prepare()
       @markerImageFor('sight', 'small')
 
@@ -52,9 +52,9 @@ define ['jquery','lib/utils/css_helper', 'lib/maps/map_styles'], ($, CssHelper, 
             style: google.maps.ZoomControlStyle.SMALL
         )
 
-      target = $(@args.target).get()[0]
+      target = $(@args.target).get(0)
       @map = new google.maps.Map(target, opts)
-      @map.setOptions({styles: mapStyles})
+      @map.setOptions(styles: mapStyles)
 
     setLodgingMarker: () ->
       opts =
@@ -99,15 +99,14 @@ define ['jquery','lib/utils/css_helper', 'lib/maps/map_styles'], ($, CssHelper, 
         icon: @markerImageFor(poi.category)
       marker = new google.maps.Marker(opts)
 
-    createMarkerImageFor: (category, size)->
+    createMarkerImageFor: (category, size) ->
       cssInfo = CssHelper.propertiesFor(
-        "icon-poi-#{category}-#{size} icon-poi-#{size}",
-        [
-          'background-position',
-          'background-position-x',
-          'background-position-y',
-          'background-image',
-          'height',
+        "icon-poi-#{category}-#{size} icon-poi-#{size}", [
+          'background-position'
+          'background-position-x'
+          'background-position-y'
+          'background-image'
+          'height'
           'width'
         ]
       )
@@ -154,7 +153,7 @@ define ['jquery','lib/utils/css_helper', 'lib/maps/map_styles'], ($, CssHelper, 
       , 150
       markerDelay += 100
 
-    flatten: (obj)->
+    flatten: (obj) ->
       flat = []
       for prop of obj
         if ($.isArray(obj[prop]))
@@ -163,13 +162,13 @@ define ['jquery','lib/utils/css_helper', 'lib/maps/map_styles'], ($, CssHelper, 
           flat.push(obj[prop])
       flat
 
-    addClickListener: (marker)->
+    addClickListener: (marker) ->
       # own function so marker in closure
       google.maps.event.addListener marker, 'click', =>
         poi_id = marker.poi_id
         @args.listener?.poiSelected(poi_id)
 
-    highlightPOI: (poi_id)->
+    highlightPOI: (poi_id) ->
       for id, marker of @markers
         if id == poi_id
           marker.setIcon(@markerImageFor(marker.category, 'large'))
