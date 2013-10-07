@@ -1,0 +1,6 @@
+- field_class = extra_class ||= false
+
+.field{ class: field_class }
+  %label.field__label{ for: id }<
+    = label
+  = yield

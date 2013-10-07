@@ -1,0 +1,2 @@
+= render :layout => 'components/forms/partials/field', :locals => { id: opts[:id], label: opts[:label] } do
+  %input.field__input.field__input--datepicker{ id: opts[:id], name: opts[:name], placeholder: opts[:placeholder], value: opts[:value] }

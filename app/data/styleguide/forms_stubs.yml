@@ -1,0 +1,29 @@
+form_components:
+  -
+    :styleguide_title: "Text field"
+    :label: "Field label"
+    :id: "text_id"
+    :name: "text_name"
+    :placeholder: "Placeholder"
+
+  -
+    :styleguide_title: "Select date"
+    :label: "Field label"
+    :id: "text_id"
+    :name: "text_name"
+    :placeholder: "Placeholder"
+
+  -
+    :styleguide_title: "Security Code"
+    :label: "Field label"
+    :id: "text_id"
+    :name: "text_name"
+    :placeholder: "Placeholder"
+
+  -
+    :styleguide_title: "Select field"
+    :label: "Select legend"
+    :id: "select_id"
+    :name: "select_name"
+    :placeholder: "Select Item"
+    :options: [ 'one', 'two', ['three', 3] ]

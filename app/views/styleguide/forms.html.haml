@@ -1,0 +1,7 @@
+.card.card--full-width.styleguide-intro.styleguide-block
+  %h1.copy--title Forms
+
+- components = YAML.load(File.read(File.expand_path('../../../data/styleguide/forms_stubs.yml', __FILE__)))
+
+- components['form_components'].each_with_index do |component, i|
+  = sg_component("forms/#{component[:styleguide_title].downcase.split(' ').join('_')}", opts: component, count: i)

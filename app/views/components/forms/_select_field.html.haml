@@ -1,0 +1,6 @@
+= render :layout => 'components/forms/partials/field', :locals => { id: opts[:id], label: opts[:label] } do
+  .field__select.dropdown.js-select-group
+    %label.dropdown__value.js-select-overlay<
+      = opts[:placeholder]
+    %select.dropdown__select.js-select{ id: opts[:id], name: opts[:name] }
+      = options_for_select(opts[:options], opts[:selected])

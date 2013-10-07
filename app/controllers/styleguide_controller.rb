@@ -26,4 +26,8 @@ class StyleguideController < GlobalController
     render '/styleguide/ui_colours'
   end
 
+  def forms
+    render '/styleguide/forms'
+  end
+
 end

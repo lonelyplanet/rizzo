@@ -25,6 +25,11 @@ module StyleguideHelper
               name: "Navigation",
               path: "/styleguide/navigation",
               extra_style: "nav__item--delimited"
+            },
+            {
+              name: "Forms",
+              path: "/styleguide/forms",
+              extra_style: "nav__item--delimited"
             }
           ]
         },
@@ -51,7 +56,7 @@ module StyleguideHelper
     {hints: "", channels: ""}
   end
 
-  def ui_component(path, opts)
+  def ui_component(path, opts={})
     render "components/#{path}", opts
   end
 

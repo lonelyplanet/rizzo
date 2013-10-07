@@ -1,0 +1,57 @@
+%input-field
+  float: left
+  width: 65%
+
+.fieldset
+  +font-size(16)
+  color: $header-grey
+
+.fieldset__legend
+  +font-size(20)
+
+.field
+  @extend %clearfix
+  margin-bottom: 10px
+  position: relative
+
+.field__label
+  @extend %border-box
+  float: left
+  padding: 10px 10px 10px 0
+  width: 35%
+
+.field__input
+  @extend %border-box
+  +border-radius(4)
+  background-color: $body-background-offset
+  color: $body-copy
+  float: left
+  padding: 10px
+  width: 65%
+
+  .standout &
+    background-color: #fff
+
+  .field--half &
+    width: 35%
+
+.field__select
+  @extend %input-field
+
+.field__input--datepicker
+  @extend %input--regular
+  @extend %lodgings-sprite-standard
+  background-position: 97% -111px
+  padding-right: 35px
+  +retinafy()
+    @extend %lodgings-sprite-retina
+    background-position: 95% -111px
+  +placeholder()
+    color: $placeholder-copy
+
+.field__security-code
+  background: url("#{image_path('forms/lp-checkout.png')}") -81px -106px no-repeat
+  float: left
+  height: 27px
+  margin: 6px 0 0 10px
+  width: 46px
