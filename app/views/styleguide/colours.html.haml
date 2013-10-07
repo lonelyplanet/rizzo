@@ -2,9 +2,15 @@
   .clearfix
     %h1.split--left.copy--title Colour Palette
     .split--right.filter--links
-      %a{ href: "javascript:sortBy(lightToDark)" } Light to dark
-      |
-      %a{ href: "javascript:sortBy(darkToLight)" } Dark to light
+      .luminosity
+        %a{ href: "javascript:sortBy(lightToDark)" } Light to dark
+        |
+        %a{ href: "javascript:sortBy(darkToLight)" } Dark to light
+      .styleguide-proximity
+        %input.styleguide-proximity__input#proximityMatch{ type: "text" }
+        %a.styleguide-proximity__link{ href: "javascript:matchProximity()" } Find closest colour
+        |
+        %a.styleguide-proximity__link{ href: "javascript:resetProximity()" } Reset
 
   %p.copy--body
     This is the primary and secondary colour palettes as described in the PSD styleguide and in 
