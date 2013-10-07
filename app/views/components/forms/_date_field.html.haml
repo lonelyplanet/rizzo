@@ -1,0 +1,3 @@
+= render :layout => 'components/forms/partials/field', :locals => { id: opts[:id], label: opts[:label] } do
+  .field__input
+    = ui_component('forms/date_input', opts: { id: opts[:id], placeholder: opts[:placeholder], name: opts[:name], value: opts[:value] })

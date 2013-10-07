@@ -1,0 +1,4 @@
+= render :layout => 'components/forms/partials/field', :locals => { id: opts[:id], label: opts[:label], :extra_class => 'field--half' } do
+  .field__input
+    = ui_component('forms/text_input', opts: { id: opts[:id], name: opts[:name], placeholder: opts[:placeholder] } )
+    .field__security-code

@@ -9,6 +9,9 @@
 .fieldset__legend
   +font-size(20)
 
+
+
+
 .field
   @extend %clearfix
   margin-bottom: 10px
@@ -21,24 +24,36 @@
   width: 35%
 
 .field__input
+  float: left
+  width: 65%
+
+.field__select
+  @extend %input-field
+
+.field__security-code
+  background: url("#{image_path('forms/lp-checkout.png')}") -81px -106px no-repeat
+  float: left
+  height: 27px
+  margin: 6px 0 0 10px
+  width: 46px
+
+
+.input
   @extend %border-box
   +border-radius(4)
   background-color: $body-background-offset
   color: $body-copy
   float: left
   padding: 10px
-  width: 65%
+  width: 100%
 
   .standout &
     background-color: #fff
 
   .field--half &
-    width: 35%
+    width: 50%
 
-.field__select
-  @extend %input-field
-
-.field__input--datepicker
+.input--datepicker
   @extend %input--regular
   @extend %lodgings-sprite-standard
   background-position: 97% -111px
@@ -48,10 +63,3 @@
     background-position: 95% -111px
   +placeholder()
     color: $placeholder-copy
-
-.field__security-code
-  background: url("#{image_path('forms/lp-checkout.png')}") -81px -106px no-repeat
-  float: left
-  height: 27px
-  margin: 6px 0 0 10px
-  width: 46px
