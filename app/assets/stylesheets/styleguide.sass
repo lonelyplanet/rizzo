@@ -82,7 +82,7 @@ pre.styleguide.is-open
   @extend %clearfix
   margin-bottom: 40px
 
-.styleguide-block__item
+.styleguide-block__item--left
   float: left
   margin-right: 20px
 
@@ -90,7 +90,6 @@ pre.styleguide.is-open
   margin-left: 10px
 
 .styleguide-block__buttons
-  margin-left: 10px
   .styleguide-block__items
     @extend %clearfix
     margin-bottom: 20px
@@ -102,15 +101,19 @@ pre.styleguide.is-open
     &, .tag
       +font-size(14)
 
+.styleguide-block__item--card
+  margin-bottom: 0
+  padding: 20px
+
 .styleguide-block__item--colour
   +border-radius(100)
   +vertically-center(100)
   border: 2px solid #FFF
-  width: 100px
   color: white
+  float: left
+  margin: 0 20px 0 0
   text-align: center
-  margin-top: 0
-  margin-bottom: 0
+  width: 100px
 
   &.is-light
     border-color: $body-background

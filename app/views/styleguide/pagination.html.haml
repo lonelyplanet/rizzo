@@ -1,0 +1,11 @@
+- pagination = YAML.load(File.read(File.expand_path('../../../data/styleguide/pagination_stubs.yml', __FILE__)))
+.card.styleguide-intro
+  .clearfix
+    %h1.copy--title Pagination
+    %p.copy--body
+      Note: we're using ruby's <code>sprintf</code> string interpolation in the path as a placeholder for the page number.
+      %strong NB:
+      It's therefore important that you include the <code>%i</code> in the path that gets passed through.
+
+- pagination.each_with_index do | stub, i |
+  = sg_component('pagination', pagination: stub, count: i, full_width: true, card_style: true)
