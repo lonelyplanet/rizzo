@@ -48,6 +48,9 @@ $mobile-standard-card-image-height: 192px
   &.card--image-only
     overflow: hidden
 
+  .ie7 &, .ie8 &
+    border: 1px solid $feature-copy
+
 
 // -----------------------------------------------------------------------------
 // Card Images
@@ -112,8 +115,10 @@ $mobile-standard-card-image-height: 192px
   z-index: 3
 
   img
-    +filter(drop-shadow(0px 0px 15px rgba(0,0,0,0.35)))
     height: 100%
+    // Filters currently add a lot of jank on scroll
+    .js-hover &
+      +filter(drop-shadow(0px 0px 15px rgba(0,0,0,0.35)))
 
 
 // -----------------------------------------------------------------------------

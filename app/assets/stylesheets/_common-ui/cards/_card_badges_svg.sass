@@ -3,11 +3,12 @@
 // -----------------------------------------------------------------------------
 
 .card--media__badge
-  +filter(drop-shadow(0 0 5px rgba(0,0,0,0.5)))
   left: 10px
   position: absolute
   top: 10px
   z-index: 5
+  .js-hover &
+    +filter(drop-shadow(0 0 5px rgba(0,0,0,0.5)))
 
 .icon--article--white--after:after,
 .icon--article--white--before:before
