@@ -3,13 +3,28 @@ form_components:
     :styleguide_title: "Text input"
     :id: "input_id"
     :name: "text_name"
+    :maxlength: 10
     :placeholder: "Placeholder"
+    :data:
+      :key: "value"
+      :super: "man"
+
+  -
+    :styleguide_title: "Text area"
+    :id: "input_id"
+    :name: "text_name"
+    :cols: 40
+    :rows: 6
+    :maxlength: 20
 
   -
     :styleguide_title: "Date input"
     :id: "input_id"
     :name: "text_name"
     :placeholder: "Placeholder"
+    :data:
+      :key: "value"
+      :super: "man"
 
   -
     :styleguide_title: "Dropdown"
@@ -17,6 +32,10 @@ form_components:
     :name: "text_name"
     :placeholder: "Select Item"
     :options: [ 'one', 'two', 'three' ]
+    :prompt: true
+    :data:
+      :key: "value"
+      :super: "man"
 
 
 field_components:
@@ -24,8 +43,21 @@ field_components:
     :styleguide_title: "Text field"
     :label: "Field label"
     :id: "text_id"
+    :maxlength: 10
     :name: "text_name"
     :placeholder: "Placeholder"
+    :data:
+      :key: "value"
+      :super: "man"
+
+  -
+    :styleguide_title: "Text area field"
+    :label: "Area label"
+    :id: "input_id"
+    :maxlength: 10
+    :name: "text_name"
+    :cols: 40
+    :rows: 4
 
   -
     :styleguide_title: "Date field"
@@ -33,6 +65,9 @@ field_components:
     :id: "text_id"
     :name: "text_name"
     :placeholder: "Placeholder"
+    :data:
+      :key: "value"
+      :super: "man"
 
   -
     :styleguide_title: "Select field"
@@ -41,6 +76,10 @@ field_components:
     :name: "select_name"
     :placeholder: "Select Item"
     :options: [ 'one', 'two', ['three', 3] ]
+    :prompt: true
+    :data:
+      :key: "value"
+      :super: "man"
 
   -
     :styleguide_title: "Security Code field"
@@ -48,3 +87,6 @@ field_components:
     :id: "text_id"
     :name: "text_name"
     :placeholder: "Placeholder"
+    :data:
+      :key: "value"
+      :super: "man"

@@ -21,10 +21,11 @@
   @extend %right-icon
   +word-break()
   background-color: $body-background-offset
+  border: 1px solid $body-background-offset
   box-shadow: 1px 1px 1px rgba(3,46,92,0.2)
   display: block
   overflow: hidden
-  padding: 10px 20px 10px 10px
+  padding: 9px 20px 9px 10px
   white-space: nowrap
 
   .standout &, .wrap--footer &
@@ -52,6 +53,10 @@
       right: 10px
       top: 0
 
+.dropdown__value--selected
+  background-color: #fff
+  border: 1px solid $details-panel-border
+
 .dropdown__select
   +appearance(menulist-button)
   +font-size(16) // Prevent zoom on iOS
@@ -66,3 +71,4 @@
   .no-js &
     filter: alpha(opacity = 1)
     opacity: 1
+

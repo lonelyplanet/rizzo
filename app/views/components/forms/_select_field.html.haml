@@ -1,3 +1,3 @@
 = render :layout => 'components/forms/partials/field', :locals => { id: opts[:id], label: opts[:label] } do
   .field__input
-    = ui_component('forms/dropdown', opts: { id: opts[:id], name: opts[:name], placeholder: opts[:placeholder], options: opts[:options], selected: opts[:selected] })
+    = ui_component('forms/dropdown', opts: { id: opts[:id], name: opts[:name], placeholder: opts[:placeholder], options: opts[:options], selected: opts[:selected], data: opts[:data], prompt: opts[:prompt] })
