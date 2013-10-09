@@ -1,0 +1,52 @@
+// -----------------------------------------------------------------------------
+// Social Footer
+// -----------------------------------------------------------------------------
+
+.sharing
+  @extend %clearfix
+  border-top: 1px solid $body-background
+  padding: 20px 0
+
+.sharing__label
+  +font-size(12)
+  text-transform: uppercase
+  font-weight: bold
+  color: $header-grey
+  line-height: 22px
+
+.sharing__icon
+  @extend %left-icon
+  @extend %left-icon--hidden-text
+  @extend %inline-block
+  color: $header-grey
+  margin-left: 15px
+  position: relative
+  height: 24px
+  text-align: left
+  width: 20px
+  &:hover
+    text-decoration: none
+  &:before
+    +font-size(34)
+    top: -16px
+
+  .tooltip
+    color: white
+    left: -63%
+    text-indent: 0
+    &:after
+      color: $header-grey
+      left: 53%
+
+.icon--print
+  @extend %icon--print-before
+.icon--email
+  @extend %icon--email-before
+
+.facebook-like
+  margin-left: 10px
+  min-width: 90px
+
+.tweet-button
+  margin-left: 10px
+  max-width: 103px

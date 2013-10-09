@@ -1,62 +1,59 @@
+// -----------------------------------------------------------------------------
 // Headings
+// 
+// Headings only inherit their margins when included within a .copy--body
+// container. This allows for fewer overrides when using them elsewhere.
+// -----------------------------------------------------------------------------
 
-.heading--title
-  +font-size(32)
-  color: $header-blue
-  letter-spacing: -0.05em
-
-.heading--subtitle
-  +font-size(14)
-
-.heading--boxed
-  @extend %inline-block // ensure the border doesn't stretch full width
-  @extend %border-box // ensure on small screens that even with the padding it won't touch the edge
-  max-width: 90%
-  +font-size(24)
-  position: relative
-  text-transform: uppercase
-  letter-spacing: 0.2em
-  color: $header-grey
-  padding: 15px
-  font-weight: bold
-  border: 1px solid #a6acb1
-  > span
-    +font-size(14)
-    position: absolute
-    top: -6px
-    left: 50%
-    // Define these on a per-case basis. e.g.
-    // background: $body-background
-    // width: 30%
-    // margin-left: -15%
-
-
-// Type treatment within body text
-.copy--title
+.copy--h1
   +font-size(32)
   color: $header-blue
   line-height: 1.3em
-  margin-bottom: 0.8em
+  
+  .copy--body &
+    margin-bottom: 0.8em
 
-.copy--subtitle
+.copy--h2
   +font-size(16)
   font-weight: bold
   color: $header-blue
   text-transform: uppercase
-  letter-spacing: 0.2em
-  margin: 1.8em 0 0.9em
-  &:first-child
-    margin-top: 0
+  letter-spacing: 0.1em
+  
+  .copy--body &
+    margin: 1.8em 0 0.9em
+    &:first-child
+      margin-top: 0
 
-.copy--lowercase
-  text-transform: none
+.copy--h3
+  +font-size(20)
+  color: $header-blue
+  font-weight: bold
+  
+  .copy--body &
+    margin-bottom: 1em
+
+.copy--h4
+  +font-size(16)
+  color: $header-grey
+  font-weight: bold
+  
+  .copy--body &
+    margin-bottom: 1em
+
+.copy--h5
+  @extend .copy--h2
+  +font-size(12)
+
+
+// -----------------------------------------------------------------------------
+// Body content
+// -----------------------------------------------------------------------------
 
 .copy--feature
   +font-size(24)
   color: $feature-copy
   line-height: 1.3em
-  em
-    font-style: normal
 
 .copy--body
   +font-size(18)
@@ -68,30 +65,45 @@
   color: $body-copy
   line-height: 1.66em
 
-// Used for titles within copy (sub-sections, if you will)
-.copy--body__title
-  +font-size(20)
-  color: $lpblue
-  font-weight: bold
-  margin: 1.5em 0 1em
-
-.copy--body__link
-  border-bottom: 1px dotted
-  color: inherit
-
-  &:hover
-    color: $linkblue
-    text-decoration: none
-
-.copy--body__strong
-  color: $header-grey
-
 .copy--caption
   +font-size(12)
   display: block
   font-style: italic
 
-// temporary -- take this out during normalisation of colours
-[data-topic="sights"] .section-title
-  color: $header-blue
+.copy--body strong,
+.copy--body__strong
+  color: $header-grey
+
+.copy--disclaimer
+  +font-size(11)
+
+// -----------------------------------------------------------------------------
+// Links  
+// -----------------------------------------------------------------------------
+
+.copy--body__link
+  border-bottom: 1px dotted
+  color: inherit
+  &:hover
+    color: $linkblue
+    text-decoration: none
+
+// -----------------------------------------------------------------------------
+// Lists
+// -----------------------------------------------------------------------------
+
+.copy--list,
+.copy--body ul,
+.copy--body ol
+  padding-left: 1.2em
+
+  &, li
+    margin-bottom: 10px
+
+.copy--body ul,
+ul.copy--list
+  list-style-type: circle
+
+.list--alpha
+  list-style-type: lower-alpha
 

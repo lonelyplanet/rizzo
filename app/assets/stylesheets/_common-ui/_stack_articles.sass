@@ -1,32 +1,19 @@
 
 // -----------------------------------------------------------------------------
 //
-// Full Page Card
+// Lodging Header
 //
 // -----------------------------------------------------------------------------
 
-.lodging
-  padding: 15px
-
-.lodging__header
-  margin-bottom: 20px
-  border-bottom: 1px solid $body-background
-  padding-bottom: 20px
-
 .lodging__title
   +font-size(42)
-  color: $header-blue
-  margin-bottom: 5px
 
 .lodging__link
   font-weight: bold
 
 .lodging__subtitle
-  +font-size(16)
   @extend %inline-block
-  @extend %body-copy
   @extend %vertically-centered-dot-after
-  @extend %reset-line-height
   &:last:after
     content: ''
 
@@ -35,31 +22,12 @@
 // Article Card
 // -----------------------------------------------------------------------------
 
-.stack__article
-  @extend %body-copy
-  @extend %four-pixel-rounded
-  +font-size(14)
-  margin-bottom: 10px
-  //$$refactor - this width should be in a separate class
-  width: 798px
-  img
-    max-width: 100%
-    margin: 0 auto 10px auto
-
-    &.aligncenter
-      margin: 20px auto 10px
-    &.is-landscape
-      width: 100%
-  hr
-    border: none
-    border-bottom: 1px solid $subdued
-
-  .media-gallery__resizer
-    display: none
+.media-gallery--article
   .slider__pagination
     bottom: 5px
     display: block
     position: absolute
+
   .slider__pagination--link
     @extend %transition--base
     background: white
@@ -67,24 +35,17 @@
     &.is-active, &:hover
       opacity: 1
 
+.text-icon--clock:before
+  +font-size(18)
+
+.stack__article__content
+  margin-bottom: 50px
+  
+
   .copy--caption
     @extend %inline-block
     text-align: center
     margin-bottom: 10px
-
-.stack__article__inner
-  padding: 0 25px
-
-.stack__article__header
-  border-bottom: 1px solid $body-background
-  margin-bottom: 20px
-  padding: 20px 0
-
-  .text-icon--clock:before
-    font-size: 18px
-
-.stack__article__content
-  margin-bottom: 50px
 
 .stack__article__image-container
   clear: both
@@ -92,6 +53,11 @@
 
 .stack__article__image
   margin-top: 20px
+  max-width: 100%
+  &.aligncenter
+    margin: 20px auto 10px
+  &.is-landscape
+    width: 100%
 
 .footer
   font-style: italic
@@ -100,6 +66,8 @@
 .image--shop-ad
   float: left
 
+
+// Should this be moved out and into an ads file?
 .col--mpu
   +perspective()
   float: right
@@ -123,125 +91,3 @@
         width: 0
       .supports-3d &
         +transform(translateX(150px) rotateY(-104deg))
-
-.col--intro
-  width: 448px
-
-
-// -----------------------------------------------------------------------------
-// Social Footer
-// -----------------------------------------------------------------------------
-
-.sharing
-  @extend %clearfix
-  border-top: 1px solid $body-background
-  padding: 20px 0
-
-.sharing__label
-  +font-size(12)
-  text-transform: uppercase
-  font-weight: bold
-  color: $header-grey
-  line-height: 22px
-
-.sharing__icon
-  @extend %left-icon
-  @extend %left-icon--hidden-text
-  color: $header-grey
-  display: inline-block
-  margin-left: 15px
-  position: relative
-  height: 24px
-  text-align: left
-  width: 20px
-  &:hover
-    text-decoration: none
-  &:before
-    font-size: 34px
-    top: -16px
-
-  .tooltip
-    color: white
-    left: -63%
-    text-indent: 0
-    &:after
-      color: $header-grey
-      left: 53%
-
-.icon--print
-  @extend %icon--print-before
-.icon--email
-  @extend %icon--email-before
-
-.facebook-like
-  margin-left: 10px
-  min-width: 90px
-
-.tweet-button
-  margin-left: 10px
-  max-width: 103px
-
-// -----------------------------------------------------------------------------
-// Article Breadcrumbs
-// -----------------------------------------------------------------------------
-
-.stack__breadcrumbs
-  & + .stack__content
-    margin-top: -20px
-
-.stack__breadcrumb
-  @extend %four-pixel-rounded
-  +background-gradient($startColor: rgb(255,255,255), $endColor: rgb(239,239,239))
-  +transition(all, 0.2, ease)
-  color: #d2ddeb
-  display: block
-  padding: 20px 15px 10px 25px
-  position: relative
-  text-decoration: none
-  margin-bottom: 0
-
-  .js-hover &:hover
-    color: $header-blue
-    text-decoration: none
-    -webkit-transform: translate(0,-10px)
-    transform: translate(0,-10px)
-
-.stack__article__table
-  tr
-    border-bottom: 1px solid $body-background
-  th,
-  td
-    padding: 13px 13px 13px 0
-    text-align: center
-  th
-    color: $header-grey
-    padding-bottom: 14px
-  td
-    .stack__article__table-align-left
-      text-align: left
-
-.stack__article__table--small-text
-  +font-size(10)
-  display: block
-
-.stack__article__table--yes,
-.stack__article__table--no
-  &:before
-    font-size: 22px
-    line-height: 15px
-
-.stack__article__table--yes
-  @extend %left-icon
-  @extend %left-icon--hidden-text
-  @extend %tick-icon-before
-  color: #1ac571
-  display: inline-block
-  &:before
-    width: 24px
-
-.stack__article__table--no
-  @extend %left-icon
-  @extend %left-icon--hidden-text
-  @extend %cross-icon-before
-  color: #ff514e
-  display: inline-block

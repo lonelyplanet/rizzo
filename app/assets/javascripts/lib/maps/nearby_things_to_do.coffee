@@ -41,7 +41,7 @@ define ['jquery', 'polyfills/scrollIntoViewIfNeeded'], ($) ->
     renderPOI: (activity) ->
       poi = activity.properties
       li = $('<li class="obj-list__item nearby-pois__poi icon--poi--'+activity.category+'" data-poi-id="'+poi.id+'" />')
-      li.append('<a href="'+poi.uri+'" class="label">'+poi.title+'</a>')
+      li.append('<a href="'+poi.uri+'" class="copy--h4">'+poi.title+'</a>')
       li.append('<div class="nearby-pois__poi__description">'+poi.description+'</div>')
 
     bindOnPOISelection: ->

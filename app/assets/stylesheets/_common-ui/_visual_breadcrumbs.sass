@@ -1,0 +1,26 @@
+// -----------------------------------------------------------------------------
+// Visual Breadcrumbs
+// -----------------------------------------------------------------------------
+
+.stack__breadcrumbs
+  & + .stack__content
+    margin-top: -20px
+
+.stack__breadcrumb
+  @extend %four-pixel-rounded
+  +background-gradient($startColor: rgb(255,255,255), $endColor: rgb(239,239,239))
+  +transition(all, 0.2, ease)
+  color: $disabled
+  display: block
+  padding: 20px 15px 10px 25px
+  position: relative
+  text-decoration: none
+  margin-bottom: 0
+
+  .js-hover &:hover
+    color: $header-blue
+    text-decoration: none
+    -webkit-transform: translate(0,-10px)
+    transform: translate(0,-10px)
+
+

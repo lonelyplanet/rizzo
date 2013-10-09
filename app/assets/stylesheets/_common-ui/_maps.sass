@@ -19,20 +19,8 @@
     color: #fff
     position: absolute
 
-  .section-title
-    +font-size(15)
-    font-weight: bold
-    margin-bottom: 0
-    &:before
-      line-height: .8
-
-  .copy--meta
-    color: $header-grey
-    line-height: 1.2em
-    margin-bottom: 0
-    margin-left: 18px
-
   .copy--body
+    @extend %lp-font-stack // infobox overrides with roboto font
     +font-size(15)
     color: $header-grey
     margin-left: 1.2em
@@ -40,8 +28,15 @@
     line-height: 1
 
   .infobox__link--interesting-places
+    @extend %lp-font-stack // infobox overrides with roboto font
     +font-size(14)
     color: #07c
     cursor: pointer
     font-style: italic
-    font-weight: 300
+
+.infobox__title
+  @extend %lp-font-stack // infobox overrides with roboto font
+  +font-size(15)
+  margin-bottom: 0
+  &:before
+    line-height: .8

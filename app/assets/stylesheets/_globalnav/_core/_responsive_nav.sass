@@ -29,17 +29,15 @@ $responsive-nav-width: 240px
     background: $offscreen-nav-background
     +respond-to(wide-view)
       box-shadow: none
-      position: static
       width: 100%
       background: $lpblue
       overflow: visible
       height: 55px
-      top: 10px
+      left: 0
+      right: auto
   .homepage &
     +respond-to(wide-view)
       background: none
-      position: relative
-      right: auto
 
 .nav--offscreen__title
   display: none
@@ -59,10 +57,10 @@ $responsive-nav-width: 240px
   display: none
   .responsive &
     @extend %transition--nav
-    top: 10px
-    right: 15px
     color: white
     display: block
+    top: 5px
+    right: 5px
     width: 60px
     height: 45px
     position: absolute
@@ -70,6 +68,8 @@ $responsive-nav-width: 240px
     background-position: center
     cursor: pointer
     +respond-to(wide-view)
+      top: 10px
+      right: 15px
       display: none
 
 // On click..

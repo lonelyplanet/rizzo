@@ -24,20 +24,16 @@
       top: -68px
       left: 70%
       pointer-events: none
-
   +respond-to(medium-view)
     height: 640px
   +respond-to(1250)
     height: 800px
 
 .hero__mask
-  display: inline-block
   height: inherit
   overflow: hidden
   position: relative
   width: 100%
-  +respond-to(wide-view)
-    top: -60px // Move the mask behind the nav which is now transparent
   &.is-focused
     .icon--search-glass--grey
       opacity: 1

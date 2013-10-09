@@ -1,17 +1,27 @@
-.card.styleguide-intro
-  %h1.copy--title Typography
-  %h2.copy--subtitle
-    Work in Progress - Don't use
-  %p.copy--body
-    %a{href: "https://github.com/lonelyplanet/rizzo/blob/master/app/assets/stylesheets/_common-ui/_copy.sass"} _copy.sass - View on github
-  %p.copy--body
-    We achieve styling through opt in classes and do not style elements.
+.card.styleguide-intro.copy--body
+  %h1.copy--h1 Typography
+  %p
+    We achieve styling through opt in classes and do not style elements globally. This is to reduced the number of style collisions across projects. Elements can inherit styles from .copy--body or otherwise applied directly.
+  %p
+    Typographic classes are prefixed with .copy--
 
-.card.styleguide-intro.styleguide-block
-  .copy--title This is typically used for the main page heading
-  .copy--feature Feature text: typically used for intro paragraphs. Not always in Jim Carrey's voice but... It's because i'm green isn't it! we got no food we got no money and our pets heads are falling off! haaaaaaarry. brain freeze. alrighty then brain freeze. excuse me, i'd like to ass you a few questions.
-  .copy--subtitle This is typically used for the body copy subtitling
-  .copy--body Here lies a bunch of body copy in Michael Caine's voice. You are as precious to me as you were to your own mother and father. i swore to them that i would protect you, and i haven't. you know, your bobby dangler, giggle stick, your general-two-colonels, master of ceremonies... yeah, don't be shy, let's have a look. i want to shoot the pigeons... off my roof. your were only supposed to blow the bloody doors off. jasper: your baby is the miracle the whole world has been waiting for. when i get back, remind to tell you about the time i took 100 nuns to nairobi! 
-  .copy--body__title Used for subsection titles
-  .copy--meta This is used for meta heading styling, usually in the details panel
-  .copy--caption Caption text
+.card.styleguide-intro.styleguide-block.copy--body
+  .copy--h1 This is our H1, typically used for the main page heading
+  .copy--feature Feature text: typically used for intro paragraphs and rarely outside of copy--body. It is applied using the .copy--feature class.
+  .copy--h2 
+    This is our H2, it is generally used to delimit body copy.
+  %p
+    Here lies a bunch of body copy. The Body copy class (.copy--body) can be inherited from a parent or applied direct to any element. In this instance it is inherited. It defines the styles that represent our main text content.
+    %a.copy--body__link
+      Base Link styling is inherited or can be enhanced directly using the .copy--body__link class
+  %ul
+    %li
+      This is how our unordered lists look.
+    %li
+      They can be inherited from copy--body or styled directly with the .copy--list class if used outside of main content.
+  .copy--h3 This is our H3, commonly used for section titles
+  .copy--h4 This is our H4, commonly used for subsection titles and within body copy
+  .copy--h5 This is our H5, most noticeably used within the left navigation
+  .copy--meta Meta copy is used for styling ancillary content, usually in the details panel, that represents details about the content rather than the actual content itself.
+  .copy--caption Caption text is used primarily below images and on our cards.
+  .copy--disclaimer Disclaimer text is used for legal and copyright text.

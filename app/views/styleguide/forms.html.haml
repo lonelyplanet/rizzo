@@ -1,12 +1,12 @@
 - components = YAML.load(File.read(File.expand_path('../../../data/styleguide/forms_stubs.yml', __FILE__)))
 
-.card.styleguide-intro.styleguide-block
-  %h1.copy--title
+.card.styleguide-intro.styleguide-block.copy--body
+  %h1.copy--h1
     Forms
 
-  %h5.copy--subtitle
+  %h5.copy--h2
     Basic element components
-  %p.copy--body
+  %p
     These components are the basic building blocks for creating forms. Each of these elements can be used
     individually throughout the site, however it's recommended to use the field components when building
     forms in order to take advantage of their accessibility and responsive features.
@@ -16,7 +16,7 @@
 
 .card.styleguide-intro.styleguide-block
 
-  %h5.copy--subtitle
+  %h5.copy--h2
     Field components
 
 - components['field_components'].each_with_index do |component, i|

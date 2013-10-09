@@ -80,7 +80,7 @@ define ['jquery','lib/utils/css_helper', 'lib/maps/map_styles'], ($, CssHelper, 
             whiteSpace: 'nowrap'
             width: 'auto'
           closeBoxURL: ''
-          content: '<div class="infobox--location"><p class="section-title text-icon text-icon--address">Location</p><p class="copy--body">'+@args.lodgingLocation+'<span class="infobox__interesting-places"> &middot; <label class="infobox__link--interesting-places js-resizer" for="js-resize">interesting places nearby</label></span></p></div>'
+          content: '<div class="infobox--location"><p class="copy--h3 infobox__title text-icon text-icon--address">Location</p><p class="copy--body">'+@args.lodgingLocation+'<span class="infobox__interesting-places"> &middot; <label class="infobox__link--interesting-places js-resizer" for="js-resize">interesting places nearby</label></span></p></div>'
           disableAutoPan: true
           maxWidth: 350
           zIndex: 50
