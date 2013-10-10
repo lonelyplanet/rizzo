@@ -25,6 +25,16 @@ module StyleguideHelper
               name: "Navigation",
               path: "/styleguide/navigation",
               extra_style: "nav__item--delimited"
+            },
+            {
+              name: "Pagination",
+              path: "/styleguide/pagination",
+              extra_style: "nav__item--delimited"
+            },
+            {
+              name: "Forms",
+              path: "/styleguide/forms",
+              extra_style: "nav__item--delimited"
             }
           ]
         },
@@ -42,6 +52,16 @@ module StyleguideHelper
               extra_style: "nav__item--delimited"
             }
           ]
+        },
+        {
+          title: "Thorntree",
+          items: [
+            {
+              name: "Activity List",
+              path: "/styleguide/activity_list",
+              extra_style: "nav__item--delimited"
+            }
+          ]
         }
       ]
     }
@@ -51,19 +71,29 @@ module StyleguideHelper
     {hints: "", channels: ""}
   end
 
-  def ui_component(path, opts)
+  def ui_component(path, opts={})
     render "components/#{path}", opts
   end
 
   def sg_component(path, opts)
+    card_style = opts.delete(:card_style)
     count = opts.delete(:count)
-    item_class = count ? "styleguide-block__item styleguide-block__item--#{count}" : "styleguide-block__item"
+    full_width = opts.delete(:full_width)
+
+    if full_width
+      item_class = "styleguide-block__item"
+    else
+      item_class = "styleguide-block__item--left"
+    end
+    item_class += card_style ? " card styleguide-block__item--card" : ""
+    item_class += count ? " styleguide-block__item--#{count}" : ""
+
     capture_haml do
       haml_tag(:div, class: "styleguide-block") do
         haml_tag(:div, class: item_class) do
           haml_concat ui_component(path, opts)
         end
-        haml_concat render "styleguide/partials/description", component: path, opts: opts[:original_stub] ? {stack_item: opts[:original_stub]} : opts
+        haml_concat render "styleguide/partials/description", component: path, full_width: full_width, opts: opts[:original_stub] ? {stack_item: opts[:original_stub]} : opts
       end
     end
   end

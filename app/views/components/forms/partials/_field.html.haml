@@ -1,0 +1,7 @@
+- field_class = extra_class ||= false
+
+.field.js-field{ class: field_class }
+  %label.field__label.js-field-label{ for: id }<
+    = label
+  .field__content
+    = yield

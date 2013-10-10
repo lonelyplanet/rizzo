@@ -14,50 +14,84 @@
 .dropdown
   position: relative
 
+.dropdown--half
+  float: left
+  width: 50%
+
+.dropdown--third
+  float: left
+  width: 33.3%
+
 .dropdown__value
-  +word-break()
   @extend %border-box
-  @extend %input--regular
   @extend %chevron-down-after
+  @extend %input--regular
   @extend %right-icon
-  overflow: hidden
-  white-space: nowrap
+  +word-break()
+  background-color: $body-background-offset
+  border: 1px solid $body-background-offset
+  box-shadow: 1px 1px 1px rgba(3,46,92,0.2)
   display: block
-  border: 1px solid $input-border
-  padding: 10px 20px 10px 10px
+  overflow: hidden
+  padding: 9px 20px 9px 10px
+  text-overflow: ellipsis
+  white-space: nowrap
+
+  .standout &, .wrap--footer &
+    background-color: #fff
+
   &:after
     @extend %four-pixel-rounded
-    pointer-events: none
+    +font-size(22)
     background-color: inherit
     color: inherit
-    top: 0
-    right: 0
-    width: 20px
-    height: 100%
-    font-size: 20px
-    line-height: 28px
+    line-height: 0
     padding-left: 5px
+    pointer-events: none
+    right: 0
+    top: 17px
+    width: 20px
+
   .base 
     &:after
       content: '\2335'
+
   .enhanced &, .ie8.home &
     &:after
-      content: ''
       background-position: center
+      content: ''
       height: 100%
       right: 10px
+      top: 0
+
+  .dropdown--first &
+    +border-radius-each(4,0,0,4)
+    border-right: none
+
+  .dropdown--middle &
+    +border-radius(0)
+    border-left: none
+    border-right: none
+
+  .dropdown--last &
+    border-left: none
+    +border-radius-each(0,4,4,0)
+
+.dropdown__value--selected
+  background-color: #fff
+  border: 1px solid $details-panel-border
 
 .dropdown__select
   +appearance(menulist-button)
   +font-size(16) // Prevent zoom on iOS
+  height: 100%
+  left: 0
+  opacity: 0
   position: absolute
   top: 0
-  left: 0
   width: 100%
-  height: 100%
-  opacity: 0
   .ie7 &, .ie8 &
     filter: alpha(opacity = 0)
   .no-js &
-    opacity: 1
     filter: alpha(opacity = 1)
+    opacity: 1

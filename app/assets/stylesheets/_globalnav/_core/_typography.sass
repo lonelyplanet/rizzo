@@ -28,9 +28,6 @@ body
 // Typographic Element Definitions 
 // -----------------------------------------------------------------------------
 
-h1, h2, h3
-  @extend %smooth-text
-
 p
   margin-bottom: 10px
 
@@ -41,6 +38,9 @@ a
   &:hover
     text-decoration: underline
 
+em
+  font-style: normal
+
 // Needs to be declared twice to work properly cross browser, not to be combined
 ::-moz-selection
   background-color: $active
@@ -50,30 +50,7 @@ a
   background-color: $active
   color: white
 
-ul
-  list-style-position: inside
-
-// -----------------------------------------------------------------------------
-// Reusable Typographic Classes
-// -----------------------------------------------------------------------------
-
-.section-title
-  @extend %lp-font-stack
-  +font-size(22)
-  color: $lpblue 
-  margin-bottom: 15px
-
-.section-subtitle
-  @extend %lp-font-stack
-  +font-size(14)
-  color: $body-copy
-
-.label
-  +font-size(15)
-  @extend %smooth-text
-  font-weight: bold
-  color: $header-grey
-
-.disclaimer
-  @extend %disclaimer-copy
-
+// Override Chrome's agressive defaults
+hr
+  border: none
+  border-bottom: 1px solid $subdued

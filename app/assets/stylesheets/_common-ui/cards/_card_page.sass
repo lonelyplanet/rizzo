@@ -8,20 +8,11 @@
   @extend %clearfix
   @extend %four-pixel-rounded
   color: $body-copy
-  margin: 0
-  padding: 15px
+  padding: 25px
   position: relative
-  .card--single + .stack &
-    padding: 25px
 
-  .copy--title
+  .copy--h1
     margin: 0
-  .section-subtitle
-    font-weight: bold
-
-  .map, .media-gallery
-    margin-bottom: 35px
-
   .sharing
     clear: left
 
@@ -63,21 +54,12 @@
   color: $header-grey
   margin-top: 20px
   padding-top: 20px
-
-  .section-subtitle
-    +font-size(12)
-    text-transform: uppercase
-  .share-this
-    float: left
   .send-this
     float: right
 
-.card--page__related-list
-  .section-title
-    +font-size(15)
-    font-weight: bold
-    margin-left: 10px
-    margin-top: 30px
+// Should really live elsewhere, or be a margin-bottom on card--page
+.section--related-content
+  margin-top: 30px
 
 .card--page__breadcrumb--type
   font-weight: bold
@@ -102,13 +84,13 @@
       background: url(image_path("map-markers-2x.png")) no-repeat
       background-size: $map-markers-sprite-size
 
-.card--page__breadcrumb--sights:before
+.card--page__breadcrumb--sight:before
   background-position: -15px -103px
 
-.card--page__breadcrumb--activities:before
+.card--page__breadcrumb--activity:before
   background-position: -59px -103px
 
-.card--page__breadcrumb--tours:before
+.card--page__breadcrumb--tour:before
   background-position: -462px -103px
 
 .card--page__breadcrumb--entertainment:before,
@@ -118,13 +100,13 @@
 .card--page__breadcrumb--hotels:before
   background-position: -149px -103px
 
-.card--page__breadcrumb--restaurants:before
+.card--page__breadcrumb--restaurant:before
   background-position: -193px -103px
 
 .card--page__breadcrumb--shopping:before
   background-position: -283px -103px
 
-.card--page__breadcrumb--events:before
+.card--page__breadcrumb--event:before
   background-position: -327px -103px
 
 .card--page__breadcrumb--transport:before
@@ -133,7 +115,7 @@
 .card--page__breadcrumb--destinations:before
   background-position: -417px -103px
 
-.card--page__breadcrumb--tours:before
+.card--page__breadcrumb--tour:before
   background-position: -461px -103px
 
 .card--page__breadcrumb--articles:before
@@ -145,18 +127,9 @@
 .card--page__content
   @extend %grid-column
   margin-right: 20px
-  width: 568px
+  width: 548px
   .card--single + .stack &
     width: 427px
-
-  .section-title
-    color: $body-copy
-    margin-bottom: 25px
-  .section-subtitle
-    color: $header-blue
-    margin-bottom: 20px
-    margin-top: 35px
-    text-transform: uppercase
 
 .card--page__aside
   @extend %grid-column
@@ -172,15 +145,6 @@
 .card--page__aside--right
   float: right
 
-.aside__content
-  .copy--subtitle
-    +font-size(14)
-    font-weight: bold
-    letter-spacing: 0
-    margin-bottom: 0
-    margin-top: 20px
-    text-transform: none
-
 .aside__content--standout
   background-color: $details-panel-bg-darker
 
@@ -190,10 +154,6 @@
 // -----------------------------------------------------------------------------
 
 .tour-itinerary
-  .tour-itinerary__title
-    +font-size(15)
-    font-weight: bold
-    color: $header-grey
   .copy--meta
     margin: 10px 0 20px 0
 
@@ -216,13 +176,13 @@
 .details-panel
   background: $details-panel-bg
   padding: 20px
-  .section-title
-    color: $header-blue
-  .section-glossary
-    .section-title
-      +font-size(14)
-      margin: 20px 0 0
-      font-weight: bold
+
+.section-glossary
+  .copy--h3
+    +font-size(14)
+    margin: 20px 0 0
+  .copy--meta
+    margin-bottom: 10px
 
 // -----------------------------------------------------------------------------
 // Special Offer tag

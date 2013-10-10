@@ -1,0 +1,97 @@
+.fieldset
+  +font-size(16)
+  color: $header-grey
+
+.fieldset__legend
+  padding: 0
+
+.field
+  @extend %clearfix
+  margin-bottom: 10px
+  position: relative
+
+.field__label
+  @extend %border-box
+  float: left
+  padding: 10px 10px 10px 0
+  width: 35%
+
+.field__content
+  float: left
+  width: 65%
+
+.field__security-code
+  background: url("#{image_path('forms/lp-checkout.png')}") -81px -106px no-repeat
+  float: left
+  height: 27px
+  margin: 6px 0 0 10px
+  width: 46px
+
+.field__input--error
+  &:after
+    +border-radius(12)
+    +font-size(10)
+    background-color: $section--shopping
+    color: #fff
+    content: '!'
+    font-weight: 700
+    padding: 4px 9px
+    pointer-events: none
+    position: absolute
+    right: 8px
+    text-align: center
+    top: 9px
+
+  .input
+    border: 1px solid $section--shopping
+
+  &.booking__field--checkbox
+    &:after
+      top: 0
+
+  .dropdown__value
+    border-color: $section--shopping
+
+.field__error
+  +font-size(14)
+  color: $section--shopping
+  clear: both
+  margin: 5px 0
+  text-align: right
+
+
+
+.input
+  @extend %border-box
+  +border-radius(4)
+  background-color: $body-background-offset
+  border: 1px solid $body-background-offset
+  color: $body-copy
+  float: left
+  padding: 9px 10px
+  width: 100%
+
+  &:focus
+    background-color: #fff
+    border: 1px solid $details-panel-border
+
+  .standout &
+    background-color: #fff
+
+    &:focus
+      background-color: #fff
+      border: 1px solid $details-panel-border
+
+  .field--half &
+    width: 50%
+
+.input--datepicker
+  @extend %input--regular
+  @extend %lodgings-sprite-standard
+  background-position: 97% -111px
+  padding-right: 35px
+  +retinafy()
+    @extend %lodgings-sprite-retina
+    background-position: 95% -111px
+  +placeholder()
+    color: $placeholder-copy

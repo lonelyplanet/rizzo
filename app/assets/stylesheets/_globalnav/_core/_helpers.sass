@@ -125,6 +125,13 @@
 .break-text
   @extend %prevent-text-breakout
 
+.vertically-centered
+  display: table
+  width: 100%
+  .vertically-centered__inner
+    display: table-cell
+    vertical-align: middle
+
 
 // ----------------------------------------------------------------------------
 // 

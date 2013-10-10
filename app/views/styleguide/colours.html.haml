@@ -1,19 +1,25 @@
-.card.card--full-width.styleguide-intro
+.card.styleguide-intro.copy--body
   .clearfix
-    %h1.split--left.copy--title Colour Palette
+    %h1.split--left.copy--h1 Colour Palette
     .split--right.filter--links
-      %a{ href: "javascript:sortBy(lightToDark)" } Light to dark
-      |
-      %a{ href: "javascript:sortBy(darkToLight)" } Dark to light
+      .luminosity
+        %a{ href: "javascript:sortBy(lightToDark)" } Light to dark
+        |
+        %a{ href: "javascript:sortBy(darkToLight)" } Dark to light
+      .styleguide-proximity
+        %input.styleguide-proximity__input#proximityMatch{ type: "text" }
+        %a.styleguide-proximity__link{ href: "javascript:matchProximity()" } Find closest colour
+        |
+        %a.styleguide-proximity__link{ href: "javascript:resetProximity()" } Reset
 
-  %p.copy--body
+  %p
     This is the primary and secondary colour palettes as described in the PSD styleguide and in 
     %a{href: 'https://github.com/lonelyplanet/rizzo/blob/master/app/assets/stylesheets/_variables/_colour_palette.sass'}
       colour_palette.sass
 
-
-- get_colours('_colour_palette').each do |group|
-  = render 'styleguide/partials/colour', group: group
+.grid-wrapper--10
+  - get_colours('_colour_palette').each do |group|
+    = render 'styleguide/partials/colour', group: group
 
 = render 'styleguide/javascripts/luminosity'
 

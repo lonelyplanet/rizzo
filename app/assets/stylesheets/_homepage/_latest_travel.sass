@@ -3,6 +3,13 @@
   +respond-to(medium-view)
     margin: 40px 0 40px
 
+.copy--boxed
+  @extend %inline-block // ensure the border doesn't stretch full width
+  @extend %border-box // ensure on small screens that even with the padding it won't touch the edge
+  max-width: 90%
+  padding: 4px 10px
+  border: 2px solid #a6acb1
+
 .heading--latest-travel
   background: $body-background
   width: 110px

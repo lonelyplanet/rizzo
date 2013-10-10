@@ -1,0 +1,62 @@
+-
+  :title: "Announcements"
+  :rowClass: "text-icon--announcement"
+  :items:
+    -
+      :action: "posted in"
+      :timestamp: 1381396413
+      :user:
+        :name: "Ethelfleda"
+        :username: "ethelfleda"
+      :link:
+        :text: "Drafts feature in TT - what do you think? Do you use it?"
+        :path: "/foo"
+    -
+      :action: "created"
+      :timestamp: 1381223195
+      :user:
+        :name: "Katija"
+        :username: "katija"
+      :link:
+        :text: "Your recent threads"
+        :path: "/foo"
+    -
+      :action: "posted in"
+      :timestamp: 1381158473
+      :user:
+        :name: "Ethelfleda"
+        :username: "ethelfleda"
+      :link:
+        :text: "Content filters on Thorn Tree"
+        :path: "/foo"
+-
+  :title: "Recent Activity"
+  :items:
+    -
+      :action: "posted in"
+      :timestamp: 1381396413
+      :user:
+        :name: "Ethelfleda"
+        :username: "ethelfleda"
+      :link:
+        :text: "Drafts feature in TT - what do you think? Do you use it?"
+        :path: "/foo"
+    -
+      :action: "created"
+      :timestamp: 1381223195
+      :user:
+        :name: "Katija"
+        :username: "katija"
+      :link:
+        :text: "Your recent threads"
+        :path: "/foo"
+    -
+      :action: "sent you a"
+      :timestamp: 1381158473
+      :user:
+        :name: "Ethelfleda"
+        :username: "ethelfleda"
+      :link:
+        :icon: "envelope"
+        :text: "private message"
+        :path: "/foo"

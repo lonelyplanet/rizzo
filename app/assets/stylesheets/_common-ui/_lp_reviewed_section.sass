@@ -10,23 +10,15 @@
 // Author review text with a generic info lp-terms box
 // -----------------------------------------------------------------------------
 
-.lp-review
-  .section-title
-    @extend %inline-block
-    @extend %right-icon
-    @extend %lp-review-bubble-after
-    padding-right: 20px
-    margin-bottom: 0
-    &:after
-      color: $header-blue
-      font-size: 56px
-      line-height: 22px
-      top: 0
-
-.lp-review__content
-  +font-size(14)
-  margin-bottom: 10px
-
-.lp-review__footer
-  @extend %body-copy
+.lp-review__title
+  @extend %inline-block
+  @extend %right-icon
+  @extend %lp-review-bubble-after
+  padding-right: 20px
+  margin-bottom: 0
+  &:after
+    color: $header-blue
+    +font-size(56)
+    line-height: 22px
+    top: 0
 

@@ -25,21 +25,6 @@
 
 
 // -----------------------------------------------------------------------------
-// Feature copy - Serif text usually used for LP Advice
-
-%feature-copy
-  .title
-    +font-size(42)
-    font-weight: bold
-    color: $header-blue
-    margin-bottom: 18px
-  p
-    +font-size(16)
-    @extend %serif
-    color: $header-grey
-    line-height: 1.3
-
-// -----------------------------------------------------------------------------
 // Error copy - Used for styling hotel error messages eg. No availability
 
 %error-copy
@@ -50,10 +35,3 @@
   .error__copy
     +font-size(14)
     margin-bottom: 30px
-
-// -----------------------------------------------------------------------------
-// Disclaimer copy - Used for styling small discreet text
-
-%disclaimer-copy
-  +font-size(11)
-  color: $body-copy

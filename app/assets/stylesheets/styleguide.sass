@@ -16,6 +16,7 @@
 @import '_common-ui/_meta-info-box'
 @import '_common-ui/_preloader'
 @import '_common-ui/_slider'
+@import '_common-ui/_forms'
 
 @import '_common-ui/cards/_cards_base'
 @import '_common-ui/cards/_card_badges'
@@ -34,6 +35,7 @@
 @import '_common-ui/_tooltip'
 @import '_common-ui/_maps'
 @import '_common-ui/_text_icons'
+@import '_common-ui/_activity_list'
 
 .box
   +box-sizing
@@ -55,6 +57,18 @@ pre.styleguide.is-open
 .clearfix
   @extend %clearfix
 
+.isnt-approximate
+  display: none
+.is-exact
+  @extend %tick-icon-after
+  position: relative
+  &:after
+    color: white
+    font-size: 5em
+    position: absolute
+    right: 10px
+    top: 20px
+
 .row--content
   margin-top: 50px
 
@@ -69,7 +83,7 @@ pre.styleguide.is-open
   @extend %clearfix
   margin-bottom: 40px
 
-.styleguide-block__item
+.styleguide-block__item--left
   float: left
   margin-right: 20px
 
@@ -77,31 +91,36 @@ pre.styleguide.is-open
   margin-left: 10px
 
 .styleguide-block__buttons
-  margin-left: 10px
+  .styleguide-block__item
+    margin-right: 10px
+    min-width: 200px
   .styleguide-block__items
-    @extend %clearfix
     margin-bottom: 20px
-  .copy--body
-    margin-bottom: 40px
   pre[class*="language-"]
     margin: 0
     padding: 7px
     &, .tag
       +font-size(14)
 
+.styleguide-block__item--card
+  margin-bottom: 0
+  padding: 20px
+
 .styleguide-block__item--colour
   +border-radius(100)
   +vertically-center(100)
   border: 2px solid #FFF
-  width: 100px
   color: white
+  float: left
+  margin: 0 20px 0 0
   text-align: center
-  margin-top: 0
-  margin-bottom: 0
+  width: 100px
 
   &.is-light
     border-color: $body-background
     color: $body-copy
+  .is-approximate &
+    border-color: transparent
 
 .styleguide-block__description
   @extend %border-box
@@ -119,3 +138,14 @@ pre.styleguide.is-open
   min-width: 200px
   +font-size(15)
   line-height: 41px
+
+.field
+  background: #fff
+  padding: 10px
+  width: 250px
+
+.styleguide-proximity__input
+  border: 1px solid grey
+
+.styleguide__input-copy
+  width: 100%
