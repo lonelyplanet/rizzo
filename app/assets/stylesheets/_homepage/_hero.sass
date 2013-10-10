@@ -1,6 +1,6 @@
 .hero
   width: 100%
-  height: 375px
+  height: 450px
   position: relative
   text-align: center
   color: white
@@ -11,7 +11,7 @@
   .enhanced &, .ie9 &
     +responsive-image('homepage/hero/hero', 'jpg')
   .ie7 &, .ie8 &
-    background-image: url(#{image_path('homepage/hero/hero_1671.jpg')})
+    background-image: url(#{image_path('homepage/hero/hero_1600.jpg')})
   .slothified &
     background-image: url(#{image_path('homepage/rainforest.jpg')})
     &:after
@@ -25,8 +25,8 @@
       left: 70%
       pointer-events: none
   +respond-to(medium-view)
-    height: 640px
-  +respond-to(1250)
+    height: 700px
+  +respond-to(wide-view)
     height: 800px
 
 .hero__mask
@@ -117,45 +117,54 @@
   &:after
     @extend %empty-abs-generated-content
     top: 100%
-    left: 12px
+    left: 75%
     +respond-to(medium-view)
       left: 34%
     +respond-to(1250)
       left: 72%
 
 .speech-bubble--scroll
-  overflow-y: scroll
-  -webkit-overflow-scrolling: touch
-  height: 105px
-  padding: 15px
-  +respond-to(medium-view)
-    padding: 0
-    height: auto
-    overflow: visible
+  @if $is-ie == false
+    padding: 15px
+    overflow-y: scroll
+    -webkit-overflow-scrolling: touch
+    height: 115px
+    +respond-to(medium-view)
+      padding: 0
+      height: auto
+      overflow: visible
 
 .hero__author
   +transition(all, .3, ease-out)
+  color: white
   position: absolute
   bottom: 20px
-  left: 20px
+  right: 20px
   min-width: 180px
   z-index: 2
   .hero-search-results-displayed &
     +transform(translateY(100px))
-
-  +respond-to(medium-view)
-    left: auto
-    right: 20px
-    bottom: 20px
 
   +respond-to(wide-view)
     .hero-search-results-displayed &
       +transform(none)
 
   +respond-to(1250)
-    left: auto
     right: 30px
-    bottom: 30px
+    bottom: 20px
+
+.hero__product
+  @extend .hero__author
+  margin-bottom: 0
+  bottom: 10px
+  +respond-to(wide-view)
+    bottom: 10px
+
+.hero__author--left
+  left: 20px
+  right: auto
+  .hero__author__details
+    text-align: left
 
 .hero__author__text
   +font-size(12)
@@ -166,6 +175,26 @@
   margin: 0 5px 5px 0
   +respond-to(1250)
     display: inline-block
+  span
+    text-transform: lowercase
+
+.hero__product__image
+  height: 136px
+  width: 97px
+  margin-right: 10px
+  background-image: url("#{image_path('homepage/beautifulworld/book.png')}")
+  +retinafy()
+    background-image: url("#{image_path('homepage/beautifulworld/book@2x.png')}")
+
+.hero__product__text
+  color: white
+  line-height: 20px
+  margin-bottom: 10px
+  > span
+    margin-left: 5px
+    padding: 0 4px
+    position: relative
+    top: -2px
 
 .hero__author__heading
   +font-size(17)
@@ -184,53 +213,111 @@
       height: 75px
 
 .hero__author__details
-  display: inline-block
+  display: none
   vertical-align: top
   text-align: left
   margin-left: 10px
   margin-top: 5px
+  +respond-to(medium-view)
+    display: inline-block
   +respond-to(1250)
     display: block
-    text-align: center
+
+.hero__product__details
+  @extend .hero__author__details
+  max-width: 200px
+  margin-top: 18px
+  display: block
+  .copy--h5
+    color: white
+  .is-open
+    background-color: $subdued
+    color: $body-copy
+
 
 .hero__author__story--buttons
   padding: 15px
   +respond-to(medium-view)
     padding: 0
+  .btn--blue
+    display: inline-block
+    +respond-to(medium-view)
+      display: block
+  .btn--green
+    padding-left: 15px
+    padding-right: 15px
+    +respond-to(medium-view)
+      display: none
+
 
 .hero__author__story
+  +box-sizing()
   position: absolute
   text-align: left
-  bottom: 90px
+  bottom: 0
   padding: 0
   left: auto
   margin: 0 20px
 
   +respond-to(medium-view)
-    padding: 30px
-    bottom: 90px
     left: auto
     right: 20px
-    width: 270px
+    width: 350px
     margin: 0
 
   +respond-to(1250)
-    padding: 30px
-    bottom: 180px
-    left: auto
     right: 40px
-    width: 270px
-    margin: 0
+
+.hero__author__story__image
+  @extend %four-pixel-rounded
+  overflow: hidden
+  position: relative
+  +respond-to(medium-view)
+    &, & ul, & li
+      height: 230px
+  +respond-to(wide-view)
+    &, & ul, & li
+      height: 250px
+  img
+    display: none
+    width: 100%
+    +respond-to(medium-view)
+      margin-top: -10px
+      display: block
+    +respond-to(wide-view)
+      margin-top: 0
+
+.promo--win
+  position: absolute
+  bottom: 15px
+  right: 15px
+  background-color: $teal
+  padding: 3px 15px
+  color: white
+  &:after
+    @extend %empty-abs-generated-content
+    top: -61px
+    right: 2px
+    width: 61px
+    height: 51px
+    background-image: url("#{image_path('homepage/beautifulworld/win.png')}")
+
+
+
+.hero__author__content
+  p
+    +font-size(16)
+    line-height: 24px
+  +respond-to(medium-view)
+    padding: 20px
+  +respond-to(wide-view)
+    padding: 30px
+    p
+      +font-size(18)
 
   .btn--blue
-    +font-size(14)
-    padding: 12px 15px 12px 30px
-    margin-right: 10px
+    +font-size(16)
     font-weight: bold
-    background-position: 10px center
-    +respond-to(medium-view)
-      padding: 12px 18px 12px 38px
-      background-position: 18px center
 
   .btn--light-grey
     +font-size(14)
@@ -239,6 +326,7 @@
     +respond-to(medium-view)
       padding: 12px 18px 12px 38px
       background-position: 18px center
+
 
 @if $is-ie == false
   .feature:first-letter
@@ -263,9 +351,16 @@
     opacity: 0
   & ~ .hero__panel--story
     top: 0
+    .hero__author__story
+      bottom: 155px
   & ~ .hero__overlay
     background-color: rgba(0,0,0,0)
 
+.story-open
+  .hero__panel--story
+    top: 0
+    .hero__author__story
+      bottom: 155px
 
 
 // hero autocomplete
