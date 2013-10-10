@@ -169,32 +169,27 @@ $row--introduction-height: 80px
     width: 60%
 
 .top-ten
-
   border-top: solid 1px $body-background
   display: block
   &:hover
     text-decoration: none
-
   &.expanded
-
     .top-ten__category
       color: white
 
   +respond-to(wide-view)
-
     border-bottom-width: 2px
     border-bottom-style: solid
     float: left
     width: 33.33333%
-
 
 .top-ten__category__link
   display: block
   padding: 20px
   text-align: center
   text-transform: uppercase
-
   +font-size(20)
+
   +respond-to(wide-view)
     +font-size(16)
     padding: 0
@@ -236,10 +231,6 @@ $row--introduction-height: 80px
     border-bottom-color: $section--cities
   
 
-
-
-
-
 .top-ten__list
   +respond-to(wide-view)
     position: absolute
@@ -269,9 +260,6 @@ $row--introduction-height: 80px
   background-repeat: no-repeat
   text-indent: -9999px
   height: 100%
-
-
-
 
 
 .top-ten__list--countries
@@ -363,12 +351,6 @@ $row--introduction-height: 80px
     background-image: url(#{image_path('destinations/best-in-travel/title--country2.png')})
 
 
-$map__height : 500px
-
-  width: 100%
-  position: absolute
-  top: 0
-
 .top-ten__list__item
   height: 75px
 
@@ -389,6 +371,9 @@ $map__height : 500px
     background-image: url(#{image_path('destinations/best-in-travel/title--brazil.png')})
 
 
+$map__height : 500px
+
+
 .bit-map
   display: none
   +respond-to(wide-view)
@@ -397,7 +382,7 @@ $map__height : 500px
     width: 100%
     height: $map__height
     position: relative
-
+    top: 0
 
 
 .navigation-bar
@@ -457,7 +442,7 @@ $map__height : 500px
   ul
     overflow: hidden
     list-style-type: none
-    li  
+    li
       float: left
       width: 100px
       &.red
