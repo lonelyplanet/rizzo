@@ -22,6 +22,7 @@
     = render 'layouts/core/snippets/primary_navigation_bar', user_nav: true, responsive: true, homepage: false
     .row.row--content#js-row--content
       = yield
+      .row--footer-push
 
     .wrap--footer
       = render 'layouts/core/snippets/body_footer', responsive: true

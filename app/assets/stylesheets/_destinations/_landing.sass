@@ -128,6 +128,7 @@ $row--introduction-height: 80px
   text-transform: uppercase
 
 
+
 .row--secondary
   padding-top: 55px // height of faux banner
   margin-bottom: 0
@@ -147,6 +148,13 @@ $row--introduction-height: 80px
   +respond-to(wide-view)
     margin-top: inherit
 
+.row__title--secondary
+  margin: 12px 12px
+  +respond-to(wide-view)
+    margin: inherit
+
+
+
 .col--introduction__social
   display: none
   +respond-to(wide-view)
@@ -161,16 +169,19 @@ $row--introduction-height: 80px
     width: 60%
 
 .top-ten
+
   border-top: solid 1px $body-background
   display: block
   &:hover
     text-decoration: none
 
   &.expanded
+
     .top-ten__category
       color: white
 
   +respond-to(wide-view)
+
     border-bottom-width: 2px
     border-bottom-style: solid
     float: left
@@ -182,6 +193,7 @@ $row--introduction-height: 80px
   padding: 20px
   text-align: center
   text-transform: uppercase
+<<<<<<< HEAD
   +font-size(20)
   +respond-to(wide-view)
     +font-size(16)
@@ -203,23 +215,27 @@ $row--introduction-height: 80px
     padding-top: 30px
 
 .top-ten--countries
+
   &.expanded
     background-color: $section--countries
   +respond-to(wide-view)
     border-bottom-color: $section--countries
 
 .top-ten--regions
+
   &.expanded
     background-color: $section--regions
   +respond-to(wide-view)
     border-bottom-color: $section--regions
 
 .top-ten--cities
+
   &.expanded
     background-color: $section--cities
   +respond-to(wide-view)
     border-bottom-color: $section--cities
   
+
 
 
 
@@ -246,15 +262,15 @@ $row--introduction-height: 80px
     height: 100px
     position: relative
 
+=======
+///////////
 
 .top-ten__list__title
   background-position: center center
   background-repeat: no-repeat
   text-indent: -9999px
   height: 100%
-  position: absolute
-  width: 100%
-  top: 0
+
 
 
 
@@ -350,6 +366,30 @@ $row--introduction-height: 80px
 
 $map__height : 500px
 
+  width: 100%
+  position: absolute
+  top: 0
+
+.top-ten__list__item
+  height: 75px
+
+.top-ten__list--argentina
+  background-image: url(#{image_path('destinations/best-in-travel/bg--argentina.jpg')})
+  background-position: center
+  background-size: 100%
+  position: relative
+  .top-ten__list__title
+    background-image: url(#{image_path('destinations/best-in-travel/title--argentina.png')})
+
+.top-ten__list--brazil
+  background-image: url(#{image_path('destinations/best-in-travel/bg--brazil.jpg')})
+  background-position: center
+  background-size: 100%
+  position: relative
+  .top-ten__list__title
+    background-image: url(#{image_path('destinations/best-in-travel/title--brazil.png')})
+
+
 .bit-map
   display: none
   +respond-to(wide-view)
@@ -360,6 +400,38 @@ $map__height : 500px
     position: relative
 
 
+
+.navigation-bar
+  background: blue
+  @extend %absolute-left
+  width: 100%
+  @extend %clearfix
+  // +transition(opacity, 2.5, ease-in-out)
+  bottom: 0
+  &.is-peeking
+    bottom: -60px
+  &.is-hidden
+    display: none
+  
+.navigation-bar__link
+  display: block
+  float: left
+  width: 10%
+  height: 100px
+  position: relative
+  
+.navigation-bar--countries
+  .navigation-bar__link:hover
+    box-shadow: 10px 10px $section--countries inset, -10px -10px $section--countries inset
+
+
+.navigation-bar__rank
+  color: white
+  +font-size(16)
+  font-weight: 700
+  position: absolute
+  top: 10px
+  right: 10px
 
 @import "_landing/_markers"
 
@@ -373,6 +445,14 @@ $map__height : 500px
   height: 100%
 
 .carousel__contents-wrapper
+  border: solid 1px black
+  width: 100px
+  height: 16px
+  overflow: hidden
+  position: relative
+
+.carousel__inner
+  width: 300px
   position: absolute
   left: 0
   ul

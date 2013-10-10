@@ -1,0 +1,67 @@
+//----------------------------------------------------------
+// Introduction
+//
+// Landing text, top 10 lists 
+//----------------------------------------------------------
+
+$row--introduction-height: 80px
+
+.row--introduction
+  background-color: white
+  position: relative // for z-index  
+  z-index: 20
+  color: $header-grey
+  text-align: center
+  +respond-to(wide-view)
+    height: $row--introduction-height
+    @extend %clearfix
+
+
+.row--introduction__branding
+  padding-top: 25px
+
+  +respond-to(wide-view)
+    padding-top: 0
+    float: left
+    width: 20%
+    height: 80px
+    box-shadow: -1px 0 $body-background inset
+
+.media--best-in-travel-logo
+  +respond-to(wide-view)
+    padding-top: 15px
+
+
+.row--introduction__blurb
+  +font-size(15)
+  padding: 20px
+  // color: $header-grey
+  // +css-arrow-central(bottom, $width: 20px, $arrowOffset: 0)
+  
+  +respond-to(wide-view)
+    background-color: $header-grey
+    +border-radius(4)
+    +box-shadow(5, 5, 1, 0, rgba(0,0,0,0.1))
+    position: absolute
+    top: -200px
+    left: 0
+    width: 600px
+    text-align: left
+
+.row--introduction__blurb__title
+  +respond-to(wide-view)
+    color: white
+    +font-size(32)
+
+.row--introduction__blurb__copy
+  +respond-to(wide-view)
+    color: white
+    +font-size(16)
+
+.row--introduction__blurb__hide
+  display: none
+  +respond-to(wide-view)
+    display: block
+    position: absolute
+    top: 10px
+    right: 10px
