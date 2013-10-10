@@ -14,6 +14,14 @@
 .dropdown
   position: relative
 
+.dropdown--half
+  float: left
+  width: 50%
+
+.dropdown--third
+  float: left
+  width: 33.3%
+
 .dropdown__value
   @extend %border-box
   @extend %chevron-down-after
@@ -26,6 +34,7 @@
   display: block
   overflow: hidden
   padding: 9px 20px 9px 10px
+  text-overflow: ellipsis
   white-space: nowrap
 
   .standout &, .wrap--footer &
@@ -39,12 +48,14 @@
     line-height: 0
     padding-left: 5px
     pointer-events: none
-    right: 4px
+    right: 0
     top: 17px
     width: 20px
+
   .base 
     &:after
       content: '\2335'
+
   .enhanced &, .ie8.home &
     &:after
       background-position: center
@@ -52,6 +63,19 @@
       height: 100%
       right: 10px
       top: 0
+
+  .dropdown--first &
+    +border-radius-each(4,0,0,4)
+    border-right: none
+
+  .dropdown--middle &
+    +border-radius(0)
+    border-left: none
+    border-right: none
+
+  .dropdown--last &
+    border-left: none
+    +border-radius-each(0,4,4,0)
 
 .dropdown__value--selected
   background-color: #fff
@@ -71,4 +95,3 @@
   .no-js &
     filter: alpha(opacity = 1)
     opacity: 1
-

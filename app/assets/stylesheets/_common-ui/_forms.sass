@@ -1,11 +1,9 @@
-%input-field
-  float: left
-  width: 65%
-
 .fieldset
   +font-size(16)
   color: $header-grey
 
+.fieldset__legend
+  padding: 0
 
 .field
   @extend %clearfix
@@ -18,12 +16,9 @@
   padding: 10px 10px 10px 0
   width: 35%
 
-.field__input
+.field__content
   float: left
   width: 65%
-
-.field__select
-  @extend %input-field
 
 .field__security-code
   background: url("#{image_path('forms/lp-checkout.png')}") -81px -106px no-repeat
@@ -33,7 +28,6 @@
   width: 46px
 
 .field__input--error
-
   &:after
     +border-radius(12)
     +font-size(10)

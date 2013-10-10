@@ -73,13 +73,32 @@ field_components:
     :styleguide_title: "Select field"
     :label: "Select legend"
     :id: "select_id"
-    :name: "select_name"
-    :placeholder: "Select Item"
-    :options: [ 'one', 'two', ['three', 3] ]
-    :prompt: true
-    :data:
-      :key: "value"
-      :super: "man"
+    :fields:
+      -
+        :name: "select_name"
+        :placeholder: "Select Item"
+        :prompt: true
+        :options: [ 'one', 'two', ['three', 3] ]
+
+  -
+    :styleguide_title: "Select field"
+    :label: "Multiple Select legend"
+    :id: "multiple_select_id"
+    :fields:
+      -
+        :name: "select_name"
+        :placeholder: "Item One"
+        :prompt: true
+        :options: [ 'one', 'two', 'three' ]
+      -
+        :name: "select_name"
+        :placeholder: "Item Two"
+        :prompt: true
+        :options: [ 'a', 'b', 'c', 'd' ]
+      -
+        :name: "select_name"
+        :placeholder: "Item Three"
+        :options: [ 'a1', 'b2', 'c3' ]
 
   -
     :styleguide_title: "Security Code field"

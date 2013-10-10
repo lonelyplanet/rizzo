@@ -1,3 +1,21 @@
 = render :layout => 'components/forms/partials/field', :locals => { id: opts[:id], label: opts[:label] } do
-  .field__input
-    = ui_component('forms/dropdown', opts: { id: opts[:id], name: opts[:name], placeholder: opts[:placeholder], options: opts[:options], selected: opts[:selected], data: opts[:data], prompt: opts[:prompt] })
+  - opts[:fields].each_with_index do |dropdown, i|
+
+    - field_id = i==0 ? opts[:id] : "#{opts[:id]}-#{i}"
+
+    - dropdown_class = ""
+
+    - if opts[:fields].length > 1
+      - if opts[:fields].length == 2
+        - dropdown_class = "dropdown--half"
+      - elsif opts[:fields].length == 3
+        - dropdown_class = "dropdown--third"
+
+      - if i == 0
+        - dropdown_class += " dropdown--first"
+      - elsif i == opts[:fields].length - 1
+        - dropdown_class += " dropdown--last"
+      - else
+        - dropdown_class += " dropdown--middle"
+
+    = ui_component('forms/dropdown', opts: { id: field_id, name: dropdown[:name], placeholder: dropdown[:placeholder], options: dropdown[:options], selected: dropdown[:selected], class: dropdown_class, prompt: dropdown[:prompt], data: dropdown[:data] })
