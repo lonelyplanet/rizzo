@@ -1,0 +1,75 @@
+
+.bit-map__markers
+  height: 100%
+  width: 100%
+
+.bit-map__markers--countries
+  .marker
+    background-color: $section--countries
+
+.bit-map__markers--regions
+  .marker
+    background-color: $section--regions
+
+.bit-map__markers--cities
+  .marker
+    background-color: $section--cities
+
+
+.marker
+  display: inline-block
+  position: absolute
+  @extend %four-pixel-rounded
+  +box-shadow(5, 5, 1, 0, rgba(0,0,0,0.1))
+  // +transition()
+  // +css-arrow-central(bottom, $width: 10px, $arrowOffset: 0)
+  &:hover
+    // background-color: $lpblue
+    text-decoration: none
+
+
+
+.marker__inner
+  color: white
+  +font-size(13)
+  font-weight: 700
+  text-transform: uppercase
+  padding: 8px 10px
+
+
+.marker--country1
+  left: 400px
+  top: 100px
+
+.marker--country2
+  left: 10px
+  top: 20px
+
+.marker--country3
+  left: 410px
+  top: 200px
+
+.marker--region1
+  left: 400px
+  top: 100px
+
+.marker--region2
+  left: 10px
+  top: 20px
+
+.marker--region3
+  left: 410px
+  top: 200px
+
+.marker--city1
+  left: 400px
+  top: 100px
+
+.marker--city2
+  left: 10px
+  top: 20px
+
+.marker--city3
+  left: 410px
+  top: 200px
+
