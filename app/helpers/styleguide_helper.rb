@@ -52,6 +52,16 @@ module StyleguideHelper
               extra_style: "nav__item--delimited"
             }
           ]
+        },
+        {
+          title: "Thorntree",
+          items: [
+            {
+              name: "Activity List",
+              path: "/styleguide/activity_list",
+              extra_style: "nav__item--delimited"
+            }
+          ]
         }
       ]
     }

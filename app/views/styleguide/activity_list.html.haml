@@ -1,0 +1,7 @@
+- activity_list = YAML.load(File.read(File.expand_path('../../../data/styleguide/activity_list_stubs.yml', __FILE__)))
+.card.styleguide-intro
+  .clearfix
+    %h1.split--left.copy--title Activity List
+  
+- activity_list.each_with_index do | stub, i |
+  = sg_component('activity_list', activity_list: stub, count: i, full_width: true, card_style: true)

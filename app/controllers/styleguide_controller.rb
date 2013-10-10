@@ -34,4 +34,8 @@ class StyleguideController < GlobalController
     render '/styleguide/forms'
   end
 
+  def activity_list
+    render '/styleguide/activity_list'
+  end
+
 end

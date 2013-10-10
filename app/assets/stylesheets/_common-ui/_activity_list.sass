@@ -1,0 +1,34 @@
+.activity-list
+  color: $body-copy
+
+.activity-list__title
+  color: $feature-copy
+  margin-bottom: 20px
+
+.activity-list__container
+  list-style: none
+
+.activity-list__item
+  +font-size(15)
+  line-height: 1em
+  margin-bottom: 12px
+
+.activity-list__icon
+  &:before
+    font-size: 1.6em
+    position: relative
+
+  &.text-icon--envelope:before
+    top: 2px
+
+.activity-list__link
+  font-weight: bold
+  &:before
+    font-weight: normal
+
+.activity-list__time
+  @extend %icon--clock-before
+
+  &:before
+    left: -0.15em
+    top: 2px
