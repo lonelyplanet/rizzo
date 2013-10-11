@@ -12,7 +12,7 @@
   ~ .card--page__aside
     @extend %media-gallery-transition
     top: -276px
-  .media-gallery__container, .tab__content
+  .media-gallery__container, .tab__content, .slider__viewport
     @extend %clearfix
     @extend %media-gallery-transition
     height: 241px
@@ -26,7 +26,14 @@
     top: 95px
   .slider__pagination
     display: none
+  .slider__viewport
+    overflow: hidden
+  .slider__viewport,
+  .slider__slide
+    @extend %media-gallery-transition
+    width: 427px
   .slider__container
+    @extend %media-gallery-transition
     background: $body-background
   .slider__slide
     background: $body-background
@@ -36,8 +43,10 @@
 // are on the same line below (because IE7/8 don't understand :checked, they discard the entire rule)
 @mixin media-gallery-full
   ~ .media-gallery
-    .media-gallery__container, .tab__content
+    .media-gallery__container, .tab__content, .slider__viewport
       height: 422px
+      width: 748px
+    .slider__slide
       width: 748px
     .slider__controls
       top: 186px

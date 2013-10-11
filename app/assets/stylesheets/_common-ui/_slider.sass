@@ -13,46 +13,21 @@ $slideArrowSpacing: 1.786em
 $slideHoverArrowSpacing: 0.357em
 $slideOffsetHome: -4.5em
 
+.slider__viewport
+  overflow: hidden
+
 .slider__container
+  @extend %transition--base
   height: 100%
   overflow: hidden
   position: relative
   -ms-scroll-chaining: none
 
 .slider__slide
-  display: none
-  left: 0
-  position: absolute
-  top: 0
+  float: left
   width: 100%
   +hardware-acceleration()
   +transition(none)
-
-  &.is-prev, &.is-current, &.is-next
-    display: block
-    z-index: 4
-    .is-animating &
-      +transition(all,0.25,ease)
-  &.is-current
-    left: 0
-    z-index: 5
-  &.is-prev
-    left: -100%
-    z-index: 1
-  &.is-next
-    left: 100%
-    z-index: 1
-  // These are duplicate styles to `is-prev` and `is-next`, but need higher priority.
-  &.is-potentially-prev
-    left: -100%
-    z-index: 1
-  &.is-potentially-next
-    left: 100%
-    z-index: 1
-  &.is-bottom-layer
-    z-index: 1
-  &.is-middle-layer
-    z-index: 2
 
 .slider__controls-container
   position: relative

@@ -5,6 +5,7 @@ define [], () ->
     augmentedUrls: /(.*)(?=\/rated$|\/apartments$|\/hostels-and-budget-hotels$|\/guesthouses$)/
     checkFilters: /filters/
     checkSearch: /search/
+    legacyBrowsers: /(browser)?ie(7|8)/i
 
     getUrl: ->
       window.location.href
@@ -20,6 +21,15 @@ define [], () ->
 
     getViewPort: ->
       document.documentElement.clientWidth
+
+    getLegacyRoot: ->
+      if @legacyBrowsers.test(document.documentElement.className)
+        document.documentElement
+      else if @legacyBrowsers.test(document.body.className)
+        document.body
+
+    isLegacy: ->
+      !!@getLegacyRoot()
 
     setUrl: (url) ->
       window.location.replace(url)

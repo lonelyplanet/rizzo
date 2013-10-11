@@ -4,7 +4,7 @@
 # 
 # ------------------------------------------------------------------------------
 
-define ['jquery', 'lib/extends/events'], ($, EventEmitter) ->
+define ['jquery', 'lib/extends/events', 'lib/utils/page_state'], ($, EventEmitter, PageState) ->
 
   class Slider
 
@@ -15,9 +15,9 @@ define ['jquery', 'lib/extends/events'], ($, EventEmitter) ->
 
     # Default config
     config =
-      animateDelay: 500
       slides: ".slider__slide"
       slides_container: ".slider__container"
+      slides_viewport: ".slider__viewport"
       deferLoading: false
 
     # @params {}
@@ -27,76 +27,79 @@ define ['jquery', 'lib/extends/events'], ($, EventEmitter) ->
     constructor: (args) ->
       $.extend config, args
 
+      @page = new PageState()
       @current_slide = 1
       @$el = $(config.el)
-      @slides = config.slides
+      @$slides = @$el.find(config.slides)
+      @numSlides = @$el.find(@$slides).length
 
-      if $(@slides).length < 2
-        $(@slides).addClass('is-current')
+      if @$el.length is 0 or @numSlides < 2
         return false
 
-      @slides_container = @$el.find(config.slides_container)
+      @$slides_container = @$el.find(config.slides_container)
+      @$slides_viewport = @$el.find(config.slides_viewport)
       @$slider_controls = $('<div class="slider__controls no-print"></div>')
       @$slider_pagination = $('<div class="slider__pagination no-print"></div>')
-      @$next = $('<a href="#" class="slider__control slider__control--next icon--chevron-right--white--before">2 of '+@$el.find(@slides).length+'</a>')
-      @$prev = $('<a href="#" class="slider__control slider__control--prev icon--chevron-left--white--after">'+@$el.find(@slides).length+' of '+@$el.find(@slides).length+'</a>')
-      @$legacy = $('html.ie7, html.ie8, body.browserIE7, body.browserIE8')
+      @$next = $("<a href='#' class='slider__control slider__control--next icon--chevron-right--white--before'>2 of #{@numSlides}</a>")
+      @$prev = $("<a href='#' class='slider__control slider__control--prev icon--chevron-left--white--after'>#{@numSlides} of #{@numSlides}</a>")
+      @$legacy = $(@page.getLegacyRoot())
+
+      # Don't add the class to the @$el if there's already a @$slides_viewport defined.
+      if @$slides_viewport.length is 0
+        @$slides_viewport = @$el.addClass(config.slides_viewport.substring(1))
 
       @$slider_controls_container = $('.slider__controls-container')
+      # As above with the @$slides_viewport
       if @$slider_controls_container.length is 0
-        @$slider_controls_container = @slides_container.addClass('slider__controls-container')
+        @$slider_controls_container = @$slides_viewport.addClass('slider__controls-container')
       @$slider_controls_container.addClass('at-beginning')
 
-      @init() unless @$el.length is 0
+      @init()
 
       # Polyfill for resizer in IE7/8
       @$legacy.find('.js-resizer').on 'click', ->
         $('input[name="'+$(this).attr('for')+'"]').toggleClass('is-checked')
 
     init: ->
-      @$slider_controls.append(@$next).append(@$prev)
+      @$slider_controls.append(@$next, @$prev)
       @$slider_controls_container.append(@$slider_controls)
 
-      @$el.find(@slides).each (i, val) =>
-        $slideLink = $('<a href="#" class="slider__pagination--link">'+(i+1)+'</a>')
+      @$slides_container.width(@$slides.length * @$slides.width())
 
-        if i is 0
-          $slideLink.addClass('is-active')
+      pagination = ''
 
-        @$slider_pagination.append($slideLink)
+      @$slides.each (i) =>
+        pagination += "<a href='#' class='slider__pagination--link'>#{i+1}</a>"
+
+      @$slider_pagination.append(pagination)
 
       @$slider_controls_container.append(@$slider_pagination)
 
-      @_setupSlideClasses()
+      @_fadeControls()
 
       slideLinks = @$slider_pagination.find('.slider__pagination--link')
-      slideLinks.on 'click', (e) =>
-        i = parseInt(e.target.innerHTML, 10)
 
-        @$el.find(@slides).removeClass('is-potentially-next is-potentially-prev')
-        slideLinks.removeClass('is-active').eq(i-1).addClass('is-active')
-
-        @_goToSlide(i)
-        return false
       slideLinks.on
+        'click': (e) =>
+          i = parseInt(e.target.innerHTML, 10)
+
+          @$slides.removeClass('is-potentially-next')
+
+          @_goToSlide(i)
+          return false
+
         'mouseenter': (e) => # in
-          slides = @$el.find(@slides)
-          currentIndex = slides.index(slides.filter('.is-current')) + 1
           index = parseInt(e.target.innerHTML, 10)
 
           @$el.removeClass('is-animating')
-          slides.removeClass('is-potentially-next is-potentially-prev')
+          @$slides.removeClass('is-potentially-next')
 
-          if index > currentIndex
-            slides.eq(parseInt($(e.target).html(), 10) - 1).not('.is-current').addClass('is-potentially-next')
-          else
-            slides.eq(parseInt($(e.target).html(), 10) - 1).not('.is-current').addClass('is-potentially-prev')
+          @$slides.eq(index - 1).addClass('is-potentially-next')
           
-          @_loadHiddenContent(slides) if config.deferLoading
-
+          @_loadHiddenContent(@$slides) if config.deferLoading
 
         'mouseleave': (e) => # out
-          @$el.find(@slides).removeClass('is-potentially-next is-potentially-prev')
+          @$slides.removeClass('is-potentially-next')
 
       @$next.on 'click', =>
         @_nextSlide()
@@ -107,12 +110,14 @@ define ['jquery', 'lib/extends/events'], ($, EventEmitter) ->
         return false
 
       @$next.on 'mouseenter click', =>
-        @_loadHiddenContent(@$el.find(@slides)) if config.deferLoading
+        @_loadHiddenContent(@$el.find(@$slides)) if config.deferLoading
 
       @$next.on 'mouseenter click', =>
-        @_loadHiddenContent(@$el.find(@slides)) if config.deferLoading
+        @_loadHiddenContent(@$el.find(@$slides)) if config.deferLoading
 
-      # if @$legacy.length is 0 && !!window.addEventListener
+      @_updateCount()
+
+      # if @page.isLegacy() && !!window.addEventListener
       #   require ['pointer','touchwipe'], =>
       #     # Swiping navigation.
       #     @$el.touchwipe
@@ -131,141 +136,55 @@ define ['jquery', 'lib/extends/events'], ($, EventEmitter) ->
       config.deferLoading = false
 
     _nextSlide: ->
-      slides = @$el.find(@slides)
-      current = @$el.find(@slides+'.is-current')
-      index = slides.index(current) + 1 # +1 since .index is zero based.
-
-      @_resetSlideClasses()
-
-      @$el.addClass('is-animating')
-
-      # Wrap around if at the end
-      if index is slides.length
-        @_setupSlideClasses()
-      else if index is slides.length - 1
-        current.addClass('is-prev').next().addClass('is-current')
-        @$el.find(@slides+':first').addClass('is-next')
-      else
-        current.addClass('is-prev').next().addClass('is-current').next().addClass('is-next')
-
-      # This is to help with the slide stack order which is different depending on the direction of slide movement.
-      $(@slides+'.is-next').addClass('is-bottom-layer')
-      $(@slides+'.is-prev').addClass('is-middle-layer')
-
+      return if @current_slide is @$slides.length
+      @current_slide++
+      percentOffset = (@current_slide - 1) * 100
+      @$slides_container.css('marginLeft', (-1 * percentOffset)+'%')
       @_updateCount()
       
     _previousSlide: ->
-      slides = @$el.find(@slides)
-      current = @$el.find(@slides+'.is-current')
-      index = slides.index(current) + 1 # +1 since .index is zero based.
-
-      @_resetSlideClasses()
-
-      @$el.addClass('is-animating')
-
-      # Wrap around if at the beginning
-      if index is 1
-        @$el.find(@slides+':last').addClass('is-current').prev().addClass('is-prev')
-        @$el.find(@slides+':first').addClass('is-next')
-      else if index is 2
-        current.addClass('is-next').prev().addClass('is-current')
-        @$el.find(@slides+':last').addClass('is-prev')
-      else
-        current.addClass('is-next').prev().addClass('is-current').prev().addClass('is-prev')
-
-      # This is to help with the slide stack order which is different depending on the direction of slide movement.
-      $(@slides+'.is-prev').addClass('is-bottom-layer')
-      $(@slides+'.is-next').addClass('is-middle-layer')
-
+      return if @current_slide is 0
+      @current_slide--
+      percentOffset = (@current_slide - 1) * 100
+      @$slides_container.css('marginLeft', (-1 * percentOffset)+'%')
       @_updateCount()
 
     _goToSlide: (index) ->
-      slides = @$el.find(@slides)
-      current = slides.filter('.is-current')
-      currentIndex = slides.index(current) + 1
-      index = index-1 # zero base
-      movingForward = index > currentIndex
-      movingTo = slides.eq(index)
-      
-      return false if current[0] is slides.eq(index)[0]
+      if index < 1
+        index = 1
+      if index > @$slides.length
+        index = @$slides.length
 
-      @$el.removeClass('is-animating')
-
-      # First, the slide we're trying to go to must become the Next/Previous slide in the order (depending on direction).
-      # Remove the positioning for what's currently the previous slide. Recalced later.
-      slides.removeClass('is-prev is-next is-middle-layer is-bottom-layer')
-      if movingForward
-        movingTo.addClass('is-next')
-      else
-        movingTo.addClass('is-prev')
-
-      @$el.addClass('is-animating')
-
-      # Transition the slides now.
-      setTimeout => # Use a 0 timeout to allow for is-animate to get added in a separate cycle to the transition classes.
-        if movingForward
-          current.removeClass('is-current').addClass('is-prev is-middle-layer')
-        else
-          current.removeClass('is-current').addClass('is-next is-middle-layer')
-        movingTo.removeClass('is-next is-prev').addClass('is-current')
-
-        # Wait for that transition to finish, then reset the prev and next ones *around the current slide*
-        setTimeout =>
-          slides.removeClass('is-prev is-next is-middle-layer')
-
-          # Use modulus to wrap around to the beginning if at the end, but in all other cases, carry on as normal.
-          slides.eq((index+1) % slides.length).addClass('is-next is-bottom-layer')
-          if (index-1 < 0)
-            slides.eq(slides.length-1).addClass('is-prev is-bottom-layer')
-          else
-            slides.eq(index-1).addClass('is-prev is-bottom-layer')
-
-          @_updateCount()
-        , config.animateDelay
-      , 0
+      percentOffset = (index - 1) * 100
+      @$slides_container.css('marginLeft', (-1 * percentOffset)+'%')
+      @current_slide = index
+      @_updateCount()
 
     _updateCount: ->
-      current = $('.slider__control--next').html()
-      slides = @$el.find(@slides)
-      index = slides.index(@$el.find(@slides+'.is-current')) + 1
-      nextIndex = index + 1
-      prevIndex = index - 1
+      currentHTML = $('.slider__control--next').html()
+      nextIndex = @current_slide + 1
+      prevIndex = @current_slide - 1
 
       # Wrap around numbers
-      if (nextIndex > slides.length)
+      if (nextIndex > @$slides.length)
         nextIndex = 1
       if (prevIndex < 1)
-        prevIndex = slides.length
+        prevIndex = @$slides.length
       
       @$slider_controls_container.removeClass('at-beginning at-end')
-      if index is 1
+      if @current_slide is 1
         @$slider_controls_container.addClass('at-beginning')
-      else if index is slides.length
+      else if @current_slide is @$slides.length
         @$slider_controls_container.addClass('at-end')
       
-      $('.slider__control--next').html(current.replace(/(^[0-9]+)/, nextIndex))
-      $('.slider__control--prev').html(current.replace(/(^[0-9]+)/, prevIndex))
+      $('.slider__control--next').html(currentHTML.replace(/(^[0-9]+)/, nextIndex))
+      $('.slider__control--prev').html(currentHTML.replace(/(^[0-9]+)/, prevIndex))
 
       $('.slider__pagination--link.is-active').removeClass('is-active')
-      $('.slider__pagination--link').eq(index-1).addClass('is-active')
+      $('.slider__pagination--link').eq(@current_slide - 1).addClass('is-active')
 
-      # Determine if the slide only contains one image and is a portrait image
-      current_slide = @$el.find(@slides).eq(index-1)
-      img = current_slide.find('> img:only-child, > a:only-child img')
-      if img.height() > img.width()
-        current_slide.addClass 'is-portrait'
-
-    _setupSlideClasses: ->
-      @$el.find(@slides+':first').addClass('is-current').next().addClass('is-next')
-      @$el.find(@slides+':last').addClass('is-prev')
-
+    _fadeControls: ->
       # Give the user a visual cue that there are controls before fading them out.
       setTimeout =>
         @$slider_controls.addClass('is-faded-out')
       , 1000
-
-    _resetSlideClasses: ->
-      classes = ['is-current', 'is-next', 'is-prev', 'is-bottom-layer', 'is-middle-layer']
-
-      for name in classes
-        @$el.find(@slides+'.'+name).removeClass(name)
