@@ -37,7 +37,7 @@ define ['jquery', 'lib/maps/map_styles', 'lib/utils/css_helper', 'polyfills/scro
 
     @initMap: =>
       if not (lp and lp.lodging and lp.lodging.map) or lp.lodging.map.genericCoordinates
-        return @config.mapCanvas.removeClass('is-loading')
+        return $(@config.target).removeClass('is-loading')
       @config = $.extend({listener: this}, lp.lodging.map, @config)
       @config.mapCanvas = $(@config.target)
       poiElements = @config.mapCanvas.parent().find('.js-poi')
