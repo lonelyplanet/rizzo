@@ -155,7 +155,6 @@ define ['jquery', 'lib/maps/map_styles', 'lib/utils/css_helper', 'polyfills/scro
 
     highlightPin = (id) =>
       for slug, pin of pins
-        console.log(slug, pin, pins)
         if slug is id
           pin.setIcon(getIcon(pin.category, 'large'))
           @map.panTo(pin.getPosition())
@@ -164,7 +163,7 @@ define ['jquery', 'lib/maps/map_styles', 'lib/utils/css_helper', 'polyfills/scro
 
     resetPins = =>
       for slug, pin of pins
-        pin.setIcon(iconFor(pin.category))
+        pin.setIcon(getIcon(pin.category))
       @map.panTo(new google.maps.LatLng(@config.latitude, @config.longitude))
 
     poiSelected = (event) =>
@@ -172,12 +171,12 @@ define ['jquery', 'lib/maps/map_styles', 'lib/utils/css_helper', 'polyfills/scro
       poiElements.removeClass('nearby-pois__poi--highlighted');
       if id is @currentPOI
         @currentPOI = null
-        deselectPins();
+        resetPins();
       else
         @currentPOI = id
         element = poiElements.filter("[data-slug='#{id}']").addClass('nearby-pois__poi--highlighted').get(0);
         element.scrollIntoViewIfNeeded(true, true)
-        selectPin(id)
+        highlightPin(id)
 
     constructor: (config) ->
       $.extend MapManager.config, config
