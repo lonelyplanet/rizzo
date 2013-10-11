@@ -14,134 +14,170 @@
 # }
 #
 
-define ['jquery','lib/maps/lodging_map','lib/maps/nearby_things_to_do'], ($, LodgingMap, NearbyThingsToDo) ->
+define ['jquery', 'lib/maps/map_styles', 'lib/utils/css_helper', 'polyfills/scrollIntoViewIfNeeded'], ($, mapStyles, cssHelper) ->
 
   class MapManager
     @version: '0.0.11'
     @apiKey: "AIzaSyBQxopw4OR08VaLVtHaY4XEXWk3dvLSj5k"
-    @lodgingMap: null
-    @nearbyThingsToDo: null
     @currentPOI: null
-    @config: {
+    @config:
       target: '#js-map-canvas'
-    }
+    poiElements = $('.js-poi')
+    pins = []
+    topic = $(document.documentElement).data('topic')
 
     @loadLib: ->
-      unless @lodgingMap
-        # pointer to google-maps callback, not possible inside the regular closure environment
-        lp.MapManager = MapManager
-
-        script = document.createElement("script")
-        script.type = "text/javascript"
-        script.src = "http://maps.googleapis.com/maps/api/js?key=#{@apiKey}&v=2&sensor=false&callback=lp.MapManager.initMap"
-        document.body.appendChild(script)
-
+      return if @map
+      # pointer to google-maps callback, not possible inside the regular closure environment
+      lp.MapManager = MapManager
+      script = document.createElement('script')
+      script.type = 'text/javascript'
+      script.src = "http://maps.googleapis.com/maps/api/js?key=#{@apiKey}&v=2&sensor=false&callback=lp.MapManager.initMap"
+      document.body.appendChild(script)
 
     @initMap: =>
       require ['maps_infobox'], =>
-        if lp.lodging
-          args = lp.lodging.map
-          args.listener = @
-          $.extend args, @config
-          @lodgingMap = new LodgingMap(args)
+        return unless lp and lp.lodging and lp.lodging.map
+        return if lp.lodging.map.genericCoordinates
+        @config = $.extend({listener: this}, lp.lodging.map, @config)
+        @config.mapCanvas = $(@config.target)
+        buildMap()
+        setLocationMarker()
+        addPins()
+        poiElements.add(@pins).on('click', poiSelected)
+        @config.mapCanvas.removeClass('is-loading')
 
-          unless lp.lodging.map.genericCoordinates
-            @lodgingMap.setLodgingMarker()
-            @getNearbyPOIs((data) =>
-              pois = @parsePOIData(@_sanitizeData(data))
-              $('#js-nearby-pois, .infobox__interesting-places').removeClass('is-hidden')
-              @lodgingMap.initMapPOIs(pois)
-              @initNearbyThingsToDo(pois)
-            )
-          $(@config.target).removeClass('is-loading')
+    buildMap = () =>
+      mapOptions =
+        zoom: @config.zoom
+        center: new google.maps.LatLng(@config.latitude, @config.longitude)
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      if @config.minimalUI
+        $.extend(mapOptions,
+          mapTypeControl: false,
+          panControl: false,
+          streetViewControl: false,
+          zoomControlOptions:
+            style: google.maps.ZoomControlStyle.SMALL
+        )
+      @map = new google.maps.Map(@config.mapCanvas.get(0), mapOptions)
+      @map.setOptions(styles: mapStyles)
 
-    @getNearbyPOIs: (callback) ->
-      if lp.lodging.map.nearby_api_endpoint
-        $.getJSON lp.lodging.map.nearby_api_endpoint, callback
-      
+    setLocationMarker = =>
+      locationTitle = if topic is 'lodging' then @config.title else 'Location'
+      locationAddress = @config.lodgingLocation or lp.lodging.address[0] or ''
+      infobox = new InfoBox
+        alignBottom: true
+        boxStyle:
+          maxWidth: 350
+          textOverflow: 'ellipsis'
+          whiteSpace: 'nowrap'
+          width: 'auto'
+        closeBoxURL: ''
+        content: "<div class='infobox--location'>
+          <p class='section-title text-icon text-icon--address'>#{locationTitle}</p>
+          <p class='copy--body'>
+            #{locationAddress or ''}
+            <span class='infobox__interesting-places'> &middot;
+              <label class='infobox__link--interesting-places js-resizer' for='js-resize'>
+                interesting places nearby
+              </label>
+            </span>
+          </p></div>"
+        disableAutoPan: true
+        maxWidth: 350
+        zIndex: 50
 
-    @parsePOIData: (data) ->
-      pois = {}
-      sight.category = 'sight' for sight in data.sights
-      activity.category = 'activity' for activity in data.activities
-      pois.sights_or_activities = @_sortBy(data.activities.concat(data.sights || []),
-                                           (poi)-> -poi.properties.rating)[0..2]
-      ents = data['entertainment-nightlife']
-      pois.entertainment = (if ents.length isnt 0 then ents[0] else [])
-      pois.entertainment.category = 'entertainment' if pois.entertainment.length isnt 0
-      rests = data['restaurants']
-      pois.restaurant = (if rests.length isnt 0 then rests[0] else [])
-      pois.restaurant.category = 'restaurant' if pois.restaurant.length isnt 0
-      pois
+      marker = new google.maps.Marker
+        icon: getIcon('location-marker', 'dot')
+        position: new google.maps.LatLng(@config.latitude, @config.longitude)
+        map: @map
+        title: @config.title
+        optimized: @config.optimized
 
-    @initNearbyThingsToDo: (pois)->
-      @nearbyThingsToDo = new NearbyThingsToDo(
-        target: '#js-nearby-pois'
-        pois: pois
-        listener: this
+      infobox.open(@map, marker)
+
+    createMarkerImage = (topic, size) ->
+      cssInfo = cssHelper.propertiesFor(
+        "icon-poi-#{topic}-#{size} icon-poi-#{size}", [
+          'background-position-x'
+          'background-position-y'
+          'background-image'
+          'height'
+          'width'
+        ]
       )
-      @nearbyThingsToDo.render()
 
-    @poiSelected: (poi_id)->
-      if poi_id is @currentPOI
+      url = cssHelper.extractUrl(cssInfo['background-image'])
+      width = parseInt(cssInfo['width'])
+      height = parseInt(cssInfo['height'])
+
+      x = parseInt(cssInfo['background-position-x'])
+      y = parseInt(cssInfo['background-position-y'])
+
+      new google.maps.MarkerImage(
+        url,
+        new google.maps.Size(width, height),
+        new google.maps.Point(-x, -y)
+      )
+
+    getIcon = (topic, size='small') =>
+      @markerImages ?= {}
+      topic = 'hotel' if topic is 'lodging'
+      @markerImages[topic + '-' + size] ?= createMarkerImage(topic, size)
+
+    mapMarker = (poi) =>
+      new google.maps.Marker (
+        animation:   google.maps.Animation.DROP
+        position:    new google.maps.LatLng(poi.locationLatitude, poi.locationLongitude)
+        map:         @map
+        title:       poi.name
+        description: poi.description
+        optimized:   @config.optimized
+        id:          poi.slug
+        category:    poi.topic
+        icon:        getIcon(poi.topic)
+      )
+
+    addPins = (quick) ->
+      markerDelay = 0
+      poiElements.each (_, poi) ->
+        poi = $(poi).data()
+        setTimeout =>
+          pin = mapMarker(poi)
+          pins[poi.slug] = pin
+        , markerDelay
+        clearTimeout(@timeout)
+        @timeout = setTimeout ->
+          markerDelay = 0
+        , 150
+        markerDelay += 100 unless quick
+
+    highlightPin = (id) =>
+      for slug, pin of pins
+        console.log(slug, pin, pins)
+        if slug is id
+          pin.setIcon(getIcon(pin.category, 'large'))
+          @map.panTo(pin.getPosition())
+        else
+          pin.setIcon(getIcon(pin.category))
+
+    resetPins = =>
+      for slug, pin of pins
+        pin.setIcon(iconFor(pin.category))
+      @map.panTo(new google.maps.LatLng(@config.latitude, @config.longitude))
+
+    poiSelected = (event) =>
+      id = $(event.target).closest('[data-slug]').data('slug');
+      poiElements.removeClass('nearby-pois__poi--highlighted');
+      if id is @currentPOI
         @currentPOI = null
-        @lodgingMap.resetPOIs()
-        @nearbyThingsToDo.resetPOIs()
+        deselectPins();
       else
-        @currentPOI = poi_id
-        @lodgingMap.highlightPOI(poi_id)
-        @nearbyThingsToDo.highlightPOI(poi_id)
-
-    @_sanitizeData: (data) ->
-      data.activities = @_filter(data.activities, (activity) -> activity.properties.uri)
-      data.sights = @_filter(data.sights, (sight) -> sight.properties.uri)
-      data['entertainment-nightlife'] = @_filter(data['entertainment-nightlife'], (ent) -> ent.properties.uri)
-      data.restaurants = @_filter(data.restaurants, (restaurant) -> restaurant.properties.uri)
-      data
-
-    #===== Nicked from UnderscoreJS v1.5.1 =====#
-    @_map = (obj, iterator, context) ->
-      results = []
-      return results  unless obj?
-      return obj.map(iterator, context)  if Array.prototype.map and obj.map is Array.prototype.map
-      each obj, (value, index, list) ->
-        results.push iterator.call(context, value, index, list)
-
-      results
-
-    @_pluck = (obj, key) ->
-      @_map obj, (value) ->
-        value[key]
-
-    @_sortBy = (obj, value, context) ->
-      iterator = @_lookupIterator(value)
-      @_pluck @_map(obj, (value, index, list) ->
-        value: value
-        index: index
-        criteria: iterator.call(context, value, index, list)
-      ).sort((left, right) ->
-        a = left.criteria
-        b = right.criteria
-        if a isnt b
-          return 1  if a > b or a is undefined
-          return -1  if a < b or b is undefined
-        (if left.index < right.index then -1 else 1)
-      ), "value"
-
-    @_lookupIterator = (value) ->
-      (if $.isFunction(value) then value else (obj) ->
-        obj[value]
-      )
-
-    @_filter = (obj, iterator, context) ->
-      results = []
-      return results  unless obj?
-      return obj.filter(iterator, context)  if Array.prototype.filter and obj.filter is Array.prototype.filter
-      each obj, (value, index, list) ->
-        results.push value  if iterator.call(context, value, index, list)
-
-      results
-    #===== End UnderscoreJS thievery =====#
+        @currentPOI = id
+        element = poiElements.filter("[data-slug='#{id}']").addClass('nearby-pois__poi--highlighted').get(0);
+        element.scrollIntoViewIfNeeded(true, true)
+        selectPin(id)
 
     constructor: (config) ->
       $.extend MapManager.config, config
@@ -152,9 +188,8 @@ define ['jquery','lib/maps/lodging_map','lib/maps/nearby_things_to_do'], ($, Lod
         MapManager.loadLib()
 
       if config and config.centerTrigger
-        
         $(document).on 'change', config.centerTrigger, =>
-          map = MapManager.lodgingMap.map
+          map = MapManager.map
 
           overlay = new google.maps.OverlayView()
           overlay.draw = ->
