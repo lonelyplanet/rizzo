@@ -1,0 +1,104 @@
+.content-facet
+  position: absolute
+  left: 0
+  top: 0
+  z-index: 30
+  height: ( $map__height - 10)
+  width: 100%
+
+
+.content-facet__nav
+  background-color: red
+  display: block
+  height: 70%
+  position: absolute
+  top: 15%
+  width: 5%
+
+.content-facet__nav--back
+  left: 0
+
+.content-facet__nav--forward
+  right: 0
+
+.content-facet__hide
+  @extend %cross-icon-before
+  position: absolute
+  top: 5px
+  right: 5px
+  width: 50px
+  height: 50px
+  background-color: yellow
+  display: block
+  z-index: 50
+
+.content-facet__inner
+  background-size: cover
+  width: 100%
+  @extend %clearfix
+  position: relative
+  list-style-type: none
+  float: left
+
+.content-facet__inner--region--1
+  background-image: url(#{image_path('destinations/best-in-travel/Regions/Haapi-1600.jpg')})
+
+.content-facet__inner--region--2
+  background-image: url(#{image_path('destinations/best-in-travel/Regions/Hakuriku-1600.jpg')})
+
+
+.content-facet__content
+  width: 1100px
+  margin: 0 auto
+
+.content-facet__copy
+  float: left
+  width: 80%
+  position: relative
+
+.content-facet__links
+  color: white
+  float: right
+  width: 20%
+
+.content-facet__buttons
+  text-transform: uppercase
+  color: white
+  width: 190px
+
+.btn__read-article--regions
+  background-color: $section--regions
+
+.btn__visit-destination
+  background-color: $header-grey  
+
+.carousel--regions
+  .content-facet__rank
+    background-color: $section--regions
+
+.content-facet__rank
+  color: white
+  position: absolute
+  +font-size(14)
+  font-weight: 700
+  text-align: right
+  left: -40px
+  width: 23px
+  height: 20px
+  padding: 8px
+  
+
+.content-facet__nav
+  z-index: 50
+
+.content-facet__title
+  color: white
+  +font-size(120)
+  font-weight: 700
+  text-transform: uppercase
+
+.content-facet__leader
+  background-color: red
+  color: white
+  +font-size(16)
+  margin-right: 5%

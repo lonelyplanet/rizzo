@@ -1,0 +1,287 @@
+// -----------------------------------------------------------------------------
+// Destination specific Colours
+// -----------------------------------------------------------------------------
+
+$section--countries        : #ff708e !default
+$section--regions          : #47a899 !default
+$section--cities           : #fa5e5b !default
+
+$map__height : 500px
+$row--introduction-height: 80px
+
+// -----------------------------------------------------------------------------
+
+
+
+
+.row--introduction
+  background-color: white
+  position: relative // for z-index  
+  z-index: 20
+  color: $header-grey
+  text-align: center
+  +respond-to(wide-view)
+    height: $row--introduction-height
+    @extend %clearfix
+
+.row--introduction__inner
+  +respond-to(wide-view)
+    width: 1000px
+    margin: 0 auto
+
+.row--introduction__branding
+  padding-top: 25px
+
+  +respond-to(wide-view)
+    padding-top: 0
+    float: left
+    width: 20%
+    height: 80px
+    box-shadow: -1px 0 $body-background inset
+
+.media--best-in-travel-logo
+  +respond-to(wide-view)
+    padding-top: 15px
+
+.row--introduction__blurb
+  +font-size(15)
+  padding: 20px
+  +respond-to(wide-view)
+    background-color: $header-grey
+    +border-radius(4)
+    +box-shadow(5, 5, 1, 0, rgba(0,0,0,0.1))
+    position: absolute
+    top: -200px
+    // left: -1500px
+    width: 600px
+    text-align: left
+
+.row--introduction__blurb__title
+  margin-bottom: 8px
+  +respond-to(wide-view)
+    color: white
+    +font-size(32)
+
+.row--introduction__blurb__copy
+  +respond-to(wide-view)
+    color: white
+    +font-size(16)
+
+.row--introduction__blurb__hide
+  @extend %cross-icon-before
+  display: none
+  cursor: pointer
+
+  +respond-to(wide-view)
+    display: block
+    position: absolute
+    top: 4px
+    right: 16px
+    width: 24px
+    height: 36px
+    overflow: hidden
+    line-height: 1em
+    +font-size(40)
+    color: white
+    opacity: 0.5
+
+    &:hover
+      text-decoration: none
+      opacity: 1
+
+
+
+// map specific:
+
+.leaflet-top, .leaflet-bottom
+  z-index: 1 !important
+
+.leaflet-container a
+  color: inherit !important
+
+
+.leaflet-popup-pane
+
+  .leaflet-popup-tip
+    background: $header-grey
+
+  .leaflet-popup-content-wrapper
+    background: transparent
+    border-radius: 0
+    box-shadow: none
+    padding: 0
+    text-align: center
+  
+  .leaflet-popup-content
+    margin: 0
+    background: $header-grey
+    +border-radius(4)
+    padding: 8px
+    text-align: center
+      
+  .leaflet-popup-tip
+    margin: -15px auto 0 !important
+
+.map__tooltip
+  color: white
+  +font-size(13)
+  font-weight: 700
+  text-transform: uppercase
+
+.col--introduction__social
+  display: none
+  +respond-to(wide-view)
+    display: block
+    width: 20%
+    float: left
+
+.top-tens
+  +respond-to(wide-view)
+    float: left
+    @extend %clearfix
+    width: 60%
+
+.top-ten
+  border-top: solid 1px $body-background
+  display: block
+  &:hover
+    text-decoration: none
+
+  &.expanded
+    .top-ten__category
+      color: white
+
+  +respond-to(wide-view)
+    border-bottom-width: 2px
+    border-bottom-style: solid
+    float: left
+    width: 33.33333%
+
+.top-ten__category__link
+  display: block
+  padding: 20px
+  text-align: center
+  text-transform: uppercase
+  +font-size(20)
+  +respond-to(wide-view)
+    +font-size(16)
+    padding: 0
+    height: ( $row--introduction-height - 2 )
+
+.top-ten.expanded
+  .top-ten__category__link__inner
+    color: white
+
+.top-ten__category__link__inner
+  color: $header-grey
+  display: block
+  font-weight: 700
+  text-decoration: none
+  +respond-to(wide-view)
+    box-shadow: -1px 0 $body-background inset
+    height: ( $row--introduction-height - 30 )
+    padding-top: 30px
+
+.top-ten--countries
+  &.expanded
+    background-color: $section--countries
+  +respond-to(wide-view)
+    border-bottom-color: $section--countries
+
+.top-ten--regions
+  &.expanded
+    background-color: $section--regions
+  +respond-to(wide-view)
+    border-bottom-color: $section--regions
+
+.top-ten--cities
+  &.expanded
+    background-color: $section--cities
+  +respond-to(wide-view)
+    border-bottom-color: $section--cities
+
+.top-ten__list
+  +respond-to(wide-view)
+    position: absolute
+    left: 0
+    // top: -( $row--introduction-height )
+    top: -100px
+    width: 100%
+    list-style-type: none
+    @extend %clearfix
+
+.top-ten__list__item
+  height: 75px
+  background-position: center
+  background-size: 100%
+  position: relative
+  +respond-to(wide-view)
+    display: block
+    float: left
+    width: 10%
+    height: 100px
+    position: relative
+
+.top-ten__list__title
+  background-position: center center
+  background-repeat: no-repeat
+  text-indent: -9999px
+  height: 100%
+  position: absolute
+  width: 100%
+  top: 0
+
+.top-ten__list__item__link
+  +respond-to(wide-view)
+    height: 100%
+    width: 100%
+    display: block
+    .top-ten__list--countries &:hover
+      box-shadow: 10px 10px $section--countries inset, -10px -10px $section--countries inset
+    .top-ten__list--regions &:hover
+      box-shadow: 10px 10px $section--regions inset, -10px -10px $section--regions inset
+    .top-ten__list--cities &:hover
+      box-shadow: 10px 10px $section--cities inset, -10px -10px $section--cities inset
+
+.top-ten__list__item__rank
+  +respond-to(wide-view)
+    color: white
+    +font-size(16)
+    font-weight: 700
+    position: absolute
+    top: 10px
+    right: 10px
+
+.bit-map
+  display: none
+  +respond-to(wide-view)
+    background-color: #cbdae7
+    display: block
+    width: 100%
+    height: $map__height
+    position: relative
+
+.carousel
+  overflow: hidden
+  position: relative
+  min-width: 1100px // on a media query for this size
+  margin: 0 auto
+  height: 100%
+
+.carousel__contents-wrapper
+  position: absolute
+  left: 0
+  ul
+    overflow: hidden
+    list-style-type: none
+    li  
+      float: left
+      width: 100px
+      &.red
+        background-color: red
+      &.blue
+        background-color: blue
+      &.green
+        background-color: green
+      a
+        display: block
