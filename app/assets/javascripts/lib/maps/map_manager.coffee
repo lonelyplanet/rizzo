@@ -22,7 +22,7 @@ define ['jquery', 'lib/maps/map_styles', 'lib/utils/css_helper', 'polyfills/scro
     @currentPOI: null
     @config:
       target: '#js-map-canvas'
-    poiElements = $('.js-poi')
+    poiElements = $()
     pins = []
     topic = $(document.documentElement).data('topic')
 
@@ -36,16 +36,16 @@ define ['jquery', 'lib/maps/map_styles', 'lib/utils/css_helper', 'polyfills/scro
       document.body.appendChild(script)
 
     @initMap: =>
-      require ['maps_infobox'], =>
-        return unless lp and lp.lodging and lp.lodging.map
-        return if lp.lodging.map.genericCoordinates
-        @config = $.extend({listener: this}, lp.lodging.map, @config)
-        @config.mapCanvas = $(@config.target)
-        buildMap()
-        setLocationMarker()
-        addPins()
-        poiElements.add(@pins).on('click', poiSelected)
-        @config.mapCanvas.removeClass('is-loading')
+      if not (lp and lp.lodging and lp.lodging.map) or lp.lodging.map.genericCoordinates
+        return @config.mapCanvas.removeClass('is-loading')
+      @config = $.extend({listener: this}, lp.lodging.map, @config)
+      @config.mapCanvas = $(@config.target)
+      poiElements = @config.mapCanvas.parent().find('.js-poi')
+      buildMap()
+      setLocationMarker()
+      addPins()
+      poiElements.add(@pins).on('click', poiSelected)
+      @config.mapCanvas.removeClass('is-loading')
 
     buildMap = () =>
       mapOptions =
@@ -63,7 +63,7 @@ define ['jquery', 'lib/maps/map_styles', 'lib/utils/css_helper', 'polyfills/scro
       @map = new google.maps.Map(@config.mapCanvas.get(0), mapOptions)
       @map.setOptions(styles: mapStyles)
 
-    setLocationMarker = =>
+    setLocationMarker = => require ['maps_infobox'], =>
       locationTitle = if topic is 'lodging' then @config.title else 'Location'
       locationAddress = @config.lodgingLocation or lp.lodging.address[0] or ''
       infobox = new InfoBox
