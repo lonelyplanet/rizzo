@@ -22,6 +22,13 @@ $is-ie: false !default
         @content
     @else
       @content
+
+  @if $breakpoint == 768
+    @if $is-ie == false
+      @media only screen and (min-width : 768px)
+        @content
+    @else
+      @content
       
 
   @if $breakpoint == 2

@@ -51,24 +51,6 @@ module GlobalResourcesHelper
       {title:'Insurance', uri: "http://www.lonelyplanet.com/travel-insurance", icon_class: 'icon--insurance-line--grey--before'}
     ]
   end
-
-  def default_secondary_nav
-    {
-      title: 'Buenos Aires',
-      section_name: 'Hotels',
-      slug: 'buenos-aires',
-      parent: 'Argentina',
-      parent_slug: "argentina",
-      collection: 
-        [
-          {:title=>'Overview', :url=>'#'},
-          {:title=>'Things to do', :url=>'#'},
-          {:title=>'Hotels', :url=>'#'},
-          {:title=>'Tips & Articles', :url=>'#'},
-          {:title=>'Images & Video', :url=>'#'}
-        ]
-    }
-  end
   
   def default_breadcrumbs
     [

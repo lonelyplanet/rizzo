@@ -19,6 +19,7 @@ body
 .copy--freight
   @extend %lp-font-stack
 
+
 // ----------------------------------------------------------------------------
 //
 // Row
@@ -62,6 +63,7 @@ body
     display: block
     position: absolute
     right: 55%
+
 
 // ----------------------------------------------------------------------------
 //
@@ -112,8 +114,6 @@ body
     height: 0
     .ie7 &
       display: none
-
-
 
 
 // ----------------------------------------------------------------------------
@@ -212,6 +212,19 @@ body
 .row--secondary
   padding-top: 40px
   margin-bottom: 18px
+  .responsive &
+    padding-top: 20px
+    +respond-to(400)
+      padding-top: 40px
+    +respond-to(wide-view)
+      width: 1000px
+      margin: 0 auto
+
+  .wv--split--right
+    .responsive &
+      +respond-to(400)
+        float: right
+        text-align: right
 
 .row__title--secondary
   background: $body-background
@@ -273,9 +286,6 @@ body
     padding: 0
     +respond-to(wide-view)
       padding-top: 20px
-
-  .btn
-    +font-size(14)
 
 
 

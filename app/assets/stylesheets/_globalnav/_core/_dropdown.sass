@@ -33,9 +33,15 @@
   box-shadow: 1px 1px 1px rgba(3,46,92,0.2)
   display: block
   overflow: hidden
-  padding: 9px 20px 9px 10px
+  padding: 9px 40px 9px 10px
   text-overflow: ellipsis
   white-space: nowrap
+  .is-flat &
+    background-color: transparent
+    box-shadow: none
+    border: none
+    font-weight: bold
+    +font-size(18)
 
   .standout &, .wrap--footer &
     background-color: #fff

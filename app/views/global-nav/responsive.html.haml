@@ -1,0 +1,7 @@
+:ruby
+  
+  default_secondary_nav = YAML.load(File.read(File.expand_path('../../../data/styleguide/navigation_stubs.yml', __FILE__)))['secondary_navigation_stub']
+
+  content_for(:secondary) do
+    ui_component('navigation/secondary_navigation', default_secondary_nav)
+  end

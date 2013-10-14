@@ -1,8 +1,17 @@
+:ruby
+  selected_hash = opts[:options].select{ |item| item[:selected] }
+  selected_option = selected_hash.any? ? selected_hash.first[:title] : nil
+
 .dropdown.js-select-group{ class: opts[:class] }
-  %label.dropdown__value.js-select-overlay<
-    = opts[:placeholder]
+  %label.dropdown__value.js-select-overlay.icon--chevron-down--grey--after<
+    = selected_option || opts[:placeholder] || opts[:options].first[:title]
+  
   %select.dropdown__select.js-select{ id: opts[:id], name: opts[:name], data: opts[:data] }
-    - if opts[:prompt]
-      %option{ value: "" }<
+    
+    - if opts[:placeholder]
+      %option{ value: ""}<
         = opts[:placeholder]
-    = options_for_select(opts[:options], opts[:selected])
+    
+    - opts[:options].each_with_index do |option, index|
+      %option{value: option[:value] || option[:title], selected: option[:selected] ? 'selected' : false}<
+        = option[:title]

@@ -30,9 +30,10 @@ form_components:
     :styleguide_title: "Dropdown"
     :id: "input_id"
     :name: "text_name"
-    :placeholder: "Select Item"
-    :options: [ 'one', 'two', 'three' ]
-    :prompt: true
+    :options:
+      - :title: 'one'
+      - :title: 'two'
+      - :title: 'three'
     :data:
       :key: "value"
       :super: "man"
@@ -77,8 +78,13 @@ field_components:
       -
         :name: "select_name"
         :placeholder: "Select Item"
-        :prompt: true
-        :options: [ 'one', 'two', ['three', 3] ]
+        :options:
+          - :title: 'one'
+          - :title: 'two'
+          -
+            :title: 'three'
+            :value: 3
+            :selected: true
 
   -
     :styleguide_title: "Select field"
@@ -88,17 +94,25 @@ field_components:
       -
         :name: "select_name"
         :placeholder: "Item One"
-        :prompt: true
-        :options: [ 'one', 'two', 'three' ]
+        :options:
+          - :title: 'one'
+          - :title: 'two'
+          - :title: 'three'
       -
         :name: "select_name"
         :placeholder: "Item Two"
-        :prompt: true
-        :options: [ 'a', 'b', 'c', 'd' ]
+        :options:
+          - :title: 'a'
+          - :title: 'b'
+          - :title: 'c'
+          - :title: 'd'
       -
         :name: "select_name"
         :placeholder: "Item Three"
-        :options: [ 'a1', 'b2', 'c3' ]
+        :options: 
+          - :title: 'a1'
+          - :title: 'b2'
+          - :title: 'c3'
 
   -
     :styleguide_title: "Security Code field"

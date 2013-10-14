@@ -49,3 +49,26 @@ left_nav_stub:
             :path: '#'
             :extra_style: "nav__item--delimited"
 
+
+secondary_navigation_stub:
+  :title: 'Buenos Aires'
+  :section_name: 'Hotels'
+  :slug: 'buenos-aires'
+  :parent: 'Argentina'
+  :parent_slug: "argentina"
+  :items: 
+    -
+      :title: 'Overview'
+      :slug: 'argentina'
+    -
+      :title: 'Things to do'
+      :slug: 'things-to-do'
+    -
+      :title: 'Hotels'
+      :slug: 'hotels'
+    -
+      :title: 'Tips & Articles'
+      :slug: 'travel-tips-and-articles'
+    -
+      :title: 'Images & Video'
+      :slug: 'images-and-video'
