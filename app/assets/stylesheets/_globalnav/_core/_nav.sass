@@ -296,12 +296,26 @@
     font-weight: bold
     &:hover
       text-decoration: none
+  .stack__intro &
+    padding: 0 0.2em 0 0.5em
+    &:before
+      content: '/'
+      top: 0.25em
+    &:first-child
+      padding-left: 0
+      &:before
+        content: ''
 
 // Qualified selector because not all breadcrumbs are links
 // with slugs and should not be underlined
 a.nav__item--breadcrumbs
   &:hover
     text-decoration: underline
+
+  .stack__intro &
+    +font-size(13)
+    color: $body-copy
+    text-transform: uppercase
 
 .nav__item--breadcrumbs--home
   @extend %left-icon
