@@ -11,9 +11,15 @@
 
     .row.row--content#js-row--content
       .row__inner.row__inner--content.copy--freight
-        = yield :secondary
+        
+        .row.row--secondary.copy--freight#js-secondary-nav
+          .row__inner.row__inner--secondary
+            = yield :secondary
+        
         = yield
+      
       .row--footer-push
+
   .wrap--footer
     = yield :breadcrumbs
     = render 'layouts/core/snippets/body_footer'

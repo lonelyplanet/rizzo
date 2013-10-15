@@ -1,9 +1,9 @@
-- if defined?(properties[:items])
-  .wv--split--right.nav--inline.nav--secondary
-    .wv--block
-      - properties[:items].each do |n|
-        %a.nav__item.nav__item--secondary.js-nav-item{:class=>(n[:title] == properties[:section_name] ? 'current' : ''), :href=> n[:slug]}<
-          = n[:title]
+-# The inline navigation for wide screens
+.wv--split--right.nav--inline.nav--secondary.wv--block
+  - properties[:items].each do |n|
+    %a.nav__item.nav__item--secondary.js-nav-item{:class=>(n[:title] == properties[:section_name] ? 'current' : ''), :href=> n[:slug]}<
+      = n[:title]
 
-    .wv--hidden
-      = ui_component('forms/dropdown', properties: {options: subnav_options(properties[:items], properties[:section_name]), placeholder: properties[:section_name], class: "is-flat"} )
+-# The select navigation for small screens
+.wv--split--right.nav--inline.nav--secondary.wv--hidden
+  = ui_component('forms/dropdown', properties: {options: subnav_options(properties[:items]), selected: properties[:section_name], placeholder: properties[:section_name], class: "is-flat"} )

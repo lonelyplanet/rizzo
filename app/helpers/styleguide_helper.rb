@@ -100,7 +100,7 @@ module StyleguideHelper
         haml_tag(:div, class: item_class) do
           haml_concat ui_component(path, properties)
         end
-        haml_concat render "styleguide/partials/description", component: path, full_width: full_width, properties: original_stub ? original_stub : properties
+        haml_concat render "styleguide/partials/description", component: path, full_width: full_width, properties: original_stub ? original_stub : properties[:properties]
       end
     end
 

@@ -1,0 +1,14 @@
+.split--left.row__title--secondary
+
+  - if properties[:is_body_title] == true
+    %h1.place-title #{properties[:title]}
+
+  - else
+    .place-title<
+      - if properties[:no_place_link] == true
+        %span.place-title-heading #{properties[:title]}
+      - else
+        %a.place-title-heading{href: "/#{properties[:slug]}"} #{properties[:title]}
+
+      - if properties[:parent]
+        %a.place-title__parent{href: "/#{properties[:parent_slug]}"}, #{properties[:parent]}

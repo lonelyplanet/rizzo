@@ -85,33 +85,6 @@ module GlobalResourcesHelper
     end
   end
 
-  def place_heading(title, section_name, slug, parent, parent_slug, no_place_link = false)
-    
-    capture_haml do
-      haml_tag(:div, class: 'place-title') do
-        if no_place_link == true
-          haml_tag(:span, class: 'place-title-heading') do
-            haml_concat(title)
-          end
-        else
-          haml_tag(:a, class: 'place-title-heading', href: "/#{slug}") do
-            haml_concat(title)
-          end
-        end
-        unless section_name.nil?
-          haml_tag(:span, class: 'accessibility') do
-            haml_concat(" " + section_name)
-          end
-        end
-        unless parent.nil?
-          haml_tag(:a, class: 'place-title__parent', href: "/#{parent_slug}") do
-            haml_concat(", " + parent)
-          end
-        end
-      end
-    end
-  end
-  
   def errbit_notifier
     unless params[:errbit] == 'false'
       haml_tag(:script, src:"//rizzo.lonelyplanet.com/assets/errbit_notifier.js")
