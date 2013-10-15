@@ -52,6 +52,11 @@ module StyleguideHelper
               extra_style: "nav__item--delimited"
             },
             {
+              name: "Page title",
+              path: "/styleguide/page-title",
+              extra_style: "nav__item--delimited"
+            },
+            {
               name: "Pagination",
               path: "/styleguide/pagination",
               extra_style: "nav__item--delimited"

@@ -1,0 +1,37 @@
+titles:
+  -
+    :styleguide_title: "Page title as a H1"
+    :is_body_title: true
+    :title: "Search this page"
+
+  -
+    :styleguide_title: "Country or Continent title (not a link)"
+    :no_place_link: true
+    :title: "France"
+
+  -
+    :styleguide_title: "Country title on subsection pages (as a link)"
+    :title: "France"
+    :slug: "/france"
+
+  -
+    :styleguide_title: "Place title with a parent (not a link)"
+    :no_place_link: true
+    :title: "Paris"
+    :parent: "France"
+    :parent_slug: "/france"
+
+  -
+    :styleguide_title: "Place title on subsection pages (as a link)"
+    :title: "Paris"
+    :slug: "/france/paris"
+    :parent: "France"
+    :parent_slug: "/france"
+
+  -
+    :styleguide_title: "A very long and truncated place title"
+    :no_place_link: true
+    :title: "The city of Jerusalem"
+    :parent: "Israal and the Palestinian Territories"
+    :parent_slug: "/israel-and-the-palestinian-territories/"
+
