@@ -51,11 +51,7 @@ left_nav_stub:
 
 
 secondary_navigation_stub:
-  :title: 'Buenos Aires'
   :section_name: 'Hotels'
-  :slug: 'buenos-aires'
-  :parent: 'Argentina'
-  :parent_slug: "argentina"
   :items: 
     -
       :title: 'Overview'

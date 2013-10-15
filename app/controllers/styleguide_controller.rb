@@ -2,12 +2,16 @@ class StyleguideController < GlobalController
 
   layout 'styleguide'
 
-  def index
-    render '/styleguide/index'
+  def secondaryNavigation
+    render '/styleguide/secondary_nav'
   end
 
-  def navigation
-    render '/styleguide/navigation'
+  def leftNavigation
+    render '/styleguide/left_nav'
+  end
+
+  def cards
+    render '/styleguide/cards'
   end
 
   def buttons

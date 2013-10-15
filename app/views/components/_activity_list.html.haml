@@ -1,11 +1,11 @@
 .activity-list
   .activity-list__title.copy--h5<
-    = activity_list[:title]
+    = properties[:title]
 
   %ul.activity-list__container
-    - activity_list[:items].each_with_index do |item,i|
+    - properties[:items].each_with_index do |item,i|
       %li.media.media--rev
-        .activity-list__item{ class: activity_list[:rowClass] ? "activity-list--icon #{activity_list[:rowClass]}" : "" }
+        .activity-list__item{ class: properties[:rowClass] ? "activity-list--icon #{properties[:rowClass]}" : "" }
           %span.media__body
             %a.activity-list__link{ href: "/profiles/#{item[:user][:username]}" }
               = item[:user][:name]

@@ -1,21 +1,21 @@
-= render :layout => 'components/forms/partials/field', :locals => { id: opts[:id], label: opts[:label] } do
-  - opts[:fields].each_with_index do |dropdown, i|
+= render :layout => 'components/forms/partials/field', :locals => { id: properties[:id], label: properties[:label] } do
+  - properties[:fields].each_with_index do |dropdown, i|
 
-    - field_id = i==0 ? opts[:id] : "#{opts[:id]}-#{i}"
+    - field_id = i==0 ? properties[:id] : "#{properties[:id]}-#{i}"
 
     - dropdown_class = ""
 
-    - if opts[:fields].length > 1
-      - if opts[:fields].length == 2
+    - if properties[:fields].length > 1
+      - if properties[:fields].length == 2
         - dropdown_class = "dropdown--half"
-      - elsif opts[:fields].length == 3
+      - elsif properties[:fields].length == 3
         - dropdown_class = "dropdown--third"
 
       - if i == 0
         - dropdown_class += " dropdown--first"
-      - elsif i == opts[:fields].length - 1
+      - elsif i == properties[:fields].length - 1
         - dropdown_class += " dropdown--last"
       - else
         - dropdown_class += " dropdown--middle"
 
-    = ui_component('forms/dropdown', opts: { id: field_id, name: dropdown[:name], placeholder: dropdown[:placeholder], options: dropdown[:options], class: dropdown_class, prompt: dropdown[:prompt], data: dropdown[:data] })
+    = ui_component('forms/dropdown', properties: { id: field_id, name: dropdown[:name], placeholder: dropdown[:placeholder], options: dropdown[:options], class: dropdown_class, prompt: dropdown[:prompt], data: dropdown[:data] })

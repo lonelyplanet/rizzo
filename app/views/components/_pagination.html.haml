@@ -1,21 +1,21 @@
 .pagination
   .pagination__backwards
-    %a.pagination__link.pagination__link--prev{ href: sprintf(pagination[:path], pagination[:current] - 1) }<
+    %a.pagination__link.pagination__link--prev{ href: sprintf(properties[:path], properties[:current] - 1) }<
       &lt;
-    %a.pagination__link.pagination__link--first{ href: sprintf(pagination[:path], 1) }<
+    %a.pagination__link.pagination__link--first{ href: sprintf(properties[:path], 1) }<
       First
 
   .pagination__numbers
-    - for num in 1..pagination[:total]
-      - if pagination[:current] != num
-        %a.pagination__link{ href: sprintf(pagination[:path], num) }<
+    - for num in 1..properties[:total]
+      - if properties[:current] != num
+        %a.pagination__link{ href: sprintf(properties[:path], num) }<
           = num
       - else
         .pagination__link.pagination__link--current<
           = num
   
   .pagination__forwards
-    %a.pagination__link.pagination__link--last{ href: sprintf(pagination[:path], pagination[:total]) }<
+    %a.pagination__link.pagination__link--last{ href: sprintf(properties[:path], properties[:total]) }<
       Last
-    %a.pagination__link.pagination__link--next{ href: sprintf(pagination[:path], pagination[:current] + 1)}<
+    %a.pagination__link.pagination__link--next{ href: sprintf(properties[:path], properties[:current] + 1)}<
       &gt;

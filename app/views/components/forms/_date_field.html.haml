@@ -1,2 +1,2 @@
-= render :layout => 'components/forms/partials/field', :locals => { id: opts[:id], label: opts[:label] } do
-  = ui_component('forms/date_input', opts: opts )
+= render :layout => 'components/forms/partials/field', :locals => { id: properties[:id], label: properties[:label] } do
+  = ui_component('forms/date_input', properties: properties )

@@ -32,14 +32,16 @@ Rizzo::Application.routes.draw do
   get 'homepage'                     => 'global_resources#homepage'
 
   # Styleguide
-  get 'styleguide'                   => 'styleguide#index'
+  get 'styleguide'                   => 'styleguide#colours'
+  get 'styleguide/secondary-nav'     => 'styleguide#secondaryNavigation'
+  get 'styleguide/left-nav'          => 'styleguide#leftNavigation'
+  get 'styleguide/cards'             => 'styleguide#cards'
   get 'styleguide/buttons'           => 'styleguide#buttons'
-  get 'styleguide/navigation'        => 'styleguide#navigation'
   get 'styleguide/typography'        => 'styleguide#typography'
   get 'styleguide/colours'           => 'styleguide#colours'
   get 'styleguide/ui-colours'        => 'styleguide#uiColours'
   get 'styleguide/pagination'        => 'styleguide#pagination'
   get 'styleguide/forms'             => 'styleguide#forms'
-  get 'styleguide/activity_list'        => 'styleguide#activity_list'
+  get 'styleguide/activity_list'     => 'styleguide#activity_list'
 
 end if defined?(Rizzo::Application)

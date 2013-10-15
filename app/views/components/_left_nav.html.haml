@@ -1,14 +1,13 @@
 .card--single#js-left-nav
 
   #js-stack-list-aside
-  - left_nav[:groups].each_with_index do |group, i|
+    - properties[:groups].each_with_index do |group, i|
+      .group--aside{class: (i > 0) ? "group--linked" : ""}
+        .group__inner
+          -if group[:title]
+            %label{class: 'group__title--aside', for: "ac-#{group[:section]}"}
+              = group[:title]
 
-    .group--aside{class: (i > 0) ? "group--linked" : ""}
-      .group__inner
-        -if group[:title]
-          %label{class: 'group__title--aside', for: "ac-#{group[:section]}"}
-            = group[:title]
-
-        %div{id: "js-#{group[:section]}", class: 'group__body nav--stack'}
-          - group[:items].each do |item|
-            = render 'components/partials/navigation/left_nav_items', item: item
+          %div{id: "js-#{group[:section]}", class: 'group__body nav--stack'}
+            - group[:items].each do |item|
+              = render 'components/partials/navigation/left_nav_items', item: item

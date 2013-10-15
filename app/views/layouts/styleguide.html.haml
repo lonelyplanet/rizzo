@@ -6,7 +6,7 @@
     = stylesheet_link_tag 'styleguide', :media => "all"
     = stylesheet_link_tag 'prism', :media => "all"
 
-  %body
+  %body.copy--freight
 
     .wrapper
       .nav-container
@@ -25,7 +25,7 @@
       .row.row--content#js-row--content
         .row__inner.row__inner--content.copy--freight
           .card-holder
-            = ui_component('left_nav', left_nav: left_nav)
+            = ui_component('left_nav', properties: left_nav)
 
             .main-content.stack{ng: {view: true}}
               = yield
@@ -40,7 +40,8 @@
       = javascript_include_tag 'lonelyplanet_minjs/dist/$'
       :javascript
         (function(){
-          var snippets = $$('pre')
+          var snippets = $$('pre');
+          snippets = (snippets.length == undefined) ? [snippets] : snippets
           snippets.forEach(function(snippet){
             if (snippet.firstChild.getBoundingClientRect().height > snippet.getBoundingClientRect().height) {
               var button = document.createElement('span')
