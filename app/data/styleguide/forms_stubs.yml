@@ -78,13 +78,13 @@ field_components:
       -
         :name: "select_name"
         :placeholder: "Select Item"
+        :selected: "three"
         :options:
           - :title: 'one'
           - :title: 'two'
           -
             :title: 'three'
             :value: 3
-            :selected: true
 
   -
     :styleguide_title: "Select field"

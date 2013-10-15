@@ -18,4 +18,4 @@
       - else
         - dropdown_class += " dropdown--middle"
 
-    = ui_component('forms/dropdown', properties: { id: field_id, name: dropdown[:name], placeholder: dropdown[:placeholder], options: dropdown[:options], class: dropdown_class, prompt: dropdown[:prompt], data: dropdown[:data] })
+    = ui_component('forms/dropdown', properties: { id: field_id, name: dropdown[:name], placeholder: dropdown[:placeholder], options: dropdown[:options], class: dropdown_class, selected: dropdown[:selected], data: dropdown[:data] })
