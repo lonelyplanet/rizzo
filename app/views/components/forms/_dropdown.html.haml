@@ -12,6 +12,6 @@
       %option{ value: ""}<
         = properties[:placeholder]
     
-    - properties[:options].each_with_index do |option, index|
+    - properties[:options].each do |option|
       %option{value: option[:value] || option[:title], selected: option[:selected] ? 'selected' : false}<
         = option[:title]
