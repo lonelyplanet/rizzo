@@ -230,6 +230,12 @@ body
   background: $body-background
   max-width: 340px
   position: absolute
+  .responsive &
+    max-width: 100%
+    +respond-to(400)
+      max-width: 70%
+    +respond-to(medium-view)
+      max-width: 340px
   .js-hover &:hover
     max-width: none
 

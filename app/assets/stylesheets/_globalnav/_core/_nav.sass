@@ -102,6 +102,14 @@
   @extend %subpixel-text
   +font-size(14)
 
+  .dropdown__value
+    padding: 4px 40px 4px 10px
+    margin-bottom: 20px
+    +respond-to(400)
+      margin-bottom: 0
+    +respond-to(wide-view)
+      padding: 9px 40px 9px 10px
+
 .nav__item--secondary
   padding: 6px 8px
   &, &:active
@@ -118,13 +126,27 @@
 // Place title is a wrapper to allow us to show very long place names on hover
 .place-title
   +font-size(18)
-  @extend %truncate-text
   @extend %left-icon
   @extend %icon--location-flag-before
+  text-overflow: ellipsis
+  overflow: hidden
+  white-space: nowrap
   margin-right: 20px
   // Fix the text-overflow bug in firefox to avoid the final letter being clipped
   padding-right: 2px
   padding-left: 22px
+  .responsive &
+    margin-left: 10px
+    text-overflow: none
+    overflow: visible
+    white-space: normal
+    +respond-to(medium-view)
+      text-overflow: ellipsis
+      overflow: hidden
+      white-space: nowrap
+    +respond-to(wide-view)
+      margin-left: 0
+
   &:before
     top: 0
     font-size: 28px

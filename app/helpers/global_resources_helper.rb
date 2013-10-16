@@ -61,10 +61,6 @@ module GlobalResourcesHelper
     ]
   end
 
-  def secondary_nav_bar(args)
-    render :partial=>'layouts/core/snippets/secondary_navigation_bar', :locals=> args
-  end
-
   def cart_item_element
     capture_haml do
       haml_tag(:a, 'Cart: 0', class: 'nav__item--cart js-user-cart', href: 'http://shop.lonelyplanet.com/cart/view')
