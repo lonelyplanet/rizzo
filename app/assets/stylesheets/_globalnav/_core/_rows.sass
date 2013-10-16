@@ -229,11 +229,14 @@ body
 .row__title--secondary
   background: $body-background
   max-width: 340px
-  position: absolute
   .responsive &
     max-width: 100%
+    float: none
+    margin-bottom: 20px
     +respond-to(400)
       max-width: 70%
+      float: left
+      margin-bottom: 0
     +respond-to(medium-view)
       max-width: 340px
   .js-hover &:hover

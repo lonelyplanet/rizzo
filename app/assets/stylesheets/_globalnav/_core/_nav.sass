@@ -102,13 +102,15 @@
   @extend %subpixel-text
   +font-size(14)
 
+.nav--secondary__dropdown
+  @extend %border-box
+  padding: 0 10px
+  width: 100%
+  +respond-to(400)
+    width: auto
   .dropdown__value
-    padding: 4px 40px 4px 10px
-    margin-bottom: 20px
-    +respond-to(400)
-      margin-bottom: 0
-    +respond-to(wide-view)
-      padding: 9px 40px 9px 10px
+    background-color: white
+    +font-size(16)
 
 .nav__item--secondary
   padding: 6px 8px
@@ -128,6 +130,7 @@
   +font-size(18)
   @extend %left-icon
   @extend %icon--location-flag-before
+  // These three rules are repeated here because we can't extend from within a media query. Ugly but necessary
   text-overflow: ellipsis
   overflow: hidden
   white-space: nowrap
