@@ -5,4 +5,7 @@
     - if opts[:prompt]
       %option{ value: "" }<
         = opts[:placeholder]
-    = options_for_select(opts[:options], opts[:selected])
+    - if opts[:grouped]
+      = grouped_options_for_select(opts[:options], opts[:selected])
+    - else
+      = options_for_select(opts[:options], opts[:selected])

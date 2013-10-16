@@ -37,6 +37,18 @@ form_components:
       :key: "value"
       :super: "man"
 
+  -
+    :styleguide_title: "Dropdown"
+    :id: "input_id"
+    :name: "text_name"
+    :placeholder: "Select Item"
+    :options: [ ['group 1', ['one', 'two', 'three']], ['group 2', ['four', 'five', 'six']] ]
+    :grouped: true
+    :prompt: true
+    :data:
+      :key: "value"
+      :super: "man"
+
 
 field_components:
   -
