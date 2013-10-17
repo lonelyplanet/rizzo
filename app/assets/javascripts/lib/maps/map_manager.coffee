@@ -167,13 +167,17 @@ define ['jquery', 'lib/maps/map_styles', 'lib/utils/css_helper', 'polyfills/scro
       @map.panTo(new google.maps.LatLng(@config.latitude, @config.longitude))
 
     poiSelected = (event) =>
-      id = $(event.target).closest('[data-slug]').data('slug');
+      targetElement = $(event.target)
+      id = targetElement.closest('[data-slug]').data('slug');
+      map = targetElement.closest('.map')
       poiElements.removeClass('nearby-pois__poi--highlighted');
       if id is @currentPOI
         @currentPOI = null
+        map.removeClass('map--has-focus')
         resetPins();
       else
         @currentPOI = id
+        map.addClass('map--has-focus')
         element = poiElements.filter("[data-slug='#{id}']").addClass('nearby-pois__poi--highlighted').get(0);
         element.scrollIntoViewIfNeeded(true, true)
         highlightPin(id)
