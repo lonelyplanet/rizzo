@@ -29,8 +29,7 @@
     .map__poi-list
       @extend %opaque
       +transform(rotateY(0deg) translateX(0px) translateZ(0px))
-      +transition(all, 0.5, cubic-bezier(0.075, 0.820, 0.165, 1.000))
-      +transition-delay(1)
+      +transition(all, 1, cubic-bezier(0.075, 0.820, 0.165, 1.000))
       right: 12px
       z-index: 1
     .infobox__interesting-places
@@ -88,7 +87,7 @@
   @extend %standard-shadow
   +box-shadow(0, 1, 1, 2, $new-header-grey-shadow)
   +css-arrow-central(bottom, $width: 10px, $arrowOffset: 17px)
-  +transition(1)
+  +transition(opacity)
   background: #fff
   bottom: 20px
   left: -51%
