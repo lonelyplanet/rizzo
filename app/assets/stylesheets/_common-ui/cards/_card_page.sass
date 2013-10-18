@@ -23,6 +23,30 @@
     line-height: 0.6em
     margin-bottom: 12px
 
+.card--page__hero
+  border-radius: 4px 4px 0 0
+  height: 300px
+  overflow: hidden
+  position: relative
+  &:after
+    +filter(drop-shadow(0 0 5px rgba(0,0,0,0.5)))
+    @extend %empty-abs-generated-content
+    background-repeat: no-repeat
+    background-size: 250px
+    background-position: center
+    top: 0
+    left: 0
+    width: 100%
+    height: inherit
+  > img
+    width: 100%
+  .card__content
+    z-index: 1
+  .card__name
+    +font-size(32)
+    margin-bottom: 5px
+
+
 .card--page__inner
   @extend %clearfix
 

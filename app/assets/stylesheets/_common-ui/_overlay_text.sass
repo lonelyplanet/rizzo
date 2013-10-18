@@ -1,0 +1,20 @@
+// -----------------------------------------------------------------------------
+// 
+// SVG overlays
+// 
+// Used to overlay images of destinations, stacks etc.
+// -----------------------------------------------------------------------------
+
+
+// -----------------------------------------------------------------------------
+// Best in travel - Variables sourced from _variables/destinations.sass
+// -----------------------------------------------------------------------------
+
+$best-in-travel: join($best-in-travel--cities, $best-in-travel--regions)
+$best-in-travel: join($best-in-travel, $best-in-travel--countries)
+
+@for $i from 1 through length($best-in-travel)
+  $place: nth($best-in-travel, $i)
+  
+  .text-overlay--#{$place}, .text-overlay--#{$place}--after:after
+    background-image: url(#{image_path('destinations/best-in-travel/svg/#{$place}.svg')})

@@ -18,6 +18,8 @@ $stack-intro-lines-to-show: 2
 
 .stack__intro--empty
   padding: 10px 25px
+  .card--full-image + &
+    padding: 0
 
 .stack__intro__content
   +transition(max-height, 0.5, ease-in-out)
@@ -32,6 +34,9 @@ $stack-intro-lines-to-show: 2
 
   .no-js &
     max-height: none
+
+  .copy--h1 + &
+    margin-top: 0.8em
 
 // Temporary type styling until crazy harry is updated and rowlf run (20/5/2013)
 .stack__intro__content

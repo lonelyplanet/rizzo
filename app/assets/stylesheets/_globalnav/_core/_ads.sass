@@ -43,7 +43,7 @@
   text-transform: uppercase
 
 .card--ad
-  .tag--horizontal
+  .tag--horizontal--left
     +transition(opacity, 1, ease)
 
   &.is-closed
@@ -54,7 +54,7 @@
     width: 0
     border: none
 
-    .tag--horizontal
+    .tag--horizontal--left
       opacity: 0
 
       .ie7 &, .ie8 &
@@ -221,5 +221,5 @@
 
 // Ad house mimics a collection card
 .ad-house
-  .tag--horizontal
+  .tag--horizontal--left
     display: none

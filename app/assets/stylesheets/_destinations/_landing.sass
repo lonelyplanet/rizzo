@@ -230,30 +230,20 @@ $row--introduction-height: 80px
     height: 100px
     position: relative
 
-$cities: paris trinidad cape-town riga zurich shanghai vancouver chicago adelaide auckland
-$countries: brazil antarctica scotland sweden malawi mexico seychelles belgium macedonia malaysia
-$regions: sikkim the-kimberley yorkshire hakuriku texas victoria-falls mallorca westcoast-nz hunan haapi
-
-@for $i from 1 through length($cities)
-  $city: nth($cities, $i)
+@for $i from 1 through length($best-in-travel--cities)
+  $city: nth($best-in-travel--cities, $i)
   .top-ten__list--city--#{$i}
     background-image: url(#{image_path('destinations/best-in-travel/hero/#{$city}-640.jpg')})
-    .top-ten__list__title
-      background-image: url(#{image_path('destinations/best-in-travel/SVG/#{$city}.svg')})
 
-@for $i from 1 through length($countries)
-  $country: nth($countries, $i)
+@for $i from 1 through length($best-in-travel--countries)
+  $country: nth($best-in-travel--countries, $i)
   .top-ten__list--country--#{$i}
     background-image: url(#{image_path('destinations/best-in-travel/hero/#{$country}-640.jpg')})
-    .top-ten__list__title
-      background-image: url(#{image_path('destinations/best-in-travel/SVG/#{$country}.svg')})
 
-@for $i from 1 through length($regions)
-  $region: nth($regions, $i)
+@for $i from 1 through length($best-in-travel--regions)
+  $region: nth($best-in-travel--regions, $i)
   .top-ten__list--region--#{$i}
     background-image: url(#{image_path('destinations/best-in-travel/hero/#{$region}-640.jpg')})
-    .top-ten__list__title
-      background-image: url(#{image_path('destinations/best-in-travel/SVG/#{$region}.svg')})
 
 .top-ten__list__title
   background-position: center center
