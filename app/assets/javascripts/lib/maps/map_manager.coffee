@@ -23,8 +23,9 @@ define ['jquery', 'lib/maps/map_styles', 'lib/utils/css_helper', 'polyfills/scro
     @config:
       target: '#js-map-canvas'
     poiElements = $()
-    pins = []
+    @pins = {}
     topic = $(document.documentElement).data('topic')
+    mapManager = this
 
     @loadLib: ->
       return if @map
@@ -44,7 +45,7 @@ define ['jquery', 'lib/maps/map_styles', 'lib/utils/css_helper', 'polyfills/scro
       buildMap()
       setLocationMarker()
       addPins()
-      poiElements.add(@pins).on('click', poiSelected)
+      poiElements.on('click', poiSelected)
       @config.mapCanvas.removeClass('is-loading')
 
     buildMap = () =>
@@ -139,13 +140,14 @@ define ['jquery', 'lib/maps/map_styles', 'lib/utils/css_helper', 'polyfills/scro
         icon:        getIcon(poi.topic)
       )
 
-    addPins = (quick) ->
+    addPins = (quick) =>
       markerDelay = 0
-      poiElements.each (_, poi) ->
+      poiElements.each (_, poi) =>
         poi = $(poi).data()
         setTimeout =>
           pin = mapMarker(poi)
-          pins[poi.slug] = pin
+          google.maps.event.addListener(pin, 'click', poiSelected)
+          @pins[poi.slug] = pin
         , markerDelay
         clearTimeout(@timeout)
         @timeout = setTimeout ->
@@ -154,7 +156,7 @@ define ['jquery', 'lib/maps/map_styles', 'lib/utils/css_helper', 'polyfills/scro
         markerDelay += 100 unless quick
 
     highlightPin = (id) =>
-      for slug, pin of pins
+      for slug, pin of @pins
         if slug is id
           pin.setIcon(getIcon(pin.category, 'large'))
           @map.panTo(pin.getPosition())
@@ -162,21 +164,22 @@ define ['jquery', 'lib/maps/map_styles', 'lib/utils/css_helper', 'polyfills/scro
           pin.setIcon(getIcon(pin.category))
 
     resetPins = =>
-      for slug, pin of pins
+      for slug, pin of @pins
         pin.setIcon(getIcon(pin.category))
       @map.panTo(new google.maps.LatLng(@config.latitude, @config.longitude))
 
-    poiSelected = (event) =>
-      targetElement = $(event.target)
-      id = targetElement.closest('[data-slug]').data('slug');
+    poiSelected = (event) ->
+      # some nastiness here, 'pologies'
+      targetElement = if event.Va then $(event.Va.target) else $(event.target)
+      id = @id or targetElement.closest('[data-slug]').data('slug')
       map = targetElement.closest('.map')
       poiElements.removeClass('nearby-pois__poi--highlighted');
-      if id is @currentPOI
-        @currentPOI = null
+      if id is mapManager.currentPOI
+        mapManager.currentPOI = null
         map.removeClass('map--has-focus')
         resetPins();
       else
-        @currentPOI = id
+        mapManager.currentPOI = id
         map.addClass('map--has-focus')
         element = poiElements.filter("[data-slug='#{id}']").addClass('nearby-pois__poi--highlighted').get(0);
         element.scrollIntoViewIfNeeded(true, true)
