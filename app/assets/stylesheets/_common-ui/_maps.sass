@@ -87,7 +87,7 @@
   @extend %standard-shadow
   +box-shadow(0, 1, 1, 2, $new-header-grey-shadow)
   +css-arrow-central(bottom, $width: 10px, $arrowOffset: 17px)
-  +transition(opacity)
+  +multiple-transitions(opacity 0.5s ease-in-out, visibility  0 linear 0)
   background: #fff
   bottom: 20px
   left: -51%
@@ -95,8 +95,12 @@
   padding: 10px 15px
   position: relative
   opacity: 1
+  visibility: visible
   .map--has-focus &
+    +multiple-transitions(visibility 0 linear 0.5s, opacity 0.5s ease-in-out)
     opacity: 0
+    visibility: hidden
+    pointer-events: none
 
   &:after
     +font-size(38)
