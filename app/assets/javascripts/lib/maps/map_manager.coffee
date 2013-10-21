@@ -27,6 +27,37 @@ define ['jquery', 'lib/maps/map_styles', 'lib/utils/css_helper', 'polyfills/scro
     topic = $(document.documentElement).data('topic')
     mapManager = this
 
+    constructor: (config) ->
+      $.extend MapManager.config, config
+
+      if config and config.loadSelector
+        $(config.loadSelector).one(config.loadEventType, MapManager.loadLib)
+      else
+        MapManager.loadLib()
+
+      if config and config.centerTrigger
+        $(document).on 'change', config.centerTrigger, =>
+          map = MapManager.map
+
+          overlay = new google.maps.OverlayView()
+          overlay.draw = ->
+          overlay.setMap map
+
+          setTimeout ->
+            oldCenter = map.getCenter()
+            google.maps.event.trigger(map, "resize")
+            newCenter = map.getCenter()
+
+            projection = overlay.getProjection()
+            oldCenterPoint = projection.fromLatLngToDivPixel(oldCenter)
+            newCenterPoint = projection.fromLatLngToDivPixel(newCenter)
+
+            # Move the y axis by the difference between the old and new center points.
+            newCenterPoint.y -= newCenterPoint.y - oldCenterPoint.y
+            map.panTo(projection.fromDivPixelToLatLng(newCenterPoint))
+          , config.centerDelay || 0
+
+
     @loadLib: ->
       return if @map
       # pointer to google-maps callback, not possible inside the regular closure environment
@@ -169,16 +200,25 @@ define ['jquery', 'lib/maps/map_styles', 'lib/utils/css_helper', 'polyfills/scro
         pin.setIcon(getIcon(pin.category))
       @map.panTo(new google.maps.LatLng(@config.latitude, @config.longitude))
 
-    poiSelected = (event) ->
-      poiElements.removeClass('nearby-pois__poi--highlighted');
-      # some nastiness here, 'pologies'
+    poiSelected = (obj) ->
+      # so, this gets called by either the list item or the pin, which both have a different event attached
+      # (but want the same result)
+      # during testing, however, it gets called without an event.
+      # in that case, 'this' is set to the google maps marker object
+      # which is the only instance in which this could have a .id
       if @id
         id = @id
         map = @targetMap
       else
-        targetElement = if event.Va then $(event.Va.target) else $(event.target)
+        # when called by pinclick, the Marker event will have an obj.Va (which is actually the event)
+        # when called by list-item click, obj will be a normal event object
+        targetElement = if obj.Va then $(obj.Va.target) else $(obj.target)
         id = @id or targetElement.closest('[data-slug]').data('slug')
         map = targetElement.closest('.map')
+        highlightPois(id: id, map: map)
+
+    highlightPois = ({id, map}) ->
+      poiElements.removeClass('nearby-pois__poi--highlighted');
       if id is mapManager.currentPOI
         mapManager.currentPOI = null
         map.removeClass('map--has-focus')
@@ -189,33 +229,3 @@ define ['jquery', 'lib/maps/map_styles', 'lib/utils/css_helper', 'polyfills/scro
         element = poiElements.filter("[data-slug='#{id}']").addClass('nearby-pois__poi--highlighted').get(0);
         element.scrollIntoViewIfNeeded(true, true)
         highlightPin(id)
-
-    constructor: (config) ->
-      $.extend MapManager.config, config
-
-      if config and config.loadSelector
-        $(config.loadSelector).one(config.loadEventType, MapManager.loadLib)
-      else
-        MapManager.loadLib()
-
-      if config and config.centerTrigger
-        $(document).on 'change', config.centerTrigger, =>
-          map = MapManager.map
-
-          overlay = new google.maps.OverlayView()
-          overlay.draw = ->
-          overlay.setMap map
-
-          setTimeout ->
-            oldCenter = map.getCenter()
-            google.maps.event.trigger(map, "resize")
-            newCenter = map.getCenter()
-
-            projection = overlay.getProjection()
-            oldCenterPoint = projection.fromLatLngToDivPixel(oldCenter)
-            newCenterPoint = projection.fromLatLngToDivPixel(newCenter)
-
-            # Move the y axis by the difference between the old and new center points.
-            newCenterPoint.y -= newCenterPoint.y - oldCenterPoint.y
-            map.panTo(projection.fromDivPixelToLatLng(newCenterPoint))
-          , config.centerDelay || 0
