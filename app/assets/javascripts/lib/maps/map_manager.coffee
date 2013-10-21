@@ -146,6 +146,7 @@ define ['jquery', 'lib/maps/map_styles', 'lib/utils/css_helper', 'polyfills/scro
         poi = $(poi).data()
         setTimeout =>
           pin = mapMarker(poi)
+          pin.set('targetMap', @config.mapCanvas)
           google.maps.event.addListener(pin, 'click', poiSelected)
           @pins[poi.slug] = pin
         , markerDelay
@@ -169,11 +170,15 @@ define ['jquery', 'lib/maps/map_styles', 'lib/utils/css_helper', 'polyfills/scro
       @map.panTo(new google.maps.LatLng(@config.latitude, @config.longitude))
 
     poiSelected = (event) ->
-      # some nastiness here, 'pologies'
-      targetElement = if event.Va then $(event.Va.target) else $(event.target)
-      id = @id or targetElement.closest('[data-slug]').data('slug')
-      map = targetElement.closest('.map')
       poiElements.removeClass('nearby-pois__poi--highlighted');
+      # some nastiness here, 'pologies'
+      if @id
+        id = @id
+        map = @targetMap
+      else
+        targetElement = if event.Va then $(event.Va.target) else $(event.target)
+        id = @id or targetElement.closest('[data-slug]').data('slug')
+        map = targetElement.closest('.map')
       if id is mapManager.currentPOI
         mapManager.currentPOI = null
         map.removeClass('map--has-focus')
