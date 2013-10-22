@@ -171,7 +171,7 @@ define ['jquery', 'lib/maps/map_styles', 'lib/utils/css_helper', 'polyfills/scro
         icon:        getIcon(poi.topic)
       )
 
-    addPins = (quick) =>
+    addPins = () =>
       markerDelay = 0
       poiElements.each (_, poi) =>
         poi = $(poi).data()
@@ -185,7 +185,7 @@ define ['jquery', 'lib/maps/map_styles', 'lib/utils/css_helper', 'polyfills/scro
         @timeout = setTimeout ->
           markerDelay = 0
         , 150
-        markerDelay += 100 unless quick
+        markerDelay += 100
 
     highlightPin = (id) =>
       for slug, pin of @pins
