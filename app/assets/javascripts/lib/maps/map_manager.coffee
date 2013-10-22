@@ -14,7 +14,7 @@
 # }
 #
 
-define ['jquery', 'lib/maps/map_styles', 'lib/utils/css_helper', 'polyfills/scrollIntoViewIfNeeded'], ($, mapStyles, cssHelper) ->
+define ['jquery', 'lib/maps/map_styles', 'lib/utils/css_helper', 'polyfills/scrollIntoViewIfNeeded', 'maps_infobox'], ($, mapStyles, cssHelper) ->
 
   class MapManager
     @version: '0.0.11'
@@ -95,7 +95,7 @@ define ['jquery', 'lib/maps/map_styles', 'lib/utils/css_helper', 'polyfills/scro
       @map = new google.maps.Map(@config.mapCanvas.get(0), mapOptions)
       @map.setOptions(styles: mapStyles)
 
-    setLocationMarker = => require ['maps_infobox'], =>
+    setLocationMarker = () =>
       locationTitle = if topic is 'lodging' then @config.title else 'Location'
       locationAddress = @config.lodgingLocation or lp.lodging.address[0] or ''
       infobox = new InfoBox
