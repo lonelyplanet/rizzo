@@ -94,17 +94,20 @@
   color: white
   float: right
   width: 20%
+  padding-top: 55px
+  background: url(#{image_path('destinations/best-in-travel/where-would-you-go.png')}) no-repeat center 0
 
 .content-pane__buttons
   text-transform: uppercase
   color: white
   width: 100%
-  margin-bottom: 20px 
+  margin-bottom: 20px
 
 .btn__read-article--regions
   background-color: $section--regions
 
 .btn__visit-destination
+  @extend %local-marker-before
   background-color: $header-grey
   &:before
     font-size: 36px
@@ -112,7 +115,18 @@
     line-height: 0
     position: relative
     top: 5px
-  @extend %local-marker-before
+
+.btn__choose-and-win
+  @extend %tick-icon-before
+  background-color: $teal
+  &:before
+    font-size: 25px
+    padding-right: 5px
+    line-height: 0
+    position: relative
+    top: 0
+
+
 
 
 .carousel--regions
