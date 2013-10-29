@@ -1,4 +1,86 @@
 // -----------------------------------------------------------------------------
+// Map Section
+// -----------------------------------------------------------------------------
+
+.nearby-area
+  margin-bottom: 20px
+  padding-top: 30px
+  border-top: 1px solid $body-background
+  width: 100%
+  .map
+    @extend %transition--base
+    width: 100%
+    height: 450px
+    border: 1px solid #cacbcd
+    position: relative
+  .media-gallery__map,
+  .map__map-canvas
+    height: 100%
+
+// -----------------------------------------------------------------------------
+// Map nearby POIs
+// -----------------------------------------------------------------------------
+
+.nearby-area .map
+  width: 100%
+  height: 450px
+
+@mixin map-show-pois
+  ~ .map
+    .map__poi-list
+      @extend %opaque
+      +transform(rotateY(0deg) translateX(0px) translateZ(0px))
+      +transition(all, 1, cubic-bezier(0.075, 0.820, 0.165, 1.000))
+      right: 12px
+      z-index: 1
+    .infobox__interesting-places
+      display: none
+
+.map--show-pois
+  @extend %visually-hide
+  // .is-checked is an ie7/8 fallback
+  &:checked
+    +map-show-pois()
+  &.is-checked
+    +map-show-pois()
+
+.map__poi-list
+  @extend %four-pixel-rounded
+  @extend %invisible
+  @extend %media-gallery-transition
+  +transform(rotateY(70deg) translateX(100px) translateZ(-250px))
+  background: #fff
+  height: 380px
+  padding: 6px 6px 6px 0
+  position: absolute
+  right: -420px
+  top: 12px
+  width: 294px
+  z-index: -1
+
+  .nearby-pois
+    height: 100%
+    overflow: auto
+    &::-webkit-scrollbar
+      width: 4px
+    &::-webkit-scrollbar-thumb
+      +border-radius(2)
+      background: $details-panel-border
+    &::-webkit-scrollbar-track
+      background: none
+
+  .obj-list__item
+    border-top: 1px solid $body-background-offset
+    margin-bottom: 0
+    padding: 10px 20px 15px 43px
+
+    &:first-child
+      border-top: none
+    &:before
+      left: 13px
+      top: 10px
+
+// -----------------------------------------------------------------------------
 // Map infobox
 // -----------------------------------------------------------------------------
 .infobox--location
@@ -6,18 +88,29 @@
   @extend %standard-shadow
   +box-shadow(0, 1, 1, 2, $new-header-grey-shadow)
   +css-arrow-central(bottom, $width: 10px, $arrowOffset: 17px)
+  +multiple-transitions(opacity 0.5s ease-in-out, visibility  0 linear 0)
   background: #fff
   bottom: 20px
   left: -51%
   max-width: 350px
   padding: 10px 15px
   position: relative
+  opacity: 1
+  visibility: visible
+  .map--has-focus &
+    +multiple-transitions(visibility 0 linear 0.5s, opacity 0.5s ease-in-out)
+    opacity: 0
+    visibility: hidden
+    pointer-events: none
 
   &:after
     +font-size(38)
-    bottom: -27px
+    bottom: -16px
     color: #fff
     position: absolute
+    text-shadow: 0px 3px 2px #ccc
+    .media-gallery &
+      bottom: -24px
 
   .copy--body
     @extend %lp-font-stack // infobox overrides with roboto font

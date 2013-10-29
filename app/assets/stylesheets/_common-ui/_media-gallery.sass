@@ -18,7 +18,6 @@
     height: 241px
     width: 427px
     z-index: 0
-
     &.is-active
       z-index: 1
   .slider__controls
@@ -50,13 +49,6 @@
       width: 748px
     .slider__controls
       top: 186px
-    .media-gallery__poi-list
-      @extend %opaque
-      +transform(rotateY(0deg) translateX(0px) translateZ(0px))
-      +transition(all, 0.5, cubic-bezier(0.075, 0.820, 0.165, 1.000))
-      +transition-delay(1)
-      right: 12px
-      z-index: 1
     .infobox__interesting-places
       display: none
     .media-gallery__resizer
@@ -71,7 +63,6 @@
     +media-gallery-full()
   &.is-checked
     +media-gallery-full()
-    
 
 .media-gallery__resizer
   @extend %transition--base
@@ -127,44 +118,4 @@
 .media-gallery__map
   height: 100%
   width: 100%
-  &.is-squarish
-    height: 100%
-    width: auto
-    margin: 0 auto
-    display: block
 
-.media-gallery__poi-list
-  @extend %four-pixel-rounded
-  @extend %invisible
-  @extend %media-gallery-transition
-  +transform(rotateY(70deg) translateX(100px) translateZ(-250px))
-  background: #fff
-  height: 380px
-  padding: 6px 6px 6px 0
-  position: absolute
-  right: -420px
-  top: 12px
-  width: 294px
-  z-index: -1
-
-  .nearby-pois
-    height: 100%
-    overflow: auto
-    &::-webkit-scrollbar
-      width: 4px
-    &::-webkit-scrollbar-thumb
-      +border-radius(2)
-      background: $details-panel-border
-    &::-webkit-scrollbar-track
-      background: none
-
-  .obj-list__item
-    border-top: 1px solid $body-background-offset
-    margin-bottom: 0
-    padding: 10px 20px 15px 43px
-
-    &:first-child
-      border-top: none
-    &:before
-      left: 13px
-      top: 10px
