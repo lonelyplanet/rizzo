@@ -44,12 +44,11 @@ html
   color: $header-grey
   text-align: center
   +respond-to(wide-view)
-    @extend %clearfix
     height: $row--introduction-height
 
 .row--introduction__inner
   +respond-to(wide-view)
-    width: 1000px
+    width: $fixed-layout-width
     margin: 0 auto
 
 .row--introduction__branding
@@ -122,9 +121,6 @@ html
       text-decoration: none
       opacity: 1
 
-
-
-
 .bit-social
   display: none
   +respond-to(wide-view)
@@ -149,10 +145,9 @@ html
   bottom: 17px
   left: 5px
 
-
 .top-tens
+  @extend %clearfix
   +respond-to(wide-view)
-    @extend %clearfix
     float: left
     width: 60%
 
@@ -203,7 +198,6 @@ html
   //+transition(color,0.25,ease-out)
   &:hover
     color: white
-
   +respond-to(wide-view)
     box-shadow: -1px 0 $body-background inset
     height: ( $row--introduction-height - 30 )
@@ -251,7 +245,6 @@ html
     overflow: hidden
   +respond-to(wide-view)
     overflow: auto
-    @extend %clearfix
     width: 100%
 
 .js-row--top-ten__list--clone--container
@@ -359,11 +352,6 @@ html
 .bit-map--container
   background-color: white
   overflow: hidden
-  //height: 500px
-  //@media only screen and (min-width : 1100px)
-    //height: 650px
-  //@media only screen and (min-width : 1300px)
-    //height: 800px
 
 .bit-map
   display: none
@@ -374,8 +362,6 @@ html
     background-color: $nav-primary-type
     display: block
     width: 100%
-    // height: JS to calculate
-    // height: $map__height
     position: relative
 
 .bit-map__compeition-callout

@@ -104,9 +104,9 @@
 
 .content-pane__content
   @extend %clearfix
-  @extend %block-center
+  margin: 0 auto
   position: relative
-  width: 1000px
+  width: $fixed-layout-width
   margin: 125px auto 50px
 
 .content-pane__content__inner
@@ -182,23 +182,14 @@
 .carousel--cities
   .content-pane__rank
     background-image: url(#{image_path('destinations/best-in-travel/tag-red.png')})
-    //background-color: $section--cities
-    //&:before
-      //border-color: $section--cities
 
 .carousel--countries
   .content-pane__rank
     background-image: url(#{image_path('destinations/best-in-travel/tag-pink.png')})
-    //background-color: $section--countries
-    //&:before
-      //border-color: $section--countries
 
 .carousel--regions
   .content-pane__rank
     background-image: url(#{image_path('destinations/best-in-travel/tag-green.png')})
-    //background-color: $section--regions
-    //&:before
-      //border-color: $section--regions
 
 .content-pane__rank
   +font-size(18)
@@ -211,7 +202,6 @@
   width: 33px
   height: 25px
   position: absolute
-  //font-size: 16px !important
   color: white
   z-index: 20
   overflow: hidden
@@ -220,17 +210,12 @@
   margin-top: -5px
   
   &:before
-    //+box-shadow(1, 1, 1, 0, rgba(0,0,0,0.4))
     content: ""
     position: absolute
     display: block
     bottom: -.8em
-    //border-width: 1.2em .6em
-    //border-style: solid
     z-index: -1
     left: -1.3em
-    //border-right-width: 2.6em
-    //border-left-color: transparent !important
 
 .content-pane__nav
   z-index: 50

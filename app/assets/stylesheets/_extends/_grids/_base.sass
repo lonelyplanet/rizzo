@@ -7,7 +7,7 @@
 // -----------------------------------------------------------------------------
 
 %grid-wrapper
-  @extend %border-box
+  +box-sizing()
   @extend %clearfix
   @if $is-responsive == true
     +respond-to(max800)
@@ -40,7 +40,7 @@
 // Respond-to needs to be wrapped in an if(responsive)
 
 %grid-column
-  @extend %border-box
+  +box-sizing()
   float: left
   .ie7 &, .no-boxsizing &
     padding-left: 0

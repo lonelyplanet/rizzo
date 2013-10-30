@@ -34,19 +34,14 @@ body
   @extend %clearfix
 
 .row__inner
-  @extend %block-center
   @extend %clearfix
+  margin: 0 auto
   position: relative
-  @extend %regular-width
+  width: $fixed-layout-width
   .responsive &
     width: 90%
     +respond-to(wide-view)
-      max-width: 1000px
-
-.row--core
-  @extend %helvetica-neue
-  .responsive &
-    @extend %lp-font-stack
+      max-width: $fixed-layout-width
 
 .row--text-centered
   text-align: center
@@ -76,9 +71,7 @@ body
 // ----------------------------------------------------------------------------
 
 .row--cookie-compliance
-  @extend %smooth-text
   +font-size(12)
-  @extend %lp-font-stack
   line-height: 1.2
   background-color: $dark-blue-gray
   overflow: hidden
@@ -163,7 +156,7 @@ body
 // ----------------------------------------------------------------------------
 
 .row--fluid
-  min-width: 1000px
+  min-width: $fixed-layout-width
   padding-left: 20px
   padding-right: 20px
   .responsive &
@@ -229,7 +222,7 @@ body
 
 .row--secondary__inner
   +respond-to(wide-view)
-    width: 1000px
+    width: $fixed-layout-width
     margin: 0 auto
 
 .row__title--secondary
@@ -315,7 +308,6 @@ body
 // ----------------------------------------------------------------------------
 
 .row--footer--about
-  @extend %smooth-text
   .responsive &
     .row__inner--footer
       border-top: none

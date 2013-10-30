@@ -31,36 +31,3 @@
 .pagination__numbers
   text-align: center
 
-// --------------------------------------------------------------------------------------
-// Expanded pagination features a prev/next and links for all pages
-//
-// Example markup:
-//
-// <div class="expanded-pagination">
-//   <ul>
-//     <li class="item prev">
-//       <span>‹ Prev</span>
-//     </li>
-//     <li class="item current">
-//       <span>1</span>
-//     </li>
-//     <li class="item">
-//       <a href="/vietnam/ho-chi-minh-city/hotels?page=2">2</a>
-//     </li>
-//     <li class="item">
-//       <a href="/vietnam/ho-chi-minh-city/hotels?page=3">3</a>
-//     </li>
-//   </ul>
-// </div>
-// --------------------------------------------------------------------------------------
-
-// --------------------------------------------------------------------------------------
-// Extends the nav object
-// Simplified styling due to being replaced by load more button with JS
-// --------------------------------------------------------------------------------------
-.expanded-pagination
-  text-align: center
-  ul
-    @extend %nav
-  .current
-    color: $active

@@ -105,7 +105,7 @@
   +font-size(14)
 
 .nav--secondary__dropdown
-  @extend %border-box
+  +box-sizing()
   padding: 0 10px
   width: 100%
   +respond-to(400)
@@ -122,7 +122,7 @@
     color: $dark-blue-gray
   &.current
     @extend %active-background
-    @extend %four-pixel-rounded
+    @extend %rounded-corners
     &:hover
       color: white
 
@@ -188,10 +188,11 @@
       display: inline-block
 
 .user-basket__items
-  @extend %absolute-left
-  @extend %central-align
   @include border-radius(8)
   @include box-shadow(0, 1, 3, 1, rgba(0, 0, 0, 0.5))
+  text-align: center
+  position: absolute
+  left: 0
   top: 12px
   line-height: 16px
   margin: 0
@@ -241,7 +242,7 @@
 
 
 .user-box__img
-  @extend %four-pixel-rounded
+  @extend %rounded-corners
   border: 2px solid $row-primary--darker
   height: 30px
   width: 30px
@@ -510,7 +511,6 @@ a.nav__item--breadcrumbs
 
 .col--footer,
 .col--footer--last
-  @extend %smooth-text
   .responsive &
     float: none
     border-bottom: 1px solid $input-border

@@ -23,11 +23,13 @@
   width: 33.3%
 
 .dropdown__value
-  @extend %border-box
+  +box-sizing()
   @extend %chevron-down-after
-  @extend %input--regular
+  @extend %rounded-corners
   @extend %right-icon
   +word-break()
+  background-color: #fff
+  color: $header-grey
   background-color: $body-background-offset
   border: 1px solid $body-background-offset
   box-shadow: 1px 1px 1px rgba(3,46,92,0.2)
@@ -51,7 +53,7 @@
     box-shadow: none
 
   &:after
-    @extend %four-pixel-rounded
+    @extend %rounded-corners
     +font-size(22)
     background-color: inherit
     color: inherit

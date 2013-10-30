@@ -39,7 +39,7 @@
 
 .group__title--aside
   +font-size(12)
-  @extend %uppercase
+  text-transform: uppercase
   color: $header-blue
   display: block
   font-weight: bold
@@ -52,7 +52,7 @@
 // ---------------------------------------
 
 .nav--stack
-  @extend %no-padding
+  padding: 0
 
 .nav__item--stack
   +font-size(14)
@@ -89,7 +89,8 @@
   padding-right: 25px
   position: relative
   &:after
-    @extend %absolute-right
+    position: absolute
+    right: 0
     font-weight: 400
     pointer-events: none
     font-size: 16px

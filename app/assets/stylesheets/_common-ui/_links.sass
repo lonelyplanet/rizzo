@@ -17,6 +17,10 @@
     color: $link-color
 
 .link--wrapper
-  @extend %wrapper-link
   @extend %clearfix
   overflow: hidden
+  display: block
+  height: 100%
+  color: $base-font-color
+  &, &:hover
+    text-decoration: none

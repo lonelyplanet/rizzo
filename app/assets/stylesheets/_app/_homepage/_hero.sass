@@ -113,7 +113,7 @@
     z-index: 10
 
 .speech-bubble
-  @extend %four-pixel-rounded
+  @extend %rounded-corners
   &:after
     @extend %empty-abs-generated-content
     top: 100%
@@ -231,7 +231,7 @@
     color: $body-copy
 
 .badge--green
-  @extend %four-pixel-rounded
+  @extend %rounded-corners
   background-color: $green
   padding: 0 4px
 
@@ -269,7 +269,7 @@
     right: 40px
 
 .hero__author__story__image
-  @extend %four-pixel-rounded
+  @extend %rounded-corners
   overflow: hidden
   position: relative
   +respond-to(medium-view)

@@ -22,7 +22,6 @@
       margin: 0
 
 .media--lp-logo
-  @extend %sprite-core
   @extend %inline-block
   background-position: 0 0
   height: 41px
@@ -30,6 +29,12 @@
   width: 83px
   vertical-align: top
   z-index: 3
+  background-image: url(image_path("core/core-sprite-standard.png"))
+  background-repeat: no-repeat
+  +retinafy()
+    background-image: url(image_path("core/core-sprite-2x.png"))
+    background-size: $core-sprite-size
+    background-repeat: no-repeat
   .ie7 &
     float: left
 
@@ -60,12 +65,17 @@
 .user-basket__icon
   @extend %image-replacement
   @extend %inline-block
-  @extend %sprite-core
+  background-image: url(image_path("core/core-sprite-standard.png"))
+  background-repeat: no-repeat
   background-position: 0px -127px
   height: 18px
   margin-right: 5px
   vertical-align: middle
   width: 24px
+  +retinafy()
+    background-image: url(image_path("core/core-sprite-2x.png"))
+    background-size: $core-sprite-size
+    background-repeat: no-repeat
   .responsive &
     text-indent: 0
     width: auto

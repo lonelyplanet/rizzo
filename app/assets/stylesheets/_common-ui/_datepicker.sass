@@ -7,8 +7,8 @@
 
 .pickadate__calendar--wrap
   +transition()
-  @extend %four-pixel-rounded
-  @extend %body-copy
+  @extend %rounded-corners
+  color: $body-copy
   top: .5em
   background: white
   position: relative
@@ -79,8 +79,8 @@
 .pickadate__day
   +border-radius(30)
   +font-size(13)
-  @extend %helvetica-neue
   @extend %inline-block
+  font-family: "Helvetica Neue", arial
   color: $body-copy 
   font-weight: bold
   width: 26px

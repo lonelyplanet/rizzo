@@ -45,7 +45,7 @@
     +map-show-pois()
 
 .map__poi-list
-  @extend %four-pixel-rounded
+  @extend %rounded-corners
   @extend %invisible
   @extend %media-gallery-transition
   +transform(rotateY(70deg) translateX(100px) translateZ(-250px))
@@ -83,7 +83,7 @@
 // Map infobox
 // -----------------------------------------------------------------------------
 .infobox--location
-  @extend %four-pixel-rounded
+  @extend %rounded-corners
   @extend %standard-shadow
   +box-shadow(0, 3, 2, 0, $new-header-grey-shadow)
   +css-arrow-central(bottom, $width: 10px, $arrowOffset: 17px)

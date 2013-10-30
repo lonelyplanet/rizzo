@@ -11,7 +11,7 @@
   position: relative
 
 .field__label
-  @extend %border-box
+  +box-sizing()
   float: left
   padding: 10px 10px 10px 0
   width: 35%
@@ -62,7 +62,7 @@
 
 
 .input
-  @extend %border-box
+  +box-sizing()
   +border-radius(4)
   background-color: $body-background-offset
   border: 1px solid $body-background-offset
@@ -86,12 +86,17 @@
     width: 50%
 
 .input--datepicker
-  @extend %input--regular
-  @extend %lodgings-sprite-standard
+  @extend %rounded-corners
+  background-image: url(image_path("lodgings-spt.png"))
+  background-repeat: no-repeat
+  background-color: #fff
+  color: $header-grey
   background-position: 97% -111px
   padding-right: 35px
   +retinafy()
-    @extend %lodgings-sprite-retina
+    background-image: url(image_path("lodgings-spt-2x.png"))
+    background-size: $lodgings-sprite-size
+    background-repeat: no-repeat
     background-position: 95% -111px
   +placeholder()
     color: $placeholder-copy

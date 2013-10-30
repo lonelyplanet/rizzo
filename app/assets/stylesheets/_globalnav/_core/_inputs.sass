@@ -15,8 +15,8 @@
 
 input, textarea
   @extend %lp-font-stack
-  @extend %border-box
-  @extend %no-border
+  +box-sizing()
+  border: none
   outline: 0
 
 
@@ -27,10 +27,12 @@ input, textarea
 // ----------------------------------------------------------------------------
 
 .input--regular
-  @extend %input--regular
+  @extend %rounded-corners
+  background-color: #fff
+  color: $header-grey
 
 .input--regular--dark
-  @extend %four-pixel-rounded
+  @extend %rounded-corners
   border: none
   background-color: $body-background-offset
   color: $header-grey
@@ -42,12 +44,17 @@ input, textarea
   cursor: pointer
 
 .input--datepicker
-  @extend %input--regular
-  @extend %lodgings-sprite-standard
+  @extend %rounded-corners
+  background-image: url(image_path("lodgings-spt.png"))
+  background-repeat: no-repeat
+  background-color: #fff
+  color: $header-grey
   padding-right: 35px
   background-position: 99% -112px
   +retinafy()
-    @extend %lodgings-sprite-retina
+    background-image: url(image_path("lodgings-spt-2x.png"))
+    background-size: $lodgings-sprite-size
+    background-repeat: no-repeat
     background-position: 95% -111px
   +placeholder()
     color: $placeholder-copy
@@ -125,8 +132,8 @@ input, textarea
   vertical-align: top
   width: 170px
   &:focus
-    @extend %background-white
     +box-shadow(0, 1, 3, 1, rgba(0, 0, 0, 0.2), true)
+    background: white
     color: $body-copy
     width: 210px
   .responsive &
@@ -160,14 +167,19 @@ input, textarea
       float: none
 
 .search__button--icon
-  @extend %sprite-core
   @extend %image-replacement
+  background-image: url(image_path("core/core-sprite-standard.png"))
+  background-repeat: no-repeat
   background-position: 0 -101px
   display: block
   height: 13px
   margin: 0 8px
   padding: 0
   width: 13px
+  +retinafy()
+    background-image: url(image_path("core/core-sprite-2x.png"))
+    background-size: $core-sprite-size
+    background-repeat: no-repeat
 
 
 // -----------------------------------------------------------------------------
@@ -195,7 +207,7 @@ input, textarea
 
 // Footer select is slightly smaller so reduce padding and re-align chevron
 .dropdown__value--language
-  @extend %input--small
+  +font-size(12)
   padding-top: 9px
   padding-bottom: 8px
   border: none
@@ -210,7 +222,7 @@ input, textarea
   display: none
   .no-js &
     display: block
-    @extend %four-pixel-rounded
+    @extend %rounded-corners
     padding: 8px
     position: inherit
 
@@ -240,7 +252,9 @@ input, textarea
   font-weight: bold
 
 .input--small--newsletter
-  @extend %input--regular
+  @extend %rounded-corners
+  background-color: #fff
+  color: $header-grey
   padding: 10px
   width: 100%
   color: $header-grey
