@@ -25,7 +25,10 @@
         %pre.styleguide.copy--body.language-markup.media__body
           %code #{raw(CGI::escapeHTML(Haml::Engine.new(template).render(template, button: button)))}
 
-  .styleguide-block__description.card
+
+  -# Chained classes examples
+
+  .styleguide-block__description.card.context--content
     %h2.copy--h2.styleguide-block__heading
       = variation[:styleguide_title]
     %p.copy--body

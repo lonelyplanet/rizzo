@@ -1,57 +1,30 @@
-// Badges
-// 
-// 
-// .badge--lp-reviewed     - Lonely Planet Reviewed Badge
-// .badge--top-choice      - Lonely Planet Top Choice Badge
-// .badge--included        - Badge to show other included items
-// 
-// Styleguide 1.1
-
-
 // -----------------------------------------------------------------------------
 // Badges
 // -----------------------------------------------------------------------------
 
-%badge
-  @extend %left-icon
-  @extend %left-icon--hidden-text
-  @extend %inline-block
-  bottom: 8px
-  position: absolute
-  &:before
-    color: $lpblue
-
-.badge--lp-reviewed
-  @extend %badge
-  @extend %lp-review-bubble-before
-  &:before
-    font-size: 46px
-    line-height: 12px
-
-.badge--top-choice
-  @extend %badge
-  @extend %top-choice-before
-  width: 33px
-  &:before
-    font-size: 55px
-    line-height: 10px
-
-.badge--included
-  @extend %rounded-corners
-  @extend %inline-block
-  +font-size(10)
-  background-color: $green
-  color: white
-  font-weight: bold
-  padding: 2px 5px
-  text-transform: uppercase
-
-.badge--staff
-  @extend %rounded-corners
-  @extend %inline-block
+%badge--base
   +font-size(12)
-  background-color: $header-blue
-  padding: 4px 6px
+  @extend %rounded-corners
   text-transform: uppercase
-  position: relative
+  padding: 0 4px
+  color: #fff
   font-weight: bold
+  letter-spacing: 0.1em
+
+.badge--green
+  @extend %badge--base
+  background-color: $green
+
+.badge--blue
+  @extend %badge--base
+  background-color: $header-blue
+
+.badge--large
+  padding: 4px 6px
+
+.badge--staff, .lp-staff
+  @extend %badge--base
+  @extend .badge--large // Replace with chained class
+  @extend .badge--blue // Make this the primary class on the element
+  @extend %inline-block // Move this outside the badge class
+  position: relative // Is this necessary? Could be part of badge--base?

@@ -81,10 +81,6 @@ pre.styleguide.is-open
 .styleguide-intro
   padding: 25px
 
-.styleguide-block
-  @extend %clearfix
-  margin-bottom: 40px
-
 .styleguide-block__item--left
   float: left
   margin-right: 20px
@@ -92,18 +88,23 @@ pre.styleguide.is-open
 .styleguide__subtitle
   margin: 20px 10px
 
-.styleguide-block__buttons
+.styleguide-block__buttons,
+.styleguide-block__badges
   .styleguide-block__item
     margin-right: 10px
+    margin-top: 0
     min-width: 200px
   .styleguide-block__items
-    margin-bottom: 20px
+    margin-top: 20px
   pre[class*="language-"]
-    margin: 0
+    margin: 2px 0 0
     padding: 7px
     &, .tag
       +font-size(14)
 
+.styleguide-block__badges
+  .styleguide-block__item
+    min-width: 100px
 
 .styleguide-block__item
   min-height: 40px

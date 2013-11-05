@@ -22,29 +22,33 @@ module StyleguideHelper
           title: "Navigation",
           items: [
             {
-              name: "Secondary Nav",
-              path: "/styleguide/secondary-nav"
-            },
-            {
               name: "Left Nav",
               path: "/styleguide/left-nav"
             },
+            {
+              name: "Secondary Nav",
+              path: "/styleguide/secondary-nav"
+            }
           ]
         },
         {
           title: "Components",
           items: [
             {
-              name: "Cards",
-              path: "/styleguide/cards"
+              name: "Badges",
+              path: "/styleguide/badges"
             },
             {
               name: "Buttons",
               path: "/styleguide/buttons"
             },
             {
-              name: "Typography",
-              path: "/styleguide/typography"
+              name: "Cards",
+              path: "/styleguide/cards"
+            },
+            {
+              name: "Forms",
+              path: "/styleguide/forms"
             },
             {
               name: "Page title",
@@ -55,8 +59,8 @@ module StyleguideHelper
               path: "/styleguide/pagination"
             },
             {
-              name: "Forms",
-              path: "/styleguide/forms"
+              name: "Typography",
+              path: "/styleguide/typography"
             }
           ]
         },
