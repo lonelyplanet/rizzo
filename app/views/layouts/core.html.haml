@@ -27,6 +27,7 @@
 
   .js-config.is-hidden
     = render 'layouts/core/snippets/fs_init'
+    = render 'layouts/core/snippets/google_analytics' if Rails.env.production?
     = js_configuration
     - unless Rails.env.production?
       :javascript
