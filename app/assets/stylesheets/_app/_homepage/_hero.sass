@@ -9,9 +9,9 @@
   background-repeat: no-repeat
   background-size: cover
   .enhanced &, .ie9 &
-    +responsive-image('destinations/best-in-travel/hero/yorkshire', 'jpg')
+    +responsive-image('homepage/hero/hero', 'jpg')
   .ie7 &, .ie8 &
-    background-image: url(#{image_path('destinations/best-in-travel/hero/yorkshire-1600.jpg')})
+    background-image: url(#{image_path('homepage/hero/hero.jpg')})
   .slothified &
     background-image: url(#{image_path('homepage/rainforest.jpg')})
     &:after
@@ -180,9 +180,9 @@
   margin-right: 10px
   background-size: 100%
   background-repeat: no-repeat
-  background-image: url("#{image_path('destinations/best-in-travel/homepage/book.png')}")
+  background-image: url("#{image_path('homepage/beautifulworld/book.png')}")
   +retinafy()
-    background-image: url("#{image_path('destinations/best-in-travel/homepage/book@2x.png')}")
+    background-image: url("#{image_path('homepage/beautifulworld/book@2x.png')}")
 
 .homepage__product__text
   color: white
@@ -229,6 +229,9 @@
   .is-open
     background-color: $subdued
     color: $body-copy
+  .btn--blue
+    min-height: 32px
+    margin-top: 5px
 
 
 .hero__author__story--buttons
@@ -303,13 +306,15 @@
   .promo--win:after
     background: none
 
-
+.hero__product__text
+  color: white
 
 .hero__author__content
   p
     +font-size(16)
     line-height: 24px
     margin-bottom: 20px
+    color: $body-copy
   +respond-to(medium-view)
     padding: 20px
   +respond-to(wide-view)

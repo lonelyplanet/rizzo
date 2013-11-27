@@ -1,12 +1,11 @@
-define ['jsmin', 'lib/mobile/core/authenticator_mobile','lib/mobile/core/shopping_cart_mobile', 'lib/mobile/select_group_manager_mobile', 'lib/utils/asset_fetch', 'lib/utils/local_store'], ($, Authenticator, ShoppingCart, SelectGroup, AssetFetch, LocalStore) ->
+define ['jsmin', 'lib/mobile/core/authenticator_mobile','lib/mobile/core/shopping_cart_mobile', 'lib/mobile/select_group_manager_mobile', 'lib/utils/asset_fetch', 'lib/utils/local_store'], ($, Authenticator, ShoppingCart, SelectGroupManager, AssetFetch, LocalStore) ->
 
   class Base
 
     constructor: (args={})->
       @authenticateUser()
       @showUserBasket()
-      @initialiseFooterSelects()
-      @initialiseResponsiveNavSelect()
+      @initialiseSelectGroupManager()
       @addNavTracking()
       @scrollPerf() unless window.lp.touch is true
 
@@ -19,14 +18,8 @@ define ['jsmin', 'lib/mobile/core/authenticator_mobile','lib/mobile/core/shoppin
     showUserBasket: ->
       shopCart = new ShoppingCart()
 
-    initialiseFooterSelects: ->
-      countrySelect = new SelectGroup '.js-select-country'
-      languageSelect = new SelectGroup '.js-select-language', ->
-        document.getElementById('js-language').submit()
-
-    initialiseResponsiveNavSelect: ->
-      responsiveNav = new SelectGroup '.js-responsive-nav', ($this)->
-        window.location = "http://www.lonelyplanet.com/" + $this.options[$this.selectedIndex].value
+    initialiseSelectGroupManager: ->
+      new SelectGroupManager()
 
     addNavTracking: ->
       $('#js-primary-nav').on 'click', (e)->

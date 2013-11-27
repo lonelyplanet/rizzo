@@ -12,6 +12,12 @@ describe Rizzo::UrlValidator do
     it { should eq(expected_url_with_port) }
   end
 
+  context 'domain not specified' do
+    let(:url) { 'africa' }
+
+    it { should eq(expected_url_with_port) }
+  end
+
   context 'different domain' do
     let(:url) { "http://www.google.com/africa" }
 
@@ -35,6 +41,17 @@ describe Rizzo::UrlValidator do
       let(:url) { "www.lonelyplanet.com/africa" }
 
       it { should eq(expected_url_with_port) }
+    end
+
+    context 'scheme specified by env' do
+      let(:url) { 'http://www.lonelyplanet.com/africa' }
+
+      before do
+        ENV.stub(:[]).with('APP_SCHEME').and_return('https')
+        ENV.stub(:[]).with('APP_HOST')
+      end
+
+      it { should eq(expected_url_ssl) }
     end
   end
 

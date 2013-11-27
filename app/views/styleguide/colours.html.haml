@@ -1,4 +1,4 @@
-.card.styleguide-intro.copy--body.context--content
+.card.styleguide-intro.copy--body.context--content.js-colours
   .clearfix
     %h1.split--left.copy--h1 Colour Palette
     = render 'styleguide/partials/colour_finder'
@@ -11,6 +11,3 @@
 .grid-wrapper--10
   - get_colours('_colour_palette').each do |group|
     = render 'styleguide/partials/colour', group: group
-
-= render 'styleguide/javascripts/luminosity'
-

@@ -1,6 +1,6 @@
 define ['jsmin'], ($) ->
 
-  class SelectGroup
+  class SelectGroupManager
 
     constructor: (parent, callback) ->
       @parent = (if parent then $(parent) else $('.js-select-group'))

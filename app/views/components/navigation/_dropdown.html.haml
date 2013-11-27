@@ -1,0 +1,6 @@
+%form{ action: properties[:action] }
+
+  = ui_component('forms/dropdown', properties: properties[:dropdown] )
+
+  %noscript
+    %input.btn.btn--blue{ type: "submit", value: "Go" }

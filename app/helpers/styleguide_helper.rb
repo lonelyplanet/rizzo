@@ -22,6 +22,10 @@ module StyleguideHelper
           title: "Navigation",
           items: [
             {
+              name: "Dropdown",
+              path: "/styleguide/navigational_dropdown"
+            },
+            {
               name: "Left Nav",
               path: "/styleguide/left-nav"
             },

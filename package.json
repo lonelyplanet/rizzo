@@ -24,6 +24,6 @@
     "grunt-open": "~0.2.1",
     "grunt-newer": "~0.5.0",
     "matchdep": "~0.1.2",
-    "yeoman-generators": "git+ssh://git@github.com:lonelyplanet/yeoman#rizzo"
+    "yeoman-generators": "git+ssh://git@github.com:lonelyplanet/yeoman#0af0ab3c86b94f7106239b66ee1db5498167e503"
   }
 }

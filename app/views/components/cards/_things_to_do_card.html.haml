@@ -5,8 +5,9 @@
       %figure.card__hero
         = image_tag(card[:image_url], class: 'card__image')
     .card__content
-      %span.card__context
-        = card[:kind] || 'General'
+      - if card[:category]
+        %span.card__context
+          = card[:category]
       %h1.card__name.js-card-name
         = card[:name]
       - if card[:duration].present?

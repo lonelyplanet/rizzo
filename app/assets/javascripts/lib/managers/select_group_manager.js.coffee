@@ -1,31 +1,33 @@
 define ['jquery'], ($) ->
 
-  class SelectGroup
+  class SelectGroupManager
 
-    constructor: (@parent = null, @callback = false) ->
-      @selectParent = (if @parent != null then $(@parent) else $('.js-select-group'))
-      @selectParent.find('.js-select').each (eltIndex) =>
-        @setOverlay(@selectParent[eltIndex])
+    constructor: () ->
+      @selectContainers = $('.js-select-group-manager')
       @addHandlers()
 
     addHandlers: ->
-      @selectParent.on 'focus', '.js-select', (e) =>
-        @getOverlay(e.target).addClass 'dropdown__value--selected'
+      @selectContainers.on 'focus', '.js-select', (e) =>
+        @getOverlay(e.target).addClass 'is-selected'
 
-      @selectParent.on 'blur', '.js-select', (e) =>
-        @getOverlay(e.target).removeClass 'dropdown__value--selected'
+      @selectContainers.on 'blur', '.js-select', (e) =>
+        @getOverlay(e.target).removeClass 'is-selected'
 
-      @selectParent.on 'keyup', '.js-select', (e) =>
+      @selectContainers.on 'keyup', '.js-select', (e) =>
         $(e.target).trigger('change')
 
-      @selectParent.on 'change', '.js-select', (e) =>
+      @selectContainers.on 'change', '.js-select', (e) =>
         e.preventDefault()
-        @setOverlay(e.target)
-        if @callback then @callback(e.target)
+        @updateOverlay(e.target)
+        if $(e.target).data('form-submit') then @submit(e.target)
 
     getOverlay: (target) ->
-      $(target).closest(@parent).find('.js-select-overlay')
+      $(target).closest('.js-select-group-manager').find('.js-select-overlay')
 
-    setOverlay: (target) ->
+    updateOverlay: (target) ->
       t = $(target).find("option:selected")
       @getOverlay(target).text(t.text())
+
+    submit: (target) ->
+      if $(target).val() isnt ""
+        $(target).closest('form').submit()

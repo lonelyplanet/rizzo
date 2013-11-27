@@ -1,6 +1,6 @@
 # Note: We need to add 'lib/core/ad_manager' back in after 'jquery' when the switch to the new DFP server happens.
 #   Also worth noting is that the ad_manager and ad_manager_old calls in waldorf/app/assets/javascripts/*.js need to be removed.
-define( ['jquery','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/shopping_cart', 'lib/core/msg', 'lib/utils/local_store', 'lib/managers/select_group_manager'], ($, AssetFetch, Authenticator, ShoppingCart, Msg, LocalStore, SelectGroup) ->
+define( ['jquery','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/shopping_cart', 'lib/core/msg', 'lib/utils/local_store', 'lib/managers/select_group_manager'], ($, AssetFetch, Authenticator, ShoppingCart, Msg, LocalStore, SelectGroupManager) ->
 
   class Base
 
@@ -10,8 +10,7 @@ define( ['jquery','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/sh
       # Note: We need to add this back in when the switch to the new DFP server happens
       # @initAds() unless args.secure
       @showCookieComplianceMsg()
-      @initialiseFooterSelects()
-      @initialiseResponsiveNavSelect()
+      @initialiseSelectGroupManager()
       @addNavTracking()
       @scrollPerf()
 
@@ -37,14 +36,8 @@ define( ['jquery','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/sh
     showUserBasket: ->
       shopCart = new ShoppingCart()
 
-    initialiseFooterSelects: ->
-      countrySelect = new SelectGroup '.js-select-country'
-      languageSelect = new SelectGroup '.js-select-language', ->
-        $('#js-language').submit()
-
-    initialiseResponsiveNavSelect: ->
-      responsiveNav = new SelectGroup '.js-responsive-nav', ($this) ->
-        window.location = "http://www.lonelyplanet.com/" + $this.options[$this.selectedIndex].value
+    initialiseSelectGroupManager: ->
+      new SelectGroupManager()
 
     showCookieComplianceMsg: ->
       if LocalStore.get('cookie-compliance') is undefined or LocalStore.get('cookie-compliance') is null

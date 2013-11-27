@@ -27,8 +27,10 @@
   margin-left: 0.2em
 
 .user-info__badge
+  @extend %inline-block
   color: #fff
   line-height: 1em
+  margin-bottom: 0.1em
   margin-left: 0.3em
   padding: 4px
   text-transform: uppercase
@@ -46,3 +48,34 @@
     margin-right: 7px
     height: 8px
     width: 8px
+
+.user-info__location
+  +font-size(13)
+  font-weight: bold
+  &:before
+    +font-size(28)
+    font-weight: normal
+    line-height: 0.1em
+    position: relative
+    top: 3px
+
+.user-info__details--footer
+  @extend %clearfix
+  +font-size(13)
+  background: $details-panel-bg
+  border-top: 1px solid $subdued
+  font-weight: bold
+
+.user-info__detail
+  margin-right: 10px
+
+.user-info__detail
+  &:before
+    +font-size(24)
+    line-height: 0.1em
+    margin-right: 5px
+    position: relative
+    top: 3px
+  &.text-icon--clock
+    &:before
+      font-weight: normal

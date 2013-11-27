@@ -1,0 +1,54 @@
+%article.card.card--single.card--poi.card--poi--hotel.js-lodging.js-card{class: card[:card_style] }
+
+  %a.link--wrapper{href: card[:path]}
+
+    - if card[:bookable?]
+      %figure.card__hero
+        %img.card__image.js-card__image{src: card[:list_image]["url"]}
+
+      - price = card['total_price'] || card[:indicative_price_in_user_currency]
+      .card__tags
+        - if price && price > 0
+          .tag.tag--price
+            .tag--price__inner
+              .tag--price__values
+                from
+                .tag--price__amount<
+                  %span.tag--price__currency.js-currency<
+                    = raw(currency.to_symbol)
+                  %span.js-price<>
+                    = price(price, :no_pence)
+                %span.tag--price__scope<
+                  - if card['total_price']
+                    total stay
+                  - else
+                    per night
+        = render :partial => '/components/cards/partials/lodging_badges', :locals => { :card => card }
+    - else
+      .card__tags
+        .tag.tag--non-bookable
+          &#57465;
+        = render :partial => '/components/cards/partials/lodging_badges', :locals => { :card => card }
+
+    .card__content
+      - if (card[:property_type].present? && card[:bookable?])
+        %span.card__property-type<
+          - if card[:hotel_star_ranking].present?
+            = card[:hotel_star_ranking]
+          - else
+            = card[:property_type_title]
+
+      %h2.card__name.js-lodging-name{class: card[:neighbourhood] ? '' : 'has-no-locale'}<
+        = truncate((card[:name].titleize), :length=> 50, :separator => ' ')
+
+      - if card[:nearby_place_text]
+        %p.card__locale
+          = card[:nearby_place_text]
+
+      - if card[:card_description]
+        %p.card__description
+          = card[:card_description]
+
+    %footer.card__footer
+      %span.btn.btn--bookable.btn--full-width
+        = card[:bookable?] ? 'Book Now' : 'Read More'

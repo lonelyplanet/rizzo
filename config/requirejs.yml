@@ -2,7 +2,7 @@ paths:
   gpt: "//www.googletagservices.com/tag/js/gpt"
   jplugs: "jquery/plugins"
   jquery: "jquery/jquery-1.7.2.min"
-  jquery: "flamsteed/lib/javascripts/flamsteed"
+  flamsteed: "flamsteed/lib/javascripts/flamsteed"
   sailthru: "sailthru/v1"
   s_code: "omniture/s_code"
 

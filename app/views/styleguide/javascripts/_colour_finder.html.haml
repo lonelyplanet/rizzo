@@ -1,13 +1,13 @@
 :javascript
-  $$('.js-select').on('change', function(e){
+  $('.js-select').on('change', function(e){
     sortBy(window[this.value])
     this.parentNode.find('.js-select-overlay').textContent = this.selectedOptions[0].textContent
   })
 
-  $$('.styleguide-proximity__input').on('keyup', function(e){
+  $('.styleguide-proximity__input').on('keyup', function(e){
     e.keyCode == 13 && matchProximity()
   })
 
-  $$('.clearbutton').on('click', function(e){
+  $('.clearbutton').on('click', function(e){
     resetProximity()
   })
