@@ -3,9 +3,21 @@
   .clearfix
     %h1.copy--h1 Pagination
     %p
-      Note: we're using ruby's <code>sprintf</code> string interpolation in the path as a placeholder for the page number.
+      Note: we're using ruby's <code>sprintf</code> string interpolation in the path as a placeholder for the <em>page number</em>.<br>
       %strong NB:
       It's therefore important that you include the <code>%i</code> in the path that gets passed through.
+
+    %p As an example, this:
+
+    %pre.language-ruby
+      %code.language-ruby
+        "/styleguide/?pageNum=%i&foo=bar"
+
+    %p ... would become (depending on page number, but let's assume 5):
+
+    %pre.language-ruby
+      %code.language-ruby
+        "/styleguide/?pageNum=5&foo=bar"
 
 - pagination.each_with_index do | stub, i |
   = sg_component('pagination', properties: stub, count: i, full_width: true, card_style: true)
