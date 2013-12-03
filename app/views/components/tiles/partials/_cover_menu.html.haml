@@ -1,0 +1,9 @@
+.tile__menu
+  - if properties[:list_title]
+    %h1.tile__menu__title
+      = properties[:list_title]
+  %ul.tile__menu__list
+    - properties[:link_list].each do |link|
+      %li
+        %a.tile__link{ href: link[:link_url] }
+          = link[:link_text]

@@ -1,0 +1,6 @@
+%article.tile.tile--menu
+  .tile__content
+    .tile__media.tile__media--img
+      = render :partial => '/components/tiles/partials/media_image', :locals => { :properties => properties }
+    .tile__cover
+      = render :partial => '/components/tiles/partials/cover_menu', :locals => { :properties => properties }
