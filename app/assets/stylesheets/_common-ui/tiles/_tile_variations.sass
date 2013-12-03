@@ -1,0 +1,39 @@
+// Story
+// .tile.tile--story>.tile__content>.tile__media+.tile__cover>.tile__story>h1.tile__story__title+.tile__story__content
+.tile--story .tile__cover
+  @include transition(background, .5, ease-out)
+  @include hardware-acceleration()
+
+.tile--story .tile__link:hover .tile__cover
+  background: rgba(0, 0, 0, .65)
+
+.tile__story
+  @include box-sizing(border-box)
+  position: absolute
+  top: 100%
+  left: 0
+  width: 100%
+  padding: 3.25% 5%
+  color: white
+  @include transition(top, .35, ease-out)
+
+  &:after
+    content: ' '
+    position: absolute
+    bottom: 0
+    left: 0
+    width: 100%
+    height: 50%
+    @include background-gradient(#000, transparent, false, false, to top)
+
+.tile--story .tile__link:hover .tile__story
+  top: 0
+
+.tile__story__title
+  margin: 0
+  padding: 0 0 10px
+  @include transform(translateY(-100%))
+  @include transition(all, .35, ease-out)
+
+.tile--story .tile__link:hover .tile__story__title
+  @include transform(translateY(0))

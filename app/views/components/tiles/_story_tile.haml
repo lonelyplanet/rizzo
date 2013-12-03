@@ -1,0 +1,7 @@
+%article.tile.tile--story
+  %a.tile__link{ href: properties[:link_url] }
+    .tile__content
+      .tile__media.tile__media--img
+        = render :partial => '/components/tiles/partials/media_image', :locals => { :properties => properties }
+      .tile__cover
+        = render :partial => '/components/tiles/partials/cover_story', :locals => { :properties => properties }

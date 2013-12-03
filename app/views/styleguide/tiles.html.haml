@@ -1,0 +1,10 @@
+- require "ostruct"
+- tiles = YAML.load(File.read(File.expand_path('../../../data/styleguide/tiles_stubs.yml', __FILE__)))
+
+.card.styleguide-intro.copy--body.context--content
+  %h1.copy--h1 Tiles
+  %p
+    Tiles should be included as components where possible, and always in rails apps. You can include the ui_component includes as detailed below.
+
+- tiles['tiles'].each_with_index do |tile, i|
+  = sg_component("tiles/#{tile[:styleguide_title].downcase.split(' ').join('_')}", properties: tile, original_stub: tile, count: i)

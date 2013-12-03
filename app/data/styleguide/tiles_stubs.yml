@@ -1,0 +1,8 @@
+tiles:
+  -
+    :styleguide_title: "Story tile"
+    :link_url: "/styleguide/tiles"
+    :image_src: "stubs/tile_sydney.jpg"
+    :image_alt: "A lovely kitten"
+    :story_title: "End of the road in Sydney"
+    :story_content: "Every epic journey must come to an end. Travel writer Oliver Smith reaches the finishing line of Lonely Planet's incredible voyage across the planet."
