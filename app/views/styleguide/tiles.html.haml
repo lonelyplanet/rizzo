@@ -20,7 +20,8 @@
 .card.styleguide-intro.copy--body.context--content
   %h2.copy--h1 Grid
   %p
-    A flexbox based layout that is responsive by default.
-  .tile-grid
-    - 12.times do
-      = ui_component("tiles/tile", properties: tiles['basic'][0] )
+    A responsive grid for full-width applications (so it will probably be squashed below). Falls forward to utilise flexbox where supported.
+
+.tile-grid
+  - 12.times do
+    = ui_component("tiles/tile", properties: tiles['basic'][0] )
