@@ -210,7 +210,7 @@
 // Collection card image attribution
 // -----------------------------------------------------------------------------
 
-.card--collection, .card--double
+.has-attribution
   overflow: hidden
 
   &:hover
@@ -223,7 +223,7 @@
   padding-left: 25px
   .card--single &
     color: $feature-copy
-    margin-top: 15px
+    margin-top: 17px
   .card--double &
     position: absolute
     bottom: $card-content-vertical-padding
@@ -238,6 +238,10 @@
 
 .card__attribution-link
   cursor: pointer
+  .card--double &
+    @extend %inline-block
+    @extend %truncate-text
+    width: 80%
   &:hover
     text-decoration: underline
 

@@ -16,5 +16,5 @@
         %p.card__description
           = card[:strapline] || card[:description]
 
-
-    = render partial: "components/cards/partials/image_attribution", locals: {card: card}
+    - if card[:image_license] && card[:image_license] != 'expedia'
+      = render partial: "components/cards/partials/image_attribution", locals: {card: card}

@@ -7,7 +7,8 @@
     "card--link--#{card[:title].downcase}",
     "card--extended-content--half",
     "#{card[:filter] ? 'js-stack-card-filter' : ''}",
-    "#{card[:double?] ? 'card--double card--full-image' : 'card--single'}"
+    "#{card[:double?] ? 'card--double card--full-image' : 'card--single'}",
+    "#{card[:image_license] && card[:image_license] != 'expedia' ? 'has-attribution' : ''}"
 
   ].join(" ")
 

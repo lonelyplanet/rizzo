@@ -6,7 +6,8 @@
     "card--collection",
     "card--collection--#{card[:topic]}",
     "#{card[:filter] ? 'js-stack-card-filter' : ''}",
-    "#{card[:double?] ? 'card--double card--full-image' : 'card--single card--extended-content--half'}"
+    "#{card[:double?] ? 'card--double card--full-image' : 'card--single card--extended-content--half'}",
+    "#{card[:image_license] && card[:image_license] != 'expedia' ? 'has-attribution' : ''}"
 
   ].join(" ")
 
