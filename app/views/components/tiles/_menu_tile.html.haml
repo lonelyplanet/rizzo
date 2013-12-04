@@ -12,3 +12,6 @@
             %li
               %a{ href: link[:link_url] }
                 = link[:link_text]
+    - if properties[:sash]
+      %span{ class: "tile__sash tile__sash--#{properties[:sash]}" }
+        = properties[:sash]

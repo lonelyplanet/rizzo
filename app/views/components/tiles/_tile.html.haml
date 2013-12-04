@@ -1,4 +1,4 @@
-%article.tile.tile--story
+%article.tile
   %a.tile__link{ href: properties[:link_url] }
     .tile__wrapper
       .tile__media.tile__media--img
@@ -7,8 +7,8 @@
         .tile__cover__content
           %h1.tile__cover__title
             = properties[:cover_title]
-          .tile__cover__story
-            != properties[:cover_content]
+          %p
+            = properties[:cover_content]
       - if properties[:sash]
         %span{ class: "tile__sash tile__sash--#{properties[:sash]}" }
           = properties[:sash]

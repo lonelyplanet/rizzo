@@ -1,4 +1,12 @@
-tiles:
+basic:
+  -
+    :styleguide_title: "Tile"
+    :link_url: "/styleguide/tiles"
+    :image_src: "stubs/tile_sydney.jpg"
+    :image_alt: "Some dudes by the Opera House"
+    :cover_title: "End of the road in Sydney"
+    :cover_content: "Every epic journey must come to an end."
+
   -
     :styleguide_title: "Story tile"
     :link_url: "/styleguide/tiles"
@@ -22,3 +30,93 @@ tiles:
       -
         :link_url: "/styleguide/tiles#rental-cars"
         :link_text: "Rental cars"
+
+sashes:
+  -
+    :styleguide_title: "Sight sash"
+    :link_url: "/styleguide/tiles"
+    :image_src: "stubs/tile_sydney.jpg"
+    :image_alt: "Some dudes by the Opera House"
+    :cover_title: "End of the road in Sydney"
+    :cover_content: "Every epic journey must come to an end."
+    :sash: "sight"
+  -
+    :styleguide_title: "Activity sash"
+    :link_url: "/styleguide/tiles"
+    :image_src: "stubs/tile_sydney.jpg"
+    :image_alt: "Some dudes by the Opera House"
+    :cover_title: "End of the road in Sydney"
+    :cover_content: "Every epic journey must come to an end."
+    :sash: "activity"
+  -
+    :styleguide_title: "Activity sash"
+    :link_url: "/styleguide/tiles"
+    :image_src: "stubs/tile_sydney.jpg"
+    :image_alt: "Some dudes by the Opera House"
+    :cover_title: "End of the road in Sydney"
+    :cover_content: "Every epic journey must come to an end."
+    :sash: "tour"
+  -
+    :styleguide_title: "Activity sash"
+    :link_url: "/styleguide/tiles"
+    :image_src: "stubs/tile_sydney.jpg"
+    :image_alt: "Some dudes by the Opera House"
+    :cover_title: "End of the road in Sydney"
+    :cover_content: "Every epic journey must come to an end."
+    :sash: "hotel"
+  -
+    :styleguide_title: "Activity sash"
+    :link_url: "/styleguide/tiles"
+    :image_src: "stubs/tile_sydney.jpg"
+    :image_alt: "Some dudes by the Opera House"
+    :cover_title: "End of the road in Sydney"
+    :cover_content: "Every epic journey must come to an end."
+    :sash: "restaurant"
+  -
+    :styleguide_title: "Activity sash"
+    :link_url: "/styleguide/tiles"
+    :image_src: "stubs/tile_sydney.jpg"
+    :image_alt: "Some dudes by the Opera House"
+    :cover_title: "End of the road in Sydney"
+    :cover_content: "Every epic journey must come to an end."
+    :sash: "shopping"
+  -
+    :styleguide_title: "Activity sash"
+    :link_url: "/styleguide/tiles"
+    :image_src: "stubs/tile_sydney.jpg"
+    :image_alt: "Some dudes by the Opera House"
+    :cover_title: "End of the road in Sydney"
+    :cover_content: "Every epic journey must come to an end."
+    :sash: "festival"
+  -
+    :styleguide_title: "Activity sash"
+    :link_url: "/styleguide/tiles"
+    :image_src: "stubs/tile_sydney.jpg"
+    :image_alt: "Some dudes by the Opera House"
+    :cover_title: "End of the road in Sydney"
+    :cover_content: "Every epic journey must come to an end."
+    :sash: "entertainment"
+  -
+    :styleguide_title: "Activity sash"
+    :link_url: "/styleguide/tiles"
+    :image_src: "stubs/tile_sydney.jpg"
+    :image_alt: "Some dudes by the Opera House"
+    :cover_title: "End of the road in Sydney"
+    :cover_content: "Every epic journey must come to an end."
+    :sash: "article"
+  -
+    :styleguide_title: "Activity sash"
+    :link_url: "/styleguide/tiles"
+    :image_src: "stubs/tile_sydney.jpg"
+    :image_alt: "Some dudes by the Opera House"
+    :cover_title: "End of the road in Sydney"
+    :cover_content: "Every epic journey must come to an end."
+    :sash: "need-to-know"
+  -
+    :styleguide_title: "Activity sash"
+    :link_url: "/styleguide/tiles"
+    :image_src: "stubs/tile_sydney.jpg"
+    :image_alt: "Some dudes by the Opera House"
+    :cover_title: "End of the road in Sydney"
+    :cover_content: "Every epic journey must come to an end."
+    :sash: "transport"
