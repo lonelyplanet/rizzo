@@ -4,21 +4,21 @@ tiles:
     :link_url: "/styleguide/tiles"
     :image_src: "stubs/tile_sydney.jpg"
     :image_alt: "Some dudes by the Opera House"
-    :story_title: "End of the road in Sydney"
-    :story_content: "Every epic journey must come to an end. Travel writer Oliver Smith reaches the finishing line of Lonely Planet's incredible voyage across the planet."
+    :cover_title: "End of the road in Sydney"
+    :cover_content: "<p>Every epic journey must come to an end. Travel writer Oliver Smith reaches the finishing line of Lonely Planet's incredible voyage across the planet.</p>"
 
   -
     :styleguide_title: "Menu tile"
     :image_src: "stubs/tile_sydney.jpg"
     :image_alt: "Some dudes by the Opera House"
-    :list_title: "Travel booking"
-    :link_list:
+    :cover_title: "Travel booking"
+    :cover_links:
       -
-        :link_url: "/styleguide/tiles"
+        :link_url: "/styleguide/tiles#hotels"
         :link_text: "Hotels"
       -
-        :link_url: "/styleguide/tiles"
+        :link_url: "/styleguide/tiles#flights"
         :link_text: "Flights"
       -
-        :link_url: "/styleguide/tiles"
+        :link_url: "/styleguide/tiles#rental-cars"
         :link_text: "Rental cars"

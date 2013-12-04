@@ -1,6 +1,14 @@
 %article.tile.tile--menu
-  .tile__content
+  .tile__wrapper
     .tile__media.tile__media--img
-      = render :partial => '/components/tiles/partials/media_image', :locals => { :properties => properties }
+      = safe_image_tag(properties[:image_src], alt: properties[:image_alt])
     .tile__cover
-      = render :partial => '/components/tiles/partials/cover_menu', :locals => { :properties => properties }
+      .tile__cover__content
+        - if properties[:cover_title]
+          %h1.tile__cover__title
+            = properties[:cover_title]
+        %ul.tile__cover__menu
+          - properties[:cover_links].each do |link|
+            %li
+              %a{ href: link[:link_url] }
+                = link[:link_text]

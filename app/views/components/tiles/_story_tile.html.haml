@@ -1,7 +1,11 @@
 %article.tile.tile--story
   %a.tile__link{ href: properties[:link_url] }
-    .tile__content
+    .tile__wrapper
       .tile__media.tile__media--img
-        = render :partial => '/components/tiles/partials/media_image', :locals => { :properties => properties }
+        = safe_image_tag(properties[:image_src], alt: properties[:image_alt])
       .tile__cover
-        = render :partial => '/components/tiles/partials/cover_story', :locals => { :properties => properties }
+        .tile__cover__content
+          %h1.tile__cover__title
+            = properties[:cover_title]
+          .tile__cover__story
+            != properties[:cover_content]
