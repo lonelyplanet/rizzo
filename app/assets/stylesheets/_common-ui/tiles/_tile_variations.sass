@@ -4,40 +4,57 @@
 
   .tile__cover
     height: 100%
-    @include transition(background, .5, ease-out)
-    @include hardware-acceleration()
+
+    @if not $is-ie
+      @include transition(background, .5, ease-out)
+      @include hardware-acceleration()
 
   .tile__cover__content
     position: absolute
-    top: 100%
+    top: 0
     left: 0
     width: 100%
     height: 100%
-    @include transition(top, .35, ease-out)
 
-    &:after
-      content: ' '
-      position: absolute
-      bottom: 0
-      left: 0
-      width: 100%
-      height: 50%
-      @include background-gradient(#000, transparent, false, false, to top)
+    @if not $is-ie
+      @include transform(translateY(100%))
+      @include transition(all, .35, ease-out)
 
-  .tile__cover__title
-    @include transform(translateY(-110%))
-    @include transition(all, .35, ease-out)
+      &:after
+        content: ' '
+        position: absolute
+        bottom: 0
+        left: 0
+        width: 100%
+        height: 50%
+        @include background-gradient(#000, transparent, false, false, to top)
+
+  @if $is-ie
+    .tile__cover__story
+      display: none
+  @else
+    .tile__cover__title
+      @include transform(translateY(-110%))
+      @include transition(all, .35, ease-out)
 
   .tile__link:hover
 
     .tile__cover
-      background: rgba(0, 0, 0, .65)
+      @if $is-ie
+        display: block
+        zoom: 1
+        -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#A5000000, endColorstr=#A5000000)"
+        filter:      progid:DXImageTransform.Microsoft.gradient(startColorstr=#A5000000, endColorstr=#A5000000)
+      @else
+        background: rgba(0, 0, 0, .65)
 
-    .tile__cover__content
-      top: 0
-
-    .tile__cover__title
-      @include transform(translateY(0))
+    @if $is-ie
+      .tile__cover__story
+        display: block
+    @else
+      .tile__cover__content,
+      .tile__cover__title
+        @include transform(translateY(0))
 
 // Menu
 // .tile.tile--menu>.tile__wrapper>.tile__media+.tile__cover>.tile__cover__content>h1.tile__cover__title+ul.tile__cover__menu>li>a
