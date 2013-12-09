@@ -2,8 +2,14 @@
 // .span.tile__sash.tile__sash--{{type}}
 .tile__sash
   position: absolute
-  right: 0
-  bottom: 0
+
+  @if $is-ie
+    right: -10px
+    bottom: -10px
+  @else
+    right: 0
+    bottom: 0
+
   z-index: 1
   width: 15%
   height: 15%

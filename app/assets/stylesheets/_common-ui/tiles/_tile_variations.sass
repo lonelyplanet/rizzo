@@ -1,13 +1,14 @@
 // Story
 // .tile.tile--story>.tile__wrapper>.tile__media+.tile__cover>.tile__cover__content>h1.tile__cover__title+.tile__cover__story
 .tile--story
+  @if not $is-ie
+    @include hardware-acceleration()
 
   .tile__cover
     height: 100%
 
     @if not $is-ie
       @include transition(background, .5, ease-out)
-      @include hardware-acceleration()
 
   .tile__cover__content
     position: absolute
@@ -18,15 +19,19 @@
 
     @if not $is-ie
       @include transform(translateY(100%))
-      @include transition(all, .35, ease-out)
+      @include vendor-prefixed-transition(transform, .35, ease-out)
 
-      &:after
-        content: ' '
-        position: absolute
-        bottom: 0
-        left: 0
-        width: 100%
-        height: 50%
+    &:after
+      content: ' '
+      position: absolute
+      bottom: 0
+      left: 0
+      width: 100%
+      height: 50%
+
+      @if $is-ie
+        -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#FF000000, endColorstr=#00000000)"
+      @else
         @include background-gradient(#000, transparent, false, false, to top)
 
   @if $is-ie
@@ -35,7 +40,7 @@
   @else
     .tile__cover__title
       @include transform(translateY(-110%))
-      @include transition(all, .35, ease-out)
+      @include vendor-prefixed-transition(transform, .35, ease-out)
 
   .tile__link:hover
 

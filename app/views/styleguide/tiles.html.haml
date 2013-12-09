@@ -16,12 +16,3 @@
 
 - tiles['sashes'].each_with_index do |tile, i|
   = sg_component("tiles/tile", properties: tile, original_stub: tile, count: i)
-
-.card.styleguide-intro.copy--body.context--content
-  %h2.copy--h1 Grid
-  %p
-    A responsive grid for full-width applications (so it will probably be squashed below).
-
-.tile-grid
-  - 12.times do
-    = ui_component("tiles/tile", properties: tiles['basic'][0] )
