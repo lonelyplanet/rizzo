@@ -62,7 +62,7 @@
   color: white
   &:hover
     background-color: $disabled
-    
+
 .btn--green
   background-color: $green
   color: white
@@ -103,11 +103,7 @@
     border: 0
 
     &:after
-      font-weight: 400
+      display: inline-block
       margin-left: 5px
-
-    .is-closed &
-      @extend %chevron-down-after
-
-    .is-open &
-      @extend %chevron-up-after
+      width: 9px
+      height: 5px

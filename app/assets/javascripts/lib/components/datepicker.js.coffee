@@ -1,8 +1,8 @@
 # ------------------------------------------------------------------------------
 # Constructor for initialising availability search datepickers and behaviour
-# 
+#
 # Called by Availability_form_manager
-# 
+#
 # @params
 # container #{string} - The parent form
 # ------------------------------------------------------------------------------
@@ -10,7 +10,7 @@
 define ['jquery', 'jplugs/pickadate.legacy'], ($) ->
 
   class AvailabilityDatepicker
- 
+
     config =
       callbacks: {}
       dateFormat: 'd mmm yyyy'
@@ -23,7 +23,7 @@ define ['jquery', 'jplugs/pickadate.legacy'], ($) ->
     # callbacks (optional) Object containing the onDateSelect callback
     constructor: (opts) ->
       $.extend config, opts
-      
+
       self = @
       @in_date =  $(config.target).find(config.startSelector)
       @out_date = $(config.target).find(config.endSelector)
@@ -48,7 +48,6 @@ define ['jquery', 'jplugs/pickadate.legacy'], ($) ->
         format: config.dateFormat
         onSelect: ->
           self.dateSelected(this.getDate(config.dateFormatLabel), "end")
-
       })
 
     dateSelected : (date, type)->
@@ -65,7 +64,7 @@ define ['jquery', 'jplugs/pickadate.legacy'], ($) ->
         @out_label.text(@out_date.val()).removeClass('is-hidden')
 
       @firstTime = false
-      
+
       if config.callbacks.onDateSelect
         config.callbacks.onDateSelect(date, type)
 
@@ -84,7 +83,3 @@ define ['jquery', 'jplugs/pickadate.legacy'], ($) ->
         year:  date[0]
         month: date[1]
         day:   parseInt(date[2], 10)
-
-
- 
-

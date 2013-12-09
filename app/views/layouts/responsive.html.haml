@@ -6,7 +6,7 @@
 %head
   %meta{name:"viewport", content:"width=device-width, initial-scale=1"}
   = render 'layouts/core/head', responsive: true, homepage: false
-  = render 'layouts/mobile/grunticon'
+  = render 'layouts/core/snippets/grunticon', sheet: 'active'
 
   <!--[if gt IE 8]><!-->
   = render 'layouts/mobile/detect_touch'

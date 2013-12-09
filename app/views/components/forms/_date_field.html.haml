@@ -1,5 +1,5 @@
 = render :layout => 'components/forms/partials/field', :locals => { id: properties[:id], label: properties[:label] } do
-  .input__container.js-input{ class: properties[:error] ? 'field__input--error' : nil }
+  .input__container.js-input.icon--calendar--after.icon--body-grey--after{ class: properties[:error] ? 'field__input--error' : nil }
     = ui_component('forms/date_input', properties: properties )
     - if properties[:error]
       .field__error.js-error

@@ -36,36 +36,28 @@
   +respond-at(1150)
     display: block
 
-
 .content-pane__nav--back
   left: 0
-  .content-pane__nav__link__icon
-    @extend %chevron-left-after
 
 .content-pane__nav--forward
   right: 0
-  .content-pane__nav__link__icon
-    @extend %chevron-right-after
 
 .content-pane__icon
   +font-size(60)
   color: white
   text-align: center
   line-height: 1em
-
-
   &:hover
     +transform(scale(1.2))
     text-decoration: none
 
 .content-pane__hide
   +transition(all, 0.1, ease-in)
-  @extend %cross-icon-before
   position: absolute
-  top: 0
-  left: 0
-  width: 100%
-  height: 70px
+  top: 10px
+  left: 10px
+  width: 40px
+  height: 40px
   display: block
   z-index: 50
 
@@ -154,33 +146,27 @@
     background-color: #2d9686
 
 .btn__visit-destination
-  @extend %local-marker-before
   background-color: $body-copy
   padding-left: 0
   padding-right: 0
   &:hover
     background-color: #57636b
-  &:before
-    font-weight: normal
-    font-size: 29px
-    padding-right: 1px
-    line-height: 0
-    position: relative
-    top: 3px
 
 .btn__choose-and-win
-  @extend %tick-icon-before
   background-color: $teal
   margin-bottom: 30px
   &:hover
     background-color: #06cdbf
+
+.btn__choose-and-win,
+.btn__visit-destination
   &:before
-    font-weight: normal
-    font-size: 20px
-    padding-right: 3px
-    line-height: 0
     position: relative
-    top: 0
+    top: 3px
+    width: 14px
+    height: 14px
+    display: inline-block
+    margin-right: 3px
 
 .carousel--cities
   .content-pane__rank

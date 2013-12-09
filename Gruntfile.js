@@ -1,7 +1,6 @@
-module.exports = function(grunt) {
-
+module.exports = function (grunt) {
     'use strict';
-
+    var extend = require('util')._extend;
     // Project configuration.
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
@@ -20,13 +19,30 @@ module.exports = function(grunt) {
             }
         },
         grunticon: {
-            myIcons: {
-                options: {
-                    src: "./app/assets/images/src",
-                    dest: "./app/assets/stylesheets/icons",
-                    cssprefix: "icon--",
-                    defaultWidth: "32px",
-                    pseudoElems: true
+            active: {
+                options:{
+                    cssprefix: 'icon--',
+                    customselectors: {
+                        "*": ".$1--before:before, .$1--after:after"
+                    },
+                    datasvgcss: 'active.css',
+                    datapngcss: 'active.png.css',
+                    dest: 'app/assets/stylesheets/icons/',
+                    src: 'app/assets/images/icons/active/',
+                    urlpngcss: 'active.fallback.css'
+                }
+            },
+            critical: {
+                options:{
+                    cssprefix: 'icon--',
+                    customselectors: {
+                        "*": ".$1--before:before, .$1--after:after"
+                    },
+                    datasvgcss: 'critical.svg.css',
+                    datapngcss: 'critical.png.css',
+                    dest: 'app/assets/stylesheets/icons/',
+                    src: 'app/assets/images/icons/active/critical/',
+                    urlpngcss: 'critical.css'
                 }
             }
         },
@@ -38,42 +54,45 @@ module.exports = function(grunt) {
             },
             dist: {
                 files: [{
-                    "expand": true,
-                    "cwd": "./app/assets/images/src",
-                    "src": ["*.svg"],
-                    "dest": "./app/assets/images/src",
-                    "ext": ".svg"
+                    expand: true,
+                    cwd: './app/assets/images/src',
+                    src: ['*.svg'],
+                    dest: './app/assets/images/src',
+                    ext: '.svg'
                 }]
             }
         },
         shell: {
             clean_icons: {
-                command: "rm -rf app/assets/images/png"
+                command: 'rm -rf app/assets/images/icons/png'
             },
             clean_js: {
                 command: 'rm -rf public/assets/javascripts'
             },
             move: {
-                command: "mv app/assets/stylesheets/icons/png app/assets/images"
+                command: 'mv app/assets/stylesheets/icons/png/  app/assets/images/icons/png/'
             },
             openPlato: {
                 command: 'open .plato/index.html'
+            },
+            cat_styles: {
+                command: 'cat app/assets/stylesheets/icons/critical.svg.css >> app/assets/stylesheets/icons/active.css'
             }
         },
         coffee: {
             compile: {
                 files: [{
-                    "expand": true,
-                    "cwd": "./app/assets/javascripts/lib",
-                    "src": ["**/*.coffee", "**/**/*.coffee"],
-                    "dest": "./public/assets/javascripts/lib",
-                    "ext": ".js"
+                    expand: true,
+                    cwd: './app/assets/javascripts/lib',
+                    src: ['**/*.coffee', '**/**/*.coffee'],
+                    dest: './public/assets/javascripts/lib',
+                    ext: '.js'
                 }, {
-                    "expand": true,
-                    "cwd": "./spec/javascripts/lib",
-                    "src": ["**/*.coffee"],
-                    "dest": "./public/assets/javascripts/spec",
-                    "ext": ".js"
+                    expand: true,
+                    cwd: './spec/javascripts/lib',
+                    src: ['**/*.coffee'],
+                    dest: './public/assets/javascripts/spec',
+                    ext: '.js'
                 }]
             }
         },
@@ -87,7 +106,7 @@ module.exports = function(grunt) {
         },
         open: {
             jasmine: {
-                path: "http://127.0.0.1:8888/_SpecRunner.html"
+                path: 'http://127.0.0.1:8888/_SpecRunner.html'
             }
         },
         jasmine: {
@@ -102,14 +121,14 @@ module.exports = function(grunt) {
                         requireConfig: {
                             baseUrl: './',
                             paths: {
-                                jquery: "./vendor/assets/javascripts/jquery/jquery-1.7.2.min",
-                                jsmin: "./vendor/assets/javascripts/lonelyplanet_minjs/dist/$",
-                                polyfills: "./vendor/assets/javascripts/polyfills",
-                                lib: "./public/assets/javascripts/lib",
-                                jplugs: "./vendor/assets/javascripts/jquery/plugins",
-                                s_code: "./vendor/assets/javascripts/omniture/s_code",
-                                maps_infobox: "./vendor/assets/javascripts/google-maps-infobox",
-                                gpt: "http://www.googletagservices.com/tag/js/gpt"
+                                jquery: './vendor/assets/javascripts/jquery/jquery-1.7.2.min',
+                                jsmin: './vendor/assets/javascripts/lonelyplanet_minjs/dist/$',
+                                polyfills: './vendor/assets/javascripts/polyfills',
+                                lib: './public/assets/javascripts/lib',
+                                jplugs: './vendor/assets/javascripts/jquery/plugins',
+                                s_code: './vendor/assets/javascripts/omniture/s_code',
+                                maps_infobox: './vendor/assets/javascripts/google-maps-infobox',
+                                gpt: 'http://www.googletagservices.com/tag/js/gpt'
                             }
                         }
                     }
@@ -144,9 +163,9 @@ module.exports = function(grunt) {
     grunt.registerTask('wip', ['jasmine:rizzo:build', 'open:jasmine', 'connect:server:keepalive']);
     grunt.registerTask('report', ['shell:clean_js', 'coffee', 'plato', 'shell:openPlato']);
     grunt.registerTask('imageoptim', ['imageoptim']);
-    // Don't run this for the moment until (hopefully) grunticon is update with:
+    // If you need to run the icons task, first cd node_modules/grunt-grunticon &&
+    // curl https://github.com/filamentgroup/grunticon/pull/84.patch | patch -p1
+    // Until this (or a similar PR is merged)
     // https://github.com/filamentgroup/grunticon/pull/84
-    // At the moment it includes a manual step within the npm module and running this would kill the icons
-    // grunt.registerTask('icons', ['svgmin', 'grunticon', 'shell:clean_icons', 'shell:move']);
-
+    grunt.registerTask('icon', ['svgmin', 'grunticon', 'shell:clean_icons', 'shell:move']);
 };

@@ -185,27 +185,15 @@ $tab-height--1250: 610px
   background-size: 100%
   margin: 0 auto
   display: block
+  width: 26px
+  height: 26px
   +respond-to(medium-view)
     position: relative
     margin: 0
     display: inline-block
-    &.icon--flights--grey,
-    &.icon--flights--white
-      top: 4px
-    &.icon--tours--grey,
-    &.icon--tours--white
-      top: 1px
-
-.icon--active
-  display: none
+    
   .is-active &
-    display: block
-    +respond-to(medium-view)
-      display: inline-block
-
-.icon--default
-  .is-active &
-    display: none
+    +icon-color(white)
 
 .tab--homepage__label
   +font-size(15)

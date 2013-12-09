@@ -122,11 +122,12 @@
 .tag--non-bookable
   @extend %tag--top
   +tag-curl-top($yella, $price-tag-curl)
-  +font-size(40)
   background-color: $yella
-  color: #dad06b
-  line-height: 30px
-  padding: 0 7px 10px 8px
+  padding: 7px
+  .icon--contact
+    width: 30px
+    height: 30px
+    opacity: 0.3
 
 
 // -----------------------------------------------------------------------------
@@ -139,11 +140,38 @@
   background-color: $header-blue
   color: #fff
 
+.tag--badge__content
+  position: relative
+  width: 34px
+  &:before
+    line-height: 15px
+  > [class*="icon--"]
+    @extend %image-replacement
+    width: 32px
+    height: 22px
+
+  .tag--top-choice &
+    &:after
+      position: absolute
+      bottom: -6px
+      height: 12px
+      width: 100%
+      left: 0
+
 .tag--lp-reviewed
   @extend %tag--top
+  width: 34px
+  .icon--lp-reviewed
+    width: 28px
+    height: 24px
+    margin: 8px 0 3px
 
 .tag--top-choice
   border-top-right-radius: 4px
+
+// -----------------------------------------------------------------------------
+// Best in Travel badge (destination highlights page)
+// -----------------------------------------------------------------------------
 
 .tag--best-in-travel
   +tag-curl-right($lpblue, $darkblue)
@@ -168,43 +196,3 @@
     max-width: 100%
     display: block
     height: 16px
-
-.tag--badge__content
-  @extend %left-icon
-  @extend %left-icon--hidden-text
-  display: block
-  &:before
-    line-height: 15px
-
-  .tag--lp-reviewed &
-    @extend %lp-review-bubble-before
-    height: 34px
-    width: 33px
-    &:before
-      font-size: 38px
-      height: 18px
-      left: 5px
-      top: 9px
-      width: 20px
-
-  .tag--top-choice &
-    @extend %top-choice-before
-    height: 40px
-    width: 34px
-    &:before
-      font-size: 46px
-      height: 18px
-      left: 3px
-      top: 13px
-      width: 26px
-    &:after
-      @extend %empty-abs-generated-content
-      background: url(image_path("lodgings-spt.png")) -71px -3px no-repeat
-      bottom: -9px
-      height: 9px
-      left: 0
-      width: 34px
-      +retinafy()
-        background: url(image_path("lodgings-spt-2x.png"))
-        background-position: top right
-        background-size: $lodgings-sprite-size

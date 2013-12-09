@@ -19,6 +19,19 @@ module StyleguideHelper
           ]
         },
         {
+          title: "Icons",
+          items: [
+            {
+              name: "Active",
+              path: "/styleguide/active-icons"
+            },
+            {
+              name: "Inactive",
+              path: "/styleguide/inactive-icons"
+            }
+          ]
+        },
+        {
           title: "Navigation",
           items: [
             {
@@ -131,6 +144,15 @@ module StyleguideHelper
     end
 
   end
+
+  def get_icons(type)
+    icons = []
+    File.read(File.expand_path("../../assets/stylesheets/icons/#{type}.svg.css", __FILE__)).split(/}/).each do |rule|
+      class_name = rule.match(/^\.([^:, ]*)/)
+      class_name && icons.push(class_name[1])
+    end
+    icons
+ end
 
   def get_colours(file)
     colours = File.read(File.expand_path("../../assets/stylesheets/_variables/#{file}.sass", __FILE__))

@@ -208,9 +208,21 @@ We plan to implement the KSS living styleguide (https://github.com/kneath/kss) w
 
 This will be updated as we move forward with this project.
 
+<a name="icons"></a>
+## 12. Icons
 
+The icons are built by a grunt task, `grunt icon`, which uses the Filament Group's [grunticon plugin](https://github.com/filamentgroup/grunticon). To add a new icon to the build step, simply copy the svg file into `rizzo/app/assets/images/icons/active`.
 
+Unfortunately at the moment, our icons depend on a patched version of the grunticon plugin. So, at the moment we must:
 
+```bash
+$ cd node_modules/grunt-grunticon
+$ curl https://github.com/filamentgroup/grunticon/pull/84.patch | patch -p1
+```
+
+Before running `grunt icon` for the first time. You only need to run `grunt icon` if you are building new icons, for the the current icons are already checked into git.
+
+-----
 
 This document is derived from Nicolas Gallagher's Idiomatic CSS. (https://github.com/necolas/idiomatic-css) which has been adapted for our needs.
 

@@ -1,5 +1,5 @@
 - if card[:image_license] && card[:image_license] != 'expedia'
-  .card__attribution
+  .card__attribution.icon--image--before
     %span.card__attribution-link.js-card-attribution{ data: { link: card[:image_attribution_link] }}<
       = card[:image_attribution]
     %span.card__licenses

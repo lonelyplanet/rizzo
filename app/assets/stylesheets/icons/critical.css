@@ -1,0 +1,50 @@
+.icon--by,
+.icon--by--before:before, .icon--by--after:after { background-image: url(png/by.png); background-repeat: no-repeat; }
+
+.icon--cc,
+.icon--cc--before:before, .icon--cc--after:after { background-image: url(png/cc.png); background-repeat: no-repeat; }
+
+.icon--facebook,
+.icon--facebook--before:before, .icon--facebook--after:after { background-image: url(png/facebook.png); background-repeat: no-repeat; }
+
+.icon--flickr,
+.icon--flickr--before:before, .icon--flickr--after:after { background-image: url(png/flickr.png); background-repeat: no-repeat; }
+
+.icon--google-plus,
+.icon--google-plus--before:before, .icon--google-plus--after:after { background-image: url(png/google-plus.png); background-repeat: no-repeat; }
+
+.icon--hamburger,
+.icon--hamburger--before:before, .icon--hamburger--after:after { background-image: url(png/hamburger.png); background-repeat: no-repeat; }
+
+.icon--lp-logo,
+.icon--lp-logo--before:before, .icon--lp-logo--after:after { background-image: url(png/lp-logo.png); background-repeat: no-repeat; }
+
+.icon--lp-reviewed,
+.icon--lp-reviewed--before:before, .icon--lp-reviewed--after:after { background-image: url(png/lp-reviewed.png); background-repeat: no-repeat; }
+
+.icon--nd,
+.icon--nd--before:before, .icon--nd--after:after { background-image: url(png/nd.png); background-repeat: no-repeat; }
+
+.icon--pinterest,
+.icon--pinterest--before:before, .icon--pinterest--after:after { background-image: url(png/pinterest.png); background-repeat: no-repeat; }
+
+.icon--rss,
+.icon--rss--before:before, .icon--rss--after:after { background-image: url(png/rss.png); background-repeat: no-repeat; }
+
+.icon--sa,
+.icon--sa--before:before, .icon--sa--after:after { background-image: url(png/sa.png); background-repeat: no-repeat; }
+
+.icon--search,
+.icon--search--before:before, .icon--search--after:after { background-image: url(png/search.png); background-repeat: no-repeat; }
+
+.icon--shop-basket,
+.icon--shop-basket--before:before, .icon--shop-basket--after:after { background-image: url(png/shop-basket.png); background-repeat: no-repeat; }
+
+.icon--top-choice,
+.icon--top-choice--before:before, .icon--top-choice--after:after { background-image: url(png/top-choice.png); background-repeat: no-repeat; }
+
+.icon--twitter,
+.icon--twitter--before:before, .icon--twitter--after:after { background-image: url(png/twitter.png); background-repeat: no-repeat; }
+
+.icon--youtube,
+.icon--youtube--before:before, .icon--youtube--after:after { background-image: url(png/youtube.png); background-repeat: no-repeat; }

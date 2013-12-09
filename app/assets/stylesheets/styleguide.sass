@@ -29,8 +29,6 @@
 @import '_common-ui/_stack'
 @import '_common-ui/_stack_articles'
 @import '_common-ui/_icons/_pois_sprite'
-@import '_common-ui/_icons/_pois_icons'
-@import '_common-ui/_lp_reviewed_section'
 @import '_common-ui/_datepicker'
 @import '_common-ui/_tooltip'
 @import '_common-ui/_maps'
@@ -148,7 +146,7 @@ pre.styleguide.is-open
 .filter--links
   min-width: 200px
   +font-size(15)
-  .dropdown__value
+  .dropdown
     line-height: 1
     width: 140px
     &:after
@@ -193,7 +191,7 @@ pre.styleguide.is-open
 
 .clearbutton
   line-height: 12px
-  float: left
+  float: right
   width: 14px
   height: 14px
   text-align: center
@@ -201,13 +199,26 @@ pre.styleguide.is-open
   border-radius: 100%
   background-color: $feature-copy
   color: white
-  margin-left: -25px
+  left: -6px
   font-weight: bold
-  position: relative
-  top: 14px
+  position: relative  
+  top: -26px
   cursor: pointer
 
 .styleguide-grid
   .card
     text-align: center
     padding: 10px 0
+
+.styleguide-icons
+  [class*="icon--"]
+    height: 40px
+    width: 40px
+    margin: 0 auto
+  .is-white
+    background-color: $body-copy
+    color: white
+
+.filter--links
+  .svg-colourise
+    width: 170px

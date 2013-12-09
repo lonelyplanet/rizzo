@@ -93,12 +93,9 @@ html
       +transition(opacity, 1, ease-in)
       opacity: 1
       &:after
-        content: "\e095"
         height: 70px
         display: block
         position: absolute
-        font-size: 110px
-        line-height: 19px
         bottom: -70px
         left: 62px
 
@@ -115,21 +112,17 @@ html
 
 .row--introduction__blurb__hide
   +transition(all, 0.3, ease-in)
-  @extend %cross-icon-before
   display: none
   cursor: pointer
 
   +respond-to(wide-view)
-    +font-size(40)
     display: block
     position: absolute
-    top: 4px
-    right: 16px
-    width: 24px
-    height: 36px
+    top: 14px
+    right: 14px
+    width: 27px
+    height: 27px
     overflow: hidden
-    line-height: 1em
-    color: white
     opacity: 0.5
 
     &:hover

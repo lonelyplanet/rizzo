@@ -4,24 +4,18 @@
 
 
 .lp-gallery-toolbar
-  @extend %cross-icon-after
+  +filter(drop-shadow(1px 1px 0px rgba(0,0,0,0.2)))
   position: absolute
   right: 15px
-  top: 20px
+  top: 15px
   width: 30px
   height: 30px
   z-index: 1000
   cursor: pointer
-  &:after
-    @extend %no-line-height
-    position: absolute
-    display: block
-    +font-size(40)
-    color: #fff
-    +text-shadow(1, 1, 0, rgba(0,0,0,0.2))
-    cursor: pointer
-    top: 0
-    right: 0
+  .no-js &, .no-background-size &
+    content: "✕"
+    color: white
+    font-size: 28px
 
 // Gallery Stage
 // 
@@ -62,36 +56,37 @@
   bottom: 0
   cursor: pointer
   width: 50px
-  top: 50px
+  top: 150px
   z-index: 1001
   .lp-gallery-stage &
     opacity: 0
     &:hover
       opacity: 1
   &:after
-    @extend %no-line-height
+    +filter(drop-shadow(1px 1px 0px rgba(0,0,0,0.2)))
     position: absolute
     display: block
-    +text-shadow(1, 1, 0, rgba(0,0,0,0.2))
-    +font-size(50)
-    color: #fff
-
+    width: 30px
+    height: 30px
+    top: 12px
+    .no-js &, .no-background-size &
+      color: white
+      font-weight: bold
+      font-size: 20px
+      background: rgba(0, 0, 0, 0.1)
 
 .lp-swipe-ctrl-lft
-  @extend %chevron-left-after
   left: 0
   &:after
-    left: 15px
-    top: 40%
-  
+    left: 5px
+    content: "‹"
+
 .lp-swipe-ctrl-rgt
-  @extend %chevron-right-after
   right: 0
   &:after
-    right: 15px
-    top: 40%
-
-
+    right: 5px
+    .no-js &, .no-background-size &
+      content: "›"
 
 // LpGallery thumbs
 //
@@ -109,9 +104,6 @@
     +background-gradient($startColor: rgba(0,0,0,0.5), $endColor: rgba(0,0,0,0), $fallbackImg: false, $imgPosition: 0 0, $direction: left)
   .lp-swipe-ctrl
     top: 0
-    &:after
-      top: 50%
-      margin-top: -5px 
 
 .lp-gallery-img-wrap
   display: table-cell

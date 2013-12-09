@@ -6,7 +6,7 @@
     "card--poi",
     "card--poi--hotel",
     "card--single",
-    "#{card[:bookable?] ? 'card--small-image card--extended-content' : 'card--no-image'}"
+    card[:bookable?] ? "card--small-image card--extended-content" : "card--no-image"
 
   ].join(" ")
 

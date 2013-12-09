@@ -5,18 +5,19 @@
     "card",
     "card--collection",
     "card--collection--#{card[:topic]}",
-    "#{card[:filter] ? 'js-stack-card-filter' : ''}",
-    "#{card[:double?] ? 'card--double card--full-image' : 'card--single card--extended-content--half'}"
+    card[:filter] ? "js-stack-card-filter" : "",
+    card[:double?] ? "card--double card--full-image" : "card--single card--extended-content--half"
 
   ].join(" ")
 
+  icon_classes = card[:topic] ? "icon--#{card[:topic].singularize}--pin--before icon--white--before" : ""
 
 %article.js-card{class: css_classes, data: { 'stack-kind' => card[:stack_kind], :filter => card[:filter] } }
 
   %a.link--wrapper{href: card[:url]}
 
     - if card[:count]
-      %span.card__item-count
+      %span.card__item-count{class: icon_classes}
         = card[:count]
 
     = render partial: "components/cards/partials/card_content", locals: {card: card}

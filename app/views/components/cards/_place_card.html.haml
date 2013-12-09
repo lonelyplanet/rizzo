@@ -19,7 +19,7 @@
 
     - if card[:things_to_do_count] && card[:lodging_count]
       %footer.card__footer
-        %span.destination__item-count.destination__item-count--sights
+        %span.destination__item-count.destination__item-count--sights.icon--hotel--before
           = card[:things_to_do_count]
-        %span.destination__item-count.destination__item-count--lodgings
+        %span.destination__item-count.destination__item-count--lodgings.icon--sight--before
           = card[:lodging_count]

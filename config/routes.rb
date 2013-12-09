@@ -36,6 +36,7 @@ Rizzo::Application.routes.draw do
   get 'styleguide'                       => 'styleguide#colours'
   get 'styleguide/secondary-nav'         => 'styleguide#secondaryNavigation'
   get 'styleguide/left-nav'              => 'styleguide#leftNavigation'
+  get 'styleguide/navigational_dropdown' => 'styleguide#navigational_dropdown'
   get 'styleguide/cards'                 => 'styleguide#cards'
   get 'styleguide/buttons'               => 'styleguide#buttons'
   get 'styleguide/badges'                => 'styleguide#badges'
@@ -43,12 +44,13 @@ Rizzo::Application.routes.draw do
   get 'styleguide/typography'            => 'styleguide#typography'
   get 'styleguide/colours'               => 'styleguide#colours'
   get 'styleguide/ui-colours'            => 'styleguide#uiColours'
+  get 'styleguide/active-icons'          => 'styleguide#activeIcons'
+  get 'styleguide/inactive-icons'        => 'styleguide#inactiveIcons'
   get 'styleguide/pagination'            => 'styleguide#pagination'
   get 'styleguide/proportional-grid'     => 'styleguide#proportionalGrid'
   get 'styleguide/cards-grid'            => 'styleguide#cardsGrid'
   get 'styleguide/forms'                 => 'styleguide#forms'
   get 'styleguide/activity_list'         => 'styleguide#activity_list'
-  get 'styleguide/navigational_dropdown' => 'styleguide#navigational_dropdown'
   #===== yeoman hook =====#
   # NB! The above line is required for our yeoman generator and should not be changed.
 

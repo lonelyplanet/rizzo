@@ -52,8 +52,6 @@
       top: 186px
     .infobox__interesting-places
       display: none
-    .media-gallery__resizer
-      @extend %contract-arrows-before
   ~ .card--page__aside
     top: 0
 
@@ -67,8 +65,6 @@
 
 .media-gallery__resizer
   @extend %transition--base
-  @extend %expand-arrows-before
-  background: $body-copy
   background: rgba(0,0,0,0.6)
   bottom: 0
   cursor: pointer
@@ -82,12 +78,16 @@
   &:hover
     @extend %opaque
   &:before
-    +font-size(40)
-    color: #fff
-    line-height: 32px
     margin-left: 10px
   .media-gallery--article &
     display: none
+
+.media-gallery__resizer__icon
+  width: 70%
+  height: 70%
+  top: 30%
+  left: 30%
+  margin: 15%
 
 .media-gallery__container
   +perspective()

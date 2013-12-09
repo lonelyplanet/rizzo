@@ -91,12 +91,10 @@ $stack-intro-lines-to-show: 2
     vertical-align: inherit
 
 .stack__view-type--grid
-  @extend %grid-icon-before
   +border-radius-each(4, 0, 0, 4)
   border-width: 1px 0 1px 1px
 
 .stack__view-type--list
-  @extend %list-icon-before
   +border-radius-each(0, 4, 4, 0)
   border-width: 1px 1px 1px 0
 
@@ -127,7 +125,6 @@ $stack-intro-lines-to-show: 2
 
 .travel-alert
   @extend %rounded-corners
-  @extend %warning-sign-before
   +font-size(15)
   background: #fffaca
   line-height: 20px

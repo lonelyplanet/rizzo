@@ -53,13 +53,14 @@
 .card__locale
   +font-size(12)
   @extend %left-icon
-  @extend %local-marker-before
+  color: $body-copy
   font-weight: bold
   line-height: 14px
   margin-bottom: 10px
   padding-left: 15px
   &:before
-    font-size: 22px
+    width: 22px
+    height: 22px
     left: -1px
     top: -2px
 
@@ -80,13 +81,12 @@
 
 .card__tour-duration
   @extend %left-icon
-  @extend %tour-duration-before
+  color: $body-copy
   padding-left: 20px
   margin-bottom: 12px
   &:before
-    line-height: 12px
-    font-size: 28px
-
+    height: 16px
+    width: 16px
 
 // -----------------------------------------------------------------------------
 // Card Footer
@@ -105,10 +105,11 @@
   .homepage &
     display: none
 
-  .btn--bookable
+  .btn
     +font-size(13)
     min-height: 0
     padding: 10px 12px
+    min-height: 0
 
   // fade to white at the top of the footer when extended content
   .card--extended-content &
@@ -128,10 +129,9 @@
     &:after
       top: -($card-content-vertical-padding + 1)
 
-  .text-icon--clock:before
-    font-size: 24px
-    position: relative
-    top: 3px
+  .text-icon:before
+    width: 16px
+    height: 16px
 
 
 // -----------------------------------------------------------------------------
@@ -143,23 +143,10 @@
   margin-right: 5px
   padding-left: 18px
   &:before
-    color: $body-copy
+    @extend %left-icon
     top: 0
-
-.destination__item-count--sights
-  @extend %left-icon
-  @extend %icon-image-poi-sight-before
-  &:before
-    +font-size(23)
-    line-height: 15px
-
-.destination__item-count--lodgings
-  @extend %left-icon
-  @extend %icon-image-poi-hotel-before
-  &:before
-    +font-size(27)
-    line-height: 9px
-
+    height: 16px
+    width: 16px
 
 // -----------------------------------------------------------------------------
 // List view cards

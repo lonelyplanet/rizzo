@@ -18,7 +18,6 @@
     border-bottom: none
 
 .nav--left__item
-  @extend %chevron-right-after
   color: $body-copy
   display: block
   line-height: 1.2em
@@ -30,18 +29,20 @@
     background-color: $body-background-offset
 
   &:after
-    +font-size(16)
+    height: 10px
+    width: 10px
     position: absolute
-    font-weight: 400
     pointer-events: none
     right: 12px
-    top: 11px
+    top: 16px
 
   &:last-child
     border-bottom: none
 
   &.is-active
     font-weight: bold
+    &:after
+      +icon-color(white)
     &, &:hover
       @extend %active-background
 
@@ -100,43 +101,20 @@
 .nav--left__list__item
   margin-bottom: 8px
 
-
 // -----------------------------------------------------------------------------
 // Nav items with icons
 // -----------------------------------------------------------------------------
 
 .nav--left__item--icon
-  padding-left: 35px
+  padding: 12px 30px 12px 12px
   &:before
-    +font-size(30)
-    color: $body-copy
-    position: absolute
-    top: 9px
-    left: 12px
-  &.is-active:before
-    color: white
-    font-weight: 400
+    display: inline-block
+    height: 18px
+    width: 18px
+    margin-right: 2px
+    vertical-align: bottom
+    .no-js &, .no-background-size &
+      width: 0
 
-.nav--left__item--activities
-  @extend %icon-image-poi-activity-before
-
-.nav--left__item--entertainment
-  @extend %icon-image-poi-entertainment-before
-
-.nav--left__item--restaurants
-  @extend %icon-image-poi-restaurant-before
-
-.nav--left__item--shopping
-  @extend %icon-image-poi-shopping-before
-
-.nav--left__item--sights
-  @extend %icon-image-poi-sight-before
-
-.nav--left__item--transport
-  @extend %icon-image-poi-transport-before
-
-.nav--left__item--tours
-  @extend %icon-image-poi-tour-before
-
-.nav--left__item--events
-  @extend %icon-image-poi-event-before
+  &.is-active:before,
+    +icon-color(white)

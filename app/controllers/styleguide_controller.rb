@@ -38,6 +38,14 @@ class StyleguideController < GlobalController
     render '/styleguide/ui_colours'
   end
 
+  def activeIcons
+    render '/styleguide/active-icons'
+  end
+
+  def inactiveIcons
+    render '/styleguide/inactive-icons'
+  end
+
   def pagination
     render '/styleguide/pagination'
   end

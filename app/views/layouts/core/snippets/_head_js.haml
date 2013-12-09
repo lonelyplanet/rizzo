@@ -24,3 +24,5 @@
     log : function(x){this.buffer.push({e: x})},
     time: function(x){!!window.performance && !!window.performance.now && this.buffer.push({e: x, t: window.performance.now()})}
   };
+
+= render 'layouts/core/snippets/grunticon', sheet: 'active'

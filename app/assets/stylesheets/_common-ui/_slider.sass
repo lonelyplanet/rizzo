@@ -80,13 +80,12 @@ $slideOffsetHome: -4.5em
       margin-top: 0
 
 .slider__control--prev
-  @extend %chevron-left-after
   left: $slideOffset
   padding-right: $slidePadding
-  
+
   .homepage &
     left: $slideOffsetHome
-    
+
   &:after
     right: $chevronOffset
   &:hover
@@ -94,16 +93,15 @@ $slideOffsetHome: -4.5em
     padding-right: $slideHoverPadding
   .at-beginning &
     opacity: 0
-  
+
 
 .slider__control--next
-  @extend %chevron-right-before
   right: $slideOffset
   padding-left: $slidePadding
-  
+
   .homepage &
     right: $slideOffsetHome
-  
+
   &:before
     left: $chevronOffset
   &:hover
@@ -111,7 +109,7 @@ $slideOffsetHome: -4.5em
     padding-left: $slideHoverPadding
   .at-end &
     opacity: 0
-  
+
 
 .slider__pagination
   bottom: 0

@@ -1,7 +1,7 @@
 .row.row--footer--about
   .row__inner.row__inner--footer
     .wv--split--left.nav--inline
-      %a.wv--inline-block.nav__item.row--footer--about__logo.media--lp-logo.media--lp-logo--dark(href='http://www.lonelyplanet.com')
+      %a.wv--inline-block.nav__item.row--footer--about__logo.media--lp-logo.icon--lp-logo(href='http://www.lonelyplanet.com')
       .nav__item.wv--nav--inline
         - footer_nav_about_items.each do |item|
           %a.nav__item.nav__item--about{href: "http://www.lonelyplanet.com#{item[:url]}"}<
@@ -15,7 +15,7 @@
         .nav--social__inner.nav__item
           .nav--inline
             - social_media_nav.each do |item|
-              %a.nav__item.nav__item--social{href: "#{item[:url]}", class: "icon--#{item[:title]}--grey"}
+              %a.nav__item.nav__item--social{href: "#{item[:url]}", class: "icon--#{item[:title]}"}
                 = item[:title].capitalize
 
 
@@ -36,7 +36,7 @@
         language_options.each do |d|
           dropdown[:options].push({ title: d[1].html_safe, value: d[0] })
         end
-          
+
       .wv--split--right
         .split--right__inner.nav--inline.form--language.media
           %label.nav__item.form--language__label.title--footer.media__img International

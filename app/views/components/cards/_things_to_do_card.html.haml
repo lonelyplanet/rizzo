@@ -1,3 +1,4 @@
+
 :ruby
 
   css_classes = [
@@ -30,7 +31,7 @@
         = card[:name]
 
       - if card[:duration].present?
-        %p.card__tour-duration.copy--caption
+        %p.card__tour-duration.copy--caption.icon--length--before
           = card[:duration]
 
       %p.card__description

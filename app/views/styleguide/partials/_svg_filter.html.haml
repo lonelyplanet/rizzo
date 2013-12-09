@@ -1,0 +1,18 @@
+.split--right.filter--links
+
+  .styleguide-proximity
+    %input#js-icon-filter.input--text.input{ type: "text", placeholder: "Find icon" }
+  :ruby
+    colors =  [
+      'header-grey',
+      'body-grey',
+      'white',
+      'lp-blue',
+      'custom',
+      'custom-2'
+    ]
+    options = []
+    colors.each do |color|
+      options.push({ title: color, value: color, selected: color == colors[0] })
+    end
+  = ui_component('forms/dropdown', properties: { name: "svg_order", class: "svg-colourise", options: options})

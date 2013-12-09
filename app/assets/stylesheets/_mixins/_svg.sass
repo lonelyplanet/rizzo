@@ -1,0 +1,9 @@
+// -----------------------------------------------------------------------------
+// icon color mixin
+// use icon-color(color-name) to select a color, normally for use in :hover.
+// it sets the background position to the correct slot to show the icon in that
+// color. custom and custom-2 are the default/custom colors that some icons have
+// -----------------------------------------------------------------------------
+@mixin icon-color($color: '')
+  $colors: body-grey, white, lp-blue, custom, custom-2
+  background-position: 0 percentage(index($colors, $color) * .2)
