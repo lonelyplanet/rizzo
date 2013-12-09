@@ -7,7 +7,7 @@
         .tile__cover__content
           %h1.tile__cover__title
             = properties[:cover_title]
-          .tile__cover__story
+          .tile__cover__fragment
             != properties[:cover_content]
       - if properties[:sash]
         %span{ class: "tile__sash tile__sash--#{properties[:sash]}" }

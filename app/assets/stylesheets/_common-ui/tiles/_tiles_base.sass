@@ -1,4 +1,4 @@
-// .tile>.tile__wrapper>.tile__media+.tile__cover>.tile__cover__content>h1.tile__cover__title+{{content}}
+// .tile>.tile__wrapper>.tile__media+.tile__cover>.tile__cover__content>h1.tile__cover__title+.tile__cover__fragment
 .tile
   max-width: 340px
   min-width: 160px
@@ -20,15 +20,19 @@
   width: 100%
   height: 100%
 
-  @if not $is-ie
-    &:after
-      content: ' '
-      position: absolute
-      bottom: 0
-      left: 0
-      width: 100%
-      height: 50%
+  &:after
+    content: ' '
+    position: absolute
+    bottom: 0
+    left: 0
+    width: 100%
+    height: 50%
+
+    @if $is-ie
+      -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#FF000000, endColorstr=#00000000)"
+    @else
       @include background-gradient(rgba(0, 0, 0, .5), transparent, false, false, to top)
+
 
 .tile__media--img img,
 .tile__media--video video
@@ -44,14 +48,17 @@
 
 .tile__cover__content
   @include box-sizing(border-box)
-  padding: 3.25% 5%
+  padding: 10px 5%
   font-size: 16px
   color: white
 
 .tile__cover__title
   width: 85%
   margin: 0
-  padding: 0 0 10px
   font-weight: 700
   font-size: 16px
+  line-height: 1
   text-transform: uppercase
+
+  ~ .tile__cover__fragment
+    margin: 6px 0 0

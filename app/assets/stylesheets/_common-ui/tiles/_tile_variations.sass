@@ -1,5 +1,5 @@
 // Story
-// .tile.tile--story>.tile__wrapper>.tile__media+.tile__cover>.tile__cover__content>h1.tile__cover__title+.tile__cover__story
+// .tile.tile--story>.tile__wrapper>.tile__media+.tile__cover>.tile__cover__content>h1.tile__cover__title+.tile__cover__fragment
 .tile--story
   @if not $is-ie
     @include hardware-acceleration()
@@ -35,11 +35,13 @@
         @include background-gradient(#000, transparent, false, false, to top)
 
   @if $is-ie
-    .tile__cover__story
+    .tile__cover__fragment
       display: none
+
   @else
     .tile__cover__title
-      @include transform(translateY(-110%))
+      -webkit-transform: translateY(-webkit-calc(-100% - 20px)) // Prefixed calc() for Safari 6
+      @include transform(translateY(calc(-100% - 20px))) // Add 20px to clear padding on .tile__cover__content
       @include vendor-prefixed-transition(transform, .35, ease-out)
 
   .tile__link:hover
@@ -62,7 +64,7 @@
         @include transform(translateY(0))
 
 // Menu
-// .tile.tile--menu>.tile__wrapper>.tile__media+.tile__cover>.tile__cover__content>h1.tile__cover__title+ul.tile__cover__menu>li>a
+// .tile.tile--menu>.tile__wrapper>.tile__media+.tile__cover>.tile__cover__content>h1.tile__cover__title+ul.tile__cover__fragment>li>a
 .tile--menu
 
   .tile__cover
@@ -70,9 +72,7 @@
     bottom: 0
     height: auto
 
-  .tile__cover__menu
-    margin: 0
-    padding: 0
+  .tile__cover__fragment
     list-style: none
 
     a

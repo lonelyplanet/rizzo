@@ -7,7 +7,7 @@
         - if properties[:cover_title]
           %h1.tile__cover__title
             = properties[:cover_title]
-        %ul.tile__cover__menu
+        %ul.tile__cover__fragment
           - properties[:cover_links].each do |link|
             %li
               %a{ href: link[:link_url] }

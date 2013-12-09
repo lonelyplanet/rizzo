@@ -7,8 +7,9 @@
         .tile__cover__content
           %h1.tile__cover__title
             = properties[:cover_title]
-          %p
-            = properties[:cover_content]
+          - if properties[:cover_content]
+            %p.tile__cover__fragment
+              = properties[:cover_content]
       - if properties[:sash]
         %span{ class: "tile__sash tile__sash--#{properties[:sash]}" }
           = properties[:sash]
