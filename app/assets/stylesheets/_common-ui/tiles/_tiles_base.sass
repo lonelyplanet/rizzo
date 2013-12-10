@@ -1,4 +1,8 @@
-// .tile>.tile__wrapper>.tile__media+.tile__cover>.tile__cover__content>h1.tile__cover__title+.tile__cover__fragment
+// ----------------------------------------------------------------------------
+//
+// Base tile object
+//
+// ----------------------------------------------------------------------------
 .tile
   max-width: 340px
   min-width: 160px
@@ -31,7 +35,7 @@
     @if $is-ie
       -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#FF000000, endColorstr=#00000000)"
     @else
-      @include background-gradient(rgba(0, 0, 0, .5), transparent, false, false, to top)
+      +background-gradient(rgba(0, 0, 0, .5), transparent, false, false, to top)
 
 
 .tile__media--img img,
@@ -47,7 +51,7 @@
   width: 100%
 
 .tile__cover__content
-  @include box-sizing(border-box)
+  +box-sizing(border-box)
   padding: 10px 5%
   font-size: 16px
   color: white
@@ -56,7 +60,7 @@
   width: 85%
   margin: 0
   font-weight: 700
-  font-size: 16px
+  +font-size(16)
   line-height: 1
   text-transform: uppercase
 

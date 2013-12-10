@@ -1,14 +1,16 @@
-// Story
-// .tile.tile--story>.tile__wrapper>.tile__media+.tile__cover>.tile__cover__content>h1.tile__cover__title+.tile__cover__fragment
+// -----------------------------------------------------------------------------
+// Story tile
+// -----------------------------------------------------------------------------
+
 .tile--story
   @if not $is-ie
-    @include hardware-acceleration()
+    +hardware-acceleration()
 
   .tile__cover
     height: 100%
 
     @if not $is-ie
-      @include transition(background, .5, ease-out)
+      +transition(background, .5, ease-out)
 
   .tile__cover__content
     position: absolute
@@ -18,8 +20,8 @@
     height: 100%
 
     @if not $is-ie
-      @include transform(translateY(100%))
-      @include vendor-prefixed-transition(transform, .35, ease-out)
+      +transform(translateY(100%))
+      +vendor-prefixed-transition(transform, .35, ease-out)
 
     &:after
       content: ' '
@@ -32,7 +34,7 @@
       @if $is-ie
         -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#FF000000, endColorstr=#00000000)"
       @else
-        @include background-gradient(#000, transparent, false, false, to top)
+        +background-gradient(#000, transparent, false, false, to top)
 
   @if $is-ie
     .tile__cover__fragment
@@ -41,8 +43,8 @@
   @else
     .tile__cover__title
       -webkit-transform: translateY(-webkit-calc(-100% - 20px)) // Prefixed calc() for Safari 6
-      @include transform(translateY(calc(-100% - 20px))) // Add 20px to clear padding on .tile__cover__content
-      @include vendor-prefixed-transition(transform, .35, ease-out)
+      +transform(translateY(calc(-100% - 20px))) // Add 20px to clear padding on .tile__cover__content
+      +vendor-prefixed-transition(transform, .35, ease-out)
 
   .tile__link:hover
 
@@ -61,10 +63,12 @@
     @else
       .tile__cover__content,
       .tile__cover__title
-        @include transform(translateY(0))
+        +transform(translateY(0))
 
-// Menu
-// .tile.tile--menu>.tile__wrapper>.tile__media+.tile__cover>.tile__cover__content>h1.tile__cover__title+ul.tile__cover__fragment>li>a
+// -----------------------------------------------------------------------------
+// Menu tile
+// -----------------------------------------------------------------------------
+
 .tile--menu
 
   .tile__cover
