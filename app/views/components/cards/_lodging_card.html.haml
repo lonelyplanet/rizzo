@@ -1,4 +1,17 @@
-%article.card.card--single.card--poi.card--poi--hotel.js-lodging.js-card{class: card[:card_style] }
+:ruby
+
+  css_classes = [
+
+    "card",
+    "card--poi",
+    "card--poi--hotel",
+    "card--single",
+    "#{card[:bookable?] ? 'card--small-image card--extended-content' : 'card--no-image'}"
+
+  ].join(" ")
+
+
+%article.js-lodging.js-card{class: css_classes }
 
   %a.link--wrapper{href: card[:path]}
 

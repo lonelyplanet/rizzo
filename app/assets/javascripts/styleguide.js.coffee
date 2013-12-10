@@ -1,4 +1,4 @@
-require ['jquery', 'lib/core/base'], ($, Base) ->
+require ['jquery', 'lib/core/base', 'jplugs/pickadate.legacy'], ($, Base) ->
 
   $ ->
     base = new Base()
@@ -7,3 +7,8 @@ require ['jquery', 'lib/core/base'], ($, Base) ->
 
     if $('.js-colours').length > 0
       require ['lib/styleguide/colours']
+  
+    d = new Date()
+    $('.input--datepicker').pickadate({
+      dateMin: [d.getFullYear(), (d.getMonth() + 1), d.getDate()]
+    })

@@ -1,5 +1,5 @@
 - if card[:resized_image_url] or card[:resized_video_url]
-  .card--single.card--media-container.js-card.js-single
+  .card--single.card--media-container.js-card
 
     - if card[:resized_image_url]
       = render 'components/cards/image_card', card: card

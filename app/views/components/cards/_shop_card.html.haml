@@ -1,5 +1,20 @@
-%article.card.card--shop.card--single.card--extended-content--half.js-card.js-single
+:ruby
+
+  css_classes = [
+
+    "card",
+    "card--shop",
+    "card--destination",
+    "card--extended-content--half",
+    "#{card[:double?] ? 'card--double card--full-image' : 'card--single'}"
+
+  ].join(" ")
+
+
+%article.js-card{class: css_classes}
+
   %a.link--wrapper{href: card[:shop_link]}
+
     %figure.card__hero
       = safe_image_tag("cards/shop.jpg", class: 'card__image', alt: "destination guides", lazyload: defined?(lazyload))
 

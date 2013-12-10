@@ -1,8 +1,26 @@
-= render :layout => "components/cards/card", :locals => {card: card, card_class: "card--poi card--poi--article icon--article--white--before"} do
+:ruby
 
-  = render partial: "components/cards/partials/card_content", locals: {card: card}
+  css_classes = [
 
-  - if card[:post_date] && !card[:double?]
-    .card__footer
-      %time.text-icon--clock{datetime: card[:post_date]}
-        = prettify_date(card[:post_date])
+    "card",
+    "card--poi",
+    "card--poi--article",
+    "card--small-image",
+    "card--extended-content",
+    "icon--article--white--before",
+    "#{card[:double?] ? 'card--double card--full-image' : 'card--single'}"
+
+  ].join(" ")
+
+
+%article.js-card{class: css_classes}
+
+  %a.link--wrapper{href: card[:url]}
+
+    = render partial: "components/cards/partials/card_content", locals: {card: card}
+
+    - if card[:post_date] && !card[:double?]
+
+      .card__footer
+        %time.text-icon--clock{datetime: card[:post_date]}
+          = prettify_date(card[:post_date])

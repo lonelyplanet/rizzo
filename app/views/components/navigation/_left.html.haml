@@ -1,12 +1,12 @@
-.card--single#js-left-nav.wv--block.nav--left
+.nav--left.card--single#js-left-nav.wv--block
 
-  .nav--left__inner#js-stack-list-aside
-    
+  #js-stack-list-aside
+
     - properties[:groups].each_with_index do |group, i|
       
       .card.nav--left__group{class: (i > 0) ? "nav--left__group--linked" : ""}
         
-        -if group[:title]
+        - if group[:title]
           %label{class: 'nav--left__title copy--h5', for: "ac-#{group[:section]}"}
             = group[:title]
 

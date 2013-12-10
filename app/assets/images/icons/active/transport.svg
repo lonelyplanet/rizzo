@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="32px" height="232px" viewBox="0 0 32 232" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <title>transport</title>
+    <description>Created with Sketch (http://www.bohemiancoding.com/sketch)</description>
+    <defs></defs>
+    <g id="Points-of-interest" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <path d="M25.817,127.646 C25.817,126.311 24.857,125 23.212,125 L8.605,125.006 C6.96,125.006 6,126.311 6,127.646 C6,128.944 6.765,130.282 8.605,130.282 L13.229,130.278 L13.229,145.018 C13.229,146.938 14.452,148 16.096,148 C17.739,148 18.966,146.934 18.966,145.018 L18.966,130.278 L23.212,130.286 C25.047,130.286 25.817,128.944 25.817,127.646" id="transport--lp-blue" fill="#206FAC" sketch:type="MSShapeGroup"></path>
+        <path d="M25.817,87.646 C25.817,86.311 24.857,85 23.212,85 L8.605,85.006 C6.96,85.006 6,86.311 6,87.646 C6,88.944 6.765,90.282 8.605,90.282 L13.229,90.278 L13.229,105.018 C13.229,106.938 14.452,108 16.096,108 C17.739,108 18.966,106.934 18.966,105.018 L18.966,90.278 L23.212,90.286 C25.047,90.286 25.817,88.944 25.817,87.646" id="transport--white" fill="#FFFFFF" sketch:type="MSShapeGroup"></path>
+        <path d="M25.817,47.646 C25.817,46.311 24.857,45 23.212,45 L8.605,45.006 C6.96,45.006 6,46.311 6,47.646 C6,48.944 6.765,50.282 8.605,50.282 L13.229,50.278 L13.229,65.018 C13.229,66.938 14.452,68 16.096,68 C17.739,68 18.966,66.934 18.966,65.018 L18.966,50.278 L23.212,50.286 C25.047,50.286 25.817,48.944 25.817,47.646" id="transport--body-grey" fill="#67747C" sketch:type="MSShapeGroup"></path>
+        <path d="M25.817,7.646 C25.817,6.311 24.857,5 23.212,5 L8.605,5.006 C6.96,5.006 6,6.311 6,7.646 C6,8.944 6.765,10.282 8.605,10.282 L13.229,10.278 L13.229,25.018 C13.229,26.938 14.452,28 16.096,28 C17.739,28 18.966,26.934 18.966,25.018 L18.966,10.278 L23.212,10.286 C25.047,10.286 25.817,8.944 25.817,7.646" id="transport--title-grey" fill="#3B444F" sketch:type="MSShapeGroup"></path>
+    </g>
+</svg>

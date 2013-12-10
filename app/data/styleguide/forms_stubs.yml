@@ -23,8 +23,9 @@ form_components:
   -
     :styleguide_title: "Date input"
     :id: "input_id"
+    :class: "input--datepicker"
     :name: "text_name"
-    :placeholder: "Placeholder"
+    :placeholder: "Choose Date"
     :data:
       :key: "value"
       :super: "man"
@@ -66,10 +67,11 @@ field_components:
 
   -
     :styleguide_title: "Date field"
-    :label: "Field label"
+    :label: "Choose Date"
     :id: "text_id"
+    :class: "icon--calendar icon--calendar--grey"
     :name: "text_name"
-    :placeholder: "Placeholder"
+    :placeholder: "dd/mm/yyyy"
     :data:
       :key: "value"
       :super: "man"

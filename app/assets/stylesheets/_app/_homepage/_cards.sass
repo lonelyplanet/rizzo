@@ -2,7 +2,7 @@
   margin-bottom: 60px
 
 .row--cards__inner
-  margin: 0 0 20px 10px 
+  margin: 0 0 20px 10px
   height: $mobile-card-grid-height
   +respond-to(wide-view)
     height: (2 * $card-grid-height + 10)
@@ -16,13 +16,9 @@
     width: 404px
     &:last-child
       margin-right: 0
-  
+
 .slider__slide
   background: $body-background
   +transition(left, 0.5, ease)
   .supports-3d &
-    -webkit-transition: -webkit-transform 0.5s ease
-    -moz-transition:    -moz-transform 0.5s ease
-    -ms-transition:     -ms-transform 0.5s ease
-    -o-transition:      -o-transform 0.5s ease
-    transition:         transform 0.5s ease
+    @include vendor-prefixed-transition(transform, 0.5)

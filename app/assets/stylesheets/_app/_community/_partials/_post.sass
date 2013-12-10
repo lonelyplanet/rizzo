@@ -6,14 +6,23 @@
 
 .post--single
   .card.pagination
-    border-radius: 0
     border-top: 1px solid $subdued
     margin-bottom: 0
+  .topic-header + .card.pagination
+    border-radius: 0
   .card__forum
     border-radius: 0 0 4px 4px
     border-top: 1px solid $subdued
   .card.results + .card.pagination
     margin-bottom: 12px
+
+.post
+  &.is-primary
+    background: $details-panel-bg
+  &.is-deleted
+    .post__content
+      color: $section--need-to-know
+      font-style: italic
 
 // -----------------------------------------------------------------------------
 // The meta information displayed at the bottom of a post.
@@ -41,27 +50,26 @@
   position: relative
   z-index: 2
 .post-stats__icon
+  +font-size(13)
+  color: $section--need-to-know
+  font-weight: bold
+  line-height: 1.5em
   // We need to offset the right margin so that the icons and text are centered within the post-stats section
   // whose parent container has 20px padding.
   margin-right: -20px
-  width: 60px
-.post-stats__icon
-  +font-size(13)
-  color: $feature-copy
-  font-weight: bold
-  line-height: 1.5em
   text-align: center
+  width: 60px
   
   &:before
     +font-size(35)
     display: block
     font-weight: normal
-  &.no-comments
+  &.has-none
     opacity: 0.4
     position: relative
     &:after
       +transform(rotateZ(40deg))
-      background: $feature-copy
+      background: $section--need-to-know
       content: ' '
       position: absolute
       height: 2px
@@ -69,31 +77,8 @@
       top: 11px
       width: 22px
 
-// -----------------------------------------------------------------------------
-// The anchor on the right of a post (with the chevron) that links to the post and appears when you hover on it.
-// -----------------------------------------------------------------------------
-.post-view-link
-  +font-size(40)
-  +transform(rotateY(-90deg))
-  +transform-origin(right)
-  @extend %chevron-right-before
-  @extend %transition--base
-  background: $details-panel-bg
-  border-radius: 0 4px 4px 0
-  color: $feature-copy
-  height: 100%
-  opacity: 0
-  position: absolute
-  right: 0
+.post__position
+  +font-size(60)
+  color: $subdued
+  display: block
   text-align: center
-  top: 0
-  width: 60px
-  z-index: 1 // So that the link sits underneat the .post-stats above.
-
-  .card:hover &
-    +transform(rotateY(0deg))
-    opacity: 1
-    text-decoration: none
-  &:before
-    position: relative
-    top: 45%

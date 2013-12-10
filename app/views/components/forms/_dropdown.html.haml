@@ -3,7 +3,7 @@
   %label.dropdown__value.js-select-overlay.icon--chevron-down--grey--after<
     = properties[:selected] || properties[:placeholder] || properties[:options].first[:title]
   
-  %select.dropdown__select.js-select{ id: properties[:id], name: properties[:name], data: properties[:data] }
+  %select.dropdown__select.js-select{ id: properties[:id], name: properties[:name], data: properties[:data], class: properties[:dropdown_class] }
     - if properties[:placeholder]
       %option{ value: ""}<
         = properties[:placeholder]

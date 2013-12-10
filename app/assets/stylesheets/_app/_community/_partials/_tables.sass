@@ -1,0 +1,51 @@
+.table
+  margin-bottom: 20px
+  width: 100%
+
+.table__row
+  border-top: 1px solid $body-background
+
+.table__row--head
+  background: $body-background-offset
+
+  th
+    text-align: left
+    vertical-align: bottom
+
+.table__row--body
+  &.odd
+    background: white
+  &.even
+    background: $details-panel-bg
+
+.table__cell
+  padding: 5px 3px
+
+.table--pagination
+  text-align: center
+
+.filter
+  display: table-cell
+  padding: 10px
+  vertical-align: bottom
+
+
+// dataTable specific elements
+.pagination
+  li
+    display: inline-block
+    margin: 0 3px
+
+#reports-queue_processing
+  background: #fff
+  bottom: 0
+  left: 0
+  padding: 20px
+  position: absolute
+  right: 0
+  text-align: center
+  top: 0
+  z-index: 5
+
+#process_multiple_reports
+  position: relative

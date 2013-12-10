@@ -1,21 +1,46 @@
-= render :layout => "components/cards/card", :locals => {card: card, card_class: "card--poi card--poi--#{card[:topic].downcase}" } do
+:ruby
 
-  = render :partial => '/components/cards/partials/things_to_do_card_tags', :locals => { :card => card }
-  - if card[:image_url]
-    %figure.card__hero
-      = safe_image_tag(card[:image_url], class: 'card__image')
-  .card__content
-    - if card[:category]
-      %span.card__context
-        = card[:category]
-    %h1.card__name.js-card-name
-      = card[:name]
-    - if card[:duration].present?
-      %p.card__tour-duration.copy--caption
-        = card[:duration]
-    %p.card__description
-      = card[:description]
-  - if card[:bookable?]
-    %footer.card__footer
-      %span.btn.btn--bookable.btn--full-width
-        Book now
+  css_classes = [
+
+    "card",
+    "card--poi",
+    "card--poi--#{card[:topic].downcase}",
+    "#{card[:image_url] ? 'card--small-image card--extended-content' : 'card--no-image'}",
+    "#{card[:double?] ? 'card--double card--full-image' : 'card--single'}"
+
+  ].join(" ")
+
+
+%article.js-card{class: css_classes}
+
+  %a.link--wrapper{href: card[:url]}
+
+    = render :partial => '/components/cards/partials/things_to_do_card_tags', :locals => { :card => card }
+
+    - if card[:image_url]
+      %figure.card__hero
+        = safe_image_tag(card[:image_url], class: 'card__image')
+
+    .card__content
+      - if card[:category]
+        %span.card__context
+          = card[:category]
+
+      %h1.card__name.js-card-name
+        = card[:name]
+
+      - if card[:show_place_name?]
+        %p.card__locale
+          = card[:place_name]
+
+      - if card[:duration].present?
+        %p.card__tour-duration.copy--caption
+          = card[:duration]
+
+      %p.card__description
+        = card[:description]
+
+    - if card[:bookable?]
+      %footer.card__footer
+        %span.btn.btn--bookable.btn--full-width
+          Book now

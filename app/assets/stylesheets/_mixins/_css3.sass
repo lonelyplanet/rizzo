@@ -38,11 +38,8 @@
   background:   $startColor
   @if $fallbackImg != false
     background: $startColor url($fallbackImg) $imgPosition repeat-x
-  background:    -webkit-linear-gradient($direction, $startColor, $endColor)
-  background:      -moz-linear-gradient($direction, $startColor, $endColor)
-  background:        -ms-linear-gradient($direction, $startColor, $endColor)
-  background:         -o-linear-gradient($direction, $startColor, $endColor)
-  background:           linear-gradient($direction, $startColor, $endColor)
+  background: -webkit-linear-gradient($direction, $startColor, $endColor)
+  background:         linear-gradient($direction, $startColor, $endColor)
 
 
 @mixin background-gradient-with-stops($direction: top, $startColor: #3C3C3C, $stop2: #999999 100%, $stop3: false, $stop4: false, $stop5: false, $stop6: false, $stop7: false, $stop8: false, $stop9: false, $stop10: false, $stop11: false, $stop12: false)
@@ -67,64 +64,42 @@
                     $params: $startColor 0%, $stop2, $stop3, $stop4, $stop5, $stop6, $stop7, $stop8, $stop9, $stop10, $stop11
                     @if $stop12 != false
                       $params: $startColor 0%, $stop2, $stop3, $stop4, $stop5, $stop6, $stop7, $stop8, $stop9, $stop10, $stop11, $stop12
-  background:   -webkit-linear-gradient($direction, $params)
-  background:      -moz-linear-gradient($direction, $params)
-  background:       -ms-linear-gradient($direction, $params)
-  background:        -o-linear-gradient($direction, $params)
-  background:           linear-gradient($direction, $params)
+  background: -webkit-linear-gradient($direction, $params)
+  background:         linear-gradient($direction, $params)
 
 
 @mixin box-sizing($sizing: border-box)
   -webkit-box-sizing: $sizing
   -moz-box-sizing:    $sizing
-  -ms-box-sizing:     $sizing
-  -o-box-sizing:      $sizing
   box-sizing:         $sizing
 
 
 // Z-index added below to ensure that child elements have their z-index honoured
 @mixin hardware-acceleration()
   -webkit-transform:  translateZ(0)
-  -moz-transform:     translateZ(0)
   -ms-transform:      translateZ(0)
-  -o-transform:       translateZ(0)
   transform:          translateZ(0)
   z-index:            1
 
 @mixin transition($property: all, $duration: 0.5, $style: ease)
   -webkit-transition: $property #{$duration + s} $style
-  -moz-transition:    $property #{$duration + s} $style
-  -ms-transition:     $property #{$duration + s} $style
-  -o-transition:      $property #{$duration + s} $style
   transition:         $property #{$duration + s} $style
 
 @mixin transition-delay($delay)
   -webkit-transition-delay: #{$delay + s}
-  -moz-transition-delay:    #{$delay + s}
-  -ms-transition-delay:     #{$delay + s}
-  -o-transition-delay:      #{$delay + s}
   transition-delay:         #{$delay + s}
 
 @mixin multiple-transitions($transition1, $transition2: null, $transition3: null, $transition4: null, $transition5: null)
   -webkit-transition: $transition1, $transition2, $transition3, $transition4, $transition5
-  -moz-transition:    $transition1, $transition2, $transition3, $transition4, $transition5
-  -ms-transition:     $transition1, $transition2, $transition3, $transition4, $transition5
-  -o-transition:      $transition1, $transition2, $transition3, $transition4, $transition5
   transition:         $transition1, $transition2, $transition3, $transition4, $transition5
 
 // For when you need to animate a property that is still prefixed
 @mixin vendor-prefixed-transition($property: all, $duration: 0.5, $style: ease)
   -webkit-transition: -webkit-#{$property} #{$duration + s} $style
-  -moz-transition:    -moz-#{$property} #{$duration + s} $style
-  -ms-transition:     -ms-#{$property} #{$duration + s} $style
-  -o-transition:      -o-#{$property} #{$duration + s} $style
   transition:         $property #{$duration + s} $style
 
 @mixin filter($filter1, $filter2: null, $filter3: null, $filter4: null, $filter5: null)
   -webkit-filter: ($filter1 $filter2 $filter3 $filter4 $filter5)
-  -moz-filter:    ($filter1 $filter2 $filter3 $filter4 $filter5)
-  -ms-filter:     ($filter1 $filter2 $filter3 $filter4 $filter5)
-  -o-filter:      ($filter1 $filter2 $filter3 $filter4 $filter5)
   filter:         ($filter1 $filter2 $filter3 $filter4 $filter5)
 
 @mixin text-shadow($x: 0, $y: 1, $blur: 0, $color: rgba(255,255,255,.8))
@@ -136,6 +111,7 @@
 @mixin hyphens($type:auto)
   -webkit-hyphens: $type
   -moz-hyphens:    $type
+  -ms-hyphens:     $type
   hyphens:         $type
 
 @mixin word-break()
@@ -150,22 +126,18 @@
 @mixin not-selectable()
   -webkit-touch-callout: none
   -webkit-user-select: none
-  -khtml-user-select: none
   -moz-user-select: none
   -ms-user-select: none
   user-select: none
 
 @mixin transform($transform)
   -webkit-transform: $transform
-  -moz-transform:    $transform
   -ms-transform:     $transform
-  -o-transform:      $transform
   transform:         $transform
+
 @mixin transform-origin($origin)
   -webkit-transform-origin: $origin
-  -moz-transform-origin:    $origin
   -ms-transform-origin:     $origin
-  -o-transform-origin:      $origin
   transform-origin:         $origin
 
 @mixin perspective($perspective:600)
@@ -176,33 +148,18 @@
 
 @mixin backface-visibility($state:hidden)
   -webkit-backface-visibility: $state
-  -moz-backface-visibility:    $state
-  -ms-backface-visibility:     $state
-  -o-backface-visibility:      $state
   backface-visibility:         $state
 
 @mixin animation($animation)
   -webkit-animation: $animation
-  -moz-animation: $animation
-  -ms-animation: $animation
-  -o-animation: $animation
   animation: $animation
 
 @mixin animation-delay($delay)
   -webkit-animation-delay: $delay
-  -moz-animation-delay: $delay
-  -ms-animation-delay: $delay
-  -o-animation-delay: $delay
   animation-delay: $delay
 
 @mixin keyframes($animation-name)
   @-webkit-keyframes #{$animation-name}
-    @content
-  @-moz-keyframes #{$animation-name}
-    @content
-  @-ms-keyframes #{$animation-name}
-    @content
-  @-o-keyframes #{$animation-name}
     @content
   @keyframes #{$animation-name}
     @content

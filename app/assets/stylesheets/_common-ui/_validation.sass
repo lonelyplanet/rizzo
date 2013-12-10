@@ -18,7 +18,7 @@ $error-text-color         : #fc1c1c !default
 .err-heading
   color: $error-text-color !important
 
-.err-list 
+.err-list
   li
     margin-bottom: 5px
     &:before
@@ -29,12 +29,8 @@ $error-text-color         : #fc1c1c !default
 .err
   font-weight: bold
   color: $error-text-color !important
-  // The placeholder lines below are duplicated because together they break
-  &::-webkit-input-placeholder
-    color: $error-text-color
-  &:-moz-placeholder
-    color: $error-text-color
-  &:-ms-input-placeholder 
+
+  @include placeholder
     color: $error-text-color
 
 // -----------------------------------------------------------------------------
@@ -54,7 +50,7 @@ input.err
 
 input.success
   background: url('../img/tick.png') 97% no-repeat
-  
+
 // For lp_select
 .overlay.err
   background: url('../img/cross.png') 88% no-repeat

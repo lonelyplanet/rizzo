@@ -122,7 +122,7 @@ define ['jquery', 'gpt'], ->
         setTimeout ->
           thisCard = $(adEl).closest('.js-card-ad').addClass 'ad-doubleMpu'
           grid = $(adEl).closest('.js-stack')
-          cardsPerRow = Math.floor grid.width() / (grid.find('.js-single').width())
+          cardsPerRow = Math.floor grid.width() / (grid.find('.js-card.card--single').width())
           cards = $('.js-card')
           thisCardIndex = cards.index(thisCard)
 

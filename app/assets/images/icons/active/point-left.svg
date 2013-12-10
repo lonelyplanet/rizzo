@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="32px" height="232px" viewBox="0 0 32 232" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <title>point-left</title>
+    <description>Created with Sketch (http://www.bohemiancoding.com/sketch)</description>
+    <defs></defs>
+    <g id="Graphics" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <path d="M14,210.5 C14,210.5 17.822,221.5 26.5,221.5 L1.5,221.5 C9.486,221.5 14,210.5 14,210.5 Z M14,210.5" id="point-left--green" fill="#15C98D" sketch:type="MSShapeGroup" transform="translate(14.000000, 216.000000) rotate(-90.000000) translate(-14.000000, -216.000000) "></path>
+        <path d="M14,170.5 C14,170.5 17.822,181.5 26.5,181.5 L1.5,181.5 C9.486,181.5 14,170.5 14,170.5 Z M14,170.5" id="point-left--lp-blue" fill="#1D4F8D" sketch:type="MSShapeGroup" transform="translate(14.000000, 176.000000) rotate(-90.000000) translate(-14.000000, -176.000000) "></path>
+        <path d="M14,130.5 C14,130.5 17.822,141.5 26.5,141.5 L1.5,141.5 C9.486,141.5 14,130.5 14,130.5 Z M14,130.5" id="point-left--white" fill="#FFFFFF" sketch:type="MSShapeGroup" transform="translate(14.000000, 136.000000) rotate(-90.000000) translate(-14.000000, -136.000000) "></path>
+        <path d="M14,90.5 C14,90.5 17.822,101.5 26.5,101.5 L1.5,101.5 C9.486,101.5 14,90.5 14,90.5 Z M14,90.5" id="point-left--subdued-grey" fill="#E5EDF5" sketch:type="MSShapeGroup" transform="translate(14.000000, 96.000000) rotate(-90.000000) translate(-14.000000, -96.000000) "></path>
+        <path d="M14,50.5 C14,50.5 17.822,61.5 26.5,61.5 L1.5,61.5 C9.486,61.5 14,50.5 14,50.5 Z M14,50.5" id="point-left--body-grey" fill="#67737B" sketch:type="MSShapeGroup" transform="translate(14.000000, 56.000000) rotate(-90.000000) translate(-14.000000, -56.000000) "></path>
+        <path d="M14,10.5 C14,10.5 17.822,21.5 26.5,21.5 L1.5,21.5 C9.486,21.5 14,10.5 14,10.5 Z M14,10.5" id="point-left--title-grey" fill="#3A434E" sketch:type="MSShapeGroup" transform="translate(14.000000, 16.000000) rotate(-90.000000) translate(-14.000000, -16.000000) "></path>
+    </g>
+</svg>

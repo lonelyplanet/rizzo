@@ -1,7 +1,23 @@
-= render :layout => "components/cards/card", :locals => {card: card, card_class: "card--link card--link--#{card[:title].downcase}", :filter => card[:filter] } do
-  
-  - if card[:count]
-    %span.card__item-count
-      = card[:count]
+:ruby
 
-  = render partial: "components/cards/partials/card_content", locals: {card: card}
+  css_classes = [
+
+    "card",
+    "card--link",
+    "card--link--#{card[:title].downcase}",
+    "card--extended-content--half",
+    "#{card[:filter] ? 'js-stack-card-filter' : ''}",
+    "#{card[:double?] ? 'card--double card--full-image' : 'card--single'}"
+
+  ].join(" ")
+
+
+%article.js-card{class: css_classes, data: { filter: card[:filter] } }
+  
+  %a.link--wrapper{href: card[:url]}
+
+    - if card[:count]
+      %span.card__item-count
+        = card[:count]
+
+    = render partial: "components/cards/partials/card_content", locals: {card: card}

@@ -1,6 +1,6 @@
 $forum-padding: 20px
 
-.card__forum
+.card--forum
   @extend %rounded-corners
   padding: $forum-padding
 
@@ -18,26 +18,29 @@ $forum-padding: 20px
   .dropdown__select
     min-width: 195px
 
-.card__forum--single
+.card--forum--single
   padding: 12px $forum-padding
 
   .dropdown
     margin-top: -6px
     top: 2px
 
-.card__forum__title,
-.card__forum__row-container,
-.card__forum__row
-  padding: 0 $forum-padding
+.card--forum__title,
+.card--forum__row,
+.card--forum__row-container
+  padding: 13px $forum-padding
   margin: 0 -#{$forum-padding}
 
-.card__forum__title
+.card--forum__title
   padding-bottom: 13px
 
-.card__forum__row-container
+  &:first-child
+    padding-top: 0
+
+.card--forum__row-container
   border-top: 1px solid $subdued
 
-.card__forum__row
+.card--forum__row
   @extend %clearfix
   border-top: 1px solid $body-background
   display: block
@@ -45,8 +48,9 @@ $forum-padding: 20px
   
   &:first-child
     border-top: 0
+    padding-top: 0
 
-.card__forum__row--title
+.card--forum__row--title
   background: $details-panel-bg
   padding: 10px $forum-padding
   .copy--h5
@@ -54,3 +58,16 @@ $forum-padding: 20px
 
   &:first-child
     border-top: none
+
+// refactor required
+.card--moderation
+  @extend %rounded-corners
+
+.card--moderation__title
+  padding: 20px
+
+.card--moderation__title--filters
+  padding: 10px 20px
+
+.card--moderation__row
+  border-top: 1px solid $body-background

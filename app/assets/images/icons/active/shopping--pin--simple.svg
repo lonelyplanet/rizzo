@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="24px" height="32px" viewBox="0 0 24 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <title>shopping--pin--simple</title>
+    <description>Created with Sketch (http://www.bohemiancoding.com/sketch)</description>
+    <defs></defs>
+    <g id="Points-of-interest" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <path d="M11.9989697,-1.42108547e-14 C18.6279729,-1.42108547e-14 24,4.654 24,11.648 C24,18.482 17.9459088,21.417 14.7200137,25.788 C12.083455,29.357 11.9989697,32 11.9989697,32 C11.9989697,32 11.9793938,29.344 9.27895595,25.788 C5.96033313,21.417 0,18.684 0,11.648 C0,4.652 5.37305744,-1.42108547e-14 11.9989697,-1.42108547e-14 M11.999,7.681 C9.7,7.681 7.839,9.542 7.839,11.841 C7.839,14.136 9.7,16 11.999,16 C14.293,16 16.161,14.136 16.161,11.841 C16.161,9.542 14.293,7.681 11.999,7.681 L11.999,7.681 Z M11.999,7.681" id="point-pin--shopping" fill="#FF708E" sketch:type="MSShapeGroup"></path>
+    </g>
+</svg>

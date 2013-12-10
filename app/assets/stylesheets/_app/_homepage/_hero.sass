@@ -117,11 +117,14 @@
   &:after
     @extend %empty-abs-generated-content
     top: 100%
-    right: 140px
+    right: 167px
+  +respond-to(1250)
+    &:after
+      right: 70px
 
 .speech-bubble--scroll
   @if $is-ie == false
-    padding: 15px
+    margin-bottom: 20px
     overflow-y: scroll
     -webkit-overflow-scrolling: touch
     height: 115px
@@ -138,6 +141,10 @@
   right: 20px
   min-width: 180px
   z-index: 2
+  display: none
+  +respond-to(medium-view)
+    display: block
+  
   .autocomplete__active &
     +transform(translateY(100px))
 
@@ -209,13 +216,11 @@
       height: 75px
 
 .hero__author__details
-  display: none
+  display: inline-block
   vertical-align: top
   text-align: left
   margin-left: 10px
   margin-top: 5px
-  +respond-to(medium-view)
-    display: inline-block
   +respond-to(1250)
     display: block
 
@@ -235,13 +240,9 @@
 
 
 .hero__author__story--buttons
-  padding: 15px
-  +respond-to(medium-view)
-    padding: 0
   .btn--blue
     display: inline-block
-    +respond-to(medium-view)
-      display: block
+    margin-right: 5px
   .btn--green
     padding-left: 15px
     padding-right: 15px
@@ -257,6 +258,7 @@
   padding: 0
   left: auto
   margin: 0 20px
+  padding: 15px
 
   +respond-to(medium-view)
     left: auto
@@ -348,7 +350,10 @@
 
 .hero__panel--story
   top: 100%
-
+  color: $body-copy
+  display: none
+  +respond-to(medium-view)
+    display: block
 
 // Toggle between the search and photo story panels
 #hero-swipe:checked
@@ -357,7 +362,9 @@
   & ~ .hero__panel--story
     top: 0
     .hero__author__story
-      bottom: 155px
+      bottom: 95px
+      +respond-to(1250)
+        bottom: 175px
   & ~ .hero__overlay
     background-color: rgba(0,0,0,0)
 
@@ -365,7 +372,9 @@
   .hero__panel--story
     top: 0
     .hero__author__story
-      bottom: 155px
+      bottom: 95px
+      +respond-to(1250)
+        bottom: 175px
 
 
 // hero autocomplete
