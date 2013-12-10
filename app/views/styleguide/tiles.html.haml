@@ -1,4 +1,3 @@
-- require "ostruct"
 - tiles = YAML.load(File.read(File.expand_path('../../../data/styleguide/tiles_stubs.yml', __FILE__)))
 
 .card.styleguide-intro.copy--body.context--content
@@ -6,13 +5,13 @@
   %p
     Tiles should be included as components where possible, and always in rails apps. You can include the ui_component includes as detailed below.
 
-- tiles['basic'].each_with_index do |tile, i|
-  = sg_component("tiles/#{tile[:styleguide_title].downcase.split(' ').join('_')}", properties: tile, original_stub: tile, count: i)
+- tiles['basic'].each do |tile|
+  = sg_component("tiles/#{tile[:styleguide_title].downcase.split(' ').join('_')}", properties: tile)
 
 .card.styleguide-intro.copy--body.context--content
   %h2.copy--h1 Sashes
   %p
     Tiles can optionally display a 'sash' to highlight and categorise the tile by section.
 
-- tiles['sashes'].each_with_index do |tile, i|
-  = sg_component("tiles/tile", properties: tile, original_stub: tile, count: i)
+- ['sight', 'activity', 'tour', 'hotel', 'restaurant', 'shopping', 'festival', 'entertainment', 'article', 'need-to-know', 'transport'].each do |sash|
+  = sg_component("tiles/tile", properties: tiles['sashes'].merge(:sash => sash, :styleguide_title => "Tile with #{sash} sash"))
