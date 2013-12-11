@@ -65,6 +65,29 @@
       .tile__cover__title
         +transform(translateY(0))
 
+.no-js .tile--story
+
+  .tile__cover
+    height: auto
+
+  .tile__cover__content
+    position: static
+
+    &:after
+      content: none
+
+  .tile__cover__content,
+  .tile__cover__title
+    +transform(none)
+
+  .tile__cover__fragment
+    display: block
+
+  .tile__link:hover
+
+    .tile__cover
+      background: none
+
 // -----------------------------------------------------------------------------
 // Menu tile
 // -----------------------------------------------------------------------------
