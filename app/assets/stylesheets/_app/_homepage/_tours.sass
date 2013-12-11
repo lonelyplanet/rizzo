@@ -46,6 +46,28 @@
     &:checked + label
       font-weight: bold
 
+.label--radio
+  position: relative
+  cursor: pointer
+  display: block
+  padding-left: 20px
+  &:before
+    @extend %empty-abs-generated-content
+    width: 11px
+    height: 11px
+    border: 1px solid #d9e3e6
+    top: 3px
+    left: 0
+    border-radius: 10px
+
+  &.is-active
+    font-weight: bold
+    color: $body-copy
+    &:before
+      width: 6px
+      height: 6px
+      border: 4px solid $teal
+
 // Toggle between sightseeing/adventure tours
 .js-row-toggle
   display: none

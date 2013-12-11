@@ -14,8 +14,8 @@ define ['jquery'], ($)->
       @msg = "<div class='row row--fluid #{@args.style}'><div class='wv--split--left cookie-msg'>#{@args.content}</div><div class='wv--split--right cookie-buttons'>#{@userOptions(@args.userOptions)}</div></div>"
       
     userOptions: (options, output="")->
-      output += "<a class='btn btn--green js-close-msg'>No worries</a>" unless options.close is false
-      output += "<a class='btn btn--grey js-more-msg' href='http://www.lonelyplanet.com/legal/cookies/'>Learn more</a>" unless options.more is false
+      output += "<a class='btn btn--slim btn--green js-close-msg'>No worries</a>" unless options.close is false
+      output += "<a class='btn btn--slim btn--grey js-more-msg' href='http://www.lonelyplanet.com/legal/cookies/'>Learn more</a>" unless options.more is false
 
     add: (el) ->
       $(@options.target).prepend(el)

@@ -119,11 +119,14 @@
   @extend %rounded-corners
   &:after
     @extend %empty-abs-generated-content
-    top: 100%
-    right: 167px
+    right: 162px
+    width: 32px
+    height: 32px
+    bottom: -20px
+
   +respond-to(1250)
     &:after
-      right: 70px
+      right: 65px
 
 .speech-bubble--scroll
   @if $is-ie == false
@@ -419,7 +422,6 @@
       background-size: 100%
       width: 25px
       height: 100%
-      background-position: center
       margin-left: 8px
 
   .autocomplete__current
@@ -453,6 +455,6 @@
 
 .hero__search__icon
   @extend %image-replacement
-  width: 24px
-  height: 24px  
-  opacity: 0.1
+  width: 20px
+  height: 20px
+  opacity: 0.2
