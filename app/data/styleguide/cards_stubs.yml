@@ -9,11 +9,33 @@ cards:
 
   -
     :styleguide_title: "Collection Card"
+    :double?: true
+    :kind: "collection"
+    :slug: "#"
+    :title: "Four days in Argentina"
+    :image_url: 'http://assets.staticlp.com/assets/stubs/itinerary-full.jpg'
+    :image_license: 'by-nd'
+    :image_attribution_link: "http://google.com"
+    :image_attribution: "Jack took this photo"
+
+  -
+    :styleguide_title: "Collection Card"
     :double?: false
     :kind: "collection"
     :slug: "#"
     :title: "Top picks for Iceland"
     :image_url: 'http://assets.staticlp.com/assets/stubs/collection.jpg'
+
+  -
+    :styleguide_title: "Collection Card"
+    :double?: false
+    :kind: "collection"
+    :slug: "#"
+    :title: "Top picks for Iceland"
+    :image_url: 'http://assets.staticlp.com/assets/stubs/collection.jpg'
+    :image_license: 'by-sa'
+    :image_attribution_link: "http://google.com"
+    :image_attribution: "Jack took this photo"
 
   -
     :styleguide_title: "Article Card"
