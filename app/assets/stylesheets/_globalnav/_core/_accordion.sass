@@ -72,7 +72,6 @@
 
 .accordion__title
   position: relative
-  @extend %chevron-down-after
   cursor: pointer
   display: block
   padding-right: 30px
@@ -84,7 +83,9 @@
     pointer-events: none
     position: absolute
     right: 12px
-    top: 17px
+    top: 13px
+    width: 13px
+    height: 13px
   .responsive &
     &:after
       right: 17px

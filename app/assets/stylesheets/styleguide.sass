@@ -58,7 +58,6 @@ pre.styleguide.is-open
 .isnt-approximate
   display: none
 .is-exact
-  @extend %tick-icon-after
   position: relative
   &:after
     color: white
@@ -171,7 +170,7 @@ pre.styleguide.is-open
 
   > a:first-child
     @extend %transition--base
-    @extend %local-marker-before // For lack of a link icon currently.
+    background: blue // Temp -- add link svg class
     display: block
     padding: 0.5em
     position: absolute
