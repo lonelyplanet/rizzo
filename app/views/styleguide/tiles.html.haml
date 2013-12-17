@@ -6,7 +6,7 @@
     Tiles should be included as components where possible, and always in rails apps. You can include the ui_component includes as detailed below.
 
 - tiles['basic'].each do |tile|
-  = sg_component("tiles/#{tile[:styleguide_title].downcase.split(' ').join('_')}", properties: tile)
+  = sg_component("tile", properties: tile)
 
 .card.styleguide-intro.copy--body.context--content
   %h2.copy--h1 Sashes
@@ -14,4 +14,4 @@
     Tiles can optionally display a 'sash' to highlight and categorise the tile by section.
 
 - ['sight', 'activity', 'tour', 'hotel', 'restaurant', 'shopping', 'festival', 'entertainment', 'article', 'need-to-know', 'transport'].each do |sash|
-  = sg_component("tiles/tile", properties: tiles['sashes'].merge(:sash => sash, :styleguide_title => "Tile with #{sash} sash"))
+  = sg_component("tile", properties: tiles['sashes'].merge(:sash => sash, :styleguide_title => "Tile with #{sash} sash"))

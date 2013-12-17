@@ -9,6 +9,7 @@
   overflow: hidden
   color: white
   background: $placeholder-copy
+  +hardware-acceleration()
 
 .tile__link
   text-decoration: none
@@ -38,7 +39,6 @@
     @else
       +background-gradient(rgba(0, 0, 0, .5), transparent, false, false, to top)
 
-
 .tile__media--img img,
 .tile__media--video video
   max-width: 100%
@@ -64,6 +64,7 @@
   +font-size(16)
   line-height: 1
   text-transform: uppercase
+  +vendor-prefixed-transition(transform, .35, ease-out)
 
   ~ .tile__cover__fragment
     margin: 6px 0 0
@@ -72,3 +73,9 @@
 
   .tile__media
     display: none
+
+.tile__link:hover,
+.tile__link.is-hover
+
+  .tile__cover__title
+    +transform(translateY(-10px))

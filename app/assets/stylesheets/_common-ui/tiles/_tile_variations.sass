@@ -1,10 +1,8 @@
 // -----------------------------------------------------------------------------
-// Story tile
+// Extended tile
 // -----------------------------------------------------------------------------
 
-.tile--story
-  @if not $is-ie
-    +hardware-acceleration()
+.tile--extended
 
   .tile__cover
     height: 100%
@@ -44,7 +42,6 @@
     .tile__cover__title
       -webkit-transform: translateY(-webkit-calc(-100% - 20px)) // Prefixed calc() for Safari 6
       +transform(translateY(calc(-100% - 20px))) // Add 20px to clear padding on .tile__cover__content
-      +vendor-prefixed-transition(transform, .35, ease-out)
 
   .tile__link:hover
 
@@ -87,24 +84,3 @@
 
     .tile__cover
       background: none
-
-// -----------------------------------------------------------------------------
-// Menu tile
-// -----------------------------------------------------------------------------
-
-.tile--menu
-
-  .tile__cover
-    top: auto
-    bottom: 0
-    height: auto
-
-  .tile__cover__fragment
-    list-style: none
-
-    a
-      display: block
-      padding: 2px 0
-      text-transform: uppercase
-      text-decoration: none
-      color: inherit

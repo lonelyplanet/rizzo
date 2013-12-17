@@ -1,4 +1,5 @@
-%article.tile
+- variation = properties[:cover_content] ? 'extended' : 'default'
+%article{ class: "tile tile--#{variation}" }
   %a.tile__link{ href: properties[:link_url] }
     .tile__wrapper
       .tile__media.tile__media--img
