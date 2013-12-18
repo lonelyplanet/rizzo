@@ -294,17 +294,17 @@ html
 @for $i from 1 through length($best-in-travel--cities)
   $city: nth($best-in-travel--cities, $i)
   .top-ten__list--city--#{$i}
-    background-image: url(#{image_path('destinations/best-in-travel/hero/#{$city}-640.jpg')})
+    background-image: url(#{image_path('best-in-travel/hero/#{$city}-640.jpg')})
 
 @for $i from 1 through length($best-in-travel--countries)
   $country: nth($best-in-travel--countries, $i)
   .top-ten__list--country--#{$i}
-    background-image: url(#{image_path('destinations/best-in-travel/hero/#{$country}-640.jpg')})
+    background-image: url(#{image_path('best-in-travel/hero/#{$country}-640.jpg')})
 
 @for $i from 1 through length($best-in-travel--regions)
   $region: nth($best-in-travel--regions, $i)
   .top-ten__list--region--#{$i}
-    background-image: url(#{image_path('destinations/best-in-travel/hero/#{$region}-640.jpg')})
+    background-image: url(#{image_path('best-in-travel/hero/#{$region}-640.jpg')})
 
 .top-ten__list__title
   @if $is-ie == false
@@ -387,9 +387,9 @@ html
     position: absolute
     bottom: 20px
     right: 20px
-    background-image: url(#{image_path('destinations/best-in-travel/best-in-travel-where-would-you-go-cta.png')})
+    background-image: url(#{image_path('best-in-travel/best-in-travel-where-would-you-go-cta.png')})
     +retinafy()
-      background-image: url(#{image_path('destinations/best-in-travel/best-in-travel-where-would-you-go-cta-2x.png')})
+      background-image: url(#{image_path('best-in-travel/best-in-travel-where-would-you-go-cta-2x.png')})
       background-size: cover
 
 .carousel

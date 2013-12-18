@@ -82,17 +82,17 @@
 @for $i from 1 through length($best-in-travel--cities)
   $city: nth($best-in-travel--cities, $i)
   .content-pane__inner--city--#{$i}
-    background-image: url(#{image_path('destinations/best-in-travel/hero/#{$city}-1600.jpg')})
+    background-image: url(#{image_path('best-in-travel/hero/#{$city}-1600.jpg')})
 
 @for $i from 1 through length($best-in-travel--countries)
   $country: nth($best-in-travel--countries, $i)
   .content-pane__inner--country--#{$i}
-    background-image: url(#{image_path('destinations/best-in-travel/hero/#{$country}-1600.jpg')})
+    background-image: url(#{image_path('best-in-travel/hero/#{$country}-1600.jpg')})
 
 @for $i from 1 through length($best-in-travel--regions)
   $region: nth($best-in-travel--regions, $i)
   .content-pane__inner--region--#{$i}
-    background-image: url(#{image_path('destinations/best-in-travel/hero/#{$region}-1600.jpg')})
+    background-image: url(#{image_path('best-in-travel/hero/#{$region}-1600.jpg')})
 
 .content-pane__legibility-mask
   +background-gradient($startColor: rgba(20,43,68,0.7), $endColor: rgba(20,43,68,0), $fallbackImg: false, $imgPosition: 0 0, $direction: bottom)
@@ -123,7 +123,7 @@
   width: 20%
   .buffer-comp
     padding-top: 50px
-    background: url(#{image_path('destinations/best-in-travel/where-would-you-go.png')}) no-repeat center 0
+    background: url(#{image_path('best-in-travel/where-would-you-go.png')}) no-repeat center 0
   .buffer
     height: 112px
 
@@ -175,15 +175,15 @@
 
 .carousel--cities
   .content-pane__rank
-    background-image: url(#{image_path('destinations/best-in-travel/tag-red.png')})
+    background-image: url(#{image_path('best-in-travel/tag-red.png')})
 
 .carousel--countries
   .content-pane__rank
-    background-image: url(#{image_path('destinations/best-in-travel/tag-pink.png')})
+    background-image: url(#{image_path('best-in-travel/tag-pink.png')})
 
 .carousel--regions
   .content-pane__rank
-    background-image: url(#{image_path('destinations/best-in-travel/tag-green.png')})
+    background-image: url(#{image_path('best-in-travel/tag-green.png')})
 
 .content-pane__rank
   +font-size(18)
@@ -252,7 +252,7 @@
     .content-pane__inner--#{$key}--1
       &:before
         @extend %empty-abs-generated-content
-        background-image: url(#{image_path('destinations/best-in-travel/ribbon-sprite.png')})
+        background-image: url(#{image_path('best-in-travel/ribbon-sprite.png')})
         background-repeat: no-repeat
         background-position: 0 #{$paneValue}
         top: -3px
@@ -263,7 +263,7 @@
     .top-ten__list--#{$key}--1
       .top-ten__list__item__link:before
         @extend %empty-abs-generated-content
-        background-image: url(#{image_path('destinations/best-in-travel/ribbon-sprite.png')})
+        background-image: url(#{image_path('best-in-travel/ribbon-sprite.png')})
         background-repeat: no-repeat
         background-position: 0 #{$navValue}
         background-size: cover
