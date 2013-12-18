@@ -23,14 +23,14 @@ require ['jquery', 'public/assets/javascripts/lib/utils/hover_touch.js'], ($, Ho
         events = $._data($fixture.get(0), "events")
         expect(events).toBe(undefined)
 
-    describe '.hover()', ->
+    describe '.activate()', ->
 
       it 'adds the active class to element and cancels the event on first touch', ->
 
         e = $.Event('touchstart')
         $fixture = $('<div>')
 
-        hover_touch.hover(e, $fixture)
+        hover_touch.activate(e, $fixture)
 
         expect(e.isDefaultPrevented()).toBe(true)
         expect($fixture.hasClass(hover_touch.config.className)).toBe(true)
@@ -43,7 +43,7 @@ require ['jquery', 'public/assets/javascripts/lib/utils/hover_touch.js'], ($, Ho
 
         hover_touch.$current = $fixture_old.addClass(hover_touch.config.className)
 
-        hover_touch.hover(e, $fixture_new)
+        hover_touch.activate(e, $fixture_new)
 
         expect($fixture_old.hasClass(hover_touch.config.className)).toBe(false)
 
@@ -52,6 +52,6 @@ require ['jquery', 'public/assets/javascripts/lib/utils/hover_touch.js'], ($, Ho
         e = $.Event('touchstart')
         $fixture = $('<div>').addClass(hover_touch.config.className)
 
-        hover_touch.hover(e, $fixture)
+        hover_touch.activate(e, $fixture)
 
         expect(e.isDefaultPrevented()).toBe(false)

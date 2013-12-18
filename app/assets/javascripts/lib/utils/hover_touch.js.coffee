@@ -10,8 +10,8 @@ define ['jquery'], ($) ->
 
   defaults =
     scope:      window
-    selector:   'js-touch-hover'
-    className:  'is-hover'
+    selector:   '.js-hover-touch'
+    className:  'is-active'
 
   class HoverTouch
 
@@ -23,18 +23,17 @@ define ['jquery'], ($) ->
 
     init: ->
       @$scope = $(@config.scope).on('touchstart.hovertouch', @config.selector, (e) =>
-        @hover(e, $(this))
+        @activate(e, $(this))
+        return
       )
 
     teardown: ->
       @$scope.off('.hovertouch')
       delete @$scope
 
-    hover: (e, $target) ->
+    activate: (e, $target) ->
 
-      if $target.hasClass(@config.className)
-        return
-      else
+      unless $target.hasClass(@config.className)
         e.preventDefault()
 
         if @$current
