@@ -1,4 +1,4 @@
-- variation = properties[:cover_content] ? 'extended' : 'default'
+- variation = properties[:description] ? 'extended' : 'default'
 %article{ class: "tile tile--#{variation}" }
   %a.tile__link{ href: properties[:link_url] }
     .tile__wrapper
@@ -6,11 +6,13 @@
         = safe_image_tag(properties[:image_src], alt: properties[:image_alt], lazyload: properties[:lazyload])
       .tile__cover
         .tile__cover__content
-          %h1.tile__cover__title
-            = properties[:cover_title]
-          - if properties[:cover_content]
-            %p.tile__cover__fragment
-              = properties[:cover_content]
-      - if properties[:sash]
-        %span{ class: "tile__sash tile__sash--#{properties[:sash]}" }
-          = properties[:sash]
+
+          .tile__cover__heading
+            - if properties[:context]
+              %span.tile__context
+                = properties[:context]
+            %h1.tile__title
+              = properties[:title]
+          - if properties[:description]
+            %p.tile__description
+              = properties[:description]

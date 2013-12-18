@@ -35,11 +35,11 @@
         +background-gradient(#000, transparent, false, false, to top)
 
   @if $is-ie
-    .tile__cover__fragment
+    .tile__description
       display: none
 
   @else
-    .tile__cover__title
+    .tile__cover__heading
       -webkit-transform: translateY(-webkit-calc(-100% - 20px)) // Prefixed calc() for Safari 6
       +transform(translateY(calc(-100% - 20px))) // Add 20px to clear padding on .tile__cover__content
 
@@ -59,7 +59,7 @@
         display: block
     @else
       .tile__cover__content,
-      .tile__cover__title
+      .tile__cover__heading
         +transform(translateY(0))
 
 .no-js .tile--story
@@ -74,10 +74,10 @@
       content: none
 
   .tile__cover__content,
-  .tile__cover__title
+  .tile__title
     +transform(none)
 
-  .tile__cover__fragment
+  .tile__description
     display: block
 
   .tile__link:hover

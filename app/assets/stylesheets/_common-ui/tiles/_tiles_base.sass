@@ -37,7 +37,7 @@
     @if $is-ie
       -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#FF000000, endColorstr=#00000000)"
     @else
-      +background-gradient(rgba(0, 0, 0, .5), transparent, false, false, to top)
+      +background-gradient(rgba(0, 0, 0, .65), transparent, false, false, to top)
 
 .tile__media--img img,
 .tile__media--video video
@@ -54,20 +54,29 @@
 .tile__cover__content
   +box-sizing(border-box)
   padding: 10px 5%
-  font-size: 16px
   color: white
 
-.tile__cover__title
+.tile__context
+  display: block
+  margin-bottom: 2px
+  font-style: italic
+  +font-size(13)
+
+.tile__cover__heading
+  padding: 0 0 6px
+  +vendor-prefixed-transition(transform, .35, ease-out)
+
+.tile__title
   width: 85%
   margin: 0
   font-weight: 700
   +font-size(16)
   line-height: 1
   text-transform: uppercase
-  +vendor-prefixed-transition(transform, .35, ease-out)
 
-  ~ .tile__cover__fragment
-    margin: 6px 0 0
+.tile__description
+  margin: 0
+  +font-size(16)
 
 .no-js
 
@@ -77,5 +86,5 @@
 .tile__link:hover,
 .tile__link.is-hover
 
-  .tile__cover__title
+  .tile__cover__heading
     +transform(translateY(-10px))
