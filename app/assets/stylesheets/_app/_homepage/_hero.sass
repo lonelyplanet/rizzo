@@ -12,14 +12,14 @@
   background-repeat: no-repeat
   background-size: cover
   .enhanced &, .ie9 &
-    +responsive-image('homepage/hero/hero', 'jpg')
+    +responsive-image('hero/hero', 'jpg')
   .ie7 &, .ie8 &
-    background-image: url(#{image_path('homepage/hero/hero-1600.jpg')})
+    background-image: url(#{image_path('hero/hero-1600.jpg')})
   .slothified &
-    background-image: url(#{image_path('homepage/rainforest.jpg')})
+    background-image: url(#{image_path('rainforest.jpg')})
     &:after
       @extend %empty-abs-generated-content
-      background-image: url("#{image_path('homepage/sloth.png')}")
+      background-image: url("#{image_path('sloth.png')}")
       background-repeat: no-repeat
       width: 100%
       height: 270px
@@ -58,7 +58,7 @@
     overflow: visible
     &:after
       @extend %empty-abs-generated-content
-      background-image: url("#{image_path('homepage/sloth2.png')}")
+      background-image: url("#{image_path('sloth2.png')}")
       background-repeat: no-repeat
       width: 100%
       height: 270px
@@ -193,9 +193,9 @@
   margin-right: 10px
   background-size: 100%
   background-repeat: no-repeat
-  background-image: url("#{image_path('homepage/beautifulworld/book.png')}")
+  background-image: url("#{image_path('beautifulworld/book.png')}")
   +retinafy()
-    background-image: url("#{image_path('homepage/beautifulworld/book@2x.png')}")
+    background-image: url("#{image_path('beautifulworld/book@2x.png')}")
 
 .homepage__product__text
   color: white
@@ -307,7 +307,7 @@
     right: 2px
     width: 61px
     height: 51px
-    background-image: url("#{image_path('destinations/best-in-travel/homepage/win.png')}")
+    background-image: url("#{image_path('destinations/best-in-travel/win.png')}")
     background-size: 100%
 
 @if $is-ie == true
