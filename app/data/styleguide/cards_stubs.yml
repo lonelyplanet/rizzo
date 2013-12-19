@@ -5,6 +5,7 @@ cards:
     :kind: "collection"
     :slug: "#"
     :title: "Four days in Argentina"
+    :context: "Collection"
     :image_url: 'http://assets.staticlp.com/assets/stubs/itinerary-full.jpg'
 
   -
@@ -13,6 +14,7 @@ cards:
     :kind: "collection"
     :slug: "#"
     :title: "Four days in Argentina"
+    :context: "Collection"
     :image_url: 'http://assets.staticlp.com/assets/stubs/itinerary-full.jpg'
     :image_license: 'by-nd'
     :image_attribution_link: "http://google.com"
