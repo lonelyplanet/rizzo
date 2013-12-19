@@ -176,7 +176,7 @@ module StyleguideHelper
     capture_haml do
       haml_tag(:div, class: "styleguide-block#{anchor.nil? ? '' : ' styleguide__anchor'}", id: anchor) do
         unless anchor.nil?
-          haml_tag(:a, name: anchor, href: "##{anchor}")
+          haml_tag(:a, name: anchor, href: "##{anchor}", class: "icon--link icon--lp-blue")
         end
         haml_tag(:div, class: item_class) do
           haml_concat ui_component(path, properties)

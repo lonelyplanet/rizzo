@@ -170,19 +170,17 @@ pre.styleguide.is-open
 
   > a:first-child
     @extend %transition--base
-    background: blue // Temp -- add link svg class
     display: block
-    padding: 0.5em
     position: absolute
-    right: -38px
-    top: -24px
-    opacity: 0
-    &:before
-      +font-size(40)
+    right: 20px
+    top: 10px
+    width: 25px
+    height: 25px
+    opacity: 0.5
+    z-index: 1
+    &:hover
+      opacity: 1
 
-  &:hover > a:first-child
-    opacity: 1
-    text-decoration: none
 
 .clearbutton
   line-height: 12px
