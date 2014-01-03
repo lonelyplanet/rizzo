@@ -3,11 +3,9 @@ require ['jquery'], ($) ->
     eval "sortBy(#{@value})"
     return
 
-  $(".styleguide-proximity__input").on "keyup", (e) ->
-    e.keyCode is 13 and matchProximity()
-
-  $(".clearbutton").on "click", (e) ->
-    resetProximity()
+  $(".styleguide-proximity__input").on "keyup", (event) ->
+    return resetProximity() if (!event.target.value)
+    event.keyCode is 13 and matchProximity()
 
   sortBy = (comparator) ->
     sections = document.querySelectorAll(".styleguide-block")
@@ -23,14 +21,17 @@ require ['jquery'], ($) ->
 
       section.querySelector(".js-card-container").innerHTML = newCards
       i++
+
   lightToDark = (a, b) ->
     lumA = Number(a.getAttribute("data-luminance"))
     lumB = Number(b.getAttribute("data-luminance"))
     lumA < lumB
+
   darkToLight = (a, b) ->
     lumA = Number(a.getAttribute("data-luminance"))
     lumB = Number(b.getAttribute("data-luminance"))
     lumA > lumB
+
   resetProximity = ->
     document.getElementById("proximityMatch").value = ""
     $(".card--double").each ->
@@ -65,6 +66,7 @@ require ['jquery'], ($) ->
       d += (v1[i] - v2[i]) * (v1[i] - v2[i])
       i++
     Math.sqrt d
+
   hexToRGB = (colour) ->
     colour = colour.replace(/^#/, "").match(/[0-9a-z]{2}/gi)
     [parseInt(colour[0], 16), parseInt(colour[1], 16), parseInt(colour[2], 16)]
