@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------------
-// Media gallery - named such so as to avoid clashing with the Hotels .gallery
+// Media gallery
 // -----------------------------------------------------------------------------
 .media-gallery
   @extend %clearfix
@@ -41,6 +41,15 @@
     background: $body-background
     text-align: center
 
+.media-gallery--lodging
+
+  .media-gallery__container, .tab__content, .slider__viewport, .slider__slide
+    width: 548px
+    height: 308px
+
+  .slider__controls
+    top: 132px
+
 // This is all in a mixin because IE7/8 don't work when the :checked, and .is-checked selectors
 // are on the same line below (because IE7/8 don't understand :checked, they discard the entire rule)
 @mixin media-gallery-full
@@ -52,8 +61,6 @@
       top: 186px
     .infobox__interesting-places
       display: none
-    .media-gallery__resizer
-      @extend %contract-arrows-before
   ~ .card--page__aside
     top: 0
 
@@ -67,8 +74,6 @@
 
 .media-gallery__resizer
   @extend %transition--base
-  @extend %expand-arrows-before
-  background: $body-copy
   background: rgba(0,0,0,0.6)
   bottom: 0
   cursor: pointer
@@ -82,12 +87,16 @@
   &:hover
     @extend %opaque
   &:before
-    +font-size(40)
-    color: #fff
-    line-height: 32px
     margin-left: 10px
   .media-gallery--article &
     display: none
+
+.media-gallery__resizer__icon
+  width: 70%
+  height: 70%
+  top: 30%
+  left: 30%
+  margin: 15%
 
 .media-gallery__container
   +perspective()

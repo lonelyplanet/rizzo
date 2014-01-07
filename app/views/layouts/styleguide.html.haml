@@ -5,7 +5,7 @@
     = render 'layouts/core/head', responsive: false, homepage: false
     = stylesheet_link_tag 'styleguide', :media => "all"
     = stylesheet_link_tag 'prism', :media => "all"
-    
+
   %body.copy--freight
 
     .wrapper
@@ -24,6 +24,11 @@
 
       .row.row--content#js-row--content
         .row__inner.row__inner--content
+
+          .row.row--secondary#js-secondary-nav
+            .row__inner.row__inner--secondary
+              = ui_component("navigation/secondary", properties: secondary_nav_items)
+
           .grid-wrapper--10
             = ui_component('navigation/left', properties: left_nav_items)
 

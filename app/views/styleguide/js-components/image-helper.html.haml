@@ -1,0 +1,65 @@
+.card.styleguide-intro.styleguide-block.copy--body.context--content
+
+  %h1.copy--h1
+    Image Helper
+
+  %p
+    Adds helper classes based image orientation and size relative to its container then centers the images.
+
+.styleguide-block
+
+  .styleguide-block__description.card.copy--body
+
+    %h2.copy--h2.styleguide-block__heading
+      Arguments
+
+    %p
+      %code.language-markup
+        img
+      Element selector for the images. Must be a descendent of a
+      %code.language-markup
+        container
+
+    %p
+      %code.language-markup
+        container
+      Element selector for the images layout ancestor.
+
+  .styleguide-block__description.card.copy--body
+
+    %h2.copy--h2.styleguide-block__heading
+      Usage
+
+    %p
+      The following example centers images within an instance of slider.
+
+    %pre.styleguide.copy--body.language-coffeescript
+      %code
+        = preserve do
+          :plain
+            require ['lib/utils/image_helper', 'lib/components/slider'], (ImageHelper, Slider) ->
+
+              slider = new Slider(
+                el: '#js-slider'
+              )
+
+              imageHelper = new ImageHelper(
+                img: '.slider__img'
+                container: '.slider'
+              )
+
+    %pre.styleguide.copy--body.language-markup
+      %code
+        = preserve do
+          :escaped
+            <div class="slider" id="js-slider" style="width: 400px; height: 240px;">
+              <div class="slider__slide">
+                <img class="slider__img" src="..." alt="..." width="640" height="480" />
+              </div>
+              <div class="slider__slide">
+                <img class="slider__img" src="..." alt="..." width="480" height="640" />
+              </div>
+              <div class="slider__slide">
+                <img class="slider__img" src="..." alt="..." width="640" height="640" />
+              </div>
+            </div>

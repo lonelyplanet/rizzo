@@ -4,7 +4,7 @@
     %h1.place-title.place-title-heading #{properties[:title]}
 
   - else
-    .place-title{class: properties[:title].downcase == "world" ? "place-title--world" : ""}<
+    .place-title{class: "icon--#{ properties[:icon] || "place--pin"}--before"}<
       - if properties[:no_place_link] == true
         %span.place-title-heading #{properties[:title]}
       - else

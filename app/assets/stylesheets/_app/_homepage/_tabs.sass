@@ -13,16 +13,13 @@ $tab-height--1250: 610px
   +transition(opacity, 0.3, ease)
   +respond-to(medium-view)
     height: $tab-height--wide
-  +respond-to(1250)
+  +respond-to(1200)
     height: $tab-height--1250
   .ie8 &
     width: 1100px
     margin: 0 auto
     height: $tab-height--wide
 
-  .dropdown__value
-    &:after
-      top: 0px
 
 .tab--homepage
   +transition(all, 1, ease)
@@ -44,7 +41,7 @@ $tab-height--1250: 610px
       display: block
   +respond-to(medium-view)
     height: $tab-height--wide
-  +respond-to(1250)
+  +respond-to(1200)
     height: $tab-height--1250
   .ie8 &
     height: $tab-height--wide
@@ -65,7 +62,7 @@ $tab-height--1250: 610px
     left: 50%
     top: 10%
     margin: 0
-  +respond-to(1250)
+  +respond-to(1200)
     position: relative
     left: 50%
     top: 15%
@@ -78,25 +75,25 @@ $tab-height--1250: 610px
   .tab--homepage--hotels &
     +respond-to(medium-view)
       top: 33px
-    +respond-to(1250)
+    +respond-to(1200)
       top: 83px
 
   .tab--homepage--tours &
     +respond-to(medium-view)
       top: 52px
-    +respond-to(1250)
+    +respond-to(1200)
       top: 102px
 
 
 .tab--homepage--shop
-  +responsive-image('homepage/bookings/shop','jpg')
+  +responsive-image('bookings/shop','jpg')
   background-position: center center
   background-repeat: no-repeat
   background-size: cover
   padding-top: 40px
   +respond-to(medium-view)
     padding-top: 70px
-  +respond-to(1250)
+  +respond-to(1200)
     padding-top: 90px
   .ie8 &
     background-color: white
@@ -185,27 +182,15 @@ $tab-height--1250: 610px
   background-size: 100%
   margin: 0 auto
   display: block
+  width: 26px
+  height: 26px
   +respond-to(medium-view)
     position: relative
     margin: 0
     display: inline-block
-    &.icon--flights--grey,
-    &.icon--flights--white
-      top: 4px
-    &.icon--tours--grey,
-    &.icon--tours--white
-      top: 1px
-
-.icon--active
-  display: none
+    
   .is-active &
-    display: block
-    +respond-to(medium-view)
-      display: inline-block
-
-.icon--default
-  .is-active &
-    display: none
+    +icon-color(white)
 
 .tab--homepage__label
   +font-size(15)

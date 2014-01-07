@@ -1,0 +1,24 @@
+.card.styleguide-intro.copy--body.context--content.styleguide-intro--icons
+  .clearfix
+    %h1.split--left.copy--h1 Active Icons
+    = render 'styleguide/partials/svg_filter'
+
+  %p
+    We use SVGs for these icons. The colour is configurable with the addition of a modifier class icon--[colour]. They are available in 5 variations. Use the select to toggle them here.
+  %p
+    If you want to change the colour of the icon on hover, use the mixin
+  %code +icon-colour(colour)
+  %p
+    If you cannot see the icon you are after, please check the
+    %a{href: "/styleguide/inactive-icons"} inactive icons.
+    If you want to make it active and included on the site move it from /app/assets/images/icons/inactive to /app/assets/images/icons/active
+
+.styleguide-block.styleguide-grid.styleguide-icons.context--content
+  %div{class: "grid-wrapper--10"}
+    - get_icons("active").each do |icon|
+      .col--one-fifth
+        .card.js-card{data: {icon: icon}}
+          %div.js-icon{class: icon, title: icon}
+          %code
+            = icon.gsub('icon--', '')
+

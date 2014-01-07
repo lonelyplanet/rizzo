@@ -21,7 +21,7 @@ module GlobalResourcesHelper
     [
       {title:'Destinations',
         uri: "http://www.lonelyplanet.com/destinations",
-        icon_class: "icon--destination-line--grey--before",
+        icon_class: "icon--place--pin--line--before icon--white--before",
         submenu: [
           {title:'Africa', uri:'http://www.lonelyplanet.com/africa'},
           {title:'Antarctica', uri:'http://www.lonelyplanet.com/antarctica'},
@@ -35,20 +35,20 @@ module GlobalResourcesHelper
           {title:'South America', uri:'http://www.lonelyplanet.com/south-america'}
         ]
       },
-      {title:'Themes', uri: "http://www.lonelyplanet.com/themes", icon_class: "icon--themes-line--grey--before",},
-      {title:'Shop', uri: "http://shop.lonelyplanet.com", icon_class: "icon--shop-basket-line--grey--before"},
-      {title:'Thorn Tree forum', uri: "http://www.lonelyplanet.com/thorntree", icon_class: "icon--thorntree-line--grey--before"},
+      {title:'Themes', uri: "http://www.lonelyplanet.com/themes", icon_class: "icon--image--line--before icon--white--before",},
+      {title:'Shop', uri: "http://shop.lonelyplanet.com", icon_class: "icon--shop-basket--line--before icon--white--before"},
+      {title:'Thorn Tree Forum', uri: "http://www.lonelyplanet.com/thorntree", icon_class: "icon--comment--line--before icon--white--before"},
       {title:'Bookings',
         uri: 'http://www.lonelyplanet.com/hotels/',
-        icon_class: 'icon--flights-line--grey--before',
+        icon_class: 'icon--flights--line--before icon--white--before',
         submenu: [
-          {title:'Hotels', uri:'http://www.lonelyplanet.com/hotels', style:'hotels', icon_class: 'icon--hotels--white--before'},
-          {title:'Flights', uri:'http://www.lonelyplanet.com/flights/', style:'flights', icon_class: 'icon--flights--white--before'},
-          {title:'Adventure tours', uri:'http://www.lonelyplanet.com/adventure-tours/', style:'adventure-tours', icon_class: 'icon--tours--white--before'},
-          {title:'Sightseeing tours', uri:'http://www.lonelyplanet.com/sightseeing-tours/', style:'sightseeing-tours', icon_class: 'icon--running--white--before'}
+          {title:'Hotels', uri:'http://www.lonelyplanet.com/hotels', style:'hotels', icon_class: 'icon--hotel--before'},
+          {title:'Flights', uri:'http://www.lonelyplanet.com/flights/', style:'flights', icon_class: 'icon--flights--before'},
+          {title:'Adventure tours', uri:'http://www.lonelyplanet.com/adventure-tours/', style:'adventure-tours', icon_class: 'icon--tour--before'},
+          {title:'Sightseeing tours', uri:'http://www.lonelyplanet.com/sightseeing-tours/', style:'sightseeing-tours', icon_class: 'icon--activity--before'}
         ]
       },
-      {title:'Insurance', uri: "http://www.lonelyplanet.com/travel-insurance", icon_class: 'icon--insurance-line--grey--before'}
+      {title:'Insurance', uri: "http://www.lonelyplanet.com/travel-insurance", icon_class: 'icon--insurance--line--before icon--white--before'}
     ]
   end
 
@@ -81,6 +81,33 @@ module GlobalResourcesHelper
     end
   end
 
+  def place_heading(title, section_name, slug, parent, parent_slug, no_place_link = false)
+    
+    capture_haml do
+      haml_tag(:div, class: 'place-title icon--destination-flag--before') do
+        if no_place_link == true
+          haml_tag(:span, class: 'place-title-heading') do
+            haml_concat(title)
+          end
+        else
+          haml_tag(:a, class: 'place-title-heading', href: "/#{slug}") do
+            haml_concat(title)
+          end
+        end
+        unless section_name.nil?
+          haml_tag(:span, class: 'accessibility') do
+            haml_concat(" " + section_name)
+          end
+        end
+        unless parent.nil?
+          haml_tag(:a, class: 'place-title__parent', href: "/#{parent_slug}") do
+            haml_concat(", " + parent)
+          end
+        end
+      end
+    end
+  end
+  
   def errbit_notifier
     unless params[:errbit] == 'false'
       haml_tag(:script, src:"//rizzo.lonelyplanet.com/assets/errbit_notifier.js")
@@ -101,11 +128,11 @@ module GlobalResourcesHelper
   def breadcrumb_for(breadcrumb, last)
     capture_haml do
       if last == true
-        haml_tag(:span, class: "nav__item js-nav-item nav__item--breadcrumbs current", itemprop: "url") { haml_concat breadcrumb[:place] }
+        haml_tag(:span, class: "nav__item js-nav-item nav__item--breadcrumbs icon--chevron-right--before current", itemprop: "url") { haml_concat breadcrumb[:place] }
       elsif breadcrumb[:slug].blank?
-        haml_tag(:span, class: "nav__item js-nav-item nav__item--breadcrumbs", itemprop: "url") { haml_concat breadcrumb[:place] }
+        haml_tag(:span, class: "nav__item js-nav-item nav__item--breadcrumbs icon--chevron-right--before", itemprop: "url") { haml_concat breadcrumb[:place] }
       else
-        haml_tag(:a, class: "nav__item js-nav-item nav__item--breadcrumbs", href: "http://www.lonelyplanet.com/#{breadcrumb[:slug]}", itemprop:"url") { haml_concat breadcrumb[:place] }
+        haml_tag(:a, class: "nav__item js-nav-item nav__item--breadcrumbs icon--chevron-right--before", href: "http://www.lonelyplanet.com/#{breadcrumb[:slug]}", itemprop:"url") { haml_concat breadcrumb[:place] } 
       end
     end
   end

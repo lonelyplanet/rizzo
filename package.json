@@ -8,22 +8,22 @@
     "coffee-script": "latest"
   },
   "devDependencies": {
-    "grunt": "0.4.1",
-    "grunt-contrib-connect": "0.3.0",
-    "grunt-contrib-coffee": "0.7.0",
-    "grunt-contrib-jasmine": "0.4.2",
-    "grunt-contrib-watch": "0.4.4",
-    "grunt-imageoptim": "~1.2.6",
+    "grunt": "latest",
+    "grunt-contrib-connect": "latest",
+    "grunt-contrib-coffee": "latest",
+    "grunt-contrib-jasmine": "latest",
+    "grunt-contrib-watch": "latest",
+    "grunt-imageoptim": "latest",
     "grunt-shell": "latest",
     "grunt-grunticon": "latest",
-    "grunt-svgmin": "~0.2.0",
-    "grunt-concurrent": "0.2.0",
+    "grunt-svgmin": "latest",
+    "grunt-concurrent": "latest",
     "grunt-istanbul-coverage": "latest",
-    "grunt-template-jasmine-requirejs": "~0.1.6",
+    "grunt-template-jasmine-requirejs": "latest",
     "grunt-plato": "latest",
-    "grunt-open": "~0.2.1",
-    "grunt-newer": "~0.5.0",
-    "matchdep": "~0.1.2",
-    "yeoman-generators": "git+ssh://git@github.com:lonelyplanet/yeoman#0af0ab3c86b94f7106239b66ee1db5498167e503"
+    "grunt-open": "latest",
+    "grunt-newer": "latest",
+    "matchdep": "latest",
+    "yeoman-generators": "git+ssh://git@github.com:lonelyplanet/yeoman#a3d24d596c8257ae2783cd6af9ab9f5851408dd2"
   }
 }

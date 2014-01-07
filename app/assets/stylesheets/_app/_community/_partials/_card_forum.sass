@@ -1,12 +1,10 @@
-$forum-padding: 20px
+$forum-horizontal-padding: 20px
 
 .card--forum
   @extend %rounded-corners
-  padding: $forum-padding
 
   &.active, &.pinned
     border-left: 4px solid $linkblue
-    padding-left: $forum-padding - 4px
 
   .copy--meta
     +font-size(13)
@@ -18,56 +16,51 @@ $forum-padding: 20px
   .dropdown__select
     min-width: 195px
 
-.card--forum--single
-  padding: 12px $forum-padding
+.card--forum__row-container
+  border-top: 1px solid $subdued
+  padding-bottom: 0
+
+.card--forum__row
+  @extend %clearfix
+  border-top: 1px solid $body-background
+  
+  &:first-child
+    border-top: 0
+
+  .media__body,
+  .description
+    p:last-child
+      margin-bottom: 0
+
+.card--forum__row--title
+  padding: 12px $forum-horizontal-padding
 
   .dropdown
     margin-top: -6px
     top: 2px
 
-.card--forum__title,
-.card--forum__row,
-.card--forum__row-container
-  padding: 13px $forum-padding
-  margin: 0 -#{$forum-padding}
-
-.card--forum__title
-  padding-bottom: 13px
-
-  &:first-child
-    padding-top: 0
-
-.card--forum__row-container
-  border-top: 1px solid $subdued
-
-.card--forum__row
-  @extend %clearfix
-  border-top: 1px solid $body-background
-  display: block
-  padding-top: 13px
-  
-  &:first-child
-    border-top: 0
-    padding-top: 0
-
-.card--forum__row--title
+.card--forum__row--heading
   background: $details-panel-bg
-  padding: 10px $forum-padding
+  padding: 10px $forum-horizontal-padding
   .copy--h5
-    color: $section--need-to-know
+    color: $feature-copy
 
   &:first-child
     border-top: none
 
-// refactor required
+.card--forum__row--content
+  padding: 13px $forum-horizontal-padding
+
+.card--forum__row--filters
+  padding: 10px 5px
+
 .card--moderation
-  @extend %rounded-corners
+  .card--forum__row--heading
+    padding: 15px $forum-horizontal-padding
 
-.card--moderation__title
-  padding: 20px
+.link--back--moderation
+  color: $body-copy
+  margin-bottom: 20px
 
-.card--moderation__title--filters
-  padding: 10px 20px
-
-.card--moderation__row
-  border-top: 1px solid $body-background
+.media__img--actions
+  margin-right: 10px

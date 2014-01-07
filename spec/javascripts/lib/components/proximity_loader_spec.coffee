@@ -3,6 +3,7 @@ require ['public/assets/javascripts/lib/components/proximity_loader.js'], (Proxi
   config =
     list: ".js-loader-one, .js-loader-two, .js-loader-three"
     success: ":foo/bar"
+    debounce: 0
 
   describe 'Proximity Loader', ->
 
@@ -25,7 +26,7 @@ require ['public/assets/javascripts/lib/components/proximity_loader.js'], (Proxi
 
         expect(window.proximityLoader.elems[1].top).toEqual(200)
         expect(window.proximityLoader.elems[1].threshold).toEqual(50)
-        
+
         expect(window.proximityLoader.elems[2].top).toEqual(300)
         expect(window.proximityLoader.elems[2].threshold).toEqual(50)
 
@@ -39,7 +40,7 @@ require ['public/assets/javascripts/lib/components/proximity_loader.js'], (Proxi
         window.proximityLoader = new ProximityLoader(config)
         spyOn(proximityLoader, "_check")
         $(window).trigger('scroll')
-        waits(200)
+        waits(100)
 
       it 'calls _check', ->
         expect(proximityLoader._check).toHaveBeenCalled()

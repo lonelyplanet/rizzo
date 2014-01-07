@@ -1,8 +1,8 @@
-- if card[:resized_image_url] or card[:resized_video_url]
+- if properties[:resized_image_url] or properties[:resized_video_url]
   .card--single.card--media-container.js-card
 
-    - if card[:resized_image_url]
-      = render 'components/cards/image_card', card: card
+    - if properties[:resized_image_url]
+      = render 'components/cards/image_card', properties: properties
 
-    - if card[:resized_video_url]
-      = render 'components/cards/video_card', card: card
+    - if properties[:resized_video_url]
+      = render 'components/cards/video_card', properties: properties

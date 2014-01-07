@@ -49,7 +49,6 @@ require ['public/assets/javascripts/lib/components/availability_search.js'], (Av
         it 'sets the default dates', ->
           expect(av._setDefaultDates).toHaveBeenCalled()
 
-    
     describe 'setting values', ->
       beforeEach ->
         loadFixtures('availability.html')

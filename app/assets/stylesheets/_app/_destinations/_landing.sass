@@ -14,7 +14,7 @@ $top-ten__list__height: 100px
 
 html
   overflow-y: scroll
-  
+
 .icon--pen
   width: 27px
   height: 27px
@@ -93,13 +93,11 @@ html
       +transition(opacity, 1, ease-in)
       opacity: 1
       &:after
-        content: "\e095"
+        width: 70px
         height: 70px
         display: block
         position: absolute
-        font-size: 110px
-        line-height: 19px
-        bottom: -70px
+        bottom: -43px
         left: 62px
 
 .row--introduction__blurb__title
@@ -114,22 +112,20 @@ html
     color: white
 
 .row--introduction__blurb__hide
+  @extend %image-replacement
   +transition(all, 0.3, ease-in)
-  @extend %cross-icon-before
   display: none
   cursor: pointer
+  color: white
 
   +respond-to(wide-view)
-    +font-size(40)
     display: block
     position: absolute
-    top: 4px
-    right: 16px
-    width: 24px
-    height: 36px
+    top: 14px
+    right: 14px
+    width: 27px
+    height: 27px
     overflow: hidden
-    line-height: 1em
-    color: white
     opacity: 0.5
 
     &:hover
@@ -254,7 +250,7 @@ html
   @if $is-ie == true
     &:hover
       background-color: $section--cities
-    
+
 .top-ten__list
   list-style-type: none
   +respond-to(medium-view)
@@ -301,17 +297,17 @@ html
 @for $i from 1 through length($best-in-travel--cities)
   $city: nth($best-in-travel--cities, $i)
   .top-ten__list--city--#{$i}
-    background-image: url(#{image_path('destinations/best-in-travel/hero/#{$city}-640.jpg')})
+    background-image: url(#{image_path('best-in-travel/hero/#{$city}-640.jpg')})
 
 @for $i from 1 through length($best-in-travel--countries)
   $country: nth($best-in-travel--countries, $i)
   .top-ten__list--country--#{$i}
-    background-image: url(#{image_path('destinations/best-in-travel/hero/#{$country}-640.jpg')})
+    background-image: url(#{image_path('best-in-travel/hero/#{$country}-640.jpg')})
 
 @for $i from 1 through length($best-in-travel--regions)
   $region: nth($best-in-travel--regions, $i)
   .top-ten__list--region--#{$i}
-    background-image: url(#{image_path('destinations/best-in-travel/hero/#{$region}-640.jpg')})
+    background-image: url(#{image_path('best-in-travel/hero/#{$region}-640.jpg')})
 
 .top-ten__list__title
   @if $is-ie == false
@@ -332,13 +328,12 @@ html
     padding-top: 30px
     text-shadow: 0 1px 1px rgba(0,0,0,0.5)
 
-
 .top-ten__list__item__link
   background-color: rgba(20,43,68, 0.15)
   +transition(background-color,0.25,ease-out)
   &:hover
     background-color: rgba(20,43,68, 0.35)
-    text-decoration: none   
+    text-decoration: none
   +respond-to(wide-view)
     height: 100%
     width: 100%
@@ -386,7 +381,7 @@ html
 .bit-map__compeition-callout
   @if $is-ie == true
     display: none
-    
+
   @if $is-ie == false
     @extend %image-replacement
     width: 249px
@@ -395,9 +390,9 @@ html
     position: absolute
     bottom: 20px
     right: 20px
-    background-image: url(#{image_path('destinations/best-in-travel/best-in-travel-where-would-you-go-cta.png')})
+    background-image: url(#{image_path('best-in-travel/best-in-travel-where-would-you-go-cta.png')})
     +retinafy()
-      background-image: url(#{image_path('destinations/best-in-travel/best-in-travel-where-would-you-go-cta-2x.png')})
+      background-image: url(#{image_path('best-in-travel/best-in-travel-where-would-you-go-cta-2x.png')})
       background-size: cover
 
 .carousel
@@ -411,10 +406,3 @@ html
 
 .carousel__contents-wrapper
   height: 100%
-
-
-
-//$$legacy Overrides - delete when we move the icons to svg
-
-.icon--article--white--before:before
-  height: 33px

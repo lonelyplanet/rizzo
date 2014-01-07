@@ -4,20 +4,21 @@
 
     "card",
     "card--link",
-    "card--link--#{card[:title].downcase}",
-    "card--extended-content--half",
-    "#{card[:filter] ? 'js-stack-card-filter' : ''}",
-    "#{card[:double?] ? 'card--double card--full-image' : 'card--single'}"
+    "card--link--#{properties[:title].downcase}",
+    properties[:filter] ? "js-stack-card-filter" : "",
+    properties[:double?] ? "card--double card--full-image" : "card--single card--extended-content--half",
+    properties[:image_license] && properties[:image_license] != "expedia" ? "has-attribution" : ""
 
   ].join(" ")
 
+  icon_classes = properties[:topic] ? "icon--#{properties[:topic].singularize}--pin--before" : ""
 
-%article.js-card{class: css_classes, data: { filter: card[:filter] } }
-  
-  %a.link--wrapper{href: card[:url]}
+%article.js-card{class: css_classes, data: { filter: properties[:filter] } }
 
-    - if card[:count]
-      %span.card__item-count
-        = card[:count]
+  %a.link--wrapper{href: properties[:url]}
 
-    = render partial: "components/cards/partials/card_content", locals: {card: card}
+    - if properties[:count]
+      %span.card__item-count{class: icon_classes}
+        = properties[:count]
+
+    = render partial: "components/cards/partials/card_content", locals: {properties: properties}

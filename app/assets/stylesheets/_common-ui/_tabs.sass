@@ -22,7 +22,7 @@
   display: block
   float: left
   height: 35px
-  line-height: 25px
+  line-height: 35px
   padding: 0 10px
   position: relative
   text-transform: uppercase
@@ -34,26 +34,15 @@
     top: -21px
     font-weight: normal
   &:before
-    +font-size(28)
     display: inline-block
-    letter-spacing: 2px
+    width: 16px
+    height: 16px
     position: relative
     top: 1px
-    font-weight: normal
+    vertical-align: text-bottom
   &:hover, &.is-active
     background: $red
     text-decoration: none
   &.is-active:after
     color: $red
     display: block
-
-.tab--photos
-  @extend %icon-gallery-before
-
-.tab--videos
-  @extend %icon-video-before
-
-.tab--map
-  @extend %local-marker-before
-  &:before
-    letter-spacing: 0

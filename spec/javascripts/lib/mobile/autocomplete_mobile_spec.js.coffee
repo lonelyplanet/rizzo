@@ -626,7 +626,8 @@ require ['lib/mobile/autocomplete_mobile'], (AutoComplete) ->
             expect(anchor.getAttribute('href')).toBe SEARCH_RESULTS[0].uri
             expect($(anchor)).toHaveClass 'autocomplete__result__link'
             expect($(anchor)).toHaveClass 'autocomplete__result__typed'
-            expect($(anchor)).toHaveClass "icon--#{SEARCH_RESULTS[0].type}--white--before"
+            expect($(anchor)).toHaveClass "icon--#{SEARCH_RESULTS[0].type}--before"
+            expect($(anchor)).toHaveClass 'icon--white--before'
    
           it 'should contain an anchor tag containing the highlighted search term', ->
             anchor = item.childNodes[0]

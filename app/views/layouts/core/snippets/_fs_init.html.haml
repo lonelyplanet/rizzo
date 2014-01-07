@@ -5,11 +5,11 @@
     };
     return {
       url: window.location.href,
+      referrer: document.referrer,
       username: getCookie("lpCookie") && getCookie("lpCookie").split('#')[0],
       country: getCookie("country"),
       viewport: document.documentElement.clientWidth,
       variant: getCookie("_v"),
-      schema: "0.1",
-      build: ""
+      schema: "0.1"
     };
   }());

@@ -1,20 +1,19 @@
 // Links
-// 
-// 
+//
+//
 // .link--back - Back
-// 
+//
 // Styleguide 1.6
 
 .link--back
   @extend %left-icon
-  @extend %chevron-left-before
   @extend %inline-block
   +font-size(15)
   padding-left: 15px
   &:before
-    +font-size(20)
-    line-height: 13px
-    color: $link-color
+    width: 12px
+    height: 12px
+    top: 4px
 
 .link--wrapper
   @extend %clearfix

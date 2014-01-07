@@ -3,6 +3,22 @@ Feature: Global Resources
   As the lp global service
   I should be able to serve the global-head, body-header and global-footer snippets
 
+  Scenario: it serves the core header and footer
+    Given I go to "/global"
+    Then the Core layout should be displayed
+
+  Scenario: it serves the legacy header and footer
+    Given I go to "/legacy"
+    Then the Legacy layout should be displayed
+
+  Scenario: it serves the responsive header and footer
+    Given I go to "/responsive"
+    Then the Responsive layout should be displayed
+
+  Scenario: it serves the homepage header and footer
+    Given I go to "/homepage"
+    Then the Homepage layout should be displayed
+
   Scenario: it serves the global-head
     Given I go to "/global-head"
     Then the base global-head content should be displayed

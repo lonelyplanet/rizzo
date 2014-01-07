@@ -1,11 +1,11 @@
 %article.card.card--image-only.card--video
-  %a.link--wrapper{href: card[:video_href], title: "Video Gallery"}
-    %span.card--media__badge
+  %a.link--wrapper{href: properties[:video_href], title: "Video Gallery"}
+    %span.card--media__badge.icon--video.icon--white
     %figure.card__hero
-      = safe_image_tag(card[:resized_video_url], class: 'portrait card__image', alt: "Video Gallery", lazyload: defined?(lazyload))
+      = safe_image_tag(properties[:resized_video_url], class: 'portrait card__image', alt: "Video Gallery", lazyload: defined?(lazyload))
 
     .card__content
       %h2.card__name.accessibility
         Video gallery
       %p
-        = card[:video_description]
+        = properties[:video_description]

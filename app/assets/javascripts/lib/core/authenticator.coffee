@@ -32,8 +32,8 @@ define ['jquery'], ($)->
 
     showLoginAndRegister: ()->
       @emptyUserNav()
-      joinElement = "<a class='icon--signin-line--grey--before nav__item nav__item--primary js-user-join js-nav-item' href='#{@options.registerLink}'>Join</a>"
-      signinElement = "<a class='icon--signin-line--grey--before nav__item nav__item--primary js-user-signin js-nav-item' href='#{@signInUrl()}'>Sign in</a>"
+      joinElement = "<a class='nav__item nav__item--primary js-user-join js-nav-item' href='#{@options.registerLink}'><i class='nav__icon icon--sign-in--before icon--white--before'></i>Join</a>"
+      signinElement = "<a class='nav__item nav__item--primary js-user-signin js-nav-item' href='#{@signInUrl()}'><i class='nav__icon icon--sign-in--before icon--white--before'></i>Sign in</a>"
       @el.append(signinElement + joinElement)
 
     showUserBox: ->

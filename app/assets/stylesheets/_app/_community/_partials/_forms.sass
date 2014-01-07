@@ -7,17 +7,15 @@
 .row--compose
   .simple-form
     @extend %rounded-corners
-    .btn[type="submit"]
-      border-style: none
+    .btn
       margin-right: 15px
-      &:before
-        +font-size(25)
-        line-height: 0.5em
-        margin-right: 5px
-        position: relative
-        top: 2px
+      overflow: visible
+
+      &[type="submit"]
+        border-style: none
 
   .simple-form__field
+    @extend %clearfix
     border-top: 1px solid $subdued
     padding: 10px 20px
     &.first
@@ -32,6 +30,10 @@
       border: none
     .control-label
       display: none
+
+.btn--moderation
+  margin-bottom: 10px
+
 
 // -----------------------------------------------------------------------------
 // MarkItUp editor styles

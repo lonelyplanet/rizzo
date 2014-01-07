@@ -1,4 +1,3 @@
-
 // -----------------------------------------------------------------------------
 //
 // Lodging Header
@@ -13,14 +12,19 @@
 
 .lodging__subtitle
   @extend %inline-block
-  @extend %vertically-centered-dot-after
-  &:last:after
-    content: ''
+  &:after
+    // ascii middot
+    content: '\00B7'
+    &:last
+      content: ''
 
 
 // -----------------------------------------------------------------------------
 // Article Card
 // -----------------------------------------------------------------------------
+
+.card--page--article
+  padding-bottom: 0
 
 .media-gallery--article
   .slider__pagination
@@ -35,17 +39,14 @@
     &.is-active, &:hover
       opacity: 1
 
-.text-icon--clock:before
-  +font-size(18)
-
 .stack__article__content
   margin-bottom: 50px
 
   .copy--caption
-    @extend %inline-block
+    display: block
     text-align: center
     margin-bottom: 10px
-  
+
   .copy--h3
     margin-top: 2em
 
@@ -60,6 +61,13 @@
     margin: 20px auto 10px
   &.is-landscape
     width: 100%
+
+.article__date
+  margin-right: 3px
+  &:before
+    width: 15px
+    height: 16px
+    margin-right: 5px
 
 .footer
   font-style: italic
@@ -88,7 +96,7 @@
   .ad-mpu
     +transition(all, 0.5, ease)
     +transform(translateX(0px) rotateY(0deg))
-    
+
   &.is-closed
     width: 0
     .ad-mpu
@@ -99,3 +107,62 @@
         width: 0
       .supports-3d &
         +transform(translateX(150px) rotateY(-104deg))
+
+.related
+  width: 100%
+  padding: 40px 25px
+  margin-left: -25px
+  background: $high-contrast-bg
+  text-shadow: 1px 1px 1px #3b444f
+
+.related__articles
+  margin-right: 32px
+
+.related__articles,
+.related__guides
+  width: 330px
+  display: inline-block
+  vertical-align: top
+
+.related__list-title
+  +font-size(24)
+  color: white
+  padding-bottom: 1em
+  margin-bottom: .5em
+  .related__articles &
+    border-bottom: 1px solid $high-contrast-fg
+  .related__guides &
+    margin-bottom: 0
+
+.related__list-number
+  +font-size(16)
+  color: $subdued
+  &:before
+    content: "("
+  &:after
+    content: ")"
+
+.related__btn
+  text-shadow: none
+
+.related__list-link
+  display: block
+  +font-size(16)
+  color: $subdued
+  padding-bottom: 0
+
+.related__list-item--guide
+  width: 95px
+  display: inline-block
+  position: relative
+  vertical-align: top
+  &:not(:last-child)
+    margin-right: 20px
+
+.related__list-date
+  display: block
+  +font-size(14)
+  padding-bottom: 1em
+  font-style: italic
+  line-height: 1.5
+  color: $high-contrast-fg

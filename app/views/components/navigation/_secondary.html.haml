@@ -1,7 +1,8 @@
 -# The inline navigation for wide screens
 .wv--split--right.nav--inline.nav--secondary.wv--block
   - properties[:items].each do |n|
-    %a.nav__item.nav__item--secondary.js-nav-item{:class=>(n[:title] == properties[:section_name] ? 'current' : ''), :href=> n[:slug]}<
+    - active = n[:title] == properties[:section_name] || (n[:slug].include? properties[:section_name].downcase.strip.gsub(' ', '-'))
+    %a.nav__item.nav__item--secondary.js-nav-item{:class=>(active ? 'current' : ''), :href=> n[:slug]}<
       = n[:title]
 
 -# The select navigation for small screens

@@ -5,47 +5,15 @@
 .icon-list
   .copy--body &
     list-style: none
-    padding-left: 0 // Move the list padding on to the list iten
+    padding-left: 0
 
 .icon-list__item
   @extend %left-icon-text
   padding-left: 1.2em
   
   &:before
-    +font-size(30)
-    color: $green
     position: absolute
     left: 0
-
-  &.icon-list__item--cross,
-  &.icon-list__item--tick
-    &:before
-      +font-size(18)
-
-.icon-list__item--tick
-  @extend %tick-icon-before
-
-.icon-list__item--cross
-  @extend %cross-icon-before
-  &:before
-    color: $red
-
-
-// -----------------------------------------------------------------------------
-// The markup on viator copy is hugely inconsistent so we are forced to extend
-// these classes here.
-// -----------------------------------------------------------------------------
-
-.copy--viator__included,
-.copy--viator__excluded
-  ul
-    @extend .icon-list
-  li
-    @extend .icon-list__item
-    @extend %tick-icon-before
-    &:before
-      +font-size(18)
-
-.copy--viator__excluded
-  li
-    @extend .icon-list__item--cross
+    top: 6px
+    width: 12px
+    height: 12px

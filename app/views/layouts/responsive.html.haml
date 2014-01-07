@@ -6,7 +6,7 @@
 %head
   %meta{name:"viewport", content:"width=device-width, initial-scale=1"}
   = render 'layouts/core/head', responsive: true, homepage: false
-  = render 'layouts/mobile/grunticon'
+  = render 'layouts/core/snippets/grunticon', sheet: 'active'
 
   <!--[if gt IE 8]><!-->
   = render 'layouts/mobile/detect_touch'
@@ -21,7 +21,7 @@
   = render 'layouts/core/snippets/leaderboard'
   .wrapper
     = render 'layouts/core/snippets/primary_navigation_bar', user_nav: true, responsive: true, homepage: false
-    .row.row--content{class: @no_wallpaper ? "" : "#js-row--content"}
+    .row.row--content{id: @no_wallpaper ? "" : "js-row--content"}
       - if (yield :secondary).present?
         .row.row--secondary#js-secondary-nav
           .row__inner

@@ -61,10 +61,11 @@ $slideOffsetHome: -4.5em
     text-decoration: none
   &:before, &:after
     @extend %transition--base
-    font-size: 2.286em
+    width: 2em
+    height: 2em
     display: inline-block
     font-weight: normal
-    margin-top: -0.1em
+    margin-top: -0.2em
     position: absolute
     vertical-align: top
 
@@ -73,20 +74,17 @@ $slideOffsetHome: -4.5em
     &:after, &:before
       content: ""
       width: 40px
-      height: 100%
-      top: 0
+      top: 10px
       background-size: 100%
-      background-position: center center
       margin-top: 0
 
 .slider__control--prev
-  @extend %chevron-left-after
   left: $slideOffset
   padding-right: $slidePadding
-  
+
   .homepage &
     left: $slideOffsetHome
-    
+
   &:after
     right: $chevronOffset
   &:hover
@@ -94,16 +92,15 @@ $slideOffsetHome: -4.5em
     padding-right: $slideHoverPadding
   .at-beginning &
     opacity: 0
-  
+
 
 .slider__control--next
-  @extend %chevron-right-before
   right: $slideOffset
   padding-left: $slidePadding
-  
+
   .homepage &
     right: $slideOffsetHome
-  
+
   &:before
     left: $chevronOffset
   &:hover
@@ -111,7 +108,7 @@ $slideOffsetHome: -4.5em
     padding-left: $slideHoverPadding
   .at-end &
     opacity: 0
-  
+
 
 .slider__pagination
   bottom: 0

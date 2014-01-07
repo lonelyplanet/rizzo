@@ -5,22 +5,24 @@
     "card",
     "card--shop",
     "card--destination",
-    "card--extended-content--half",
-    "#{card[:double?] ? 'card--double card--full-image' : 'card--single'}"
+    "card--icon",
+    "icon--destination--pin--before",
+    "card--single",
+    "card--extended-content--half"
 
   ].join(" ")
 
 
 %article.js-card{class: css_classes}
 
-  %a.link--wrapper{href: card[:shop_link]}
+  %a.link--wrapper{href: properties[:shop_link]}
 
     %figure.card__hero
-      = safe_image_tag("cards/shop.jpg", class: 'card__image', alt: "destination guides", lazyload: defined?(lazyload))
+      = safe_image_tag("cards/shop30.jpg", class: 'card__image', alt: "destination guides", lazyload: defined?(lazyload))
 
     .card__content
       %span.card__context
         Shop
       %h2.card__name.js-card-name
-        = card[:place_name]
+        = properties[:place_name]
         destination guides

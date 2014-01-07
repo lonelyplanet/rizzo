@@ -7,7 +7,7 @@
   +respond-to(medium-view)
     border-bottom: none
     background-color: $darkblue
-    +responsive-image('homepage/bookings/tours','jpg')
+    +responsive-image('bookings/tours','jpg')
     background-position: center center
     background-repeat: no-repeat
     background-size: cover
@@ -29,7 +29,7 @@
   background: $body-background-offset
   border-top: 1px solid $body-background
   border-bottom: 1px solid $body-background
-  +respond-at(350)
+  +respond-to(350)
     padding: 25px 0
   .ie8 &
     display: none
@@ -37,7 +37,7 @@
 .radio-group
   @extend %inline-block
   margin-right: 10px
-  +respond-at(415)
+  +respond-to(415)
     margin-right: 30px
   input
     width: auto
@@ -45,6 +45,28 @@
     margin-right: 5px
     &:checked + label
       font-weight: bold
+
+.label--radio
+  position: relative
+  cursor: pointer
+  display: block
+  padding-left: 20px
+  &:before
+    @extend %empty-abs-generated-content
+    width: 11px
+    height: 11px
+    border: 1px solid #d9e3e6
+    top: 3px
+    left: 0
+    border-radius: 10px
+
+  &.is-active
+    font-weight: bold
+    color: $body-copy
+    &:before
+      width: 6px
+      height: 6px
+      border: 4px solid $teal
 
 // Toggle between sightseeing/adventure tours
 .js-row-toggle

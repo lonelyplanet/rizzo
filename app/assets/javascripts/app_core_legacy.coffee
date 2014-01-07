@@ -4,4 +4,4 @@ if !!window.jQuery then define('jquery', [], -> window.jQuery )
 require ['jquery', 'lib/core/base', 'flamsteed'], ($, Base, _FS) ->
   $ ->
     base = new Base()
-    window.lp.fs = new _FS({events: window.lp.fs.buffer})
+    window.lp.fs = new _FS({events: window.lp.fs.buffer, u: $.cookies.get('lpUid')})

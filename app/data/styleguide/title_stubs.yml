@@ -10,9 +10,10 @@ titles:
     :title: "France"
 
   -
-    :styleguide_title: "World title (not a link)"
+    :styleguide_title: "World title (not a link) with custom icon"
     :no_place_link: true
     :title: "World"
+    :icon: "globe"
 
   -
     :styleguide_title: "Country title on subsection pages (as a link)"

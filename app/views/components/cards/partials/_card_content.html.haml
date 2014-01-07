@@ -1,20 +1,21 @@
-- if card[:image_url]
+- transparent ||= nil
+- if properties[:image_url]
   %figure.card__hero
-    - if overlay_url = card[:overlay_url]
+    - if overlay_url = properties[:overlay_url]
       .card__hero__overlay
-        = safe_image_tag(overlay_url, :alt => card[:title])
-    = safe_image_tag(card[:image_url], class: 'card__image', alt: "#{card[:title]}", lazyload: defined?(lazyload))
+        = safe_image_tag(overlay_url, :alt => properties[:title])
+    = safe_image_tag(properties[:image_url], class: 'card__image', alt: "#{properties[:title]}", lazyload: defined?(lazyload))
 
 .card__content
   .card__content__inner
     %span.card__context
-      = card[:context]
+      = properties[:context]
     %h2.card__name.js-card-name
-      = card[:title]
-    - unless card[:double?]
-      - if card[:strapline] || card[:description]
+      = properties[:title]
+    - unless properties[:double?] or transparent
+      - if properties[:strapline] || properties[:description]
         %p.card__description
-          = card[:strapline] || card[:description]
+          = properties[:strapline] || properties[:description]
 
-
-    = render partial: "components/cards/partials/image_attribution", locals: {card: card}
+    - if properties[:image_license] && properties[:image_license] != 'expedia'
+      = render partial: "components/cards/partials/image_attribution", locals: {properties: properties}

@@ -1,7 +1,7 @@
 // ----------------------------------------------------------------------------
-// 
+//
 // Core nav item
-// 
+//
 // ----------------------------------------------------------------------------
 
 .nav__item
@@ -9,9 +9,9 @@
     text-decoration: none
 
 // ----------------------------------------------------------------------------
-// 
+//
 // primary-nav
-// 
+//
 // ----------------------------------------------------------------------------
 
 .nav--primary
@@ -61,10 +61,30 @@
       &:before
         width: 0
         border: none
+
+    .nav__icon
+      position: absolute
+      width: 50px
+      border-right: 1px solid $offscreen-nav-border
+      display: block
+      left: 0
+      top: 0
+      height: 100%
+      color: $offscreen-nav-border
+      opacity: 0.7
+      &:before
+        position: absolute
+        top: 18px
+        left: 15px
+        width: 22px
+        height: 22px
+      +respond-to(wide-view)
+        display: none
+
   .homepage &
     +respond-to(wide-view)
       padding: 20px 4px
-    
+
   &, & > .nav__item
     font-weight: bold
     color: $nav-primary-type
@@ -84,6 +104,17 @@
     +respond-to(wide-view)
       display: none
 
+.nav__item--sign-in,
+.nav__item--join
+  &:before
+    width: 18px
+    height: 18px
+    display: inline-block
+    margin-right: 5px
+    opacity: .7
+  &:hover:before
+    opacity: 1
+
 .nav--user
   +respond-to(wide-view)
     margin-right: 20px
@@ -94,9 +125,9 @@
     color: #fff
 
 // ----------------------------------------------------------------------------
-// 
+//
 // secondary-nav
-// 
+//
 // ----------------------------------------------------------------------------
 
 .nav--secondary
@@ -129,16 +160,15 @@
 
 // Place title is a wrapper to allow us to show very long place names on hover
 .place-title
-  +font-size(18)
+  @extend %truncate-text
   @extend %left-icon
-  @extend %icon--location-flag-before
-  // These three rules are repeated here because we can't extend from within a media query. Ugly but necessary
+  +font-size(18)
   text-overflow: ellipsis
   overflow: hidden
   white-space: nowrap
   margin-right: 20px
   // Fix the text-overflow bug in firefox to avoid the final letter being clipped
-  padding-right: 2px
+  padding-right: 6px
   padding-left: 22px
   .responsive &
     text-overflow: none
@@ -150,14 +180,11 @@
       white-space: nowrap
     +respond-to(wide-view)
       margin-left: 0
-
   &:before
-    top: 0
-    font-size: 28px
-    line-height: 22px
-
-.place-title--world
-  @extend %icon--world-before
+    top: 4px
+    left: 0px
+    height: 18px
+    width: 18px
 
 .place-title-heading
   font-weight: bold
@@ -172,19 +199,27 @@
     text-decoration: none
 
 // ----------------------------------------------------------------------------
-// 
+//
 // user-basket
-// 
+//
 // ----------------------------------------------------------------------------
 
+.responsive .user-basket,
 .user-basket
   position: relative
   margin-left: 15px
-  padding: 17px 8px 16px
+  padding: 11px 8px 16px
   .responsive .wv--nav--inline > &.nav__item
     display: none
     +respond-to(wide-view)
       display: inline-block
+
+.user-basket__icon
+  @extend %image-replacement
+  @extend %inline-block
+  height: 28px
+  margin-right: 5px
+  width: 28px
 
 .user-basket__items
   @include border-radius(8)
@@ -193,6 +228,8 @@
   position: absolute
   left: 0
   top: 12px
+  width: 16px
+  height: 16px
   line-height: 16px
   margin: 0
   color: $row-primary--darker
@@ -212,33 +249,29 @@
 
 .user-box
   @extend %right-icon
-  @extend %chevron-down-after
   margin-top: 10px
   padding-right: 25px
   &:after
-    @extend %lp-font-stack
-    +font-size(20)
-    line-height: 29px
     right: 0
-    top: 0
+    top: 10px
+    width: 12px
+    height: 15px
 
   .responsive &
     margin-top: 0
     height: 50px
+    background: $offscreen-nav-user-background
     &:after
       content: ''
       background-size: 100%
       background-position: center
       top: 10px
-    +respond-to(max990)
-      background: $offscreen-nav-user-background
-      &:after
-        background: none
+      background: none
+    +respond-to(990)
+      background: none
     +respond-to(wide-view)
       margin-top: 10px
       height: auto
-      
-
 
 .user-box__img
   @extend %rounded-corners
@@ -285,45 +318,26 @@
     padding-left: 39px
     font-weight: bold
     &:before
-      line-height: 30px
-      font-size: 34px
-      top: 0
+      top: 10px
       left: 10px
-      font-weight: normal
-    .responsive &:before
-      content: ""
-      background-size: 100%
-      background-position: center
-      height: 100%
-      width: 22px
-
-.nav__submenu__item--flights
-  @extend %icon--flights-before
-
-.nav__submenu__item--hotels
-  @extend %icon-image-poi-hotel-before
-
-.nav__submenu__item--adventure-tours
-  @extend %icon-image-poi-tour-before
-
-.nav__submenu__item--sightseeing-tours
-  @extend %icon-image-poi-activity-before
-
+      width: 20px
+      height: 20px
 
 // ----------------------------------------------------------------------------
-// 
+//
 // breadcrumbs-nav
-// 
+//
 // ----------------------------------------------------------------------------
 
 .nav__item--breadcrumbs
   @extend %left-icon
-  @extend %chevron-right-before
-  padding: 19px 8px 19px 20px
+  padding: 20px 8px 18px 20px
+  line-height: 20px
   color: $body-copy
   &:before
-    font-size: 16px
-    line-height: 1
+    height: 12px
+    width: 12px
+    margin-top: 4px
   &.current
     font-weight: bold
     &:hover
@@ -332,7 +346,9 @@
     padding: 0 0.2em 0 0.65em
     &:before
       content: '/'
-      top: 0.25em
+      // This stops the lower-left most part of the / from being cut off.
+      padding: 0 1px
+      top: -0.33em
     &:first-child
       padding-left: 0
       &:before
@@ -351,24 +367,21 @@ a.nav__item--breadcrumbs
 .nav__item--breadcrumbs--home
   @extend %left-icon
   @extend %left-icon--hidden-text
-  @extend %icon--home-before
-  width: 32px
+  width: 24px
+  height: 24px
+  top: 15px
   &:before
-    top: 0
-    line-height: 50px
-    font-size: 32px
-    width: inherit
-    text-align: center
-    color: $body-copy
+    width: 24px
+    height: 24px
   .ie7 &
     @extend .nav__item--breadcrumbs
     text-indent: 0
     width: auto
 
 // ----------------------------------------------------------------------------
-// 
+//
 // about-nav
-// 
+//
 // ----------------------------------------------------------------------------
 
 .nav__item--about
@@ -387,9 +400,9 @@ a.nav__item--breadcrumbs
 
 
 // ----------------------------------------------------------------------------
-// 
+//
 // social-nav
-// 
+//
 // ----------------------------------------------------------------------------
 
 .responsive
@@ -417,26 +430,14 @@ a.nav__item--breadcrumbs
 
 .nav__item--social
   +border-radius(16)
-  @extend %left-icon
   @extend %left-icon--hidden-text
   @extend %lp-font-stack
   color: $body-copy
   margin: 16px 0 17px
   width: 32px
   height: 32px
-  .responsive &
-    width: 24px
-    margin: 19px 0 17px
-    +respond-to(400)
-      width: 32px
-    +respond-to(wide-view)
-      margin: 16px 0 17px
-  &:before
-    top: 0
-    line-height: 24px
-    font-size: 32px
-    width: inherit
-    text-align: center
+  background-size: 28px
+  background-position: 2px 2px
   &:hover
     background-color: white
   .ie7 &
@@ -444,68 +445,12 @@ a.nav__item--breadcrumbs
     height: auto !important
     width: auto !important
     margin: 26px 5px 0 0
-
-.icon--twitter--grey
-  @extend %icon--twitter-before
-  // SVG Version
-  .responsive &
-    background-position: center
-    &:before
-      content: ""
-
-.icon--facebook--grey
-  @extend %icon--facebook-before
-  // SVG Version
-  .responsive &
-    background-position: center
-    &:before
-      content: ""
-
-.icon--google-plus--grey
-  @extend %icon--google-plus-before
-  // SVG Version
-  .responsive &
-    background-position: center
-    &:before
-      content: ""
-
-.icon--flickr--grey
-  @extend %icon--flickr-before
-  // SVG Version
-  .responsive &
-    background-position: center
-    &:before
-      content: ""
-
-.icon--rss--grey
-  @extend %icon--rss-before
-  // SVG Version
-  .responsive &
-    background-position: center
-    &:before
-      content: ""
-
-.icon--youtube--grey
-  @extend %icon--youtube-before
-  // SVG Version
-  .responsive &
-    background-position: center
-    &:before
-      content: ""
-
-.icon--pinterest--grey
-  @extend %icon--pinterest-before
-  // SVG Version
-  .responsive &
-    background-position: center
-    &:before
-      content: ""
-
+    background: none
 
 // ----------------------------------------------------------------------------
-// 
+//
 // Sitemap-nav
-// 
+//
 // ----------------------------------------------------------------------------
 
 .col--footer,

@@ -1,3 +1,15 @@
 -# Don't use this component directly
 -# See: rizzo.lonelyplanet.com/styleguide/buttons
-%a{href: button[:href], class: "btn btn--#{button[:type]} #{button[:modifiers]}"} #{button[:text]}
+:ruby
+  type = ""
+  modifiers = ""
+
+  if button[:type]
+    type = " btn--#{button[:type]}"
+  end
+
+  if button[:modifiers]
+    modifiers = " #{button[:modifiers]}"
+  end
+
+%a{href: button[:href], class: "btn#{type}#{modifiers}"} #{button[:text]}

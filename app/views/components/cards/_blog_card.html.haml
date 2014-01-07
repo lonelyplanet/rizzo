@@ -5,28 +5,27 @@
     "card",
     "card--poi",
     "card--small-image",
-    "card--extended-content",
     "icon--blog--white--before",
-    "#{card[:double?] ? 'card--double card--full-image' : 'card--single'}"
+    properties[:double?] ? "card--double card--full-image" : "card--single card--extended-content"
 
   ].join(" ")
 
 
 %article.js-card{class: css_classes}
 
-  %a.link--wrapper{href: card[:url]}
+  %a.link--wrapper{href: properties[:url]}
 
-    - if card[:image_url]
+    - if properties[:image_url]
       %figure.card__hero
-        = safe_image_tag(card[:image_url], class: 'card__image', alt: "#{card[:title]}", lazyload: defined?(lazyload))
+        = safe_image_tag(properties[:image_url], class: 'card__image', alt: "#{properties[:title]}", lazyload: defined?(lazyload))
 
     .card__content
       %span.card__context
         Blog
 
       %h2.card__name
-        = card[:title]
+        = properties[:title]
 
-      - if card[:subtitle]
+      - if properties[:subtitle]
         %p.card__description
-          = card[:subtitle]
+          = properties[:subtitle]

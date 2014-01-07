@@ -6,20 +6,20 @@
     "card--poi",
     "card--poi--hotel",
     "card--single",
-    "#{card[:bookable?] ? 'card--small-image card--extended-content' : 'card--no-image'}"
+    properties[:bookable?] ? "card--small-image card--extended-content" : "card--no-image"
 
   ].join(" ")
 
 
 %article.js-lodging.js-card{class: css_classes }
 
-  %a.link--wrapper{href: card[:path]}
+  %a.link--wrapper{href: properties[:path]}
 
-    - if card[:bookable?]
+    - if properties[:bookable?]
       %figure.card__hero
-        %img.card__image.js-card__image{src: card[:list_image]["url"]}
+        %img.card__image.js-card__image{src: properties[:list_image]["url"]}
 
-      - price = card['total_price'] || card[:indicative_price_in_user_currency]
+      - price = properties['total_price'] || properties[:indicative_price_in_user_currency]
       .card__tags
         - if price && price > 0
           .tag.tag--price
@@ -32,36 +32,36 @@
                   %span.js-price<>
                     = price(price, :no_pence)
                 %span.tag--price__scope<
-                  - if card['total_price']
+                  - if properties['total_price']
                     total stay
                   - else
                     per night
-        = render :partial => '/components/cards/partials/lodging_badges', :locals => { :card => card }
+        = render :partial => '/components/cards/partials/lodging_badges', :locals => { :properties => properties }
     - else
       .card__tags
         .tag.tag--non-bookable
-          &#57465;
-        = render :partial => '/components/cards/partials/lodging_badges', :locals => { :card => card }
+          %div.icon--contact
+        = render :partial => '/components/cards/partials/lodging_badges', :locals => { :properties => properties }
 
     .card__content
-      - if (card[:property_type].present? && card[:bookable?])
+      - if (properties[:property_type].present? && properties[:bookable?])
         %span.card__property-type<
-          - if card[:hotel_star_ranking].present?
-            = card[:hotel_star_ranking]
+          - if properties[:hotel_star_ranking].present?
+            = properties[:hotel_star_ranking]
           - else
-            = card[:property_type_title]
+            = properties[:property_type_title]
 
-      %h2.card__name.js-lodging-name{class: card[:neighbourhood] ? '' : 'has-no-locale'}<
-        = truncate((card[:name].titleize), :length=> 50, :separator => ' ')
+      %h2.card__name.js-lodging-name{class: properties[:neighbourhood] ? '' : 'has-no-locale'}<
+        = truncate((properties[:name].titleize), :length=> 50, :separator => ' ')
 
-      - if card[:nearby_place_text]
-        %p.card__locale
-          = card[:nearby_place_text]
+      - if properties[:nearby_place_text]
+        %p.card__locale.icon--place--pin--before
+          = properties[:nearby_place_text]
 
-      - if card[:card_description]
+      - if properties[:card_description]
         %p.card__description
-          = card[:card_description]
+          = properties[:card_description]
 
     %footer.card__footer
-      %span.btn.btn--bookable.btn--full-width
-        = card[:bookable?] ? 'Book Now' : 'Read more'
+      %span.btn.btn--yellow.btn--full-width
+        = properties[:bookable?] ? 'Book Now' : 'Read more'

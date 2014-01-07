@@ -1,5 +1,5 @@
 .table
-  margin-bottom: 20px
+  margin-bottom: 10px
   width: 100%
 
 .table__row
@@ -8,27 +8,46 @@
 .table__row--head
   background: $body-background-offset
 
-  th
-    text-align: left
-    vertical-align: bottom
-
 .table__row--body
-  &.odd
-    background: white
-  &.even
+  &:nth-child(2n)
     background: $details-panel-bg
 
 .table__cell
   padding: 5px 3px
 
-.table--pagination
+  .table__row--head &
+    text-align: left
+    vertical-align: bottom
+
+  &:first-child
+    padding-left: 15px
+
+.table__pagination
+  margin-bottom: 20px
   text-align: center
+
+.table__filters
+  position: absolute
+  padding: 5px 10px
+  text-align: right
+  top: -47px
+  right: 0
+
+  .dataTables_paginate
+    display: inline-block
+    margin-left: 10px
+
+  .dataTables_filter
+    display: inline-block
+    margin-left: 10px
+
+  .dataTables_info
+    display: inline-block
 
 .filter
   display: table-cell
-  padding: 10px
+  padding: 5px
   vertical-align: bottom
-
 
 // dataTable specific elements
 .pagination
@@ -36,7 +55,7 @@
     display: inline-block
     margin: 0 3px
 
-#reports-queue_processing
+.dataTables_processing
   background: #fff
   bottom: 0
   left: 0
@@ -47,5 +66,20 @@
   top: 0
   z-index: 5
 
-#process_multiple_reports
+.dataTables_wrapper
   position: relative
+
+.dataTables_empty
+  padding: 10px
+  text-align: center
+
+.dataTables_filter
+  input
+    @extend .input
+    margin-left: 20px
+    width: auto
+
+.card--moderation
+  .dataTables_filter
+    input
+      background: white

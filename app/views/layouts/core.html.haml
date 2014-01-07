@@ -38,6 +38,8 @@
       :javascript
         window.lpOffice = true;
     = yield :scripts
+    = render 'layouts/core/snippets/google_analytics' if Rails.env.production?
+
 
   %div.ad-oneByOne#js-ad-oneByOne
 

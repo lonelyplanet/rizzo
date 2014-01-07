@@ -1,16 +1,17 @@
-- if card[:image_license] && card[:image_license] != 'expedia'
-  .card__attribution
-    %span.card__attribution-link.js-card-attribution{ data: { link: card[:image_attribution_link] }}<
-      = card[:image_attribution]
-    %span.card__licenses
-      - unless card[:image_license] == 'permission'
-        %span.license.license--cc<
-          Creative Commons
-      %span.license.license--attribution<
-        Attribution
-      - if card[:image_license] == 'by-nd'
-        %span.license.license--non-deriv<
-          Non-Derivation
-      - if card[:image_license] == 'by-sa'
-        %span.license.license--share-alike<
-          Share Alike
+- icon_colour = properties[:double?] ? "icon--white" : ""
+
+.card__attribution.icon--image--before{class: icon_colour ? "#{icon_colour}--before" : ""}
+  %span.card__attribution-link.js-card-attribution{ data: { link: properties[:image_attribution_link] }}<
+    = properties[:image_attribution]
+  %span.card__licenses
+    - unless properties[:image_license] == 'permission'
+      %span.license.icon--cc{class: icon_colour}<
+        Creative Commons
+    %span.license.icon--by{class: icon_colour}<
+      Attribution
+    - if properties[:image_license] == 'by-nd'
+      %span.license.icon--nd{class: icon_colour}<
+        Non-Derivation
+    - if properties[:image_license] == 'by-sa'
+      %span.license.icon--sa{class: icon_colour}<
+        Share Alike

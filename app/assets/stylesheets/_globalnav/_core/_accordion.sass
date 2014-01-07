@@ -13,7 +13,6 @@
   &:after
     content: attr(data-expand)
   &:before
-    +lp-section-toggle-background()
     +transition()
     @extend %empty-abs-generated-content
     @extend %opaque
@@ -42,7 +41,6 @@
 .accordion__input:checked 
   & + .accordion__target
     .accordion__title
-      @extend %chevron-up-after
       &:after
         top: 18px
       // Let's take the closest unicode character we have (non-freight)
@@ -74,7 +72,6 @@
 
 .accordion__title
   position: relative
-  @extend %chevron-down-after
   cursor: pointer
   display: block
   padding-right: 30px
@@ -86,7 +83,9 @@
     pointer-events: none
     position: absolute
     right: 12px
-    top: 17px
+    top: 13px
+    width: 13px
+    height: 13px
   .responsive &
     &:after
       right: 17px

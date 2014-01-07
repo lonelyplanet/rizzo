@@ -1,0 +1,26 @@
+// -----------------------------------------------------------------------------
+// Alerts
+// -----------------------------------------------------------------------------
+
+.alert
+  @extend %rounded-corners
+  clear: both
+  margin: 10px 0
+  padding: 15px 15px 13px 45px
+  position: relative
+
+  &:before
+    height: 18px
+    left: 15px
+    position: absolute
+    top: 12px
+    width: 20px
+
+.alert--success
+  background: lighten($green, 50%)
+
+.alert--error
+  background: lighten($red, 25%)
+
+.alert--warning
+  background: lighten($orange, 30%)

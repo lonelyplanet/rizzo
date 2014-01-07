@@ -106,7 +106,7 @@ require ['public/assets/javascripts/lib/components/section_toggle.js'], (Section
 
         it 'keeps the toggle area open and does not have a toggle button', ->
           expect(window.SectionToggle.addHandler).not.toHaveBeenCalled()
-          expect(window.SectionToggle.setWrapperState).toHaveBeenCalledWith(120, '', 'open')
+          expect(window.SectionToggle.setWrapperState).toHaveBeenCalledWith({ height : 120, text : 'Read less', state : 'open', classes : 'icon--chevron-up--after'})
           expect(window.SectionToggle.$el).toHaveClass('is-open')
           expect(window.SectionToggle.$el.find('.btn--read-more').length).toBe(0)
 

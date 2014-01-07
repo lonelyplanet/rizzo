@@ -1,0 +1,51 @@
+.icon--by--before:before, .icon--by--after:after,
+.icon--by { background-image: url('png/by.png'); background-repeat: no-repeat; }
+
+.icon--cc--before:before, .icon--cc--after:after,
+.icon--cc { background-image: url('png/cc.png'); background-repeat: no-repeat; }
+
+.icon--facebook--before:before, .icon--facebook--after:after,
+.icon--facebook { background-image: url('png/facebook.png'); background-repeat: no-repeat; }
+
+.icon--flickr--before:before, .icon--flickr--after:after,
+.icon--flickr { background-image: url('png/flickr.png'); background-repeat: no-repeat; }
+
+.icon--google-plus--before:before, .icon--google-plus--after:after,
+.icon--google-plus { background-image: url('png/google-plus.png'); background-repeat: no-repeat; }
+
+.icon--hamburger--before:before, .icon--hamburger--after:after,
+.icon--hamburger { background-image: url('png/hamburger.png'); background-repeat: no-repeat; }
+
+.icon--lp-logo--before:before, .icon--lp-logo--after:after,
+.icon--lp-logo { background-image: url('png/lp-logo.png'); background-repeat: no-repeat; }
+
+.icon--lp-reviewed--before:before, .icon--lp-reviewed--after:after,
+.icon--lp-reviewed { background-image: url('png/lp-reviewed.png'); background-repeat: no-repeat; }
+
+.icon--nd--before:before, .icon--nd--after:after,
+.icon--nd { background-image: url('png/nd.png'); background-repeat: no-repeat; }
+
+.icon--pinterest--before:before, .icon--pinterest--after:after,
+.icon--pinterest { background-image: url('png/pinterest.png'); background-repeat: no-repeat; }
+
+.icon--rss--before:before, .icon--rss--after:after,
+.icon--rss { background-image: url('png/rss.png'); background-repeat: no-repeat; }
+
+.icon--sa--before:before, .icon--sa--after:after,
+.icon--sa { background-image: url('png/sa.png'); background-repeat: no-repeat; }
+
+.icon--search--before:before, .icon--search--after:after,
+.icon--search { background-image: url('png/search.png'); background-repeat: no-repeat; }
+
+.icon--shop-basket--before:before, .icon--shop-basket--after:after,
+.icon--shop-basket { background-image: url('png/shop-basket.png'); background-repeat: no-repeat; }
+
+.icon--top-choice--before:before, .icon--top-choice--after:after,
+.icon--top-choice { background-image: url('png/top-choice.png'); background-repeat: no-repeat; }
+
+.icon--twitter--before:before, .icon--twitter--after:after,
+.icon--twitter { background-image: url('png/twitter.png'); background-repeat: no-repeat; }
+
+.icon--youtube--before:before, .icon--youtube--after:after,
+.icon--youtube { background-image: url('png/youtube.png'); background-repeat: no-repeat; }
+

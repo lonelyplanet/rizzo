@@ -1,10 +1,10 @@
 %article.card.card--image-only.card--gallery
-  %a.link--wrapper{href: card[:image_href], title: "Image Gallery"}
-    %span.card--media__badge.icon--camera--white
+  %a.link--wrapper{href: properties[:url], title: "Image Gallery"}
+    %span.card--media__badge.icon--image.icon--white
     %figure.card__hero
-      = safe_image_tag(card[:resized_image_url], class: 'portrait card__image', alt: "Image Gallery", lazyload: defined?(lazyload))
+      = safe_image_tag(properties[:resized_image_url], class: 'portrait card__image', alt: "Image Gallery", lazyload: defined?(lazyload))
     .card__content
       %h2.card__name.accessibility
         Image gallery
       %p
-        = card[:image_description]
+        = properties[:image_description]

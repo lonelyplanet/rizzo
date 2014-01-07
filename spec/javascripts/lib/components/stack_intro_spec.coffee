@@ -20,7 +20,6 @@ require ['public/assets/javascripts/lib/components/stack_intro.js'], (StackIntro
           el: '.js-stack-intro'
           title: '.js-copy-title'
           lead: '.js-copy-lead'
-          body: '.js-copy-body' 
         expect(@stackIntro.config).toEqual(args)
 
       it 'extends base configuration', ->
@@ -28,7 +27,6 @@ require ['public/assets/javascripts/lib/components/stack_intro.js'], (StackIntro
           el: '.foo-intro'
           title: '.foo-title'
           lead: '.foo-lead'
-          body: '.foo-body' 
         customIntro = new StackIntro(customArgs)
         expect(customIntro.config).toEqual(customArgs)
 
@@ -62,11 +60,6 @@ require ['public/assets/javascripts/lib/components/stack_intro.js'], (StackIntro
         window.stackIntro._update({lead: lead})
         expect($("#{window.stackIntro.config.lead}")).toHaveText(lead)
 
-      it 'updates body content', ->
-        body = '<p>Lorem ipsum dolor sit amet, consectetur adipiscing eli.</p>'
-        window.stackIntro._update({body: body})
-        expect($("#{window.stackIntro.config.body}")).toHaveHtml(body)
-
 
     describe 'content visibility', ->    
       
@@ -83,16 +76,6 @@ require ['public/assets/javascripts/lib/components/stack_intro.js'], (StackIntro
         lead = 'Lorem ipsum dolor sit amet'
         @stackIntro._update({lead: lead})
         expect($("#{@stackIntro.config.lead}")).toBeVisible()  
-
-      it 'hides body container', ->
-        body = ''
-        @stackIntro._update({body: body})
-        expect($("#{@stackIntro.config.body}")).toBeHidden()
-
-      it 'shows body container', ->
-        body = 'lorem'
-        @stackIntro._update({body: body})
-        expect($("#{@stackIntro.config.body}")).toBeVisible()           
 
 
     # --------------------------------------------------------------------------

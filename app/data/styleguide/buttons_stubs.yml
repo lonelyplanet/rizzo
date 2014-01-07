@@ -1,25 +1,27 @@
 buttons:
-  -
-    :styleguide_title: "Bookable button"
-    :type: "bookable"
-    :text: "Bookable button"
-    :href: "#"
+
   -
     :styleguide_title: "Green button"
     :type: "green"
-    :text: "Eg. Register"
+    :text: "Register"
     :href: "#"
 
   -
-    :styleguide_title: "Blue button"
-    :type: "blue"
-    :text: "Eg. Search"
+    :styleguide_title: "Red button"
+    :type: "red"
+    :text: "Delete"
+    :href: "#"
+
+  -
+    :styleguide_title: "Yellow button"
+    :type: "yellow"
+    :text: "Book"
     :href: "#"
 
   -
     :styleguide_title: "White button"
     :type: "white"
-    :text: "Eg. Change dates"
+    :text: "Change dates"
     :href: "#"
 
   -
@@ -37,7 +39,7 @@ buttons:
   -
     :styleguide_title: "Clear button"
     :type: "clear"
-    :text: "Eg. Read more"
+    :text: "Read more"
     :href: "#"
 
 variation:
@@ -46,6 +48,10 @@ variation:
   :text: "Modified button"
   :href: "#"
   :modifiers:
+    - "btn--small"
+    - "btn--large"
     - "btn--slim"
     - "is-disabled"
     - "btn--full-width"
+    - "btn--icon icon--globe--before icon--white--before"
+    - "btn--icon-only icon--globe icon--white"

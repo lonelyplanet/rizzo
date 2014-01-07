@@ -39,20 +39,11 @@ $submenu__arrow--width:  10px
   background-color: $green
   padding: 4px 0
   position: relative
-  +css-arrow-central(top, $width: $submenu__arrow--width, $size: 38px)
+  +css-arrow-central(top, $width: $submenu__arrow--width, $size: 40px)
   &:after
-    color: $green
     position: absolute
-    line-height: 1
-  .responsive &
-    &:after
-      content: ""
-      top: -25px
-      background-size: 100%
-      width: 25px
-      height: 25px
-    &.nav__submenu__content--user:after
-      left: 73%
+  &.nav__submenu__content--user:after
+    left: 73%
 
   .ie8.home &
     &:after

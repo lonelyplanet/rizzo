@@ -2,7 +2,7 @@
 # Constructor class for the Availability form manager
 #
 # ------------------------------------------------------------------------------
-  
+
 define ['jquery', 'lib/extends/events', 'lib/utils/page_state', 'lib/utils/serialize_form', 'lib/managers/select_group_manager', 'lib/components/datepicker'], ($, EventEmitter, PageState, Serializer, SelectManager, AvailabilityDatepicker) ->
 
   class AvailabilitySearch extends PageState
@@ -21,12 +21,12 @@ define ['jquery', 'lib/extends/events', 'lib/utils/page_state', 'lib/utils/seria
       @$form = @$el.find('form')
       @$submit ?= @$form.find('#js-booking-submit')
       formDatePicker = new AvailabilityDatepicker( target: @$el )
-      guestSelect =  new SelectManager('.js-guest-select') 
-      currencySelect = new SelectManager('.js-currency-select') 
+      guestSelect = new SelectManager('.js-guest-select')
+      currencySelect = new SelectManager('.js-currency-select')
       @listen()
-      @broadcast()  
-    
-    
+      @broadcast()
+
+
     # Subscribe
     listen: ->
       $(LISTENER).on ':cards/request', =>
@@ -37,10 +37,10 @@ define ['jquery', 'lib/extends/events', 'lib/utils/page_state', 'lib/utils/seria
         @_unblock()
         @_set('page_offsets', data.pagination.page_offsets) if data.pagination && data.pagination.page_offsets
 
-      $(LISTENER).on ':search/change', => 
+      $(LISTENER).on ':search/change', =>
         @_show()
 
-      $(LISTENER).on ':search/hide', => 
+      $(LISTENER).on ':search/hide', =>
         @_hide()
 
     # Publish
@@ -55,9 +55,9 @@ define ['jquery', 'lib/extends/events', 'lib/utils/page_state', 'lib/utils/seria
 
     _setDefaultDates : ->
       currentDate = new Date()
-      today = [currentDate.getFullYear(), (currentDate.getMonth() + 1), currentDate.getDate()]
-      @$el.find('#js-av-start').data('pickadate').setDate(today[0], today[1], today[2] + 1)
-      @$el.find('#js-av-end').data('pickadate').setDate(today[0], today[1], today[2] + 2)
+      today = [currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate()]
+      @$el.find('#js-av-start').data('pickadate').set('select', [today[0], today[1], today[2] + 1])
+      @$el.find('#js-av-end').data('pickadate').set('select', [today[0], today[1], today[2] + 2])
 
     _getSearchData : ->
       if @$form.find('#js-av-start').val() is ''  or @$form.find('#js-av-start').val() is undefined
@@ -67,7 +67,7 @@ define ['jquery', 'lib/extends/events', 'lib/utils/page_state', 'lib/utils/seria
     _set : (name, value)->
       input = @$form.find("input[name*='#{name}']")
       if input and value
-        input.attr('value', value)
+        input.val(value)
 
     _block : ->
       @$submit.addClass('is-disabled').attr('disabled', true)
@@ -80,5 +80,3 @@ define ['jquery', 'lib/extends/events', 'lib/utils/page_state', 'lib/utils/seria
 
     _hide : ->
       @$el.addClass('is-hidden')
-
-

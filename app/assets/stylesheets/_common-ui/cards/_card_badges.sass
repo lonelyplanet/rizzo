@@ -4,7 +4,6 @@
 
 .card__item-count
   +font-size(18)
-  @extend %no-line-height
   position: absolute
   color: #fff
   height: 34px // Stop clipping in IE
@@ -14,68 +13,22 @@
   z-index: 5
 
   &:before
-    background: url(image_path("map-markers.png")) no-repeat
     content: ''
     float: left
     height: 34px
     margin-right: 3px
     width: 24px
     z-index: 4
-    +retinafy()
-      background-image: url(image_path("map-markers-2x.png"))
-      background-size: $map-markers-sprite-size
 
-  .card--link--sights &
-    &:before 
-      background-position: -11px -61px
-
-  .card--link--activities &
+  .no-js &, .no-background-size &
     &:before
-      background-position: -55px -61px
-
-  .card--link--entertainment &
-    &:before
-      background-position: -100px -61px
-
-  .card--collection--hotels &
-    &:before
-      background-position: -145px -61px
-
-  .card--link--restaurants &
-    &:before
-      background-position: -234px -61px
-
-  .card--link--shopping &
-    &:before
-      background-position: -279px -61px
-
-  .card--poi--event &
-    &:before
-      background-position: -323px -61px
-
-  .card--poi--transport &
-    &:before
-      background-position: -368px -61px
-
-  .card--destination &
-    &:before
-      background-position: -413px -61px
-
-  .card--link--tours &
-    &:before
-      background-position: -457px -61px
-
-  .card--poi--article &
-    &:before
-      background-position: -502px -61px
-
+      display: none
 
 // -----------------------------------------------------------------------------
 // Media card badges
 // -----------------------------------------------------------------------------
 
 .card--media__badge
-  @extend %no-line-height
   +font-size(45)
   color: #fff
   left: 15px
@@ -84,75 +37,18 @@
   top: 15px
   z-index: 5
 
-  .card--gallery &
-    @extend %icon-gallery-before
-
-  .card--video &
-    @extend %icon-video-before
-
-
 // -----------------------------------------------------------------------------
 // POI card badges
 // -----------------------------------------------------------------------------
 
-.card--info,
-.card--poi,
-.card--destination
-  &:before
-    background: url(image_path("map-markers.png")) no-repeat
-    content: ''
-    height: 33px
-    left: 15px
-    position: absolute
-    top: 15px
-    width: 24px
-    z-index: 4
-    +retinafy()
-      background-image: url(image_path("map-markers-2x.png"))
-      background-size: $map-markers-sprite-size
-
-.card--poi--general:before
-  background-position: -11px -62px
-
-.card--poi--sight:before
-  background-position: -11px -62px
-
-.card--poi--activity:before
-  background-position: -55px -62px
-
-.card--poi--entertainment:before
-  background-position: -100px -62px
-
-.card--poi--hotel:before
-  background-position: -145px -62px
-
-.card--poi--bar:before
-  background-position: -189px -62px
-
-.card--poi--restaurant:before
-  background-position: -234px -62px
-
-.card--poi--shopping:before
-  background-position: -279px -62px
-
-.card--poi--event:before
-  background-position: -323px -62px
-
-.card--poi--transport:before
-  background-position: -368px -62px
-
-.card--destination:before
-  background-position: -413px -62px
-
-.card--poi--tour:before
-  background-position: -457px -62px
-
-.card--poi--article:before
-  background-position: -502px -62px
-
-.card--info:before
-  background-position: -547px -62px
-
+.card--icon:before
+  content: ''
+  height: 33px
+  left: 15px
+  position: absolute
+  top: 15px
+  width: 24px
+  z-index: 4
 
 // -----------------------------------------------------------------------------
 // Badge opt-out

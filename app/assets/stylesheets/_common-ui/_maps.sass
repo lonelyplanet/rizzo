@@ -75,12 +75,16 @@
     border-top: 1px solid $body-background-offset
     margin-bottom: 0
     padding: 10px 20px 15px 43px
-
     &:first-child
       border-top: none
     &:before
-      left: 13px
-      top: 10px
+      display: block
+      position: absolute
+      left: 18px
+      top: 14px
+      // these are different to obscure the shadow >:)
+      width: 18px
+      height: 23px
 
 // -----------------------------------------------------------------------------
 // Map infobox
@@ -106,13 +110,10 @@
     pointer-events: none
 
   &:after
-    +font-size(38)
-    bottom: -16px
+    bottom: -17px
     color: #fff
     position: absolute
-    text-shadow: 0 3px 2px $new-header-grey-shadow
-    .media-gallery &
-      bottom: -24px
+    +filter(drop-shadow(0 3px 2px $new-header-grey-shadow))
 
   .copy--body
     @extend %lp-font-stack // infobox overrides with roboto font
@@ -133,10 +134,11 @@
 .infobox__title
   @extend %lp-font-stack // infobox overrides with roboto font
   +font-size(15)
-  margin-bottom: 0
+  margin-top: -4px
+  line-height: 1
   font-weight: bold
+  &, &.copy--h3
+    margin-bottom: 2px
   &:before
-    top: -1px
-    font-size: 35px
-    left: -4px
-    margin-right: -4px
+    width: 17px
+    left: -2px

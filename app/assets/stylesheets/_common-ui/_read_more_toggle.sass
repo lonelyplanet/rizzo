@@ -1,14 +1,3 @@
-// ----------------------------------------------------------------------------
-// Read more Toggle
-//
-// <div class="read-more js-read-more-wrapper">
-//   <div class="read-more__handler">
-//     <div class="js-handler">Read more</div>
-//   </div>
-// </div>
-//
-// ----------------------------------------------------------------------------
-
 .read-more
   overflow: hidden
   position: relative
@@ -31,7 +20,7 @@
 
   .is-closed &
     background: #fff
-    +lp-section-toggle-background()
+    +background-gradient-with-stops(bottom, #fff, #fff 50%, rgba(255,255,255, 0) 100%)
 
   .is-open &
     background: transparent

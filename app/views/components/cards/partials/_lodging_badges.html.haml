@@ -1,8 +1,11 @@
-- if card[:top_choice?]
+- if properties[:top_choice?]
   .tag.tag--badge.tag--top-choice
-    %span.tag--badge__content
-      Top Choice
-- elsif card[:lp_reviewed]
+    .tag--badge__content.icon--collar--after.icon--lp-blue--after
+      .icon--top-choice.icon--white
+        Top Choice
+
+- elsif properties[:lp_reviewed]
   .tag.tag--badge.tag--lp-reviewed
-    %span.tag--badge__content
-      Lonely Planet Reviewed
+    .tag--badge__content
+      .icon--lp-reviewed.icon--white
+        Lonely Planet Reviewed

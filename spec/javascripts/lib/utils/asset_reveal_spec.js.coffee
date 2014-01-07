@@ -19,7 +19,7 @@ require ['public/assets/javascripts/lib/utils/asset_reveal.js'], (AssetReveal) -
       beforeEach ->
         loadFixtures('hidden_assets.html')
         window.assetReveal = new AssetReveal()
-        $("#js-row--content").trigger(":asset/uncomment", [".foo", "[data-uncomment]"])
+        $("#js-row--content").trigger(":asset/uncomment", [".foo"])
 
       it 'uncomments the image', ->
         expect(window.assetReveal.$listener.find('.bar').length).toBe(1)
@@ -44,3 +44,16 @@ require ['public/assets/javascripts/lib/utils/asset_reveal.js'], (AssetReveal) -
 
       it 'removes the image blocking class', ->
         expect(window.assetReveal.$listener.find('.image')).not.toHaveClass('rwd-image-blocker')
+
+    describe 'Swapping an element with data-src for an image', ->
+      beforeEach ->
+        loadFixtures('hidden_assets.html')
+        window.assetReveal = new AssetReveal()
+        $("#js-row--content").trigger(":asset/loadDataSrc", [".foo4"])
+
+      it 'swaps the placeholder ', ->
+        $img = window.assetReveal.$listener.find('.image-placeholder')
+        expect($img.length).toBe(1)
+        expect($img.attr('src')).toEqual('path/to/image')
+        expect($img.attr('alt')).toEqual('image alt text')
+

@@ -1,46 +1,51 @@
+
 :ruby
+
+  topic = properties[:topic].downcase
 
   css_classes = [
 
     "card",
+    "card--icon",
     "card--poi",
-    "card--poi--#{card[:topic].downcase}",
-    "#{card[:image_url] ? 'card--small-image card--extended-content' : 'card--no-image'}",
-    "#{card[:double?] ? 'card--double card--full-image' : 'card--single'}"
+    "card--poi--#{topic}",
+    "icon--#{topic}--pin--before",
+    "#{properties[:image_url] ? 'card--small-image card--extended-content' : 'card--no-image'}",
+    "#{properties[:double?] ? 'card--double card--full-image' : 'card--single'}"
 
   ].join(" ")
 
 
 %article.js-card{class: css_classes}
 
-  %a.link--wrapper{href: card[:url]}
+  %a.link--wrapper{href: properties[:url]}
 
-    = render :partial => '/components/cards/partials/things_to_do_card_tags', :locals => { :card => card }
+    = render :partial => '/components/cards/partials/card_tags', :locals => { :properties => properties }
 
-    - if card[:image_url]
+    - if properties[:image_url]
       %figure.card__hero
-        = safe_image_tag(card[:image_url], class: 'card__image')
+        = safe_image_tag(properties[:image_url], class: 'card__image')
 
     .card__content
-      - if card[:category]
+      - if properties[:category]
         %span.card__context
-          = card[:category]
+          = properties[:category]
 
       %h1.card__name.js-card-name
-        = card[:name]
+        = properties[:name]
 
-      - if card[:show_place_name?]
+      - if properties[:show_place_name?]
         %p.card__locale
-          = card[:place_name]
+          = properties[:place_name]
 
-      - if card[:duration].present?
-        %p.card__tour-duration.copy--caption
-          = card[:duration]
+      - if properties[:duration].present?
+        %p.card__tour-duration.copy--caption.icon--length--before
+          = properties[:duration]
 
       %p.card__description
-        = card[:description]
+        = properties[:description]
 
-    - if card[:bookable?]
+    - if properties[:bookable?]
       %footer.card__footer
-        %span.btn.btn--bookable.btn--full-width
+        %span.btn.btn--yellow.btn--full-width
           Book now

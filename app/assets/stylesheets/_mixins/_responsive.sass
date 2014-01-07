@@ -1,87 +1,29 @@
-$is-ie: false !default
+// -----------------------------------------------------------------------------
+// Responsive Mixins
+// 
+// Always use this mixin to apply breakpoints so we support legacy browsers
+// 
+// There are two common breakpoints: medium-view and wide-view
+// Alternatively you can just pass in an integer
+// 
+// http://sassmeister.com/gist/8047633
+// -----------------------------------------------------------------------------
 
-@mixin respond-to($breakpoint: 1)
 
-  @if $breakpoint == 1
-    @if $is-ie == false
-      @media only screen and (min-width : 320px)
-        @content
-    @else
-      @content
-      
-  @if $breakpoint == 400
-    @if $is-ie == false
-      @media only screen and (min-width : 400px)
-        @content
-    @else
-      @content
+@mixin respond-to($screen-width)
 
-  @if $breakpoint == medium-view
-    @if $is-ie == false
-      @media only screen and (min-width : 600px)
-        @content
-    @else
-      @content
+  // We have to set up a blank variable here or sass errors out
+  $breakpoint: ''
+  
+  @if $screen-width == medium-view
+    $breakpoint: 600
+  @else if $screen-width == wide-view
+    $breakpoint: 1025
+  @else
+    $breakpoint: $screen-width
 
-  @if $breakpoint == 768
-    @if $is-ie == false
-      @media only screen and (min-width : 768px)
-        @content
-    @else
-      @content
-      
-
-  @if $breakpoint == 2
-    @if $is-ie == false
-      @media only screen and (min-width : 480px)
-        @content
-    @else
-      @content
-      
-  @if $breakpoint == 3
-    @if $is-ie == false
-      @media only screen and (min-width : 768px)
-        @content
-    @else
-      @content
-
-  @if $breakpoint == 1250
-    @if $is-ie == false
-      @media only screen and (min-width : 1200px)
-        @content
-    @else
-      @content
-
-  @if $breakpoint == wide-view
-    @if $is-ie == false
-      @media only screen and (min-width : 1025px)
-        @content
-    @else
-      @content
-
-  @if $breakpoint == bigger-than-ipad
-    @if $is-ie == false
-      @media only screen and (min-width : 1050px)
-        @content
-    @else
-      @content
-
-      
-  @if $breakpoint == max800
-    @media only screen and (max-width : 800px)
-      @content
-      
-  @if $breakpoint == max435
-    @media only screen and (max-width : 435px)
-      @content
-      
-  @if $breakpoint == max990
-    @media only screen and (max-width : 990px)
-      @content
-
-@mixin respond-at($screen-width)
   @if $is-ie == false
-    @media only screen and (min-width : #{$screen-width}px)
+    @media only screen and (min-width : #{$breakpoint}px)
       @content
   @else
     @content

@@ -273,7 +273,7 @@ define [], ->
         anchor = document.createElement 'A'
         anchor.href = item[@config.map.uri]
         anchor.className = @config.resultLinkClass
-        anchor.className += " autocomplete__result__typed icon--#{item[@config.map.type]}--white--before" if @config.map.type
+        anchor.className += " autocomplete__result__typed icon--#{item[@config.map.type]}--before icon--white--before" if @config.map.type
         anchor.innerHTML = highlightedText
         listItem.appendChild anchor
       else

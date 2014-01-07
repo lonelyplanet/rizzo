@@ -9,6 +9,13 @@
     &:before
       margin-right: 2px
 
+  // The tick is slightly larger and needs to shrink to match other icons
+  .icon--tick--before
+    &:before
+      margin-left: 2px
+      margin-right: 4px
+      width: 16px
+
   .info-list__title
     +font-size(15)
     margin-bottom: 5px
@@ -20,30 +27,5 @@
     line-height: inherit
     margin-left: 23px
 
-  // these are temporary hacks until SVGs is done. some more code i'm looking to get rid of
-  .text-icon--location,
-  .text-icon--address
-    &:before
-      +font-size(36)
-      margin-right: -2px
-
-  .text-icon--tick,
-  .text-icon--cross
-    &:before
-      top: -1px
-      +font-size(18)
-      margin: 0 2px
-      padding: 0 2px
-
-  .text-icon--tube
-    &:before
-      +font-size(28)
-      margin-right: 1px
-
-  .text-icon--dollar:before
-    +font-size(26)
-    margin: 0 1px
-    top: -2px
-
-  .text-icon--clock:before
-    margin: 0 1px
+    .no-js &, .no-background-size &
+      margin-left: 0

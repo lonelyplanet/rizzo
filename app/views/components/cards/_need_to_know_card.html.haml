@@ -1,10 +1,10 @@
-%article.card.card--single.card--info.card--no-image.card--info.js-card
+%article.card.card--info.card--single.card--icon.card--no-image.js-card.card--icon.icon--information--pin--before
   .card__content
     %h2.card__name.js-card-name
       Need to know
     %ul.card__list
 
-      - card[:links].each do |link|
+      - properties[:links].each do |link|
         %li
           %a{href: link[:url].chomp('/when-to-go'), class: 'card__list__item', :title => "#{link[:title]}"}
             = link[:title]

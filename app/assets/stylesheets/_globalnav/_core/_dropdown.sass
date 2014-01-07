@@ -24,7 +24,6 @@
 
 .dropdown__value
   +box-sizing()
-  @extend %chevron-down-after
   @extend %rounded-corners
   @extend %right-icon
   +word-break()
@@ -44,6 +43,12 @@
     border: none
     font-weight: bold
     +font-size(18)
+  .no-js &, .no-background-size &
+    &.icon--chevron-down--after:after
+      // down-pointing arrowhead, looks quite like a downpointing chevron
+      content: '\02c5'
+      font-size: 25px
+
 
   .standout &, .wrap--footer &, .inverted &
     background-color: #fff
@@ -54,27 +59,13 @@
 
   &:after
     @extend %rounded-corners
-    +font-size(22)
-    background-color: inherit
-    color: inherit
-    line-height: 0
-    padding-left: 5px
-    pointer-events: none
-    right: 0
-    top: 17px
-    width: 20px
+    right: 5px
+    top: 33%
+    width: 14px
 
-  .base 
+  .base
     &:after
       content: '\2335'
-
-  .enhanced &, .ie8.home &
-    &:after
-      background-position: center
-      content: ''
-      height: 100%
-      right: 10px
-      top: 0
 
   .dropdown--first &
     +border-radius-each(4,0,0,4)

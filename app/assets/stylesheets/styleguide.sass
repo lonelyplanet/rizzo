@@ -3,9 +3,7 @@
 @import '_common-ui/_copy'
 @import '_common-ui/_tabs'
 @import '_common-ui/_pagination'
-@import '_common-ui/_gallery'
 @import '_common-ui/_nearby_pois'
-@import '_common-ui/_thumbnail_grid'
 @import '_common-ui/_read_more_toggle'
 @import '_common-ui/_icon-list'
 @import '_common-ui/_info-list'
@@ -33,13 +31,12 @@
 @import '_common-ui/_stack'
 @import '_common-ui/_stack_articles'
 @import '_common-ui/_icons/_pois_sprite'
-@import '_common-ui/_icons/_pois_icons'
-@import '_common-ui/_lp_reviewed_section'
 @import '_common-ui/_datepicker'
 @import '_common-ui/_tooltip'
 @import '_common-ui/_maps'
 @import '_common-ui/_text_icons'
 @import '_common-ui/_activity_list'
+@import '_common-ui/_alerts'
 /*===== yeoman hook =====*/
 /*===== NB! The above line is required for our yeoman generator and should not be changed. =====*/
 
@@ -66,7 +63,6 @@ pre.styleguide.is-open
 .isnt-approximate
   display: none
 .is-exact
-  @extend %tick-icon-after
   position: relative
   &:after
     color: white
@@ -74,9 +70,6 @@ pre.styleguide.is-open
     position: absolute
     right: 10px
     top: 20px
-
-.row--content
-  margin-top: 50px
 
 .title--styleguide
   color: white
@@ -86,7 +79,8 @@ pre.styleguide.is-open
   padding: 25px
 
 .styleguide-block
-  overflow: hidden
+  @extend %clearfix
+  margin-bottom: 30px
 
 .styleguide-block__item--left
   float: left
@@ -152,7 +146,7 @@ pre.styleguide.is-open
 .filter--links
   min-width: 200px
   +font-size(15)
-  .dropdown__value
+  .dropdown
     line-height: 1
     width: 140px
     &:after
@@ -181,37 +175,31 @@ pre.styleguide.is-open
 
   > a:first-child
     @extend %transition--base
-    @extend %local-marker-before // For lack of a link icon currently.
     display: block
-    padding: 0.5em
     position: absolute
-    right: -38px
-    top: -24px
-    opacity: 0
-    &:before
-      +font-size(40)
-
-  &:hover > a:first-child
-    opacity: 1
-    text-decoration: none
-
-.clearbutton
-  line-height: 12px
-  float: left
-  width: 14px
-  height: 14px
-  text-align: center
-  padding: 0
-  border-radius: 100%
-  background-color: $feature-copy
-  color: white
-  margin-left: -25px
-  font-weight: bold
-  position: relative
-  top: 14px
-  cursor: pointer
+    right: 20px
+    top: 10px
+    width: 25px
+    height: 25px
+    opacity: 0.5
+    z-index: 1
+    &:hover
+      opacity: 1
 
 .styleguide-grid
   .card
     text-align: center
     padding: 10px 0
+
+.styleguide-icons
+  [class*="icon--"]
+    height: 40px
+    width: 40px
+    margin: 0 auto
+  .is-white
+    background-color: $body-copy
+    color: white
+
+.filter--links
+  .svg-colourise
+    width: 170px

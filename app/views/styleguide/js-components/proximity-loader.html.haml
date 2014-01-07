@@ -1,0 +1,83 @@
+.card.styleguide-intro.styleguide-block.copy--body.context--content
+
+  %h1.copy--h1
+    Proximity Loader
+
+  %p
+    Triggers an event when the configured elements move into the proximity of the viewport.
+
+.styleguide-block
+
+  .styleguide-block__description.card.copy--body
+
+    %h2.copy--h2.styleguide-block__heading
+      Arguments
+
+    %p
+      %code.language-markup
+        el
+      The element to apply the event listener to. Elements defined in
+      %code.language-markup
+        list
+      must be descendents of this element.
+
+    %p
+      %code.language-markup
+        list
+      A comma-separated list of element selectors to watch the position of.
+
+    %p
+      %code.language-markup
+        klass
+      A custom parameter to to pass through with the success event.
+
+    %p
+      %code.language-markup
+        success
+      The event type to be triggered when a watched element is in proximity.
+
+    %p
+      %code.language-markup
+        threshold
+      The minimum distance from the current viewport to trigger the success event.
+
+    %p
+      %code.language-markup
+        debounce
+      Delay in milliseconds to trigger the scroll callback.
+
+  .styleguide-block__description.card.copy--body
+
+    %h2.copy--h2.styleguide-block__heading
+      Usage
+
+    %p
+      The following example will combine the proximity loader with the asset reveal module to lazyload some images. When the matched image elements are close to the viewport proximity loader will trigger the
+      %code :asset/loadDataSrc
+      event to be picked up by the asset reveal instance.
+
+    %pre.styleguide.copy--body.language-coffeescript
+      %code
+        = preserve do
+          :plain
+            require ['lib/utils/proximity_loader', 'lib/utils/asset_reveal'], (ProximityLoader, AssetReveal) ->
+
+              assetReveal = new AssetReveal(
+                el: '#container'
+              )
+
+              proximityLoader = new ProximityLoader(
+                el: '#container'
+                list: '[data-src]'
+                success: ':asset/loadDataSrc'
+              )
+
+    %pre.styleguide.copy--body.language-html
+      %code
+        = preserve do
+          :escaped
+            <div id="container">
+              <img data-src="..." data-alt="..." />
+              <img data-src="..." data-alt="..." />
+              <img data-src="..." data-alt="..." />
+            </div>

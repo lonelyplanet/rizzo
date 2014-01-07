@@ -63,13 +63,13 @@
 .card--top-choice
   &:after
     @extend %empty-abs-generated-content
-    background: url(image_path("lodgings-spt.png"))
+    background: url(image_path("shared/top-choice.png"))
     top: -5px
-    left: 17px
-    height: 95px
-    width: 63px
+    left: 20px
+    height: 96px
+    width: 66px
     +retinafy()
-      background: url(image_path("lodgings-spt-2x.png"))
+      background: url(image_path("shared/top-choice-2x.png"))
       background-size: $lodgings-sprite-size
 
   .card--page__header
@@ -85,64 +85,22 @@
   font-weight: bold
 
 .card--page__breadcrumb
-  @extend %local-marker-before
   line-height: 25px
   position: relative
   text-transform: uppercase
-
   &:before
-    background: url(image_path("map-markers.png")) no-repeat
     content: ''
     float: left
-    height: 21px
+    height: 20px
     margin-right: 5px
     position: relative
     top: 2px
     width: 15px
     z-index: 4
-    +retinafy()
-      background: url(image_path("map-markers-2x.png")) no-repeat
-      background-size: $map-markers-sprite-size
-
-.card--page__breadcrumb--sight:before
-  background-position: -15px -103px
-
-.card--page__breadcrumb--activity:before
-  background-position: -59px -103px
-
-.card--page__breadcrumb--tour:before
-  background-position: -462px -103px
-
-.card--page__breadcrumb--entertainment:before,
-.card--page__breadcrumb--entertainment-nightlife:before
-  background-position: -104px -103px
-
-.card--page__breadcrumb--hotels:before
-  background-position: -149px -103px
-
-.card--page__breadcrumb--restaurant:before
-  background-position: -193px -103px
-
-.card--page__breadcrumb--shopping:before
-  background-position: -283px -103px
-
-.card--page__breadcrumb--event:before
-  background-position: -327px -103px
-
-.card--page__breadcrumb--transport:before
-  background-position: -372px -103px
-
-.card--page__breadcrumb--destinations:before
-  background-position: -417px -103px
-
-.card--page__breadcrumb--tour:before
-  background-position: -461px -103px
-
-.card--page__breadcrumb--articles:before
-  background-position: -506px -103px
-
-.card--page__breadcrumb--info:before
-  background-position: -551px -103px
+  &.icon--place--pin--before
+    line-height: initial
+    &:before
+      width: 20px
 
 .card--page__breadcrumb__link
   color: $body-copy

@@ -240,7 +240,7 @@ require ['public/assets/javascripts/lib/components/filter.js'], (Filter) ->
 
       it 'calls _set with the new filters', ->
         filterCard = $(LISTENER).find('.js-stack-card-filter')
-        filters = filterCard.find('[data-filter]').data('filter')
+        filters = filterCard.data('filter')
         filterCard.trigger('click')
         expect(filter._set).toHaveBeenCalledWith(filters, true)
 

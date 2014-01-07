@@ -4,26 +4,27 @@ define [required, 'lib/extends/events'], ($, EventEmitter) ->
 
   class ProximityLoader
 
-    for key, value of EventEmitter
-      @prototype[key] = value
+    $.extend(@prototype, EventEmitter)
 
-    LISTENER = '#js-row--content'
+    defaults =
+      el: '#js-row--content'
+      list: undefined
+      klass: undefined
+      success: ':asset/uncomment'
+      threshold: 500
+      debounce: 200
 
-    # params
-    # el: The listening element
-    # list: comma delimited list of elements to watch
-    # success: event to fire when the criteria is matched
-    # klass: Custom parameters to pass through with the success event
     constructor: (args) ->
-      @success = args.success || ':asset/uncomment'
-      @klass = args.klass
-      @$el = $(args.el || LISTENER)
+
+      @config = $.extend({}, defaults, args)
+
+      @$el = $(@config.el)
+
       return false if @$el.length is 0
 
-      @elems = @_setUpElems(args)
+      @elems = @_setUpElems(@config.list)
       @_check() # Check on load in case the user refreshes midway down the page
       @_watch()
-
 
     # Private
 
@@ -31,16 +32,16 @@ define [required, 'lib/extends/events'], ($, EventEmitter) ->
       scrolled =  if window.pageYOffset then window.pageYOffset else document.documentElement.scrollTop
       scrolled + document.documentElement.clientHeight
 
-    _setUpElems: (args) ->
+    _setUpElems: (list) ->
       elems = []
-      for el in args.list.split(',')
+      for el in list.split(',')
         $elems = @$el.find(el)
         for $el in $elems
           $el = if $.fn then $($el) else $el
           elems.push({
             $el: $el
             top: parseInt($el.offset().top, 10)
-            threshold: parseInt($el.data('threshold') || 500, 10)
+            threshold: parseInt($el.data('threshold') || @config.threshold, 10)
           })
       elems
 
@@ -52,15 +53,15 @@ define [required, 'lib/extends/events'], ($, EventEmitter) ->
         clearTimeout(enableTimer) if enableTimer
         enableTimer = setTimeout =>
           @_check()
-        , 200
+        , @config.debounce
 
-    _check: () ->
+    _check: ->
       if @elems.length > 0
         newElems = []
         fold = @_getViewportEdge()
         for el in @elems
           if (el.top - el.threshold) <= fold
-            @trigger(@success, [el.$el, @klass])
+            @trigger(@config.success, [el.$el, @config.klass])
           else
             newElems.push(el)
         # Create a new array of elements that have not yet matched

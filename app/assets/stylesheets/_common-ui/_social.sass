@@ -26,8 +26,10 @@
   &:hover
     text-decoration: none
   &:before
-    +font-size(34)
     top: -16px
+  .no-js &, .no-background-size &
+    text-indent: 0
+    width: auto
 
   .tooltip
     color: white
@@ -36,11 +38,6 @@
     &:after
       color: $body-copy
       left: 53%
-
-.icon--print
-  @extend %icon--print-before
-.icon--email
-  @extend %icon--email-before
 
 .facebook-like
   margin-left: 10px

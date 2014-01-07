@@ -1,20 +1,26 @@
 :javascript
-  /* grunticon Stylesheet Loader | https://github.com/filamentgroup/grunticon | (c) 2012 Scott Jehl, Filament Group, Inc. | MIT license. */
-  (function(e) {
-    if (e && 3 === e.length) {
-      var t = window,
-        d = t.document,
-        n = !(!d.createElementNS || !d.createElementNS("http://www.w3.org/2000/svg", "svg").createSVGRect || !d.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#Image", "1.1") || t.opera && -1 === navigator.userAgent.indexOf("Chrome")),
-        o = function(o) {
-          var r = t.document.createElement("link"),
-            a = t.document.getElementsByTagName("script")[0];
-          r.rel = "stylesheet", r.href = e[o && n ? 0 : o ? 1 : 2], a.parentNode.insertBefore(r, a)
-          o && n && (d.documentElement.className += " supports-svg")
-        }, r = new t.Image;
-      r.onerror = function() {
-        o(!1)
-      }, r.onload = function() {
-        o(1 === r.width && 1 === r.height)
-      }, r.src = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="
+  (function(html) {
+    var activePath = "#{asset_path('icons/' + sheet + '.css')}";
+    var criticalPath = "#{asset_path('icons/critical.css')}";
+    function styleSheet(path) {
+      var link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.type = "text/css";
+      link.href = path;
+      return link;
     }
-  }(["#{asset_path('icons/icons.data.svg.css')}", "#{asset_path('icons/icons.data.png.css')}", "#{asset_path('icons/icons.fallback.css')}"]))
+    window.setTimeout(function(){
+      var script = document.getElementsByTagName("script")[0];
+      var head = script.parentNode;
+      if ("background-size" in html.style || "backgroundSize" in html.style) {
+        head.insertBefore(styleSheet(activePath), script);
+        html.className += " supports-svg";
+      } else {
+        head.insertBefore(styleSheet(criticalPath), script);
+        html.className += " no-background-size";
+      }
+    }, 0)
+  }(document.documentElement));
+
+%noscript
+  %link{href: "/assets/icons/critical.css", rel: "stylesheet"}

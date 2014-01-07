@@ -15,20 +15,15 @@
 
 .activity-list__icon
   &:before
-    font-size: 1.6em
+    display: inline-block
+    height: 15px
+    margin-right: 0.2em
+    opacity: 0.75
     position: relative
-
-  &.text-icon--envelope:before
-    top: 2px
+    top: 3px
+    width: 15px
 
 .activity-list__link
   font-weight: bold
   &:before
     font-weight: normal
-
-.activity-list__time
-  @extend %icon--clock-before
-
-  &:before
-    left: -0.15em
-    top: 2px

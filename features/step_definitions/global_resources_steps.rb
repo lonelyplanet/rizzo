@@ -1,3 +1,20 @@
+Then(/^the Core layout should be displayed$/) do
+  page.should have_selector 'html.freight'
+end
+
+Then(/^the Legacy layout should be displayed$/) do
+  page.should have_selector 'div.row--secondary'
+  page.should have_content 'Buenos Aires'
+end
+
+Then(/^the Responsive layout should be displayed$/) do
+  page.should have_selector 'body.responsive'
+end
+
+Then(/^the Homepage layout should be displayed$/) do
+  page.should have_selector 'body.responsive.homepage'
+end
+
 Then /^the base global\-head content should be displayed$/ do
   page.should have_xpath("//meta[@content=\"width=1024\" and @name=\"viewport\"]")
   page.should have_xpath("//link[@href=\"/assets/common_core_overrides.css\"]")

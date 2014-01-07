@@ -92,19 +92,17 @@
 // Lists
 // -----------------------------------------------------------------------------
 
-.copy--list,
-.copy--body ul,
-.copy--body ol
-  padding-left: 1.2em
-  margin-bottom: 10px
-
-.copy--list,
-.copy--body ul,
-.copy--body ol
-  li
+.copy--list, ul, ol
+  .context--content &
+    padding-left: 1.2em
     margin-bottom: 10px
 
-.copy--body ul,
+.copy--list, ul, ol
+  li
+    .context--content &
+      margin-bottom: 10px
+
+.context--content ul,
 ul.copy--list
   list-style-type: circle
 

@@ -6,21 +6,8 @@
 @import '_partials/whos_online'
 @import '_partials/tables'
 
-.btn--plus
-  padding-left: 40px
-  position: relative
-  &:before
-    +font-size(35)
-    left: 15px
-    position: absolute
-    top: 4px
-
 .dropdown__value
   padding: 6px 40px 6px 10px
-
-  &:after
-    right: 10px
-    top: 40%
   
   .inverted &
     +font-size(14)
@@ -48,17 +35,22 @@
     margin-bottom: 12px
     text-align: center
 
+.stack__intro__content
+  padding-bottom: 10px
 .stack__intro__toolbar
   .copy--meta
     margin: 8px 0 0
     &, & a
-      color: $feature-copy
-  // This needs to be updated to use SVG when it's ready.
-  // .text-icon--clock
-  //   &:before
-  //     +font-size(24)
-  //     margin-right: 2px
-  //     vertical-align: top
+      color: $body-copy
+
+  .last-reply__time
+    &:before
+      display: inline-block
+      height: 1em
+      margin-right: 0.1em
+      position: relative
+      top: 0.2em
+      width: 1em
 
 .row__inner--secondary
   .place-title
@@ -67,3 +59,23 @@
   .row__title--secondary + .badge
     margin-right: 5px
     margin-top: 5px
+
+.forum-header
+  .icon--entertainment
+    &.icon--lp-blue
+      background-position: 50% 61%
+
+.icon--settings
+  display: inline-block
+  height: 22px
+  opacity: 0.7
+  width: 22px
+
+.topic__content
+  padding-bottom: 16px
+
+.btn--reply
+  &:before
+    height: 1.1em
+    top: 0.2em
+    width: 1.1em

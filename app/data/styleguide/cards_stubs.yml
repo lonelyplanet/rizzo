@@ -1,40 +1,56 @@
 cards:
   -
     :styleguide_title: "Collection Card"
-    :hero: true
+    :double?: true
     :kind: "collection"
     :slug: "#"
     :title: "Four days in Argentina"
-    :image_url: 'stubs/itinerary-full.jpg'
+    :context: "Collection"
+    :image_url: 'http://assets.staticlp.com/assets/stubs/itinerary-full.jpg'
 
   -
     :styleguide_title: "Collection Card"
-    :hero: false
+    :double?: true
+    :kind: "collection"
+    :slug: "#"
+    :title: "Four days in Argentina"
+    :context: "Collection"
+    :image_url: 'http://assets.staticlp.com/assets/stubs/itinerary-full.jpg'
+    :image_license: 'by-nd'
+    :image_attribution_link: "http://google.com"
+    :image_attribution: "Jack took this photo"
+
+  -
+    :styleguide_title: "Collection Card"
+    :double?: false
     :kind: "collection"
     :slug: "#"
     :title: "Top picks for Iceland"
-    :image_url: 'stubs/collection.jpg'
+    :image_url: 'http://assets.staticlp.com/assets/stubs/collection.jpg'
+
+  -
+    :styleguide_title: "Collection Card"
+    :double?: false
+    :kind: "collection"
+    :slug: "#"
+    :title: "Top picks for Iceland"
+    :image_url: 'http://assets.staticlp.com/assets/stubs/collection.jpg'
+    :image_license: 'by-sa'
+    :image_attribution_link: "http://google.com"
+    :image_attribution: "Jack took this photo"
 
   -
     :styleguide_title: "Article Card"
-    :thumbnail: "stubs/article.jpg"
     :slug: "#"
     :title: "Hello"
-    :image_url: "stubs/article.jpg"
-    :strapline: "Just a little article about the many ways to say hello"
-
-  -
-    :styleguide_title: "Article Card"
-    :slug: "#"
-    :title: "Hello"
-    :image_url: "stubs/article.jpg"
+    :image_url: "http://assets.staticlp.com/assets/stubs/article.jpg"
     :strapline: "Just a little article about the many ways to say hello"
 
   -
     :styleguide_title: "Blog Card"
     :slug: "#"
     :title: "Hello"
-    :image_url: "stubs/article.jpg"
+    :image_url: "http://assets.staticlp.com/assets/stubs/article.jpg"
     :subtitle: "Just a little blog about the many ways to say hello"
 
   -
@@ -71,8 +87,8 @@ cards:
   -
     :styleguide_title: "Media Card"
     :kind: "media"
-    :resized_image_url: "stubs/sight.jpg"
-    :resized_video_url: "stubs/video-thumb.jpg"
+    :resized_image_url: "http://assets.staticlp.com/assets/stubs/sight.jpg"
+    :resized_video_url: "http://assets.staticlp.com/assets/stubs/video-thumb.jpg"
     :image_description: "A photo of a building"
     :video_description: "A video filmed from a bus"
 
@@ -81,7 +97,7 @@ cards:
     :kind: "place"
     :slug: "#"
     :title: "Paris"
-    :image_url: "stubs/article.jpg"
+    :image_url: "http://assets.staticlp.com/assets/stubs/article.jpg"
     :strapline: "Some information about Paris and its environs"
 
   -
@@ -96,36 +112,43 @@ cards:
     :kind: "link"
     :title: "Sights"
     :slug: "#"
+    :image_url: "http://assets.staticlp.com/assets/cards/sights.png"
   -
     :styleguide_title: "Link Card"
     :kind: "link"
     :title: "Activities"
     :slug: "#"
+    :image_url: "http://assets.staticlp.com/assets/cards/activities.png"
   -
     :styleguide_title: "Link Card"
     :kind: "link"
     :title: "Entertainment"
     :slug: "#"
+    :image_url: "http://assets.staticlp.com/assets/cards/entertainment.png"
   -
     :styleguide_title: "Link Card"
     :kind: "link"
     :title: "Restaurants"
     :slug: "#"
+    :image_url: "http://assets.staticlp.com/assets/cards/restaurants.png"
   -
     :styleguide_title: "Link Card"
     :kind: "link"
     :title: "Shopping"
     :slug: "#"
+    :image_url: "http://assets.staticlp.com/assets/cards/shopping.png"
   -
     :styleguide_title: "Link Card"
     :kind: "link"
     :title: "Sleep"
     :slug: "#"
+    :image_url: "http://assets.staticlp.com/assets/cards/sleep.png"
   -
     :styleguide_title: "Link Card"
     :kind: "link"
     :title: "Tours"
     :slug: "#"
+    :image_url: "http://assets.staticlp.com/assets/cards/tours.png"
 
   -
     :styleguide_title: "Ad sense Card"

@@ -1,0 +1,64 @@
+.card.styleguide-intro.styleguide-block.copy--body.context--content
+
+  %h1.copy--h1
+    Asset Reveal
+
+  %p
+    Provides multiple methods to lazyload content triggered by events.
+
+.styleguide-block
+
+  .styleguide-block__description.card.copy--body
+
+    %h2.copy--h2.styleguide-block__heading
+      Arguments
+
+    %p
+      %code.language-markup
+        el
+      The element to apply the event listeners to.
+
+  .styleguide-block__description.card.copy--body
+
+    %h2.copy--h2.styleguide-block__heading
+      Usage
+
+    %p
+      The following example demonstrates the different lazy loading strategies.
+
+    %pre.styleguide.copy--body.language-coffeescript
+      %code
+        = preserve do
+          :plain
+            require ['jquery', 'lib/utils/asset_reveal'], ($, AssetReveal) ->
+
+              assetReveal = new AssetReveal(
+                el: '#container'
+              )
+
+              $('button[data-event]').on('click', ->
+                this = $(this)
+                $this.trigger( $this.data('event') )
+              );
+
+    %pre.styleguide.copy--body.language-html
+      %code
+        = preserve do
+          :escaped
+            <div id="container">
+              <div data-uncomment>
+                <!-- <img src="..." alt="..." /> -->
+              </div>
+              <div data-script>
+                <!-- <script>
+                  alert('Uncommented')
+                </script> -->
+              </div>
+              <div class="rwd-image-blocker" style="background-image: url(...);"></div>
+              <img data-src="..." data-alt="..." />
+            </div>
+
+            <button type="button" data-event=":asset/uncomment">Uncomment image</button>
+            <button type="button" data-event=":asset/uncommentScript">Uncomment script</button>
+            <button type="button" data-event=":asset/loadBgImage">Load background image</button>
+            <button type="button" data-event=":asset/loadDataSrc">Load image placeholder</button>

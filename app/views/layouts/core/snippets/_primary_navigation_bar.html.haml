@@ -2,13 +2,13 @@
 - unless homepage
   .row--faux-banner
 %input{type: "checkbox", id: 'nav--primary__trigger', class: "is-hidden"}
-%label{for: 'nav--primary__trigger', class: 'nav--primary__trigger icon--hamburger--white'}
+%label{for: 'nav--primary__trigger', class: 'nav--primary__trigger icon--hamburger icon--white'}
 
 - if homepage
   .logo--header
-    %a.media--lp-logo(href='http://www.lonelyplanet.com')
+    %a.media--lp-logo.icon--lp-logo.icon--white(href='http://www.lonelyplanet.com')
 - else
-  %a.media--lp-logo.logo--header(href='http://www.lonelyplanet.com')
+  %a.media--lp-logo.logo--header.icon--lp-logo.icon--white(href='http://www.lonelyplanet.com')
 
 .nav-container.m-hidden-menu
 
@@ -22,34 +22,39 @@
           %label.accessibility(for='search-q') Search
           %input.search__input.search__input--primary.js-primary-search(type="search" id="search" maxlength="2048" name="q" value="" autocomplete="off" tabindex="1")>
           %button(class="search__button" type="submit" id="search-q-submit" name="search-q-submit")
-            %span.search__button--icon
+            %span.search__button--icon.icon--search.icon--white
               Search
 
       - if user_nav
         .nav__item.wv--nav--inline.nav--primary--user.js-user-nav.split--right__inner
           %a.nav__item.nav__item--primary.nav__item--user.user-basket.js-user-basket.js-nav-cart(href='//shop.lonelyplanet.com/cart/view')
-            %span.user-basket__icon
+            %span.user-basket__icon.icon--shop-basket.icon--custom
               View Basket
 
 
   .wv--split--left
-    
+
     .wv--nav--inline.nav--primary#js-nav--primary
 
       - core_navigation_items.each do |n|
         - if n[:submenu]
-          .nav__item.nav__item--primary.nav__submenu__trigger{class: responsive ? n[:icon_class] : ""}
+          .nav__item.nav__item--primary.nav__submenu__trigger
             - if n[:uri]
               %a.nav__item.nav__item--submenu.js-nav-item{ href: n[:uri] }
+                - if responsive
+                  %i.nav__icon{class: n[:icon_class]}
                 = n[:title]
             - else
               %span.nav__item.nav__item--submenu
                 = n[:title]
+
             .nav__submenu{ class: "nav__submenu--#{n[:title].downcase}"}
-              .nav--stacked.nav__submenu__content.js-submenu.icon--arrow-up--green--after
+              .nav--stacked.nav__submenu__content.js-submenu.icon--tapered-arrow-up--after.icon--custom--after
                 - n[:submenu].each do |sub|
-                  %a.js-nav-item{ href: sub[:uri], class: "nav__item nav__submenu__item nav__submenu__link nav__submenu__item--#{sub[:style]} #{sub[:icon_class] ? sub[:icon_class] : ''} "}<
+                  %a.js-nav-item{ href: sub[:uri], class: "nav__item nav__submenu__item nav__submenu__link nav__submenu__item--#{sub[:style]} #{sub[:icon_class] ? sub[:icon_class] : ''} icon--white--before"}<
                     = sub[:title]
         - else
-          %a.nav__item.nav__item--primary{ href: n[:uri], class: responsive ? n[:icon_class] : ""}<
+          %a.nav__item.nav__item--primary{ href: n[:uri] }<
+            - if responsive
+              %i.nav__icon{class: n[:icon_class]}
             = n[:title]

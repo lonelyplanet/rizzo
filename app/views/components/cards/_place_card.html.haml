@@ -5,21 +5,23 @@
     "card",
     "card--place",
     "card--destination",
-    "#{card[:image_url] ? 'card--extended-content' : 'card--no-image'}",
-    "#{card[:double?] ? 'card--double card--full-image' : 'card--single'}"
+    "card--icon",
+    "icon--destination--pin--before",
+    "#{properties[:image_url] ? 'card--extended-content' : 'card--no-image'}",
+    "#{properties[:double?] ? 'card--double card--full-image' : 'card--single'}"
 
   ].join(" ")
 
 
 %article.js-card{class: css_classes}
 
-  %a.link--wrapper{href: card[:url]}
+  %a.link--wrapper{href: properties[:url]}
 
-    = render partial: "components/cards/partials/card_content", locals: {card: card}
+    = render partial: "components/cards/partials/card_content", locals: {properties: properties}
 
-    - if card[:things_to_do_count] && card[:lodging_count]
+    - if properties[:things_to_do_count] && properties[:lodging_count]
       %footer.card__footer
-        %span.destination__item-count.destination__item-count--sights
-          = card[:things_to_do_count]
-        %span.destination__item-count.destination__item-count--lodgings
-          = card[:lodging_count]
+        %span.destination__item-count.destination__item-count--sights.icon--hotel--before
+          = properties[:things_to_do_count]
+        %span.destination__item-count.destination__item-count--lodgings.icon--sight--before
+          = properties[:lodging_count]

@@ -1,13 +1,1 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="32px" height="232px" viewBox="0 0 32 232" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
-    <title>tick</title>
-    <description>Created with Sketch (http://www.bohemiancoding.com/sketch)</description>
-    <defs></defs>
-    <g id="Functions" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
-        <path d="M0,176.37024 L12.1508933,189 L32,168.36864 L28.7600081,165 L12.1508933,182.26368 L3.23999192,173.00256 L0,176.37024" id="tick--green" fill="#15C98D" sketch:type="MSShapeGroup"></path>
-        <path d="M0,136.37024 L12.1508933,149 L32,128.36864 L28.7600081,125 L12.1508933,142.26368 L3.23999192,133.00256 L0,136.37024" id="tick--lp-blue" fill="#206FAC" sketch:type="MSShapeGroup"></path>
-        <path d="M0,96.37024 L12.1508933,109 L32,88.36864 L28.7600081,85 L12.1508933,102.26368 L3.23999192,93.00256 L0,96.37024" id="tick--white" fill="#FFFFFF" sketch:type="MSShapeGroup"></path>
-        <path d="M0,56.37024 L12.1508933,69 L32,48.36864 L28.7600081,45 L12.1508933,62.26368 L3.23999192,53.00256 L0,56.37024" id="tick--body-grey" fill="#67737B" sketch:type="MSShapeGroup"></path>
-        <path d="M0,16.37024 L12.1508933,29 L32,8.36864 L28.7600081,5 L12.1508933,22.26368 L3.23999192,13.00256 L0,16.37024" id="tick--title-grey" fill="#3A434E" sketch:type="MSShapeGroup"></path>
-    </g>
-</svg>
+<svg width="32" height="232" xmlns="http://www.w3.org/2000/svg" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns"><title>tick</title><g sketch:type="MSPage" fill="none"><path d="M0 176.37l12.151 12.63 19.849-20.631-3.24-3.369-16.609 17.264-8.911-9.261-3.24 3.368" fill="#15C98D" sketch:type="MSShapeGroup"/><path d="M0 136.37l12.151 12.63 19.849-20.631-3.24-3.369-16.609 17.264-8.911-9.261-3.24 3.368" fill="#206FAC" sketch:type="MSShapeGroup"/><path d="M0 96.37l12.151 12.63 19.849-20.631-3.24-3.369-16.609 17.264-8.911-9.261-3.24 3.368" fill="#fff" sketch:type="MSShapeGroup"/><path d="M0 56.37l12.151 12.63 19.849-20.631-3.24-3.369-16.609 17.264-8.911-9.261-3.24 3.368" fill="#67737B" sketch:type="MSShapeGroup"/><path d="M0 16.37l12.151 12.63 19.849-20.631-3.24-3.369-16.609 17.264-8.911-9.261-3.24 3.368" fill="#3A434E" sketch:type="MSShapeGroup"/></g></svg>

@@ -4,19 +4,21 @@
 
     "card",
     "card--collection",
-    "card--collection--#{card[:topic]}",
-    "#{card[:filter] ? 'js-stack-card-filter' : ''}",
-    "#{card[:double?] ? 'card--double card--full-image' : 'card--single card--extended-content--half'}"
+    "card--collection--#{properties[:topic]}",
+    properties[:filter] ? "js-stack-card-filter" : "",
+    properties[:double?] ? "card--double card--full-image" : "card--single card--extended-content--half",
+    properties[:image_license] && properties[:image_license] != "expedia" ? "has-attribution" : ""
 
   ].join(" ")
 
+  icon_classes = properties[:topic] ? "icon--#{properties[:topic].singularize}--pin--before icon--white--before" : ""
 
-%article.js-card{class: css_classes, data: { 'stack-kind' => card[:stack_kind], :filter => card[:filter] } }
+%article.js-card{class: css_classes, data: { 'stack-kind' => properties[:stack_kind], :filter => properties[:filter] } }
 
-  %a.link--wrapper{href: card[:url]}
+  %a.link--wrapper{href: properties[:url]}
 
-    - if card[:count]
-      %span.card__item-count
-        = card[:count]
+    - if properties[:count]
+      %span.card__item-count{class: icon_classes}
+        = properties[:count]
 
-    = render partial: "components/cards/partials/card_content", locals: {card: card}
+    = render partial: "components/cards/partials/card_content", locals: {properties: properties}

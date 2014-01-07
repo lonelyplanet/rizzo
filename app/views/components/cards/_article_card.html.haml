@@ -1,26 +1,25 @@
 :ruby
 
   css_classes = [
-
     "card",
+    "card--icon",
     "card--poi",
     "card--poi--article",
     "card--small-image",
-    "card--extended-content",
-    "icon--article--white--before",
-    "#{card[:double?] ? 'card--double card--full-image' : 'card--single'}"
+    "icon--article--pin--before",
+    properties[:double?] ? "card--double card--full-image" : "card--single card--extended-content"
 
   ].join(" ")
 
 
 %article.js-card{class: css_classes}
 
-  %a.link--wrapper{href: card[:url]}
+  %a.link--wrapper{href: properties[:url]}
 
-    = render partial: "components/cards/partials/card_content", locals: {card: card}
+    = render partial: "components/cards/partials/card_content", locals: {properties: properties}
 
-    - if card[:post_date] && !card[:double?]
+    - if properties[:post_date] && !properties[:double?]
 
       .card__footer
-        %time.text-icon--clock{datetime: card[:post_date]}
-          = prettify_date(card[:post_date])
+        %time.text-icon.icon--time--before{datetime: properties[:post_date]}
+          = prettify_date(properties[:post_date])

@@ -1,7 +1,61 @@
 // ----------------------------------------------------------------------------
-// 
+// svg icon stuff
+// ----------------------------------------------------------------------------
+[class^="icon--"],
+[class*=" icon--"]
+  background-size: cover
+  &:before,
+  &:after
+    content: ""
+    background-size: cover
+
+  &.btn--icon-only
+    background-size: 1.5em
+
+.icon--body-grey,
+.icon--body-grey--before:before,
+.icon--body-grey--after:after
+  background-position: 0 20%
+
+  &.btn--icon-only
+    background-position: 50% 18%
+
+.icon--white,
+.icon--white--before:before,
+.icon--white--after:after
+  background-position: 0 40%
+
+  &.btn--icon-only
+    background-position: 50% 39%
+
+.icon--lp-blue,
+.icon--lp-blue--before:before,
+.icon--lp-blue--after:after
+  background-position: 0 60%
+
+  &.btn--icon-only
+    background-position: 50% 60%
+
+.icon--custom,
+.icon--custom--before:before,
+.icon--custom--after:after
+  background-position: 0 80%
+
+  &.btn--icon-only
+    background-position: 50% 83%
+
+.icon--custom-2,
+.icon--custom-2--before:before,
+.icon--custom-2--after:after
+  background-position: 0 100%
+
+  &.btn--icon-only
+    background-position: 50% 100%
+
+// ----------------------------------------------------------------------------
+//
 // lonely planet mark
-// 
+//
 // ----------------------------------------------------------------------------
 
 .logo--header
@@ -23,74 +77,9 @@
 
 .media--lp-logo
   @extend %inline-block
-  background-position: 0 0
   height: 41px
   margin: 7px 10px 0 0
-  width: 83px
+  width: 82px
   vertical-align: top
   z-index: 3
-  background-image: url(image_path("core/core-sprite-standard.png"))
-  background-repeat: no-repeat
-  +retinafy()
-    background-image: url(image_path("core/core-sprite-2x.png"))
-    background-size: $core-sprite-size
-    background-repeat: no-repeat
-  .ie7 &
-    float: left
-
-.media--lp-logo--dark
-  background-position: 0 -42px
-  margin-top: 14px
-
-// ----------------------------------------------------------------------------
-// 
-// Icons
-// 
-// ----------------------------------------------------------------------------
-
-.icon--small
-  width: 16px
-  height: 16px
-
-.icon--regular
-  width: 32px
-  height: 32px
-
-// ----------------------------------------------------------------------------
-// 
-// Critical Icons - Served from sprite rather than font
-// 
-// ----------------------------------------------------------------------------
-
-.user-basket__icon
-  @extend %image-replacement
-  @extend %inline-block
-  background-image: url(image_path("core/core-sprite-standard.png"))
-  background-repeat: no-repeat
-  background-position: 0px -127px
-  height: 18px
-  margin-right: 5px
-  vertical-align: middle
-  width: 24px
-  +retinafy()
-    background-image: url(image_path("core/core-sprite-2x.png"))
-    background-size: $core-sprite-size
-    background-repeat: no-repeat
-  .responsive &
-    text-indent: 0
-    width: auto
-    background-image: none
-    +respond-to(wide-view)
-      text-indent: -999em
-      width: 24px
-      background-position: 0px -127px
-      position: relative
-      top: -4px
-      background-image: url(image_path("core/core-sprite-standard.png"))
-      +retinafy()
-        background-image: url(image_path("core/core-sprite-2x.png"))
-  .homepage &
-    background-position: -23px -127px
-    +respond-to(wide-view)
-      background-position: -23px -127px
-
+  padding-top: 3px

@@ -1,4 +1,4 @@
-define ['jquery', 'lib/extends/events','lib/components/group_toggle'], ($, EventEmitter, GroupToggle) ->
+define ['jquery', 'lib/extends/events'], ($, EventEmitter) ->
 
   class StackIntro extends EventEmitter
 
@@ -10,7 +10,6 @@ define ['jquery', 'lib/extends/events','lib/components/group_toggle'], ($, Event
       @config =
         title: '.js-copy-title'
         lead: '.js-copy-lead'
-        body: '.js-copy-body' 
 
       $.extend @config, args
       @$el = $(@config.el)
@@ -19,8 +18,6 @@ define ['jquery', 'lib/extends/events','lib/components/group_toggle'], ($, Event
     init: ->
       @$title = $("#{@config.el} #{@config.title}")
       @$lead = $("#{@config.el} #{@config.lead}")
-      @$body = $("#{@config.el} #{@config.body}")
-      @_introContentToggle = new GroupToggle({el: "#{@config.el} .js-group-toggle" })
       @listen()
 
     listen: ->
@@ -36,16 +33,9 @@ define ['jquery', 'lib/extends/events','lib/components/group_toggle'], ($, Event
       @_checkContent(args)
       @$title.text(args.title)
       @$lead.text(args.lead)
-      @$body.html(args.body)
     
     _checkContent: (args) ->
       if args.lead is ''
         @$lead.hide()
       else  
         @$lead.show()
-
-      if args.body is ''
-        @_introContentToggle.disable()
-      else  
-        @_introContentToggle.enable()
-

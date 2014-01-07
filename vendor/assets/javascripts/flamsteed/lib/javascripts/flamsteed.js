@@ -10,7 +10,7 @@
       this.log_min_size = options.log_min_size || 3;
       this.log_max_interval = options.log_max_interval || 1500;
       this.debug = options.debug || false;
-      this.u = options.u || {u: Math.random() * 100000000000000000}; // uuid
+      this.u = options.u || Math.random() * 100000000000000000; // uuid
       this.isCapable() && this._init(options.events);
     }
 
@@ -50,7 +50,7 @@
         this.debug && console.log("flushing:", this.buffer);
         this.flushing = true;
         this.resetTimer(this);
-        this.buffer.push(this.u);
+        this.buffer.push({u: this.u});
         this._sendData(this.buffer);
         this.emptyBuffer();
         this._tidyUp();

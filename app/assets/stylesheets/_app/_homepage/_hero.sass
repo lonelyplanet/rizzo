@@ -1,3 +1,6 @@
+.user-basket__icon
+  +icon-color(white)
+
 .hero
   width: 100%
   height: 450px
@@ -9,14 +12,14 @@
   background-repeat: no-repeat
   background-size: cover
   .enhanced &, .ie9 &
-    +responsive-image('homepage/hero/hero', 'jpg')
+    +responsive-image('hero/hero', 'jpg')
   .ie7 &, .ie8 &
-    background-image: url(#{image_path('homepage/hero/hero-1600.jpg')})
+    background-image: url(#{image_path('hero/hero-1600.jpg')})
   .slothified &
-    background-image: url(#{image_path('homepage/rainforest.jpg')})
+    background-image: url(#{image_path('rainforest.jpg')})
     &:after
       @extend %empty-abs-generated-content
-      background-image: url("#{image_path('homepage/sloth.png')}")
+      background-image: url("#{image_path('sloth.png')}")
       background-repeat: no-repeat
       width: 100%
       height: 270px
@@ -35,12 +38,12 @@
   position: relative
   width: 100%
   &.is-focused
-    .icon--search-glass--grey
-      opacity: 1
     .hero__overlay
       background: rgba(0,0,0,0.5)
     .hero__search
       width: 90%
+    .hero__search__icon
+      opacity: 0.2
 
 .hero__search
   @extend %inline-block
@@ -55,7 +58,7 @@
     overflow: visible
     &:after
       @extend %empty-abs-generated-content
-      background-image: url("#{image_path('homepage/sloth2.png')}")
+      background-image: url("#{image_path('sloth2.png')}")
       background-repeat: no-repeat
       width: 100%
       height: 270px
@@ -94,7 +97,7 @@
   .ie7 &
     width: 500px
     zoom: 1
-  +respond-to(1250)
+  +respond-to(1200)
     padding-top: 320px
 
 .hero__logo
@@ -116,11 +119,14 @@
   @extend %rounded-corners
   &:after
     @extend %empty-abs-generated-content
-    top: 100%
-    right: 167px
-  +respond-to(1250)
+    right: 162px
+    width: 32px
+    height: 32px
+    bottom: -20px
+
+  +respond-to(1200)
     &:after
-      right: 70px
+      right: 65px
 
 .speech-bubble--scroll
   @if $is-ie == false
@@ -152,7 +158,7 @@
     .autocomplete__active &
       +transform(none)
 
-  +respond-to(1250)
+  +respond-to(1200)
     right: 30px
     bottom: 20px
 
@@ -176,7 +182,7 @@
   letter-spacing: 0
   display: block
   margin: 0 5px 5px 0
-  +respond-to(1250)
+  +respond-to(1200)
     display: inline-block
   span
     text-transform: lowercase
@@ -187,9 +193,9 @@
   margin-right: 10px
   background-size: 100%
   background-repeat: no-repeat
-  background-image: url("#{image_path('homepage/beautifulworld/book.png')}")
+  background-image: url("#{image_path('beautifulworld/book.png')}")
   +retinafy()
-    background-image: url("#{image_path('homepage/beautifulworld/book@2x.png')}")
+    background-image: url("#{image_path('beautifulworld/book@2x.png')}")
 
 .homepage__product__text
   color: white
@@ -211,7 +217,7 @@
     +border-radius(100)
     width: 50px
     height: 50px
-    +respond-to(1250)
+    +respond-to(1200)
       width: 75px
       height: 75px
 
@@ -221,7 +227,7 @@
   text-align: left
   margin-left: 10px
   margin-top: 5px
-  +respond-to(1250)
+  +respond-to(1200)
     display: block
 
 .hero__product__details
@@ -266,7 +272,7 @@
     width: 350px
     margin: 0
 
-  +respond-to(1250)
+  +respond-to(1200)
     right: 40px
 
 .hero__author__story__image
@@ -301,7 +307,7 @@
     right: 2px
     width: 61px
     height: 51px
-    background-image: url("#{image_path('destinations/best-in-travel/homepage/win.png')}")
+    background-image: url("#{image_path('best-in-travel/win.png')}")
     background-size: 100%
 
 @if $is-ie == true
@@ -363,7 +369,7 @@
     top: 0
     .hero__author__story
       bottom: 95px
-      +respond-to(1250)
+      +respond-to(1200)
         bottom: 175px
   & ~ .hero__overlay
     background-color: rgba(0,0,0,0)
@@ -373,7 +379,7 @@
     top: 0
     .hero__author__story
       bottom: 95px
-      +respond-to(1250)
+      +respond-to(1200)
         bottom: 175px
 
 
@@ -416,7 +422,6 @@
       background-size: 100%
       width: 25px
       height: 100%
-      background-position: center
       margin-left: 8px
 
   .autocomplete__current
@@ -447,3 +452,9 @@
   +respond-to(wide-view)
     .autocomplete__active &
       display: block
+
+.hero__search__icon
+  @extend %image-replacement
+  width: 20px
+  height: 20px
+  opacity: 0.2

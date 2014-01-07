@@ -91,12 +91,10 @@ $stack-intro-lines-to-show: 2
     vertical-align: inherit
 
 .stack__view-type--grid
-  @extend %grid-icon-before
   +border-radius-each(4, 0, 0, 4)
   border-width: 1px 0 1px 1px
 
 .stack__view-type--list
-  @extend %list-icon-before
   +border-radius-each(0, 4, 4, 0)
   border-width: 1px 1px 1px 0
 
@@ -120,24 +118,3 @@ $stack-intro-lines-to-show: 2
 .list-view__section .card--list
   height: 50px
 
-
-// -----------------------------------------------------------------------------
-// Travel warning
-// -----------------------------------------------------------------------------
-
-.travel-alert
-  @extend %rounded-corners
-  @extend %warning-sign-before
-  +font-size(15)
-  background: #fffaca
-  line-height: 20px
-  margin-top: 10px
-  padding: 15px 15px 15px 38px
-  position: relative
-
-  &:before
-    color: $red
-    font-size: 30px
-    left: 15px
-    position: absolute
-    top: 15px

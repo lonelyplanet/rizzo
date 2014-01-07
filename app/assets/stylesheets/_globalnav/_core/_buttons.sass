@@ -7,11 +7,14 @@
   @extend %rounded-corners
   +box-sizing()
   @extend %inline-block
+  background-color: $linkblue
+  color: white
   cursor: pointer
   font-weight: bold
-  padding: 8px 25px
+  line-height: 1em
+  overflow: hidden
+  padding: 10px 25px
   text-align: center
-  min-height: 40px
   &:hover
     text-decoration: none
   &.is-disabled, &[disabled]
@@ -29,9 +32,30 @@
   display: block
   width: 100% // Ensure inputs also stretch full width
 
+.btn--small
+  padding: 7px 25px
+
+.btn--large
+  padding: 12px 25px
+
 .btn--slim
   min-height: 0
   padding: 4px 6px
+
+.btn--icon
+  &:before
+    display: inline-block
+    height: 1em
+    // -0.2em makes sure the button is still the correct height.
+    margin: -0.2em 0.5em 0 -0.5em
+    position: relative
+    top: 0.1em
+    width: 1em
+
+.btn--icon-only
+  @extend %image-replacement
+  padding: 10px 20px
+  width: 1em
 
 // -----------------------------------------------------------------------------
 // Button Layout Modifiers
@@ -45,7 +69,7 @@
 // Button Types
 // -----------------------------------------------------------------------------
 
-.btn--bookable
+.btn--yellow
   background-color: $yella
   color: $body-copy
   &:hover
@@ -62,13 +86,9 @@
   color: white
   &:hover
     background-color: $disabled
-    
+
 .btn--green
   background-color: $green
-  color: white
-
-.btn--blue
-  background-color: $linkblue
   color: white
 
 .btn--red
@@ -82,12 +102,12 @@
     color: $linkblue
 
 .btn--clear
+  background-color: transparent
   border: 1px solid $input-border
   color: $body-copy
 
   .read-more-block &
     +font-size(13)
-    padding: 0 7px
     min-height: 0
 
   .read-more-inline &
@@ -103,11 +123,7 @@
     border: 0
 
     &:after
-      font-weight: 400
+      display: inline-block
       margin-left: 5px
-
-    .is-closed &
-      @extend %chevron-down-after
-
-    .is-open &
-      @extend %chevron-up-after
+      width: 9px
+      height: 5px

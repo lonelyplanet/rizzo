@@ -38,6 +38,7 @@ define ['jquery'], ($) ->
       @config =
         selector:   '.js-read-more'
         text:       ['Read more', 'Read less']
+        classes: ['icon--chevron-down--after', 'icon--chevron-up--after']
         maxHeight:  2500
         tolerance: 0
 
@@ -51,11 +52,24 @@ define ['jquery'], ($) ->
       @wrapper = @$el.find('.js-read-more-wrapper')
       @wrapper.addClass if @config.style is 'inline' then 'read-more-inline' else 'read-more-block'
       @totalHeight = @getFullHeight()
+      @stateClosed = {
+        height: @config.maxHeight
+        text: @config.text[0]
+        state: 'close'
+        classes: @config.classes[0]
+      }
+      @stateOpen = {
+        height: @totalHeight
+        text: @config.text[1]
+        state: 'open'
+        classes: @config.classes[1]
+      }
+
       if @totalHeight > @config.maxHeight + @config.tolerance
         @addHandler()
-        @setWrapperState @config.maxHeight, @config.text[0], 'close'
+        @setWrapperState @stateClosed
       else if @totalHeight > @config.maxHeight
-         @setWrapperState @totalHeight, '', 'open'
+         @setWrapperState @stateOpen
 
     getFullHeight: ->
       height = 0
@@ -64,7 +78,7 @@ define ['jquery'], ($) ->
       height
 
     addHandler: ->
-      @handler = $("<div class='btn btn--slim btn--clear js-handler'>#{(@config.text)[0]}</div>")
+      @handler = $("<div class='btn btn--slim btn--clear js-handler icon--lp-blue--after #{(@config.classes[0])}'>#{(@config.text)[0]}</div>")
       @wrapper.append(@handler)
       @handler.wrap("<div class='read-more__handler'/>") if @config.shadow
       @bindEvents()
@@ -81,12 +95,12 @@ define ['jquery'], ($) ->
 
     click: ->
       if @state is 'close'
-        @setWrapperState(@totalHeight, @config.text[1], 'open')
+        @setWrapperState @stateOpen
       else
-        @setWrapperState(@config.maxHeight, @config.text[0], 'close')
+        @setWrapperState @stateClosed
       @onUpdate()
 
-    setWrapperState: (height, text, state) ->
+    setWrapperState: ({height, text, state, classes}) ->
       if state is 'open' and @transitionEnabled
         # Wait for the transition to finish before taking away the gradient mask
         setTimeout(=>
@@ -98,6 +112,7 @@ define ['jquery'], ($) ->
       @wrapper.css({'max-height': height + 'px'})
       @setHandlerText(text)
       @state = state
+      @handler.removeClass(@config.classes.join(' ')).addClass(classes)
 
     setHandlerText: (_text) ->
       @handler and @handler.text _text

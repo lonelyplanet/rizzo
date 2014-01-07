@@ -2,8 +2,6 @@ $discSize: 12px
 
 .preloader
   @extend %transition--base
-  background-repeat: no-repeat
-  background-position: center center
   display: none
   left: 50%
   margin-left: -#{$discSize * 4} // 4 = number of discs
@@ -16,11 +14,9 @@ $discSize: 12px
     display: block
   .no-3d-support &
     // Put this behind this flag so that we don't get a flash of the fallback
-    background-image: url("#{image_path('spinner.gif')}")
+    background: url("#{image_path('shared/spinner.gif')}") no-repeat center center
     .preloader__disc, .preloader__cover
       visibility: hidden
-  .supports-3d &
-    background-image: none
 
   .results &
     +border-radius(8)
@@ -65,13 +61,13 @@ $discSize: 12px
 +keyframes(discmove)
   0%
     +transform(translateY(0px))
-  
+
   40%
     +transform(translateY($discSize))
-  
+
   80%
     +transform(translateY($discSize * 2))
-  
+
   100%
     +transform(translateY($discSize * 2))
 
@@ -82,10 +78,11 @@ $discSize: 12px
   top: -10px
   width: 62px
   z-index: 10
-  .svg-mask
-    fill: white
-    .media-gallery &
-      fill: $body-background
+  background: url("#{image_path('shared/spinner.svg')}") no-repeat center center
+
+  .media-gallery &
+    background-image: url("#{image_path('shared/spinner-grey.svg')}")
+
   .results &
     left: 13px
     top: 2px

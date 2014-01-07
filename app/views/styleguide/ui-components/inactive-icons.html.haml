@@ -1,0 +1,18 @@
+.card.styleguide-intro.copy--body.context--content
+  .clearfix
+    %h1.split--left.copy--h1 Inactive Icons
+    = render 'styleguide/partials/svg_filter'
+  %p
+    Icons are not included on the site by default.
+  %p
+    To make one of the icons active on the site move it from /app/assets/images/icons/inactive to /app/assets/images/icons/active and run
+  %code $ grunt icons
+
+.styleguide-block.styleguide-grid.styleguide-icons.context--content
+  %div{class: "grid-wrapper--10"}
+    - get_icons("inactive").each do |icon|
+      .col--one-fifth
+        .card
+          %div.js-icon{class: icon, title: icon}
+          %code
+            = icon.gsub('icon--', '')
