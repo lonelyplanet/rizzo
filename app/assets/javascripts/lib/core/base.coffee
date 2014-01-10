@@ -27,8 +27,26 @@ define( ['jquery','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/sh
 
     authenticateUser: ->
       @auth = new Authenticator()
-      AssetFetch.get "https://secure.lonelyplanet.com/sign-in/status", () =>
-        @auth.update()
+
+      $.ajax
+        url: @auth.getNewStatusUrl()
+        dataType: "json"
+        error: =>
+          # Fallback to the old method for the moment.
+          AssetFetch.get "https://secure.lonelyplanet.com/sign-in/status", () =>
+            @auth.update()
+        success: (user) =>
+          # The data returned is defined in community at: app/controllers/users_controller.rb@status
+          window.lp.user = user
+
+          # Legacy, keep until the old stuff is discarded and Authenticator has been refactored.
+          window.lpLoggedInUsername = user.username || "";
+          window.facebookUserId = user.facebook_uid;
+          window.surveyEnabled = "false";
+          window.timestamp = user.timestamp;
+          window.referer = "null";
+
+          @auth.update()
 
     initAds: ->
       AdManager.init(@adConfig(), 'ad-leaderboard') # Remove the second param when dropping the old ad manager

@@ -5,22 +5,22 @@
   - if properties[:param]
     - href = href.sub(/(#{properties[:param]})\=([0-9]+)(&amp;|&)?/, '') # Remove any existing pagination param
     - href = href.sub(/(&amp;|&)?$/, '') # Remove any trailing ampersands
-    - href+= "#{/\?/.match(href) ? '&' : '?'}#{properties[:param]}=%s" # Append new param
+    - href+= "#{/\?/.match(href) ? '&' : '?'}#{properties[:param]}=%i" # Append new param
 
   .pagination{ class: properties[:classes] }
 
     - if properties[:current] < properties[:total]
       .pagination__forwards.split--right
-        %a.pagination__link.pagination__link--last{ href: sprintf(href, properties[:total]) }<
+        %a.pagination__link.pagination__link--last{ href: href.gsub(/%i/, properties[:total].to_s) }<
           Last
-        %a.pagination__link.pagination__link--next{ href: sprintf(href, properties[:current] + 1)}<
+        %a.pagination__link.pagination__link--next{ href: href.gsub(/%i/, (properties[:current] + 1).to_s)}<
           &gt;
 
     - if properties[:current] > 1
       .pagination__backwards.split--left
-        %a.pagination__link.pagination__link--prev{ href: sprintf(href, properties[:current] - 1) }<
+        %a.pagination__link.pagination__link--prev{ href: href.gsub(/%i/, (properties[:current] - 1).to_s) }<
           &lt;
-        %a.pagination__link.pagination__link--first{ href: sprintf(href, 1) }<
+        %a.pagination__link.pagination__link--first{ href: href.gsub(/%i/, "1") }<
           First
 
     .pagination__numbers
@@ -40,7 +40,7 @@
 
       - for num in start..finish
         - if properties[:current] != num
-          %a.pagination__link{ href: sprintf(href, num), data: { current: properties[:current], num: num} }<
+          %a.pagination__link{ href: href.gsub(/%i/, num.to_s), data: { current: properties[:current], num: num} }<
             = num
         - else
           .pagination__link.pagination__link--current<

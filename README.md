@@ -8,7 +8,9 @@ Rizzo is the UI layer for lonelyplanet.com. Rizzo also serves LP's header and fo
 ## Install & Get Dependencies
 
     $ git clone git@github.com:lonelyplanet/rizzo.git && cd rizzo
-    $ cp .rvmrc.example .rvmrc && source .rvmrc
+    $ cp .ruby-version.example .ruby-version
+    $ cp .ruby-gemset.example .ruby-gemset
+    $ cd .
     $ bundle install
     $ npm install
 
@@ -221,72 +223,6 @@ Javascript hooks:
 
 ### Conventions
 
-1. Whitespace
-	* Set your editor to remove trailing whitespace
-	* Use 2 spaces for indentation
-	* End files with no more and no less than 1 newline
-2. Syntax
-	* Use `this` when referring to `this` alone. Use `@variable` for referring to `this.variable`. eg: `self = this` but `@rub(noggin)`
-	* Use curly braces for objects, not coffeescript's implicit object syntax. eg:
+@chee is going to write this :)
 
-		```coffeescript
-		  animals = {
-	        dog: 'brown'
-		    fox: 'green'
-		    pig: 'yellow'
-		  }
-        ```
-    * Use parens for calling functions: `@albatross({ sausage: 'goose' })`
-    * Stick to single quotes `'` unless using coffeescripts string interpolation, `"jimmy ate the #{foxpuppet.angles}"`
-3. Typechecking
-	* In [this](http://contribute.jquery.org/style-guide/js/#type-checks) style, except unfortunely we cannot use the "null or undefined" check in coffeescript.
-4. Points of controversy
-	* Check if an array or string contains something by bitwise notting: `!!~collection.indexOf('abacus')`
-	* The "Angus Manouver": `snake && snake.bleeding()`
-	* Coerce numbers with unary plus: `if +num is 2 ...`
-	* Augment a native prototype if that's the right thing to do
-5. Further Concerns
-	* Use camelCase for method and variable names.
-		`twistAgainLikeWeDidLastSummer()`
 
-		__NOT__
-
-		`rock_around_the_clock()`
-	* Try to avoid single character variable names, words are easier to read and we can leave minification to a minifier
-	* Don't use comma first
-	* Name collections (arrays, objects, sets, maps) in plural, ie: `badger` is a thing, `badgers` is a collection of things
-	* Start a variable with a captial letter _ONLY_ in the case that it is a prototype, class, contructor, etc.
-
-	```square = (number) -> number * 2``` but ```class BaldMan```
-	
-	* test for truthiness:
-
-		```coffeescript
-	        if collection.length ...
-            if string ...
-            if truthyThing
-		```
-
-		__NOT__
-		
-		```coffeescript
-            if collection.length > 0 ...
-            if string isnt ''
-	        if truthyThing is true
-		```
-		
-	* Use coffee classes so we can enjoy rjs (more to come on this in higher level component writing guide)
-	* Use `->` unless you want bound function, then use `=>`. In some sticky situations, `self = this` is still necessary. See if naming it something other than `self` is more sensible in those cases, like:
-
-		```coffeescript
-		class Badger
-		  constructor ->
-	  	    badger = this
-	  	    somethingElse((wat) ->
-		      @eat(badger.honey)
-		  )
-		```
-
-	* Put comments before the line or block they are about. Never use eol comments
-	
-<!--Try not to get caught up in dogmatic rules and religion surrounding javascript and in the community. Be playful.-->

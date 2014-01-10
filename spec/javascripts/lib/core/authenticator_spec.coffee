@@ -71,11 +71,7 @@ require ['public/assets/javascripts/lib/core/authenticator'], (Authenticator) ->
           expect($('a.js-user-join').attr('href')).toBe(@auth.options.registerLink)
 
         it 'has a sign-in url', ->
-          expect($('a.js-user-signin').attr('href')).toBe(@auth.signInUrl())
-
-        # it 'has a sign-in url with the current service uri', ->  
-        #   expect(@auth.signInUrl()).toMatch(/\?service/)
-        #   expect(@auth.signInUrl()).toMatch(/localhost/)
+          expect($('a.js-user-signin').attr('href')).toBe(@auth.options.signInUrl)
 
 
     describe 'logged-in', ->
@@ -143,6 +139,46 @@ require ['public/assets/javascripts/lib/core/authenticator'], (Authenticator) ->
            expect($('a.js-user-signout')).toExist()
            expect($('a.js-user-signout').text()).toBe('Sign out')
            expect($('a.js-user-signout').attr('href')).toBe(@auth.options.signOutUrl)
+
+    describe 'new thorntree auth', ->
+
+      beforeEach ->
+
+        @auth = new Authenticator()
+        window.lp.user = 
+          id: 1234
+          avatar: "path/to/image.jpg"
+          facebookUID: "facebookUID"
+          loginTimestamp: "timestamp"
+          username: "username"
+        window.lpLoggedInUsername = lp.user.username;
+        window.facebookUserId = lp.user.facebookUID;
+        window.surveyEnabled = "false";
+        window.timestamp = lp.user.loginTimestamp;
+        window.referer = "null";
+
+        @auth.constructor()
+
+      it 'produces the correct new status url when NOT on the live site', ->
+        spyOn(@auth, 'getUrl').andReturn('http://community.lonelyplanet.com')
+        expect(@auth.getNewStatusUrl()).toBe('/users/status')
+
+      it 'produces the correct new status url when on the live site', ->
+        spyOn(@auth, 'getUrl').andReturn('http://www.lonelyplanet.com')
+        expect(@auth.getNewStatusUrl()).toBe('/thorntree/users/status')
+
+      it 'generates the correct urls', ->
+        expect(@auth.options.registerLink).toBe('/users/sign_up')
+        expect(@auth.options.signInUrl).toBe("/users/sign_in")
+        expect(@auth.options.signOutUrl).toBe("/users/sign_out")
+        expect(@auth.options.membersUrl).toBe("/profiles/username")
+        expect(@auth.options.forumPostsUrlTemplate).toBe("/profiles/username/activities")
+        expect(@auth.options.profileEditUrl).toBe("/profiles/username/edit")
+        expect(@auth.options.messagesUrl).toBe("/profiles/username/messages")
+
+      it 'uses the correct avatar', ->
+        expect(@auth.userAvatar()).toBe('path/to/image.jpg')
+
 
 
     # describe 'messages count', ->
