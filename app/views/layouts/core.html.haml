@@ -11,14 +11,14 @@
 
     .row.row--content#js-row--content
       .row__inner.row__inner--content
-        
+
         - if content_for?(:secondary)
           .row.row--secondary#js-secondary-nav
             .row__inner.row__inner--secondary
               = yield :secondary
-        
+
         = yield
-      
+
       .row--footer-push
 
   .wrap--footer
@@ -46,5 +46,3 @@
   - if defined? Variant
     /
       = "build: #{Variant.full_namespace}"
-
-

@@ -55,16 +55,16 @@ left_nav_stub:
           -
             :name: 'Sights'
             :slug: '#'
-            :icon: 'sights'
+            :icon: 'sight'
           -
             :name: 'Restaurants'
             :slug: '#'
-            :icon: 'restaurants'
+            :icon: 'restaurant'
             :active: true
           -
             :name: 'Tours'
             :slug: '#'
-            :icon: 'tours'
+            :icon: 'tour'
 
 
 secondary_navigation_stub:
