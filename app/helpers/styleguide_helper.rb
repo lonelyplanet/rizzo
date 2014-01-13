@@ -110,7 +110,7 @@ module StyleguideHelper
             },
             {
               name: "Tiles",
-              path: "/styleguide/tiles"
+              path: "tiles"
             },
             {
               name: "Forms",
