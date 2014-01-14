@@ -1,0 +1,16 @@
+basic:
+  -
+    :styleguide_title: "Tile"
+    :link_url: "/styleguide/tiles"
+    :image_src: "stubs/tile_sydney.jpg"
+    :image_alt: "Some dudes by the Opera House"
+    :context: "Article"
+    :title: "End of the road in Sydney"
+
+  -
+    :styleguide_title: "Tile with description"
+    :link_url: "/styleguide/tiles"
+    :image_src: "stubs/tile_sydney.jpg"
+    :image_alt: "Some dudes by the Opera House"
+    :title: "End of the road in Sydney"
+    :description: "Every epic journey must come to an end. Travel writer Oliver Smith reaches the finishing line of Lonely Planet's incredible voyage across the planet"

@@ -109,6 +109,10 @@ module StyleguideHelper
               path: "cards"
             },
             {
+              name: "Tiles",
+              path: "tiles"
+            },
+            {
               name: "Forms",
               path: "forms"
             },

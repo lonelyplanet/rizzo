@@ -1,0 +1,86 @@
+// -----------------------------------------------------------------------------
+// Extended tile
+// -----------------------------------------------------------------------------
+
+.tile--extended
+
+  .tile__cover
+    height: 100%
+
+    @if not $is-ie
+      +transition(background, .5, ease-out)
+
+  .tile__cover__content
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+
+    @if not $is-ie
+      +transform(translateY(100%))
+      +vendor-prefixed-transition(transform, .35, ease-out)
+
+    &:after
+      content: ' '
+      position: absolute
+      bottom: 0
+      left: 0
+      width: 100%
+      height: 50%
+
+      @if $is-ie
+        -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#FF000000, endColorstr=#00000000)"
+      @else
+        +background-gradient(#000, transparent, false, false, to top)
+
+  @if $is-ie
+    .tile__description
+      display: none
+
+  @else
+    .tile__cover__heading
+      -webkit-transform: translateY(-webkit-calc(-100% - 20px)) // Prefixed calc() for Safari 6
+      +transform(translateY(calc(-100% - 20px))) // Add 20px to clear padding on .tile__cover__content
+
+  .tile__link:hover
+
+    .tile__cover
+      @if $is-ie
+        display: block
+        zoom: 1
+        -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#A5000000, endColorstr=#A5000000)"
+        filter:      progid:DXImageTransform.Microsoft.gradient(startColorstr=#A5000000, endColorstr=#A5000000)
+      @else
+        background: rgba(0, 0, 0, .65)
+
+    @if $is-ie
+      .tile__cover__story
+        display: block
+    @else
+      .tile__cover__content,
+      .tile__cover__heading
+        +transform(translateY(0))
+
+.no-js .tile--story
+
+  .tile__cover
+    height: auto
+
+  .tile__cover__content
+    position: static
+
+    &:after
+      content: none
+
+  .tile__cover__content,
+  .tile__title
+    +transform(none)
+
+  .tile__description
+    display: block
+
+  .tile__link:hover
+
+    .tile__cover
+      background: none

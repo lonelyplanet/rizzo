@@ -1,0 +1,18 @@
+- variation = properties[:description] ? 'extended' : 'default'
+%article{ class: "tile tile--#{variation}" }
+  %a.tile__link{ href: properties[:link_url] }
+    .tile__wrapper
+      .tile__media.tile__media--img
+        = safe_image_tag(properties[:image_src], alt: properties[:image_alt], lazyload: properties[:lazyload])
+      .tile__cover
+        .tile__cover__content
+
+          .tile__cover__heading
+            - if properties[:context]
+              %span.tile__context
+                = properties[:context]
+            %h1.tile__title
+              = properties[:title]
+          - if properties[:description]
+            %p.tile__description
+              = properties[:description]
