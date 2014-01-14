@@ -1,0 +1,11 @@
+.js-config.is-hidden
+  = render 'layouts/core/inline_js/fonts_async'
+  = render 'layouts/core/inline_js/fs_init'
+  = render 'layouts/core/inline_js/google_analytics' if Rails.env.production?
+  = render 'layouts/core/inline_js/base_js_async'
+  = yield :scripts
+
+  = js_configuration
+  - if defined?($JS_VARS)
+    :javascript
+      #{js_hash($JS_VARS)}

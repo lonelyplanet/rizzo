@@ -2,10 +2,10 @@
   if (window.lp.enhanced && window.localStorage.getItem('_lpfont') == "true") {
     var ss = document.createElement('link'),
         firstLink = document.getElementsByTagName('link')[0],
-        cdnPath = "#{font_path('fonts.css')}";
+        fontPath = "#{font_path('fonts.css')}";
+
     
-    // Use www to get the cached version - see fonts_async partial
-    ss.href= "//www.lonelyplanet.com/assets/" + cdnPath.split('/assets/')[1];;
+    ss.href= fontPath;
     ss.rel = "stylesheet";
     ss.type = "text/css";
     firstLink.parentNode.insertBefore(ss, firstLink);

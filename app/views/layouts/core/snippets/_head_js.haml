@@ -25,4 +25,10 @@
     time: function(x){!!window.performance && !!window.performance.now && this.buffer.push({e: x, t: window.performance.now()})}
   };
 
-= render 'layouts/core/snippets/grunticon', sheet: 'active'
+= render 'layouts/core/inline_js/cut_the_mustard'
+= render 'layouts/core/inline_js/fonts_loader'
+= render 'layouts/core/inline_js/grunticon', sheet: 'active'
+
+= render 'layouts/core/inline_js/require_js_config'
+- if (yield :async_js).present?
+  = render 'layouts/core/inline_js/require_js_async', script_name: "#{yield :async_js}"

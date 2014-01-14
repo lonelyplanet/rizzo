@@ -1,36 +1,26 @@
-%link{rel: "dns-prefetch", href:"http://assets.staticlp.com"}
-%meta(charset='utf-8')
-%meta(name="author" content='Lonely Planet')
+%meta{charset: "utf-8"}
+%meta{name: "author", content: 'Lonely Planet'}
+%meta{name: "fb:app_id", content: "111537044496"}
+= yield :meta
+
 %title
   = content_for?(:head_title) ? yield(:head_title) : 'Lonely Planet Travel Guides and Travel Information'
 
-%meta(name="fb:app_id" content="111537044496")
-
-- unless responsive
-  %meta(name="viewport" content="width=1024")
-
 = yield :dns_prefetch
-= yield :meta
+= yield :place_hotels_link
+%link{rel: "dns-prefetch", href: "http://assets.staticlp.com"}
+%link{rel: "icon", type: "image/gif", href: "http://www.lonelyplanet.com/favicon.ico"}
+
+- if responsive
+  %meta{name:"viewport", content:"width=device-width, initial-scale=1"}
+- else
+  %meta{name:"viewport", content:"width=1024"}
+
 = csrf_meta_tags
 
 = render 'layouts/core/snippets/head_js'
+= render 'layouts/core/inline_js/tynt'
 
-- if responsive
-  = render 'layouts/mobile/cut_the_mustard'
-
-  -# Some landing pages (best in travel) are still using the font icons so need the font up front
-  -# We need to remove this post-SVG
-  - if @font_icons == true
-    = smart_stylesheet('common_core')
-  - else
-    = smart_stylesheet('common_core_no_font')
-    = render 'layouts/mobile/fonts_loader'
-
-- else
-  = smart_stylesheet('common_core')
-  = render 'layouts/core/snippets/tynt'
-
+= smart_stylesheet('common_core_no_font')
 = yield :stylesheets
-= yield :place_hotels_link
 
-%link(rel="icon" type="image/gif" href="http://www.lonelyplanet.com/favicon.ico")

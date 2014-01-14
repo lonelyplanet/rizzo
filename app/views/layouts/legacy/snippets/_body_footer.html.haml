@@ -1,9 +1,9 @@
-.wrap--footer
+.wrapper--footer
   = render 'layouts/core/snippets/body_footer'
 
 - unless defined? no_scripts
   .js-config.is-hidden
-    = render 'layouts/core/snippets/fs_init'
+    = render 'layouts/core/inline_js/fs_init'
     = js_configuration
     = requirejs_include_tag('app_core_legacy'){|c|{'main' => 'app_core_legacy'}}
     = render 'layouts/legacy/snippets/nav_tracking'

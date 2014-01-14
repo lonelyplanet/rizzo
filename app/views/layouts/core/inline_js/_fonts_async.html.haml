@@ -1,0 +1,19 @@
+:javascript
+  (function(){
+    if (window.lp.enhanced === true && window.localStorage.getItem('_lpfont') != "true") {
+
+      window.onload = function() {
+        var xhr = new XMLHttpRequest(),
+            fontPath = "#{font_path('fonts.css')}";
+
+        xhr.open('GET', fontPath);
+
+        xhr.onload = function (e) {
+          window.localStorage.setItem('_lpfont', 'true')
+        };
+
+        xhr.send();
+      }
+
+    }
+  })()

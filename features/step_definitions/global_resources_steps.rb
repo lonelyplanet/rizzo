@@ -1,5 +1,7 @@
 Then(/^the Core layout should be displayed$/) do
-  page.should have_selector 'html.freight'
+  page.should have_selector 'html.no-freight'
+  page.should_not have_selector 'body.responsive'
+  page.should_not have_selector 'body.homepage'
 end
 
 Then(/^the Legacy layout should be displayed$/) do
@@ -55,7 +57,7 @@ Then /^the secure global\-body\-header response should have the correct content$
 end
 
 Then /^the global\-body\-footer should response have the correct content$/ do
-  page.should have_selector 'div.wrap--footer'
+  page.should have_selector 'div.wrapper--footer'
   page.should have_selector 'div.row--sitemap'
   page.should have_selector 'div.row--footer--about'
   page.should have_selector 'div.row--smallprint'
@@ -82,7 +84,7 @@ Then /^the noscript global\-head should have the correct content$/ do
 end
 
 Then /^the secure noscript body\-footer response should have the correct content$/ do
-  page.should have_selector 'div.wrap--footer'
+  page.should have_selector 'div.wrapper--footer'
   page.should_not have_selector 'div.js-config'
 end
 

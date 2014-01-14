@@ -1,22 +1,12 @@
 !!! 5
-<!--[if IE 7]><html class="no-js ie7 home base" lang="en"><![endif]-->
-<!--[if IE 8]><html class="no-js ie8 home" lang="en"><![endif]-->
+<!--[if IE 7]><html class="no-js ie7 no-freight home base" lang="en"><![endif]-->
+<!--[if IE 8]><html class="no-js ie8 no-freight home" lang="en"><![endif]-->
 <!--[if IE 9]><html class="no-js ie9 no-freight" lang="en"><![endif]-->
 <!--[if gt IE 9]><!--><html class="no-js base no-touch no-freight" lang="en"><!--<![endif]-->
 %head
   = render 'layouts/core/head', responsive: true, homepage: true
-  - if cookies[:_fullsite] == "true"
-    %meta{name:"viewport", content:"width=1400"}
-  - else
-    %meta{name:"viewport", content:"width=device-width, initial-scale=1"}
-  <!--[if gt IE 8]><!-->
-  = render 'layouts/mobile/detect_touch'
-  <![endif]-->
-  = render 'layouts/mobile/require_js_config'
-  - if (yield :async_js).present?
-    = render 'layouts/mobile/require_js_async', script_name: "#{yield :async_js}"
 
-%body.responsive.homepage.copy--freight
+%body.responsive.homepage
   .wrapper
     = render 'layouts/core/snippets/accessibility'
     = render 'layouts/core/snippets/primary_navigation_bar', user_nav: true, responsive: true, homepage: true
@@ -24,26 +14,11 @@
     .row.row--content#js-row--content
       = yield
 
-    .wrap--footer
+    .wrapper.wrapper--footer
       = render 'layouts/core/snippets/body_footer', responsive: true
 
-    .js-config.is-hidden
-      = render 'layouts/mobile/img_loader'
-      = render 'layouts/core/snippets/fs_init'
-      = render 'layouts/mobile/fonts_async'
-      = render 'layouts/mobile/base_js_async'
-
-      = js_configuration
-      - unless Rails.env.production?
-        :javascript
-          window.appEnvironment = "#{Rails.env}";
-      - if defined?($JS_VARS)
-        :javascript
-          #{js_hash($JS_VARS)}
-      - if is_lp_office?(true_client_ip(request))
-        :javascript
-          window.lpOffice = true;
-      = yield :scripts
+    = render 'layouts/core/snippets/footer_js'
+    = render 'layouts/core/inline_js/img_loader'
 
     %div.ad-oneByOne#js-ad-oneByOne
 

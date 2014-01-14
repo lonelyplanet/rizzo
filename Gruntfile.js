@@ -1,4 +1,4 @@
-module.exports = function (grunt) {
+module.exports = function(grunt) {
     'use strict';
     var extend = require('util')._extend;
     // Project configuration.
@@ -139,7 +139,6 @@ module.exports = function (grunt) {
                                 lib: './public/assets/javascripts/lib',
                                 jplugs: './vendor/assets/javascripts/jquery/plugins',
                                 s_code: './vendor/assets/javascripts/omniture/s_code',
-                                maps_infobox: './vendor/assets/javascripts/google-maps-infobox',
                                 gpt: 'http://www.googletagservices.com/tag/js/gpt',
                                 pickadate: './vendor/assets/javascripts/pickadate'
                             }

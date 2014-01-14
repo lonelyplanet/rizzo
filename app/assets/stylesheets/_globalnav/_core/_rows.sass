@@ -9,15 +9,12 @@
 // ----------------------------------------------------------------------------
 
 body
+  @extend %lp-font-stack
   background-color: $body-background
   display: table
   min-width: 100%
   &.responsive
     display: block
-
-// Freight is applied to the main content row of the page
-.copy--freight
-  @extend %lp-font-stack
 
 .overthrow-enabled
   .overthrow
@@ -359,13 +356,13 @@ body
 //
 // ----------------------------------------------------------------------------
 
-.wrap--footer
+.wrapper--footer
   @extend %lp-font-stack
   @extend %subpixel-text
   @extend %transition--nav
   position: relative
 
-.wrap--footer-push
+.wrapper--footer-push
   min-height: 100%
   height: auto !important
   height: 100%

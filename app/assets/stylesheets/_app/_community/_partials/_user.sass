@@ -8,18 +8,26 @@
     &.locked, &.private
       font-style: italic
 
+.user-profile--edit
+  .btn--inline
+    overflow: visible
+
 .user-profile__left
   padding: 0 10px
   text-align: center
 
   .btn--full-width
     margin-bottom: 10px
+    padding: 10px 0
 
 // -----------------------------------------------------------------------------
 // The Avatar on the user profile page
 // -----------------------------------------------------------------------------
 .user-profile__avatar
   margin-bottom: 20px
+
+.user-profile__avatar__field
+  margin-bottom: 10px
 .user-profile__avatar__label
   cursor: pointer
   display: block
@@ -93,17 +101,29 @@
 
 .user-profile__label
   color: $lpblue
-  float: left
   margin-right: 10px
   width: 175px
 .user-profile__value
   color: $body-copy
-  float: left
   font-weight: normal
-  .default
+  position: relative
+  .is-default,
+  .is-private
     +font-size(14)
     color: $feature-copy
     font-style: italic
+  .is-private
+    position: absolute
+    right: 22px
+    .user-profile__icon
+      margin: 0 0 0 5px
+
+.user-profile__icon
+  +size(18px)
+  display: inline-block
+  margin-right: 5px
+  position: relative
+  top: 4px
 
 // -----------------------------------------------------------------------------
 // The little user info section displayed on the left hand side of posts.
