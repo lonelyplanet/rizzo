@@ -47,6 +47,11 @@
   .js & a
     color: $body-copy
 
+  // For browsers with no-js we show the checkbox so let's hide the pseudo elem
+  .no-js &
+    &:before
+      border: none
+
 .faux--input__checkbox--hide-text
   display: inline-block
   width: 17px
