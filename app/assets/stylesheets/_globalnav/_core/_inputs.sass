@@ -1,16 +1,16 @@
 // Inputs
-// 
+//
 // .input--regular      - Any button related to booking, including search to book
 // .input--datepicker    - Multi use button
 // .search__input--primary - Search box in header
-// 
+//
 // Styleguide 3.1
 
 
 // ----------------------------------------------------------------------------
-// 
+//
 //  Input defaults
-// 
+//
 // ----------------------------------------------------------------------------
 
 input, textarea
@@ -22,7 +22,7 @@ input, textarea
 
 // ----------------------------------------------------------------------------
 // Inputs
-// 
+//
 // Input--regular is used for any standard text based inputs: text,email,date
 // ----------------------------------------------------------------------------
 
@@ -55,7 +55,7 @@ input, textarea
 .hidden-input
   @extend %visually-hide
   // Show the input for ie7 where we don't have pseudo elements
-  .ie7 &
+  .ie7 &, .no-js &
     @extend %visually-show
 
 // ----------------------------------------------------------------------------

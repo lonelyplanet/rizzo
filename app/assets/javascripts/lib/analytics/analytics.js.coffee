@@ -5,7 +5,20 @@ define ['lib/analytics/analytics_auth', 'lib/analytics/analytics_perf', 's_code'
     constructor: (data)->
       data ?= (window.lp.tracking)
       @config = $.extend(data, @_userAuth())
-    
+
+    # Subscribe
+    listen: ->
+      $(@LISTENER).on ':cards/received', (e, data, state, analytics) =>
+        args = [state]
+        args.push(analytics.stack) if (analytics and analytics.stack)
+        @["_#{analytics.callback}"].apply(@,args)
+
+      $(@LISTENER).on ':cards/append/received', (e, data, state, analytics) =>
+        @["_#{analytics.callback}"](state) if analytics
+
+      $(@LISTENER).on ':page/received', (e, data, state, analytics) =>
+        @["_#{analytics.callback}"](analytics.url, analytics.stack)
+
     trackLink: (params = {}) ->
       @_save()
       @_add(params)

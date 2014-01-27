@@ -127,7 +127,7 @@ define ['jquery', 'lib/utils/page_state', 'lib/extends/events', 'lib/utils/depar
       if (@_supportsHistory() or @_supportsHash())
         @_setState(url)
       else
-        @setUrl(url) 
+        @setUrl(url)
 
     _replaceUrl: (url, callback) ->
       if (@_supportsHistory() or @_supportsHash())
