@@ -4,6 +4,7 @@
     "flamsteed": "latest",
     "lonelyplanet_minjs": "latest",
     "fastclick": "latest",
-    "pickadate": "~3.3.1"
+    "pickadate": "~3.3.1",
+    "nouislider": "latest"
   }
 }
