@@ -12,8 +12,9 @@ gem 'uglifier', '>= 1.0.3'
 gem 'unicorn'
 gem 'rake'
 gem 'airbrake'
+gem 'awesome_print'
 
-group :test do 
+group :test do
   gem 'guard'
   gem 'guard-coffeescript'
   gem 'rspec', '~> 2.10.0'

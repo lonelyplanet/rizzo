@@ -8,5 +8,5 @@
       )
     %input.styleguide__input-copy.styleguide__partial.copy--body.is-hidden{ value: "= ui_component('#{component}', properties: properties)" }
     %pre.styleguide.copy--body.language-ruby
-      %code #{JSON.pretty_generate properties}
-
+      %code
+        != ap properties, indent: 2, index: false

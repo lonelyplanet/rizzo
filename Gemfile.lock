@@ -33,6 +33,7 @@ GEM
       builder
       json
     arel (3.0.2)
+    awesome_print (1.2.0)
     better_errors (1.0.1)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
@@ -216,6 +217,7 @@ PLATFORMS
 
 DEPENDENCIES
   airbrake
+  awesome_print
   better_errors
   binding_of_caller
   capybara (< 2.0.0)
