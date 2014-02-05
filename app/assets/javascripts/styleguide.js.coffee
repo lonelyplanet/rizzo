@@ -1,6 +1,7 @@
 require ['jquery'], ($) ->
   require [
     'lib/managers/select_group_manager'
+    'lib/components/range_slider'
     'pickadate/lib/picker'
     'pickadate/lib/picker.date'
     'pickadate/lib/legacy'
@@ -9,11 +10,11 @@ require ['jquery'], ($) ->
     'lib/styleguide/snippet-expand'
     'lib/styleguide/svg'
     'lib/styleguide/colours'
-    'nouislider/jquery.nouislider'
-  ], (SelectGroupManager) ->
+  ], (SelectGroupManager, RangeSlider) ->
 
     $ ->
       new SelectGroupManager()
+      new RangeSlider()
 
       d = new Date()
       $('.input--datepicker').pickadate({
