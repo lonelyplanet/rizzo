@@ -7,6 +7,14 @@ define([ "jquery", "nouislider/jquery.nouislider" ], function($) {
     this._initSliders();
   };
 
+  RangeSliders.prototype._initSliders = function() {
+    var _this = this;
+    this.sliders.each(function() {
+      var $this = $(this);
+      $this.noUiSlider(_this._getConfig($this.data()));
+    });
+  };
+
   RangeSliders.prototype._getConfig = function(data) {
     return {
       range: [ data.range.split(",")[0], data.range.split(",")[1] ],
@@ -14,14 +22,6 @@ define([ "jquery", "nouislider/jquery.nouislider" ], function($) {
       handles: 2,
       connect: true
     };
-  };
-
-  RangeSliders.prototype._initSliders = function() {
-    var _this = this;
-    this.sliders.each(function() {
-      var $this = $(this);
-      $this.noUiSlider(_this._getConfig($this.data()));
-    });
   };
 
   return RangeSliders;

@@ -156,7 +156,8 @@ module.exports = function(grunt) {
                                 jplugs: './vendor/assets/javascripts/jquery/plugins',
                                 s_code: './vendor/assets/javascripts/omniture/s_code',
                                 gpt: 'http://www.googletagservices.com/tag/js/gpt',
-                                pickadate: './vendor/assets/javascripts/pickadate'
+                                pickadate: './vendor/assets/javascripts/pickadate',
+                                nouislider: './vendor/assets/javascripts/nouislider',
                             }
                         }
                     }

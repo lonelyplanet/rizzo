@@ -20,10 +20,3 @@ require ['jquery'], ($) ->
       $('.input--datepicker').pickadate({
         min: [d.getFullYear(), (d.getMonth() + 1), d.getDate()]
       })
-
-      $('.test-area').noUiSlider({
-        range: [ 0, 100 ],
-        start: [25, 75],
-        connect: true,
-        handles: 2
-      })
