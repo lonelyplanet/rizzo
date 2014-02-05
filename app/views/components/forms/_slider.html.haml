@@ -1,0 +1,14 @@
+.range-slider.context--content
+  %h3.copy--h3
+    = properties[:title]
+    - if properties[:unit]
+      (#{properties[:unit]})
+
+  .js-range-slider{data: {range: "#{properties[:min][:extreme]},#{properties[:max][:extreme]}", current: "#{properties[:min][:value]},#{properties[:max][:value]}", targets: "#{properties[:min][:name]},#{properties[:max][:name]}"}}
+
+  .no-js-visible
+    .grid-wrapper--10
+      .col--one-half
+        = ui_component('forms/text_field', properties: {label: "Min #{properties[:unit] ? properties[:unit] : ""}", name: "[filters][price][lower]", id: 'no-js-lower-price-filter', value: properties[:min][:value]})
+      .col--one-half
+        = ui_component('forms/text_field', properties: {label: "Min #{properties[:unit] ? properties[:unit] : ""}", name: "[filters][price][upper]", id: 'no-js-upper-price-filter', value: properties[:max][:value]})
