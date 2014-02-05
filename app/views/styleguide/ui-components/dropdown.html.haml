@@ -1,0 +1,12 @@
+= render 'styleguide/partials/shared'
+
+- components = YAML.load(File.read(File.expand_path('../../../../data/styleguide/forms_stubs.yml', __FILE__)))
+
+.card.styleguide-intro.styleguide-block.copy--body.context--content
+  %h1.copy--h1
+    Dropdown
+  %p
+    These are basic selects without javascript but with js enabled they mask the select box whilst still keeping it clickable.
+
+- components['dropdown_components'].each_with_index do |component, i|
+  = sg_component("forms/#{component[:styleguide_title].downcase.split(' ').join('_')}", properties: component, count: i, anchor: component[:styleguide_title].downcase.strip.gsub(' ', '-').gsub(/[^\w-]/, ''))

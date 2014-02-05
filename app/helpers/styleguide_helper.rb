@@ -89,6 +89,23 @@ module StyleguideHelper
           ]
         },
         {
+          title: "Form Elements",
+          items: [
+            {
+              name: "Inputs",
+              path: "inputs"
+            },
+            {
+              name: "Dropdown",
+              path: "dropdown"
+            },
+            {
+              name: "Slider",
+              path: "slider"
+            },
+          ]
+        },
+        {
           title: "Components",
           items: [
             {
@@ -106,10 +123,6 @@ module StyleguideHelper
             {
               name: "Cards",
               path: "cards"
-            },
-            {
-              name: "Forms",
-              path: "forms"
             },
             {
               name: "Page title",

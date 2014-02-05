@@ -13,18 +13,6 @@
     individually throughout the site, however it's recommended to use the field components when building
     forms in order to take advantage of their accessibility and responsive features.
 
-
-.copy--h2
-  hello
-
-.range-slider
-  .test-area
-  .no-js-visible
-    %label{for: 'no-js-lower-price-filter'} Lowest
-    %input{id: 'no-js-lower-price-filter', type: "text", class: "no-js-input", value: "25", name: "[filters][price][lower]"}
-    %label{for: 'no-js-lower-price-filter'} Highest
-    %input{type: "text", class: "no-js-input", value: "75", name: "[filters][price][upper]"}
-
 - components['form_components'].each_with_index do |component, i|
   = sg_component("forms/#{component[:styleguide_title].downcase.split(' ').join('_')}", properties: component, count: i, anchor: component[:styleguide_title].downcase.strip.gsub(' ', '-').gsub(/[^\w-]/, ''))
 
