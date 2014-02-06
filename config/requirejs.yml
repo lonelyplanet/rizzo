@@ -1,6 +1,6 @@
 paths:
   gpt: "//www.googletagservices.com/tag/js/gpt"
-  jplugs: "jquery/plugins"
+  jplugs: "jquery-plugins"
   jquery: "jquery/jquery"
   flamsteed: "flamsteed/lib/javascripts/flamsteed"
   sailthru: "sailthru/v1"
