@@ -1,6 +1,4 @@
-required = if window.lp.isMobile then 'jsmin' else 'jquery'
-
-define [required, 'lib/extends/events'], ($, EventEmitter) ->
+define ["jquery", 'lib/extends/events'], ($, EventEmitter) ->
 
   class ProximityLoader
 

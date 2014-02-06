@@ -150,7 +150,6 @@ module.exports = function(grunt) {
                             baseUrl: './',
                             paths: {
                                 jquery: './vendor/assets/javascripts/jquery/jquery',
-                                jsmin: './vendor/assets/javascripts/lonelyplanet_minjs/dist/$',
                                 polyfills: './vendor/assets/javascripts/polyfills',
                                 lib: './public/assets/javascripts/lib',
                                 jplugs: './vendor/assets/javascripts/jquery-plugins',

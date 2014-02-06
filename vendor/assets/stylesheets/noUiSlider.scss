@@ -59,28 +59,35 @@
 // Disabled state;
 
 [disabled].noUi-connect,
-[disabled] .noUi-connect
+[disabled] .noUi-connect {
   background: #B8B8B8
+}
 
-[disabled] .noUi-handle
+[disabled] .noUi-handle {
   cursor: not-allowed
+}
 
 .noUi-state-blocked.noUi-connect,
-.noUi-state-blocked .noUi-connect
+.noUi-state-blocked .noUi-connect {
   background: #4FDACF
+}
 
 
 // Not sure what this does
 
-.noUi-horizontal.noUi-extended
+.noUi-horizontal.noUi-extended {
   padding: 0 15px
+}
 
-.noUi-horizontal.noUi-extended .noUi-origin
+.noUi-horizontal.noUi-extended .noUi-origin {
   right: -15px
+}
 
-.noUi-vertical.noUi-extended
+.noUi-vertical.noUi-extended {
   padding: 15px 0
+}
 
-.noUi-vertical.noUi-extended .noUi-origin
+.noUi-vertical.noUi-extended .noUi-origin {
   bottom: -15px
+}
 

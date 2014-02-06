@@ -1,6 +1,4 @@
-required = if lp.isMobile then 'jsmin' else 'jquery'
-
-define [required], ($)->
+define ["jquery"], ($)->
 
   class AssetReveal
 
