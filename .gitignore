@@ -43,3 +43,8 @@ app/assets/stylesheets/icons/active.fallback.css
 app/assets/stylesheets/icons/active.png.css
 app/assets/stylesheets/icons/critical.svg.css
 app/assets/stylesheets/icons/critical.png.css
+
+# dependencies
+vendor/assets/javascripts/pickadate/lib/compressed/
+vendor/assets/javascripts/pickadate/lib/themes/
+vendor/assets/javascripts/pickadate/lib/translations/

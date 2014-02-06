@@ -2,9 +2,9 @@
   "name": "rizzo",
   "dependencies": {
     "flamsteed": "latest",
-    "lonelyplanet_minjs": "latest",
+    "jquery": "jquery#1.11",
     "fastclick": "latest",
-    "pickadate": "~3.3.1",
+    "pickadate": "3.3.1",
     "nouislider": "latest"
   }
 }
