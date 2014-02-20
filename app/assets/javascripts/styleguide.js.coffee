@@ -11,6 +11,7 @@ require ['jquery'], ($) ->
     'lib/styleguide/svg'
     'lib/styleguide/colours'
     'lib/styleguide/typography'
+    'lib/utils/scroll_perf'
   ], (SelectGroupManager) ->
 
     $ ->
