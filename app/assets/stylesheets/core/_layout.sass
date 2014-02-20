@@ -110,3 +110,23 @@ body
 
 
 
+// ----------------------------------------------------------------------------
+//
+// Pointer cover
+//
+// 60fps scrolling
+// http://www.thecssninja.com/javascript/follow-up-60fps-scroll
+//
+// ----------------------------------------------------------------------------
+
+.pointer-cover
+  +transform(translate3d(0,0,0))
+  top: 0
+  right: 0
+  left: 0
+  bottom: 0
+  opacity: 0
+  z-index: 11000
+  position: fixed
+  pointer-events: none
+  display: none

@@ -33,14 +33,26 @@ require ['jquery'], ($) ->
           document.body.style[ '-webkit-mask-repeat' ] isnt undefined
         'placeholder': ->
           "placeholder" of document.createElement("input")
+        'pointer-events': ->
+          element = document.createElement("smile")
+          element.style.cssText = "pointer-events: auto"
+          element.style.pointerEvents is "auto"
+
 
       for feature of features
-        window.lp.supports[feature] = !!features[feature]()
+        camelFeature = ($.camelCase and $.camelCase feature) or feature
+        window.lp.supports[camelFeature] = !!features[feature]()
 
-        if window.lp.supports[feature]
+        if window.lp.supports[camelFeature]
           document.documentElement.className += ' supports-'+feature
         else
           document.documentElement.className += ' no-'+feature+'-support'
+
+      unless window.lp.supportsAvailable
+        window.lp.supportsAvailable = true
+        available = document.createEvent('Event')
+        available.initEvent(':featureDetect/available', false, true)
+        document.dispatchEvent(available)
 
       return
     )()

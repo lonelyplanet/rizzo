@@ -1,4 +1,4 @@
-define( ['jquery','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/shopping_cart', 'lib/core/msg', 'lib/utils/local_store', 'lib/managers/select_group_manager', 'lib/core/ad_manager'], ($, AssetFetch, Authenticator, ShoppingCart, Msg, LocalStore, SelectGroupManager, AdManager) ->
+define( ['jquery','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/shopping_cart', 'lib/core/msg', 'lib/utils/local_store', 'lib/managers/select_group_manager', 'lib/core/ad_manager', 'lib/utils/scroll_perf'], ($, AssetFetch, Authenticator, ShoppingCart, Msg, LocalStore, SelectGroupManager, AdManager, ScrollPerf) ->
 
   class Base
 
@@ -13,7 +13,7 @@ define( ['jquery','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/sh
       @showCookieComplianceMsg()
       @initialiseSelectGroupManager()
       @addNavTracking()
-      @scrollPerf()
+      new ScrollPerf
 
     # This adConfig can all be ditched when switching to the new DFP server.
     lpAds = (window.lp and lp.ads)
@@ -99,20 +99,4 @@ define( ['jquery','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/sh
 
       $('#js-footer-nav').on 'click', '.js-nav-item', ->
         window.s.linkstacker("footer")
-
-    scrollPerf: ->
-
-      if ($('html.ie7, html.ie8, body.browserIE7, body.browserIE8').length is 0 && !!window.addEventListener)
-        # Used to track the enabling of hover effects
-        enableTimer = false
-
-        # Listen for a scroll and use that to remove the possibility of hover effects
-        window.addEventListener 'scroll', ->
-          clearTimeout(enableTimer);
-          document.documentElement.style.pointerEvents = "none"
-
-          enableTimer = setTimeout ->
-            document.documentElement.style.pointerEvents = "auto"
-          , 300
-        , false
 )
