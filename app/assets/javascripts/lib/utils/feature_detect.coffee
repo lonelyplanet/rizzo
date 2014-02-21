@@ -35,9 +35,10 @@ require ['jquery'], ($) ->
           "placeholder" of document.createElement("input")
 
       for feature of features
-        window.lp.supports[feature] = !!features[feature]()
+        camelFeature = ($.camelCase and $.camelCase feature) or feature
+        window.lp.supports[camelFeature] = !!features[feature]()
 
-        if window.lp.supports[feature]
+        if window.lp.supports[camelFeature]
           document.documentElement.className += ' supports-'+feature
         else
           document.documentElement.className += ' no-'+feature+'-support'
