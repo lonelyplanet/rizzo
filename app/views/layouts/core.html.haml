@@ -24,10 +24,11 @@
       = yield :breadcrumbs
       = render 'layouts/core/snippets/body_footer'
 
+  = render 'layouts/core/snippets/pointer_cover'
+
   %div.ad-oneByOne#js-ad-oneByOne
 
   = render 'layouts/core/snippets/footer_js'
   - if defined? Variant
     /
       = "build: #{Variant.full_namespace}"
-  %div#pointer-cover
