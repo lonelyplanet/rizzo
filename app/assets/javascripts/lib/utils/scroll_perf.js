@@ -10,7 +10,7 @@ define([], function() {
 
     // maybe we should get more of this info from the original click (mods, left/right)
     event.initMouseEvent(
-      'click',
+      "click",
       // bubbles
       true,
       // can be cancelled
@@ -26,7 +26,7 @@ define([], function() {
     element.dispatchEvent(event);
   }
 
-  var cover = document.getElementById("pointer-cover"),
+  var cover = document.getElementById("js-pointer-cover"),
     enableTimer = false,
     scrolling = false,
     clicked = false,
@@ -46,7 +46,7 @@ define([], function() {
         click(position);
         clicked = false;
       }
-    }, 500);
+    }, 100);
   }), false);
 
   document.addEventListener("click", function(event) {
