@@ -99,20 +99,3 @@ define( ['jquery','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/sh
 
       $('#js-footer-nav').on 'click', '.js-nav-item', ->
         window.s.linkstacker("footer")
-
-    scrollPerf: ->
-
-      if ($('html.ie7, html.ie8, body.browserIE7, body.browserIE8').length is 0 && !!window.addEventListener)
-        # Used to track the enabling of hover effects
-        enableTimer = false
-
-        # Listen for a scroll and use that to remove the possibility of hover effects
-        window.addEventListener 'scroll', ->
-          clearTimeout(enableTimer);
-          document.documentElement.style.pointerEvents = "none"
-
-          enableTimer = setTimeout ->
-            document.documentElement.style.pointerEvents = "auto"
-          , 300
-        , false
-)

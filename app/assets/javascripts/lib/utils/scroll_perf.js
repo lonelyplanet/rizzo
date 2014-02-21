@@ -1,13 +1,7 @@
 define([], function() {
   "use strict";
 
-  var supportsPointerEvents = (function() {
-    var element = document.createElement("smile");
-    element.style.cssText = "pointer-events: auto";
-    return element.style.pointerEvents == "auto";
-  }());
-
-  if (!supportsPointerEvents) return;
+  if (!window.lp.supports.pointerEvents) return;
 
   // for sending the click to the element below
   var click = function click(point) {

@@ -33,6 +33,11 @@ require ['jquery'], ($) ->
           document.body.style[ '-webkit-mask-repeat' ] isnt undefined
         'placeholder': ->
           "placeholder" of document.createElement("input")
+        'pointer-events': ->
+          element = document.createElement("smile")
+          element.style.cssText = "pointer-events: auto"
+          element.style.pointerEvents is "auto"
+
 
       for feature of features
         camelFeature = ($.camelCase and $.camelCase feature) or feature
