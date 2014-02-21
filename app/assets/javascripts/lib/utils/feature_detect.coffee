@@ -48,5 +48,9 @@ require ['jquery'], ($) ->
         else
           document.documentElement.className += ' no-'+feature+'-support'
 
+      unless window.lp.supportsAvailable
+        window.lp.supportsAvailable = true
+        document.dispatchEvent(new Event ':featureDetect/available')
+
       return
     )()
