@@ -12,6 +12,7 @@ require ['jquery'], ($) ->
     'lib/styleguide/colours'
     'lib/styleguide/typography'
     'lib/utils/scroll_perf'
+    'lib/utils/feature_detect'
   ], (SelectGroupManager) ->
 
     $ ->
