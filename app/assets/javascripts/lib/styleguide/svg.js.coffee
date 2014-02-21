@@ -20,7 +20,6 @@ require ['jquery'], ($) ->
       element.data('icon').match(query) and element.removeClass('is-hidden')
 
     if (iconCards.filter('.is-hidden').length)
-      console.log(intro) if window.console 
       intro.addClass('is-closed')
     else
       intro.removeClass('is-closed')
