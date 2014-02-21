@@ -99,3 +99,4 @@ define( ['jquery','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/sh
 
       $('#js-footer-nav').on 'click', '.js-nav-item', ->
         window.s.linkstacker("footer")
+)

@@ -1,10 +1,26 @@
-define([], function() {
+// http://www.thecssninja.com/javascript/follow-up-60fps-scroll
+define(["lib/utils/feature_detect"], function() {
   "use strict";
 
-  if (!window.lp.supports.pointerEvents) return;
+  var ScrollPerf = function ScrollPerf() {
+    this.cover = document.getElementById("js-pointer-cover");
+    this.scrolling = false;
+    this.clicked = false;
+    this.position = [0, 0];
+    document.addEventListener(":featureDetect/available", function() {
+      if (window.lp.supports.pointerEvents) {
+        this.cover.style.display = "block";
+        this._bindEvents();
+      } else {
+        return;
+      }
+    }.bind(this));
+
+    return this;
+  }
 
   // for sending the click to the element below
-  var click = function click(point) {
+  ScrollPerf.prototype._proxyClick = function proxyClick(point) {
     var event = document.createEvent("MouseEvent");
     var element = document.elementFromPoint.apply(document, point);
 
@@ -16,44 +32,42 @@ define([], function() {
       // can be cancelled
       true,
       window, null,
-      position[0], position[1], 0, 0,
-      // modifier keys...
-      false, false, false, false,
-      // left click
-      0, null
+      this.position[0], this.position[1]
     );
     event.homemade = true;
     element.dispatchEvent(event);
   }
 
-  var cover = document.getElementById("js-pointer-cover"),
-    enableTimer = false,
-    scrolling = false,
-    clicked = false,
-    position = [0, 0];
-
-  window.addEventListener("scroll", (function() {
-    if (!scrolling) {
-      cover.style.pointerEvents = "auto";
-      scrolling = true;
+  ScrollPerf.prototype._onScroll = function onScroll() {
+    var _this = this;
+    if (!this.scrolling) {
+      this.cover.style.pointerEvents = "auto";
+      this.scrolling = true;
     }
 
     clearTimeout(this.timer);
+
     this.timer = setTimeout(function() {
-      cover.style.pointerEvents = "none";
-      scrolling = false;
-      if (clicked) {
-        click(position);
-        clicked = false;
+      this.cover.style.pointerEvents = "none";
+      this.scrolling = false;
+      if (this.clicked) {
+        this._proxyClick(this.position);
+        this.clicked = false;
       }
-    }, 100);
-  }), false);
+    }.bind(this), 100);
+  }
 
-  document.addEventListener("click", function(event) {
-    if (event.target === cover && !event.homemade) {
-      position = [event.clientX, event.clientY];
-      clicked = true;
+  ScrollPerf.prototype._onClick = function onClick(event) {
+    if (event.target === this.cover && !event.homemade) {
+      this.position = [event.clientX, event.clientY];
+      this.clicked = true;
     }
-  }, false);
+  }
 
+  ScrollPerf.prototype._bindEvents = function bindEvents() {
+    window.addEventListener("scroll", this._onScroll.bind(this));
+    document.addEventListener("click", this._onClick.bind(this));
+  }
+
+  return new ScrollPerf;
 });
