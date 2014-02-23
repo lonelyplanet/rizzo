@@ -1,6 +1,7 @@
 require ['jquery'], ($) ->
   require [
     'lib/managers/select_group_manager'
+    'lib/utils/scroll_perf'
     'lib/components/range_slider'
     'pickadate/lib/picker'
     'pickadate/lib/picker.date'
@@ -11,9 +12,10 @@ require ['jquery'], ($) ->
     'lib/styleguide/svg'
     'lib/styleguide/colours'
     'lib/styleguide/typography'
-    'lib/utils/scroll_perf'
     'lib/utils/feature_detect'
-  ], (SelectGroupManager) ->
+  ], (SelectGroupManager, ScrollPerf) ->
+
+    new ScrollPerf
 
     $ ->
       new SelectGroupManager()
