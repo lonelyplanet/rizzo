@@ -13,7 +13,7 @@ define( ['jquery','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/sh
       @showCookieComplianceMsg()
       @initialiseSelectGroupManager()
       @addNavTracking()
-      @scrollPerf()
+      new ScrollPerf
 
     # This adConfig can all be ditched when switching to the new DFP server.
     lpAds = (window.lp and lp.ads)
