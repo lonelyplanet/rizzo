@@ -43,6 +43,9 @@ define ['jquery', 'lib/extends/events', 'lib/utils/serialize_form'], ($, EventEm
           @trigger(':cards/request', [@_serialize(), {callback: "trackFilter"}])
         false
 
+      @$el.on 'change', '.js-range-slider', (e) =>
+        @trigger(':cards/request', [@_serialize(), {callback: "trackFilter"}])
+
       # Listen to filter cards that exist outside of the component
       $(LISTENER).on 'click', '.js-stack-card-filter', (e) =>
         e.preventDefault()
