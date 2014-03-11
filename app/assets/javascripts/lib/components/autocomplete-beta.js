@@ -8,6 +8,9 @@ define([ "jquery" ], function($) {
   // @args = {}
   // $el: {string} selector for parent element
   var Autocomplete = function(args) {
+    // create a listener object to attach to (random string);
+    var x = "b" + Math.random().toString(36).substring(7);
+    $("body").prepend("<div id='" + x + "' />");
 
     this.results = [];
 
@@ -17,7 +20,7 @@ define([ "jquery" ], function($) {
       resultsID: "autocompleteResults",
       highlightClass: "highlight",
 
-      listener: "#js-card-holder",
+      listener: "#" + x,
       limit: 10,
       threshold: 2,
 
@@ -81,7 +84,6 @@ define([ "jquery" ], function($) {
 
     // broadcast user events from the wrapper
     $("#" + this.config.wrapID).on("keyup", function(e) {
-
       if (_this.resultsBeingDisplayed) {
         switch (e.keyCode) {
 
@@ -170,13 +172,13 @@ define([ "jquery" ], function($) {
   };
 
   Autocomplete.prototype._clearResults = function() {
-    $("#" + this.config.resultsID).html("");
+    $("#" + this.config.resultsID).html("").hide();
     this.resultsBeingDisplayed = false;
   };
 
   Autocomplete.prototype._displayResults = function() {
     var resultList = this._generateResultsList();
-    $("#" + this.config.resultsID).html(resultList);
+    $("#" + this.config.resultsID).html(resultList).show();
     this._highlightIndex();
     this.resultsBeingDisplayed = true;
   };
