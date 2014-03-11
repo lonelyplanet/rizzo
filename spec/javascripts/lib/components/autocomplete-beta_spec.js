@@ -4,27 +4,28 @@ require([ "jquery", "public/assets/javascripts/lib/components/autocomplete-beta.
 
   describe("AutoComplete", function() {
 
-    describe("", function() {
+    describe("The object", function() {
 
       beforeEach(function() {
-        window.autocomplete = new AutoComplete({
-          el: "#js-dropoff-location",
-          wrapID: "carDropoffAutoComplete",
-          resultsID: "js-dropoff-autocomplete",
-          highlightClass: "highlight",
-
-          threshold: 2,
-
-          fetch: function( ) {},
-          onItem: function( ) {},
-          template: function( ) {}
-        });
+        window.autocomplete = new AutoComplete();
       });
 
-      it("is defined", function() {
+      it("is defined.", function() {
         expect(autocomplete).toBeDefined();
       });
 
     });
+
+    describe("Initialization", function() {
+      beforeEach(function() {
+        window.autocomplete = new AutoComplete();
+      });
+      describe("The initial result set", function() {
+        it("should be an empty array.", function() {
+          expect(autocomplete.results).toEqual([]);
+        });
+      });
+    });
+
   });
 });
