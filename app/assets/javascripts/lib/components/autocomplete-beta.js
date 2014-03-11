@@ -215,11 +215,9 @@ define([ "jquery" ], function($) {
         listLength = results.length,
         listItem = "",
         listItems = "";
-
     // should return an HTML string of list items
     for (i = 0; i < listLength; i++) {
       listItem = "<li>";
-
       // iterate through each property in the object (ugly on purpose for end user)
       for (var p in results[i]) {
         if (results[i].hasOwnProperty(p)) {
@@ -231,7 +229,6 @@ define([ "jquery" ], function($) {
       // append newly formed list item to other list items
       listItems += listItem;
     }
-
     return listItems;
   };
 
