@@ -8,19 +8,19 @@ define([ "jquery" ], function($) {
   // @args = {}
   // $el: {string} selector for parent element
   var Autocomplete = function(args) {
-    // create a listener object to attach to (random string);
-    var x = "b" + Math.random().toString(36).substring(7);
-    $("body").prepend("<div id='" + x + "' />");
 
+    // create a new results variable
     this.results = [];
+
+    // set the listenerID
+    this.listenerID = this._createRandomID();
+    this.listener = "#" + this.listenerID;
 
     this.config = {
       el: "",
       wrapID: "autocomplete-wrapper",
       resultsID: "autocompleteResults",
       highlightClass: "highlight",
-
-      listener: "#" + x,
       limit: 10,
       threshold: 2,
 
@@ -35,30 +35,38 @@ define([ "jquery" ], function($) {
   };
 
   Autocomplete.prototype.init = function() {
+
+    // create a listener object to attach to (random string);
+    this._createListener();
+
+    // wrap el in some tags
     this._wrapAutocomplete();
+
+    // setup listeners and broadcasters
     this.listen();
     this.broadcast();
+
   };
 
   // -------------------------------------------------------------------------
   // Subscribe to Events
   // -------------------------------------------------------------------------
   Autocomplete.prototype.listen = function() {
-    var _this = this,
-        listener = _this.config.listener;
+    var _this = this;
 
     // listen for :typing and fetch results with search term
-    $(listener).on(":typing", function(e, searchTerm) {
+    $(_this.listener).on(":typing", function(e, searchTerm) {
       // fetch results
       _this._fetchResults(searchTerm);
     });
 
-    $(listener).on(":resultsfetched", function() {
+    $(_this.listener).on(":resultsfetched", function() {
       _this.selectedIndex = 0;
       _this._displayResults();
     });
 
-    $(listener).on(":itemselected", function(e, data) {
+    $(_this.listener).on(":itemselected", function(e, data) {
+      console.log(_this.selectedIndex);
       // get ID of whichever <li> is the selected Index
       var selectedID = $("#" + _this.config.resultsID + " ul li").eq(_this.selectedIndex).attr("ID");
 
@@ -69,7 +77,7 @@ define([ "jquery" ], function($) {
       _this._clearResults();
     });
 
-    $(listener).on(":indexchanged", function() {
+    $(_this.listener).on(":indexchanged", function() {
       // when the index has changed, this allows us to perform some function (like highlighting)
       _this._highlightIndex();
     });
@@ -99,7 +107,7 @@ define([ "jquery" ], function($) {
           }
           case 13: {// enter
             e.preventDefault();
-            $(_this.config.listener).trigger(":itemselected", e);
+            $(_this.listener).trigger(":itemselected", e);
             break;
           }
           case 27: {// esc
@@ -122,7 +130,7 @@ define([ "jquery" ], function($) {
       e.preventDefault();
       _this.selectedIndex = $(e.target).index();
       // call onItem when a list item is clicked
-      $(_this.config.listener).trigger(":itemselected", e);
+      $(_this.listener).trigger(":itemselected", e);
     });
 
   };
@@ -130,12 +138,22 @@ define([ "jquery" ], function($) {
   // -------------------------------------------------------------------------
   // Private Functions
   // -------------------------------------------------------------------------
+  Autocomplete.prototype._createListener = function() {
+    $("body").prepend("<div id='" + this.listenerID + "' />");
+    return;
+  };
+
+  Autocomplete.prototype._createRandomID = function() {
+    var x = "b" + Math.random().toString(36).substring(7);
+    return x;
+  };
+
   Autocomplete.prototype._processTyping = function(e) {
     var searchTerm = e.target.value;
 
     if (searchTerm.length >= this.config.threshold) {
 
-      $(this.config.listener).trigger(":typing", searchTerm);
+      $(this.listener).trigger(":typing", searchTerm);
 
     } else {
 
@@ -156,7 +174,7 @@ define([ "jquery" ], function($) {
       changed = true;
     }
     if (changed) {
-      $(this.config.listener).trigger(":indexchanged");
+      $(this.listener).trigger(":indexchanged");
     }
   };
 
@@ -187,7 +205,7 @@ define([ "jquery" ], function($) {
     // assume user-generated function that returns JSON array
     this.results = this.config.fetch(searchTerm);
     // when fetching is done...
-    $(this.config.listener).trigger(":resultsfetched");
+    $(this.listener).trigger(":resultsfetched");
   };
 
   Autocomplete.prototype._generateResultsList = function() {
@@ -219,7 +237,7 @@ define([ "jquery" ], function($) {
         listItems = "";
     // should return an HTML string of list items
     for (i = 0; i < listLength; i++) {
-      listItem = "<li>";
+      listItem = "<li id='item" + i + "'>";
       // iterate through each property in the object (ugly on purpose for end user)
       for (var p in results[i]) {
         if (results[i].hasOwnProperty(p)) {
