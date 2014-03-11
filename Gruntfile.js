@@ -207,6 +207,7 @@ module.exports = function(grunt) {
   // Tasks
   grunt.registerTask("default", [ "shell:cleanJs", "coffee", "copy", "connect", "jasmine" ]);
   grunt.registerTask("ci", [ "coffee", "copy", "connect", "jasmine" ]);
+  grunt.registerTask("jasmineTests", [ "connect", "jasmine" ]);
   grunt.registerTask("dev", [ "connect", "open:jasmine", "jasmine", "watch" ]);
   grunt.registerTask("wip", [ "jasmine:rizzo:build", "open:jasmine", "connect:server:keepalive" ]);
   grunt.registerTask("report", [ "shell:cleanJs", "coffee", "copy", "plato", "shell:openPlato" ]);
