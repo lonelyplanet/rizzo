@@ -1,4 +1,4 @@
-require([ "public/assets/javascripts/lib/components/autocomplete-tdd.js" ], function(AutoComplete) {
+require([ "jquery", "public/assets/javascripts/lib/components/autocomplete-beta.js" ], function($, AutoComplete) {
 
   "use strict";
 
@@ -33,3 +33,8 @@ require([ "public/assets/javascripts/lib/components/autocomplete-tdd.js" ], func
 
   });
 });
+
+/*
+  tests:
+
+*/
