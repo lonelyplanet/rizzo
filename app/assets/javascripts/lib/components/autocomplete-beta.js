@@ -54,12 +54,10 @@ define([ "jquery" ], function($) {
       if (_this.resultsBeingDisplayed) {
         switch (e.keyCode) {
           case 38: {// up
-            e.preventDefault();
             _this._changeIndex("up");
             break;
           }
           case 40: {// down
-            e.preventDefault();
             _this._changeIndex("down");
             break;
           }
@@ -69,7 +67,6 @@ define([ "jquery" ], function($) {
             break;
           }
           case 27: {// esc
-            e.preventDefault();
             _this._clearResults();
             break;
           }
@@ -114,7 +111,7 @@ define([ "jquery" ], function($) {
   };
 
   Autocomplete.prototype._changeIndex = function(direction) {
-    var resultCount = $("#" + this.config.resultsID + " ul li").length,
+    var resultCount = this.results.length,
         changed = false;
 
     if (direction === "up" && this.selectedResultIndex > 0) {
