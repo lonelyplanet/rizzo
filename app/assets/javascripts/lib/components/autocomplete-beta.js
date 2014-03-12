@@ -92,37 +92,7 @@ define([ "jquery" ], function($) {
 
     // broadcast user events from the wrapper
     $("#" + this.config.wrapID).on("keyup", function(e) {
-      if (_this.resultsBeingDisplayed) {
-        switch (e.keyCode) {
-
-          case 38: {// up
-            e.preventDefault();
-            _this._changeIndex("up");
-            break;
-          }
-          case 40: {// down
-            e.preventDefault();
-            _this._changeIndex("down");
-            break;
-          }
-          case 13: {// enter
-            e.preventDefault();
-            $(_this.listener).trigger(":itemselected", e);
-            break;
-          }
-          case 27: {// esc
-            e.preventDefault();
-            _this._clearResults();
-            break;
-          }
-          default: {//default
-            _this._processTyping(e);
-            break;
-          }
-        }
-      } else {
-        _this._processTyping(e);
-      }
+      _this._processTyping(e);
     });
 
     // listen for clicks on autocomplete options
@@ -149,17 +119,49 @@ define([ "jquery" ], function($) {
   };
 
   Autocomplete.prototype._processTyping = function(e) {
-    var searchTerm = e.target.value;
+    if (_this.resultsBeingDisplayed) {
+      switch (e.keyCode) {
 
-    if (searchTerm.length >= this.config.threshold) {
-
-      $(this.listener).trigger(":typing", searchTerm);
-
+        case 38: {// up
+          e.preventDefault();
+          _this._changeIndex("up");
+          break;
+        }
+        case 40: {// down
+          e.preventDefault();
+          _this._changeIndex("down");
+          break;
+        }
+        case 13: {// enter
+          e.preventDefault();
+          $(_this.listener).trigger(":itemselected", e);
+          break;
+        }
+        case 27: {// esc
+          e.preventDefault();
+          _this._clearResults();
+          break;
+        }
+        default: {//default
+          _this._processTyping(e);
+          break;
+        }
+      }
     } else {
 
-      this._clearResults();
+      var searchTerm = e.target.value;
 
+      if (searchTerm.length >= this.config.threshold) {
+
+        $(this.listener).trigger(":typing", searchTerm);
+
+      } else {
+
+        this._clearResults();
+
+      }
     }
+
   };
 
   Autocomplete.prototype._changeIndex = function(direction) {

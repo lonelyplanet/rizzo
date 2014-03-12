@@ -1,30 +1,34 @@
-require([ "jquery", "public/assets/javascripts/lib/components/autocomplete-beta.js" ], function($, AutoComplete) {
+require([ "public/assets/javascripts/lib/components/autocomplete-tdd.js" ], function(AutoComplete) {
 
   "use strict";
 
   describe("AutoComplete", function() {
 
-    describe("The object", function() {
+    describe("When the object starts up", function() {
 
       beforeEach(function() {
-        window.autocomplete = new AutoComplete();
+        window.autocomplete = new AutoComplete({
+          el: "#test"
+        });
       });
 
-      it("is defined.", function() {
+      it("should be defined.", function() {
         expect(autocomplete).toBeDefined();
       });
 
-    });
+      it("should have an empty results array.", function() {
+        expect(autocomplete.results).toEqual([]);
+      });
 
-    describe("Initialization", function() {
-      beforeEach(function() {
-        window.autocomplete = new AutoComplete();
+      it("should have a non-empty el property.", function() {
+        expect(autocomplete.config.el).toBeDefined();
+        expect(autocomplete.config.el).not.toEqual("");
       });
-      describe("The initial result set", function() {
-        it("should be an empty array.", function() {
-          expect(autocomplete.results).toEqual([]);
-        });
+
+      it("should overwrite configs with passed args.", function() {
+        expect(autocomplete.config.el).toBe("#test");
       });
+
     });
 
   });
