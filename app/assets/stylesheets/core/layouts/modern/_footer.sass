@@ -165,7 +165,7 @@
 
 .title--social
   +font-size(14)
-  padding: 23px 0
+  padding: 25px 0
   margin-right: 10px
   .responsive &
     display: none
@@ -213,6 +213,8 @@
 .row--footer--social__logo
   .responsive &
     display: inline-block
+    +respond-to(wide-view)
+      display: none
 
 .nav__item--about
   margin-left: 15px
@@ -259,6 +261,7 @@
     margin: 20px auto
     +respond-to(wide-view)
       width: 20%
+      margin: 0
 
 .link--view-full-site
   padding-bottom: 20px

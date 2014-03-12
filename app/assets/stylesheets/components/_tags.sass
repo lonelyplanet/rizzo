@@ -103,8 +103,6 @@
 .tag--price__amount
   +font-size(22)
   display: block
-  line-height: 0.8em
-  margin-bottom: 3px
 
 .tag--price__currency
   font-size: 0.65em
@@ -144,8 +142,6 @@
 .tag--card__content
   position: relative
   width: 34px
-  &:before
-    line-height: 15px
 
   .icon--white
     @extend %image-replacement
@@ -169,13 +165,13 @@
 
 // Top choice uses the svg collar rather than border-radius
 .tag--top-choice
-  padding: 10px 0 5px
+  padding-bottom: 5px
   border-bottom-left-radius: 0
   border-bottom-right-radius: 0
   .icon--top-choice
     position: relative
     left: -1px
-  
+
 
 // -----------------------------------------------------------------------------
 // Best in Travel badge (destination highlights page)

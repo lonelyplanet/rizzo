@@ -126,14 +126,18 @@ define ['jquery', 'gpt'], ->
           clearInterval(adManager.polls[poll])
 
     checkMpu : (adEl, iframe) ->
+
+      thisCard = $(adEl).closest('.js-card-ad')
+      return false if !thisCard.length
+
       if iframe.width() > 310
-        thisCard = $(adEl).closest('.js-card-ad').addClass('ad-house')
+        thisCard.addClass('ad-house')
         $(adEl).removeClass('is-faded-out')
 
       else if iframe.height() > $(adEl).closest(".js-card-ad").height()
         # We need a timeout here because the leaderboard might be animating down which messes with our 'top' calc.
         setTimeout ->
-          thisCard = $(adEl).closest('.js-card-ad').addClass 'ad-doubleMpu'
+          thisCard.addClass 'ad-doubleMpu'
           grid = $(adEl).closest('.js-stack')
           cardsPerRow = Math.floor grid.width() / (grid.find('.js-card.card--single').width())
           cards = $('.js-card')
