@@ -33,13 +33,8 @@ define([ "jquery" ], function($) {
   };
 
   Autocomplete.prototype.init = function() {
-
-    // wrap el in some tags
     this._wrapAutocomplete();
-
-    // setup DOM handlers
     this._handlers();
-
   };
 
   // -------------------------------------------------------------------------
@@ -158,6 +153,10 @@ define([ "jquery" ], function($) {
     this._displayResults();
   };
 
+  Autocomplete.prototype._getItemList = function() {
+    return this.config.template(this.results);
+  };
+
   Autocomplete.prototype._generateResultsList = function() {
 
     // create display list to append to html
@@ -165,7 +164,7 @@ define([ "jquery" ], function($) {
         listItems = "";
 
     // call the user's template with the results array
-    listItems = this.config.template(this.results);
+    listItems = this._getItemList();
 
     displayList += listItems;
     displayList += "</ul>";
