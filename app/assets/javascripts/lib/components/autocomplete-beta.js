@@ -7,7 +7,7 @@ define([ "jquery" ], function($) {
 
   var Autocomplete = function(args) {
 
-    // create a new results variable
+    // create a new empty results array
     this.results = [];
 
     // set the selected index to begin
@@ -85,24 +85,11 @@ define([ "jquery" ], function($) {
 
   };
 
-  Autocomplete.prototype._itemSelected = function() {
-    // get ID of whichever <li> is the selected Index
-    var selectedEl = $("#" + this.config.resultsID + " ul li").eq(this.selectedResultIndex);
-    // call the onItem function, passing the ID of that index, as well as the el of the app
-    this.config.onItem(selectedEl[0], this.config.el);
-    // finally, clear results, because the onItem function is now taking over
-    this._clearResults();
-  };
-
-  Autocomplete.prototype._processTyping = function(e) {
-    var searchTerm = e.target.value;
-
-    if (searchTerm.length >= this.config.threshold) {
-      this._fetchResults(searchTerm);
-    } else {
-      this._clearResults();
-    }
-
+  Autocomplete.prototype._wrapAutocomplete = function() {
+    // wrap our element in the provided wrapID and give it an empty "results" div
+    $(this.config.el)
+      .wrap("<div id='" + this.config.wrapID + "' />")
+      .after("<div id='" + this.config.resultsID + "'/>");
   };
 
   Autocomplete.prototype._changeIndex = function(direction) {
@@ -116,10 +103,18 @@ define([ "jquery" ], function($) {
       this.selectedResultIndex++;
       changed = true;
     }
-
     if (changed === true) {
       this._highlightIndex();
     }
+  };
+
+  Autocomplete.prototype._itemSelected = function() {
+    // get ID of whichever <li> is the selected Index
+    var selectedEl = $("#" + this.config.resultsID + " ul li").eq(this.selectedResultIndex);
+    // call the onItem function, passing the ID of that index, as well as the el of the app
+    this.config.onItem(selectedEl[0], this.config.el);
+    // finally, clear results, because the onItem function is now taking over
+    this._clearResults();
   };
 
   Autocomplete.prototype._highlightIndex = function() {
@@ -127,23 +122,14 @@ define([ "jquery" ], function($) {
     $("#" + this.config.resultsID + " ul li").eq(this.selectedResultIndex).addClass(this.config.highlightClass);
   };
 
-  Autocomplete.prototype._wrapAutocomplete = function() {
-    // wrap our element in the provided wrapID and give it an empty "results" div
-    $(this.config.el).wrap("<div id='" + this.config.wrapID + "' />");
-    $(this.config.el).after("<div id='" + this.config.resultsID + "'/>");
-  };
+  Autocomplete.prototype._processTyping = function(e) {
+    var searchTerm = e.target.value;
 
-  Autocomplete.prototype._clearResults = function() {
-    $("#" + this.config.resultsID).html("").hide();
-    this.resultsBeingDisplayed = false;
-    this.selectedResultIndex = 0;
-  };
-
-  Autocomplete.prototype._displayResults = function() {
-    var resultList = this._generateResultsList();
-    $("#" + this.config.resultsID).html(resultList).show();
-    this._highlightIndex();
-    this.resultsBeingDisplayed = true;
+    if (searchTerm.length >= this.config.threshold) {
+      this._fetchResults(searchTerm);
+    } else {
+      this._clearResults();
+    }
   };
 
   Autocomplete.prototype._fetchResults = function(searchTerm) {
@@ -153,12 +139,18 @@ define([ "jquery" ], function($) {
     this._displayResults();
   };
 
+  Autocomplete.prototype._displayResults = function() {
+    var resultList = this._generateResultsList();
+    $("#" + this.config.resultsID).html(resultList).show();
+    this._highlightIndex();
+    this.resultsBeingDisplayed = true;
+  };
+
   Autocomplete.prototype._getItemList = function() {
     return this.config.template(this.results);
   };
 
   Autocomplete.prototype._generateResultsList = function() {
-
     // create display list to append to html
     var displayList = "<ul>",
         listItems = "";
@@ -170,13 +162,19 @@ define([ "jquery" ], function($) {
     displayList += "</ul>";
 
     return displayList;
+  };
 
+  Autocomplete.prototype._clearResults = function() {
+    $("#" + this.config.resultsID).html("").hide();
+    this.resultsBeingDisplayed = false;
+    this.selectedResultIndex = 0;
   };
 
   /* These functions should be replaced in the user's instantiation */
   Autocomplete.prototype._defaultOnItem = function(selectedEl, el) {
+    console.log(selectedEl);
     // user should replace this function during instantiation
-    var name = $(selectedEl).attr("data-name");
+    var name = $(selectedEl).text();
     $(el).val(name);
   };
 

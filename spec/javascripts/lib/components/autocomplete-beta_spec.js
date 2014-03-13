@@ -55,15 +55,27 @@ require([ "jquery", "public/assets/javascripts/lib/components/autocomplete-beta.
 
     });
 
-    describe("Private functions", function() {
+    describe("User Interaction", function() {
 
-      describe("Clear Results", function() {
-        it("Should clear results", function() {
-          $("#results").append("<div>test</div>");
-          test._clearResults();
+      describe("Item Selection", function() {
+        beforeEach(function() {
+          spyOn(test, "_clearResults");
+          test._itemSelected();
+        });
+
+        it("should call onItem.", function() {
+
+        });
+
+        it("should clear results.", function() {
           expect($("#results")).toBeEmpty();
         });
+
       });
+
+    });
+
+    describe("Autocomplete Results", function() {
 
       describe("Generate Results", function() {
         it("Should generate a results list", function() {
@@ -73,12 +85,40 @@ require([ "jquery", "public/assets/javascripts/lib/components/autocomplete-beta.
         });
       });
 
+      describe("Display results", function() {
+        beforeEach(function() {
+          spyOn(test, "_generateResultsList").andReturn("<ul></ul>");
+          spyOn(test, "_highlightIndex");
+          test._displayResults();
+        });
+
+        it("should populate the results div.", function() {
+          expect($("#results")).not.toBeEmpty();
+        });
+
+        it("should show the list in the DOM.", function() {
+          expect($("#results")).toBeVisible();
+        });
+
+        it("should set the resultsBeingDisplayed value to true.", function() {
+          expect(test.resultsBeingDisplayed).toBeTruthy();
+        });
+
+        it("should call the _highlightIndex function.", function() {
+          expect(test._highlightIndex).toHaveBeenCalled();
+        });
+
+      });
+
+      describe("Clear Results", function() {
+        it("Should clear results", function() {
+          $("#results").append("<div>test</div>");
+          test._clearResults();
+          expect($("#results")).toBeEmpty();
+        });
+      });
+
     });
 
   });
 });
-
-/*
-  tests:
-
-*/
