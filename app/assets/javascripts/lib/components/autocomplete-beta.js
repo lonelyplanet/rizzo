@@ -33,13 +33,8 @@ define([ "jquery" ], function($) {
   };
 
   Autocomplete.prototype.init = function() {
-
-    // wrap el in some tags
     this._wrapAutocomplete();
-
-    // setup DOM handlers
     this._handlers();
-
   };
 
   // -------------------------------------------------------------------------
@@ -54,12 +49,10 @@ define([ "jquery" ], function($) {
       if (_this.resultsBeingDisplayed) {
         switch (e.keyCode) {
           case 38: {// up
-            e.preventDefault();
             _this._changeIndex("up");
             break;
           }
           case 40: {// down
-            e.preventDefault();
             _this._changeIndex("down");
             break;
           }
@@ -69,7 +62,6 @@ define([ "jquery" ], function($) {
             break;
           }
           case 27: {// esc
-            e.preventDefault();
             _this._clearResults();
             break;
           }
@@ -114,7 +106,7 @@ define([ "jquery" ], function($) {
   };
 
   Autocomplete.prototype._changeIndex = function(direction) {
-    var resultCount = $("#" + this.config.resultsID + " ul li").length,
+    var resultCount = this.results.length,
         changed = false;
 
     if (direction === "up" && this.selectedResultIndex > 0) {
@@ -161,6 +153,10 @@ define([ "jquery" ], function($) {
     this._displayResults();
   };
 
+  Autocomplete.prototype._getItemList = function() {
+    return this.config.template(this.results);
+  };
+
   Autocomplete.prototype._generateResultsList = function() {
 
     // create display list to append to html
@@ -168,7 +164,7 @@ define([ "jquery" ], function($) {
         listItems = "";
 
     // call the user's template with the results array
-    listItems = this.config.template(this.results);
+    listItems = this._getItemList();
 
     displayList += listItems;
     displayList += "</ul>";
