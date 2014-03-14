@@ -108,6 +108,15 @@ require([ "jquery", "public/assets/javascripts/lib/components/autocomplete-tdd.j
         expect(tester.displayed).toBeFalsy();
       });
 
+      it("should set the input's value on selectResult", function() {
+        tester.results = [ 1,2,3 ];
+        tester.populateResultPanel();
+        tester.resultIndex = 2;
+        tester.selectResult();
+        expect(el.val()).toBe("2");
+
+      });
+
     });
 
     describe("The user typing", function() {
