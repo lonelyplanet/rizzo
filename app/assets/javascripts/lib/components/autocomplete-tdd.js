@@ -14,6 +14,10 @@ define([ "jquery" ], function($) {
       },
       template: function() {
 
+      },
+      onItem: function(el) {
+        var selectedValue = $(el).text();
+        return selectedValue;
       }
     };
 
@@ -174,8 +178,7 @@ define([ "jquery" ], function($) {
     },
 
     onItem: function(el) {
-      console.log(el);
-      var selectedValue = $(el).text();
+      var selectedValue = this.config.onItem(el);
       $(this.config.el).val(selectedValue);
     }
 
