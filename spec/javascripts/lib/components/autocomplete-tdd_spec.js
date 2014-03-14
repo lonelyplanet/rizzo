@@ -112,6 +112,11 @@ require([ "jquery", "public/assets/javascripts/lib/components/autocomplete-tdd.j
 
     describe("The user typing", function() {
 
+      it("should reset index when searching.", function() {
+        tester.processSearch("test search");
+        expect(tester.resultIndex).toEqual(0);
+      });
+
       it("should not fetch results if searchTerm is blank.", function() {
         spyOn(tester, "fetchResults");
         tester.processSearch("");
@@ -179,6 +184,30 @@ require([ "jquery", "public/assets/javascripts/lib/components/autocomplete-tdd.j
         spyOn(tester, "processSearch");
         tester.processTyping(e);
         expect(tester.processSearch).toHaveBeenCalled();
+      });
+
+      it("should call highlightResult() if navigating is possible.", function() {
+        tester.resultIndex = 1;
+        tester.results = [ "a", "b", "c" ];
+        spyOn(tester, "highlightResult");
+        tester.processSpecialKey("up");
+        expect(tester.highlightResult).toHaveBeenCalled();
+      });
+
+      it("shouldn't call highlightResult() if only one result when up/down.", function() {
+        tester.resultIndex = 0;
+        tester.results = [ "a" ];
+        spyOn(tester, "highlightResult");
+        tester.processSpecialKey("up");
+        expect(tester.highlightResult).not.toHaveBeenCalled();
+      });
+
+      it("should call highlightResult() if navigating down is possible.", function() {
+        tester.resultIndex = 1;
+        tester.results = [ "a", "b", "c" ];
+        spyOn(tester, "highlightResult");
+        tester.processSpecialKey("down");
+        expect(tester.highlightResult).toHaveBeenCalled();
       });
 
     });
@@ -276,6 +305,8 @@ require([ "jquery", "public/assets/javascripts/lib/components/autocomplete-tdd.j
         var changed = tester.changeIndex("up");
         expect(changed).toBeFalsy();
       });
+
+      // need a test for .highlight class being added/removed
 
     });
 
