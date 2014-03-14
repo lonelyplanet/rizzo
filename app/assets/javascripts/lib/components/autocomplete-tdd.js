@@ -6,6 +6,7 @@ define([ "jquery" ], function($) {
     this.config = {
       el: "",
       wrapID: "x",
+      highlightClass: "highlight",
       resultsID: "y",
       threshold: 2,
       fetch: function() {
@@ -45,10 +46,14 @@ define([ "jquery" ], function($) {
       $(this.config.el)
         .wrap("<div id='" + this.config.wrapID + "' class='clearfix' />")
         .after("<div id='" + this.config.resultsID + "' class='is-hidden' />");
+      var w = $(this.config.el).outerWidth(),
+          h = $(this.config.el).outerHeight();
+      $("#" + this.config.resultsID).css({top: h + "px", width: w + "px"});
     },
     showResultsPanel: function() {
       $("#" + this.config.resultsID).removeClass("is-hidden");
       this.displayed = true;
+      this.highlightResult();
     },
 
     hideResultsPanel: function() {
@@ -86,12 +91,12 @@ define([ "jquery" ], function($) {
     changeIndex: function(direction) {
       var changed = false;
       if (direction === "up") {
-        if (this.resultIndex > 0) {
+        if (this.resultIndex > 0 && this.results.length > 1) {
           this.resultIndex--;
           changed = true;
         }
       } else if (direction === "down") {
-        if (this.resultIndex < this.results.length - 1) {
+        if (this.resultIndex < this.results.length - 1 && this.results.length > 1) {
           this.resultIndex++;
           changed = true;
         }
@@ -120,6 +125,7 @@ define([ "jquery" ], function($) {
     },
 
     processSearch: function(searchTerm) {
+      this.resultIndex = 0;
       if (searchTerm.length > 0 && searchTerm.length >= this.config.threshold) {
         var searchResults = this.fetchResults(searchTerm);
         this.populateResultPanel();
@@ -127,7 +133,38 @@ define([ "jquery" ], function($) {
     },
 
     processSpecialKey: function(keyName) {
-      console.log(keyName);
+      var changed = false;
+      switch (keyName) {
+        case "up": {
+          changed = this.changeIndex("up");
+          break;
+        }
+        case "down": {
+          changed = this.changeIndex("down");
+          break;
+        }
+        case "enter": {
+          e.preventDefault();
+         // this.selectResult();
+          break;
+        }
+        case "esc": {
+          this.clearResults();
+          break;
+        }
+        default: {
+          break;
+        }
+      }
+
+      if (changed) {
+        this.highlightResult();
+      }
+    },
+
+    highlightResult: function() {
+      $("#" + this.config.resultsID + " ul li.highlight").removeClass(this.config.highlightClass);
+      $("#" + this.config.resultsID + " ul li").eq(this.resultIndex).addClass(this.config.highlightClass);
     }
 
   };
