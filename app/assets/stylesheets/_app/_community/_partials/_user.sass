@@ -253,13 +253,16 @@
 
 .user-account__email
   border-right: 1px solid $subdued
+  -moz-box-sizing: border-box; // Fix for firefox
   .simple-form__field.boolean
     margin: 25px 0 20px
   .boolean
     float: left
   .field__label.boolean
     margin-left: 12px
-    width: 405px
+    width: 400px
+  .input--text
+    -moz-box-sizing: border-box; // Fix for firefox
 
 .user-account__social
   .btn
