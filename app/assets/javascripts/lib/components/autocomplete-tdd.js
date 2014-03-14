@@ -144,8 +144,8 @@ define([ "jquery" ], function($) {
           break;
         }
         case "enter": {
-          e.preventDefault();
-         // this.selectResult();
+          // e.preventDefault(); // not sure if this is even needed
+          this.selectResult();
           break;
         }
         case "esc": {
@@ -165,6 +165,18 @@ define([ "jquery" ], function($) {
     highlightResult: function() {
       $("#" + this.config.resultsID + " ul li.highlight").removeClass(this.config.highlightClass);
       $("#" + this.config.resultsID + " ul li").eq(this.resultIndex).addClass(this.config.highlightClass);
+    },
+
+    selectResult: function(){
+      console.log(this.resultIndex);
+      var el = $("#" + this.config.resultsID).find("li")[this.resultIndex];
+      this.onItem(el);
+    },
+
+    onItem: function(el) {
+      console.log(el);
+      var selectedValue = $(el).text();
+      $(this.config.el).val(selectedValue);
     }
 
   };
