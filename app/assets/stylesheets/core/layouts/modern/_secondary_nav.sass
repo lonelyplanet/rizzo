@@ -14,7 +14,7 @@
 
   .wv--split--right
     .responsive &
-      +respond-to(400)
+      +respond-to(500)
         float: right
         text-align: right
 
@@ -30,7 +30,7 @@
     max-width: 100%
     margin-bottom: 20px
     padding: 4px 0
-    +respond-to(400)
+    +respond-to(500)
       max-width: 70%
       float: left
       margin-bottom: 0
@@ -57,13 +57,15 @@
 .nav--secondary__dropdown
   box-sizing: border-box
   width: 100%
-  +respond-to(400)
+  +respond-to(500)
     width: auto
   +respond-to(wide-view)
     margin-left: 10px
   .dropdown__value
-    background-color: white
     +font-size(16)
+    background-color: white
+    text-align: left
+    min-width: 130px
 
 .nav__item--secondary
   padding: 6px 8px
