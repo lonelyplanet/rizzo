@@ -12,9 +12,8 @@ define([ "jquery" ], function($) {
       fetch: function() {
         return [ 1 ];
       },
-      template: function() {
-
-      }
+      template: this.defaultTemplate,
+      onItem: this.defaultOnItem
     };
 
     var props = {
@@ -48,7 +47,7 @@ define([ "jquery" ], function($) {
         .after("<div id='" + this.config.resultsID + "' class='is-hidden' />");
       var w = $(this.config.el).outerWidth(),
           h = $(this.config.el).outerHeight();
-      $("#" + this.config.resultsID).css({top: h + "px", width: w + "px"});
+      $("#" + this.config.resultsID).css({ top: h + "px", width: w + "px" });
     },
     showResultsPanel: function() {
       $("#" + this.config.resultsID).removeClass("is-hidden");
@@ -109,6 +108,18 @@ define([ "jquery" ], function($) {
       $("#" + this.config.wrapID).on("keyup", function(e) {
         _this.processTyping(e);
       });
+
+      $("#" + this.config.resultsID).on("click", "ul li", function(e) {
+        _this.config.onItem(e.target);
+        _this.clearResults();
+      });
+
+      $(this.config.el).on("blur", function() {
+        if (!_this.displayed) {
+          _this.clearResults();
+        }
+      });
+
     },
 
     processTyping: function(e) {
@@ -168,15 +179,36 @@ define([ "jquery" ], function($) {
     },
 
     selectResult: function() {
-      console.log(this.resultIndex);
       var el = $("#" + this.config.resultsID).find("li")[this.resultIndex];
-      this.onItem(el);
+      this.config.onItem(el);
+      this.clearResults();
     },
 
-    onItem: function(el) {
-      console.log(el);
+    defaultTemplate: function(results) {
+      var i,
+          listLength = results.length,
+          listItem = "",
+          listItems = "";
+      // should return an HTML string of list items
+      for (i = 0; i < listLength; i++) {
+        listItem = "<li id='item" + i + "' data-name='" + results[i].n + "'>";
+        // iterate through each property in the object (ugly on purpose for end user)
+        for (var p in results[i]) {
+          if (results[i].hasOwnProperty(p)) {
+            listItem += p + ":" + results[i][p] + " - ";
+          }
+        }
+        listItem += "</li>";
+
+        // append newly formed list item to other list items
+        listItems += listItem;
+      }
+      return listItems;
+    },
+
+    defaultOnItem: function(el) {
       var selectedValue = $(el).text();
-      $(this.config.el).val(selectedValue);
+      $(this.el).val(selectedValue);
     }
 
   };
