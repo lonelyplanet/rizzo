@@ -167,7 +167,7 @@ define([ "jquery" ], function($) {
       $("#" + this.config.resultsID + " ul li").eq(this.resultIndex).addClass(this.config.highlightClass);
     },
 
-    selectResult: function(){
+    selectResult: function() {
       console.log(this.resultIndex);
       var el = $("#" + this.config.resultsID).find("li")[this.resultIndex];
       this.onItem(el);
