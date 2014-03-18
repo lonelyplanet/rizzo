@@ -75,6 +75,8 @@ define([ "jquery" ], function($) {
 
   var methods = {
 
+    // I like this method of storing methods and then attaching to the prototype at the end...
+
     wrapEl: function() {
       $(this.config.el)
         .wrap("<div id='" + this.config.wrapID + "' class='clearfix' />")
@@ -253,7 +255,10 @@ define([ "jquery" ], function($) {
 
   };
 
-  $.extend(AutoComplete.prototype, methods);
+  // extend app's prototype w/the above methods
+  for (var attrname in methods) {
+    AutoComplete.prototype[attrname] = methods[attrname];
+  }
 
   return AutoComplete;
 
