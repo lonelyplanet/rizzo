@@ -1,17 +1,49 @@
+/* 
+*   AutoComplete
+*   When the user calls new AutoComplete():   
+
+    new AutoComplete({
+      el: "#myInputElement" // required
+      wrapID: "autoWrapper" // the input will be wrapped in a div of this ID
+      resultsID: "resultsHolder" // the results will appear in this generated div
+      highlightClass: "activeresult" // the highlighted result will receive this class
+      threshold: 2 // how many letters must be typed before AutoComplete starts fetching
+
+      fetch: function(searchTerm) {
+        // This function is required. All that must be returned is an array of data that
+        // the user has filtered, trimmed, and sorted. All asynchronous requests must
+        // also happen here and be returned when ready. This receives the searchTerm the
+        // user has typed as a parameter.
+      },
+      template: function(results) {
+        // This function is not required, but suggested. The user retrieves an array of "results",
+        // and then must return an html string of <li> items:
+            "<li>item 1</li><li>item 2</li>"
+      },
+      onItem: function(el) {
+        // This function receives the DOM element of the selected result. The user may then do whatever
+        // they want to with this dom element. By default this function simply takes the text inside
+        // the list item and sets the value of the input to match. But this could also be a hyperlink,
+        // or some other functionality that the user needs.
+      }
+    });
+
+
+*/
+
 define([ "jquery" ], function($) {
 
   "use strict";
 
   var AutoComplete = function(args) {
+    
     this.config = {
       el: "",
-      wrapID: "x",
+      wrapID: "autoWrapper",
       highlightClass: "highlight",
-      resultsID: "y",
+      resultsID: "resultsHolder",
       threshold: 2,
-      fetch: function() {
-        return [ 1 ];
-      },
+      fetch: this.defaultFetch,
       template: this.defaultTemplate,
       onItem: this.defaultOnItem
     };
@@ -28,10 +60,12 @@ define([ "jquery" ], function($) {
         40: "down"
       }
     };
+
     $.extend(this, props);
     $.extend(this.config, args);
 
     this.init();
+    
   };
 
   AutoComplete.prototype.init = function() {
@@ -49,6 +83,7 @@ define([ "jquery" ], function($) {
           h = $(this.config.el).outerHeight();
       $("#" + this.config.resultsID).css({ top: h + "px", width: w + "px" });
     },
+
     showResultsPanel: function() {
       $("#" + this.config.resultsID).removeClass("is-hidden");
       this.displayed = true;
@@ -119,7 +154,6 @@ define([ "jquery" ], function($) {
           _this.clearResults();
         }
       });
-
     },
 
     processTyping: function(e) {
@@ -209,6 +243,11 @@ define([ "jquery" ], function($) {
     defaultOnItem: function(el) {
       var selectedValue = $(el).text();
       $(this.el).val(selectedValue);
+    },
+
+    defaultFetch: function(searchTerm) {
+      // must return an array
+      return [ "a","b","c" ];
     }
 
   };
