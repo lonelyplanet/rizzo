@@ -65,7 +65,7 @@ define([ "jquery" ], function($) {
     $.extend(this.config, args);
 
     this.init();
-    
+
   };
 
   AutoComplete.prototype.init = function() {
@@ -79,6 +79,7 @@ define([ "jquery" ], function($) {
       $(this.config.el)
         .wrap("<div id='" + this.config.wrapID + "' class='clearfix' />")
         .after("<div id='" + this.config.resultsID + "' class='is-hidden' />");
+
       var w = $(this.config.el).outerWidth(),
           h = $(this.config.el).outerHeight();
       $("#" + this.config.resultsID).css({ top: h + "px", width: w + "px" });
