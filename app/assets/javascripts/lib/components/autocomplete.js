@@ -1,24 +1,51 @@
+/* 
+*   AutoComplete
+*   When the user calls new AutoComplete():   
+
+    new AutoComplete({
+      el: "#myInputElement" // required
+      wrapID: "autoWrapper" // the input will be wrapped in a div of this ID
+      resultsID: "resultsHolder" // the results will appear in this generated div
+      highlightClass: "activeresult" // the highlighted result will receive this class
+      threshold: 2 // how many letters must be typed before AutoComplete starts fetching
+
+      fetch: function(searchTerm) {
+        // This function is required. All that must be returned is an array of data that
+        // the user has filtered, trimmed, and sorted. All asynchronous requests must
+        // also happen here and be returned when ready. This receives the searchTerm the
+        // user has typed as a parameter.
+      },
+      template: function(results) {
+        // This function is not required, but suggested. The user retrieves an array of "results",
+        // and then must return an html string of <li> items:
+            "<li>item 1</li><li>item 2</li>"
+      },
+      onItem: function(el) {
+        // This function receives the DOM element of the selected result. The user may then do whatever
+        // they want to with this dom element. By default this function simply takes the text inside
+        // the list item and sets the value of the input to match. But this could also be a hyperlink,
+        // or some other functionality that the user needs.
+      }
+    });
+
+
+*/
+
 define([ "jquery" ], function($) {
 
   "use strict";
 
   var AutoComplete = function(args) {
+    
     this.config = {
       el: "",
-      wrapID: "x",
+      wrapID: "autoWrapper",
       highlightClass: "highlight",
-      resultsID: "y",
+      resultsID: "resultsHolder",
       threshold: 2,
-      fetch: function() {
-        return [ 1 ];
-      },
-      template: function() {
-
-      },
-      onItem: function(el) {
-        var selectedValue = $(el).text();
-        return selectedValue;
-      }
+      fetch: this.defaultFetch,
+      template: this.defaultTemplate,
+      onItem: this.defaultOnItem
     };
 
     var props = {
@@ -33,10 +60,12 @@ define([ "jquery" ], function($) {
         40: "down"
       }
     };
+
     $.extend(this, props);
     $.extend(this.config, args);
 
     this.init();
+
   };
 
   AutoComplete.prototype.init = function() {
@@ -46,14 +75,18 @@ define([ "jquery" ], function($) {
 
   var methods = {
 
+    // I like this method of storing methods and then attaching to the prototype at the end...
+
     wrapEl: function() {
       $(this.config.el)
         .wrap("<div id='" + this.config.wrapID + "' class='clearfix' />")
         .after("<div id='" + this.config.resultsID + "' class='is-hidden' />");
+
       var w = $(this.config.el).outerWidth(),
           h = $(this.config.el).outerHeight();
-      $("#" + this.config.resultsID).css({top: h + "px", width: w + "px"});
+      $("#" + this.config.resultsID).css({ top: h + "px", width: w + "px" });
     },
+
     showResultsPanel: function() {
       $("#" + this.config.resultsID).removeClass("is-hidden");
       this.displayed = true;
@@ -112,6 +145,17 @@ define([ "jquery" ], function($) {
       var _this = this;
       $("#" + this.config.wrapID).on("keyup", function(e) {
         _this.processTyping(e);
+      });
+
+      $("#" + this.config.resultsID).on("click", "ul li", function(e) {
+        _this.config.onItem(e.target);
+        _this.clearResults();
+      });
+
+      $(this.config.el).on("blur", function() {
+        if (!_this.displayed) {
+          _this.clearResults();
+        }
       });
     },
 
@@ -172,19 +216,49 @@ define([ "jquery" ], function($) {
     },
 
     selectResult: function() {
-      console.log(this.resultIndex);
       var el = $("#" + this.config.resultsID).find("li")[this.resultIndex];
-      this.onItem(el);
+      this.config.onItem(el);
+      this.clearResults();
     },
 
-    onItem: function(el) {
-      var selectedValue = this.config.onItem(el);
-      $(this.config.el).val(selectedValue);
+    defaultTemplate: function(results) {
+      var i,
+          listLength = results.length,
+          listItem = "",
+          listItems = "";
+      // should return an HTML string of list items
+      for (i = 0; i < listLength; i++) {
+        listItem = "<li id='item" + i + "' data-name='" + results[i].n + "'>";
+        // iterate through each property in the object (ugly on purpose for end user)
+        for (var p in results[i]) {
+          if (results[i].hasOwnProperty(p)) {
+            listItem += p + ":" + results[i][p] + " - ";
+          }
+        }
+        listItem += "</li>";
+
+        // append newly formed list item to other list items
+        listItems += listItem;
+      }
+      return listItems;
+    },
+
+    defaultOnItem: function(el) {
+      var selectedValue = $(el).text();
+      $(this.el).val(selectedValue);
+    },
+
+    defaultFetch: function(searchTerm) {
+      // must return an array
+      return [ "a","b","c" ];
     }
 
   };
 
-  $.extend(AutoComplete.prototype, methods);
+  // extend app's prototype w/the above methods
+  for (var attrname in methods) {
+    AutoComplete.prototype[attrname] = methods[attrname];
+  }
 
   return AutoComplete;
 

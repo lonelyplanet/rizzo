@@ -1,4 +1,4 @@
-require([ "jquery", "public/assets/javascripts/lib/components/autocomplete-tdd.js" ], function($, AutoComplete) {
+require([ "jquery", "public/assets/javascripts/lib/components/autocomplete.js" ], function($, AutoComplete) {
 
   "use strict";
 
@@ -109,12 +109,11 @@ require([ "jquery", "public/assets/javascripts/lib/components/autocomplete-tdd.j
       });
 
       it("should set the input's value on selectResult", function() {
-        tester.results = [ 1,2,3 ];
+        spyOn(tester, "renderList").andReturn("<ul><li>test1</li><li>test2</li></ul>");
+        tester.resultIndex = 1;
         tester.populateResultPanel();
-        tester.resultIndex = 2;
         tester.selectResult();
-        expect(el.val()).toBe("2");
-
+        expect($(tester.config.el).val()).toEqual("test2");
       });
 
     });
