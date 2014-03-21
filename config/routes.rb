@@ -12,7 +12,7 @@ Rizzo::Application.routes.draw do
   get 'client-solutions/global-body-header' => 'global_resources#show', :defaults => { :snippet => "body_header", :cs => "true" }
   get 'client-solutions/global-body-footer' => 'global_resources#show', :defaults => { :snippet => "body_footer", :cs => "true" }
 
-  # Core for WP
+  # Core for exposing modern layout
   get 'modern/global-head'        => 'global_resources#show', :defaults => { :snippet => "head" }
   get 'modern/global-body-header' => 'global_resources#show', :defaults => { :snippet => "body_header" }
   get 'modern/global-body-footer' => 'global_resources#show', :defaults => { :snippet => "body_footer" }
