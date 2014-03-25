@@ -104,12 +104,14 @@ define([ "jquery" ], function($) {
       this.hideResultsPanel();
     },
 
-    fetchResults: function(searchTerm) {
-      var results = this.config.fetch(searchTerm);
-      if (results.length > 0) {
-        this.results = results;
-      }
-      return results;
+    fetchResults: function(searchTerm, cb) {
+      var _this = this;
+      this.config.fetch(searchTerm, function(results) {
+        if (results.length > 0) {
+          _this.results = results;
+        }
+        cb();
+      });
     },
 
     renderList: function() {
@@ -173,10 +175,12 @@ define([ "jquery" ], function($) {
     },
 
     processSearch: function(searchTerm) {
+      var _this = this;
       this.resultIndex = 0;
       if (searchTerm.length > 0 && searchTerm.length >= this.config.threshold) {
-        var searchResults = this.fetchResults(searchTerm);
-        this.populateResultPanel();
+        this.fetchResults(searchTerm, function() {
+          _this.populateResultPanel();          
+        });
       }
     },
 
@@ -248,9 +252,9 @@ define([ "jquery" ], function($) {
       $(this.el).val(selectedValue);
     },
 
-    defaultFetch: function(searchTerm) {
+    defaultFetch: function(searchTerm, cb) {
       // must return an array
-      return [ "a","b","c" ];
+      cb([ "a","b","c" ]);
     }
 
   };
