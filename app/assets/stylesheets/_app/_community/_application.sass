@@ -42,6 +42,11 @@ em
     &:hover
       background: none
 
+    @if $is-ie
+      .icon--search
+        +size(1.2em)
+        top: -3px
+
 .row--compose
   padding-top: 17px
   .copy--h3
@@ -162,3 +167,7 @@ em
 
 .flash-messages
   margin-bottom: 20px
+
+.icon--time--before:before
+  .no-background-size &
+    display: none

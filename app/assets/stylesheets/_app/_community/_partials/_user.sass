@@ -197,6 +197,9 @@
   position: relative
   top: 4px
 
+  .no-background-size &
+    display: none
+
 // -----------------------------------------------------------------------------
 // The little user info section displayed on the left hand side of posts.
 // -----------------------------------------------------------------------------
@@ -255,6 +258,10 @@
 .user-info__detail
   margin-left: 10px
   &:first-child
+    margin-left: 0
+
+  @if $is-ie
+    display: block
     margin-left: 0
 
 .user-info__location

@@ -13,6 +13,15 @@
   &.btn--icon-only
     background-size: 1.5em
 
+  .icon--fallback-text
+    display: none
+    .no-background-size &
+      @extend %visually-show
+      display: block
+
+      &.icon--fallback-text--inline
+        display: inline
+
 .icon--body-grey,
 .icon--body-grey--before:before,
 .icon--body-grey--after:after

@@ -52,6 +52,8 @@ input[type="submit"]
   background-color: $row-primary--darker
   overflow: hidden
   margin: 13px 0 12px
+  @if $is-ie
+    float: left
   .responsive &
     background-color: white
     width: 75%
@@ -217,4 +219,3 @@ input[type="submit"]
   padding-bottom: 11px
   .responsive &
     +font-size(16) // Prevent zoom on iOS
-

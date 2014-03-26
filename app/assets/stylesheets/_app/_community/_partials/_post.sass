@@ -79,6 +79,8 @@
     position: relative
     top: 2px
     width: 14px
+    .no-background-size &
+      display: none
   .user__username--link
     color: $body-copy
     font-weight: bold
@@ -113,6 +115,10 @@
   text-align: center
   width: 25px
 
+  .no-background-size &
+    line-height: 1.2em
+    width: auto
+
   .topic &,
   .post &
     opacity: 0.5
@@ -132,9 +138,11 @@
   .replies &,
   .message &
     @extend %image-replacement
+    +size(22px)
     display: block
-    height: 22px
-    width: 22px
+
+    .no-background-size &
+      +size(32px)
 
 .post__position
   +font-size(40)
@@ -189,6 +197,9 @@
     position: relative
     top: 0.3em
     width: 1.2em
+
+    .no-background-size &
+      display: none
 
   +respond-to(medium-view)
     display: inline
