@@ -1,3 +1,6 @@
+.icon--bold--before:before, .icon--bold--after:after,
+.icon--bold { background-image: url('png/bold.png'); background-repeat: no-repeat; }
+
 .icon--by--before:before, .icon--by--after:after,
 .icon--by { background-image: url('png/by.png'); background-repeat: no-repeat; }
 
@@ -16,6 +19,12 @@
 .icon--hamburger--before:before, .icon--hamburger--after:after,
 .icon--hamburger { background-image: url('png/hamburger.png'); background-repeat: no-repeat; }
 
+.icon--italics--before:before, .icon--italics--after:after,
+.icon--italics { background-image: url('png/italics.png'); background-repeat: no-repeat; }
+
+.icon--link--before:before, .icon--link--after:after,
+.icon--link { background-image: url('png/link.png'); background-repeat: no-repeat; }
+
 .icon--lp-logo--before:before, .icon--lp-logo--after:after,
 .icon--lp-logo { background-image: url('png/lp-logo.png'); background-repeat: no-repeat; }
 
@@ -25,8 +34,17 @@
 .icon--nd--before:before, .icon--nd--after:after,
 .icon--nd { background-image: url('png/nd.png'); background-repeat: no-repeat; }
 
+.icon--pen--before:before, .icon--pen--after:after,
+.icon--pen { background-image: url('png/pen.png'); background-repeat: no-repeat; }
+
 .icon--pinterest--before:before, .icon--pinterest--after:after,
 .icon--pinterest { background-image: url('png/pinterest.png'); background-repeat: no-repeat; }
+
+.icon--quote--before:before, .icon--quote--after:after,
+.icon--quote { background-image: url('png/quote.png'); background-repeat: no-repeat; }
+
+.icon--report-flag--before:before, .icon--report-flag--after:after,
+.icon--report-flag { background-image: url('png/report-flag.png'); background-repeat: no-repeat; }
 
 .icon--rss--before:before, .icon--rss--after:after,
 .icon--rss { background-image: url('png/rss.png'); background-repeat: no-repeat; }
@@ -42,6 +60,9 @@
 
 .icon--top-choice--before:before, .icon--top-choice--after:after,
 .icon--top-choice { background-image: url('png/top-choice.png'); background-repeat: no-repeat; }
+
+.icon--trash--before:before, .icon--trash--after:after,
+.icon--trash { background-image: url('png/trash.png'); background-repeat: no-repeat; }
 
 .icon--twitter--before:before, .icon--twitter--after:after,
 .icon--twitter { background-image: url('png/twitter.png'); background-repeat: no-repeat; }
