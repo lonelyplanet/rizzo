@@ -14,10 +14,16 @@
       adThm = adThm && adThm.split("=")[1] || "";
       return [adTnm, adThm]
 
-    }(window.adKeywords));
+    }(window.adKeywords)),
+    trimmed = function(str) {
+      return str.replace(/;+$/, "")
+    }
 
-    // Update the config
-    window.lp.ads.layers.push(window.adZone || "home");
-    window.lp.ads.adTnm = getKeywords[0];
-    window.lp.ads.adThm = getKeywords[1];
-  }());
+    // Update the config if we have legacy variables
+    if (window.adZone || window.adKeywords) {
+      window.lp.ads.layers.push(window.adZone && trimmed(window.adZone) || "home");
+      window.lp.ads.adTnm = getKeywords[0];
+      window.lp.ads.adThm = getKeywords[1];
+    }
+
+}());
