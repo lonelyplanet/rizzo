@@ -17,7 +17,7 @@ then
 fi
 
 if
-  test "$(git diff-index --cached -S'<<<<' $against)"
+  test "$(git diff-index --cached -S'<<<<<<<' $against)"
 then
   echo "Error: Attempt to add a file that still needs conflicts resolved"
   exit 1
