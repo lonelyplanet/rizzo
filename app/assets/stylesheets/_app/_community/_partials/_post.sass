@@ -42,11 +42,20 @@
     border-radius: 0
     margin-top: 0
 
+.post__content
   blockquote
     border-left: 3px solid $disabled
     padding-left: 5px
     background: mix($subdued, white, 15%)
     margin-bottom: 1em
+
+  ul, ol
+    margin-bottom: 10px
+    padding-left: 2em
+  ul
+    list-style: disc
+  ol
+    list-style: decimal
 
 .post__icon
   display: inline-block
@@ -58,6 +67,9 @@
     left: 150px
     position: absolute
     top: 17px
+    .responsive &
+      left: 58px
+      top: 11px
   .subject &
     margin-left: 5px
     top: 3px

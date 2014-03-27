@@ -220,9 +220,20 @@
 
 .user-info__username
   color: $body-copy
+  overflow: hidden
+  text-overflow: ellipsis
+  .results &
+    display: none
 .user-info__username--link
+  +font-size(14)
   color: $body-copy
-  margin-left: 0.2em
+  +respond-to(medium-view)
+    +font-size(16)
+    margin-left: 0.2em
+.user-info__username__by
+  display: none
+  +respond-to(medium-view)
+    display: inline
 
 .user-info__badge
   @extend %inline-block
@@ -290,15 +301,18 @@
 // -----------------------------------------------------------------------------
 .user-info--message-list
   +font-size(13)
-  width: 185px
 
-  .user-info__avatar
-    float: left
-    margin-right: 10px
+  +respond-to(medium-view)
+    width: 185px
+
+    .user-info__avatar
+      float: left
+      margin-right: 10px
 
 .user-info--message-thread
   +font-size(13)
-  width: 125px
+  +respond-to(medium-view)
+    width: 125px
 
   .user-info__avatar
     margin-bottom: 6px

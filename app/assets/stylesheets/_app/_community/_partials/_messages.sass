@@ -3,17 +3,24 @@
 // -----------------------------------------------------------------------------
 
 .message
-
   .post-links
-    margin-right: 8px
     text-align: left
+    +respond-to(medium-view)
+      margin-right: 8px
 
     .faux--input__checkbox
       margin-left: 4px
 
+  .user-info__posted-date
+    line-height: 1em
+    &:before
+      display: none
+      +respond-to(medium-view)
+        display: block
+
 // Message in a list
 .message--list
-  padding: 20px 25px
+  padding: 10px
   border-top: 1px solid $body-background
   border-left: 4px solid transparent
   &:last-child
@@ -24,6 +31,9 @@
   &.is-active
     background: mix($yella-highlight, #FFF, 25%)
 
+  +respond-to(medium-view)
+    padding: 20px 25px
+
   .message__subject,
   .message__body
     display: inline
@@ -32,15 +42,18 @@
     margin-right: .25em
 
 .message__body
-  .message--sent &
-    padding-left: 75px
-  .message--received &
-    padding-right: 75px
+  +respond-to(medium-view)
+    .message--sent &
+      padding-left: 75px
+    .message--received &
+      padding-right: 75px
 
 // Message in a conversation thread
 .message--thread
   margin: 0
-  padding: 10px 25px
+  padding: 10px
+  +respond-to(medium-view)
+    padding: 10px 25px
 
   .user-info
     margin: 0
@@ -76,14 +89,19 @@
 // -----------------------------------------------------------------------------
 .messages-header,
 .messages-footer
-  padding: 10px 25px
+  padding: 10px
+  +respond-to(medium-view)
+    padding: 10px 25px
 
   .copy--h1
     margin-bottom: 0
 
-  .js-faux-input
+  .faux--input__checkbox
     width: 25px
     margin-left: 15px
+    margin-right: -6px
+    +respond-to(medium-view)
+      margin-right: 0
 
 .messages-header--conversation
   margin-bottom: 10px
