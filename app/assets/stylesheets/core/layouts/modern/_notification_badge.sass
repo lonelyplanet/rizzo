@@ -1,0 +1,28 @@
+// ----------------------------------------------------------------------------
+//
+// Notification badge used mainly in the primary nav for indicating the
+// number of items in shopping cart or unread PMs.
+//
+// ----------------------------------------------------------------------------
+
+.notification-badge
+  +font-size(10)
+  +size(16px)
+  background-color: $yella
+  border-radius: 8px
+  box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.5)
+  color: $row-primary--darker
+  font-weight: bold
+  left: 0
+  line-height: 16px
+  margin: 0
+  position: absolute
+  text-align: center
+  top: 0
+
+.notification-badge--basket-items
+  top: 4px
+
+.notification-badge--unread-messages
+  left: -6px
+  top: -6px

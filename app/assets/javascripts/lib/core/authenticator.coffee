@@ -72,6 +72,7 @@ define ['jquery', 'lib/utils/page_state'], ($, PageState)->
       $('.js-user-box').append(@userOptionsMenu())
 
       if window.lp.user and lp.user.unread_message_count > 0
+        $('.js-box-handler').after("<span class='notification-badge notification-badge--unread-messages'>#{lp.user.unread_message_count}</span>")
         $('.js-user-msg').append($("<span>#{lp.user.unread_message_count}</span>").addClass("nav__submenu__notification"))
 
     emptyUserNav: ->

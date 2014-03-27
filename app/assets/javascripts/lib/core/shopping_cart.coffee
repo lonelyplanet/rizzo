@@ -10,4 +10,4 @@ define ['jquery', 'jplugs/jquery-cookies.2.2.0'], ($)->
       if (@cartData && @cartData["A"])
         itemCount = @cartData["A"].length
       if (itemCount)
-        $(".js-user-basket").append("<span class=\"user-basket__items icon--small js-basket-items\">#{itemCount}</span>")
+        $(".js-user-basket").append("<span class=\"notification-badge notification-badge--basket-items js-basket-items\">#{itemCount}</span>")
