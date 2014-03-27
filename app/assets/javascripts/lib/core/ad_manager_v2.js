@@ -36,12 +36,17 @@ define([ "jquery", "lib/core/ad_unit" ], function($, AdUnit) {
     this.$adunits = this.$adunits.filter(function(index) {
       var filteredGroups = [],
           $adunit = self.$adunits.eq(index),
+          contextualWidth = $adunit.data("context"),
           sizeGroups = $adunit.data("dimensions").split(",");
+
+      if (contextualWidth) {
+        contextualWidth = $(contextualWidth).width();
+      }
 
       for (var i = 0, len = sizeGroups.length; i < len; i++) {
         var sizeSet = sizeGroups[i].split("x");
 
-        if (parseInt(sizeSet[0], 10) <= bodyWidth) {
+        if (parseInt(sizeSet[0], 10) <= (contextualWidth || bodyWidth)) {
           filteredGroups.push(sizeGroups[i]);
         }
       }
