@@ -21,11 +21,16 @@ require([ "public/assets/javascripts/lib/core/ad_manager_v2" ], function(AdManag
       });
     });
 
+    afterEach(function() {
+      $(".adunit").removeData("googleAdUnit");
+    });
+
     describe("._init()", function() {
 
       it("Loads and instantiates jQuery DFP", function() {
 
         spyOn(instance, "_adCallback").andReturn(null);
+        spyOn(instance, "load").andReturn(null);
 
         runs(function() {
           instance._init();
@@ -36,7 +41,8 @@ require([ "public/assets/javascripts/lib/core/ad_manager_v2" ], function(AdManag
         }, "DFP should be loaded", 250);
 
         runs(function() {
-          expect($(".adunit").hasClass("display-none")).toBe(true);
+          expect(instance.load).toHaveBeenCalled();
+          expect(instance.pluginConfig).toBeDefined();
         });
 
       });
@@ -81,6 +87,44 @@ require([ "public/assets/javascripts/lib/core/ad_manager_v2" ], function(AdManag
         spyOn(instance, "_networkCookie").andReturn(null);
         spyOn(instance, "_networkParam").andReturn(78910);
         expect(instance.getNetworkID()).toBe(78910);
+      });
+
+    });
+
+    describe(".load()", function() {
+
+      it("Should load all ads", function() {
+
+        runs(function() {
+          spyOn(instance, "load").andCallThrough();
+        });
+
+        waitsFor(function() {
+          return instance.load.callCount > 0;
+        }, "DFP should instantiate ads", 250);
+
+        runs(function() {
+          expect($(".adunit").hasClass("display-none")).toBe(true);
+        });
+
+      });
+
+      it("Should not reload already loaded ads", function() {
+
+        runs(function() {
+          $(".adunit").data("googleAdUnit", {});
+          spyOn(instance, "_adCallback").andReturn(null);
+          spyOn(instance, "load").andCallThrough();
+        });
+
+        waitsFor(function() {
+          return instance.load.callCount > 0;
+        }, "DFP should instantiate ads", 250);
+
+        runs(function() {
+          expect(instance._adCallback).not.toHaveBeenCalled();
+        });
+
       });
 
     });
