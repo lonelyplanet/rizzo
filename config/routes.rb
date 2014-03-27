@@ -36,6 +36,7 @@ Rizzo::Application.routes.draw do
   get 'global'                           => 'global_resources#index'
   get 'secure/global'                    => 'global_resources#index', :defaults => { :secure => "true" }
   get 'legacy'                           => 'global_resources#legacy'
+  get 'modern'                           => 'global_resources#modern'
   get 'responsive'                       => 'global_resources#responsive'
   get 'homepage'                         => 'global_resources#homepage'
 
