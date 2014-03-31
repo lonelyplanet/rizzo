@@ -149,7 +149,7 @@ module.exports = function(grunt) {
         options: {
           helpers: [ "./spec/javascripts/helpers/**/*.js", "./vendor/assets/javascripts/jquery/jquery.js" ],
           host: "http://127.0.0.1:8888/",
-          specs: "./public/assets/javascripts/spec/components/autocomplete_spec.js",
+          specs: "./public/assets/javascripts/spec/**/*.js",
           template: require("grunt-template-jasmine-requirejs"),
           templateOptions: {
             requireConfig: {
