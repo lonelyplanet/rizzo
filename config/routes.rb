@@ -12,11 +12,16 @@ Rizzo::Application.routes.draw do
   get 'client-solutions/global-body-header' => 'global_resources#show', :defaults => { :snippet => "body_header", :cs => "true" }
   get 'client-solutions/global-body-footer' => 'global_resources#show', :defaults => { :snippet => "body_footer", :cs => "true" }
 
+  # Core for exposing modern layout
+  get 'modern-head'        => 'global_resources#show', :defaults => { :snippet => "head" }
+  get 'modern-body-header' => 'global_resources#show', :defaults => { :snippet => "body_header" }
+  get 'modern-body-footer' => 'global_resources#show', :defaults => { :snippet => "body_footer" }
+
   # Legacy
-  get 'global-head'                  => 'global_resources#show', :defaults => { :snippet => "head" }
-  get 'global-head-thorntree'        => 'global_resources#show', :defaults => { :snippet => "head", :suppress_tynt => "true" }
-  get 'global-body-header'           => 'global_resources#show', :defaults => { :snippet => "body_header", :scope => 'legacy' }
-  get 'global-body-footer'           => 'global_resources#show', :defaults => { :snippet => "body_footer" }
+  get 'global-head'                  => 'global_resources#show', :defaults => { :snippet => "head", :legacystyle => "true" }
+  get 'global-head-thorntree'        => 'global_resources#show', :defaults => { :snippet => "head", :legacystyle => "true", :suppress_tynt => "true" }
+  get 'global-body-header'           => 'global_resources#show', :defaults => { :snippet => "body_header", :legacystyle => "true" }
+  get 'global-body-footer'           => 'global_resources#show', :defaults => { :snippet => "body_footer", :legacystyle => "true" }
 
   get 'noscript/global-head'         => 'global_resources#show', :defaults => { :snippet => "head", :noscript => "true"}
   get 'noscript/global-body-footer'  => 'global_resources#show', :defaults => { :snippet => "body_footer", :noscript => "true"}
@@ -31,6 +36,7 @@ Rizzo::Application.routes.draw do
   get 'global'                           => 'global_resources#index'
   get 'secure/global'                    => 'global_resources#index', :defaults => { :secure => "true" }
   get 'legacy'                           => 'global_resources#legacy'
+  get 'modern'                           => 'global_resources#modern'
   get 'responsive'                       => 'global_resources#responsive'
   get 'homepage'                         => 'global_resources#homepage'
 

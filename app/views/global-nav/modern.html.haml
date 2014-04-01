@@ -1,0 +1,29 @@
+!!! 5
+<!--[if IE 7]><html class="no-js ie7" lang="en"><![endif]-->
+<!--[if IE 8]><html class="no-js ie8" lang="en"><![endif]-->
+<!--[if IE 9]><html class="no-js ie9" lang="en"><![endif]-->
+<!--[if gt IE 9]><!--><html class='no-js' lang="en"><!--<![endif]-->
+%head
+  = render 'layouts/core/snippets/global_head', suppress_tynt: false
+  %script
+    window.lp.ads = {
+    adThm: "gear-and-tech,family-travel,big-trips,honeymoons,road-trips,world-food",
+    adTnm: "highlights,overview",
+    continent: "europe",
+    country: "italy",
+    destination: "italy",
+    template: "highlights",
+    theme: "gear-and-tech,family-travel,big-trips,honeymoons,road-trips,world-food",
+    topic: "highlights"
+    }
+  / = render 'layouts/legacy/snippets/head', suppress_tynt: false
+
+%body
+  = render 'layouts/core/snippets/global_body_header', user_nav: user_nav
+  / = render 'layouts/legacy/snippets/body_header', user_nav: user_nav
+  
+  .row.row--content
+    .row__inner.row__inner--content
+
+  = render 'layouts/core/snippets/global_body_footer'
+  / = render 'layouts/legacy/snippets/body_footer'
