@@ -16,14 +16,14 @@
     theme: "gear-and-tech,family-travel,big-trips,honeymoons,road-trips,world-food",
     topic: "highlights"
     }
-  /= render 'layouts/legacy/snippets/head', suppress_tynt: false
+  / = render 'layouts/legacy/snippets/head', suppress_tynt: false
 
 %body
   = render 'layouts/core/snippets/global_body_header', user_nav: user_nav
-  /= render 'layouts/legacy/snippets/body_header', user_nav: user_nav
+  / = render 'layouts/legacy/snippets/body_header', user_nav: user_nav
   
   .row.row--content
     .row__inner.row__inner--content
 
   = render 'layouts/core/snippets/global_body_footer'
-  /= render 'layouts/legacy/snippets/body_footer'
+  / = render 'layouts/legacy/snippets/body_footer'
