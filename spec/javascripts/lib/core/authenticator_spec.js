@@ -18,8 +18,8 @@ require([ "jquery", "public/assets/javascripts/lib/core/authenticator" ], functi
       });
 
       it("generates the sign in / join links", function() {
-        expect($("js-user-signin").length).toBe(1);
-        expect($("js-user-signup").length).toBe(1);
+        expect($(".js-user-signin").length).toBe(1);
+        expect($(".js-user-signup").length).toBe(1);
       });
 
     });
@@ -51,7 +51,7 @@ require([ "jquery", "public/assets/javascripts/lib/core/authenticator" ], functi
       });
 
       it("shows the user's avatar", function() {
-        expect($(".user-box__img").length).toBe(1);
+        expect($(".nav__item--avatar").length).toBe(1);
       });
 
       it("adds the username to the dropdown menu", function() {
