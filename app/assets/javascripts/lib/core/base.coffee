@@ -10,6 +10,7 @@ define( ['jquery','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/sh
       @showCookieComplianceMsg()
       @initialiseSelectGroupManager()
       @addNavTracking()
+      @menuToggle()
 
     authenticateUser: ->
       @auth = new Authenticator()
@@ -77,4 +78,8 @@ define( ['jquery','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/sh
 
       $('#js-footer-nav').on 'click', '.js-nav-item', ->
         window.s.linkstacker("footer")
+
+    menuToggle: ->
+      $('.nav--primary__trigger').on 'click', ->
+        $('body').toggleClass('show-nav')
 )

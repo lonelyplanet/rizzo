@@ -73,6 +73,13 @@ $responsive-nav-width: 240px
       display: none
 
 // On click..
+// Move the responsive nav onto the screen
+.show-nav .nav--primary__trigger,
+.show-nav .m-hidden-menu,
+.show-nav .row--content,
+.show-nav .logo--header,
+.show-nav .wrap--footer
+  transform: translateX(-$responsive-nav-width)
 
 // Move the responsive nav onto the screen
 #nav--primary__trigger
