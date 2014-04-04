@@ -2,7 +2,7 @@
 //
 // Authenticator
 //
-// This script handles checking whether the user is signed on and generating
+// This script handles checking whether the user is signed in and generating
 // the sign in/join links OR profile pic with sub menu (along with the right hand
 // nav that appears on mobile).
 //
