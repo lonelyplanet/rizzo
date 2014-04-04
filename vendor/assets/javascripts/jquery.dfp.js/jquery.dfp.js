@@ -1,5 +1,5 @@
 /**
- * jQuery DFP v1.0.20
+ * jQuery DFP v1.0.21
  * http://github.com/coop182/jquery.dfp.js
  *
  * Copyright 2013 Matt Cooper
@@ -362,7 +362,11 @@
      */
     getName = function ($adUnit) {
 
-        return $adUnit.data('adunit') || dfpOptions.namespace || $adUnit.attr('id');
+        var adUnitName = $adUnit.data('adunit') || dfpOptions.namespace || $adUnit.attr('id');
+        if (typeof dfpOptions.alterAdUnitName === 'function') {
+          adUnitName = dfpOptions.alterAdUnitName.call(this, adUnitName, $adUnit);
+        }
+        return adUnitName;
 
     },
 

@@ -9,8 +9,14 @@
     "**/.*",
     "node_modules",
     "bower_components",
-    "test",
-    "tests"
+    "spec",
+    "index.html",
+    "package.json",
+    "README.md",
+    "src",
+    "autocomplete-example.png",
+    "bower.json",
+    "Gruntfile.js"
   ],
   "dependencies": {
     "jquery": "~2.1.0",
@@ -21,11 +27,11 @@
     "url": "git://github.com/lonelyplanet/autocomplete.git"
   },
   "homepage": "https://github.com/lonelyplanet/autocomplete",
-  "_release": "90bbbfccfc",
+  "_release": "ea7ffd9b9e",
   "_resolution": {
     "type": "branch",
     "branch": "master",
-    "commit": "90bbbfccfca721ee05bb5899ccfa0a05cf842d55"
+    "commit": "ea7ffd9b9e646f6f12a2595688ae77f4b37e71b5"
   },
   "_source": "git://github.com/lonelyplanet/autocomplete.git",
   "_target": "*",
