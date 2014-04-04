@@ -31,6 +31,15 @@
             %span.user-basket__icon.icon--shop-basket.icon--custom
               View Basket
 
+          %script#user-nav-template{ type: "text/mustache" }
+            = render partial: "templates/global-nav/user_nav"
+
+          %noscript
+            .nav__item.nav__item--user
+              %a.nav__item.nav__item--primary.js-nav-item{ href: "https://www.lonelyplanet.com/thorntree/my_account" }
+                %i.nav__icon.icon--user--before.icon--white--before
+                My account
+
 
   .wv--split--left
 

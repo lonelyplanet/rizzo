@@ -171,8 +171,37 @@
 
 .nav__item--user
   color: $nav-primary-type
+  margin-top: 10px
+  padding-right: 25px
   &:hover
     color: #fff
+  .responsive &
+    margin-top: 0
+    height: 50px
+    background: $offscreen-nav-user-background
+    +respond-to(990)
+      background: none
+    +respond-to(wide-view)
+      margin-top: 10px
+      height: auto
+
+.nav__item--user-avatar
+  @extend %rounded-corners
+  border: 2px solid $row-primary--darker
+  height: 30px
+  width: 30px
+  .responsive &
+    border-radius: 0px
+    border: none
+    height: 50px
+    width: 50px
+    +respond-to(wide-view)
+      border-radius: 4px
+      border: 2px solid $row-primary--darker
+      height: 30px
+      width: 30px
+  .homepage &
+    border-color: white
 
 .nav__item--user-menu
   background: $offscreen-nav-user-background

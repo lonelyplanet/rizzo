@@ -5,41 +5,65 @@ require([ "jquery", "public/assets/javascripts/lib/core/authenticator" ], functi
   describe("Authenticator", function() {
 
     var auth,
-        lp = {};
+        lp = {},
+        loggedInStatus;
+
+    loggedInStatus = {
+      id: 1,
+      username: "foobar",
+      profileSlug: "foobar",
+      facebookUid: null,
+      avatar: "/foo.jpg",
+      timestamp: "2014-03-31T14:33:47+01:00",
+      unreadMessageCount: 0
+    };
+
+    $("body").append("<div id='user-nav-template' />");
 
     beforeEach(function() {
-      localStorage.removeItem("lp-uname");
+      var $fixtures;
+
+      loadFixtures("authenticator.html");
+      $fixtures = $("#jasmine-fixtures");
+
+      auth = new Authenticator();
+      spyOn(auth, "_getTemplate").andReturn($fixtures.html());
+    });
+
+    describe("config", function() {
+
+      it("always checks the status from the live site", function() {
+        expect(auth.statusUrl).toBe("https://www.lonelyplanet.com/thorntree/users/status");
+      });
+
     });
 
     describe("signed out", function() {
 
       beforeEach(function() {
-        auth = new Authenticator();
+        auth._updateStatus();
       });
 
-      it("generates the sign in / join links", function() {
-        expect($(".js-user-signin").length).toBe(1);
-        expect($(".js-user-signup").length).toBe(1);
+      it("generates the sign in / join links for both mobile and wide views", function() {
+        expect($(".js-user-sign_in").length).toBe(2);
+        expect($(".js-user-sign_up").length).toBe(2);
+      });
+
+      it("defines all link urls correctly", function() {
+        expect($(".js-user-sign_in").attr("href")).toBe("/thorntree/users/sign_in");
+        expect($(".js-user-sign_up").attr("href")).toBe("/thorntree/users/sign_up");
       });
 
     });
 
     describe("updating signed in status", function() {
 
-      var userStatus = {
-        id: 1,
-        username: "foobar",
-        profileSlug: "foobar",
-        facebookUid: null,
-        avatar: "/foo.jpg",
-        timestamp: "2014-03-31T14:33:47+01:00",
-        unreadMessageCount: 0
-      };
-
-      Authenticator.prototype._updateStatus(userStatus);
+      beforeEach(function() {
+        auth._updateStatus(loggedInStatus);
+      });
 
       it("sets up window.lp.user", function() {
-        expect(window.lp.user).toBe(userStatus);
+        expect(window.lp.user).toBe(loggedInStatus);
       });
 
     });
@@ -47,11 +71,11 @@ require([ "jquery", "public/assets/javascripts/lib/core/authenticator" ], functi
     describe("signed in", function() {
 
       beforeEach(function() {
-        auth = new Authenticator();
+        auth._updateStatus(loggedInStatus);
       });
 
       it("shows the user's avatar", function() {
-        expect($(".nav__item--avatar").length).toBe(1);
+        expect($(".nav__item--user-avatar").attr("src")).toBe("/foo.jpg");
       });
 
       it("adds the username to the dropdown menu", function() {
@@ -70,42 +94,29 @@ require([ "jquery", "public/assets/javascripts/lib/core/authenticator" ], functi
         expect($(".wv--nav--inline .nav__item").length).toBe(5);
       });
 
+      it("defines all link urls correctly", function() {
+        expect($(".js-user-activities").attr("href")).toBe("/thorntree/profiles/foobar/activities");
+        expect($(".js-user-messages").attr("href")).toBe("/thorntree/profiles/foobar/messages");
+        expect($(".js-user-profile").attr("href")).toBe("/thorntree/profiles/foobar");
+        expect($(".js-user-settings").attr("href")).toBe("/thorntree/forums/settings");
+        expect($(".js-user-sign_out").attr("href")).toBe("/thorntree/users/sign_out");
+      });
+
     });
 
     describe("unread message", function() {
 
-      lp.user.unreadMessageCount = 5;
-
       beforeEach(function() {
-        auth = new Authenticator();
+        loggedInStatus.unreadMessageCount = 5;
+        auth._updateStatus(loggedInStatus);
       });
 
       it("shows the notification badge with the number of unread messages in it", function() {
-        expect($(".notification-badge").length).toBe(1);
-        expect($(".notification-badge").text()).toBe(5);
+        expect($(".notification-badge:visible").text()).toBe("5");
       });
 
       it("shows the number of unread messages on the submenu item", function() {
-        expect($(".nav__submenu__notification").length).toBe(1);
-        expect($(".nav__submenu__notification").text()).toBe(5);
-      });
-
-    });
-
-    describe("URLs", function() {
-
-      it("always checks the status from the live site", function() {
-        expect(auth.getStatusUrl()).toBe("//www.lonelyplanet.com/thorntree/users/status");
-      });
-
-      it("defines all urls correctly", function() {
-        expect(auth.urls.activities).toBe("/thorntree/profiles/foobar/activities");
-        expect(auth.urls.messages).toBe("/thorntree/profiles/foobar/messages");
-        expect(auth.urls.profile).toBe("/thorntree/profiles/foobar");
-        expect(auth.urls.settings).toBe("/thorntree/forums/settings");
-        expect(auth.urls.signIn).toBe("/thorntree/users/sign_in");
-        expect(auth.urls.signOut).toBe("/thorntree/users/sign_out");
-        expect(auth.urls.signUp).toBe("/thorntree/users/sign_up");
+        expect($(".nav__submenu__notification:visible").text()).toBe("5");
       });
 
     });
