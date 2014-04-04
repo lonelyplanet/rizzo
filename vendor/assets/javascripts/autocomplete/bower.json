@@ -1,0 +1,24 @@
+{
+  "name": "LP AutoComplete",
+  "version": "0.0.0",
+  "authors": [
+    "Ben Tedder <ben.tedder@lonelyplanet.com>"
+  ],
+  "main": "src/js/autocomplete.js",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.0",
+    "requirejs": "~2.1.11"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/lonelyplanet/autocomplete.git"
+  }
+}

@@ -8,6 +8,7 @@ paths:
   sCode: "omniture/s_code"
   trackjs: "trackjs/trackjs"
   dfp: "jquery.dfp.js/jquery.dfp"
+  autocomplete: "autocomplete/src/js/autocomplete"
 
 modules:
   - name: 'app_core'
