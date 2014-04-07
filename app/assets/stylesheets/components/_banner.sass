@@ -4,14 +4,20 @@
   height: 400px
   overflow: hidden
   background-size: cover
-  background-position: center bottom
+  background-position: center center
+  &:before
+    +bg-image-bottom-gradient
+    content: ''
+    width: 100%
+    height: 400px
+    position: absolute
+    z-index: 1
 
 .hero-banner__content
   z-index: 10
   position: relative
   color: white
   line-height: 1
-  font-weight: bold
   height: 100%
 
 .hero-banner__text
@@ -31,4 +37,55 @@
 
 .hero-banner__strapline
   +font-size(18)
+  font-weight: bold
   margin: 16px 0
+
+.hero-banner__image-footer
+  position: absolute
+  bottom: 15px
+  width: 100%
+
+
+.hero-banner__image-content
+  height: 100%
+  position: relative
+  .icon--flickr
+    width: 30px
+    height: 30px
+    float: left
+
+.hero-banner__image-header
+  position: relative
+  top: 30px
+
+.hero-banner__image-description
+  line-height: 33px
+  float: left
+  margin-left: 10px
+  font-weight: bold
+
+.hero-banner__source
+  +font-size(16)
+  word-spacing: 5px
+  color: #FFF
+  float: left
+
+.hero-banner__source-text
+  font-style: italic
+  font-weight: lighter
+
+.hero-banner__avatar
+  +size(50px)
+  border-radius: 50%
+  display: inline-block
+  vertical-align: middle
+
+.hero-banner__username
+  font-weight: bold
+  font-style: normal
+  color: #FFF
+
+.hero-banner__image-title
+  +font-size(18)
+  float: right
+  line-height: 50px
