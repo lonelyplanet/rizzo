@@ -93,8 +93,6 @@ define([ "jquery", "lib/mixins/flyout" ], function($, asFlyout) {
   };
 
   LightBox.prototype._centerLightbox = function() {
-    var lightboxH = this.$lightboxContent.height();
-
     this.$lightboxContent.css({
       left: this._centeredLeftPosition(),
       top: this._centeredTopPosition()

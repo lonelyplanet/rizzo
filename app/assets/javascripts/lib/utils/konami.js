@@ -40,7 +40,7 @@ define([ "jquery" ], function($) {
 
   Konami.prototype.listen = function() {
 
-    this.$listener.on("keyup", function(e, content) {
+    this.$listener.on("keyup", function(e) {
       _this.currentCode.push(e.keyCode);
 
       if (KONAMI.indexOf(_this.currentCode.join(",")) > -1) {

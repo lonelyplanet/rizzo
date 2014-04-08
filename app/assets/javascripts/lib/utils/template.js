@@ -10,7 +10,7 @@
 //
 // ------------------------------------------------------------------------------
 
-define([ "jquery" ], function($) {
+define(function() {
   "use strict";
 
   var Template = function() {};

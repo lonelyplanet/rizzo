@@ -48,7 +48,7 @@ define([ "jquery", "lib/core/ad_unit" ], function($, AdUnit) {
         self.refresh(type);
       });
 
-      self.$listener.on(":ads/reload", function(e) {
+      self.$listener.on(":ads/reload", function() {
         self.load();
       });
 

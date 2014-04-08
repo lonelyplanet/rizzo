@@ -11,9 +11,7 @@
 define([ "jquery", "lib/utils/template" ], function($, Template) {
   "use strict";
 
-  // @args = {}
-  // el: {string} selector for parent element
-  var Authenticator = function(args) {
+  var Authenticator = function() {
     this.statusUrl = "https://www.lonelyplanet.com/thorntree/users/status";
 
     this.init();

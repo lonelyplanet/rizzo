@@ -19,6 +19,7 @@
   "undef":        true,
   "strict":       true,
   "trailing":     true,
+  "unused":       true,
   "expr":         true,
 
   // relax
