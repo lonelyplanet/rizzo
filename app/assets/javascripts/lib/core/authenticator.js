@@ -39,14 +39,14 @@ define([ "jquery", "lib/utils/template" ], function($, Template) {
   // -------------------------------------------------------------------------
 
   Authenticator.prototype._getTemplate = function() {
-    return $("#user-nav-template").html();
+    return $("#js-user-nav-template").html();
   };
 
   Authenticator.prototype._createLoginAndRegister = function() {
     var template = $(_this._getTemplate()).filter(".js-user-signed-out-template").html();
 
     $(".js-user-signed-in, .js-user-signed-out").remove();
-    $("#user-nav-template").after(template);
+    $("#js-user-nav-template").after(template);
   };
 
   Authenticator.prototype._createUserMenu = function() {
@@ -58,7 +58,7 @@ define([ "jquery", "lib/utils/template" ], function($, Template) {
     }
 
     $(".js-user-signed-in, .js-user-signed-out").remove();
-    $("#user-nav-template").after($rendered);
+    $("#js-user-nav-template").after($rendered);
   };
 
   Authenticator.prototype._updateStatus = function(userStatus) {

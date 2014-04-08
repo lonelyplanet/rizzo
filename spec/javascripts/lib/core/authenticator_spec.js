@@ -18,7 +18,7 @@ require([ "jquery", "public/assets/javascripts/lib/core/authenticator" ], functi
       unreadMessageCount: 0
     };
 
-    $("body").append("<div id='user-nav-template' />");
+    $("body").append("<div id='js-user-nav-template' />");
 
     beforeEach(function() {
       var $fixtures;
