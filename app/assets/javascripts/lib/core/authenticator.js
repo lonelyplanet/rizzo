@@ -43,9 +43,10 @@ define([ "jquery", "lib/utils/template" ], function($, Template) {
   // Private Functions
   // -------------------------------------------------------------------------
 
-  Authenticator.prototype._createLoginAndRegister = function() {
+  Authenticator.prototype._createUserLinks = function() {
     var template = _this.$template.filter(".js-user-signed-out-template").html();
 
+    // Remove any previously generated user navigation.
     $(".js-user-signed-in, .js-user-signed-out").remove();
     _this.templateContainer.after(template);
   };
@@ -58,6 +59,7 @@ define([ "jquery", "lib/utils/template" ], function($, Template) {
       $rendered.find(".js-unread-messages").removeClass("is-hidden");
     }
 
+    // Remove any previously generated user navigation.
     $(".js-user-signed-in, .js-user-signed-out").remove();
     _this.templateContainer.after($rendered);
   };
@@ -67,7 +69,7 @@ define([ "jquery", "lib/utils/template" ], function($, Template) {
       window.lp.user = userStatus;
       _this._createUserMenu();
     } else {
-      _this._createLoginAndRegister();
+      _this._createUserLinks();
     }
   };
 

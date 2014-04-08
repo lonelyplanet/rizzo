@@ -22,9 +22,9 @@ define ->
 
     @get = (k) ->
       if window.lp.supports.localStorage
-        localStorage.getItem(k || 'cookie-compliance')
+        localStorage.getItem(k)
       else
-        @getCookie(k || 'cookie-compliance')
+        @getCookie(k)
 
     @getCookie = (k) ->
       c = document.cookie.split('; ')
