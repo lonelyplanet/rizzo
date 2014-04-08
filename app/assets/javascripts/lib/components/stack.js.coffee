@@ -103,13 +103,14 @@ define ['jquery','lib/extends/events', 'lib/components/world_places'], ($, Event
       if width and height
         if height > width then true else false
 
-    _show: (cards) ->
+    _show: ($cards) ->
       i = 0
       insertCards = setInterval( =>
-        if i isnt cards.length
-          $image = $(cards[i]).removeClass('is-invisible').find('.js-card__image')
+        if i isnt $cards.length
+          $image = $cards.eq(i).removeClass('is-invisible').find('.js-card__image')
           if @_isPortrait($image.width(), $image.height()) then $image.addClass('is-portrait')
           i++
         else
+          @trigger(':page/updated')
           clearInterval insertCards
       , 20)

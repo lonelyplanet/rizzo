@@ -44,11 +44,11 @@ define([ "jquery", "lib/core/ad_unit" ], function($, AdUnit) {
 
       self.load();
 
-      self.$listener.on(":ads/refresh", function(e, type) {
+      self.$listener.on(":ads/refresh :page/updated", function(e, type) {
         self.refresh(type);
       });
 
-      self.$listener.on(":ads/reload", function() {
+      self.$listener.on(":ads/reload :page/changed", function(e) {
         self.load();
       });
 
