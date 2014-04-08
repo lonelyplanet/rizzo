@@ -23,3 +23,11 @@
 @mixin size($w, $h: $w)
   height: $h
   width: $w
+
+// [doc] Gradient Background overlay (for images). 35% percent. [/doc]
+@mixin bg-gradient-image-overlay( $percent: 0.35, $color: $darkgray )
+  background: linear-gradient(to bottom, rgba(255,255,255, 0) 0, rgba($darkgray, $percent) 100%)
+
+// [doc] Flat Background overlay (for images). 35% percent. [/doc]
+@mixin bg-flat-image-overlay( $percent: 0.35, $color: $darkgray )
+  background: rgba($darkgray, 0.5)

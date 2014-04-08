@@ -1,4 +1,7 @@
 :ruby
+  if properties[:style] == "mini"
+    return render "components/cards/mini_card", properties: properties.merge({ css_classes: ["card--poi--destination", "card--mini--destination"] })
+  end
 
   css_classes = [
 
@@ -20,7 +23,7 @@
   %a.link--wrapper{href: properties[:url]}
 
     = render partial: "components/cards/partials/card_content", locals: {properties: properties}
-  
+
     - if show_footer
       %footer.card__footer
         %span.destination__item-count.destination__item-count--sights.icon--hotel--before
