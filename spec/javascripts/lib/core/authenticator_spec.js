@@ -24,10 +24,9 @@ require([ "jquery", "public/assets/javascripts/lib/core/authenticator" ], functi
       var $fixtures;
 
       loadFixtures("authenticator.html");
-      $fixtures = $("#jasmine-fixtures");
+      $("#js-user-nav-template").html($("#jasmine-fixtures").html());
 
       auth = new Authenticator();
-      spyOn(auth, "_getTemplate").andReturn($fixtures.html());
     });
 
     describe("config", function() {

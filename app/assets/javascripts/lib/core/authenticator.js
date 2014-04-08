@@ -26,10 +26,15 @@ define([ "jquery", "lib/utils/template" ], function($, Template) {
   Authenticator.prototype.init = function() {
     _this = this;
 
+    if (!this.$template) {
+      this.templateContainer = $("#js-user-nav-template");
+      this.$template = $(this.templateContainer.html());
+    }
+
     $.ajax({
       url: this.statusUrl,
       dataType: "json",
-      error: this._createLoginAndRegister,
+      error: this._updateStatus,
       success: this._updateStatus
     });
   };
@@ -38,19 +43,15 @@ define([ "jquery", "lib/utils/template" ], function($, Template) {
   // Private Functions
   // -------------------------------------------------------------------------
 
-  Authenticator.prototype._getTemplate = function() {
-    return $("#js-user-nav-template").html();
-  };
-
   Authenticator.prototype._createLoginAndRegister = function() {
-    var template = $(_this._getTemplate()).filter(".js-user-signed-out-template").html();
+    var template = _this.$template.filter(".js-user-signed-out-template").html();
 
     $(".js-user-signed-in, .js-user-signed-out").remove();
-    $("#js-user-nav-template").after(template);
+    _this.templateContainer.after(template);
   };
 
   Authenticator.prototype._createUserMenu = function() {
-    var template = $(_this._getTemplate()).filter(".js-user-signed-in-template").html(),
+    var template = _this.$template.filter(".js-user-signed-in-template").html(),
         $rendered = $(Template.render(template, window.lp.user));
 
     if (window.lp.user.unreadMessageCount > 0) {
@@ -58,7 +59,7 @@ define([ "jquery", "lib/utils/template" ], function($, Template) {
     }
 
     $(".js-user-signed-in, .js-user-signed-out").remove();
-    $("#js-user-nav-template").after($rendered);
+    _this.templateContainer.after($rendered);
   };
 
   Authenticator.prototype._updateStatus = function(userStatus) {
