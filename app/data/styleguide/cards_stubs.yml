@@ -176,6 +176,13 @@ cards:
     :slug: "#"
     :title: "Cassis"
     :strapline: "Some information about Cassis and its environs"
+  -
+    :styleguide_title: "Place Card"
+    :slug: "#"
+    :title: "Madrid"
+    :style: "mini"
+    :image_url: "http://assets.staticlp.com/assets/stubs/article.jpg"
+    :icon: "insurance"
 
   -
     :styleguide_title: "Link Card"
