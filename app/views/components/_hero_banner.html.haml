@@ -1,4 +1,4 @@
-.hero-banner.row{style: "background-image: url(#{properties[:image_url]})"}
+.hero-banner.row{style: "background-image: url(#{properties[:image_url]})", class: properties[:image_info] ? 'hero-banner__flickr' : '' }
   .hero-banner__content.row__inner
 
     - if properties[:title] && properties[:strapline]

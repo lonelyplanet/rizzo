@@ -5,13 +5,18 @@
   overflow: hidden
   background-size: cover
   background-position: center center
+
   &:before
-    +bg-image-bottom-gradient
+    +bg-flat-image-overlay
     content: ''
     width: 100%
     height: 400px
     position: absolute
     z-index: 1
+
+.hero-banner__flickr
+  &:before
+    +bg-gradient-image-overlay
 
 .hero-banner__content
   z-index: 10
