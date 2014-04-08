@@ -1,3 +1,6 @@
 // [doc] Background gradient for images. 35% percent. [/doc]
-@mixin bg-image-bottom-gradient( $percent: 35%, $color: $darkgray )
-  background: linear-gradient(to bottom, rgba(255,255,255, 0) 100-$percent, rgba($darkblue, 0.5) 100%)
+@mixin bg-gradient-image-overlay( $percent: 0.35, $color: $darkgray )
+  background: linear-gradient(to bottom, rgba(255,255,255, 0) 0, rgba($darkgray, $percent) 100%)
+
+@mixin bg-flat-image-overlay( $percent: 0.35, $color: $darkgray )
+  background: rgba($darkgray, 0.5)
