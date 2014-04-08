@@ -51,7 +51,8 @@ define([ "jquery", "lib/utils/template" ], function($, Template) {
 
   Authenticator.prototype._createUserMenu = function() {
     var template = _this.$template.filter(".js-user-signed-in-template").html(),
-        $rendered = $(Template.render(template, window.lp.user));
+        $rendered = $(Template.render(template, window.lp.user)),
+        $userAvatar;
 
     if (window.lp.user.unreadMessageCount > 0) {
       $rendered.find(".js-unread-messages").removeClass("is-hidden");
@@ -60,6 +61,9 @@ define([ "jquery", "lib/utils/template" ], function($, Template) {
     // Remove any previously generated user navigation.
     $(".js-user-signed-in, .js-user-signed-out").remove();
     _this.templateContainer.after($rendered);
+
+    $userAvatar = $(".js-user-avatar");
+    $userAvatar.attr("src", $userAvatar.data("src"));
   };
 
   Authenticator.prototype._updateStatus = function(userStatus) {
