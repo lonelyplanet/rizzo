@@ -65,7 +65,9 @@ module FooterHelper
       {:title=>'flickr', :url=>'http://www.flickr.com/groups/lonelyplanetpublications/'},
       {:title=>'rss', :url=>'/blog/feed/atom/'},
       {:title=>'youtube', :url=>'http://www.youtube.com/user/LonelyPlanet'},
-      {:title=>'pinterest', :url=>'http://pinterest.com/lonelyplanet/'}
+      {:title=>'pinterest', :url=>'http://pinterest.com/lonelyplanet/'},
+      {:title=>'instagram', :url=>'http://instagram.com/lonelyplanet'},
+      {:title=>'vine', :url=>'https://vine.co/lonelyplanet'}
     ]
   end
 
