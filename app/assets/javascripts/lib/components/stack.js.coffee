@@ -111,6 +111,6 @@ define ['jquery','lib/extends/events', 'lib/components/world_places'], ($, Event
           if @_isPortrait($image.width(), $image.height()) then $image.addClass('is-portrait')
           i++
         else
-          @trigger(':page/updated')
+          @trigger(':page/changed')
           clearInterval insertCards
       , 20)

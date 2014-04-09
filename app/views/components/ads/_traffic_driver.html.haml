@@ -1,2 +1,2 @@
 - properties = properties || {}
-.adunit.adunit--traffic-driver{ id: properties[:id] || "js-ad-trafficDriver", data: { dimensions: properties[:sizes] || '192x380', extension: properties[:extension] || nil, targeting: properties[:targeting] || nil } }
+.adunit.adunit--traffic-driver{ id: properties[:id] || "js-ad-trafficDriver-#{Time.now.to_i}", data: { dimensions: properties[:sizes] || '192x380', extension: properties[:extension] || nil, targeting: properties[:targeting] || nil } }
