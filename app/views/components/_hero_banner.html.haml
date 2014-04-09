@@ -1,7 +1,29 @@
-.hero-banner.row{style: "background-image: url(#{properties[:image_url]})"}
+.hero-banner.js-bg-parallax.row{style: "background-image: url(#{properties[:image_url]})", class: properties[:image_info] ? 'hero-banner__flickr' : '' }
   .hero-banner__content.row__inner
-    .hero-banner__text
-      %h1.hero-banner__header
-        = properties[:title]
-      %p.hero-banner__strapline
-        = properties[:strapline]
+
+    - if properties[:title] && properties[:strapline]
+      .hero-banner__text
+        %h1.hero-banner__header
+          = properties[:title]
+        %p.hero-banner__strapline
+          = properties[:strapline]
+
+    - if properties[:image_info]
+      - image_info = properties[:image_info]
+      .hero-banner__image-content
+        .hero-banner__image-header
+          .icon--flickr.icon
+          .hero-banner__image-description
+            = image_info[:image_description]
+        .hero-banner__image-footer
+          .hero-banner__source
+            %img{:src => image_info[:user_image], class: 'hero-banner__avatar', :alt => image_info[:user_name]}
+            %span.hero-banner__source-text
+              by
+            %span.hero-banner__username
+              = image_info[:user_name]
+            %span.badge--green
+              Winner
+          .hero-banner__image-title
+            = image_info[:image_title]
+

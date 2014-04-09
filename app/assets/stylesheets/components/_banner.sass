@@ -1,17 +1,39 @@
 .hero-banner
   position: relative
   width: 100%
-  height: 400px
   overflow: hidden
   background-size: cover
-  background-position: center bottom
+  background-position: center 30%
+  height: 200px
+
+  +respond-to(medium-view)
+    height: 200px
+
+  +respond-to(wide-view)
+    height: 300px
+
+  +respond-to(1200)
+    height: 350px
+
+  &:before
+    +bg-flat-image-overlay
+    content: ''
+    width: 100%
+    height: 400px
+    position: absolute
+    z-index: 1
+
+.hero-banner__flickr
+  height: 400px
+
+  &:before
+    +bg-gradient-image-overlay
 
 .hero-banner__content
   z-index: 10
   position: relative
   color: white
   line-height: 1
-  font-weight: bold
   height: 100%
 
 .hero-banner__text
@@ -23,12 +45,67 @@
   +font-size(24)
   text-transform: uppercase
 
+
 .hero-banner__header
-  +font-size(100)
+  +font-size(45)
   text-transform: uppercase
   font-weight: bold
   line-height: .8
+  +respond-to(wide-view)
+    +font-size(85)
+
 
 .hero-banner__strapline
   +font-size(18)
+  font-weight: bold
   margin: 16px 0
+
+.hero-banner__image-footer
+  position: absolute
+  bottom: 15px
+  width: 100%
+
+
+.hero-banner__image-content
+  height: 100%
+  position: relative
+  .icon--flickr
+    width: 30px
+    height: 30px
+    float: left
+
+.hero-banner__image-header
+  position: relative
+  top: 30px
+
+.hero-banner__image-description
+  line-height: 33px
+  float: left
+  margin-left: 10px
+  font-weight: bold
+
+.hero-banner__source
+  +font-size(16)
+  word-spacing: 5px
+  color: #FFF
+  float: left
+
+.hero-banner__source-text
+  font-style: italic
+  font-weight: lighter
+
+.hero-banner__avatar
+  +size(50px)
+  border-radius: 50%
+  display: inline-block
+  vertical-align: middle
+
+.hero-banner__username
+  font-weight: bold
+  font-style: normal
+  color: #FFF
+
+.hero-banner__image-title
+  +font-size(18)
+  float: right
+  line-height: 50px
