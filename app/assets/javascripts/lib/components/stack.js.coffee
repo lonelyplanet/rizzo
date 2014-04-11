@@ -91,6 +91,7 @@ define ['jquery','lib/extends/events', 'lib/components/world_places'], ($, Event
 
     _clear: () ->
       @$el.find(@list).remove()
+      @$el.find('.nearby-cards').remove()
 
     _add: (newCards)->
       $cards = $(newCards).addClass('is-invisible')
