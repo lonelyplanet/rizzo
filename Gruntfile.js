@@ -177,6 +177,10 @@ module.exports = function(grunt) {
         options: {
           nospawn: true
         }
+      },
+      test: {
+        files: [ "app/assets/javascripts/lib/**/*.coffee", "spec/javascripts/lib/**/*.coffee", "app/assets/javascripts/lib/**/*.js", "spec/javascripts/lib/**/*.js" ],
+        tasks: [ "shell:cleanJs", "coffee", "copy", "connect", "jasmine" ]
       }
     },
     plato: {
@@ -207,6 +211,7 @@ module.exports = function(grunt) {
   // Tasks
   grunt.registerTask("default", [ "shell:cleanJs", "coffee", "copy", "connect", "jasmine" ]);
   grunt.registerTask("ci", [ "coffee", "copy", "connect", "jasmine" ]);
+  grunt.registerTask("jasmineTests", [ "watch:test" ]);
   grunt.registerTask("dev", [ "connect", "open:jasmine", "jasmine", "watch" ]);
   grunt.registerTask("wip", [ "jasmine:rizzo:build", "open:jasmine", "connect:server:keepalive" ]);
   grunt.registerTask("report", [ "shell:cleanJs", "coffee", "copy", "plato", "shell:openPlato" ]);
