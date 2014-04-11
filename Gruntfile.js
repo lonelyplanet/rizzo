@@ -123,6 +123,12 @@ module.exports = function(grunt) {
         src: [ "**/*.js", "**/**/*.js" ],
         dest: "./public/assets/javascripts/lib"
       },
+      bootstrap: {
+        expand: true,
+        cwd: "./app/assets/stylesheets/bootstrap",
+        src: [ "*.css", "*.sass" ],
+        dest: "./public/bootstrap"
+      },
       specs: {
         expand: true,
         cwd: "./spec/javascripts/lib",

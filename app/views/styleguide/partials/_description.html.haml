@@ -3,7 +3,7 @@
 
     .copy--h2.styleguide-block__heading #{properties.delete(:styleguide_title)}
     .styleguide__partial.copy--body
-      \= ui_component('#{component}', properties:
+      /= ui_component('#{component}', properties:
       %b {as_below}
       )
     %input.styleguide__input-copy.styleguide__partial.copy--body.is-hidden{ value: "= ui_component('#{component}', properties: properties)" }

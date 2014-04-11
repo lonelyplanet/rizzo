@@ -1,0 +1,31 @@
+= render 'styleguide/partials/shared'
+
+.card.styleguide-intro.copy--body.context--content
+  .clearfix
+    %h1.copy--h1 Bootstrapping Rizzo!
+    %p
+      This section is an internal resource for scaffolding projects which <strong>aren't</strong> going to be pulling in Rizzo as a service, or bundled with an application.
+
+.card.styleguide-block__description.copy--body.context--content
+  .clearfix
+    %h2.copy--h2 Using the CSS files
+    %p
+      Download the css/sass file that you need and include it in the head of your file:
+      %pre.styleguide.language-html
+        %code 
+          = preserve do
+            :escaped
+              <html>
+              <head>
+                <link href="rizzo-bootstrap.css" rel="stylesheet" />
+    %p
+      The rest of the styleguide will show how and when to use the CSS styles in your project.
+          
+.card.styleguide-block__description.copy--body.context--content
+  .clearfix
+    %h2.copy--h2 Possible Scenarios
+    %ul
+      %li blogs (on WordPress, Jekyll, etc)
+      %li quick mockup of project idea / proof of concept
+      %li offline projects
+      %li people who don't know or need to know how to include Rizzo in a project :)

@@ -170,6 +170,22 @@ class StyleguideController < GlobalController
     render '/styleguide/ui-components/ad-units'
   end
 
+  def bootstrapCSS
+    render '/styleguide/bootstrap/css'
+  end
+
+  def bootstrapJS
+    render '/styleguide/bootstrap/js'
+  end
+
+  def bootstrapHTML
+    render '/styleguide/bootstrap/html'
+  end
+
+  def bootstrapUsage
+    render '/styleguide/bootstrap/usage'
+  end
+
   #===== yeoman hook =====#
   # NB! The above line is required for our yeoman generator and should not be changed.
 end
