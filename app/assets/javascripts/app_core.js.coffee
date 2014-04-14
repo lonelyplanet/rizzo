@@ -1,4 +1,4 @@
-define ['jquery'], ($) ->
+require ['jquery'], ($) ->
   require ['lib/core/base', 'flamsteed', 'lib/utils/scroll_perf', 'polyfills/function_bind', 'trackjs', 'polyfills/xdr'], (Base, _FS, ScrollPerf) ->
     $ ->
       base = new Base()
