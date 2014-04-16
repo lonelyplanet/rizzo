@@ -8,11 +8,5 @@
         .tile__cover__content
 
           .tile__cover__heading
-            - if properties[:context]
-              %span.tile__context
-                = properties[:context]
             %h1.tile__title
               = properties[:title]
-          - if properties[:description]
-            %p.tile__description
-              = properties[:description]
