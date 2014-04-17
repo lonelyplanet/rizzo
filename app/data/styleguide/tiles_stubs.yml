@@ -1,0 +1,8 @@
+basic:
+  -
+    :styleguide_title: "Tile"
+    :link_url: "/styleguide/tiles"
+    :image_src: "http://assets.staticlp.com/assets/stubs/tile_sydney.jpg"
+    :image_alt: "Some dudes by the Opera House"
+    :context: "Article"
+    :title: "End of the road in Sydney"

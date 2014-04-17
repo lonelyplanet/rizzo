@@ -223,8 +223,12 @@ module StyleguideHelper
               slug: "cards"
             },
             {
-              name: "Headers",
-              slug: "headers"
+              name: "Tiles",
+              path: "tiles"
+            },
+            {
+              name: "Forms",
+              path: "forms"
             },
             {
               name: "Page title",
