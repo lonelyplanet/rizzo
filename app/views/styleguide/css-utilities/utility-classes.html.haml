@@ -1,0 +1,10 @@
+= render 'styleguide/partials/shared'
+
+.card.styleguide-intro.copy--body.context--content
+  .clearfix
+    %h1.copy--h1 General Utility Classes
+    %p
+      These are single responsibility classes designed to help reduce duplication in our Sass.
+
+- get_css("core/utilities/_utility_classes").each do |css|
+  = render "styleguide/partials/snippet", properties: css

@@ -1,0 +1,68 @@
+// ----------------------------------------------------------------------------
+//
+// Breadcrumbs navigation
+//
+// ----------------------------------------------------------------------------
+
+.nav__item--breadcrumbs
+  @extend %left-icon
+  padding: 20px 8px 18px 20px
+  line-height: 20px
+  color: $body-copy
+  &:before
+    height: 12px
+    width: 12px
+    margin-top: 4px
+  &.current
+    font-weight: bold
+    &:hover
+      text-decoration: none
+  .stack__intro &
+    font-weight: normal
+    padding: 0 0.2em 0 0.65em
+    &.current
+      font-weight: bold
+    &:before
+      content: '/'
+      // This stops the lower-left most part of the / from being cut off.
+      padding: 0 1px
+      top: -0.33em
+    &:first-child
+      padding-left: 0
+      &:before
+        content: ''
+    .responsive &
+      &.current
+        display: inline-block
+        padding-left: 0
+        &:before
+          display: none
+      +respond-to(medium-view)
+        &.current
+          padding-left: 0.65em
+          &:before
+            display: block
+
+// Qualified selector because not all breadcrumbs are links
+// with slugs and should not be underlined
+a.nav__item--breadcrumbs
+  &:hover
+    text-decoration: underline
+
+  .stack__intro &
+    +font-size(13)
+    color: $body-copy
+
+.nav__item--breadcrumbs--home
+  @extend %image-replacement
+  position: relative
+  width: 24px
+  height: 24px
+  top: 15px
+  &:before
+    width: 24px
+    height: 24px
+  .ie7 &
+    @extend .nav__item--breadcrumbs
+    text-indent: 0
+    width: auto

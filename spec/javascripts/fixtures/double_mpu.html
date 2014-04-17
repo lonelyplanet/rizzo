@@ -1,0 +1,38 @@
+<style>
+  .stack {
+    position: relative;
+    width: 800px;
+    overflow: hidden;
+  }
+  .card {
+    float: left;
+    height: 200px;
+  }
+  .card--single {
+    width: 200px;
+  }
+  .card--double {
+    width: 400px;
+  }
+  .ad-doubleMpu {
+    height: 400px;
+  }
+  iframe {
+    width: 400px;
+    height: 400px;
+  }
+</style>
+
+<div id="double-mpu" class="stack js-stack" style="width: 800px;">
+  <div class="card card--single js-card"></div>
+  <div class="card card--single js-card"></div>
+  <div class="card card--double card--ad js-card js-card-ad">
+    <div class="adunit">
+      <iframe src="javascript:'<html><body></body></html>';"></iframe>
+    </div>
+  </div>
+  <div class="card card--single js-card"></div>
+  <div class="card card--single js-card"></div>
+  <div class="card card--single js-card"></div>
+  <div class="card card--single js-card"></div>
+</div>

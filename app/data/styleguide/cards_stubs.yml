@@ -47,6 +47,22 @@ cards:
     :strapline: "Just a little article about the many ways to say hello"
 
   -
+    :styleguide_title: "Article Card"
+    :slug: "#"
+    :title: "The world's best housekeeper"
+    :style: "mini"
+    :image_url: "http://assets.staticlp.com/assets/stubs/article.jpg"
+    :icon: "housekeeping"
+
+  -
+    :styleguide_title: "Quote Card"
+    :slug: "#"
+    :title: "See your breakfast on the big screen - submit your Ulster fry film!"
+    :context: "Thorntree"
+    :name: "Shadyguy17"
+    :avatar: "http://assets.staticlp.com/assets/stubs/article.jpg"
+
+  -
     :styleguide_title: "Blog Card"
     :slug: "#"
     :title: "Hello"
@@ -54,9 +70,54 @@ cards:
     :subtitle: "Just a little blog about the many ways to say hello"
 
   -
+    :styleguide_title: "Lodging Card"
+    :slug: "#"
+    :name: "Bookable Hotel"
+    :card_description: "The world's greatest hotel in London"
+    :property_type: "hotel"
+    :hotel_star_ranking: "Five star hotel"
+    :bookable?: true
+    :lp_reviewed: true
+    :nearby_place_text: "Brixton"
+    :list_image:
+      url: "http://aff.bstatic.com/images/hotel/max300/134/13487616.jpg"
+
+  -
+    :styleguide_title: "Lodging Card"
+    :slug: "#"
+    :name: "Non Bookable Hotel"
+    :card_description: "This lodging isn't bookable online"
+    :property_type_title: "Guesthouse"
+    :top_choice: true
+
+  -
     :styleguide_title: "Shop Card"
     :slug: "#"
     :place_name: "Paris"
+
+  -
+    :styleguide_title: "Guide Card"
+    :url: "#"
+    :image_url: "http://media.lonelyplanet.com/shop/images/Miami___the_Keys_travel_guide_-_6th_Edition929784_Large.png"
+    :title: "Miami & The Keys Travel Guide"
+    :description: "Some information about what this book is all about."
+    :context: "Book"
+    :price_icon: :book
+    :currency_symbol: "$"
+    :price: 6.66
+
+  -
+    :styleguide_title: "Guide Card"
+    :url: "#"
+    :image_url: "http://media.lonelyplanet.com/shop/images/Miami___the_Keys_travel_guide_-_6th_Edition929784_Large.png"
+    :title: "Miami & The Keys Travel Guide"
+    :description: "Some information about what this book is all about."
+    :context: "Book"
+    :price_icon: :book
+    :on_sale_here?: true
+    :currency_symbol: "$"
+    :price: 6.66
+    :retail_price: 9.99
 
   -
     :styleguide_title: "Need to know Card"
@@ -95,6 +156,15 @@ cards:
   -
     :styleguide_title: "Place Card"
     :kind: "place"
+    :double?: "true"
+    :slug: "#"
+    :title: "Antarctic"
+    :image_url: "http://media.lonelyplanet.com/lpi/24571/24571-47/469x264.jpg"
+    :strapline: "Some stuff about Antarctic"
+
+  -
+    :styleguide_title: "Place Card"
+    :kind: "place"
     :slug: "#"
     :title: "Paris"
     :image_url: "http://assets.staticlp.com/assets/stubs/article.jpg"
@@ -106,6 +176,13 @@ cards:
     :slug: "#"
     :title: "Cassis"
     :strapline: "Some information about Cassis and its environs"
+  -
+    :styleguide_title: "Place Card"
+    :slug: "#"
+    :title: "Madrid"
+    :style: "mini"
+    :image_url: "http://assets.staticlp.com/assets/stubs/article.jpg"
+    :icon: "insurance"
 
   -
     :styleguide_title: "Link Card"

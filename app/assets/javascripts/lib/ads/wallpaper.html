@@ -27,7 +27,8 @@
         });
     }
 
-    container.onclick = function() {
+    container.onclick = function(e) {
+        if (e.currentTarget !== e.target) return;
         _win.open(adClickUrl);
     };
 
@@ -37,25 +38,6 @@
         impressionsImage.style.visibility = 'hidden';
         impressionsImage.style.width = '1px';
         impressionsImage.src = adImpressionUrl;
-    }
-
-    // This stops the ad getting clicked on when the site's *actual* content is clicked.
-    children = container.childNodes;
-    for (var i=0; i < children.length; i++) {
-        children[i].onclick = stopPropagation;
-    }
-
-    function stopPropagation(e) {
-        e = e || window.event; // cross browser event
-
-        // If stopPropagation exists, run it on the original event
-        if ( e.stopPropagation ) {
-            e.stopPropagation();
-        } else {
-            // Support: IE
-            // Set the cancelBubble property of the original event to true
-            e.cancelBubble = true;
-        }
     }
 </script>
 </head><body marginwidth="0" marginheight="0"></body></html>

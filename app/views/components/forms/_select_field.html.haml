@@ -1,4 +1,4 @@
-= render :layout => 'components/forms/partials/field', :locals => { id: properties[:id], label: properties[:label], error: properties[:error] } do
+= render :layout => 'components/forms/partials/field', :locals => { id: properties[:id], label: properties[:label], error: properties[:error], tooltip: properties[:tooltip] } do
   - properties[:fields].each_with_index do |dropdown, i|
 
     - field_id = i==0 ? properties[:id] : "#{properties[:id]}-#{i}"
@@ -20,11 +20,13 @@
       - else
         - dropdown_class = "dropdown--middle"
 
-    - if dropdown[:error]
+    - if dropdown[:error] || dropdown[:has_error]
       - input_class += " field__input--error"
 
     .input__container.js-input{ class: input_class }
-      = ui_component('forms/dropdown', properties: { id: field_id, name: dropdown[:name], placeholder: dropdown[:placeholder], options: dropdown[:options], class: dropdown_class, selected: dropdown[:selected], data: dropdown[:data] })
+
+      = ui_component('forms/dropdown', properties: { id: field_id, name: dropdown[:name], placeholder: dropdown[:placeholder], options: dropdown[:options], class: dropdown_class, selected: dropdown[:selected], tooltip: properties[:tooltip], data: dropdown[:data] })
+
     - if dropdown[:error]
       .field__error.js-error
         = dropdown[:error]

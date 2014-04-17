@@ -8,5 +8,6 @@
       )
     %input.styleguide__input-copy.styleguide__partial.copy--body.is-hidden{ value: "= ui_component('#{component}', properties: properties)" }
     %pre.styleguide.copy--body.language-ruby
-      %code #{JSON.pretty_generate properties}
-
+      %code
+        - formatted = JSON.pretty_generate properties
+        %code #{formatted.gsub(/\"(\S+)?\":/, '\1:')}

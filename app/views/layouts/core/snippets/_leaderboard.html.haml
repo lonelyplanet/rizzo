@@ -1,4 +1,6 @@
+- properties = @leaderboard_targeting.nil? ? nil : { targeting: @leaderboard_targeting }
 .row.row--leaderboard.is-closed{ class: defined?(additional_row_class) ? additional_row_class : "" }
   .row__inner
     .ad-leaderboard
-      #js-ad-leaderboard.ad-leaderboard__inner
+      .ad-leaderboard__inner
+        = ui_component('ads/leaderboard', properties: properties)

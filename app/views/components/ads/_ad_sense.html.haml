@@ -1,0 +1,42 @@
+-# TODO: Upgrade this to DFP
+- properties = properties || {}
+#js-ad-adSense
+  :javascript
+    //<![CDATA[
+    google_ad_client = 'ca-pub-7631757607433655';
+    google_hints = "#{ properties[:hints] || '' }";
+    google_ad_channel = "#{ properties[:channels] || '' }";
+    google_ad_output = 'js';
+
+    google_max_num_ads = 3;
+    google_ad_type = 'text';
+    google_feedback = 'on';
+
+    google_test = 'on';
+
+    window.google_ad_request_done = function(google_ads) {
+      var adHtml, feedback_link, googleAd, i;
+
+      if (google_ads.length === 0) {
+        return;
+      }
+
+      feedback_link = google_info ? google_info.feedback_url : "http://www.google.com/adsense";
+      adHtml = '<p class="googleHeading"><a rel="external" href=\"' + feedback_link + '\">Ads by Google</a></p>';
+
+      i = 0;
+      while (i < google_ads.length) {
+        googleAd = google_ads[i];
+        adHtml += '<div class="ad">';
+        adHtml += '  <p class="title"><a href="' + googleAd.url + '">' + googleAd.line1 + '</a></p>';
+        adHtml += '  <p>' + googleAd.line2 + ' ' + googleAd.line3 + '</p>';
+        adHtml += '  <p><a href="' + googleAd.url + '">' + googleAd.visible_url + '</a></p>';
+        adHtml += '</div>';
+        i++;
+      }
+
+      document.getElementById('js-ad-adSense').innerHTML += adHtml;
+    };
+    //]]>
+
+  %script{ :type => "text/javascript", :src  => "//pagead2.googlesyndication.com/pagead/show_ads.js" }

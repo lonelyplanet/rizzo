@@ -1,60 +1,41 @@
-@import '_base_helpers'
-@import '_common-ui/_links'
-@import '_common-ui/_copy'
-@import '_common-ui/_tabs'
-@import '_common-ui/_pagination'
-@import '_common-ui/_nearby_pois'
-@import '_common-ui/_read_more_toggle'
-@import '_common-ui/_icon-list'
-@import '_common-ui/_info-list'
-@import '_common-ui/_maps'
-@import '_common-ui/_media-gallery'
-@import '_common-ui/_meta-info-box'
-@import '_common-ui/_preloader'
-@import '_common-ui/_slider'
-@import '_common-ui/_forms'
-@import '_common-ui/_inputs'
-
-@import '_common-ui/cards/_cards_base'
-@import '_common-ui/cards/_card_sizes'
-@import '_common-ui/cards/_card_badges'
-@import '_common-ui/cards/_card_appearance'
-@import '_common-ui/cards/_card_page'
-
-@import '_common-ui/tiles/_tiles_base'
-@import '_common-ui/tiles/_tile_variations'
-
-@import '_common-ui/_left_nav'
-@import '_common-ui/_tags'
-@import '_common-ui/_badges'
-@import '_common-ui/_stack'
-@import '_common-ui/_stack_articles'
-@import '_common-ui/_icons/_pois_sprite'
-@import '_common-ui/_datepicker'
-@import '_common-ui/_tooltip'
-@import '_common-ui/_maps'
-@import '_common-ui/_text_icons'
-@import '_common-ui/_activity_list'
-@import '_common-ui/_alerts'
-/*===== yeoman hook =====*/
-/*===== NB! The above line is required for our yeoman generator and should not be changed. =====*/
+@import "base_helpers"
+@import "sprites/pois_sprite"
+@import "components/*"
+@import "prism"
 
 .box
-  +box-sizing
+  box-sizing: border-box
   padding: 20px
 
 pre[class*="language-"]
-  +box-sizing()
+  box-sizing: border-box
   padding: 1em
   overflow: auto
-  max-height: 300px
+  max-height: 200px
+  background: $body-background-offset
+  border-top: 1px solid #DEE2E6
+  border-bottom: 1px solid #DEE2E6
+
   .tag
     +font-size(16)
     margin: 0
     float: none
 
+pre[class*="language-"].styleguide
+  margin: 20px -20px 10px
+  font-size: 15px
+  .styleguide-intro__inner &
+    margin: 0
+
 pre.styleguide.is-open
   max-height: none
+  &:after
+    background: none
+
+.snippet-expand
+  width: 100%
+  border-radius: 0 0 4px 4px
+  margin-bottom: -15px
 
 .clearfix
   @extend %clearfix
@@ -63,12 +44,12 @@ pre.styleguide.is-open
   display: none
 .is-exact
   position: relative
-  &:after
-    color: white
-    font-size: 5em
+  &:before
+    width: 20px
+    height: 20px
     position: absolute
-    right: 10px
-    top: 20px
+    left: 10px
+    top: 10px
 
 .title--styleguide
   color: white
@@ -76,6 +57,9 @@ pre.styleguide.is-open
 
 .styleguide-intro
   padding: 25px
+
+.styleguide-intro__section
+  margin-bottom: 20px
 
 .styleguide-block
   @extend %clearfix
@@ -88,14 +72,27 @@ pre.styleguide.is-open
 .styleguide__subtitle
   margin: 20px 10px
 
-.styleguide-block__buttons,
+.styleguide-block__buttons
+  .styleguide-block__heading
+    padding: 5px 0
+    margin-bottom: 0
+  pre.language-markup
+    padding: 7px
+    line-height: 1
+    span, &
+      font-size: 14px
+  .styleguide-block__items
+    margin-bottom: 20px
+  .styleguide-block__item
+    margin: 0
+  .styleguide-block__description
+    min-height: 120px
+
 .styleguide-block__badges
   .styleguide-block__item
     margin-right: 10px
     margin-top: 0
-    min-width: 200px
-  .styleguide-block__items
-    margin-top: 20px
+
   pre[class*="language-"]
     margin: 2px 0 0
     padding: 7px
@@ -103,8 +100,11 @@ pre.styleguide.is-open
       +font-size(14)
 
 .styleguide-block__badges
+  .styleguide-block__items
+    margin-top: 20px
   .styleguide-block__item
     min-width: 100px
+    padding-top: 7px
 
 .styleguide-block__item
   min-height: 40px
@@ -114,33 +114,54 @@ pre.styleguide.is-open
   margin-bottom: 0
   padding: 20px
 
-.styleguide-block__item--colour
-  +border-radius(100)
-  +vertically-center(100)
-  border: 2px solid #FFF
-  color: white
-  float: left
-  margin: 0 20px 0 0
+.styleguide__colours
   text-align: center
-  width: 100px
+  .copy--h4
+    padding: 10px
+  .card
+    @extend %rounded-corners
+    overflow: hidden
+
+.styleguide-block__item--colour
+  font-size: 13px
+  padding: 12px 0
+  color: white
+  margin: 0
 
   &.is-light
-    border-color: $body-background
     color: $body-copy
   .is-approximate &
     border-color: transparent
 
 .styleguide-block__description
-  +box-sizing()
+  box-sizing: border-box
   overflow: hidden
   padding: 20px
 
 .styleguide-block__heading
   margin-top: 0
 
+.styleguide-block__tooltips
+  .styleguide-block__description
+    overflow: visible
+  .tooltip--left,
+  .tooltip--right
+    width: 165px
+  .tooltip--left
+    right: 103%
+  .tooltip--right
+    left: 103%
+  .tooltip--hover:hover,
+  .tooltip--focus:focus
+    .tooltip--left, + .tooltip--left
+      right: 101%
+    .tooltip--right, + .tooltip--right
+      left: 101%
+  .tooltip--focus
+
 .styleguide__partial
-  border: 2px solid $body-background
-  padding: 5px
+  padding: 10px 0
+  font-weight: bold
 
 .filter--links
   min-width: 200px
@@ -194,11 +215,58 @@ pre.styleguide.is-open
   [class*="icon--"]
     height: 40px
     width: 40px
-    margin: 0 auto
+    margin-left: 10px
+  [class*="icon--"][class*="--pin"]
+    width: 28px
+  [class*="icon--"][class*="--simple"]
+    width: 30px
+  [class*="icon--"][class*="--place--pin"]
+    width: 40px
+  .icon--lp-logo
+    width: 70px
+  .icon--collar
+    width: 70px
+    height: 20px
+    margin: 10px
+  .icon.icon--pinterest
+    width: 40px
   .is-white
     background-color: $body-copy
     color: white
 
+  .icon__name
+    text-align: right
+    padding: 10px
+    font-size: 12px
+
+.styleguide-intro--icons
+  .styleguide-intro__inner
+    @extend %transition--base
+    overflow: hidden
+    height: 365px
+    &.is-closed
+      height: 100px
+
+
+
 .filter--links
   .svg-colourise
     width: 170px
+
+.lightbox
+  height: 600px
+  width: 800px
+
+.nav--left__item--konami
+  transition: all 0.5s ease
+  border-bottom: 0
+  height: 0
+  margin: 0
+  overflow: hidden
+  padding-bottom: 0
+  padding-top: 0
+  &.is-visible
+    border-bottom: 1px solid $body-background-offset
+    height: 17px
+    padding-bottom: 12px
+    padding-top: 12px

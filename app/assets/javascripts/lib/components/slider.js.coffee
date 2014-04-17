@@ -11,13 +11,12 @@ define ['jquery', 'lib/extends/events', 'lib/utils/page_state'], ($, EventEmitte
     for key, value of EventEmitter
       @prototype[key] = value
 
-    LISTENER = '#js-slider'
-
     # Default config
     config =
       slides: ".slider__slide"
       slides_container: ".slider__container"
       slides_viewport: ".slider__viewport"
+      controls: true
       deferLoading: false
 
     # @params {}
@@ -26,21 +25,18 @@ define ['jquery', 'lib/extends/events', 'lib/utils/page_state'], ($, EventEmitte
     # slides_container: {string} selector for the element containing the slides
     constructor: (args) ->
       $.extend config, args
-
       @current_slide = 1
       @$el = $(config.el)
       @$slides = @$el.find(config.slides)
       @numSlides = @$el.find(@$slides).length
+      @$currentSlide = @$slides.filter('.is-current')
+      @$listener = $(args.$listener || "#js-row-content")
 
       if @$el.length is 0 or @numSlides < 2
         return false
 
       @$slides_container = @$el.find(config.slides_container)
       @$slides_viewport = @$el.find(config.slides_viewport)
-      @$slider_controls = $('<div class="slider__controls no-print"></div>')
-      @$slider_pagination = $('<div class="slider__pagination no-print"></div>')
-      @$next = $("<a href='#' class='slider__control slider__control--next icon--chevron-right--before icon--white--before'>2 of #{@numSlides}</a>")
-      @$prev = $("<a href='#' class='slider__control slider__control--prev icon--chevron-left--after icon--white--after'>#{@numSlides} of #{@numSlides}</a>")
 
       # Don't add the class to the @$el if there's already a @$slides_viewport defined.
       if @$slides_viewport.length is 0
@@ -59,73 +55,76 @@ define ['jquery', 'lib/extends/events', 'lib/utils/page_state'], ($, EventEmitte
         $('input[name="'+$(this).attr('for')+'"]').toggleClass('is-checked')
 
     init: ->
-      @$slider_controls.append(@$next, @$prev)
-      @$slider_controls_container.append(@$slider_controls)
+      if @$currentSlide.length
+        @_goToSlide(@$slides.index(@$currentSlide) + 1)
 
       @$slides_container.width('' + (@$slides.length * 100) + '%')
 
-      pagination = ''
+      if config.controls
+        @$slider_controls = $('<div class="slider__controls no-print"></div>')
+        @$slider_pagination = $('<div class="slider__pagination no-print"></div>')
+        @$next = $("<a href='#' class='slider__control slider__control--next icon--chevron-right--before icon--white--before'>2 of #{@numSlides}</a>")
+        @$prev = $("<a href='#' class='slider__control slider__control--prev icon--chevron-left--after icon--white--after'>#{@numSlides} of #{@numSlides}</a>")
 
-      @$slides.each (i) =>
-        pagination += "<a href='#' class='slider__pagination--link'>#{i+1}</a>"
+        @$slider_controls.append(@$next, @$prev)
+        @$slider_controls_container.append(@$slider_controls)
 
-      @$slider_pagination.append(pagination)
+        pagination = ''
 
-      @$slider_controls_container.append(@$slider_pagination)
+        @$slides.each (i) =>
+          pagination += "<a href='#' class='slider__pagination--link'>#{i+1}</a>"
 
-      @_fadeControls()
+        @$slider_pagination.append(pagination)
 
-      slideLinks = @$slider_pagination.find('.slider__pagination--link')
+        @$slider_controls_container.append(@$slider_pagination)
 
-      slideLinks.on
-        'click': (e) =>
-          i = parseInt(e.target.innerHTML, 10)
+        @_fadeControls()
 
-          @$slides.removeClass('is-potentially-next')
+        slideLinks = @$slider_pagination.find('.slider__pagination--link')
 
-          @_goToSlide(i)
+        slideLinks.on
+          'click': (e) =>
+            i = parseInt(e.target.innerHTML, 10)
+
+            @$slides.removeClass('is-potentially-next')
+
+            @_goToSlide(i)
+            return false
+
+          'mouseenter': (e) => # in
+            index = parseInt(e.target.innerHTML, 10)
+
+            @$el.removeClass('is-animating')
+            @$slides.removeClass('is-potentially-next')
+
+            @$slides.eq(index - 1).addClass('is-potentially-next')
+
+            @_loadHiddenContent(@$slides) if config.deferLoading
+
+          'mouseleave': (e) => # out
+            @$slides.removeClass('is-potentially-next')
+
+        @$next.on 'click', =>
+          @_nextSlide()
           return false
 
-        'mouseenter': (e) => # in
-          index = parseInt(e.target.innerHTML, 10)
+        @$prev.on 'click', =>
+          @_previousSlide()
+          return false
 
-          @$el.removeClass('is-animating')
-          @$slides.removeClass('is-potentially-next')
+        @$next.on 'mouseenter click', =>
+          @_loadHiddenContent(@$el.find(@$slides)) if config.deferLoading
 
-          @$slides.eq(index - 1).addClass('is-potentially-next')
-
-          @_loadHiddenContent(@$slides) if config.deferLoading
-
-        'mouseleave': (e) => # out
-          @$slides.removeClass('is-potentially-next')
-
-      @$next.on 'click', =>
-        @_nextSlide()
-        return false
-
-      @$prev.on 'click', =>
-        @_previousSlide()
-        return false
-
-      @$next.on 'mouseenter click', =>
-        @_loadHiddenContent(@$el.find(@$slides)) if config.deferLoading
-
-      @$next.on 'mouseenter click', =>
-        @_loadHiddenContent(@$el.find(@$slides)) if config.deferLoading
+        @$next.on 'mouseenter click', =>
+          @_loadHiddenContent(@$el.find(@$slides)) if config.deferLoading
 
       @_updateCount()
 
-      # if @page.isLegacy() && !!window.addEventListener
-      #   require ['pointer','touchwipe'], =>
-      #     # Swiping navigation.
-      #     @$el.touchwipe
-      #       wipeLeft: =>
-      #         @_nextSlide()
-      #       wipeRight: =>
-      #         @_previousSlide()
-      #       min_move_x: 100
-      #       min_move_y: 100
-      #       preventDefaultEvents: true
+      @$slides_viewport.removeClass('is-loading')
+
+      @$listener.on(':slider/next', @_nextSlide)
+      @$listener.on(':slider/previous', @_previousSlide)
+
 
     # Private
 
@@ -134,18 +133,12 @@ define ['jquery', 'lib/extends/events', 'lib/utils/page_state'], ($, EventEmitte
       config.deferLoading = false
 
     _nextSlide: ->
-      return if @current_slide is @$slides.length
-      @current_slide++
-      percentOffset = (@current_slide - 1) * 100
-      @$slides_container.css('marginLeft', (-1 * percentOffset)+'%')
-      @_updateCount()
+      return if @$slides_viewport.is('.at-end')
+      @_goToSlide @current_slide + 1
 
     _previousSlide: ->
-      return if @current_slide is 0
-      @current_slide--
-      percentOffset = (@current_slide - 1) * 100
-      @$slides_container.css('marginLeft', (-1 * percentOffset)+'%')
-      @_updateCount()
+      return if @$slides_viewport.is('.at-beginning')
+      @_goToSlide @current_slide - 1
 
     _goToSlide: (index) ->
       if index < 1
@@ -156,10 +149,18 @@ define ['jquery', 'lib/extends/events', 'lib/utils/page_state'], ($, EventEmitte
       percentOffset = (index - 1) * 100
       @$slides_container.css('marginLeft', (-1 * percentOffset)+'%')
       @current_slide = index
+      @_updateSlideClasses()
       @_updateCount()
 
+    _updateSlideClasses: ->
+      @$slides.removeClass('is-current is-previous is-next')
+      @$slides.eq(@current_slide - 1).addClass('is-current')
+      .prev().addClass('is-previous').end()
+      .next().addClass('is-next')
+      @$slides.removeClass('is-hidden')
+
     _updateCount: ->
-      currentHTML = $('.slider__control--next').html()
+      currentHTML = $('.slider__control--next').html() || ""
       nextIndex = @current_slide + 1
       prevIndex = @current_slide - 1
 

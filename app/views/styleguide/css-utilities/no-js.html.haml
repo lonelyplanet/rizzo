@@ -1,0 +1,12 @@
+= render 'styleguide/partials/shared'
+
+.card.styleguide-intro.copy--body.context--content
+  .clearfix
+    %h1.copy--h1 No Javascript
+    %p
+      These classes can be used to help our features degrade gracefully for users without Javascript enabled.
+    %p
+      These styles do not apply to the period of time when JS is loading.
+
+- get_css("core/utilities/_no_js").each do |css|
+  = render "styleguide/partials/snippet", properties: css

@@ -1,4 +1,4 @@
-define ['jsmin', 'lib/utils/page_state', 'lib/extends/events'], ($, PageState, EventEmitter) ->
+define ['jquery', 'lib/utils/page_state', 'lib/extends/events'], ($, PageState, EventEmitter) ->
 
   class PrepareSlider extends PageState
 

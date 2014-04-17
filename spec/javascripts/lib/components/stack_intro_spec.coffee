@@ -10,7 +10,7 @@ require ['public/assets/javascripts/lib/components/stack_intro.js'], (StackIntro
         expect(StackIntro).toBeDefined()
 
     describe 'default instance', ->
-      
+
       beforeEach ->
         loadFixtures('stack_intro.html')
         @stackIntro = new StackIntro({el: '.js-stack-intro'})
@@ -61,8 +61,8 @@ require ['public/assets/javascripts/lib/components/stack_intro.js'], (StackIntro
         expect($("#{window.stackIntro.config.lead}")).toHaveText(lead)
 
 
-    describe 'content visibility', ->    
-      
+    describe 'content visibility', ->
+
       beforeEach ->
         loadFixtures('stack_intro.html')
         @stackIntro = new StackIntro({el: '.js-stack-intro'})
@@ -70,12 +70,12 @@ require ['public/assets/javascripts/lib/components/stack_intro.js'], (StackIntro
       it 'hides lead container', ->
         lead = ''
         @stackIntro._update({lead: lead})
-        expect($("#{@stackIntro.config.lead}")).toBeHidden()
+        expect($("#{@stackIntro.config.lead}")).toHaveClass("is-hidden")
 
       it 'shows lead container', ->
         lead = 'Lorem ipsum dolor sit amet'
         @stackIntro._update({lead: lead})
-        expect($("#{@stackIntro.config.lead}")).toBeVisible()  
+        expect($("#{@stackIntro.config.lead}")).not.toHaveClass("is-hidden")
 
 
     # --------------------------------------------------------------------------
@@ -95,9 +95,9 @@ require ['public/assets/javascripts/lib/components/stack_intro.js'], (StackIntro
         spyOn(@stackIntro, "_update")
 
       it 'cards/received', ->
-        $(LISTENER).trigger(':cards/received', data)  
+        $(LISTENER).trigger(':cards/received', data)
         expect(@stackIntro._update).toHaveBeenCalledWith(data.copy)
 
       it 'page/received', ->
-        $(LISTENER).trigger(':page/received', data)  
+        $(LISTENER).trigger(':page/received', data)
         expect(@stackIntro._update).toHaveBeenCalledWith(data.copy)

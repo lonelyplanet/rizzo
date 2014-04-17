@@ -35,10 +35,15 @@ module AssetHelper
 
   def async_js_path (script_name, opts = {})
     if opts[:mobile]
-      asset_path("#{script_name}_mobile.js")
+      normalised_asset_path("#{script_name}_mobile.js")
     else
-      asset_path("#{script_name}.js")
+      normalised_asset_path("#{script_name}.js")
     end
+  end
+
+  # Rails 3 and 4 deal with assets differently
+  def normalised_asset_path (asset_name)
+    asset_path(asset_name).sub(/(.*\.com)?\/?(assets\/)?\/?(.*)/, '\1/assets/\3')
   end
 
 end

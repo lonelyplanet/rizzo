@@ -13,7 +13,7 @@ require ['public/assets/javascripts/lib/core/shopping_cart'], (ShoppingCart) ->
 
       beforeEach ->
         document.cookie = 'shopCartCookie=""'
-        loadFixtures('userBox.html')
+        loadFixtures('shopping_cart.html')
         @shoppingCart = new ShoppingCart()
 
       it 'hides the shopping basket element', ->
@@ -27,7 +27,7 @@ require ['public/assets/javascripts/lib/core/shopping_cart'], (ShoppingCart) ->
     describe 'Has shopping items', ->
 
       beforeEach ->
-        loadFixtures('userBox.html')
+        loadFixtures('shopping_cart.html')
         cartData = {"D":78,"F":2653,"A":["5904","5904-DIGITAL_ONLY"]}
         document.cookie = 'shopCartCookie=' + escape(JSON.stringify(cartData))
         @shoppingCart = new ShoppingCart()
@@ -46,4 +46,3 @@ require ['public/assets/javascripts/lib/core/shopping_cart'], (ShoppingCart) ->
       it 'shows the number of shopping items', ->
         basketItems = $('span.js-basket-items').text()
         expect(basketItems).toBe('2')
-

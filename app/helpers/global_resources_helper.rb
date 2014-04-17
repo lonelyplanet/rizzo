@@ -44,8 +44,9 @@ module GlobalResourcesHelper
         submenu: [
           {title:'Hotels', uri:'http://www.lonelyplanet.com/hotels', style:'hotels', icon_class: 'icon--hotel--before'},
           {title:'Flights', uri:'http://www.lonelyplanet.com/flights/', style:'flights', icon_class: 'icon--flights--before'},
+          {title:'Car Rental', uri:'http://www.lonelyplanet.com/car-rental/', style:'car-rental', icon_class: 'icon--car--before'},
           {title:'Adventure tours', uri:'http://www.lonelyplanet.com/adventure-tours/', style:'adventure-tours', icon_class: 'icon--tour--before'},
-          {title:'Sightseeing tours', uri:'http://www.lonelyplanet.com/sightseeing-tours/', style:'sightseeing-tours', icon_class: 'icon--activity--before'}
+          {title:'Sightseeing tours', uri:'http://www.lonelyplanet.com/sightseeing-tours/', style:'sightseeing-tours', icon_class: 'icon--activity--before'},
         ]
       },
       {title:'Insurance', uri: "http://www.lonelyplanet.com/travel-insurance", icon_class: 'icon--insurance--line--before icon--white--before'}
@@ -82,7 +83,7 @@ module GlobalResourcesHelper
   end
 
   def place_heading(title, section_name, slug, parent, parent_slug, no_place_link = false)
-    
+
     capture_haml do
       haml_tag(:div, class: 'place-title icon--destination-flag--before') do
         if no_place_link == true
@@ -107,19 +108,6 @@ module GlobalResourcesHelper
       end
     end
   end
-  
-  def errbit_notifier
-    unless params[:errbit] == 'false'
-      haml_tag(:script, src:"//rizzo.lonelyplanet.com/assets/errbit_notifier.js")
-      haml_tag :script do
-        haml_concat "window.Airbrake = (typeof(Airbrake) == 'undefined' && typeof(Hoptoad) != 'undefined') ? Hoptoad : Airbrake;"
-        haml_concat "window.Airbrake.setKey('#{Airbrake.configuration.js_api_key}');"
-        haml_concat "window.Airbrake.setHost('#{Airbrake.configuration.host.dup}:#{Airbrake.configuration.port}');"
-        haml_concat "window.Airbrake.setEnvironment('#{Airbrake.configuration.environment_name}');"
-        haml_concat "window.Airbrake.setErrorDefaults({ url: '#{request.url}', component: '#{controller_name}', action: '#{action_name}' });"
-      end
-    end
-  end
 
   def breadcrumbs_nav(breadcrumb_content)
     render :partial=>'layouts/core/snippets/footer_breadcrumbs', locals: {breadcrumbs: breadcrumb_content} if breadcrumb_content.present?
@@ -132,7 +120,7 @@ module GlobalResourcesHelper
       elsif breadcrumb[:slug].blank?
         haml_tag(:span, class: "nav__item js-nav-item nav__item--breadcrumbs icon--chevron-right--before", itemprop: "url") { haml_concat breadcrumb[:place] }
       else
-        haml_tag(:a, class: "nav__item js-nav-item nav__item--breadcrumbs icon--chevron-right--before", href: "http://www.lonelyplanet.com/#{breadcrumb[:slug]}", itemprop:"url") { haml_concat breadcrumb[:place] } 
+        haml_tag(:a, class: "nav__item js-nav-item nav__item--breadcrumbs icon--chevron-right--before", href: "http://www.lonelyplanet.com/#{breadcrumb[:slug]}", itemprop:"url") { haml_concat breadcrumb[:place] }
       end
     end
   end

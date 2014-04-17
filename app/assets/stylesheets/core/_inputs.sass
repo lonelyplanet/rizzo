@@ -1,0 +1,221 @@
+// ----------------------------------------------------------------------------
+//
+//  Input defaults
+//
+// ----------------------------------------------------------------------------
+
+input, textarea
+  @extend %lp-font-stack
+  box-sizing: border-box
+  border: none
+  outline: 0
+
+input[type="submit"]
+  cursor: pointer
+
+// ----------------------------------------------------------------------------
+// Inputs
+// ----------------------------------------------------------------------------
+
+
+.input
+  @extend %rounded-corners
+  box-sizing: border-box
+  transition: background 0.3s ease
+  background-color: $body-background-offset
+  border: 1px solid $body-background-offset
+  color: $body-copy
+  padding: 9px 10px
+  width: 100%
+  +placeholder()
+    color: $feature-copy
+
+  &:focus
+    background-color: #fff
+    border: 1px solid $details-panel-border
+
+  .standout &
+    background-color: #fff
+
+    &:focus
+      background-color: #fff
+      border: 1px solid $details-panel-border
+
+// ----------------------------------------------------------------------------
+//
+// Header: Search Form
+//
+// ----------------------------------------------------------------------------
+
+.search--primary
+  border-radius: 16px
+  background-color: $row-primary--darker
+  overflow: hidden
+  margin: 13px 0 12px
+  @if $is-ie
+    float: left
+  .responsive &
+    background-color: white
+    width: 75%
+    margin: 13px auto 12px
+    +respond-to(wide-view)
+      background-color: $row-primary--darker
+      width: auto
+      margin: 13px 0 12px
+
+.search--primary--mobile
+  display: none
+  .responsive &
+    display: block
+    +respond-to(wide-view)
+      display: none
+
+.search--primary--wv
+  @extend %inline-block
+  .responsive &
+    display: none
+    +respond-to(wide-view)
+      display: inline-block
+
+.search__input--primary
+  @extend %transition--base
+  background: transparent
+  color: $nav-primary-type
+  display: inline-block
+  height: 30px
+  padding: 0 10px
+  vertical-align: top
+  width: 170px
+  &:focus
+    box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.2) inset
+    background: white
+    color: $body-copy
+    width: 210px
+  .responsive &
+    width: 80%
+    &:focus
+      width: 80%
+      box-shadow: none
+    +respond-to(wide-view)
+      width: 170px
+      &:focus
+        width: 210px
+        box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.2) inset
+
+  .ie8 &
+    line-height: 16px
+    padding: 7px 10px
+
+.search__button
+  @extend %transition--base
+  background-color: transparent
+  border: 0
+  cursor: pointer
+  height: 30px
+  padding: 0
+  vertical-align: top
+  &:hover
+    background-color: $header-blue
+  .responsive &
+    float: right
+    +respond-to(wide-view)
+      float: none
+
+.search__button--icon
+  @extend %image-replacement
+  display: block
+  height: 16px
+  margin: 0 8px
+  padding: 0
+  width: 16px
+  opacity: 0.7
+  background-size: 16px
+
+// -----------------------------------------------------------------------------
+//
+// Footer: Language Selection
+//
+// -----------------------------------------------------------------------------
+
+.form--language
+  .responsive &
+    text-align: center
+    label
+      text-align: left
+    +respond-to(wide-view)
+      text-align: left
+
+.form--language__label
+  margin-right: 10px
+  line-height: 30px
+
+.dropdown--language
+  width: 86px
+  .ie7 &
+    overflow: hidden
+
+// Footer select is slightly smaller so reduce padding and re-align chevron
+.dropdown__value--language
+  +font-size(12)
+  padding-top: 9px
+  padding-bottom: 8px
+  border: none
+  // Container is large enough so we can remove new formatting context
+  overflow: visible
+  .responsive &
+    top: 0
+
+.submit--language
+  display: none
+  .no-js &
+    display: block
+    @extend %rounded-corners
+    padding: 8px
+    position: inherit
+
+
+// -----------------------------------------------------------------------------
+//
+// Footer: Newsletter Country Selection
+//
+// -----------------------------------------------------------------------------
+
+.newsletter--footer
+  +font-size(14)
+  .responsive &
+    margin-bottom: 20px
+    +respond-to(wide-view)
+      margin-bottom: 0
+      width: 100%
+  .btn--green
+    font-weight: bold
+
+.newsletter--placeholder
+  position: static
+  display: block
+  margin-bottom: 5px
+  font-weight: bold
+
+.input--small--newsletter
+  @extend %rounded-corners
+  background-color: #fff
+  color: $body-copy
+  padding: 10px
+  width: 100%
+  color: $body-copy
+  +placeholder()
+    color: $body-copy
+  .responsive &
+    +font-size(16) // Prevent zoom on iOS
+  .ie7 &
+    width: auto
+
+.dropdown--country
+  margin: 7px 0
+
+.dropdown__value--country
+  border: none
+  padding-top: 11px
+  padding-bottom: 11px
+  .responsive &
+    +font-size(16) // Prevent zoom on iOS

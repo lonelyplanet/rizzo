@@ -1,0 +1,100 @@
+// ----------------------------------------------------------------------------
+// Custom Select Dropdown
+//
+// Pseudo element has height, background-color and left padding in order to mask
+// the content of dropdown__value if it extends beyond its container
+// ----------------------------------------------------------------------------
+
+.dropdown
+  position: relative
+
+.dropdown--half
+  float: left
+  width: 50%
+
+.dropdown--third
+  float: left
+  width: 33.3%
+
+.dropdown__value
+  @extend %rounded-corners
+  @extend %right-icon
+  word-wrap: break-word
+  box-sizing: border-box
+  font-weight: bold
+  background-color: $body-background-offset
+  border: 1px solid $body-background-offset
+  box-shadow: 1px 1px 1px rgba(3,46,92,0.2)
+  display: block
+  padding: 10px 40px 10px 10px
+  text-overflow: ellipsis
+  white-space: nowrap
+  .is-flat &
+    background-color: transparent
+    box-shadow: none
+    border: none
+    font-weight: bold
+    +font-size(18)
+  .no-js &, .no-background-size &
+    &.icon--chevron-down--after:after
+      // down-pointing arrowhead, looks quite like a downpointing chevron
+      content: '\02c5'
+      font-size: 15px
+
+  .standout &, .wrapper--footer &, .inverted &
+    background-color: #fff
+
+  .inverted &
+    border: 1px solid $subduedgray
+    box-shadow: none
+
+  &:after
+    @extend %rounded-corners
+    right: 5px
+    top: 33%
+    width: 14px
+    @if $is-ie
+      top: 3px
+
+  .field__input--error &
+    padding-right: 50px
+    &:after
+      right: 35px
+
+  .dropdown--first &
+    border-radius: 4px 0 0 4px
+    border-right: none
+
+  .dropdown--middle &
+    border-radius: 0
+    border-left: none
+    border-right: none
+
+  .dropdown--last &
+    border-left: none
+    border-radius: 0 4px 4px 0
+
+  .field__input--error &
+    border-color: $red
+    padding-right: 50px
+    &:after
+      right: 35px
+
+.dropdown__value.is-selected
+  background-color: #fff
+  border: 1px solid $details-panel-border
+
+.dropdown__select
+  +appearance(menulist-button)
+  +font-size(16) // Prevent zoom on iOS
+  height: 100%
+  left: 0
+  opacity: 0
+  position: absolute
+  top: 0
+  width: 100%
+  .ie7 &, .ie8 &
+    filter: alpha(opacity = 0)
+  .no-js &
+    filter: alpha(opacity = 1)
+    opacity: 1

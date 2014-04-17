@@ -1,0 +1,269 @@
+.wrapper--footer
+  @extend %lp-font-stack
+  @extend %subpixel-text
+  @extend %transition--nav
+  position: relative
+
+
+// ----------------------------------------------------------------------------
+//
+// Generic footer row
+//
+// ----------------------------------------------------------------------------
+
+.row__inner--footer
+
+  .responsive &
+    padding: 10px
+    width: 100%
+    +respond-to(wide-view)
+      padding: 0
+
+// ----------------------------------------------------------------------------
+//
+// Row Sitemap
+//
+// ----------------------------------------------------------------------------
+
+.row--sitemap
+  margin-bottom: 30px
+  border-top: 1px solid $input-border
+  .responsive &
+    margin-bottom: 0
+    border: 0
+    +respond-to(wide-view)
+      margin-bottom: 30px
+      border-top: 1px solid $input-border
+
+.row--sitemap__inner
+  padding-top: 20px
+  .responsive &
+    padding: 0
+    +respond-to(wide-view)
+      padding-top: 20px
+
+.col--footer,
+.col--footer--last
+  .responsive &
+    float: none
+    border-bottom: 1px solid $input-border
+    +respond-to(wide-view)
+      border: none
+      padding: 0
+
+.col--footer
+  float: left
+  margin: 0 30px 15px 0
+  .responsive &
+    margin: 0
+    padding-right: 10px
+    +respond-to(wide-view)
+      float: left
+      margin: 0 30px 15px 0
+    @if $is-ie == true
+      margin: 0 20px 15px 0
+
+
+.col--footer--last
+  float: right
+  width: 240px
+  margin-right: 10px
+  .responsive &
+    width: auto
+    padding: 0 10px
+    margin-right: 0
+    +respond-to(wide-view)
+      float: right
+      width: 240px
+      padding: 0
+      margin-right: 10px
+    @if $is-ie == true
+      width: 200px
+
+  .btn--green
+    .responsive &
+      width: 100%
+      +respond-to(wide-view)
+        width: auto
+
+.nav__item--footer
+  line-height: 18px
+  .responsive &
+    padding: 8px 0
+    &:last-child
+      padding-bottom: 20px
+    +respond-to(wide-view)
+      padding: 0
+      &:last-child
+        padding-bottom: 0
+
+.nav__item--sitemap
+  color: $body-copy
+  &:hover
+    color: $body-copy
+
+.title--footer
+  font-weight: bold
+
+
+.title--list--footer
+  display: block
+  font-weight: bold
+  color: $body-copy
+  margin-bottom: 15px
+  .responsive &
+    padding: 14px 0
+    display: inline-block
+    margin: 0
+    +respond-to(wide-view)
+      padding: 0
+      display: block
+      margin-bottom: 15px
+
+
+// Override some of the default accordion styles
+
+.col--footer, .col--footer--last
+  .accordion__target--mid
+    max-height: none
+    .responsive &
+      max-height: 40px
+      +respond-to(wide-view)
+        max-height: none
+
+  .accordion__title
+    display: none
+    .responsive &
+      display: block
+      +respond-to(wide-view)
+        display: none
+
+  .accordion__title--footer
+    float: right
+    padding-right: 0
+    width: 50%
+    height: 30px
+
+
+// ----------------------------------------------------------------------------
+//
+// Social Icons
+//
+// ----------------------------------------------------------------------------
+
+.responsive
+  .nav--social
+    padding: 0 10px
+    +respond-to(wide-view)
+      padding: 0
+  .nav--social__inner
+    float: right
+    +respond-to(wide-view)
+      float: none
+    .base &
+      display: none
+
+.title--social
+  +font-size(14)
+  padding: 26px 0
+  margin-right: 5px
+  .responsive &
+    display: none
+    +respond-to(wide-view)
+      display: inline-block
+  .ie7 &
+    display: none
+
+.nav__item--social
+  @extend %image-replacement
+  border-radius: 15px
+  margin: 16px 0
+  width: 30px
+  height: 30px
+  background-size: 28px
+  background-position: 1px 1px
+  &:hover
+    background-color: white
+  .ie7 &
+    text-indent: 0
+    height: auto !important
+    width: auto !important
+    margin: 26px 5px 0 0
+    background: none
+
+
+// ----------------------------------------------------------------------------
+//
+// 'About Lonely Planet'
+//
+// ----------------------------------------------------------------------------
+
+.row--footer--about
+  border-top: 1px solid $input-border
+  .responsive &
+    padding: 0
+    border-top: 0
+    +respond-to(wide-view)
+      padding: 0 10px
+      border-top: 1px solid $input-border
+
+  .media--lp-logo
+    margin: 12px 0 0
+
+.row--footer--social__logo
+  .responsive &
+    display: inline-block
+    +respond-to(wide-view)
+      display: none
+
+.nav__item--about
+  margin-left: 10px
+  padding: 26px 0
+  color: $body-copy
+  .responsive &
+    padding: 14px 0 14px 10px
+    margin-left: 0
+    border-bottom: 1px solid $input-border
+    +respond-to(wide-view)
+      padding: 26px 0
+      margin-left: 15px
+      border-bottom: none
+      font-weight: normal
+
+// ----------------------------------------------------------------------------
+//
+// Row Smallprint
+//
+// ----------------------------------------------------------------------------
+
+.row--smallprint__inner
+  padding: 20px 10px
+  .responsive &
+    padding-top: 20px
+    +respond-to(wide-view)
+      padding: 20px 10px
+
+.text--legal
+  width: 60%
+  line-height: 1.5em
+  margin-bottom: 0
+  .responsive &
+    width: 100%
+    text-align: center
+    +respond-to(wide-view)
+      width: 60%
+      text-align: left
+
+.form--international
+  width: 20%
+  .responsive &
+    width: 50%
+    margin: 20px auto
+    +respond-to(wide-view)
+      width: 20%
+      margin: 0
+
+.link--view-full-site
+  padding-bottom: 20px
+  &:hover
+    text-decoration: none

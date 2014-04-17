@@ -21,3 +21,6 @@ define ['jquery'], ($) ->
 
   checked: (field) ->
     field.is(':checked')
+
+  regex: (field, regex) ->
+    new RegExp(regex).test($(field).val())

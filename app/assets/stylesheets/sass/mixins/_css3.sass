@@ -1,0 +1,51 @@
+// Z-index added below to ensure that child elements have their z-index honoured
+@mixin hardware-acceleration()
+  transform:          translateZ(0)
+  z-index:            1
+
+@mixin appearance($value)
+  -webkit-appearance: $value
+  -moz-appearance:    $value
+  appearance:         $value
+
+
+@mixin background-slide-in-from($direction, $color, $speed: 0.3s)
+  transition: all $speed ease
+  outline: none
+  position: relative
+  &:after
+    transition: all $speed ease
+    background: $color
+    content: ""
+    position: absolute
+    z-index: -1
+    @if $direction == 'top'
+      width: 100%
+      height: 0
+      top: 0
+      left: 0
+    @if $direction == 'bottom'
+      width: 100%
+      height: 0
+      bottom: 0
+      left: 0
+    @if $direction == 'left'
+      width: 0%
+      height: 100%
+      bottom: 0
+      left: 0
+    @if $direction == 'right'
+      width: 0%
+      height: 100%
+      bottom: 0
+      right: 0
+  &:hover, &:active
+    &:after
+      @if $direction == 'top'
+        height: 100%
+      @if $direction == 'bottom'
+        height: 100%
+      @if $direction == 'left'
+        width: 100%
+      @if $direction == 'right'
+        width: 100%

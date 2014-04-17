@@ -1,13 +1,20 @@
 paths:
-  gpt: "//www.googletagservices.com/tag/js/gpt"
-  jplugs: "jquery/plugins"
-  jquery: "jquery/jquery"
   flamsteed: "flamsteed/lib/javascripts/flamsteed"
+  gpt: "//www.googletagservices.com/tag/js/gpt"
+  hogan: "hogan/dist/hogan-3.0.0.amd"
+  jplugs: "jquery-plugins"
+  jquery: "jquery/jquery"
   sailthru: "sailthru/v1"
-  s_code: "omniture/s_code"
+  sCode: "omniture/s_code"
+  trackjs: "trackjs/trackjs"
+  dfp: "jquery.dfp.js/jquery.dfp"
+  autocomplete: "autocomplete/dist/autocomplete"
 
 modules:
   - name: 'app_core'
   - name: 'app_core_legacy'
   - name: 'app_secure_core'
   - name: 'app_secure_core_legacy'
+  - name: 'styleguide'
+
+findNestedDependencies: true

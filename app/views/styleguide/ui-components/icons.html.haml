@@ -1,0 +1,61 @@
+= render 'styleguide/partials/shared'
+
+.card.styleguide-intro.copy--body.context--content.styleguide-intro--icons
+  .clearfix
+    %h1.split--left.copy--h1 Icons
+    = render 'styleguide/partials/svg_filter'
+  .styleguide-intro__inner.js-intro-section
+    .grid-wrapper--20.styleguide-intro__section
+      .col--one-half
+        %p
+          We use SVGs for these icons. The pattern for including them is to add a class to the dom element. If you want the icon to be present on a psuedo element you can use the before/after modifier.
+
+      .col--one-half
+        %pre.styleguide.copy--body.language-css
+          %code
+            = preserve do
+              :plain
+                .icon--foo
+                .icon--foo--after
+                .icon--foo--before
+
+    .grid-wrapper--20.styleguide-intro__section
+      .col--one-half
+        %p
+          The default colour of the icons is grey. The colour is configurable with the addition of a modifier class icon--[colour]. They are available in 4 standard variations + 2 optional custom colours.
+
+      .col--one-half
+        %pre.styleguide.copy--body.language-css
+          %code
+            = preserve do
+              :plain
+                .icon--body-grey
+                .icon--white
+                .icon--lp-blue
+                .icon--custom
+                .icon--custom-2
+
+    .grid-wrapper--20
+      .col--one-half
+        %p
+          If you want to change the colour of the icon on hover, use the icon-colour mixin.
+      .col--one-half
+        %pre.styleguide.copy--body.language-css
+          %code
+            = preserve do
+              :plain
+                .icon--foo:hover
+                  +icon-colour(colour)
+
+
+.styleguide-block.styleguide-grid.styleguide-icons.context--content
+  %div{class: "grid-wrapper--10"}
+    - get_icons("active").each do |icon|
+      .col--one-third
+        .card.js-card.media{data: {icon: icon}}
+          %div.media__img
+            .icon.js-icon{class: icon, title: icon}
+          .media__body.icon__name
+            %code
+              = icon.gsub('icon--', '')
+

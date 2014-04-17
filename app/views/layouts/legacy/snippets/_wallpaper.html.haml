@@ -4,11 +4,4 @@
 -# So I'm placing it here until we integrate the MPU and other adverts into a 
 -# more holistic solution
 
-%script
-  if(typeof(ord)=="undefined"){var ord=Math.floor(Math.random()*10000000000)}; 
-  if(typeof(tile)=="undefined"){var tile=1} else {tile++}; 
-  if(typeof(dcopt)=="undefined"){var dcopt="dcopt=ist;"} else {dcopt=""};
-  if(typeof(segQS)=="undefined"){var segQS=""}; 
-  if(typeof(adZone)=="undefined"){var adZone=""}; 
-  if(typeof(adKeywords)=="undefined"){var adKeywords=""}; 
-  document.write('<script src="http://ad.doubleclick.net/adj/2009.lonelyplanet/' + adZone + dcopt + adKeywords + segQS + 'tile=' + tile + ';sz=1x1;ord=' + ord + '?" type="text/javascript" ><\/script>');
+#js-ad-oneByOne.adunit.adunit--oneByOne{data: {dimensions: "1x1"}}

@@ -59,7 +59,7 @@ define ['jquery','lib/extends/events', 'lib/components/world_places'], ($, Event
     # Publish
     broadcast: ->
       # Cancel search and show info card
-      @$el.on 'click', '.card--disabled', (e) =>
+      @$el.on 'click', '.js-card.is-disabled', (e) =>
         e.preventDefault()
         @_unblock()
         @trigger(':search/hide')
@@ -84,16 +84,16 @@ define ['jquery','lib/extends/events', 'lib/components/world_places'], ($, Event
       @$el.removeClass('is-loading')
 
     _block: ->
-      @$el.find(@list).addClass('card--disabled')
+      @$el.find(@list).addClass('is-disabled')
 
     _unblock: ->
-      @$el.find(@list).removeClass('card--disabled')
+      @$el.find(@list).removeClass('is-disabled')
 
     _clear: () ->
       @$el.find(@list).remove()
 
     _add: (newCards)->
-      $cards = $(newCards).addClass('card--invisible')
+      $cards = $(newCards).addClass('is-invisible')
       @$el.append($cards)
       @_show($cards)
 
@@ -103,13 +103,14 @@ define ['jquery','lib/extends/events', 'lib/components/world_places'], ($, Event
       if width and height
         if height > width then true else false
 
-    _show: (cards) ->
+    _show: ($cards) ->
       i = 0
       insertCards = setInterval( =>
-        if i isnt cards.length
-          $image = $(cards[i]).removeClass('card--invisible').find('.js-card__image')
+        if i isnt $cards.length
+          $image = $cards.eq(i).removeClass('is-invisible').find('.js-card__image')
           if @_isPortrait($image.width(), $image.height()) then $image.addClass('is-portrait')
           i++
         else
+          @trigger(':page/changed')
           clearInterval insertCards
       , 20)

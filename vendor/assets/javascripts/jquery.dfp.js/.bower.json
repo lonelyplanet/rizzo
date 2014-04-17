@@ -1,0 +1,25 @@
+{
+  "name": "jquery.dfp",
+  "version": "1.0.21",
+  "main": "jquery.dfp.js",
+  "ignore": [
+    "img/",
+    "tests/",
+    ".gitattributes",
+    ".gitignore",
+    ".travis.yml",
+    ".vimrc",
+    "Gruntfile.js",
+    "example-bootstrap.js"
+  ],
+  "homepage": "https://github.com/coop182/jquery.dfp.js",
+  "_release": "1.0.21",
+  "_resolution": {
+    "type": "version",
+    "tag": "1.0.21",
+    "commit": "073e05f2c937486c816c7628ea6161947e147f6b"
+  },
+  "_source": "git://github.com/coop182/jquery.dfp.js.git",
+  "_target": "~1.0.0",
+  "_originalSource": "jquery.dfp.js"
+}

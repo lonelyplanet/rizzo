@@ -1,15 +1,12 @@
 :javascript
   window.lp.fs.log(function(){
-    getCookie = function (name) {
-      return unescape(document.cookie.replace(new RegExp("(?:(?:^|.*;)\\s*" + escape(name).replace(/[\-\.\+\*]/g, "\\$&") + "\\s*\\=\\s*([^;]*).*$)|^.*$"), "$1")) || null;
-    };
     return {
       url: window.location.href,
       referrer: document.referrer,
-      username: getCookie("lpCookie") && getCookie("lpCookie").split('#')[0],
-      country: getCookie("country"),
+      username: window.lp.getCookie("lpCookie") && window.lp.getCookie("lpCookie").split('#')[0],
+      country: window.lp.getCookie("country"),
       viewport: document.documentElement.clientWidth,
-      variant: getCookie("_v"),
+      variant: window.lp.getCookie("_v"),
       schema: "0.1"
     };
   }());

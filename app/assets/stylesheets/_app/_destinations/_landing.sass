@@ -81,8 +81,8 @@ html
   +font-size(15)
   padding: 20px
   +respond-to(wide-view)
-    +border-radius(4)
-    +box-shadow(5, 5, 1, 0, rgba(0,0,0,0.1))
+    border-radius: 4px
+    box-shadow: 5px 5px 1px 0 rgba(0, 0, 0, 0.1)
     opacity: 0
     background-color: $body-copy
     position: absolute
@@ -90,7 +90,7 @@ html
     width: 600px
     text-align: left
     .js-loaded &
-      +transition(opacity, 1, ease-in)
+      transition: opacity 1s ease-in
       opacity: 1
       &:after
         width: 70px
@@ -113,7 +113,7 @@ html
 
 .row--introduction__blurb__hide
   @extend %image-replacement
-  +transition(all, 0.3, ease-in)
+  transition: all 0.3s ease-in
   display: none
   cursor: pointer
   color: white
@@ -206,7 +206,6 @@ html
   display: block
   font-weight: 700
   text-decoration: none
-  //+transition(color,0.25,ease-out)
   &:hover
     color: white
     cursor: pointer
@@ -264,7 +263,7 @@ html
 
 .top-ten__list--clone
   background-color: $body-copy
-  +transition(all, 0.3, ease-in-out)
+  transition: all 0.3s ease-in-out
   position: absolute
   left: 0
   bottom: 0
@@ -330,7 +329,7 @@ html
 
 .top-ten__list__item__link
   background-color: rgba(20,43,68, 0.15)
-  +transition(background-color,0.25,ease-out)
+  transition: background-color 0.25s ease-out
   &:hover
     background-color: rgba(20,43,68, 0.35)
     text-decoration: none
@@ -372,7 +371,7 @@ html
   //height: 800px
   min-height: 550px
   +respond-to(wide-view)
-    +transition(all, 0.2, ease-in)
+    transition: all 0.2s ease-in
     background-color: $nav-primary-type
     display: block
     width: 100%

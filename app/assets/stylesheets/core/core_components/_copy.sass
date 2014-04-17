@@ -1,0 +1,106 @@
+// -----------------------------------------------------------------------------
+// Headings
+//
+// Headings only inherit their margins when included within a .context--content
+// container. This allows for fewer overrides when using them elsewhere.
+// -----------------------------------------------------------------------------
+
+.copy--h1
+  @extend %heading--1
+  .context--content &
+    margin-bottom: 0.8em
+
+.copy--h2
+  @extend %heading--2
+  .context--content &
+    margin: 1.8em 0 0.9em
+    &:first-child
+      margin-top: 0
+
+.copy--h3
+  @extend %heading--3
+  .context--content &
+    margin-bottom: 1em
+
+.copy--h4
+  @extend %heading--4
+  .context--content &
+    margin-bottom: 1em
+
+.copy--h5
+  @extend %heading--5
+
+
+// -----------------------------------------------------------------------------
+// Body content
+// -----------------------------------------------------------------------------
+
+.copy--feature
+  @extend %text--feature
+
+.copy--body
+  @extend %text--body
+
+// Copy with a long line length
+.copy--full-width,
+.copy--full-width .copy--body
+  +font-size(18)
+
+.copy--meta
+  @extend %text--meta
+
+.copy--caption
+  @extend %text--caption
+
+.copy--disclaimer
+  +font-size(11)
+
+// -----------------------------------------------------------------------------
+// Links
+// -----------------------------------------------------------------------------
+
+.copy--body__link, .copy a
+  border-bottom: 1px dotted
+  color: inherit
+  &:hover
+    color: $linkblue
+    text-decoration: none
+
+// -----------------------------------------------------------------------------
+// Lists
+// -----------------------------------------------------------------------------
+
+.copy--list, ul, ol
+  .context--content &
+    padding-left: 1.2em
+    margin-bottom: 10px
+
+.copy--list, ul, ol
+  li
+    .context--content &
+      margin-bottom: 10px
+
+.context--content ul,
+ul.copy--list
+  list-style-type: circle
+
+.list--alpha
+  list-style-type: lower-alpha
+
+
+// -----------------------------------------------------------------------------
+// Inline Icons
+// -----------------------------------------------------------------------------
+.copy--icon,
+.copy--icon--after:after,
+.copy--icon--before:before
+  +size(1em)
+  display: inline-block
+  position: relative
+  top: 0.2em
+.copy--icon
+  margin: 0 0.1em
+.copy--icon--after:after
+  margin-left: 0.1em
+.copy--icon--before:before
+  margin-right: 0.1em

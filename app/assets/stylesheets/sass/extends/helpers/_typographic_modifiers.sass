@@ -1,0 +1,21 @@
+// [doc] Split long words over multiple lines. Useful for hyperlinks.
+//
+// The same as applying .break-text [/doc]
+%prevent-text-breakouts
+  word-wrap: break-word
+  hyphens: auto
+
+// [doc] Truncate single line text and cap it with an ellipsis. [/doc]
+%truncate-text
+  text-overflow: ellipsis
+  overflow: hidden
+  white-space: nowrap
+
+// [doc] Cancels out the default font-smoothing: antialiased effect.
+//
+// It makes the characters bolder and works well on small type.
+// [/doc]
+%subpixel-text
+  -webkit-font-smoothing: subpixel-antialiased
+  -moz-osx-font-smoothing: auto
+  font-smoothing: subpixel-antialiased

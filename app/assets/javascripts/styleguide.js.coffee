@@ -1,20 +1,30 @@
-require ['jquery', 'lib/managers/select_group_manager', 'pickadate/lib/picker', 'pickadate/lib/picker.date', 'pickadate/lib/legacy'], ($, SelectGroupManager) ->
+require ['jquery'], ($) ->
+  require [
+    'lib/managers/select_group_manager'
+    'lib/utils/scroll_perf'
+    'lib/utils/toggle_active'
+    'lib/utils/konami'
+    'lib/components/range_slider'
+    'lib/components/lightbox'
+    'pickadate/lib/picker'
+    'pickadate/lib/picker.date'
+    'pickadate/lib/legacy'
+    'lib/styleguide/ajax-content'
+    'lib/styleguide/copy'
+    'lib/styleguide/snippet-expand'
+    'lib/styleguide/svg'
+    'lib/styleguide/colours'
+    'lib/styleguide/typography'
+    'lib/styleguide/lightbox'
+    'lib/styleguide/konami'
+    'lib/utils/feature_detect'
+  ], (SelectGroupManager, ScrollPerf, ToggleActive, Konami) ->
 
-  $ ->
-    selectGroupManager = new SelectGroupManager()
-
-    require [
-      'lib/styleguide/ajax-content'
-      'lib/styleguide/copy'
-      'lib/managers/select_group_manager'
-      'lib/styleguide/snippet-expand'
-      'lib/styleguide/svg'
-    ]
-
-    if $('.js-colours').length > 0
-      require ['lib/styleguide/colours']
-
+    new ScrollPerf
+    new SelectGroupManager()
+    new ToggleActive()
     d = new Date()
     $('.input--datepicker').pickadate({
       min: [d.getFullYear(), (d.getMonth() + 1), d.getDate()]
     })
+    new Konami()

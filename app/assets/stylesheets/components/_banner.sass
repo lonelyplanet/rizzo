@@ -1,0 +1,110 @@
+.hero-banner
+  position: relative
+  width: 100%
+  height: 200px
+  overflow: hidden
+  background-size: cover
+  background-position: center 30%
+
+  +respond-to(wide-view)
+    height: 300px
+
+  +respond-to(1200)
+    height: 350px
+
+  &:before
+    +image-overlay--flat
+    content: ''
+    width: 100%
+    height: 200px
+    position: absolute
+    z-index: 1
+    +respond-to(wide-view)
+      height: 300px
+    +respond-to(1200)
+      height: 350px
+
+.hero-banner__flickr
+  height: 400px
+  &:before
+    +image-overlay--gradient
+    height: 400px
+
+.hero-banner__content
+  position: relative
+  z-index: 10
+  height: 100%
+  color: white
+
+.hero-banner__text
+  position: absolute
+  bottom: 16px
+  width: 50%
+
+
+.hero-banner__header
+  +font-size(45)
+  text-transform: uppercase
+  font-weight: bold
+  line-height: .8
+  +respond-to(wide-view)
+    +font-size(85)
+
+
+.hero-banner__strapline
+  +font-size(18)
+  font-weight: bold
+  margin: 16px 0
+
+.hero-banner__image-content
+  position: relative
+  height: 100%
+  .icon--flickr
+    float: left
+    width: 30px
+    height: 30px
+
+.hero-banner__image-header
+  position: relative
+  top: 30px
+
+.hero-banner__image-description
+  padding: 9px 0px 0px 35px
+  font-weight: bold
+
+.hero-banner__image-footer
+  position: absolute
+  bottom: 15px
+  display: table
+  width: 100%
+
+.hero-banner__source
+  +font-size(16)
+  word-spacing: 5px
+  color: white
+  display: table-cell
+
+.hero-banner__source-text
+  font-style: italic
+  font-weight: lighter
+
+.hero-banner__avatar
+  +size(30px)
+  @extend %inline-block
+  vertical-align: middle
+  border-radius: 50%
+  +respond-to(wide-view)
+    +size(50px)
+
+.hero-banner__username
+  font-weight: bold
+  font-style: normal
+  color: white
+
+.hero-banner__image-title
+  +font-size(18)
+  display: table-cell
+  width: 50%
+  vertical-align: middle
+  text-align: right
+

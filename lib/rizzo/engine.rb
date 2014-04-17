@@ -6,7 +6,7 @@ module Rizzo
       app.routes.prepend do
         get 'breadcrumb'        => 'global_resources#breadcrumb'
         get "r/:encrypted_url"  => 'redirector#show', :as => :redirector
-        get "redirector"        => 'redirector#internal'
+        get "redirector"        => 'redirector#internal', :as => :internal_redirector
       end
 
     end

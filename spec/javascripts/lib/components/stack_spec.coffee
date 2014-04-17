@@ -61,7 +61,7 @@ require ['public/assets/javascripts/lib/components/stack.js'], (Stack) ->
         stack._block()
 
       it 'adds the disabled class', ->
-        expect(stack.$el.find(config.list)).toHaveClass('card--disabled')
+        expect(stack.$el.find(config.list)).toHaveClass('is-disabled')
 
 
     describe 'unblocking', ->
@@ -69,11 +69,11 @@ require ['public/assets/javascripts/lib/components/stack.js'], (Stack) ->
       beforeEach ->
         loadFixtures('stack.html')
         window.stack = new Stack(config)
-        stack.$el.find(stack.$list).addClass('card--disabled')
+        stack.$el.find(stack.$list).addClass('is-disabled')
         stack._unblock()
 
       it 'clears the stack', ->
-        expect(stack.$el.find(stack.$list)).not.toHaveClass('card--disabled')
+        expect(stack.$el.find(stack.$list)).not.toHaveClass('is-disabled')
 
 
     describe 'clearing', ->
@@ -98,9 +98,9 @@ require ['public/assets/javascripts/lib/components/stack.js'], (Stack) ->
 
 
       it 'adds the stack with the returned cards', ->
-        expect($(stack.$el).find(".test4")).toHaveClass('card--invisible')
-        expect($(stack.$el).find(".test5")).toHaveClass('card--invisible')
-        expect($(stack.$el).find(".test6")).toHaveClass('card--invisible')
+        expect($(stack.$el).find(".test4")).toHaveClass('is-invisible')
+        expect($(stack.$el).find(".test5")).toHaveClass('is-invisible')
+        expect($(stack.$el).find(".test6")).toHaveClass('is-invisible')
 
       it 'shows the cards', ->
         expect(stack._show).toHaveBeenCalled()
@@ -181,7 +181,7 @@ require ['public/assets/javascripts/lib/components/stack.js'], (Stack) ->
         loadFixtures('stack_disabled.html')
         window.stack = new Stack(config)
         spyEvent = spyOnEvent(stack.$el, ':search/hide')
-        stack.$el.find('.card--disabled').trigger('click')
+        stack.$el.find('.js-card.is-disabled').trigger('click')
 
       it 'triggers the search/hide event', ->
         expect(':search/hide').toHaveBeenTriggeredOn(stack.$el)

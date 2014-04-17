@@ -1,0 +1,36 @@
+// -----------------------------------------------------------------------------
+// Alerts
+// -----------------------------------------------------------------------------
+
+.alert
+  @extend %rounded-corners
+  clear: both
+  margin: 10px 0
+  padding: 15px 15px 13px 15px
+  position: relative
+
+  &:before
+    +icon-color("custom")
+    height: 18px
+    left: 15px
+    position: absolute
+    top: 13px
+    width: 20px
+
+  &[class*=icon--]
+    padding-left: 45px
+
+.alert__title
+  font-weight: bold
+
+.alert__content
+  margin-top: 10px
+
+.alert--success
+  background: $highlight-success
+
+.alert--error
+  background: $highlight-error
+
+.alert--warning
+  background: $highlight-warning

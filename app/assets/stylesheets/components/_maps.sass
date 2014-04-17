@@ -1,0 +1,143 @@
+// -----------------------------------------------------------------------------
+// Map Section
+// -----------------------------------------------------------------------------
+
+.nearby-area
+  margin-bottom: 20px
+  padding-top: 30px
+  border-top: 1px solid $body-background
+  width: 100%
+  .map
+    @extend %transition--base
+    width: 100%
+    height: 450px
+    border: 1px solid #cacbcd
+    position: relative
+  .media-gallery__map,
+  .map__map-canvas
+    height: 100%
+
+// -----------------------------------------------------------------------------
+// Map nearby POIs
+// -----------------------------------------------------------------------------
+
+.nearby-area .map
+  width: 100%
+  height: 450px
+
+@mixin map-show-pois
+  ~ .map
+    .map__poi-list
+      opacity: 1
+      visibility: visible
+      transform: rotateY(0deg) translateX(0px) translateZ(0px)
+      transition: all 1s cubic-bezier(0.075, 0.820, 0.165, 1.000)
+      right: 12px
+      z-index: 1
+    .infobox__interesting-places
+      display: none
+
+.map--show-pois
+  @extend %visually-hide
+  // .is-checked is an ie7/8 fallback
+  &:checked
+    +map-show-pois()
+  &.is-checked
+    +map-show-pois()
+
+.map__poi-list
+  @extend %rounded-corners
+  @extend %transition--slower
+  transform: rotateY(70deg) translateX(100px) translateZ(-250px)
+  background: #fff
+  height: 360px
+  position: absolute
+  right: -420px
+  top: 12px
+  width: 294px
+  opacity: 0
+  visibility: hidden
+  z-index: -1
+  padding-bottom: 20px
+
+  .nearby-pois
+    height: 100%
+    overflow: auto
+    &::-webkit-scrollbar
+      width: 4px
+    &::-webkit-scrollbar-thumb
+      border-radius: 2px
+      background: $details-panel-border
+    &::-webkit-scrollbar-track
+      background: none
+
+  .obj-list__item
+    border-top: 1px solid $body-background-offset
+    margin-bottom: 0
+    padding: 10px 20px 15px 43px
+    &:first-child
+      border-top: none
+    &:before
+      display: block
+      position: absolute
+      left: 18px
+      top: 14px
+      // these are different to obscure the shadow >:)
+      width: 18px
+      height: 23px
+
+// -----------------------------------------------------------------------------
+// Map infobox
+// -----------------------------------------------------------------------------
+.infobox--location
+  @extend %rounded-corners
+  @extend %standard-shadow
+  +css-arrow-central(bottom, $size: 25px)
+  transition: opacity 0.5s ease-in-out, visibility 0 linear 0
+  box-shadow: 0 3px 2px 0 $new-header-grey-shadow
+  background: #fff
+  bottom: 20px
+  left: -51%
+  max-width: 350px
+  padding: 8px 15px
+  position: relative
+  opacity: 1
+  visibility: visible
+  .map--has-focus &
+    transition: visibility 0 linear 0.5s, opacity 0.5s ease-in-out
+    opacity: 0
+    visibility: hidden
+    pointer-events: none
+
+  &:after
+    color: #fff
+    position: absolute
+    filter: drop-shadow(0 3px 2px $new-header-grey-shadow)
+
+  .copy--body
+    @extend %lp-font-stack // infobox overrides with roboto font
+    +font-size(15)
+    color: $body-copy
+    margin-left: 1.2em
+    margin-bottom: 0
+    font-weight: 300
+    line-height: 1
+
+  .infobox__link--interesting-places
+    @extend %lp-font-stack // infobox overrides with roboto font
+    +font-size(14)
+    color: #07c
+    cursor: pointer
+    font-style: italic
+
+.infobox__title
+  @extend %lp-font-stack // infobox overrides with roboto font
+  +font-size(15)
+  margin-top: -4px
+  line-height: 1
+  font-weight: bold
+  &, &.copy--h3
+    margin-bottom: 2px
+  &:before
+    width: 17px
+    left: -2px

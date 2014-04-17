@@ -1,0 +1,10 @@
+= render 'styleguide/partials/shared'
+
+.card.styleguide-intro.copy--body.context--content
+  .clearfix
+    %h1.copy--h1 Legacy Support
+    %p
+      These classes can be used to help our features degrade gracefully in older browsers.
+
+- get_css("core/utilities/_legacy").each do |css|
+  = render "styleguide/partials/snippet", properties: css

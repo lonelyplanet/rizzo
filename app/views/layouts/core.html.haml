@@ -4,10 +4,10 @@
 <!--[if IE 9]><html class="no-js ie9 no-freight" data-topic="#{yield :topic}" lang="en"><![endif]-->
 <!--[if gt IE 9]><!--><html class='no-js no-freight' data-topic="#{yield :topic}" lang="en"><!--<![endif]-->
 %head
-  = render 'layouts/core/head', responsive: false, homepage: false
+  = render 'layouts/core/head', responsive: false, homepage: false, suppress_tynt: (defined?(suppress_tynt) ? suppress_tynt : false)
 
 %body
-  .wrapper
+  .wrapper.js-wrapper
     = render 'layouts/core/snippets/body_header', user_nav: defined?(user_nav) ? user_nav : true
 
     .row.row--content#js-row--content
@@ -24,7 +24,9 @@
       = yield :breadcrumbs
       = render 'layouts/core/snippets/body_footer'
 
-  %div.ad-oneByOne#js-ad-oneByOne
+  = render 'layouts/core/snippets/pointer_cover'
+
+  = render 'layouts/core/snippets/one_by_one'
 
   = render 'layouts/core/snippets/footer_js'
   - if defined? Variant

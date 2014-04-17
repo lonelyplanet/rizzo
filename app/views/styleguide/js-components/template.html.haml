@@ -1,0 +1,55 @@
+= render 'styleguide/partials/shared'
+
+.card.styleguide-intro.copy--body.context--content
+  .clearfix
+    %h1.copy--h1 Template
+
+    %p.copy--feature A super lightweight and overtly simple templating util until we have enough reason to include a more robust templating solution within Rizzo.
+
+    %p
+      %em Note:
+      Given the simple nature of this util, it will only work one level deep within the given object and has no looping or conditional logic whatsoever.
+
+.styleguide-block.styleguide-block__description.card.copy--body
+
+  %h2.copy--h2.styleguide-block__heading
+    Usage
+
+  %pre.styleguide.copy--body.language-markup
+    %code
+      = preserve do
+        :plain
+          &lt;script id="my-template" type="text/mustache">
+            &lt;p class="copy--body">
+              My name is &lt;strong>{{name}}&lt;/strong> and I'm a &lt;em>{{position}}&lt;/em>.
+            &lt;/p>
+          &lt;/script>
+          &lt;div class="js-rendered-template">&lt;/div>
+
+  %pre.styleguide.copy--body.language-javascript
+    %code
+      = preserve do
+        :plain
+          require([ "public/assets/javascripts/lib/utils/template" ], function(Template) {
+            var obj = { name: "slothbot", position: "robot" },
+                template = $("#my-template").text(),
+                rendered;
+
+            // Where the magic happens...
+            rendered = Template.render(template, obj);
+
+            $(".js-rendered-template").html(rendered);
+          });
+
+  %p.copy--body
+    The above would render the following markup:
+
+  %pre.styleguide.copy--body.language-markup
+    %code
+      = preserve do
+        :plain
+          &lt;div class="js-rendered-template">
+            &lt;p class="copy--body">
+              My name is &lt;strong>slothbot&lt;/strong> and I'm a &lt;em>robot&lt;/em>.
+            &lt;/p>
+          &lt;/div>

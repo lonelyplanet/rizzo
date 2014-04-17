@@ -1,0 +1,151 @@
+// ----------------------------------------------------------------------------
+//
+// Responsive Helpers
+//
+// wv = wide-view
+// mv = medium-view
+// ----------------------------------------------------------------------------
+
+// [doc] Block background images
+//
+// Place this class on elements with background images in order to block
+// them on initial load.
+//
+// This is usually done in order to load them in dynamically later. [/doc]
+
+.rwd-image-blocker
+  .js &
+  background-image: none !important
+
+// [doc] Hide content on wider screens. [/doc]
+.wv--hidden
+  display: none
+  .responsive &
+    display: inline-block
+    +respond-to(wide-view)
+      display: none
+
+// [doc] Hide content on wide screens (shows with block properties). [/doc]
+.wv--hidden-block
+  display: none
+  .responsive &
+    display: block
+    +respond-to(wide-view)
+      display: none
+
+// [doc] Hide content but show it on wider screens. [/doc]
+.wv--block
+  display: block
+  .responsive &
+    display: none
+    +respond-to(wide-view)
+      display: block
+
+// [doc] Hide content but show it on wider screens (with inline-block properties). [/doc]
+.wv--inline-block
+  @extend %inline-block
+  .responsive &
+    display: none
+    +respond-to(wide-view)
+      display: inline-block
+
+// [doc] Hide content but show it on wider screens (with display:table properties). [/doc]
+.wv--table
+  display: table-cell
+  .responsive &
+    display: none
+    +respond-to(wide-view)
+      display: table-cell
+
+// [doc] Toggles a stacked nav to an inline nav for wider screens. [/doc]
+.wv--nav--inline
+  .responsive &
+    display: block
+    > .nav__item
+      display: block
+    +respond-to(wide-view)
+      display: inline-block
+      > .nav__item
+        vertical-align: top
+        display: inline-block
+    .ie7 &
+      .nav__item
+        float: left
+
+// [doc] Floats content left but only on wider screens. [/doc]
+.wv--split--left
+  float: left
+  .responsive &
+    float: none
+    +respond-to(wide-view)
+      float: left
+
+// [doc] Floats content right but only on wider screens. [/doc]
+.wv--split--right
+  float: right
+  text-align: right
+  .responsive &
+    float: none
+    text-align: left
+    +respond-to(wide-view)
+      float: right
+      text-align: right
+
+// [doc] Hide content on medium screens. [/doc]
+.mv--hidden
+  display: none
+  .responsive &
+    display: inline-block
+    +respond-to(medium-view)
+      display: none
+
+// [doc] Hide content on medium screens (shows with block properties). [/doc]
+.mv--hidden-block
+  display: none
+  .responsive &
+    display: block
+    +respond-to(medium-view)
+      display: none
+
+// [doc] Hide content but show it on medium screens. [/doc]
+.mv--block
+  display: block
+  .responsive &
+    display: none
+    +respond-to(medium-view)
+      display: block
+
+// [doc] Hide content but show it on medium screens (with inline-block properties). [/doc]
+.mv--inline-block
+  @extend %inline-block
+  .responsive &
+    display: none
+    +respond-to(medium-view)
+      display: inline-block
+
+// [doc] Hide content but show it on medium screens (with display:table properties). [/doc]
+.mv--table
+  display: table-cell
+  .responsive &
+    display: none
+    +respond-to(medium-view)
+      display: table-cell
+
+// [doc] Floats content left but only on medium screens. [/doc]
+.mv--split--left
+  float: left
+  .responsive &
+    float: none
+    +respond-to(medium-view)
+      float: left
+
+// [doc] Floats content right but only on medium screens. [/doc]
+.mv--split--right
+  float: right
+  text-align: right
+  .responsive &
+    float: none
+    text-align: left
+    +respond-to(medium-view)
+      float: right
+      text-align: right

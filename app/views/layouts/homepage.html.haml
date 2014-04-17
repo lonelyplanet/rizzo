@@ -4,10 +4,10 @@
 <!--[if IE 9]><html class="no-js ie9 no-freight" lang="en"><![endif]-->
 <!--[if gt IE 9]><!--><html class="no-js base no-touch no-freight" lang="en"><!--<![endif]-->
 %head
-  = render 'layouts/core/head', responsive: true, homepage: true
+  = render 'layouts/core/head', responsive: true, homepage: true, suppress_tynt: (defined?(suppress_tynt) ? suppress_tynt : false)
 
 %body.responsive.homepage
-  .wrapper
+  .wrapper.js-wrapper
     = render 'layouts/core/snippets/accessibility'
     = render 'layouts/core/snippets/primary_navigation_bar', user_nav: true, responsive: true, homepage: true
 
@@ -17,10 +17,11 @@
     .wrapper.wrapper--footer
       = render 'layouts/core/snippets/body_footer', responsive: true
 
+    = render 'layouts/core/snippets/pointer_cover'
     = render 'layouts/core/snippets/footer_js'
     = render 'layouts/core/inline_js/img_loader'
 
-    %div.ad-oneByOne#js-ad-oneByOne
+    = render 'layouts/core/snippets/one_by_one'
 
     - if defined? Variant
       /

@@ -5,10 +5,14 @@ define ['jquery', 'lib/utils/page_state', 'lib/extends/events', 'lib/utils/depar
     $.extend(@prototype, EventEmitter)
 
     LISTENER = '#js-card-holder'
-
     state: {}
 
     constructor: (args = {}) ->
+      # Ignore initial popstate in chrome
+      # https://code.google.com/p/chromium/issues/detail?id=63040
+      @popStateFired = false
+      @currentUrl = @getUrl()
+
       $.extend @config, args
       @init()
       @listen()
@@ -28,7 +32,9 @@ define ['jquery', 'lib/utils/page_state', 'lib/extends/events', 'lib/utils/depar
 
       $(LISTENER).on ':cards/append', (e, data, analytics) =>
         @_updateState(data)
-        @_callServer(@_createRequestUrl(), @append, analytics)
+        # We don't want to modify the url for appending content
+        existingUrl = @getUrl()
+        @_callServer(@_createRequestUrl(existingUrl), @append, analytics)
 
       $(LISTENER).on ':page/request', (e, data, analytics) =>
         @newDocumentRoot = data.url.split('?')[0]
@@ -46,7 +52,6 @@ define ['jquery', 'lib/utils/page_state', 'lib/extends/events', 'lib/utils/depar
     append: (data, analytics) =>
       @_updateOffset(data.pagination) if data.pagination and data.pagination.page_offsets
       @_removePageParam() # All other requests display the first page
-      @_replaceUrl(@_createUrl())
       @trigger(':cards/append/received', [data, @state, analytics])
 
     newPage: (data, analytics) =>
@@ -65,14 +70,8 @@ define ['jquery', 'lib/utils/page_state', 'lib/extends/events', 'lib/utils/depar
 
     _initHistory: ->
       if @_supportsHistory()
-        # Modern browsers
-        # WebKit fires a popstate event on document load
-        # https://code.google.com/p/chromium/issues/detail?id=63040
-        setTimeout(( =>
-          $(window).bind 'popstate', =>
-            @setUrl(@getUrl())
-        ), 1)
-
+        $(window).bind 'popstate', =>
+          @_handlePopState()
       else if @_supportsHash()
         #ie8 and ie9
         @allowHistoryNav = true
@@ -83,6 +82,13 @@ define ['jquery', 'lib/utils/page_state', 'lib/extends/events', 'lib/utils/depar
       else
         #ie7
         false
+
+    # WebKit fires a popstate event on document load
+    _handlePopState: () ->
+      if !@popStateFired
+        @popStateFired = true
+        if @getUrl() is @currentUrl then return
+      @setUrl(@getUrl())
 
     _supportsHistory: ->
       @isHistoryEnabled ?= (window.history and window.history.pushState and window.history.replaceState and !navigator.userAgent.match(/((iPod|iPhone|iPad).+\bOS\s+[1-4]|WebApps\/.+CFNetwork)/))
@@ -128,7 +134,7 @@ define ['jquery', 'lib/utils/page_state', 'lib/extends/events', 'lib/utils/depar
       if (@_supportsHistory() or @_supportsHash())
         @_setState(url)
       else
-        @setUrl(url) 
+        @setUrl(url)
 
     _replaceUrl: (url, callback) ->
       if (@_supportsHistory() or @_supportsHash())
@@ -142,6 +148,9 @@ define ['jquery', 'lib/utils/page_state', 'lib/extends/events', 'lib/utils/depar
           window.history.replaceState({}, null, url)
         else
           window.history.pushState({}, null, url)
+
+          # Chrome workaround
+          @currentUrl = @getUrl;
       else
         # Ensure we don't trigger a refresh
         @allowHistoryNav = false

@@ -1,0 +1,53 @@
+// -----------------------------------------------------------------------------
+// Social Footer
+// -----------------------------------------------------------------------------
+
+.sharing
+  @extend %clearfix
+  border-top: 1px solid $body-background
+  padding: 20px 0 0
+
+// Ensure that social plugin flyouts remain at the top layer
+.sharing__nav
+  position: relative
+  z-index: 10
+
+.sharing__label
+  +font-size(12)
+  text-transform: uppercase
+  font-weight: bold
+  line-height: 22px
+
+.sharing__icon
+  @extend %inline-block
+  color: $body-copy
+  margin-left: 15px
+  position: relative
+  width: 20px
+  height: 20px
+  text-align: left
+  &:hover
+    text-decoration: none
+  &:before
+    top: -16px
+  .no-js &, .no-background-size &
+    text-indent: 0
+    width: auto
+
+  .tooltip
+    color: white
+    left: -63%
+    text-indent: 0
+    &:after
+      color: $body-copy
+      left: 53%
+
+.facebook-like
+  position: relative
+  top: -4px
+  margin-left: 10px
+  min-width: 90px
+
+.tweet-button
+  margin-left: 3px
+  max-width: 103px

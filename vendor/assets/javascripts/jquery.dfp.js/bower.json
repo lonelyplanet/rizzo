@@ -1,0 +1,15 @@
+{
+    "name": "jquery.dfp",
+    "version": "1.0.21",
+    "main": "jquery.dfp.js",
+    "ignore": [
+        "img/",
+        "tests/",
+        ".gitattributes",
+        ".gitignore",
+        ".travis.yml",
+        ".vimrc",
+        "Gruntfile.js",
+        "example-bootstrap.js"
+    ]
+}

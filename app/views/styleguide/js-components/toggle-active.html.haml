@@ -1,9 +1,16 @@
+= render 'styleguide/partials/shared'
+
 .card.styleguide-intro.styleguide-block.copy--body.context--content
   %h1.copy--h1 Toggle Active
 
   %p
-    A replacement for the so called <a href="http://css-tricks.com/the-checkbox-hack/">"checkbox hack"</a> which we can't use because of issues in iOS, Android, and old IE.
-
+    A simple component to replace the so called <a href="http://css-tricks.com/the-checkbox-hack/">"checkbox hack"</a> which we can't use because of issues in iOS, Android, and old IE.
+  %p
+    This component has a simple event-driven api if you wish to extend its functionality. Hook into
+    %code.language-javascript :toggleActive/click
+    events to be notified of when the component updates, fire
+    %code.language-javascript :toggleActive/Update
+    to trigger the update function (passing in the target node).
   %p
     To use it in an app, make sure it's required in the main js file as follows:
 
@@ -52,3 +59,22 @@
       %code.language-markup
         foo
       class.
+
+  .styleguide-block__description.card.copy--body
+
+    %h2.copy--h2.styleguide-block__heading
+      Toggling the clicked element as well
+
+    %pre.styleguide.copy--body.language-markup
+      %code
+        :escaped
+          <a href="#" class="js-toggle-active" data-toggle-me="true" data-toggle-target=".foo">toggle it</a>
+
+    %p
+      This will toggle the
+      %code.language-markup
+        is-active
+      class on the element that was clicked as well as any element with class of
+      %code.language-markup
+        foo
+      \.

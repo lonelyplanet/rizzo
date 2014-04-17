@@ -1,0 +1,79 @@
+// ----------------------------------------------------------------------------
+//
+// Row secondary
+//
+// ----------------------------------------------------------------------------
+
+.row--secondary
+  padding-top: 40px
+  margin-bottom: 18px
+  .responsive &
+    padding-top: 20px
+    +respond-to(wide-view)
+      padding-top: 40px
+
+  .wv--split--right
+    .responsive &
+      +respond-to(400)
+        float: right
+        text-align: right
+
+.row--secondary__inner
+  +respond-to(wide-view)
+    width: $fixed-layout-width
+    margin: 0 auto
+
+.row__title--secondary
+  background: $body-background
+  max-width: 340px
+  .responsive &
+    max-width: 100%
+    margin-bottom: 20px
+    padding: 4px 0
+    +respond-to(400)
+      max-width: 70%
+      float: left
+      margin-bottom: 0
+    +respond-to(medium-view)
+      max-width: 340px
+    +respond-to(wide-view)
+      +vertically-center(30)
+      padding: 0
+  &:hover
+    max-width: none
+
+
+// ----------------------------------------------------------------------------
+//
+// Secondary Navigation
+//
+// ----------------------------------------------------------------------------
+
+.nav--secondary
+  +font-size(13)
+  @extend %subpixel-text
+  +font-size(14)
+
+.nav--secondary__dropdown
+  box-sizing: border-box
+  width: 100%
+  +respond-to(400)
+    width: auto
+  +respond-to(wide-view)
+    margin-left: 10px
+  .dropdown__value
+    background-color: white
+    +font-size(16)
+
+.nav__item--secondary
+  padding: 6px 8px
+  &, &:active
+    color: $body-copy
+  &:hover
+    color: $dark-blue-gray
+  &.current
+    @extend %active-background
+    @extend %rounded-corners
+    &:hover
+      color: white
+

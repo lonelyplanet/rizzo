@@ -1,0 +1,281 @@
+// -----------------------------------------------------------------------------
+// Card Base
+// -----------------------------------------------------------------------------
+
+.card
+  backface-visibility: hidden
+  @extend %standard-shadow
+  background: #fff
+  margin-bottom: 10px
+  position: relative
+
+  .results &,
+  &.card--hover
+    &:hover
+      box-shadow: 0 2px 2px 0 rgba(3, 46, 92, 0.10)
+
+  // hide the content area for image-only cards when it's not hovered over
+  &.card--image-only
+    overflow: hidden
+
+
+// -----------------------------------------------------------------------------
+// Card Images
+// -----------------------------------------------------------------------------
+
+.card__hero
+  height: $standard-card-image-height
+  overflow: hidden
+  position: relative
+  text-align: center
+  &:after
+    @extend %transition--slower
+    @extend %empty-abs-generated-content
+    background-color: transparent
+    height: 100%
+    left: 0
+    top: 0
+    width: 100%
+  .responsive &
+    height: $mobile-standard-card-image-height
+    +respond-to(medium-view)
+      height: $standard-card-image-height
+  .card--mini &
+    height: 192px
+  .card__image
+    height: 100%
+    &.is-portrait
+      height: auto
+      max-width: 100%
+    .responsive &
+      width: 100%
+      height: auto
+      +respond-to(medium-view)
+        height: 100%
+        width: auto
+
+  // darken the image when card is hovered over
+  .card:hover &
+    &:after
+      background-color: rgba(0,0,0,0.3)
+
+  .card--small-image &
+    height: $small-card-image-height
+
+  .card--full-image &
+    height: $card-grid-height
+    .responsive &
+      height: $mobile-card-grid-height
+      +respond-to(medium-view)
+        height: $card-grid-height
+
+  .card--image-only &
+    height: $card-grid-half-height
+    .responsive &
+      height: $mobile-card-grid-half-height
+      +respond-to(medium-view)
+        height: $card-grid-half-height
+
+.card__hero__overlay
+  height: $standard-card-image-height
+  left: 0
+  position: absolute
+  top: 0
+  z-index: 3
+
+  img
+    height: 100%
+    // Filters currently add a lot of jank on scroll
+    &
+      filter: drop-shadow(0px 0px 15px rgba(0,0,0,0.35))
+
+
+// -----------------------------------------------------------------------------
+// Card Content Areas
+// -----------------------------------------------------------------------------
+
+.card__content
+  height: ($card-grid-height - $standard-card-image-height - (2 * $card-content-vertical-padding) )
+  margin-bottom: $card-content-vertical-padding
+  overflow: hidden
+  padding: $card-content-vertical-padding $card-content-horizontal-padding 0 $card-content-horizontal-padding
+
+  .card--no-image &
+    height: $card-grid-height - $default-card-top-padding - $card-content-vertical-padding
+    padding-top: $default-card-top-padding
+
+  .card--small-image &
+    height: ($card-grid-height - $small-card-image-height - (2 * $card-content-vertical-padding) )
+    .responsive &
+      height: ($mobile-card-grid-height - $small-card-image-height - (2 * $card-content-vertical-padding) )
+      +respond-to(medium-view)
+        height: ($card-grid-height - $small-card-image-height - (2 * $card-content-vertical-padding) )
+
+  .card--full-image &
+    @extend %transition--base
+    background: linear-gradient(to bottom, rgba($darkblue, 0.0), rgba($darkblue, 0.5) 50%, rgba($darkblue, 0.5) 100%)
+    bottom: 0
+    color: #fff
+    left: 0
+    margin: 0
+    height: 35%
+    padding: $card-content-vertical-padding $card-content-horizontal-padding
+    position: absolute
+    right: 0
+    .card__content__inner
+      position: absolute
+      top: auto
+      bottom: $card-content-vertical-padding
+      left: $card-content-horizontal-padding
+      right: $card-content-horizontal-padding
+
+  .card--full-image.has-attribution &
+    height: 113px
+    bottom: -40px
+    .card__content__inner
+      top: 43px
+      bottom: 0
+
+  .card--image-only &
+    @extend %transition--base
+    +font-size(20)
+    bottom: -76px // This accommodates for 3 lines of copy.
+    color: #fff
+    height: auto
+    left: 0
+    line-height: 22px
+    margin: 0
+    padding: 0 $card-content-horizontal-padding
+    position: absolute
+    right: 0
+
+  .card--image-only:hover &
+    bottom: 3px
+
+
+// -----------------------------------------------------------------------------
+// Card Extended Content
+// -----------------------------------------------------------------------------
+
+.card--extended-content,
+.card--extended-content--half
+  height: $card-grid-height
+  .responsive &
+    height: $mobile-card-grid-height
+    +respond-to(medium-view)
+      height: $card-grid-height
+
+  .card__content
+    backface-visibility: hidden
+    background: #fff
+    bottom: 0
+    left: 0
+    position: absolute
+    right: 0
+    z-index: 3
+    padding: $card-content-vertical-padding $card-content-horizontal-padding 0 $card-content-horizontal-padding
+    margin-bottom: $card-content-vertical-padding
+    // Ensure cards are clickable during this section transitioning
+    pointer-events: none
+
+    &:after
+      @extend %empty-abs-generated-content
+      background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0.9))
+      height: $card-content-vertical-padding
+      left: 0
+      right: 0
+      bottom: 0
+
+  &:hover
+    .card__content
+      &:after
+        content: none
+
+    .card__footer
+      &:after
+        content: none
+
+.card--extended-content
+  .card__content
+    transition: height 0.5s ease
+
+  &:hover
+    .card__content
+      height: $card-grid-height - ( 2*$card-content-vertical-padding) - 40px
+  .js-hover.responsive &:hover
+    .card__content
+      height: $mobile-card-grid-height - ( 2*$card-content-vertical-padding) - 40px
+      +respond-to(medium-view)
+        height: $card-grid-height - ( 2*$card-content-vertical-padding) - 40px
+
+.card--extended-content--half
+  .card__content
+    transition: height 0.3s ease
+  &:hover
+    .card__content
+      height: $card-grid-height - ( 2*$card-content-vertical-padding) - 225px
+
+
+// -----------------------------------------------------------------------------
+// Transparent cards (related)
+// -----------------------------------------------------------------------------
+
+.card--transparent
+  background: transparent
+
+  .card__tags
+    text-shadow: none
+
+  .card__context
+    color: $high-contrast-fg
+
+  .card__name
+    color: white
+    font-weight: bold
+
+// -----------------------------------------------------------------------------
+// Small cards
+// -----------------------------------------------------------------------------
+
+.card.card--small
+
+  .card__hero
+    height: 100px
+    width: 100px
+    &:after
+      width: 0
+      height: 0
+
+  .card__content
+    padding: 1em 0
+    height: auto
+
+  .card__name
+    +font-size(14)
+
+  .card__tags
+    right: 4px
+
+  .tag
+    +font-size(8)
+    min-width: 30px
+
+  .tag--price__amount
+    +font-size(20)
+    line-height: .8
+    margin-bottom: 0
+
+  .tag--price__values
+    padding: 2px 4px 4px 4px
+
+  .tag--price__icon
+    height: 15px
+    &:before
+      width: 15px
+      height: 15px
+
+  .tag--price__inner
+    border-radius: 0 3px 3px 3px
+
+.card--mini
+  +size(192px)

@@ -1,0 +1,7 @@
+- tags_list = YAML.load(File.read(File.expand_path('../../../data/styleguide/tags_stubs.yml', __FILE__)))
+.card.styleguide-intro.context--content
+  .clearfix
+    %h1.copy--h1 Tags
+  
+- tags_list.each_with_index do | stub, i |
+  = sg_component('price_tag', properties: stub, count: i, card_style: true)

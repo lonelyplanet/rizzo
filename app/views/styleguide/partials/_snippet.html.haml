@@ -1,0 +1,9 @@
+.styleguide-block__description.card.copy--body.context--content
+  %h2.copy--h4 #{properties[:title]}
+
+  - if properties[:description].present?
+    - properties[:description].each do |paragraph|
+      %p #{paragraph}
+
+  %pre.styleguide.copy--body{ class: "language-#{properties[:syntax_lang] || "ruby"}" }
+    %code #{properties[:snippet]}

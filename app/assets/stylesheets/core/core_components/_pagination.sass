@@ -1,0 +1,44 @@
+.pagination
+  position: relative
+
+  &.card
+    @extend %rounded-corners
+    padding: 8px 20px
+
+    .topic-header + &,
+    .forum-header + &,
+    .replies + &
+      border-top: 1px solid mix($subduedgray, #fff, 50%)
+      border-radius: 0 0 4px 4px
+      // This bumps it over the bottom border radius of the .stack__intro
+      margin-top: -12px
+      z-index: 10
+
+.pagination__link
+  border-radius: 5px
+  background-color: #fff
+  border: 2px solid $body-background
+  color: $section--transport
+  display: inline-block
+  font-weight: bold
+  margin-left: 2px
+  padding: 8px 12px
+
+  &:first-child
+    margin-left: 0
+.pagination__link--next,
+.pagination__link--prev
+  &:before
+    +size(12px)
+    display: inline-block
+    position: relative
+    top: 2px
+
+.pagination__link--current
+  opacity: 0.5
+
+.pagination__numbers
+  text-align: center
+
+.pagination__detailed-info
+  padding-top: 15px

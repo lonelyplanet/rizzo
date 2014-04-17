@@ -1,0 +1,7 @@
+= render :layout => 'components/forms/partials/field', :locals => { id: properties[:id], label: properties[:label], extra_class: "field--radio #{properties[:extra_class]}", tooltip: properties[:tooltip] } do
+  - properties[:options].each do |option|
+    %span.input__container.js-input{ class: properties[:error] ? 'field__input--error' : nil }
+      %input.input--radio{ type: "radio", name: option[:name], id: option[:id], checked: option[:checked] ? 'checked' : nil, data: option[:data], value: option[:value], data: properties[:rules] ? { rules: properties[:rules] } : {} }
+      %label.js-field-label{ for: option[:id] }<
+        = option[:label]
+  = render :partial => 'components/forms/partials/tooltip', :locals => { tooltip: properties[:tooltip] }

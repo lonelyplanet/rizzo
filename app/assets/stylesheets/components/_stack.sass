@@ -1,0 +1,159 @@
+// -----------------------------------------------------------------------------
+//
+//  Main page layout - adapts to not having a sidebar
+//
+// -----------------------------------------------------------------------------
+
+.stack
+  margin-left: 10px
+  box-sizing: border-box
+  min-height: 400px
+  .card--single + &
+    overflow: hidden
+
+  .nav--left + &
+    display: table-cell
+    overflow: visible
+    vertical-align: top
+    width: 798px
+    max-width: 798px
+    .responsive &
+      clear: both
+      display: block
+      margin-left: 0
+      max-width: 100%
+      width: 100%
+      +respond-to(wide-view)
+        clear: none
+        display: table-cell
+        margin-left: 10px
+        max-width: 798px
+        width: 798px
+    .ie7  &
+      display: block
+      overflow: hidden
+      width: auto
+
+
+// -----------------------------------------------------------------------------
+// Stack Intro Card
+// -----------------------------------------------------------------------------
+
+$stack-intro-text-line-height: 25px
+$stack-intro-lines-to-show: 2
+
+.stack
+  .results
+    position: relative
+
+.stack__intro
+  @extend %rounded-corners
+  padding: 25px
+  // Ensure flyout filters sit up above the other cards
+  z-index: 10
+
+  .copy--h1
+    margin: 0
+
+  .responsive &
+    padding: 10px
+    +respond-to(medium-view)
+      padding: 25px
+
+.stack__intro--empty
+  padding: 10px 25px
+
+  .card--full-image + &
+    padding: 0
+
+  .sharing
+    border-top: none
+    padding: 10px 20px
+
+.stack__intro--full
+  padding: 25px 0px 0px 10px
+
+.stack__intro__toolbar
+  margin-top: 15px
+
+.stack__intro__content
+  transition: max-height 0.5s ease-in-out
+  overflow: hidden
+  position: relative
+
+  .is-open &
+    padding-bottom: 25px
+
+  .js-read-more &
+    max-height: 0
+
+  .no-js &
+    max-height: none
+
+  .copy--h1 + &
+    margin-top: 0.8em
+
+// We cannot guarantee that the content will be decorated with classes
+.stack__intro__content
+  @extend %text--body
+  p:first-of-type
+    @extend %text--feature
+  h2
+    @extend %heading--2
+
+
+
+// -----------------------------------------------------------------------------
+// Places View type
+// -----------------------------------------------------------------------------
+
+.stack__view-select
+  position: absolute
+  right: 25px
+
+.stack__view-type
+  @extend %inline-block
+  position: relative
+  +font-size(14)
+  border-style: solid
+  border-color: $body-background
+  color: $body-copy
+  font-weight: bold
+  line-height: 1em
+  overflow: hidden
+  padding: 10px 10px
+
+  &:hover
+    text-decoration: none
+
+  &:before
+    +font-size(25)
+    vertical-align: inherit
+
+.stack__view-type--grid
+  border-radius: 4px 0 0 4px
+  border-width: 1px 0 1px 1px
+
+.stack__view-type--list
+  border-radius: 0 4px 4px 0
+  border-width: 1px 1px 1px 0
+
+.stack__view-type--selected
+  background: $teal
+  box-shadow: 1px 1px 2px rgba(0,0,0,0.2) inset
+  color: white
+
+.list-view__section-heading
+  @extend %heading--2
+  margin-left: 10px
+  margin-top: 10px
+
+.list-view__heading
+  +font-size(36)
+  color: #c5d6d9
+  clear: left
+  line-height: 1em
+  margin: 20px 0 10px 20px
+
+.list-view__section .card--list
+  height: 50px

@@ -66,7 +66,7 @@ An example of the legacy navigation can be viewed at [http://rizzo.lonelyplanet.
 -----
 ## Styleguide
 
-The styleguide is accessible at 
+The styleguide is accessible at
 
 ```bash
   bundle exec unicorn
@@ -181,7 +181,8 @@ We use the Sass format which means:
 
 * 2 spaces are used for indentation
 * Curly braces are omitted
-* Use + instead of @include
+* Use the shorthand mixin syntax (`+mixin()`)
+* Only use the `@extend` directive to extend placeholders, not other selectors
 
 Comments are encouraged and should follow the below pattern:
 
@@ -193,36 +194,197 @@ Comments are encouraged and should follow the below pattern:
 //----------------------------------------------------------
 ```
 
-### Style
+### Naming classes
 
-We use BEM which should help with:
+We use the BEM methodology within class names.
+
+* .block {}
+* .block__element {}
+* .block--modifier {}
+
+For example:
+
+````
+<div class="gallery">
+  <h1 class="gallery__title">Gallery</h1>
+  <img class="gallery__image gallery__image--large" />
+  <img class="gallery__image" />
+  <img class="gallery__image" />
+</div>
+````
+
+
+This helps with:
+* Avoiding cross module collisions
+* Signifying intent and relationships from the classname
 * Limiting nesting to 1 level deep.
 * Avoiding large numbers of nested rules.
 
 Also:
-* Group `+` and `@extend` statements at the top of each selector ruleset
 * Don't over-abstract
 * Write code to be readable and understandable, not to save bytes.
 
 
-### Conventions
+### Other Class Naming Conventions
 
 We use prefixes for states and javascript hooks:
 
     <div class="is-hidden">This element has state</div>
     <div class="tab js-tab">This element can be reached by javascript</div>
- 
+
 Javascript hooks:
  * Ensure that we maintain a distinction between content and functionality.
  * Should *never* relate to css rules.
  * Should be the only way of reaching a dom element.
 
 
+### Property Ordering
+1. Sass specifics e.g. `+` and `@extend`
+2. Position
+3. Box model
+4. Typography
+5. Decorative
+
+For example: 
+```css
+.component
+  +css-arrow(top)
+  @extend %clearfix
+  position
+  top
+  right
+  z-index
+  display
+  width
+  height
+  margin
+  padding
+  border
+  font-style
+  font-weight
+  line-height
+  background
+  box-shadow
+  opacity
+  outline
+```
+
 -----
-## Javascript Guidelines
+## JavaScript Guidelines
+
+**Install [editorconfig](http://editorconfig.org/) for your editor !**
+
+**This README [used to](https://github.com/lonelyplanet/rizzo/blob/06b2c761b56184901d7a2341f6a872a541e7dee7/README.md#conventions-1) contain coffeescript guidelines, these have been removed as nobody should be writing new coffee at this point.**
 
 ### Conventions
 
-@chee is going to write this :)
+#### 1. Whitespace
 
+* Set your editor to remove trailing whitespace
 
+* Use 2 spaces for indentation
+
+* End files with no more and no less than 1 newline
+
+* The [.editorconfig](https://github.com/lonelyplanet/rizzo/blob/06b2c761b56184901d7a2341f6a872a541e7dee7/.editorconfig) will take care of the above for you
+
+#### 2. Syntax
+
+* Stick to double quotes
+
+* Spaces are encouraged, to improve readability
+   
+    ```javascript
+    if ( true ) {
+      this;
+    } else {
+      that;
+    }
+    ```
+
+* Declare variables at the top of their scope:
+
+    ```javascript
+    function balloon() {
+      var wizard,
+          dog = getShibe(),
+          partyHat = "^";
+      // some statements and stuff
+    }
+    ```
+
+* Use strict as the first line inside your require function
+
+    ```javascript
+    require("website", function( website ) {
+      "use strict";
+      website.respond();
+      website.enhance({ method: "progressive" });
+    });
+    ```
+   
+* No space before paren in function decl, but spaces within:
+  
+    ```javascript
+    function getDressed( hat, suit, scarf, cane ) {
+      // statements, innit
+    }
+    var antelope = function( colour ) {
+      // . . .
+    }
+    ```
+
+#### 3. Typechecking
+
+* In [this](http://contribute.jquery.org/style-guide/js/#type-checks) style, ten and sixpence.
+
+#### 4. Language
+
+* Use camelCase for method and variable names.
+
+    `twistAgainLikeWeDidLastSummer()`
+ 
+    __not__
+
+    `rock_around_the_clock()`
+
+* Try to avoid single character variable names, words are easier to read and we can leave minification to a minifier
+
+* Don't use comma first
+
+* Name collections (arrays, objects, sets, maps) in plural, ie: `badger` is a thing, `badgers` is a collection of things
+
+* test for truthiness:
+
+    ```javascript
+    if ( collection.length ) ...
+    if ( string ) ...
+    if ( truthyThing )
+    ```
+ 
+    __not__
+
+    ```javascript
+    if ( collection.length > 0 ) ...
+    if ( string !== "" )
+    if ( truthyThing === true )
+    ```
+
+* Put comments before the line or block they are about. Never use eol comments
+ 
+    ```javascript
+    // sanitizes animals for collection by spooks
+    var animalSanitizer = function( animal ) {
+      animal.cut(animal.hair).shampoo().rinse();
+    }
+    ```
+ 
+    __never__
+ 
+    ```javascript
+    var animalSanitizer = function( animal ) {
+      animal.cut(animal.hair).shampoo().rinse(); // sanitizes animals for collection by spooks
+    }
+    ```
+
+* Try to use a function expression unless a function declaration [is necessary](http://javascriptweblog.wordpress.com/2010/07/06/function-declarations-vs-function-expressions/)

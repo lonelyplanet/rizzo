@@ -10,9 +10,9 @@ require ['public/assets/javascripts/lib/managers/select_group_manager'], (Select
       beforeEach ->
         loadFixtures('select_group_manager.html')
 
-      it 'picks up all elements in need of SelectGroupManager', ->
+      it 'binds events to the wrapping element', ->
         selectGroupManager = new SelectGroupManager()
-        expect(selectGroupManager.selectContainers.length).toBe(2)
+        expect(selectGroupManager.selectContainers.length).toBe(1)
 
     describe 'visual', ->
       beforeEach ->

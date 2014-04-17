@@ -1,0 +1,10 @@
+- if !tooltip.nil?
+  - arrow_positions = { "above" => "down", "below" => "up", "left" => "right", "right" => "left" }
+  - position = tooltip[:position] || "below"
+  
+  .tooltip{ class: "tooltip--#{position} icon--tapered-arrow-#{arrow_positions[position]}--after" }
+    - if tooltip[:title]
+      %strong
+        = tooltip[:title]
+    .input__tooltip__copy
+      = tooltip[:copy]

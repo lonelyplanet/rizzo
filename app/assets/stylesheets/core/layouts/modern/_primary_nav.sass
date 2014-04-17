@@ -1,0 +1,222 @@
+// ----------------------------------------------------------------------------
+//
+// Row primary
+//
+// ----------------------------------------------------------------------------
+
+.row--primary
+  z-index: 6
+  position: relative
+  .responsive &
+    position: static
+  .homepage &
+    background: none
+
+// ----------------------------------------------------------------------------
+//
+// Lonely Planet Logo
+//
+// ----------------------------------------------------------------------------
+
+.logo--header
+  @extend %transition--nav
+  position: absolute
+  top: 0
+  left: 10px
+  z-index: 3
+  +respond-to(wide-view)
+    left: 20px
+  .homepage &
+    left: 20px
+    background-color: #1d508d
+    padding: 10px 15px
+    +respond-to(medium-view)
+      padding: 20px
+    .media--lp-logo
+      margin: 0
+
+.media--lp-logo
+  @extend %inline-block
+  height: 41px
+  margin: 7px 10px 0 0
+  width: 82px
+  vertical-align: top
+  z-index: 3
+  padding-top: 3px
+  .responsive &
+    margin-left: 2%
+    +respond-to(wide-view)
+      margin-left: 0
+
+// ----------------------------------------------------------------------------
+//
+// Core nav item
+//
+// ----------------------------------------------------------------------------
+
+.nav__item
+  &:hover, &:active, &.current
+    text-decoration: none
+
+// ----------------------------------------------------------------------------
+//
+// Primary Nav Layout
+//
+// ----------------------------------------------------------------------------
+
+.nav--primary
+  // Move the nav to the right of the absolutely positioned logo
+  margin-left: 117px
+  .responsive &
+    margin-left: 0
+    +respond-to(wide-view)
+      margin-left: 117px
+  .homepage &
+    +respond-to(wide-view)
+      margin-left: 157px
+
+.nav__item--primary
+  padding: 21px 4px
+  .nav__icon
+    display: none
+  .responsive &
+    +font-size(18)
+    padding: 17px 10px
+    border-bottom: 1px solid $offscreen-nav-border
+    padding-left: 60px
+    position: relative
+    &:hover
+      background-color: $header-blue
+      &:before
+        border-right: 1px solid $offscreen-nav-border-hover
+        color: $offscreen-nav-border-hover
+    &:before
+      @extend %empty-abs-generated-content
+      width: 50px
+      border-right: 1px solid $offscreen-nav-border
+      display: block
+      left: 0
+      top: 0
+      height: 100%
+      color: $offscreen-nav-border
+      background-position: center
+      background-size: 40%
+    +respond-to(wide-view)
+      +font-size(14)
+      padding: 21px 4px
+      border: none
+      &:hover
+        background: none
+        &:before
+          border: none
+          background-image: none
+      &:before
+        width: 0
+        border: none
+
+    .nav__icon
+      position: absolute
+      width: 50px
+      border-right: 1px solid $offscreen-nav-border
+      display: block
+      left: 0
+      top: 0
+      height: 100%
+      color: $offscreen-nav-border
+      opacity: 0.7
+      &:before
+        position: absolute
+        top: 14px
+        left: 15px
+        width: 22px
+        height: 22px
+      +respond-to(wide-view)
+        display: none
+
+  .homepage &
+    +respond-to(wide-view)
+      padding: 20px 4px
+
+  &, & > .nav__item
+    font-weight: bold
+    color: $nav-primary-type
+    .responsive &
+      font-weight: normal
+      +respond-to(wide-view)
+        font-weight: bold
+    &:hover
+      color: #fff
+
+  .homepage &, .homepage & > .nav__item
+    color: white
+    +respond-to(wide-view)
+      font-weight: bold
+
+  .nav__item--primary--signout--mobile
+    +respond-to(wide-view)
+      display: none
+
+.nav__item--sign-in,
+.nav__item--join
+  &:before
+    width: 18px
+    height: 18px
+    display: inline-block
+    margin-right: 5px
+    opacity: .7
+  &:hover:before
+    opacity: 1
+
+.nav--user
+  +respond-to(wide-view)
+    margin-right: 20px
+
+.nav__item--user
+  color: $nav-primary-type
+  margin-top: 10px
+  padding-right: 25px
+  &:hover
+    color: #fff
+  .responsive &
+    margin-top: 0
+    height: 50px
+    background: $offscreen-nav-user-background
+    +respond-to(990)
+      background: none
+    +respond-to(wide-view)
+      margin-top: 10px
+      height: auto
+
+.nav__item--user-avatar
+  @extend %rounded-corners
+  border: 2px solid $row-primary--darker
+  height: 30px
+  width: 30px
+  .responsive &
+    border-radius: 0px
+    border: none
+    height: 50px
+    width: 50px
+    +respond-to(wide-view)
+      border-radius: 4px
+      border: 2px solid $row-primary--darker
+      height: 30px
+      width: 30px
+  .homepage &
+    border-color: white
+
+.nav__item--user-menu
+  background: $offscreen-nav-user-background
+  display: none
+
+  .responsive &
+    display: block
+
+    +respond-to(wide-view)
+      display: none
+.nav__item--user-menu--wv
+  display: inline
+  .responsive &
+    display: none
+    +respond-to(wide-view)
+      display: inline

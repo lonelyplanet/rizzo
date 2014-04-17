@@ -6,5 +6,6 @@ define ->
   number: "Please enter only numbers for your "
   match: "Please match "
   checked: "Please accept "
-  text: "Please use only plain text for your"
+  text: "Please use only plain text for your "
   errorHeading: "Please correct the following errors:"
+  regex: "Please make sure you've met the requirement for your "

@@ -5,7 +5,7 @@
 
 .copy--boxed
   @extend %inline-block // ensure the border doesn't stretch full width
-  +box-sizing() // ensure on small screens that even with the padding it won't touch the edge
+  box-sizing: border-box // ensure on small screens that even with the padding it won't touch the edge
   max-width: 90%
   padding: 4px 10px
   border: 2px solid #a6acb1
@@ -14,7 +14,7 @@
   background: $body-background
   width: 110px
   margin-left: -55px
-  
+
 .row--latest-travel .tab--homepage__strapline
   color: $body-copy
 

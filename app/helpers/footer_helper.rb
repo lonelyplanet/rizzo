@@ -27,9 +27,10 @@ module FooterHelper
 
   def footer_nav_thorntree_items
     [
-      {:title=>'Departure lounge', :url=>'category.jspa?categoryID=2'},
-      {:title=>'Check in with Lonely Planet', :url=>'category.jspa?categoryID=11'},
-      {:title=>'The lobby', :url=>'category.jspa?categoryID=3'}
+      {:title=>'Country forums', :url=>'categories/country-forums'},
+      {:title=>'Talk to Lonely Planet', :url=>'categories/talk-to-lonely-planet'},
+      {:title=>'Interest forums', :url=>'categories/interest-forums'},
+      {:title=>'Travel buddies & for sale', :url=>'categories/sell-swap-meet-up'}
     ]
   end
 
@@ -64,7 +65,9 @@ module FooterHelper
       {:title=>'flickr', :url=>'http://www.flickr.com/groups/lonelyplanetpublications/'},
       {:title=>'rss', :url=>'/blog/feed/atom/'},
       {:title=>'youtube', :url=>'http://www.youtube.com/user/LonelyPlanet'},
-      {:title=>'pinterest', :url=>'http://pinterest.com/lonelyplanet/'}
+      {:title=>'pinterest', :url=>'http://pinterest.com/lonelyplanet/'},
+      {:title=>'instagram', :url=>'http://instagram.com/lonelyplanet'},
+      {:title=>'vine', :url=>'https://vine.co/lonelyplanet'}
     ]
   end
 

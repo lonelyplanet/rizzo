@@ -2,10 +2,8 @@ require ['public/assets/javascripts/lib/maps/map_manager'], (MapManager) ->
 
   describe 'MapManager', ->
 
-    window.lp = {
-      lodging:
-        map: {}
-    }
+    window.lp.lodging = window.lp.lodging || {}
+    window.lp.lodging.map = {}
 
     describe 'object', ->
       it 'is defined', ->

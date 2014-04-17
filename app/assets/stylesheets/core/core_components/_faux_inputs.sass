@@ -1,0 +1,67 @@
+// ---------------------------------------------------------------
+//
+//  Styled fake inputs using pseudo elements
+//
+// ---------------------------------------------------------------
+
+// ---------------------------------------------------------------
+// Faux Checkbox
+// ---------------------------------------------------------------
+
+.faux--input__checkbox
+  color: $body-copy
+  cursor: pointer
+  display: block
+  padding-left: 25px
+  line-height: 15px
+  position: relative
+  &:before
+    @extend %empty-abs-generated-content
+    width: 11px
+    height: 11px
+    border: 1px solid #d9e3e6
+    left: 0
+
+  .theme--dark &
+    color: $subduedgray
+    &:before
+      border-color: $subduedgray
+
+  &.is-active
+    font-weight: bold
+    color: $body-copy
+    &:before
+      width: 6px
+      height: 6px
+      border: 4px solid $teal
+
+    .theme--dark &
+      color: white
+
+  input[type='checkbox']:disabled ~ &
+    color: $disabled
+    cursor: normal
+    opacity: 0.4
+
+  // The labels often begin as links, so we have to set the colour on load
+  .js & a
+    color: $body-copy
+
+  // For browsers with no-js we show the checkbox so let's hide the pseudo elem
+  .no-js &
+    &:before
+      border: none
+
+.faux--input__checkbox--hide-text
+  display: inline-block
+  width: 17px
+  height: 17px
+  padding-left: 0
+  overflow: hidden
+  text-align: left
+  text-indent: -9999px
+
+.faux--input__checkbox--red
+  &.is-active
+    &:before
+      border-color: $red

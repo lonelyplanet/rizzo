@@ -1,7 +1,7 @@
 # ------------------------------------------------------------------------------
 # Returns a serialized object of a set of form parameters
 # Results are defined by the name of the inputs
-# 
+#
 # Depth of the array is defined by sq brackets eg. name="search[from]"
 # will return {search:{from: ''}}
 # ------------------------------------------------------------------------------
@@ -14,10 +14,10 @@ define ->
     self = this
     push_counters = {}
     patterns =
-      key: /[a-zA-Z0-9_]+|(?=\[\])/g
+      key: /[a-zA-Z0-9_-]+|(?=\[\])/g
       push: /^$/
       fixed: /^\d+$/
-      named: /^[a-zA-Z0-9_]+$/
+      named: /^[a-zA-Z0-9_-]+$/
 
 
     self.build = (base, key, value) ->

@@ -1,0 +1,39 @@
+.flyout-container
+  position: relative
+
+.flyout
+  +css-arrow(top, 40px, 230px)
+  @extend %rounded-corners
+  box-sizing: border-box
+  position: absolute
+  top: 105%
+  right: -20px
+  display: none
+  width: 320px
+  background-color: $body-copy
+  color: white
+  z-index: 10
+
+  &:after
+    position: absolute
+
+  &.is-active
+    display: block
+
+.flyout__inner
+  padding: 0 20px
+  margin: 20px 0
+
+.flyout__filter
+  @extend %subpixel-text
+  margin-bottom: 7px
+  &:last-of-type
+    margin-bottom: 0
+
+.flyout__filter-count
+  +font-size(12)
+
+.no-js
+  .flyout-container
+    &:hover .flyout
+      display: block

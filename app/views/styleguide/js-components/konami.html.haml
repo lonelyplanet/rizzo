@@ -1,0 +1,43 @@
+= render 'styleguide/partials/shared'
+
+.card.styleguide-intro.copy--body.context--content
+  .clearfix
+    %h1.split--left.copy--title Konami Code
+  
+  %p.copy--body
+    A quick and easy way to add some easter egg-ey goodness.
+
+.styleguide-block.styleguide-block__description.card.copy--body
+
+  %h2.copy--h2.styleguide-block__heading
+    Initiating
+
+  %pre.styleguide.copy--body.language-javascript
+    %code
+      = preserve do
+        :plain
+          require([ "lib/utils/konami" ], function(Konami) {
+            new Konami();
+          });
+
+.styleguide-block.styleguide-block__description.card.copy--body
+
+  %h2.copy--h2.styleguide-block__heading
+    Hooking in
+
+  %p
+    After having initialised, whenever the konami code is entered, a
+    %code :konami
+    event will get triggered on the
+    %code body
+    \.
+
+  %p You can therefore hook in as follows:
+
+  %pre.styleguide.copy--body.language-javascript
+    %code
+      = preserve do
+        :plain
+          $("body").on(":konami", function() {
+            // Your über clever easter egg code here.
+          });

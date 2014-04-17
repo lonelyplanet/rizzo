@@ -10,7 +10,7 @@ $tab-height--1250: 610px
   height: $tab-height
   position: relative
   z-index: 1
-  +transition(opacity, 0.3, ease)
+  transition: opacity 0.3s ease
   +respond-to(medium-view)
     height: $tab-height--wide
   +respond-to(1200)
@@ -22,8 +22,8 @@ $tab-height--1250: 610px
 
 
 .tab--homepage
-  +transition(all, 1, ease)
-  +box-sizing()
+  transition: all 1s ease
+  box-sizing: border-box
   height: $tab-height
   display: block
   left: 0
@@ -133,7 +133,7 @@ $tab-height--1250: 610px
 
 .tab--button
   +font-size(14)
-  +transition(background, 0.3, ease)
+  transition: background 0.3s ease
   color: $body-copy
   background: white
   width: 20%
@@ -188,7 +188,7 @@ $tab-height--1250: 610px
     position: relative
     margin: 0
     display: inline-block
-    
+
   .is-active &
     +icon-color(white)
 

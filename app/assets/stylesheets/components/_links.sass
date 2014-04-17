@@ -1,0 +1,23 @@
+.link--back
+  @extend %left-icon
+  @extend %inline-block
+  +font-size(15)
+  padding-left: 15px
+  &:before
+    width: 12px
+    height: 12px
+
+.link--wrapper
+  @extend %clearfix
+  overflow: hidden
+  display: block
+  height: 100%
+  color: $base-font-color
+  &, &:hover
+    text-decoration: none
+
+.link--plain
+  color: $body-copy
+  text-decoration: none
+  &:hover
+    text-decoration: underline

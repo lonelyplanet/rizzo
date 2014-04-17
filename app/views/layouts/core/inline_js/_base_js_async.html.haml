@@ -5,7 +5,7 @@
       var firstScript = document.getElementsByTagName("script")[0],
           js = document.createElement("script");
 
-      js.src = "#{asset_path('omniture/s_code.js')}";
+      js.src = "#{normalised_asset_path('omniture/s_code.js')}";
 
       js.onload = function(){
         var property;

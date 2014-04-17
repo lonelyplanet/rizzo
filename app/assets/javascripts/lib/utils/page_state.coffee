@@ -2,7 +2,6 @@ define [], () ->
 
   class PageState
 
-    augmentedUrls: /(.*)(?=\/rated$|\/apartments$|\/hostels-and-budget-hotels$|\/guesthouses$)/
     checkFilters: /filters/
     checkSearch: /search/
     legacyBrowsers: /(browser)?ie(7|8)/i
@@ -28,6 +27,10 @@ define [], () ->
       else if @legacyBrowsers.test(document.body.className)
         document.body
 
+    getDocumentRoot: ->
+      slug = @getSlug()
+      @createDocumentRoot(slug)
+
     isLegacy: ->
       !!@getLegacyRoot()
 
@@ -37,15 +40,18 @@ define [], () ->
     setHash: (hash) ->
       window.location.hash = hash
 
-    getDocumentRoot: ->
-      url = @getSlug()
-      url = if @augmentedUrls.test(url) then url.match(@augmentedUrls)[1] else url
+    createDocumentRoot: (slug) ->
+      if @withinFilterUrl()
+        newSlug = slug.split('/')
+        newSlug.pop() && newSlug.join('/')
+      else
+        slug
+
+    withinFilterUrl: ->
+      return document.getElementById('js-card-holder').getAttribute("data-filter-subcategory") == "true"
 
     hasFiltered: ->
-      url = @getSlug()
-      if @augmentedUrls.test(url) then return true
-      params = @getParams()
-      @checkFilters.test(params)
+      return @withinFilterUrl() or @checkFilters.test(@getParams())
 
     hasSearched: ->
       params = @getParams()

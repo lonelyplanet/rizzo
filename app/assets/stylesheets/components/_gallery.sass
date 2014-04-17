@@ -1,0 +1,324 @@
+$ad-width: 300px
+$footer-height: 250px
+$nav-height: 187px
+$slide-width-phone-small: 320px
+$slide-width-phone: 480px
+$slide-width-tablet: 768px
+$slide-width: 1000px
+
+@mixin slide-width($offset: 0)
+  width: $slide-width + $offset
+  .responsive &
+    width: $slide-width-phone-small
+    +respond-to(480)
+      width: $slide-width-phone + $offset
+    +respond-to(768)
+      width: $slide-width-tablet + $offset
+    +respond-to(larger-than-ipad)
+      width: $slide-width + $offset
+
+@mixin slide-height()
+  height: ($slide-width / 3) * 2
+  .responsive &
+    height: ($slide-width-phone-small / 3) * 2
+    +respond-to(480)
+      height: ($slide-width-phone / 3) * 2
+    +respond-to(768)
+      height: ($slide-width-tablet / 16) * 9
+    +respond-to(larger-than-ipad)
+      height: ($slide-width / 3) * 2
+
+.gallery
+  +slide-width()
+  margin: auto
+  transition: left .5s ease
+
+.gallery__controls
+  +slide-height()
+  left: 0
+  position: absolute
+  width: 100%
+  .gallery-box &
+    top: 120px
+
+.gallery__slide-background
+  +slide-height()
+  background: $body-copy
+  left: 0
+  position: absolute
+  width: 100%
+  .gallery-box &
+    top: 120px
+
+.gallery__slide-container
+  +hardware-acceleration()
+  +slide-height()
+  clear: both
+  position: relative
+  transition: margin-left 0.2s ease-in-out
+  overflow: hidden
+
+.gallery__slide
+  float: left
+  +slide-height()
+  +slide-width()
+  .no-touch-support &
+    transition: opacity .5s ease
+  &:nth-child(even)
+    background-color: #3E4752
+  &.is-loading.is-current:after
+    content: " "
+    position: absolute
+    top: 50%
+    left: 50%
+    width: 1em
+    height: 1em
+    margin: -0.5em 0 0 -0.5em
+    background: rgba(125, 125, 125, 0.5)
+    border-radius: 100%
+    animation: discmove 2s cubic-bezier(0.6, 1, 1, 1) infinite
+  &.is-previous,
+  &.is-next
+    cursor: pointer
+    opacity: .5
+    &:hover
+      opacity: 1
+
+.gallery__img
+  display: block
+  min-height: 100%
+  opacity: 0
+  transition: opacity 0.3s ease-in-out
+  width: 100%
+  .gallery__slide.is-loaded.is-current &
+    opacity: 1
+  .gallery__slide.is-loaded.is-previous &,
+  .gallery__slide.is-loaded.is-next &
+    display: block
+    opacity: .7
+
+.gallery__img--portrait
+  display: block
+  height: 100%
+  margin: auto
+  width: auto
+
+.gallery__title
+  +font-size(24)
+  color: $body-copy
+  padding-bottom: 10px
+  .responsive &
+    +font-size(20)
+    +respond-to(768)
+      +font-size(22)
+    +respond-to(1000)
+      +font-size(24)
+
+.gallery__breadcrumb
+  +font-size(14)
+  font-weight: bold
+  line-height: 2
+  text-transform: uppercase
+  .responsive &
+    +font-size(11)
+    line-height: 1
+    +respond-to(480)
+      +font-size(12)
+    +respond-to(768)
+      +font-size(14)
+    +respond-to(1000)
+      line-height: 2
+
+  &:before
+    +size(14px)
+    display: inline-block
+    vertical-align: middle
+
+.gallery__breadcrumb-item
+  color: $body-copy
+  &:after
+    content: " / "
+  &:last-child:after
+    content: ""
+
+.gallery__footer
+  +slide-width()
+  background: white
+  min-height: $footer-height
+  overflow: hidden
+
+.gallery__description
+  +slide-width(- $ad-width)
+  background: white
+  border-radius: 0 0 0 4px
+  box-sizing: border-box
+  float: left
+  min-height: $footer-height
+  padding: 20px 20px 0 20px
+  position: relative
+
+.gallery__social .sharing
+  padding: 10px 0 20px 0
+  border-top: none
+  .split--right
+    display: none
+  .sharing__label
+    display: none
+  .facebook-like
+    margin: 0
+    top: 0
+
+.gallery__subject-leadin
+  +font-size(14)
+  color: $darkblue
+  font-weight: bold
+  line-height: 1.5
+  text-transform: uppercase
+
+.gallery__poi
+  margin-bottom: 10px
+
+.gallery__poi-title
+  +font-size(16)
+  color: $body-copy
+  font-weight: bold
+  line-height: 2
+  &:before
+    display: inline-block
+    height: 24px
+    margin-right: 2px
+    vertical-align: middle
+    width: 20px
+
+.gallery__quote
+  +font-size(14)
+  border-left-style: solid
+  border-left-width: 2px
+  line-height: 1.2
+  margin-left: 9px
+  padding: 5px 10px 5px 15px
+  width: 95%
+  .responsive &
+    +respond-to(480)
+      width: $slide-width-phone - 50px
+    +respond-to(768)
+      width: 95%
+
+  @for $i from 1 through length($poi-names)
+    $type: nth($poi-names, $i)
+    &.gallery__quote--#{$type}
+      border-color: nth($poi-colors, $i)
+
+.gallery__poi-more
+  color: $body-copy
+  font-style: italic
+  font-weight: bold
+
+.gallery__mpu
+  background: white
+  display: block
+  float: left
+  height: $footer-height
+  width: $ad-width
+  .responsive &
+    display: none
+    +respond-to(480)
+      display: block
+
+.gallery-underlay
+  background: $body-background
+  background: rgba($body-background, 0.95)
+  bottom: 0
+  left: 0
+  opacity: 0
+  position: fixed
+  right: 0
+  top: 0
+  transition: opacity 1s
+  z-index: 10
+  &.is-active
+    opacity: 1
+
+.gallery-box
+  left: 0
+  height: 100%
+  opacity: 0
+  overflow: hidden
+  position: absolute
+  top: 0
+  transition: opacity .5s, left 1s
+  width: 100%
+  z-index: 20
+  &.is-active
+    opacity: 1
+  &.is-loading
+    left: 100%
+
+.gallery-box__close
+  +size(40px)
+  margin: 40px 20px
+  cursor: pointer
+  opacity: .25
+
+.gallery__next,
+.gallery__previous
+  background: #888
+  background: rgba(#000, 0.5)
+  padding: 10px 0
+  display: inline-block
+  font-weight: bold
+  height: 50px
+  line-height: 50px
+  margin-top: -25px
+  position: absolute
+  color: white
+  text-decoration: none
+  top: 50%
+  transition: left 0.2s, right 0.2s, opacity 0.1s
+  white-space: nowrap
+  width: 120px
+  z-index: 10
+  &:hover
+    text-decoration: none
+  .supports-touch &
+    display: none
+
+.gallery__next:before,
+.gallery__previous:after
+  display: inline-block
+  height: 50px
+  vertical-align: top
+  width: 35px
+
+.gallery__previous
+  border-radius: 0 50px 50px 0
+  left: -70px
+  text-align: right
+  .at-beginning &
+    opacity: 0
+    pointer-events: none
+  &:after
+    margin-right: 15px
+  &:hover,
+  &.is-hover
+    left: 0
+
+.gallery__next
+  border-radius: 50px 0 0 50px
+  right: -70px
+  .at-end &
+    opacity: 0
+    pointer-events: none
+  &:before
+    margin-left: 15px
+  &:hover,
+  &.is-hover
+    right: 0
+
+.gallery__slide-counter
+  bottom: 0
+  display: none
+  right: 0
+  padding: 1em
+  position: absolute
+  z-index: 10

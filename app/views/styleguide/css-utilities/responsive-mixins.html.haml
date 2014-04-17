@@ -1,0 +1,13 @@
+= render 'styleguide/partials/shared'
+
+.card.styleguide-intro.copy--body.context--content
+  .clearfix
+    %h1.copy--h1 Responsive Mixins
+    %p
+      These functions are used to provide some consistency around how we handle responsive states.
+
+- get_css("sass/mixins/_responsive").each do |css|
+  = render "styleguide/partials/snippet", properties: css
+
+- get_css("sass/mixins/_images").each do |css|
+  = render "styleguide/partials/snippet", properties: css

@@ -3,5 +3,5 @@
 .field.js-field{ class: field_class }
   %label.field__label.js-field-label{ for: id }<
     = label
-  .field__content.js-input
+  .field__content.js-input{ class: (tooltip and !tooltip.nil?) ? 'tooltip--container' : '' }
     = yield

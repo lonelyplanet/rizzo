@@ -1,0 +1,12 @@
+// -----------------------------------------------------------------------------
+//
+// Helper classes for use with legacy browsers
+//
+// -----------------------------------------------------------------------------
+
+// [doc] Add to labels to show them in browsers without support for placeholder. [/doc]
+.polyfill--placeholder
+  @extend %visually-hide
+  .ie7 &, .ie8 &, .ie9 &
+    @extend %visually-show
+    margin: 5px 0

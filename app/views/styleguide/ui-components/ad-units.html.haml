@@ -1,0 +1,87 @@
+= render 'styleguide/partials/shared'
+
+.card.styleguide-intro.styleguide-block.copy--body.context--content
+  %h1.copy--h1
+    Ad units
+
+  %p
+    Ad units are placeholder elements decorated with a little information about their intended content. 
+    Ad units are controlled by the ad manager and served via DoubleClick for Publishers (DFP).
+
+  %p
+    Advertisements are targeted based on meta data about the current page provided by an inline JS
+    configuration (<code>lp.ads</code>). The configuration provides information such as the 
+    destination and country the page content is about and the current page layout.
+
+  %p
+    The ad manager is initialised within <code>lib/core/base.js</code> which should be included within 
+    every application.
+
+.card.styleguide-block.copy--body.context--content
+
+  .styleguide-block__description
+
+    %h2.copy--h2.styleguide-block__heading
+      Usage
+
+    %p
+      Each ad unit type is available as a Rizzo UI component. The available ad types are:
+    %ul
+      %li
+        %code ad_sense
+      %li
+        %code leaderboard
+      %li
+        %code mpu
+      %li
+        %code sponsor_tile
+      %li
+        %code traffic_driver
+
+    %pre.styleguide.copy--body.language-html
+      %code
+        = preserve do
+          :plain
+            = ui_component("ads/leaderboard", properties: {...})
+
+    %p
+      Ad components can be configured in two ways:
+
+    %dl
+      %dt.copy--h5 Size
+      %dd 
+        The ad unit size is a comma-separated list of dimensions in the format 
+        <code>{width}x{height}</code>.
+      %dt.copy--h5 Extension
+      %dd
+        Certain ad unit types require a callback to further configure them, for instance a
+        double height MPU unit within a card stack needs to make space for itself.
+
+    %pre.styleguide.copy--body.language-html
+      %code
+        = preserve do
+          :plain
+            // Don't include the double height MPU
+            = ui_component('ads/mpu', properties: { sizes: '300x250,394x380' })
+
+.card.styleguide-block.copy--body.context--content
+
+  .styleguide-block__description
+
+    %h2.copy--h2.styleguide-block__heading
+      Controlling ads
+
+    %p
+      By default the ad manager will apply an event listener to the page which will listen for events
+      prefixed with <code>:ads/</code>. Currently configured actions are:
+    
+    %dl
+      %dt.copy--h5 Refresh
+      %dd
+        All ad units on the page can be refreshed by triggering an <code>:ads/refresh</code> event. The 
+        refresh action can also be filtered by type (based on the ID of the ad unit placeholder).
+
+        %pre.styleguide.copy--body.language-javascript
+          %code
+            :plain
+              $el.trigger(":ads/refresh", "leaderboard");

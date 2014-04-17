@@ -1,0 +1,132 @@
+// ----------------------------------------------------------------------------
+//
+// Body
+//
+// The below two lines (display, min-width) fix the background colours not stretching the
+// full page width on a small screen size
+//
+// Homepage is removed from this hack because it interferes with overflow-x
+// ----------------------------------------------------------------------------
+
+body
+  background-color: $body-background
+  display: table
+  min-width: 100%
+  &.responsive
+    display: block
+
+.overthrow-enabled
+  .overthrow
+    overflow: auto
+    -webkit-overflow-scrolling: touch
+
+// ----------------------------------------------------------------------------
+//
+// Row
+//
+// ----------------------------------------------------------------------------
+
+.row
+  @extend %clearfix
+
+.row__inner
+  @extend %clearfix
+  margin: 0 auto
+  position: relative
+  width: $fixed-layout-width
+  .responsive &
+    width: 90%
+    +respond-to(wide-view)
+      max-width: $fixed-layout-width
+
+.row--text-centered
+  text-align: center
+  .row__inner
+    width: 95%
+    +respond-to(wide-view)
+      width: 600px
+
+.row--image
+  background-position: 50% 50%
+  background-repeat: no-repeat
+  background-size: cover
+  position: relative
+
+.row--image__standout
+  text-align: center
+  +respond-to(wide-view)
+    display: block
+    position: absolute
+    right: 55%
+
+.row--fluid
+  min-width: $fixed-layout-width
+  padding-left: 20px
+  padding-right: 20px
+  .responsive &
+    min-width: 0
+
+
+// ----------------------------------------------------------------------------
+//
+// Row Faux Banner
+//
+// When we use the offscreen nav we need to fake a 55px blue bar at the top
+// because the logo and nav are no longer part of the same node
+// ----------------------------------------------------------------------------
+
+.row--faux-banner
+  display: none
+  .responsive &
+    display: block
+    position: absolute
+    top: 0
+    left: 0
+    right: 0
+    background-color: $navblue
+    height: 55px
+    +respond-to(wide-view)
+      display: none
+
+
+
+
+// ----------------------------------------------------------------------------
+//
+// Row Container
+//
+// ----------------------------------------------------------------------------
+
+.row--content
+  margin-bottom: 40px
+  // Ensure that nav dropdowns sit above any content
+  position: relative
+  z-index: 1
+  .responsive &
+    @extend %transition--nav
+    margin-top: 55px
+  .homepage &
+    margin-top: 0
+
+
+
+// ----------------------------------------------------------------------------
+//
+// Pointer cover
+//
+// 60fps scrolling
+// http://www.thecssninja.com/javascript/follow-up-60fps-scroll
+//
+// ----------------------------------------------------------------------------
+
+.pointer-cover
+  transform: translate3d(0,0,0)
+  top: 0
+  right: 0
+  left: 0
+  bottom: 0
+  opacity: 0
+  z-index: 11000
+  position: fixed
+  pointer-events: none
+  display: none

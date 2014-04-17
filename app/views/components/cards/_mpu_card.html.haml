@@ -1,4 +1,5 @@
-%div.card.card--ad.card--no-image.js-card.js-card-ad.card--double.is-closed
+.card.card--ad.card--ad--mpu.card--no-image.js-card.js-card-ad.card--double
   .tag--horizontal.tag--horizontal--left
     Advertisement
-  %div.card__content#js-ad-mpu.ad-mpu.is-faded-out
+  .card__content.ad-mpu
+    = ui_component('ads/mpu', properties: { extension: 'stackMPU' })

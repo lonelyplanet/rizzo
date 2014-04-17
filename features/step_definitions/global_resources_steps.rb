@@ -62,12 +62,10 @@ Then /^the global\-body\-footer should response have the correct content$/ do
   page.should have_selector 'div.row--footer--about'
   page.should have_selector 'div.row--smallprint'
   page.should have_selector 'div.js-config'
-  page.should have_xpath("//script[@data-main=\"app_core_legacy\" and @src=\"/assets/require.js\"]")
 end
 
 Then /^the secure global\-body\-footer response should have the correct content$/ do
-  page.should have_selector 'div.js-config' 
-  page.should have_xpath("//script[@data-main=\"app_secure_core_legacy\" and @src=\"/assets/require.js\"]")
+  page.should have_selector 'div.js-config'
 end
 
 Then /^the global\-body\-header response should not have the user nav box$/ do

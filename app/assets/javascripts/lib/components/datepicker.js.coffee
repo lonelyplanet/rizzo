@@ -27,8 +27,8 @@ define ['jquery', 'pickadate/lib/picker', 'pickadate/lib/picker.date', 'pickadat
       self = @
       @inDate =  $(config.target).find(config.startSelector)
       @outDate = $(config.target).find(config.endSelector)
-      @inLabel = $('.js-av-start-label')
-      @outLabel = $('.js-av-end-label')
+      @inLabel = $(config.startLabelSelector || '.js-av-start-label')
+      @outLabel = $(config.endLabelSelector || '.js-av-end-label')
       @firstTime = if (@inDate.val() is ''  or @inDate.val() is undefined) then true else false
       @day = 86400000
       today = []
@@ -37,25 +37,30 @@ define ['jquery', 'pickadate/lib/picker', 'pickadate/lib/picker.date', 'pickadat
       today.push(d.getFullYear(), d.getMonth(), d.getDate())
       tomorrow.push(d.getFullYear(), d.getMonth(), (d.getDate() + 1))
 
-      @inDate.pickadate({
-        min: today
+      inOpts =
         format: config.dateFormat
         onSet: ->
           self.dateSelected(this.get('select', config.dateFormatLabel), "start")
-      })
-
-      @outDate.pickadate({
-        min: tomorrow
+      outOpts =
         format: config.dateFormat
         onSet: ->
           self.dateSelected(this.get('select', config.dateFormatLabel), "end")
-      })
+
+      if config.backwards
+        inOpts.max = today
+        outOpts.max = today
+      else
+        inOpts.min = today
+        outOpts.min = tomorrow
+
+      @inDate.pickadate inOpts
+      @outDate.pickadate outOpts
 
     dateSelected: (date, type)->
       if type is "start"
         unless @isValidEndDate()
           @outDate.data('pickadate').set('select', new Date(date).getTime() + @day)
-        @inLabel.text(@inDate.val())
+        @inLabel.text(date)
 
       else if type is "end"
         if !@isValidEndDate() or @firstTime

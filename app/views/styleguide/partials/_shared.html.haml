@@ -1,0 +1,9 @@
+- content_for(:async_js) {"styleguide"}
+- content_for(:secondary) do
+  = ui_component("place_title", properties: page_title)
+  = ui_component("navigation/secondary", properties: secondary_nav_items)
+
+:ruby
+  def ad_config
+    {hints: "", channels: ""}
+  end

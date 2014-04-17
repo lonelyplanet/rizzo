@@ -1,0 +1,23 @@
+// -----------------------------------------------------------------------------
+// Visual Breadcrumbs
+// -----------------------------------------------------------------------------
+
+.stack__breadcrumbs
+  & + .stack__content
+    margin-top: -20px
+
+.stack__breadcrumb
+  @extend %rounded-corners
+  @extend %transition--base
+  background: linear-gradient(to bottom, rgb(255,255,255), rgb(239,239,239))
+  color: $disabled
+  display: block
+  padding: 20px 15px 10px 25px
+  position: relative
+  text-decoration: none
+  margin-bottom: 0
+
+  &:hover
+    transform: translate(0, -10px)
+    color: $header-blue
+    text-decoration: none

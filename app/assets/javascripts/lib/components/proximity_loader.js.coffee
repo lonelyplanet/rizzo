@@ -1,6 +1,4 @@
-required = if window.lp.isMobile then 'jsmin' else 'jquery'
-
-define [required, 'lib/extends/events'], ($, EventEmitter) ->
+define ["jquery", 'lib/extends/events', 'lib/utils/debounce'], ($, EventEmitter, debounce) ->
 
   class ProximityLoader
 
@@ -29,7 +27,7 @@ define [required, 'lib/extends/events'], ($, EventEmitter) ->
     # Private
 
     _getViewportEdge: ->
-      scrolled =  if window.pageYOffset then window.pageYOffset else document.documentElement.scrollTop
+      scrolled = if window.pageYOffset then window.pageYOffset else document.documentElement.scrollTop
       scrolled + document.documentElement.clientHeight
 
     _setUpElems: (list) ->
@@ -46,14 +44,12 @@ define [required, 'lib/extends/events'], ($, EventEmitter) ->
       elems
 
     _watch: ->
-      enableTimer = false
       # Only create jquery object if necessary, otherwise we already have the node
       win = if $.fn then $(window) else window
-      win.on 'scroll', =>
-        clearTimeout(enableTimer) if enableTimer
-        enableTimer = setTimeout =>
-          @_check()
-        , @config.debounce
+
+      win.on 'scroll', debounce( =>
+        @_check()
+      , @config.debounce)
 
     _check: ->
       if @elems.length > 0

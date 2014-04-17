@@ -1,0 +1,134 @@
+// -----------------------------------------------------------------------------
+// Html5 Elements
+// -----------------------------------------------------------------------------
+
+article, aside, details, figcaption, figure, footer, header, hgroup, nav, section, summary, iframe
+  display: block
+time
+  display: inline
+
+
+// -----------------------------------------------------------------------------
+// Slim Normalize - See normalize source code for clarification on rule purposes
+//
+// I have slimmed it down to adapt it for our supported browser set
+//
+// https://github.com/necolas/normalize.css
+// -----------------------------------------------------------------------------
+
+html
+  overflow-y: scroll
+  -webkit-tap-highlight-color: transparent
+  -ms-text-size-adjust: 100%
+  -webkit-text-size-adjust: 100%
+
+
+form, input, button, select, textarea
+  font-size: 100%
+
+b, strong
+  font-weight: bold
+
+a, a:active, a:hover, a:visited
+  outline: none
+
+a:focus
+  outline: thin dotted
+
+img
+  border: 0
+  -ms-interpolation-mode: bicubic
+  // Prevent some IE bugs in legacy code
+  @if $is-responsive == true
+    max-width: 100%
+
+button, input, select, textarea
+  border-radius: 0
+  font-family: inherit
+  font-size: 100%
+  vertical-align: baseline
+  *vertical-align: middle
+
+button, input
+  line-height: normal
+
+button, input
+  overflow: visible
+  margin: 0
+
+input[type="checkbox"], input[type="radio"]
+  box-sizing: border-box
+
+textarea
+  overflow: auto
+  vertical-align: top
+
+table
+  border-collapse: collapse
+  border-spacing: 0
+
+sub,
+sup
+  line-height: 0
+  position: relative
+  vertical-align: baseline
+
+sup
+  top: -0.45em
+
+sub
+  bottom: -0.25em
+
+button::-moz-focus-inner,
+input::-moz-focus-inner
+  border: 0
+  padding: 0
+
+
+// Override Chrome's agressive defaults
+hr
+  border: none
+  border-bottom: 1px solid $subduedgray
+
+// -----------------------------------------------------------------------------
+// Slim Reset
+// -----------------------------------------------------------------------------
+
+html, body, div, span, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre,a, abbr, acronym, address, cite, code,em, img,q, strong, sub, sup,dl, dt, dd, ol, ul, li,fieldset, form, label, table, tbody, tfoot, thead, tr, th, td,article, aside, canvas, figure, figcaption, footer, header, hgroup, nav, section, time, mark, audio, video, input, textarea
+  margin: 0
+  padding: 0
+
+nav ul
+  list-style: none
+
+a > img
+  display: block
+
+h1,h2,h3,h4,h5,h6
+  text-rendering: optimizeLegibility
+  font-weight: normal
+
+fieldset
+  border: none
+
+// ----------------------------------------------------------------------------
+//
+// Remove iOs default styles
+//
+// ----------------------------------------------------------------------------
+
+
+input[type=text], input[type=email], input[type=search], input[type=submit]
+  @extend %webkit-appearance-reset
+
+input[type=search]::-webkit-search-cancel-button
+  @extend %webkit-appearance-reset
+
+input[type=search]::-webkit-search-decoration
+  @extend %webkit-appearance-reset
+
+input[type=search]::-webkit-search-results-button
+  @extend %webkit-appearance-reset
+
+input[type=search]::-webkit-search-results-decoration
+  @extend %webkit-appearance-reset

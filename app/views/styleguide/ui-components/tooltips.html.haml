@@ -1,0 +1,165 @@
+.card.styleguide-intro.copy--body.context--content
+  %h1.copy--h1 Tooltips
+  %p
+    Do not call this component directly as the abstraction would be overkill. Tooltips should always look like these through a combination of the modifier classes detailed below and in 
+    %a{href: 'https://github.com/lonelyplanet/rizzo/blob/master/app/assets/stylesheets/components/_tooltip.sass'}
+      _tooltip.sass
+  %p
+    %strong Note:
+    %ol
+      %li
+        The distance from the containing element is in
+        %code %
+        so you may find that this needs to be tweaked dependent on where it's used.
+      %li The widths for the left/right variations of the tooltips will need to be explicitly defined.
+
+%p.copy--h2.styleguide-block__heading
+  On Hover
+
+.styleguide-block.styleguide-block__tooltips
+
+  .styleguide-block__description.card.copy--body.tooltip--container.tooltip--hover
+    .tooltip.tooltip--above.icon--tapered-arrow-down--after
+      I should appear above.
+
+    %h2.copy--h2
+      Above
+
+    %pre.styleguide.copy--body.language-markup
+      %code
+        = preserve do
+          :plain
+            &lt;div class='tooltip--container tooltip--hover' href='#'>
+              Hover me
+              &lt;div class='tooltip tooltip--above icon--tapered-arrow-down--after'>I should appear above.&lt;/div>
+            &lt;/div>
+
+  .styleguide-block__description.card.copy--body.tooltip--container.tooltip--hover
+    .tooltip.tooltip--below.icon--tapered-arrow-up--after
+      I should appear below.
+    
+    %h2.copy--h2
+      Below
+
+    %pre.styleguide.copy--body.language-markup
+      %code
+        = preserve do
+          :plain
+            &lt;div class='tooltip--container tooltip--hover' href='#'>
+              Hover me
+              &lt;div class='tooltip tooltip--below icon--tapered-arrow-up--after'>I should appear below.&lt;/div>
+            &lt;/div>
+
+  .styleguide-block__description.card.copy--body.tooltip--container.tooltip--hover
+    .tooltip.tooltip--left.icon--tapered-arrow-right--after
+      I should appear to the left.
+
+    %h2.copy--h2
+      Left
+
+    %pre.styleguide.copy--body.language-markup
+      %code
+        = preserve do
+          :plain
+            &lt;div class='tooltip--container tooltip--hover' href='#'>
+              Hover me
+              &lt;div class='tooltip tooltip--left icon--tapered-arrow-right--after'>I should appear to the left.&lt;/div>
+            &lt;/div>
+
+  .styleguide-block__description.card.copy--body.tooltip--container.tooltip--hover
+    .tooltip.tooltip--right.icon--tapered-arrow-left--after
+      I should appear to the right.
+    
+    %h2.copy--h2
+      Right
+
+    %pre.styleguide.copy--body.language-markup
+      %code
+        = preserve do
+          :plain
+            &lt;div class='tooltip--container tooltip--hover' href='#'>
+              Hover me
+              &lt;div class='tooltip tooltip--right icon--tapered-arrow-left--after'>I should appear to the right.&lt;/div>
+            &lt;/div>
+
+
+%p.copy--h2.styleguide-block__heading
+  On Focus
+
+.styleguide-block.styleguide-block__tooltips
+
+  .styleguide-block__description.card.copy--body
+    
+    %h2.copy--h2
+      Above
+
+    %p.tooltip--container
+      %input.input.tooltip--focus{ type: "text", placeholder: "Click to focus" }
+      %span.tooltip.tooltip--above.icon--tapered-arrow-down--after
+        I should appear above.
+
+    %pre.styleguide.copy--body.language-markup
+      %code
+        = preserve do
+          :plain
+            &lt;div class='tooltip--container' href='#'>
+              &lt;input class='tooltip--focus' type='text' placeholder='Click to focus' />
+              &lt;div class='tooltip tooltip--above icon--tapered-arrow-down--after'>I should appear above.&lt;/div>
+            &lt;/div>
+
+  .styleguide-block__description.card.copy--body
+    
+    %h2.copy--h2
+      Below
+
+    %p.tooltip--container
+      %input.input.tooltip--focus{ type: "text", placeholder: "Click to focus" }
+      %span.tooltip.tooltip--below.icon--tapered-arrow-up--after
+        I should appear below.
+
+    %pre.styleguide.copy--body.language-markup
+      %code
+        = preserve do
+          :plain
+            &lt;div class='tooltip--container' href='#'>
+              &lt;input class='tooltip--focus' type='text' placeholder='Click to focus' />
+              &lt;div class='tooltip tooltip--below icon--tapered-arrow-up--after'>I should appear below.&lt;/div>
+            &lt;/div>
+
+  .styleguide-block__description.card.copy--body
+    
+    %h2.copy--h2
+      Left
+
+    %p.tooltip--container
+      %input.input.tooltip--focus{ type: "text", placeholder: "Click to focus" }
+      %span.tooltip.tooltip--left.icon--tapered-arrow-right--after
+        I should appear to the left.
+
+    %pre.styleguide.copy--body.language-markup
+      %code
+        = preserve do
+          :plain
+            &lt;div class='tooltip--container' href='#'>
+              &lt;input class='tooltip--focus' type='text' placeholder='Click to focus' />
+              &lt;div class='tooltip tooltip--left icon--tapered-arrow-right--after'>I should appear to the left.&lt;/div>
+            &lt;/div>
+
+  .styleguide-block__description.card.copy--body
+    
+    %h2.copy--h2
+      Right
+
+    %p.tooltip--container
+      %input.input.tooltip--focus{ type: "text", placeholder: "Click to focus" }
+      %span.tooltip.tooltip--right.icon--tapered-arrow-left--after
+        I should appear to the right.
+
+    %pre.styleguide.copy--body.language-markup
+      %code
+        = preserve do
+          :plain
+            &lt;div class='tooltip--container' href='#'>
+              &lt;input class='tooltip--focus' type='text' placeholder='Click to focus' />
+              &lt;div class='tooltip tooltip--right icon--tapered-arrow-left--after'>I should appear to the right.&lt;/div>
+            &lt;/div>

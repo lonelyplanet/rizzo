@@ -30,19 +30,6 @@ form_components:
       :key: "value"
       :super: "man"
 
-  -
-    :styleguide_title: "Dropdown"
-    :id: "input_id"
-    :name: "text_name"
-    :options:
-      - :title: 'one'
-      - :title: 'two'
-      - :title: 'three'
-    :data:
-      :key: "value"
-      :super: "man"
-
-
 field_components:
   -
     :styleguide_title: "Text field"
@@ -84,6 +71,60 @@ field_components:
     :label: "This is the checkbox"
 
   -
+    :styleguide_title: "Radio Buttons Field"
+    :id: "radio_buttons"
+    :label: "Radio options"
+    :options:
+      -
+        :name: 'foo[]'
+        :id: 'foo-1'
+        :value: '1'
+        :label: 'One'
+        :data:
+          :key: "value"
+          :super: "man"
+      -
+        :name: 'foo[]'
+        :id: 'foo-2'
+        :value: '2'
+        :label: 'Two'
+        :data:
+          :key: "value"
+          :super: "man"
+      -
+        :name: 'foo[]'
+        :id: 'foo-3'
+        :value: '3'
+        :label: 'Three'
+        :data:
+          :key: "value"
+          :super: "man"
+
+  -
+    :styleguide_title: "Security Code field"
+    :label: "Field label"
+    :id: "text_id"
+    :name: "text_name"
+    :placeholder: "Placeholder"
+    :data:
+      :key: "value"
+      :super: "man"
+
+
+dropdown_components:
+  -
+    :styleguide_title: "Dropdown"
+    :id: "input_id"
+    :name: "text_name"
+    :options:
+      - :title: 'one'
+      - :title: 'two'
+      - :title: 'three'
+    :data:
+      :key: "value"
+      :super: "man"
+
+  -
     :styleguide_title: "Select field"
     :label: "Select legend"
     :id: "select_id"
@@ -122,17 +163,46 @@ field_components:
       -
         :name: "select_name"
         :placeholder: "Item Three"
-        :options: 
+        :options:
           - :title: 'a1'
           - :title: 'b2'
           - :title: 'c3'
 
+slider_components:
   -
-    :styleguide_title: "Security Code field"
-    :label: "Field label"
-    :id: "text_id"
-    :name: "text_name"
-    :placeholder: "Placeholder"
-    :data:
-      :key: "value"
-      :super: "man"
+    :title: "Price slider"
+    :unit: "$"
+    :unit_position: "before"
+    :min:
+      :extreme: "0"
+      :value: "25"
+      :name: "[filters][price][lower]"
+    :max:
+      :extreme: "100"
+      :value: "75"
+      :name: "[filters][price][upper]"
+  -
+    :title: "Capped price slider"
+    :unit: "$"
+    :unit_position: "before"
+    :cap_level: "90"
+    :min:
+      :extreme: "0"
+      :value: "25"
+      :name: "[filters][price][lower]"
+    :max:
+      :extreme: "100"
+      :value: "75"
+      :name: "[filters][price][upper]"
+  -
+    :title: "Duration slider"
+    :unit: "hours"
+    :unit_position: "after"
+    :min:
+      :extreme: "1"
+      :value: "24"
+      :name: "[filters][duration][lower]"
+    :max:
+      :extreme: "168"
+      :value: "72"
+      :name: "[filters][duration][upper]"

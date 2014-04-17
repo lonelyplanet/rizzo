@@ -9,7 +9,8 @@
 = yield :dns_prefetch
 = yield :place_hotels_link
 %link{rel: "dns-prefetch", href: "http://assets.staticlp.com"}
-%link{rel: "icon", type: "image/gif", href: "http://www.lonelyplanet.com/favicon.ico"}
+%link{rel: "icon", type: "image/gif", href: "https://www.lonelyplanet.com/favicon.ico"}
+= yield :pagination_links_rels
 
 - if responsive
   %meta{name:"viewport", content:"width=device-width, initial-scale=1"}
@@ -19,7 +20,7 @@
 = csrf_meta_tags
 
 = render 'layouts/core/snippets/head_js'
-= render 'layouts/core/inline_js/tynt'
+= render 'layouts/core/inline_js/tynt' unless suppress_tynt
 
 = smart_stylesheet('common_core_no_font')
 = yield :stylesheets

@@ -1,3 +1,5 @@
+= render 'styleguide/partials/shared'
+
 .card.styleguide-intro.styleguide-block.copy--body.context--content
   %h1.copy--h1 Proportional Grid
   %p
@@ -5,11 +7,15 @@
 
   .copy--h4 N.b. The card appearance is applied separately - grid class only provide dimensions
 
-- gutters = [10,15,20,30]
+- gutters = [0,10,15,20,30]
 
 - gutters.each do |gutter|
   .styleguide-block.styleguide-grid.context--content
     %p.copy--h2 Proportional Grid with a #{gutter} pixel gutter (.grid-wrapper--#{gutter})
+    %div{class: "grid-wrapper--#{gutter}"}
+      .col--one-whole
+        .card.copy--h4 .col--one-whole
+
     %div{class: "grid-wrapper--#{gutter}"}
       - 2.times do
         .col--one-half

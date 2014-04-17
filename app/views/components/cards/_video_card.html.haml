@@ -1,6 +1,6 @@
-%article.card.card--image-only.card--video
+%article.card.card--image-only
   %a.link--wrapper{href: properties[:video_href], title: "Video Gallery"}
-    %span.card--media__badge.icon--video.icon--white
+    %span.card__icon.icon--video.icon--white
     %figure.card__hero
       = safe_image_tag(properties[:resized_video_url], class: 'portrait card__image', alt: "Video Gallery", lazyload: defined?(lazyload))
 

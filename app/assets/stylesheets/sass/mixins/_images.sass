@@ -1,0 +1,34 @@
+// -----------------------------------------------------------------------------
+// [doc]
+//
+// Responsive Images using CSS Backgrounds.
+//
+// Using this mixin requires three versions of the image to be available at
+// 480,700 & 1600px widths.
+//
+// Using this mixin will also covering Retina & IE8 support.
+//
+// [/doc]
+// -----------------------------------------------------------------------------
+
+@mixin responsive-image($path: '', $extension: 'jpg')
+  $sizes: "480", "700", "1600"
+
+  @if $is-ie == false
+    @each $size in $sizes
+      $index: index($sizes, $size)
+
+      // Default is the smallest
+      @if $index == 1
+        background-image: url("#{normalised_asset_path('#{$path}-#{nth($sizes, 1)}.#{$extension}', "")}")
+        +retinafy()
+          background-image: url("#{normalised_asset_path('#{$path}-#{nth($sizes, 2)}.#{$extension}', "")}")
+      @else
+        // Set the min-width to the width below the current image size
+        @media only screen and (min-width: nth($sizes, $index - 1) + px)
+          background-image: url("#{normalised_asset_path('#{$path}-#{nth($sizes, $index)}.jpg', "")}")
+
+  @else
+    // For IE7 & 8 we serve the 1024 version
+    // This presumes a lot about screen size
+    background-image: url("#{normalised_asset_path('#{$path}-#{nth($sizes, 3)}.jpg', "")}")

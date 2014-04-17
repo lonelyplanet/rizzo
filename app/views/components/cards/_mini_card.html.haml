@@ -1,0 +1,19 @@
+:ruby
+  css_classes = [
+    "card",
+    "card--poi",
+    "card--icon",
+    "card--mini",
+    "card--single",
+    "card--media-container",
+    properties[:css_classes]
+  ].join(" ")
+
+%article.js-card{class: css_classes}
+
+  %a.link--wrapper{href: properties[:slug]}
+    %figure.card__hero
+      = safe_image_tag(properties[:image_url], class: "card__image", alt: properties[:title], lazyload: defined?(lazyload))
+    %span.card__icon.icon--white{class: "icon--#{properties[:icon]}"}
+    %h2.card__name
+      = properties[:title]

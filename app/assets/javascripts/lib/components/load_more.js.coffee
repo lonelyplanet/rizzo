@@ -61,7 +61,7 @@ define ['jquery','lib/extends/events'], ($, EventEmitter ) ->
 
     _clean: ->
       @$el.empty()
-      
+
     _add: ->
       container = $('<div>').css('text-align', 'center')
       @$btn = $('<a>').attr('id', 'js-load-more').addClass('btn btn--grey btn--full-width').text(@config.title)

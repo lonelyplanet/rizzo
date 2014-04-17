@@ -112,7 +112,7 @@ define ['jquery'], ($) ->
       @wrapper.css({'max-height': height + 'px'})
       @setHandlerText(text)
       @state = state
-      @handler.removeClass(@config.classes.join(' ')).addClass(classes)
+      @handler && @handler.removeClass(@config.classes.join(' ')).addClass(classes)
 
     setHandlerText: (_text) ->
       @handler and @handler.text _text

@@ -1,7 +1,6 @@
 require ['jquery'], ($) ->
   $(".js-select").on "change", (e) ->
-    eval "sortBy(#{@value})"
-    return
+    sortBy(@value)
 
   $(".styleguide-proximity__input").on "keyup", (event) ->
     return resetProximity() if (!event.target.value)
@@ -13,7 +12,7 @@ require ['jquery'], ($) ->
 
     while i < sections.length
       section = sections[i]
-      cards = Array::slice.call(section.querySelectorAll(".card--double"))
+      cards = Array::slice.call(section.querySelectorAll(".js-card-container .col--one-third"))
       newCards = ""
       cards = cards.sort(comparator)
       $(cards).each ->
@@ -34,28 +33,39 @@ require ['jquery'], ($) ->
 
   resetProximity = ->
     document.getElementById("proximityMatch").value = ""
-    $(".card--double").each ->
+    $(".styleguide__colours").removeAttr("style")
+    $(".js-card-container .card").each ->
       @.removeAttribute "style"
-      @.className = @.className.replace(" isnt-approximate", "").replace(" is-approximate", "")
+      @.classList.remove('isnt-approximate')
+      @.classList.remove('is-approximate')
+      @.classList.remove('is-exact')
 
   matchProximity = ->
     colour = document.getElementById("proximityMatch").value
+    sections = $(".styleguide__colours").removeClass("has-match").removeAttr("style")
+
     colourBlocks = $(".styleguide-block__item--colour")
     colourBlocks.each ->
       proximity = colourProximity(colour, @.innerHTML)
-      
+
       # Remove previous classes
       @.parentNode.removeAttribute "style"
       @.parentNode.className = @.parentNode.className.replace(" is-approximate", "").replace(" isnt-approximate", "")
       if proximity < 20
-        @.parentNode.style["background-color"] = (if /^#/.test(colour) then colour else "#" + colour)
+        @.style["border-color"] = (if /^#/.test(colour) then colour else "#" + colour)
         @.parentNode.className += " is-approximate"
-        @.parentNode.className += " is-exact"  if proximity is 0
+        @.parentNode.className += " is-exact icon--tick--before"  if proximity is 0
+        $(@).closest(".styleguide__colours").addClass("has-match")
       else
         @.parentNode.className += " isnt-approximate"
 
+    sections.filter(".has-match").css
+      backgroundColor: "#"+colour.replace("#", "")
+      paddingRight: 10
+      paddingTop: 10
 
-  # Mostly ripped from here: http://stackoverflow.com/questions/13586999/color-difference-similarity-between-two-values-with-js 
+
+  # Mostly ripped from here: http://stackoverflow.com/questions/13586999/color-difference-similarity-between-two-values-with-js
   colourProximity = (v1, v2) ->
     i = undefined
     d = 0

@@ -58,13 +58,12 @@ define ['jquery', 'lib/maps/map_styles', 'lib/utils/css_helper', 'polyfills/scro
           , config.centerDelay || 0
 
 
-    @loadLib: ->
+    @loadLib: =>
       return if @map
       # pointer to google-maps callback, not possible inside the regular closure environment
       lp.MapManager = MapManager
       script = document.createElement('script')
-      script.type = 'text/javascript'
-      script.src = "http://maps.googleapis.com/maps/api/js?key=#{@apiKey}&v=2&sensor=false&callback=lp.MapManager.initMap"
+      script.src = "http://maps.googleapis.com/maps/api/js?key=#{@apiKey}&sensor=false&callback=lp.MapManager.initMap"
       document.body.appendChild(script)
 
     @initMap: =>
@@ -225,7 +224,14 @@ define ['jquery', 'lib/maps/map_styles', 'lib/utils/css_helper', 'polyfills/scro
       highlightPois(id: id, map: map)
 
     highlightPois = ({id, map}) ->
-      poiElements.removeClass('nearby-pois__poi--highlighted');
+      poiElements.removeClass('nearby-pois__poi--highlighted')
+
+      $resizer = map.find('.js-resizer')
+      resizeCheckbox = document.getElementById($resizer.attr('for'))
+
+      if resizeCheckbox and not resizeCheckbox.checked
+        $resizer.click()
+
       if id is mapManager.currentPOI
         mapManager.currentPOI = null
         map.removeClass('map--has-focus')
@@ -233,6 +239,6 @@ define ['jquery', 'lib/maps/map_styles', 'lib/utils/css_helper', 'polyfills/scro
       else
         mapManager.currentPOI = id
         map.addClass('map--has-focus')
-        element = poiElements.filter("[data-slug='#{id}']").addClass('nearby-pois__poi--highlighted').get(0);
+        element = poiElements.filter("[data-slug='#{id}']").addClass('nearby-pois__poi--highlighted').get(0)
         element.scrollIntoViewIfNeeded(true, true)
         highlightPin(id)

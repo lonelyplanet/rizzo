@@ -1,0 +1,10 @@
+= render 'styleguide/partials/shared'
+
+.card.styleguide-intro.copy--body.context--content
+  .clearfix
+    %h1.copy--h1 Icon Placeholders
+    %p
+      These can be used to help position icons within elements
+
+- get_css("sass/extends/icons/_icon_setup").each do |css|
+  = render "styleguide/partials/snippet", properties: css

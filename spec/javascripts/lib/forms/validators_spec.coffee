@@ -114,3 +114,20 @@ require ['lib/forms/validators'], (Validators) ->
         inputText = $('<input type="checkbox" />')
 
         expect(Validators.checked(inputText)).toBe false
+
+    describe 'regex validator', ->
+
+      regex_string = "^[a-zA-Z0-9]+$"
+
+      beforeEach ->
+        inputText = $('<input type="text" />')
+
+      it 'passes if input matches regex', ->
+        inputText.val('asdf1234')
+
+        expect(Validators.regex(inputText, regex_string)).toBe true
+
+      it 'fails if input does not match regex', ->
+        inputText.val('asdf1234;')
+
+        expect(Validators.regex(inputText, regex_string)).toBe false

@@ -1,3 +1,5 @@
+= render 'styleguide/partials/shared'
+
 :ruby
   badge_stub = YAML.load(File.read(File.expand_path('../../../../data/styleguide/badges_stubs.yml', __FILE__)))
   badges = badge_stub['badges']
@@ -9,7 +11,7 @@
   %p.copy--h2 Please note: 
   %p
     Badges do not call this component directly as the abstraction would be overkill. badges should always look like these through a combination of the modifier classes detailed below and in 
-    %a{href: 'https://github.com/lonelyplanet/rizzo/blob/master/app/assets/stylesheets/_common-ui/_badges.sass'}
+    %a{href: 'https://github.com/lonelyplanet/rizzo/blob/master/app/assets/stylesheets/components/_badges.sass'}
       badges.sass
 
 .styleguide-block.styleguide-block__badges

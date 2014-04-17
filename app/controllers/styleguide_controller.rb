@@ -34,6 +34,10 @@ class StyleguideController < GlobalController
     render '/styleguide/ui-components/page_title'
   end
 
+  def headers
+    render '/styleguide/ui-components/headers'
+  end
+
   def colours
     render '/styleguide/ui-components/colours'
   end
@@ -42,8 +46,8 @@ class StyleguideController < GlobalController
     render '/styleguide/ui-components/ui_colours'
   end
 
-  def activeIcons
-    render '/styleguide/ui-components/active-icons'
+  def icons
+    render '/styleguide/ui-components/icons'
   end
 
   def inactiveIcons
@@ -54,8 +58,16 @@ class StyleguideController < GlobalController
     render '/styleguide/ui-components/pagination'
   end
 
-  def forms
-    render '/styleguide/ui-components/forms'
+  def inputs
+    render '/styleguide/ui-components/inputs'
+  end
+
+  def dropdown
+    render '/styleguide/ui-components/dropdown'
+  end
+
+  def rangeSlider
+    render '/styleguide/ui-components/range_slider'
   end
 
   def proportionalGrid
@@ -78,6 +90,10 @@ class StyleguideController < GlobalController
     render '/styleguide/js-components/toggle-active'
   end
 
+  def tags
+    render '/styleguide/tags'
+  end
+
   def proximity_loader
     render '/styleguide/js-components/proximity-loader'
   end
@@ -92,6 +108,70 @@ class StyleguideController < GlobalController
 
   def alerts
     render '/styleguide/ui-components/alerts'
+  end
+
+  def utilityClasses
+    render '/styleguide/css-utilities/utility-classes'
+  end
+
+  def legacy
+    render '/styleguide/css-utilities/legacy'
+  end
+
+  def noJs
+    render '/styleguide/css-utilities/no-js'
+  end
+
+  def lpSpecificClasses
+    render '/styleguide/css-utilities/lp-specific-classes'
+  end
+
+  def responsive
+    render '/styleguide/css-utilities/responsive'
+  end
+
+  def tooltips
+    render '/styleguide/ui-components/tooltips'
+  end
+
+  def utilityPlaceholders
+    render '/styleguide/css-utilities/utility-placeholders'
+  end
+
+  def lpSpecificPlaceholders
+    render '/styleguide/css-utilities/lp-specific-placeholders'
+  end
+
+  def iconPlaceholders
+    render '/styleguide/css-utilities/icon-placeholders'
+  end
+
+  def responsiveMixins
+    render '/styleguide/css-utilities/responsive-mixins'
+  end
+
+  def mediaMixins
+    render '/styleguide/css-utilities/media-mixins'
+  end
+
+  def utilityMixins
+    render '/styleguide/css-utilities/utility-mixins'
+  end
+
+  def lightbox
+    render '/styleguide/js-components/lightbox'
+  end
+
+  def konami
+    render '/styleguide/js-components/konami'
+  end
+
+  def template
+    render '/styleguide/js-components/template'
+  end
+
+  def adUnits
+    render '/styleguide/ui-components/ad-units'
   end
 
   #===== yeoman hook =====#

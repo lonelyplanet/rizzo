@@ -1,0 +1,13 @@
+= render 'styleguide/partials/shared'
+
+.card.styleguide-intro.copy--body.context--content
+  .clearfix
+    %h1.copy--h1 Lonely Planet Specific Placeholders
+    %p
+      These are helper placeholders which provide often used styling specific to LP.
+
+- get_css("sass/extends/lp_styles/_decoration").each do |css|
+  = render "styleguide/partials/snippet", properties: css
+
+- get_css("sass/extends/lp_styles/_transitions").each do |css|
+  = render "styleguide/partials/snippet", properties: css

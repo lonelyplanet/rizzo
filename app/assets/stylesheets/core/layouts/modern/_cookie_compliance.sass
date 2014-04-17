@@ -1,0 +1,47 @@
+// ----------------------------------------------------------------------------
+//
+// Row cookie compliance
+//
+// ----------------------------------------------------------------------------
+
+.row--cookie-compliance
+  +font-size(12)
+  line-height: 1.2
+  background-color: $dark-blue-gray
+  overflow: hidden
+  color: #fff
+  .responsive &
+    text-align: center
+    +respond-to(wide-view)
+      text-align: left
+  .split--left
+    max-width: 75%
+
+  .cookie-text
+    padding-top: 9px
+
+  .cookie-link
+    color: #fff
+    text-decoration: underline
+    font-weight: bold
+
+  .cookie-buttons
+    .responsive &
+      text-align: center
+      +respond-to(wide-view)
+        text-align: right
+
+  .btn
+    +font-size(12)
+
+  .btn--grey
+    margin-left: 10px
+
+  &.is-open
+    padding-top: 12px
+    padding-bottom: 12px
+
+  &.is-closed
+    height: 0
+    .ie7 &
+      display: none

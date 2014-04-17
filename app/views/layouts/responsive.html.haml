@@ -5,12 +5,12 @@
 <!--[if gt IE 9]><!--><html class='no-js no-freight base' data-topic="#{yield :topic}" lang="en"><!--<![endif]-->
 
 %head
-  = render 'layouts/core/head', responsive: true, homepage: false
+  = render 'layouts/core/head', responsive: true, homepage: false, suppress_tynt: (defined?(suppress_tynt) ? suppress_tynt : false)
 
 %body.responsive
   = render 'layouts/core/snippets/accessibility'
   = render 'layouts/core/snippets/leaderboard'
-  .wrapper
+  .wrapper.js-wrapper
     = render 'layouts/core/snippets/primary_navigation_bar', user_nav: true, responsive: true, homepage: false
     .row.row--content{id: @no_wallpaper ? "" : "js-row--content"}
       - if (yield :secondary).present?
@@ -25,8 +25,9 @@
       = render 'layouts/core/snippets/body_footer', responsive: true
 
     = render 'layouts/core/snippets/footer_js'
+    = render 'layouts/core/snippets/pointer_cover'
 
-    %div.ad-oneByOne#js-ad-oneByOne
+    = render 'layouts/core/snippets/one_by_one'
 
     - if defined? Variant
       /

@@ -1,0 +1,79 @@
+// ----------------------------------------------------------------------------
+// svg icon stuff
+// ----------------------------------------------------------------------------
+[class^="icon--"],
+[class*=" icon--"]
+  background-size: cover
+  &:before,
+  &:after
+    content: ""
+    background-size: cover
+    pointer-events: none
+
+  &.btn--icon-only
+    background-size: 1.5em
+
+  .icon--fallback-text
+    display: none
+    .no-background-size &
+      @extend %visually-show
+      display: block
+
+      &.icon--fallback-text--inline
+        display: inline
+
+.icon--body-grey,
+.icon--body-grey--before:before,
+.icon--body-grey--after:after
+  background-position: 0 20%
+
+.icon--white,
+.icon--white--before:before,
+.icon--white--after:after
+  background-position: 0 40%
+
+.icon--lp-blue,
+.icon--lp-blue--before:before,
+.icon--lp-blue--after:after
+  background-position: 0 60%
+
+.icon--custom,
+.icon--custom--before:before,
+.icon--custom--after:after
+  background-position: 0 80%
+
+.icon--custom-2,
+.icon--custom-2--before:before,
+.icon--custom-2--after:after
+  background-position: 0 100%
+
+.btn--icon-only
+  &.icon--white,
+  &.icon--white--before:before,
+  &.icon--white--after:after
+    background-position: 50% 39%
+
+  &.icon--body-grey,
+  &.icon--body-grey--before:before,
+  &.icon--body-grey--after:after
+    background-position: 50% 18%
+
+  &.icon--white,
+  &.icon--white--before:before,
+  &.icon--white--after:after
+    background-position: 50% 39%
+
+  &.icon--lp-blue,
+  &.icon--lp-blue--before:before,
+  &.icon--lp-blue--after:after
+    background-position: 50% 60%
+
+  &.icon--custom,
+  &.icon--custom--before:before,
+  &.icon--custom--after:after
+    background-position: 50% 83%
+
+  &.icon--custom-2,
+  &.icon--custom-2--before:before,
+  &.icon--custom-2--after:after
+    background-position: 50% 100%

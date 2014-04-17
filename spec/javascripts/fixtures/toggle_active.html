@@ -1,4 +1,14 @@
-<div class="foo"></div>
+<div id="js-row--content">
 
-<a href="#" id="normal" class="js-toggle-active" data-toggle-target=".foo">toggle it</a>
-<a href="#" id="custom-class" class="js-toggle-active" data-toggle-target=".foo" data-toggle-class="custom-class">toggle it</a>
+  <div class="foo"></div>
+
+  <a href="#" id="normal" class="js-toggle-active" data-toggle-target=".foo">toggle it</a>
+  <a href="#" id="custom-class" class="js-toggle-active" data-toggle-target=".foo" data-toggle-class="custom-class">toggle it</a>
+  <a href="#" id="both" class="js-toggle-active" data-toggle-target=".foo" data-toggle-me="true">toggle it</a>
+
+  <a href="#" id="evented" class="js-toggle-active" data-toggle-target=".foo" data-toggle-me="true">toggle it</a>
+
+  <a href="#" id="is-cancellable" class="js-toggle-active" data-toggle-target=".foo">toggle it</a>
+  <button type="button" id="not-cancellable" class="js-toggle-active" data-toggle-target=".foo">toggle it</button>
+
+</div>

@@ -1,0 +1,73 @@
+// ----------------------------------------------------------------------------
+//
+// Utility Classes
+//
+// ----------------------------------------------------------------------------
+
+// [doc] Clear floats. [/doc]
+.clearfix
+  @extend %clearfix
+
+// [doc] Hide using display: none. [/doc]
+.is-hidden
+  display: none !important
+
+// [doc] Hide using clip and make the element visible to Screen Readers. [/doc]
+.accessibility
+  @extend %visually-hide
+
+// [doc] Hide using opacity (modern browsers only). [/doc]
+.is-faded-out
+  opacity: 0
+
+// [doc] Split long words over multiple lines. Useful for hyperlinks. [/doc]
+.break-text
+  @extend %prevent-text-breakouts
+
+// [doc] Position an element left - eg. the primary nav. [/doc]
+.split--left
+  float: left
+
+// [doc] Position an element right
+//
+// Requires a .split--right__inner class on any children.
+//
+// This technique is used on the primary nav for the user features and search.
+// [/doc]
+.split--right
+  float: right
+  text-align: right
+
+.split--right__inner
+  text-align: left
+
+// [doc] Create an inline nav - eg. the primary nav. [/doc]
+.nav--inline, .wv--nav--inline
+  > .nav__item
+    vertical-align: top
+    @extend %inline-block
+
+// [doc] Create a stacked nav - eg. the footer nav. [/doc]
+.nav--stacked
+  > .nav__item
+    display: block
+
+// [doc] Vertically center content.
+//
+// Use this class on the container and __inner on the element to be centered.
+// [/doc]
+.vertically-centered
+  display: table
+  width: 100%
+  .vertically-centered__inner
+    display: table-cell
+    vertical-align: middle
+
+// [doc] Replace an input with an image or pseudo element.
+//
+// This will degrade gracefully for browsers that don't support pseudo elements.
+// [/doc]
+.hidden-input
+  @extend %visually-hide
+  .ie7 &, .no-js &
+    @extend %visually-show

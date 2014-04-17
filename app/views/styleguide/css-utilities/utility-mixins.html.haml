@@ -1,0 +1,10 @@
+= render 'styleguide/partials/shared'
+
+.card.styleguide-intro.copy--body.context--content
+  .clearfix
+    %h1.copy--h1 General Utility Mixins
+    %p
+      These are intended to abstract out common code that depends on an argument.
+
+- get_css("sass/mixins/_utilities").each do |css|
+  = render "styleguide/partials/snippet", properties: css

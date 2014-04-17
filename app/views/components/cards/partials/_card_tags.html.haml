@@ -1,9 +1,0 @@
-- if properties[:topchoice] or properties[:prices]
-  .card__tags
-    - if properties[:prices] && properties[:prices][currency.to_s].present? && properties[:prices][currency.to_s] > 0
-      = render :partial => '/components/cards/partials/card_price', :locals => { :properties => properties, :price_is_from => true }
-    - if properties[:topchoice]
-      .tag.tag--badge.tag--top-choice
-        .tag--badge__content.icon--collar--after.icon--lp-blue--after
-          .icon--top-choice.icon--white
-            Top Choice

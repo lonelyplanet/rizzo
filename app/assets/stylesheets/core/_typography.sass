@@ -1,0 +1,50 @@
+// -----------------------------------------------------------------------------
+//
+// Typographic Base
+//
+// -----------------------------------------------------------------------------
+
+html
+  @extend %lp-font-stack
+  font-size: $freight-font-size
+  &.no-freight
+    font-size: $helvetica-font-size
+
+  @if $is-ie
+    font: $helvetica-font-size 'Helvetica Neue', Arial, sans-serif
+
+body
+  min-height: 100%
+  color: $body-copy
+
+// -----------------------------------------------------------------------------
+// Typographic Element Definitions
+// -----------------------------------------------------------------------------
+
+p
+  margin-bottom: 10px
+
+a
+  color: $link-color
+  cursor: pointer
+  text-decoration: none
+  &:hover
+    text-decoration: underline
+
+em
+  font-style: normal
+
+// -----------------------------------------------------------------------------
+// Text selection
+//
+// Needs to be declared twice to work properly cross browser, not to be combined
+// -----------------------------------------------------------------------------
+
+::-moz-selection
+  background-color: $active
+  color: white
+
+::selection
+  background-color: $active
+  color: white
+

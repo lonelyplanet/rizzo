@@ -1,4 +1,7 @@
 :ruby
+  if properties[:style] == "mini"
+    return render "components/cards/mini_card", properties: properties.merge({ css_classes: ["card--poi--destination", "card--mini--destination", "card--full-image"] })
+  end
 
   css_classes = [
 
@@ -7,10 +10,12 @@
     "card--destination",
     "card--icon",
     "icon--destination--pin--before",
-    "#{properties[:image_url] ? 'card--extended-content' : 'card--no-image'}",
+    "#{properties[:image_url] && !properties[:double?] ? 'card--extended-content' : 'card--no-image'}",
     "#{properties[:double?] ? 'card--double card--full-image' : 'card--single'}"
 
   ].join(" ")
+
+  show_footer = properties[:things_to_do_count] && properties[:lodging_count] && !properties[:double?]
 
 
 %article.js-card{class: css_classes}
@@ -19,9 +24,9 @@
 
     = render partial: "components/cards/partials/card_content", locals: {properties: properties}
 
-    - if properties[:things_to_do_count] && properties[:lodging_count]
+    - if show_footer
       %footer.card__footer
         %span.destination__item-count.destination__item-count--sights.icon--hotel--before
-          = properties[:things_to_do_count]
-        %span.destination__item-count.destination__item-count--lodgings.icon--sight--before
           = properties[:lodging_count]
+        %span.destination__item-count.destination__item-count--lodgings.icon--sight--before
+          = properties[:things_to_do_count]

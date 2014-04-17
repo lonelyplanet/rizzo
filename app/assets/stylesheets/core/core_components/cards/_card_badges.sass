@@ -1,0 +1,64 @@
+// -----------------------------------------------------------------------------
+// Card item counts
+// -----------------------------------------------------------------------------
+
+.card__item-count
+  +font-size(18)
+  position: absolute
+  color: #fff
+  height: 34px // Stop clipping in IE
+  left: 15px
+  line-height: 20px
+  top: 15px
+  z-index: 5
+
+  &:before
+    content: ''
+    float: left
+    height: 34px
+    margin-right: 3px
+    width: 24px
+    z-index: 4
+
+  .no-js &, .no-background-size &
+    &:before
+      display: none
+
+// -----------------------------------------------------------------------------
+// Card Icons e.g. Image card
+// -----------------------------------------------------------------------------
+
+.card__icon
+  filter: drop-shadow(0 0 5px rgba(0,0,0,0.5))
+  position: absolute
+  left: 50%
+  top: 50%
+  width: 30px
+  height: 30px
+  margin-left: -15px
+  margin-top: -15px
+  z-index: 5
+  .card--mini &
+    margin-top: -30px
+
+// -----------------------------------------------------------------------------
+// POI card badges
+// -----------------------------------------------------------------------------
+
+.card--icon:before
+  content: ''
+  height: 33px
+  left: 15px
+  position: absolute
+  top: 15px
+  width: 24px
+  z-index: 4
+
+// -----------------------------------------------------------------------------
+// Badge opt-out
+// -----------------------------------------------------------------------------
+
+.without-hotel-badges
+  .card--poi--hotel.card--small-image
+    &:before
+      content: none

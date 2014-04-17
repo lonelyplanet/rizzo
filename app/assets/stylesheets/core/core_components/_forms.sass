@@ -1,0 +1,79 @@
+.fieldset
+  +font-size(16)
+
+.fieldset__legend
+  margin-bottom: 10px
+  padding: 0
+
+.field
+  @extend %clearfix
+  clear: both
+  margin-bottom: 10px
+  position: relative
+  .input
+    float: left
+
+.field__label
+  box-sizing: border-box
+  float: left
+  padding: 10px 10px 10px 0
+  width: 35%
+
+  .field--radio &
+    padding: 0 10px 0 0
+
+.field__content
+  float: left
+  width: 65%
+
+.field__security-code
+  background: url("#{image_path('shared/lp-checkout.png')}") -81px -106px no-repeat
+  float: left
+  height: 27px
+  margin: 6px 0 0 10px
+  width: 46px
+
+.field__input--error,
+.field__input--valid
+  &:after
+    +size(20px)
+    position: absolute
+    right: 10px
+    top: 9px
+
+.field__error
+  +font-size(14)
+  color: $red
+  clear: both
+  font-weight: bold
+  margin: 5px 0
+
+.field__content--checkbox
+  float: none
+  width: auto
+
+.input__container
+  @extend %clearfix
+  position: relative
+
+  &.icon--calendar--after
+    &:after
+      width: 22px
+      height: 22px
+      position: absolute
+      right: 8px
+      top: 8px
+
+  .field--half &
+    float: left
+    width: 50%
+  .field--radio &
+    margin-right: 10px
+
+.input--checkbox
+  margin: 0 5px
+.input--radio
+  margin-right: 2px
+
+.input--datepicker
+  padding-right: 30px

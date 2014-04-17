@@ -1,0 +1,16 @@
+.range-slider.context--content.js-range-slider-container
+  %h4.copy--h4
+    = properties[:title]
+
+  .js-range-slider{data: {range: "#{properties[:min][:extreme]},#{properties[:max][:extreme]}", current: "#{properties[:min][:value]},#{properties[:max][:value]}", targets: "#{properties[:min][:name]},#{properties[:max][:name]}", cap_level: "#{properties[:cap_level] ? properties[:cap_level] : false}", unit: raw(properties[:unit]), unit_position: properties[:unit_position]}}
+
+  .range-slider__labels.clearfix.js-range-labels<
+    %span.split--left.js-range-min #{raw(properties[:unit])}#{properties[:min][:value]}
+    %span.split--right.js-range-max #{raw(properties[:unit])}#{properties[:max][:value]}
+
+  .no-js-visible
+    .grid-wrapper--10
+      .col--one-half
+        = ui_component('forms/text_field', properties: {label: "Min #{properties[:unit] ? raw(properties[:unit]) : ""}", name: properties[:min][:name], id: 'no-js-lower-price-filter', value: properties[:min][:value]})
+      .col--one-half
+        = ui_component('forms/text_field', properties: {label: "Min #{properties[:unit] ? raw(properties[:unit]) : ""}", name: properties[:max][:name], id: 'no-js-upper-price-filter', value: properties[:max][:value]})

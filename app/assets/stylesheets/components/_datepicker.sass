@@ -1,0 +1,117 @@
+.picker__holder
+  width: 100%
+  height: 0
+  position: relative
+  z-index: 10000
+  clear: both
+
+.picker__frame
+  @extend %transition--slower
+  @extend %rounded-corners
+  top: 0
+  left: 0
+  background: white
+  position: relative
+  max-width: 320px
+  min-width: 256px
+  max-height: 0
+  overflow-y: hidden
+  .picker--opened &
+    max-height: 25em
+    @extend %fly-out-shadow
+
+.picker__box
+  padding: 10px
+  text-align: center
+  border: 1px solid $subduedgray
+
+.picker__month--wrap,
+.picker__year--wrap
+  @extend %inline-block
+
+.picker__month--wrap
+  margin-right: 4px
+
+.picker__month,
+.picker__year
+  +font-size(18)
+  font-weight: bold
+
+.picker__header
+  position: relative
+
+.picker__nav--prev,
+.picker__nav--next
+  position: absolute
+  background-size: cover
+  top: 8px
+  width: 20px
+  height: 20px
+  cursor: pointer
+  background-size: cover
+  .no-background-size &:after,
+  .no-js &:after
+    +font-size(32)
+    font-weight: bold
+    line-height: .5
+
+.picker__nav--prev
+  @extend %left-icon
+  left: 10px
+  .no-background-size &:after,
+  .no-js &:after
+    content: "\2039"
+
+.picker__nav--next
+  @extend %right-icon
+  right: 10px
+  .no-background-size &:after,
+  .no-js &:after
+    content: "\203a"
+
+.picker__nav--disabled
+  background: none
+  cursor: auto
+  .no-background-size &:after,
+  .no-js &:after
+    content: initial
+
+.picker__table
+  border-collapse: separate
+  border-spacing: 4px
+  width: 100%
+
+.picker__weekday
+  +font-size(14)
+  font-weight: normal
+
+.picker__day
+  +font-size(13)
+  border-radius: 30px
+  @extend %inline-block
+  font-family: "Helvetica Neue", arial
+  font-weight: bold
+  width: 26px
+  height: 26px
+  line-height: 26px
+  text-align: center
+  border: 1px solid #d7dee3
+  cursor: pointer
+
+.picker__day--selected,
+.picker__day--selected:hover
+  border-color: $active
+  background-color: $active
+  color: white
+
+.picker__day--outfocus,
+.picker__day--disabled
+  border: none
+
+.picker__day--disabled
+  opacity: 0.5
+  color: #ddd
+  cursor: default
+
+.picker__footer
+  display: none

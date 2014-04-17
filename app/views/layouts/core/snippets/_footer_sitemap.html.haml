@@ -16,10 +16,10 @@
         %input.input--small--newsletter(type='text' id='newsletter-email' autocomplete='off' name='sailthru_email' placeholder='your@email.com' required='required')
         %input(type='hidden' name='Source' value='homepagefooter')
         %input(type='hidden' name='type' value='subscribe')
-        .dropdown.dropdown--country.js-select-country
-          %label.dropdown__value.dropdown__value--country.icon--chevron-down--after.js-select-overlay(href='#select-country')
+        .dropdown.dropdown--country.js-select-group-manager
+          %label.dropdown__value.dropdown__value--country.js-select-overlay.icon--chevron-down--after(for='select-country')
             Select country
-          %select.dropdown__select.js-select(name='sailthru_Country' id='countrySelect')
+          %select.dropdown__select.js-select#select-country(name='sailthru_Country')
             - footer_newsletter_country_items.each do |country|
               %option(value="#{country[:title]}")
                 = country[:title]

@@ -1,61 +1,150 @@
 module StyleguideHelper
 
+  def root
+    "/styleguide"
+  end
+
   def sections
     # Add new sections here.
-    ["JS Components", "UI Components"]
+    [
+      {
+        title: "UI Components",
+        slug: "/ui-components"
+      },
+      {
+        title: "JS Components",
+        slug: "/js-components"
+      },
+      {
+        title: "CSS Utilities",
+        slug: "/css-utilities"
+      }
+    ]
   end
 
   def default_section
-    "UI Components"
+    sections[0]
   end
 
   def left_nav
     # NB! The below line is required for our yeoman generator and should not be changed.
     #===== yeoman begin-hook =====#
     {
+      css_utilities: [
+        {
+          title: "Classes",
+          items: [
+            {
+              name: "General",
+              slug: "utility-classes"
+            },
+            {
+              name: "Legacy Support",
+              slug: "legacy"
+            },
+            {
+              name: "No Javascript",
+              slug: "no-js"
+            },
+            {
+              name: "LP Specific",
+              slug: "lp-specific-classes"
+            },
+            {
+              name: "Responsive",
+              slug: "responsive"
+            }
+          ]
+        },
+        {
+          title: "Placeholders",
+          items: [
+            {
+              name: "General",
+              slug: "utility-placeholders"
+            },
+            {
+              name: "LP Specific",
+              slug: "lp-specific-placeholders"
+            },
+            {
+              name: "Icons",
+              slug: "icon-placeholders"
+            }
+          ]
+        },
+        {
+          title: "Mixins",
+          items: [
+            {
+              name: "Responsive",
+              slug: "responsive-mixins"
+            },
+            {
+              name: "Utility Mixins",
+              slug: "utility-mixins"
+            },
+            {
+              name: "Media",
+              slug: "media-mixins"
+            }
+          ]
+        }
+      ],
       js_components: [
         {
           title: "Utils",
           items: [
             {
               name: "Toggle Active",
-              path: "toggle-active"
+              slug: "toggle-active"
             },
             {
               name: "Proximity Loader",
-              path: "proximity-loader"
+              slug: "proximity-loader"
             },
             {
               name: "Asset Reveal",
-              path: "asset-reveal"
+              slug: "asset-reveal"
             },
             {
               name: "Image Helper",
-              path: "image-helper"
+              slug: "image-helper"
+            },
+            {
+              name: "Konami",
+              path: "konami"
+            },
+            {
+              name: "Lightbox",
+              slug: "lightbox"
+            },
+            {
+              name: "Template",
+              slug: "template"
             }
           ]
         }
       ],
       ui_components: [
         {
-          title: "Colours",
+          title: "Design",
           items: [
             {
               name: "Design palette",
-              path: "colours"
+              slug: "colours"
             },
             {
               name: "UI Colours",
-              path: "ui-colours"
-            }
-          ]
-        },
-        {
-          title: "Icons",
-          items: [
+              slug: "ui-colours"
+            },
             {
-              name: "Active",
-              path: "active-icons"
+              name: "Icons",
+              slug: "icons"
+            },
+            {
+              name: "Typography",
+              slug: "typography"
             }
           ]
         },
@@ -64,15 +153,15 @@ module StyleguideHelper
           items: [
             {
               name: "Dropdown",
-              path: "navigational_dropdown"
+              slug: "navigational_dropdown"
             },
             {
               name: "Left Nav",
-              path: "left-nav"
+              slug: "left-nav"
             },
             {
               name: "Secondary Nav",
-              path: "secondary-nav"
+              slug: "secondary-nav"
             }
           ]
         },
@@ -81,11 +170,28 @@ module StyleguideHelper
           items: [
             {
               name: "Proportional Grid",
-              path: "proportional-grid"
+              slug: "proportional-grid"
             },
             {
               name: "Cards Grid",
-              path: "cards-grid"
+              slug: "cards-grid"
+            }
+          ]
+        },
+        {
+          title: "Form Elements",
+          items: [
+            {
+              name: "Inputs",
+              slug: "inputs"
+            },
+            {
+              name: "Dropdown",
+              slug: "dropdown"
+            },
+            {
+              name: "Range Slider",
+              slug: "range-slider"
             }
           ]
         },
@@ -93,20 +199,24 @@ module StyleguideHelper
           title: "Components",
           items: [
             {
+              name: "Ad units",
+              slug: "ad-units"
+            },
+            {
               name: "Alerts",
-              path: "alerts"
+              slug: "alerts"
             },
             {
               name: "Badges",
-              path: "badges"
+              slug: "badges"
             },
             {
               name: "Buttons",
-              path: "buttons"
+              slug: "buttons"
             },
             {
               name: "Cards",
-              path: "cards"
+              slug: "cards"
             },
             {
               name: "Tiles",
@@ -118,15 +228,19 @@ module StyleguideHelper
             },
             {
               name: "Page title",
-              path: "page-title"
+              slug: "page-title"
             },
             {
               name: "Pagination",
-              path: "pagination"
+              slug: "pagination"
             },
             {
-              name: "Typography",
-              path: "typography"
+              name: "Tags",
+              slug: "tags"
+            },
+            {
+              name: "Tooltips",
+              slug: "tooltips"
             }
           ]
         }
@@ -138,12 +252,14 @@ module StyleguideHelper
 
   def left_nav_items
     active_left_nav = {}
-    preceding_slug = (active_section == default_section) ? "/styleguide/" : "/styleguide/#{active_section}/"
-
-    active_left_nav[:groups] = left_nav[:"#{active_section.downcase.gsub(/[ -]/, "_")}"].map do |group|
+    preceding_slug = "#{root}#{active_section[:slug]}/"
+    active_left_nav[:groups] = left_nav[:"#{active_section[:slug].gsub(/^\//, "").gsub(/[ -]/, "_")}"].map do |group|
       group[:items].map do |item|
-        item[:path] = "#{preceding_slug}#{item[:path]}"
-        item[:active] = (item[:path] == request.path) ? true : false
+        item[:slug] = "#{preceding_slug}#{item[:slug]}"
+        item[:active] = (item[:slug] == request.path) ? true : false
+        if item[:name] == "Konami"
+          item[:extra_style] = "nav--left__item--konami"
+        end
         item
       end
       group
@@ -154,35 +270,40 @@ module StyleguideHelper
   def active_section
     # Check whether any of the sections above are currently in the url.
     section_from_slug = request.fullpath.match(/styleguide\/([^\/]+)/)
-
-    if section_from_slug && (sections.map {|s| s.downcase.strip.gsub(' ', '-') }.include? section_from_slug[1])
-      section_from_slug[1]
-    else
-      default_section
+    section_from_slug && sections.map do |section|
+      if section[:slug].include? section_from_slug[1]
+        return section
+      end
     end
+    default_section
+  end
+
+
+  def page_title
+    {
+      title: active_section[:title],
+      is_body_title: true,
+      icon: "housekeeping"
+    }
   end
 
   def secondary_nav_items
     {
-      section_name: active_section,
-      items: sections.map do |s|
-          {
-            title: s,
-            slug: s == default_section ? '/styleguide' : '/styleguide/'+s.downcase.strip.gsub(' ', '-')
-          }
-        end
+      section_name: active_section[:title],
+      items: sections.map do |section|
+        {
+          title: section[:title],
+          slug: "#{root}#{section[:slug]}"
+        }
+      end
     }
   end
 
-  def ad_config
-    {hints: "", channels: ""}
+  def ui_component(slug, properties={})
+    render "components/#{slug}", properties
   end
 
-  def ui_component(path, properties={})
-    render "components/#{path}", properties
-  end
-
-  def sg_component(path, properties)
+  def sg_component(slug, properties)
     card_style = properties.delete(:card_style)
     count = properties.delete(:count)
     full_width = properties.delete(:full_width)
@@ -199,9 +320,9 @@ module StyleguideHelper
           haml_tag(:a, name: anchor, href: "##{anchor}", class: "icon--link icon--lp-blue")
         end
         haml_tag(:div, class: item_class) do
-          haml_concat ui_component(path, properties)
+          haml_concat ui_component(slug, properties)
         end
-        haml_concat render "styleguide/partials/description", component: path, full_width: full_width, properties: original_stub ? original_stub : properties[:properties]
+        haml_concat render "styleguide/partials/description", component: slug, full_width: full_width, properties: original_stub ? original_stub : properties[:properties]
       end
     end
 
@@ -214,14 +335,42 @@ module StyleguideHelper
       icons.push(class_name)
     end
     icons
- end
+  end
+
+  def description_from_snippet(snippet)
+    decorated_snippet = {}
+    snippet.split(/\[\/doc\]/).each_with_index do |section, index|
+      if index == 0
+        decorated_snippet[:title] = section.split("\n//\n// ").delete_if(&:empty?).first.gsub("\n//", "")
+        decorated_snippet[:description] = section.split("\n//\n// ").delete_if(&:empty?)[1..-1].map do |line|
+          line.gsub("\n//", "")
+        end
+      else
+        decorated_snippet[:snippet] = section.split("\n").delete_if(&:empty?).delete_if do |line|
+          line.index("//") == 0
+        end[0].gsub("@mixin ", "+")
+      end
+    end
+    decorated_snippet[:syntax_lang] = "sass"
+    decorated_snippet
+  end
+
+  def get_css(file)
+    sass = File.read(File.expand_path("../../assets/stylesheets/#{file}.sass", __FILE__))
+    decorated_snippets = []
+    sass.split(/\[doc\]/).each do |snippet|
+      decorated_snippets.push(description_from_snippet(snippet)) unless snippet.index("//") == 0
+    end
+    decorated_snippets
+  end
 
   def get_colours(file)
-    colours = File.read(File.expand_path("../../assets/stylesheets/_variables/#{file}.sass", __FILE__))
+    colours = File.read(File.expand_path("../../assets/stylesheets/sass/variables/#{file}.sass", __FILE__))
     colours = colours.split("// -----------------------------------------------------------------------------\n")
     colours.delete_if(&:empty?)
     groups = []
     counter = -1
+
     colours.each do |section|
       if section[0..1] == "//"
         groups.push({title: section})
@@ -231,6 +380,28 @@ module StyleguideHelper
       end
     end
     groups
+  end
+
+  def extract_colour(contents, variable)
+    matches = contents.match(/(#{Regexp.escape(variable)})\s*:\s*(#[a-fA-F0-9]{3,6})\s*(!default)?/)
+    matches ? matches[2] : matches
+  end
+
+  def extract_variable(line)
+    matches = line.match(/(\$[0-9a-zA-Z_-]+)\s*(!default)?/)
+    matches ? matches[1] : matches
+  end
+
+  def get_colour_value(value, ref)
+    @ref_colours ||= File.read(File.expand_path("../../assets/stylesheets/sass/variables/#{ref}.sass", __FILE__))
+
+    variable = extract_variable(value)
+
+    if variable
+      value = extract_colour(@ref_colours, variable)
+    end
+
+    value
   end
 
   def get_luminance(hex)

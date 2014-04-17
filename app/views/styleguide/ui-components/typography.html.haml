@@ -1,36 +1,68 @@
-.card.styleguide-intro.copy--body.context--content
-  %h1.copy--h1 Typography
-  %p
-    We achieve styling through opt in classes and do not style elements globally. This is to reduced the number of style collisions across projects. Elements can inherit styles from .copy--body or otherwise applied directly.
-  %p
-    Typographic elements 
-    %strong do not come with any margins attached to them 
-    in order to make them more flexible in where they can be used.
-  %p
-    They get margins when they are inside a wrapper with a class of context--content. We may need to work on the naming but the principle is solid.
+= render 'styleguide/partials/shared'
 
-.card.styleguide-intro.styleguide-block.copy--body.context--content
-  .copy--h1 This is our H1, typically used for the main page heading
-  .copy--feature Feature text: typically used for intro paragraphs and rarely outside of copy--body. It is applied using the .copy--feature class.
-  .copy--h2 
-    This is our H2, it is generally used to delimit body copy.
-  %p
-    Here lies a bunch of body copy. The Body copy class (.copy--body) can be inherited from a parent or applied direct to any element. In this instance it is inherited. It defines the styles that represent our main text content.
-    %a.copy--body__link
-      Base Link styling is inherited or can be enhanced directly using the .copy--body__link class
-  %ul
-    %li
-      This is how our unordered lists look.
-    %li
-      They can be inherited from copy--body or styled directly with the .copy--list class if used outside of main content.
-  .copy--h3 This is our H3, commonly used for section titles
-  .copy--h4 This is our H4, commonly used for subsection titles and within body copy
-  .copy--h5 This is our H5, most noticeably used within the left navigation
-  .copy--meta Meta copy is used for styling ancillary content, usually in the details panel, that represents details about the content rather than the actual content itself.
-  .copy--caption Caption text is used primarily below images and on our cards.
-  .copy--disclaimer Disclaimer text is used for legal and copyright text.
+.typography
 
-:javascript
-  $$('.styleguide-block [class^=copy--]').forEach(function(el) {
-    el.innerHTML += ' (' + window.getComputedStyle(el, null).getPropertyValue('font-size') + ')';
-  });
+  .card.styleguide-intro.copy--body.context--content
+    %h1.copy--h1 Typography
+    %p
+      We achieve styling through opt in classes and do not style elements globally. This is to reduced the number of style collisions across projects. Elements can inherit styles from .copy--body or otherwise applied directly.
+    %p
+      Typographic elements 
+      %strong do not come with any margins attached to them 
+      in order to make them more flexible in where they can be used.
+    %p
+      They get margins when they are inside a wrapper with a class of context--content. We may need to work on the naming but the principle is solid.
+
+  %p.copy--h2.styleguide-block__heading
+    Headings
+
+  .card.styleguide-intro.styleguide-block.copy--body.context--content
+
+    .copy--h1{title: ".copy--h1"} This is our H1, typically used for the main page heading
+    .copy--h2{title: ".copy--h2"} This is our H2, it is generally used to delimit body copy.
+    .copy--h3{title: ".copy--h3"} This is our H3, commonly used for section titles
+    .copy--h4{title: ".copy--h4"} This is our H4, commonly used for subsection titles and within body copy
+    .copy--h5{title: ".copy--h5"} This is our H5, most noticeably used within the left navigation
+
+  %p.copy--h2.styleguide-block__heading
+    Other Copy
+
+  .card.styleguide-intro.styleguide-block.copy--body.context--content
+
+    %p.copy--feature{title: ".copy--feature"} Feature text: typically used for intro paragraphs and rarely outside of copy--body. It is applied using the .copy--feature class.
+
+    %p{title: ".copy--body"}
+      Here lies a bunch of body copy. The Body copy class (.copy--body) can be inherited from a parent or applied direct to any element. In this instance it is inherited. It defines the styles that represent our main text content.
+      %a.copy--body__link{title: ".copy--body__link"}
+        Base Link styling is inherited or can be enhanced directly using the .copy--body__link class
+    %ul{title: ".copy--list"}
+      %li
+        This is how our unordered lists look.
+      %li
+        They can be inherited from copy--body or styled directly with the .copy--list class if used outside of main content.
+
+    .copy--meta{title: ".copy--meta"} Meta copy is used for styling ancillary content, usually in the details panel, that represents details about the content rather than the actual content itself.
+    .copy--caption{title: ".copy--caption"} Caption text is used primarily below images and on our cards.
+    .copy--disclaimer{title: ".copy--disclaimer"} Disclaimer text is used for legal and copyright text.
+
+  %p.copy--h2.styleguide-block__heading
+    Inline Icons
+
+  .card.styleguide-intro.styleguide-block.copy--body.context--content.js-typography-icons
+
+    %p
+      These can be styled with any of the following three classes (along with
+      %a{href: "/styleguide/icons"} the usual icon classes
+      ):
+
+    %ul
+      %li{title: ".copy--icon"}
+        Here is an example of an inline icon as an independent element
+        %span.copy--icon.icon--globe.icon--body-grey
+        (.copy--icon).
+
+      %li.copy--icon--before.icon--globe--before.icon--body-grey--before{title: ".copy--icon--before"}
+        Here is an example of an inline icon in the before pseudo element (.copy--icon--before).
+
+      %li.copy--icon--after.icon--globe--after.icon--body-grey--after{title: ".copy--icon--after"}
+        Here is an example of an inline icon in the after pseudo element (.copy--icon--after).

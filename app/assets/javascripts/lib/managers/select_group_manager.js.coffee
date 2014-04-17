@@ -2,8 +2,10 @@ define ['jquery'], ($) ->
 
   class SelectGroupManager
 
+    LISTENER = '.js-wrapper'
+
     constructor: () ->
-      @selectContainers = $('.js-select-group-manager')
+      @selectContainers = $(LISTENER)
       @addHandlers()
 
     addHandlers: ->

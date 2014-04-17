@@ -1,8 +1,8 @@
 :javascript
   (function() {
     var docElement = document.documentElement,
-        activePath = "#{asset_path('icons/' + sheet + '.css')}",
-        criticalPath = "#{asset_path('icons/critical.css')}";
+        activePath = "#{normalised_asset_path('icons/' + sheet + '.css')}",
+        criticalPath = "#{normalised_asset_path('icons/critical.css')}";
     function styleSheet(path) {
       var link = document.createElement("link");
       link.rel = "stylesheet";
@@ -24,4 +24,4 @@
   }());
 
 %noscript
-  %link{href: "/assets/icons/critical.css", rel: "stylesheet"}
+  %link{href: "#{normalised_asset_path('icons/critical.css')}", rel: "stylesheet"}

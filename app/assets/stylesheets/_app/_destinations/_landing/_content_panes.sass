@@ -20,7 +20,7 @@
 
 .content-pane__nav__link
   display: none
-  +transition(all, 0.3, ease-in)
+  transition: all 0.3s ease-in
   +respond-to(1160)
     display: block
     position: absolute
@@ -32,7 +32,7 @@
       text-decoration: none
 
 .content-pane__nav__link__icon
-  +transition(all, 0.1, ease-in)
+  transition: all 0.1s ease-in
   width: 40px
   height: 40px
   position: relative
@@ -52,11 +52,11 @@
 
 .content-pane__icon
   &:hover
-    +transform(scale(1.2))
+    transform: scale(1.2)
     text-decoration: none
 
 .content-pane__hide
-  +transition(all, 0.1, ease-in)
+  transition: all 0.1s ease-in
   position: absolute
   top: 10px
   left: 10px
@@ -94,7 +94,7 @@
     background-image: url(#{image_path('best-in-travel/hero/#{$region}-1600.jpg')})
 
 .content-pane__legibility-mask
-  +background-gradient($startColor: rgba(20,43,68,0.7), $endColor: rgba(20,43,68,0), $fallbackImg: false, $imgPosition: 0 0, $direction: bottom)
+  background: linear-gradient(to top, rgba(20,43,68,0.7), rgba(20,43,68,0))
   position: absolute
   bottom: 0
   width: 100%
@@ -127,7 +127,7 @@
     height: 112px
 
 .content-pane__buttons
-  +transition(all, 0.2, ease-in)
+  transition: all 0.2s ease-in
   font-size: 14px
   text-transform: uppercase
   color: white
@@ -201,7 +201,7 @@
   background-size: cover
   line-height: 22px
   margin-top: -5px
-  
+
   &:before
     content: ""
     position: absolute

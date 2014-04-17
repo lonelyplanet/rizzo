@@ -11,7 +11,7 @@
   %a.link--wrapper{href: properties[:url]}
 
     .card__tags
-      - if properties[:prices] && properties[:prices][currency.to_s].present? && properties[:prices][currency.to_s] > 0
+      - if properties[:price]
         = render :partial => "/components/cards/partials/card_price", :locals => { :properties => properties, :icon => properties[:price_icon] }
 
     = render :partial => "/components/cards/partials/card_content", :locals => { :properties => properties }

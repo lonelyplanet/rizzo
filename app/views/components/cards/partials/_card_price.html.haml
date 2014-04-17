@@ -1,5 +1,6 @@
 - icon ||= nil
 - price_is_from ||= false
+- price_parts = properties[:price].to_s.split(".")
 
 .tag.tag--price
   .tag--price__inner
@@ -12,11 +13,12 @@
         from
       .tag--price__amount<
         %span.tag--price__currency
-          = raw(currency.to_symbol)
-        %span.js-price
-          = properties[:prices][currency.to_s].ceil
-    - if properties[:on_sale?]
-      - if properties[:retail_prices][currency.to_s].present? && properties[:retail_prices][currency.to_s] > 0
-        .tag--price__original<
-          = raw(currency.to_symbol)
-          = properties[:retail_prices][currency.to_s].ceil
+          = raw(properties[:currency_symbol])
+        %span.js-price<
+          = price_parts.first
+          %span.tag--price__decimal<
+            = price_parts.length == 2 ? ".#{price_parts.last}" : ""
+    - if properties[:on_sale_here?]
+      .tag--price__retail<
+        = raw(properties[:currency_symbol])
+        = properties[:retail_price]

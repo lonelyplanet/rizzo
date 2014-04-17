@@ -33,9 +33,9 @@ define ['jquery', 'lib/extends/events'], ($, EventEmitter) ->
       @_checkContent(args)
       @$title.text(args.title)
       @$lead.text(args.lead)
-    
+
     _checkContent: (args) ->
-      if args.lead is ''
-        @$lead.hide()
-      else  
-        @$lead.show()
+      if args.lead
+        @$lead.removeClass('is-hidden')
+      else
+        @$lead.addClass('is-hidden')

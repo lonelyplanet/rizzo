@@ -1,14 +1,16 @@
 window.lp = {};
-lp.isMobile = false;
+window.lp.supports = {};
+window.lp.isMobile = false;
+window.lpUserStatusCallback = function() {};
 
 require.config({
-  paths:{
+  paths: {
     jquery: "vendor/assets/javascripts/jquery/jquery",
-    jsmin: "vendor/assets/javascripts/lonelyplanet_minjs/dist/$.js",
-    lib: 'public/assets/javascripts/lib',
-    jplugs: "vendor/assets/javascripts/jquery/plugins",
+    lib: "public/assets/javascripts/lib",
+    jplugs: "vendor/assets/javascripts/jquery-plugins",
     pointer: "vendor/assets/javascripts/pointer",
     touchwipe: "vendor/assets/javascripts/jquery.touchwipe.1.1.1",
-    s_code: "vendor/assets/javascripts/omniture/s_code"
+    s_code: "vendor/assets/javascripts/omniture/s_code",
+    nouislider: "vendor/assets/javascripts/nouislider"
   }
 });

@@ -1,0 +1,32 @@
+// [doc] Hide text in order to replace with a background image. [/doc]
+%image-replacement
+  display: inline-block
+  border: 0
+  text-indent: -999em
+  overflow: hidden
+  background-color: transparent
+  background-repeat: no-repeat
+  text-align: left
+  direction: ltr
+  *line-height: 0
+
+// [doc] Visually hide using clip - still available to Screen Readers.
+//
+// Can also be applied using .accessibility
+// [/doc]
+%visually-hide
+  border: 0
+  // Modern syntax for clip used - intentially not supporting ie7
+  clip: rect(0, 0, 0, 0)
+  height: 1px
+  margin: -1px
+  overflow: hidden
+  padding: 0
+  position: absolute
+  width: 1px
+
+// [doc] Show an element after it has been hidden using %visually-hide. [/doc]
+%visually-show
+  clip: auto
+  width: auto
+  height: auto

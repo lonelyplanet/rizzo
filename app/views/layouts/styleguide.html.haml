@@ -1,19 +1,18 @@
 !!! 5
-%html{class: 'no-js freight', lang: "en", "ng-app" => "StyleSheetApp"}
+%html{class: 'no-js no-freight', lang: "en"}
 
   %head
-    = render 'layouts/core/head', responsive: false, homepage: false
+    = render 'layouts/core/head', responsive: false, homepage: false, suppress_tynt: (defined?(suppress_tynt) ? suppress_tynt : false)
     = stylesheet_link_tag 'styleguide', :media => "all"
-    = stylesheet_link_tag 'prism', :media => "all"
 
   %body
 
-    .wrapper
+    .wrapper.js-wrapper
       .nav-container
         .row.row--primary
           .split--left
             .wv--nav--inline.nav--primary#js-nav--primary
-              %a.media--lp-logo.logo--header(href='http://www.lonelyplanet.com')
+              %a.media--lp-logo.logo--header.icon--lp-logo.icon--white{href: 'http://rizzo.lonelyplanet.com/styleguide'}
               %h1.title--primary.title--styleguide Styleguide
 
           .split--right
@@ -27,7 +26,7 @@
 
           .row.row--secondary#js-secondary-nav
             .row__inner.row__inner--secondary
-              = ui_component("navigation/secondary", properties: secondary_nav_items)
+              = yield :secondary
 
           .grid-wrapper--10
             = ui_component('navigation/left', properties: left_nav_items)
@@ -35,11 +34,11 @@
             .main-content.stack#js-main-content
               = yield
 
-        .row--footer-push
 
     .js-config.is-hidden
-
-      = requirejs_include_tag('styleguide'){|c|{'main' => 'styleguide'}}
+      = render 'layouts/core/snippets/footer_js'
       = yield :scripts
 
       = javascript_include_tag 'prism'
+
+  = render 'layouts/core/snippets/pointer_cover'

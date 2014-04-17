@@ -6,7 +6,7 @@ require ['public/assets/javascripts/lib/components/filter.js'], (Filter) ->
 
     data =
       disable_price_filters: true
-      external_filter: '5star,4star,3star,2star'
+      external_filter: '5star,4star,3_star,2-star'
 
     data_alt =
       disable_price_filters: false
@@ -46,10 +46,13 @@ require ['public/assets/javascripts/lib/components/filter.js'], (Filter) ->
         window.filter = new Filter({el: '#js-filters-seo'})
 
       it 'removes the links inside the labels', ->
-        expect(filter.$el.find('.js-filter-label').children().length).toBe(0)
+        expect(filter.$el.find('.js-filter-label:first').children().length).toBe(0)
 
       it 'sets the label text to be the link text', ->
-        expect(filter.$el.find('.js-filter-label').text()).toBe("5 star hotel")
+        expect(filter.$el.find('.js-filter-label:first').text()).toBe("5 star hotel")
+
+      it 'keeps label text which is not within a link', ->
+        expect(filter.$el.find('.js-filter-label:last').text()).toBe("4 star hotel")
 
 
     describe 'updating', ->
@@ -120,7 +123,7 @@ require ['public/assets/javascripts/lib/components/filter.js'], (Filter) ->
 
 
     describe 'setting filter values', ->
-      external_filters = "5star,4star,3star,2star"
+      external_filters = "5star,4star,3_star,2-star"
 
       beforeEach ->
         loadFixtures('filter.html')
@@ -161,7 +164,7 @@ require ['public/assets/javascripts/lib/components/filter.js'], (Filter) ->
 
 
     describe 'resetting the filter', ->
-      external_filter = ["5star","4star","3star","2star"]
+      external_filter = ["5star","4star","3_star","2-star"]
 
       beforeEach ->
         window.filter = new Filter({el: '#js-filters-reset'})

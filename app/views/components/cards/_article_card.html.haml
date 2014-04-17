@@ -1,4 +1,7 @@
 :ruby
+  if properties[:style] == "mini"
+    return render "components/cards/mini_card", properties: properties.merge({ css_classes: ["card--poi--article", "card--mini--article", "card--full-image"] })
+  end
 
   css_classes = [
     "card",

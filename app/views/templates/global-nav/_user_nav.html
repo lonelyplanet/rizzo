@@ -1,0 +1,77 @@
+<div class="js-user-signed-out-template">
+  <div class="wv--nav--inline nav__item--user-menu js-user-signed-out">
+    <a class="nav__item nav__item--primary js-user-sign_in js-nav-item" href="/thorntree/users/sign_in">
+      <i class="nav__icon icon--user--before icon--white--before"></i>
+      Sign in
+    </a>
+    <a class="nav__item nav__item--primary js-user-sign_up js-nav-item" href="/thorntree/users/sign_up">
+      <i class="nav__icon icon--sign-in--before icon--white--before"></i>
+      Join
+    </a>
+  </div>
+
+  <div class="wv--nav--inline nav__item--user-menu--wv js-user-signed-out">
+    <a class="nav__item nav__item--primary js-user-sign_in js-nav-item" href="/thorntree/users/sign_in">
+      <i class="nav__icon icon--user--before icon--white--before"></i>
+      Sign in
+    </a>
+    <a class="nav__item nav__item--primary js-user-sign_up js-nav-item" href="/thorntree/users/sign_up">
+      <i class="nav__icon icon--sign-in--before icon--white--before"></i>
+      Join
+    </a>
+  </div>
+</div>
+
+<div class="js-user-signed-in-template">
+  <div class="nav__item nav__item--user nav__submenu__trigger js-user-signed-in">
+    <img class="nav__item--user-avatar js-user-avatar" data-src="{{avatar}}">
+    <span class="notification-badge notification-badge--unread-messages wv--inline-block is-hidden js-unread-messages">{{unreadMessageCount}}</span>
+    <span class="wv--hidden nav--offscreen__title">{{username}}</span>
+
+    <div class="nav__submenu nav__submenu--user">
+      <div class="nav--stacked nav__submenu__content icon--tapered-arrow-up--after icon--custom--after nav__submenu__content--user nav-user-options js-user-options">
+        <div class="nav__submenu__item nav__submenu__title">{{username}}</div>
+        <a class="nav__item nav__submenu__item nav__submenu__link nav-user-options__item js-nav-item js-user-profile" href="/thorntree/profiles/{{profileSlug}}">
+          My profile
+        </a>
+        <a class="nav__item nav__submenu__item nav__submenu__link nav-user-options__item js-nav-item js-user-settings" href="/thorntree/forums/settings">
+          Settings
+        </a>
+        <a class="nav__item nav__submenu__item nav__submenu__link nav-user-options__item js-nav-item js-user-messages" href="/thorntree/profiles/{{profileSlug}}/messages">
+          Messages
+          <span class="nav__submenu__notification is-hidden js-unread-messages">{{unreadMessageCount}}</span>
+        </a>
+        <a class="nav__item nav__submenu__item nav__submenu__link nav-user-options__item js-nav-item nav-user-options__item--forum js-user-activities" href="/thorntree/profiles/{{profileSlug}}/activities">
+          Forum activity
+        </a>
+        <a class="nav__item nav__submenu__item nav__submenu__link nav-user-options__item js-nav-item nav-user-options__item--sign_out js-user-sign_out" href="/thorntree/users/sign_out">
+          Sign out
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="wv--nav--inline nav__item--user-menu js-user-signed-in">
+    <a class="nav__item nav__item--primary" href="/thorntree/profiles/{{profileSlug}}">
+      <i class="nav__icon copy--icon--before icon--user--before icon--white--before"></i>
+      My profile
+    </a>
+    <a class="nav__item nav__item--primary" href="/thorntree/forums/settings">
+      <i class="nav__icon copy--icon--before icon--settings--before icon--white--before"></i>
+      Settings
+    </a>
+    <a class="nav__item nav__item--primary" href="/thorntree/profiles/{{profileSlug}}/messages">
+      <i class="nav__icon copy--icon--before icon--envelope--before icon--white--before"></i>
+      Messages
+      <span class="is-hidden js-unread-messages"> ({{unreadMessageCount}})</span>
+    </a>
+    <a class="nav__item nav__item--primary" href="/thorntree/profiles/{{profileSlug}}/activities">
+      <i class="nav__icon copy--icon--before icon--comment--before icon--white--before"></i>
+      Forum activity
+    </a>
+    <a class="nav__item nav__item--primary" href="/thorntree/users/sign_out">
+      <i class="nav__icon copy--icon--before icon--sign-out--before icon--white--before"></i>
+      Sign out
+    </a>
+  </div>
+</div>

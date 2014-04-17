@@ -1,6 +1,13 @@
-.wrapper--footer
+.wrapper--footer.js-wrapper
   = render 'layouts/core/snippets/body_footer'
 
 .js-config.is-hidden   
-  = requirejs_include_tag('app_secure_core_legacy'){|c|{'main' => 'app_secure_core_legacy'}}
-
+  :javascript
+      (function(d, s) {
+        var firstJs, js;
+        firstJs = d.getElementsByTagName(s)[0];
+        js = d.createElement(s);
+        js.src = "#{normalised_asset_path('requirejs/require.js')}";
+        js.setAttribute("data-main", "#{async_js_path("app_secure_core_legacy")}");
+        firstJs.parentNode.insertBefore(js, firstJs);
+      })(document, 'script');

@@ -6,8 +6,8 @@
       firstJs = d.getElementsByTagName(s)[0];
       js = d.createElement(s);
       js.async = true;
-      js.src = "#{asset_path('requirejs/require.js')}";
+      js.src = "#{normalised_asset_path('requirejs/require.js')}";
       js.setAttribute("data-main", "#{async_js_path(script_name)}");
+      firstJs.parentNode.insertBefore(js, firstJs);
     }
-    return firstJs.parentNode.insertBefore(js, firstJs);
   })(document, 'script');

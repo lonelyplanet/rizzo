@@ -1,0 +1,48 @@
+.tab__content
+  @extend %transition--slower
+  opacity: 0
+  perspective: 600
+  position: absolute
+  left: 0
+  top: 0
+  z-index: -1
+  &.is-active
+    opacity: 1
+    z-index: 1
+  @if $is-ie
+    display: none
+    &.is-active
+      display: block
+
+.tab
+  +font-size(12)
+  +css-arrow-central(top, $size: 10px)
+  background: $body-copy
+  color: #fff
+  display: block
+  float: left
+  height: 35px
+  line-height: 35px
+  padding: 0 10px
+  position: relative
+  text-transform: uppercase
+  z-index: 2
+  &:after
+    +font-size(32)
+    display: none
+    position: absolute
+    top: -21px
+    font-weight: normal
+  &:before
+    display: inline-block
+    width: 16px
+    height: 16px
+    position: relative
+    top: 1px
+    vertical-align: text-bottom
+  &:hover, &.is-active
+    background: $red
+    text-decoration: none
+  &.is-active:after
+    color: $red
+    display: block

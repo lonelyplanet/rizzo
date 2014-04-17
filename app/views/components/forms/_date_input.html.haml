@@ -1,1 +1,2 @@
-%input.input.input--text.input--datepicker{ type: 'date', id: properties[:id], name: properties[:name], placeholder: properties[:placeholder], value: properties[:value] || "", data: properties[:data] }
+%input.input.input--text.input--datepicker{ type: 'date', id: properties[:id], class: properties[:class], name: properties[:name], placeholder: properties[:placeholder], value: properties[:value] || "", data: properties[:data], data: properties[:rules] ? { rules: properties[:rules] } : {} }
+= render :partial => 'components/forms/partials/tooltip', :locals => { tooltip: properties[:tooltip] }

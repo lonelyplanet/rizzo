@@ -1,0 +1,262 @@
+// ----------------------------------------------------------------------------
+//
+// Row top adverts
+//
+// ----------------------------------------------------------------------------
+
+.row--leaderboard
+  @extend %transition--slower
+  background-color: $row-leaderboard
+  overflow: hidden
+  padding: 16px 0
+  position: relative
+  min-height: 90px
+  z-index: 6
+
+  .homepage &
+    background-color: white
+    +respond-to(wide-view)
+      min-height: 92px
+      padding: 25px 0
+
+  &.is-closed
+    height: 0
+    padding: 0
+    min-height: 0
+
+  // This can be removed when switching to the new DFP server
+  .ad-leaderboard__inner
+    .homepage &
+      border: 1px solid $subduedgray
+      &:after
+        background-position: -106px 4px
+
+  > .row__inner
+    display: table
+
+.ad-leaderboard
+  @extend %transition--slower
+  min-height: 96px
+  // We don't define a width here because sometimes leaderboard = pushdown and they have different widths.
+  display: table-cell
+  text-align: center
+  vertical-align: middle
+
+.ad-leaderboard__inner
+  @extend %inline-block
+  border-radius: 2px
+  background-color: $row-primary--darker
+  border: 3px solid $header-blue
+  position: relative
+  min-width: 728px
+  &:after
+    @extend %empty-abs-generated-content
+    margin-top: -48px
+    width: 10px
+    height: 96px
+    right: -15px
+    top: 50%
+    background-repeat: no-repeat
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAABZCAMAAADbwf7VAAAAY1BMVEUVOnkrUY0eQXstVZATNnEZPHYWOXMRNG4oTokwWJQbPnkzW5cSNW8JLmkhRoAlSoUlR4ENMWsPMm0xV5EpTYcTN28zWpQXOnIWRocROHc4YJsAJWUANHcLP4IZQIAAKm8SNm4BAkT6AAAB20lEQVR4Xj2S53rkMAhFDaj24jolyb7/Uy5o4vDNjzOAzJUuy3IqjnQuk5JSQnu6c5sRFDrMsNbuTCvqEAK+OeeJ4/jinFYc+ofJjGTtydSMxMxFH71/XsvCJw3645unjV68k75dk8fO9GjRGWXmtEje++i4z3DKaM6BGSXk7RItlkre3JwGN1khqXqKnmRaQAwY2puJEVHoeBIAiOYG5ILdH6zABkewcfVUPRt4cnVPyLnG1Ubcl/blc5bo4GlaB/4hVzc1is7t60/V9acFmFQHfDXiKkEkJ6qac7VWkJvblHXFl9wcQyR5l6N0cK/NL9+rTYR9ntUhmgzX8thidAkO8UiHYYu8biulliLqHd1+NGVTSufP7ZvQiiJ6+sZ+RP904pvhOMPsS2n2oTbWKnyLqlidl9c4qvEUppc6u9pPIfWqJe8PqRaiqWADcA5WpmBHsl0z3c5MopsG4KQDNVUDkovxV1XTSZm5B6t3mPrOdKLz/Ec8st2Gj0fDoKOjiJdS3AOfYE9zPsVV7YjqZ6+gVr8yrTWPbufGyow+tag+Rm4wPeKITM1x1I2//K/n3PV6MVldfZS7sRTwNc89xeyq6Ju5kmUu95EH2XFlR8LVMaWkkpW+pGYs/wHCZCJNIACgZQAAAABJRU5ErkJggg==)
+
+// ----------------------------------------------------------------------------
+//
+// Other ads
+//
+// ----------------------------------------------------------------------------
+
+.ad-label
+  +font-size(10)
+  color: $feature-copy
+  line-height: 20px
+  text-align: center
+  text-transform: uppercase
+
+.card--ad
+  .tag--horizontal--left
+    transition: opacity 1s ease
+
+  &.is-closed
+    margin-left: 0
+    margin-right: 0
+    padding-left: 0
+    padding-right: 0
+    // !important is to override the resizing of widths on responsive layouts
+    width: 0 !important
+    border: none
+
+    .tag--horizontal--left
+      opacity: 0
+
+      .ie7 &, .ie8 &
+        display: none
+
+  .responsive &
+    width: 310px
+    +respond-to(medium-view)
+      width: 394px
+    .card__content
+      padding-top: 45px
+
+.ad-traffic-driver, .ad-sponsorTile, .ad-mpu, .ad-doubleMpu
+  &.card__content
+    margin: 0 auto
+    transition: all 1s ease
+
+.ad-traffic-driver
+  &.card__content
+    height: 380px
+    padding: 0
+    width: 192px
+    top: 0
+
+.ad--placeholder
+  height: 380px
+  visibility: hidden
+  z-index: 1
+
+.ad-sponsorTile
+  height: 32px
+  width: 276px
+
+  .stack__intro &
+    position: absolute
+    right: 25px
+    margin-top: 8px
+
+  + .copy--h1
+    width: 450px
+
+.ad-mpu.card__content
+  width: 300px
+  margin-bottom: 13px
+  .responsive &
+    box-sizing: border-box
+    margin-bottom: 0
+    padding: 30px 0 0
+    height: 296px
+    width: 310px
+    +respond-to(medium-view)
+      margin-bottom: 15px
+      padding-top: 60px
+      width: 300px
+      height: 360px
+  // Ad house mimics a collection card
+  .ad-house &
+    cursor: pointer
+    transition: none
+    margin: 0
+    padding: 0
+    &, iframe
+      height: 296px
+      width: 310px
+    +respond-to(medium-view)
+      &, iframe
+        width: 394px
+        height: 380px
+
+.results .card
+  &.card--ad
+    transition: height 1s ease, width 1s ease
+    .responsive &
+      +respond-to(wide-view)
+        min-height: 380px
+
+  &.ad-doubleMpu
+    height: 770px
+    z-index: 10
+
+    .card__content
+      height: 600px
+      top: 80px
+
+.ad-wallpaper
+  background-position: center top
+  background-repeat: no-repeat
+  cursor: pointer
+  position: relative
+
+  .row__inner--content
+    z-index: 2
+    padding-right: 22px
+    padding-left: 22px
+    background-color: $body-background
+
+  &:after
+    @extend %empty-abs-generated-content
+    background: linear-gradient(to bottom, rgba(255,255,255,0), $body-background)
+    height: 150px
+    // The wallpapers are always the same size (according to the specs sent to the traffickers). We can change the spec
+    //  but until traffickers start uploading the new ones, this will have to do.
+    top: 1150px
+    width: 100%
+    z-index: 1
+
+  .row__inner
+    cursor: default
+
+.ad-adSense.card__content
+  font-size: 12px
+  line-height: 15px
+
+  a
+    word-wrap: break-word
+  .googleHeading a,
+  .ad p
+    color: $body-copy
+
+  .ad
+    margin-bottom: 10px
+    p
+      margin-bottom: 0
+
+  .title a
+    color: $body-copy
+    font-weight: bold
+
+.ad-oneByOne
+  display: none
+
+.ad-interstitial-wrap
+  background: #333
+  background: rgba(0,0,0,0.8)
+  bottom: 0px
+  display: block
+  left: 0px
+  position: fixed
+  right: 0px
+  top: 0px
+  z-index: 10000
+  zoom: 1
+  transition: opacity 0.5s ease
+
+.ad-interstitial
+  position: absolute
+  background: white
+  border: 1px solid #e3e3e3
+  display: none // Gets shown later via JS when there's content.
+  margin: 0 auto
+  padding: 25px 10px
+  z-index: 10001
+  box-shadow: 5px 5px 5px rgba(0,0,0,0.5)
+
+  iframe
+    border: none
+
+  .close
+    position: absolute
+    right: 10px
+    top: 5px
+
+  .countdown
+    position: absolute
+    left: 0
+    bottom: 5px
+    display: block
+    text-align: center
+    width: 100%
+
+// Ad house mimics a collection card
+.ad-house
+  .tag--horizontal--left
+    display: none

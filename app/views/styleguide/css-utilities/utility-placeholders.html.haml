@@ -1,0 +1,25 @@
+= render 'styleguide/partials/shared'
+
+.card.styleguide-intro.copy--body.context--content
+  .clearfix
+    %h1.copy--h1 General Utility Placeholders
+    %p
+      These are single responsibility placeholders which are to be extended to help reduce duplication in our Sass.
+
+- get_css("sass/extends/helpers/_clearfix").each do |css|
+  = render "styleguide/partials/snippet", properties: css
+
+- get_css("sass/extends/helpers/_cross_browser").each do |css|
+  = render "styleguide/partials/snippet", properties: css
+
+- get_css("sass/extends/helpers/_image_replacement").each do |css|
+  = render "styleguide/partials/snippet", properties: css
+
+- get_css("sass/extends/helpers/_pseudo_elements").each do |css|
+  = render "styleguide/partials/snippet", properties: css
+
+- get_css("sass/extends/helpers/_states").each do |css|
+  = render "styleguide/partials/snippet", properties: css
+
+- get_css("sass/extends/helpers/_typographic_modifiers").each do |css|
+  = render "styleguide/partials/snippet", properties: css

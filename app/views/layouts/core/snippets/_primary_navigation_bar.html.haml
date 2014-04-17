@@ -2,7 +2,7 @@
 - unless homepage
   .row--faux-banner
 %input{type: "checkbox", id: 'nav--primary__trigger', class: "is-hidden"}
-%label{for: 'nav--primary__trigger', class: 'nav--primary__trigger icon--hamburger icon--white'}
+%label{for: 'nav--primary__trigger', class: 'nav--primary__trigger icon--hamburger icon--white js-toggle-active', 'data-toggle-target' => 'body', 'data-toggle-class' => 'show-nav'}
 
 - if homepage
   .logo--header
@@ -18,18 +18,27 @@
 
       -# This form is only visible on wide screens, and not on the homepage
       - unless homepage
-        %form.search--primary.search--primary-wv.js-nav-search.wv--inline-block{:action => host_with_subdomain_and_path("www", "searchResult"), :method => "get" }
+        %form.search--primary.search--primary-wv.js-nav-search.wv--inline-block{:action => host_with_subdomain_and_path("www", "search"), :method => "get" }
           %label.accessibility(for='search-q') Search
-          %input.search__input.search__input--primary.js-primary-search(type="search" id="search" maxlength="2048" name="q" value="" autocomplete="off" tabindex="1")>
+          %input.search__input.search__input--primary.js-primary-search(type="search" id="search-q" maxlength="2048" name="q" value="" autocomplete="off" tabindex="1")>
           %button(class="search__button" type="submit" id="search-q-submit" name="search-q-submit")
             %span.search__button--icon.icon--search.icon--white
               Search
 
       - if user_nav
         .nav__item.wv--nav--inline.nav--primary--user.js-user-nav.split--right__inner
-          %a.nav__item.nav__item--primary.nav__item--user.user-basket.js-user-basket.js-nav-cart(href='//shop.lonelyplanet.com/cart/view')
+          %a.nav__item.nav__item--primary.nav__item--user.user-basket.js-user-basket.js-nav-cart(href='http://shop.lonelyplanet.com/cart/view')
             %span.user-basket__icon.icon--shop-basket.icon--custom
               View Basket
+
+          %script#js-user-nav-template{ type: "text/mustache" }
+            = render partial: "templates/global-nav/user_nav"
+
+          %noscript
+            .nav__item.nav__item--user
+              %a.nav__item.nav__item--primary.js-nav-item{ href: "https://www.lonelyplanet.com/thorntree/my_account" }
+                %i.nav__icon.icon--user--before.icon--white--before
+                My account
 
 
   .wv--split--left

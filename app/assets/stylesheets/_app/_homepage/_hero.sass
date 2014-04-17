@@ -47,7 +47,7 @@
 
 .hero__search
   @extend %inline-block
-  +transition(all, .3, $ease-cubic-out)
+  transition: all .3s $ease-cubic-out
   overflow: hidden
   text-align: left
   width: 85%
@@ -68,7 +68,7 @@
       pointer-events: none
 
 .hero__overlay
-  +transition(all, .3, $ease-cubic-out)
+  transition: all .3s $ease-cubic-out
   position: absolute
   top: 0
   background-color: rgba(0,0,0,0.2)
@@ -76,8 +76,8 @@
   height: inherit
 
 .hero__panel
-  +transition(all, .4, $ease-cubic-out)
   +hardware-acceleration()
+  transition: all .4s $ease-cubic-out
   position: absolute
   width: 100%
   height: inherit
@@ -140,7 +140,7 @@
       overflow: visible
 
 .hero__author
-  +transition(all, .3, ease-out)
+  transition: all .3s ease-out
   color: white
   position: absolute
   bottom: 20px
@@ -150,17 +150,21 @@
   display: none
   +respond-to(medium-view)
     display: block
-  
+
   .autocomplete__active &
-    +transform(translateY(100px))
+    transform: translateY(100px)
 
   +respond-to(wide-view)
     .autocomplete__active &
-      +transform(none)
+      transform: none
 
   +respond-to(1200)
     right: 30px
     bottom: 20px
+
+.hero__author__copy--body__link
+  &:hover
+    color: inherit
 
 .hero__product
   @extend .hero__author
@@ -214,7 +218,7 @@
   cursor: pointer
   display: inline-block
   > img
-    +border-radius(100)
+    border-radius: 100px
     width: 50px
     height: 50px
     +respond-to(1200)
@@ -238,7 +242,7 @@
   .copy--h5
     color: white
   .is-open
-    background-color: $subdued
+    background-color: $subduedgray
     color: $body-copy
   .btn--blue
     min-height: 32px
@@ -257,7 +261,7 @@
 
 
 .hero__author__story
-  +box-sizing()
+  box-sizing: border-box
   position: absolute
   text-align: left
   bottom: 0
@@ -387,6 +391,7 @@
 .hero__search__input
   +font-size(24)
   color: $body-copy
+  background: white
   height: 45px
   padding: 0 50px 0 10px
   width: 100%

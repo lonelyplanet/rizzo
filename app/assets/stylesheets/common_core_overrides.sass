@@ -1,1 +1,49 @@
-@import '_globalnav/_legacy'
+// ----------------------------------------------------------------------------
+//
+// Legacy stylesheet serving the last remaining parts of the previous site
+//
+// ----------------------------------------------------------------------------
+
+@import 'base_helpers'
+
+@import "core/reset"
+@import "core/font"
+@import "core/typography"
+@import "core/grid"
+@import "core/icons"
+@import "core/inputs"
+@import "core/layout"
+
+// ----------------------------------------------------------------------------
+// Objects
+// ----------------------------------------------------------------------------
+
+@import "core/objects/*"
+
+// ----------------------------------------------------------------------------
+// Utility Classes
+// ----------------------------------------------------------------------------
+
+@import "core/utilities/*"
+
+// ----------------------------------------------------------------------------
+// Layout
+// ----------------------------------------------------------------------------
+
+@import "core/layouts/modern/*"
+
+// ----------------------------------------------------------------------------
+// Components that are required for the legacy navigation
+// ----------------------------------------------------------------------------
+
+@import "core/core_components/accordion"
+@import "core/core_components/dropdown"
+@import "core/core_components/buttons"
+
+// ----------------------------------------------------------------------------
+// Global overrides for the legacy site, used to normalise the UI
+// ----------------------------------------------------------------------------
+
+@import "core/layouts/legacy/secondary_nav"
+@import "core/layouts/legacy/breadcrumbs"
+@import "core/layouts/legacy/overrides"

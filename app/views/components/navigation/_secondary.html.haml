@@ -1,10 +1,10 @@
 -# The inline navigation for wide screens
 .wv--split--right.nav--inline.nav--secondary.wv--block
   - properties[:items].each do |n|
-    - active = n[:title] == properties[:section_name] || (n[:slug].include? properties[:section_name].downcase.strip.gsub(' ', '-'))
+    - active = n[:title] == properties[:section_name] || (n[:slug].end_with? properties[:section_name].downcase.strip.gsub(' ', '-'))
     %a.nav__item.nav__item--secondary.js-nav-item{:class=>(active ? 'current' : ''), :href=> n[:slug]}<
       = n[:title]
 
 -# The select navigation for small screens
 .wv--split--right.nav--inline.nav--secondary.wv--hidden.nav--secondary__dropdown
-  = ui_component('navigation/dropdown', properties: { action: "/redirector", dropdown: {name: 'url', options: subnav_options(properties[:items]), selected: properties[:section_name], class: 'js-responsive-nav', data: { form_submit: "true" }} })
+  = ui_component('navigation/dropdown', properties: { action: (properties[:action] || "/redirector"), dropdown: {name: 'url', options: subnav_options(properties[:responsive_items] || properties[:items]), selected: properties[:responsive_placeholder] || properties[:section_name], placeholder: properties[:responsive_placeholder], class: 'js-responsive-nav', data: { form_submit: "true" }} })
