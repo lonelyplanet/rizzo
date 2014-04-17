@@ -15,7 +15,7 @@ class StyleguideController < GlobalController
   end
 
   def tiles
-    render '/styleguide/tiles'
+    render '/styleguide/ui-components/tiles'
   end
 
   def buttons
