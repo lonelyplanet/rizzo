@@ -26,6 +26,11 @@
 
   &:first-child
     margin-left: 0
+
+  .responsive &
+    display: none
+    +respond-to(medium-view)
+      display: inline-block
 .pagination__link--next,
 .pagination__link--prev
   &:before
@@ -33,9 +38,22 @@
     display: inline-block
     position: relative
     top: 2px
+.pagination__link--first,
+.pagination__link--last,
+.pagination__link--next,
+.pagination__link--prev
+  .responsive &
+    display: inline-block
+
+.pagination__backwards,
+.pagination__forwards
+  min-height: 35px
+  min-width: 100px
 
 .pagination__link--current
   opacity: 0.5
+  .responsive &
+    display: inline-block
 
 .pagination__numbers
   text-align: center

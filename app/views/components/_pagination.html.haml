@@ -11,14 +11,14 @@
 
   .pagination{ class: properties[:classes] }
 
-    - if properties[:current_page] < total_pages
-      .pagination__forwards.split--right
+    .pagination__forwards.split--right
+      - if properties[:current_page] < total_pages
         %a.pagination__link.pagination__link--last{ href: href.gsub(/%i/, total_pages.to_s) }<
           Last
         %a.pagination__link.pagination__link--next.icon--chevron-right--before{ href: href.gsub(/%i/, (properties[:current_page] + 1).to_s)}
 
-    - if properties[:current_page] > 1
-      .pagination__backwards.split--left
+    .pagination__backwards.split--left
+      - if properties[:current_page] > 1
         %a.pagination__link.pagination__link--prev.icon--chevron-left--before{ href: href.gsub(/%i/, (properties[:current_page] - 1).to_s) }<
         %a.pagination__link.pagination__link--first{ href: href.gsub(/%i/, "1") }<
           First
