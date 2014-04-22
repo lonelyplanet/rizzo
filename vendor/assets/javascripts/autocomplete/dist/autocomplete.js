@@ -8,8 +8,8 @@ define([ "jquery" ], function($) {
     this.config = {
       el: "",
       threshold: 0,
-      fetch: this.defaultFetch,
       limit: 0,
+      fetch: this.defaultFetch,
       template: {
         elementWrapper: "<div class='js-autocomplete'></div>",
         resultsWrapper: "<div class='autocomplete'></div>",
@@ -66,8 +66,8 @@ define([ "jquery" ], function($) {
     },
     
     showResultsPanel: function() {
-      this.$resultsItemList.highlight(this.searchTerm, {
-        element: 'span',
+      this.$resultsItemList.highlight(this.searchTerm.trim().split(" "), {
+        element: "span",
         className: this.config.template.searchTermHighlightClass
       });
       this.$resultsPanel.removeClass(this.config.template.hiddenClass);
@@ -144,12 +144,11 @@ define([ "jquery" ], function($) {
       var _this = this;
       this.config.fetch(searchTerm, function(results) {
         if (results.length > 0) {
-          if(_this.config.limit > 0) {
-            _this.results = results.length > _this.config.limit ? results.slice(0, _this.config.limit) : results;
+          if (_this.config.limit > 0) {
+            _this.results = results.length > _this.config.limit ? results.slice(0, _this.config.limit) : results;            
           } else {
             _this.results = results;
           }
-          
           cb();
         } else {
           _this.clearResults();
@@ -300,7 +299,7 @@ define([ "jquery" ], function($) {
       words = [words];
     }
     words = $.grep(words, function(word, i){
-      return word != '';
+      return word != "";
     });
     words = $.map(words, function(word, i) {
       return word.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");

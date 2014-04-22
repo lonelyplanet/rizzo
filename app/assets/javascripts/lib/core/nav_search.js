@@ -2,10 +2,22 @@ define([ "jquery", "autocomplete" ], function($, Autocomplete) {
 
   "use strict";
 
-  function NavSearch($target) {
+
+  function NavSearch(selector) {
+
+    // switch search icon on click
+    $(selector).on("focus", function() {
+      $(".search__input__icon").addClass("active-search");
+      $(this).attr("placeholder", "Enter your search term");
+    }).on("blur", function() {
+      $(".search__input__icon").removeClass("active-search");
+      $(this).attr("placeholder", "");
+    });
+
     new Autocomplete({
-      el: $target,
+      el: selector,
       threshold: 0,
+      limit: 5,
       template: {
         elementWrapper: "<div class='js-autocomplete'></div>",
         resultsWrapper: "<div class='autocomplete'></div>",
@@ -17,35 +29,35 @@ define([ "jquery", "autocomplete" ], function($, Autocomplete) {
 
       },
       fetch: function(searchTerm, cb) {
-    var results = [
-        {
-          name: "Gabon",
-          type: "place",
-          slug: "gabon"
-        }, {
-          name: "Gabon Hotels",
-          type: "hotel",
-          slug: "gabon/hotels"
-        }, {
-          name: "Gabon Tours",
-          type: "tour",
-          slug: "gabon/tours"
-        }, {
-          name: "Gabon Activities",
-          type: "activity",
-          slug: "gabon/activities"
-        }, {
-          name: "Gabon Sights",
-          type: "sight",
-          slug: "gabon/sights"
-        }, {
-          name: "Gabon Guides",
-          type: "guide",
-          slug: "http://shop.lonelyplanet.com/shopSearch?q=gabon"
-        }
-        ];
-    cb(results);
-  },
+        var results = [
+            {
+              name: "Gabon",
+              type: "place",
+              slug: "gabon"
+            }, {
+              name: "Gabon Hotels",
+              type: "hotel",
+              slug: "gabon/hotels"
+            }, {
+              name: "Gabon Tours",
+              type: "tour",
+              slug: "gabon/tours"
+            }, {
+              name: "Gabon Activities",
+              type: "activity",
+              slug: "gabon/activities"
+            }, {
+              name: "Gabon Sights",
+              type: "sight",
+              slug: "gabon/sights"
+            }, {
+              name: "Gabon Guides",
+              type: "guide",
+              slug: "http://shop.lonelyplanet.com/shopSearch?q=gabon"
+            }
+            ];
+        cb(results);
+      },
       onItem: this.onItem
     });
   }

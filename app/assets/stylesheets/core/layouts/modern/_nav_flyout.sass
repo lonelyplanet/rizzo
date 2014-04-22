@@ -36,7 +36,7 @@ $submenu__arrow--width:  10px
   @extend %transition--base
   @extend %fly-out-shadow
   @extend %rounded-corners
-  background-color: $green
+  background-color: white
   padding: 4px 0
   position: relative
   +css-arrow-central(top, $size: 40px)
@@ -50,9 +50,10 @@ $submenu__arrow--width:  10px
       top: -7px
 
 .nav__submenu__item
-  color: #fff
+  color: $body-copy
   padding: 12px
-  font-weight: bold
+  font-weight: normal
+  text-transform: none
 
 .nav__submenu__title
   +font-size(16)
@@ -60,12 +61,11 @@ $submenu__arrow--width:  10px
   cursor: default
 
 .nav__submenu__link
-  border-color: $green
-  border-style: solid
-  border-width: 1px 0
+  border-bottom: 1px solid $subduedgray
+  &:last-child
+    border: none
   &:hover
-    background-color: $nav-submenu-hover
-    border-color: $nav-submenu-hover-border
+    background-color: $body-background-offset
 
 .nav__submenu--destinations
   width: 170px
