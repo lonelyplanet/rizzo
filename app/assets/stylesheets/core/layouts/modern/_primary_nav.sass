@@ -76,9 +76,14 @@
       margin-left: 157px
 
 .nav__item--primary
-  padding: 21px 4px
+  padding: 21px 5px
+  text-transform: uppercase
   .nav__icon
     display: none
+  &.btn--small
+    margin: 10px 6px 10px 0
+    padding: 10px
+    +font-size(14)
   .responsive &
     +font-size(18)
     padding: 17px 10px
@@ -189,9 +194,10 @@
 
 .nav__item--user-avatar
   @extend %rounded-corners
-  border: 2px solid $row-primary--darker
-  height: 30px
-  width: 30px
+  border: none
+  border-radius: 17px
+  height: 34px
+  width: 34px
   .responsive &
     border-radius: 0px
     border: none

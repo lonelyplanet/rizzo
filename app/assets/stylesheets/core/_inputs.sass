@@ -48,10 +48,9 @@ input[type="submit"]
 // ----------------------------------------------------------------------------
 
 .search--primary
-  border-radius: 16px
-  background-color: $row-primary--darker
-  overflow: hidden
-  margin: 13px 0 12px
+  background-color: transparent
+  margin: 10px 0
+  position: relative
   @if $is-ie
     float: left
   .responsive &
@@ -79,18 +78,25 @@ input[type="submit"]
 
 .search__input--primary
   @extend %transition--base
-  background: transparent
+  border-radius: 16px
+  background: $row-primary--darker
+  background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D%2232%22%20height%3D%22232%22%20viewBox%3D%220%200%2032%20232%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Asketch%3D%22http%3A%2F%2Fwww.bohemiancoding.com%2Fsketch%2Fns%22%3E%3Ctitle%3Esearch%3C%2Ftitle%3E%3Cg%20sketch%3Atype%3D%22MSPage%22%20fill%3D%22none%22%3E%3Cpath%20d%3D%22M27.938%2024.895l-5.98-5.908c.904-1.466%201.421-3.184%201.421-5.021%200-5.342-4.685-9.967-10.092-9.967-5.405%200-9.787%204.327-9.787%209.669%200%205.343%204.685%209.971%2010.09%209.971%201.799%200%203.483-.48%204.93-1.319l6.009%205.939c.589.582%201.542.582%202.129%200l1.493-1.472c.59-.582.376-1.311-.213-1.892zm-21.426-11.227c0-3.7%203.037-6.695%206.775-6.695%203.746%200%207.081%203.295%207.081%206.993%200%203.699-3.033%206.695-6.778%206.695-3.741%200-7.078-3.292-7.078-6.993z%22%20fill%3D%22%233A434E%22%20sketch%3Atype%3D%22MSShapeGroup%22%2F%3E%3Cpath%20d%3D%22M27.409%2064.895l-5.98-5.908c.904-1.466%201.421-3.184%201.421-5.021%200-5.342-4.685-9.967-10.092-9.967-5.405%200-9.787%204.327-9.787%209.669%200%205.343%204.685%209.971%2010.09%209.971%201.799%200%203.483-.48%204.93-1.319l6.009%205.939c.589.582%201.542.582%202.129%200l1.493-1.472c.59-.582.376-1.311-.213-1.892zm-21.426-11.227c0-3.7%203.037-6.695%206.775-6.695%203.746%200%207.081%203.295%207.081%206.993%200%203.699-3.033%206.695-6.778%206.695-3.741%200-7.078-3.292-7.078-6.993z%22%20fill%3D%22%2367737B%22%20sketch%3Atype%3D%22MSShapeGroup%22%2F%3E%3Cpath%20d%3D%22M26.906%20104.895l-5.98-5.908c.904-1.466%201.421-3.184%201.421-5.021%200-5.342-4.685-9.967-10.092-9.967-5.405%200-9.787%204.327-9.787%209.669%200%205.343%204.685%209.971%2010.09%209.971%201.799%200%203.483-.48%204.93-1.319l6.009%205.939c.589.582%201.542.582%202.129%200l1.493-1.472c.59-.582.376-1.311-.213-1.892zm-21.426-11.227c0-3.7%203.037-6.695%206.775-6.695%203.746%200%207.081%203.295%207.081%206.993%200%203.699-3.033%206.695-6.778%206.695-3.741%200-7.078-3.292-7.078-6.993z%22%20fill%3D%22%23fff%22%20sketch%3Atype%3D%22MSShapeGroup%22%2F%3E%3Cpath%20d%3D%22M26.906%20144.895l-5.98-5.908c.904-1.466%201.421-3.184%201.421-5.021%200-5.342-4.685-9.967-10.092-9.967-5.405%200-9.787%204.327-9.787%209.669%200%205.343%204.685%209.971%2010.09%209.971%201.799%200%203.483-.48%204.93-1.319l6.009%205.939c.589.582%201.542.582%202.129%200l1.493-1.472c.59-.582.376-1.311-.213-1.892zm-21.426-11.227c0-3.7%203.037-6.695%206.775-6.695%203.746%200%207.081%203.295%207.081%206.993%200%203.699-3.033%206.695-6.778%206.695-3.741%200-7.078-3.292-7.078-6.993z%22%20fill%3D%22%23206FAC%22%20sketch%3Atype%3D%22MSShapeGroup%22%2F%3E%3Cpath%20d%3D%22M26.438%20184.896l-5.98-5.908c.904-1.466%201.421-3.184%201.421-5.021%200-5.342-4.685-9.967-10.092-9.967-5.405%200-9.787%204.327-9.787%209.669%200%205.343%204.685%209.971%2010.09%209.971%201.799%200%203.483-.48%204.93-1.319l6.009%205.939c.589.582%201.542.582%202.129%200l1.493-1.472c.59-.582.376-1.311-.213-1.892zm-21.426-11.227c0-3.7%203.037-6.695%206.775-6.695%203.746%200%207.081%203.295%207.081%206.993%200%203.699-3.033%206.695-6.778%206.695-3.741%200-7.078-3.292-7.078-6.993z%22%20fill%3D%22%2398A8B2%22%20sketch%3Atype%3D%22MSShapeGroup%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E')
+  background-repeat: no-repeat
+  background-position: right 6px top -25px
+  background-size: 23px
   color: $nav-primary-type
   display: inline-block
-  height: 30px
+  height: 35px
   padding: 0 10px
   vertical-align: top
   width: 170px
   &:focus
     box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.2) inset
-    background: white
     color: $body-copy
-    width: 210px
+    width: 265px
+    background-color: white
+    background-position: right 6px top 5px
+
   .responsive &
     width: 80%
     &:focus
@@ -106,30 +112,68 @@ input[type="submit"]
     line-height: 16px
     padding: 7px 10px
 
-.search__button
-  @extend %transition--base
-  background-color: transparent
-  border: 0
-  cursor: pointer
-  height: 30px
-  padding: 0
-  vertical-align: top
-  &:hover
-    background-color: $header-blue
-  .responsive &
-    float: right
-    +respond-to(wide-view)
-      float: none
-
 .search__button--icon
   @extend %image-replacement
+  @extend %transition--base
   display: block
-  height: 16px
-  margin: 0 8px
+  height: 21px
   padding: 0
-  width: 16px
-  opacity: 0.7
-  background-size: 16px
+  width: 21px
+  opacity: 0.75
+  background-size: 22px
+  position: absolute
+  right: 8px
+  top: 5px
+  &:hover
+    opacity: 1
+
+.autocomplete
+  position: relative
+  display: block
+  width: 100%
+  margin: 0
+  left: 0
+  top: 75%
+  .autocomplete__results
+    list-style: none
+    top: 4px
+    left: 0px
+    width: 100%
+    margin: 0px
+    background-color: white
+    border: 1px solid $subduedgray
+    border-radius: 4px
+    position: absolute
+    &:after
+      position: absolute
+      top: -15px
+      left: 50%
+      margin-left: -10px
+      width: 20px
+      height: 20px
+    .autocomplete__results__item:last-child
+      border: 0px
+    .autocomplete__results__item:before
+      width: 20px
+      height: 20px
+      position: absolute
+      top: 5px
+      left: 5px
+    .autocomplete__results__item
+      cursor: pointer
+      +font-size(14)
+      color: $bodygray
+      display: block
+      padding: 10px 10px 10px 50px
+      font-weight: normal
+      background-repeat: no-repeat
+      background-size: auto 100%
+      cursor: pointer
+      border-bottom: 1px solid $subduedgray
+      position: relative
+      text-decoration: none
+    .autocomplete__results__item:hover, .autocomplete__results__item--highlight, .autocomplete__search-term--highlight
+      font-weight: bold
 
 // -----------------------------------------------------------------------------
 //

@@ -7,14 +7,24 @@ define([ "jquery" ], function($) {
 
     this.config = {
       el: "",
-      threshold: 2,
+      threshold: 0,
       fetch: this.defaultFetch,
-      template: "<li>Test</li>",
+      limit: 0,
+      template: {
+        elementWrapper: "<div class='js-autocomplete'></div>",
+        resultsWrapper: "<div class='autocomplete'></div>",
+        resultsContainer: "<ul class='autocomplete__results'></ul>",
+        resultsItemHighlightClass: "autocomplete__results__item--highlight",
+        resultsItem: "<li class='autocomplete__results__item' data-company='{{Company}}'><strong>{{Company}}</strong><br/><small>{{City}}, {{Country}}</small></li>",
+        searchTermHighlightClass: "autocomplete__search-term--highlight",
+        hiddenClass: "is-hidden"
+      },
       onItem: this.defaultOnItem
     };
 
     var props = {
       results: [],
+      searchTerm: "",
       displayed: false,
       resultIndex: 0,
       specialkeys: {
@@ -27,11 +37,12 @@ define([ "jquery" ], function($) {
     };
 
     $.extend(this, props);
-    $.extend(this.config, args);
+    $.extend(true, this.config, args);
 
     // cache references to dom elements used
     this.$el = $(this.config.el);
-
+    this.$resultsItemList = $();
+    
     this.init();
 
   };
@@ -46,58 +57,44 @@ define([ "jquery" ], function($) {
 
     wrapEl: function() {
       this.$el
-        .wrap("<div class='autocomplete clearfix' />")
-        .after("<div class='is-hidden autocomplete__results' />");
-
-      this.$wrapper = this.$el.parent(".autocomplete");
-
+        .wrap(this.config.template.elementWrapper)
+        .after($(this.config.template.resultsWrapper)
+               .addClass(this.config.template.hiddenClass));
+      this.$wrapper = this.$el.parent();
       // http://jsperf.com/find-sibling-vs-find-wrapper-child
       this.$resultsPanel = this.$el.next();
-
-      var w = this.$el.outerWidth(),
-          h = this.$el.outerHeight();
-      this.$resultsPanel.css({ top: h + "px", width: w + "px" });
     },
-
+    
     showResultsPanel: function() {
-      this.$resultsPanel.removeClass("is-hidden");
+      this.$resultsItemList.highlight(this.searchTerm, {
+        element: 'span',
+        className: this.config.template.searchTermHighlightClass
+      });
+      this.$resultsPanel.removeClass(this.config.template.hiddenClass);
       this.displayed = true;
       this.highlightResult();
     },
 
     hideResultsPanel: function() {
-      this.$resultsPanel.addClass("is-hidden");
+      this.$resultsPanel.addClass(this.config.template.hiddenClass);
       this.displayed = false;
     },
-
+    
     clearResults: function() {
       this.results = [];
       this.$resultsPanel.html("");
       this.hideResultsPanel();
     },
-
-    callFetch: function(searchTerm, cb) {
-      var _this = this;
-      this.config.fetch(searchTerm, function(results) {
-        if (results.length > 0) {
-          _this.results = results;
-          cb();
-        } else {
-          _this.clearResults();
-        }
-      });
-    },
-
+    
     renderList: function() {
-      var list = "<ul>";
-      list += this.processTemplate(this.results);
-      list += "</ul>";
-      return list;
+      var $container = $(this.config.template.resultsContainer);
+      this.$resultsItemList = $(this.processTemplate(this.results));
+      return $container.html(this.$resultsItemList);
     },
 
     populateResultPanel: function() {
-      var resultString = this.renderList();
-      this.$resultsPanel.html(resultString);
+      var $results = this.renderList();
+      this.$resultsPanel.html($results);
       this.showResultsPanel();
     },
 
@@ -125,18 +122,36 @@ define([ "jquery" ], function($) {
           return false;
         }
       });
+
       this.$wrapper.on("keyup", function(e) {
         _this.processTyping(e);
       });
 
-      this.$resultsPanel.on("click", "ul li", function(e) {
-        console.log(e);
-        _this.config.onItem(e.target);
+      // 'blur' fires before 'click' so we have to use 'mousedown'
+      this.$resultsPanel.on("mousedown", $(_this.config.template.resultsItem)[0].tagName, function(e) {
+        _this.config.onItem(this);
         _this.clearResults();
       });
 
       this.$el.on("blur", function() {
-        if (!_this.displayed) {
+        if (!_this.visible) {
+          // _this.clearResults();
+        }
+      });
+    },
+
+    callFetch: function(searchTerm, cb) {
+      var _this = this;
+      this.config.fetch(searchTerm, function(results) {
+        if (results.length > 0) {
+          if(_this.config.limit > 0) {
+            _this.results = results.length > _this.config.limit ? results.slice(0, _this.config.limit) : results;
+          } else {
+            _this.results = results;
+          }
+          
+          cb();
+        } else {
           _this.clearResults();
         }
       });
@@ -149,6 +164,7 @@ define([ "jquery" ], function($) {
         if (keyName && this.displayed) {
           this.processSpecialKey(keyName, e);
         } else if (!keyName) {
+          this.searchTerm = e.target.value;
           this.processSearch(e.target.value);
         }
       } else {
@@ -169,25 +185,25 @@ define([ "jquery" ], function($) {
     processSpecialKey: function(keyName, e) {
       var changed = false;
       switch (keyName) {
-        case "up": {
-          changed = this.changeIndex("up");
-          break;
-        }
-        case "down": {
-          changed = this.changeIndex("down");
-          break;
-        }
-        case "enter": {
-          this.selectResult();
-          break;
-        }
-        case "esc": {
-          this.clearResults();
-          break;
-        }
-        default: {
-          break;
-        }
+      case "up": {
+        changed = this.changeIndex("up");
+        break;
+      }
+      case "down": {
+        changed = this.changeIndex("down");
+        break;
+      }
+      case "enter": {
+        this.selectResult();
+        break;
+      }
+      case "esc": {
+        this.clearResults();
+        break;
+      }
+      default: {
+        break;
+      }
       }
 
       if (changed) {
@@ -197,28 +213,27 @@ define([ "jquery" ], function($) {
 
     highlightResult: function() {
       // highlight result by adding/removing class
-      this.$resultsPanel.find("li")
-        .removeClass("autocomplete__results--highlight")
+      this.$resultsItemList
+        .removeClass(this.config.template.resultsItemHighlightClass)
         .eq(this.resultIndex)
-        .addClass("autocomplete__results--highlight");
+        .addClass(this.config.template.resultsItemHighlightClass);
     },
 
     selectResult: function() {
       // pass actual DOM element to onItem()
-      var el = this.$resultsPanel.find("li")[this.resultIndex];
+      var el = this.$resultsItemList[this.resultIndex];
       this.config.onItem(el);
       this.clearResults();
     },
 
     // These three templates are the defaults that a user would override
     processTemplate: function(results) {
-      var i,
-          listLength = results.length,
+      var listLength = results.length,
           listItem = "",
           listItems = "";
       // should return an HTML string of list items
-      for (i = 0; i < listLength; i++) {
-        listItem = this.renderTemplate(this.config.template, results[i]);
+      for (var i = 0; i < listLength; i++) {
+        listItem = this.renderTemplate(this.config.template.resultsItem, results[i]);
         // append newly formed list item to other list items
         listItems += listItem;
       }
@@ -238,7 +253,6 @@ define([ "jquery" ], function($) {
     },
 
     defaultFetch: function(searchTerm, cb) {
-      // must return an array
       cb([ "a","b","c" ]);
     }
 
@@ -249,8 +263,62 @@ define([ "jquery" ], function($) {
     AutoComplete.prototype[attrname] = methods[attrname];
   }
 
+  //------------------------------------------------------
+  // From jquery.highlight.js:
+  //------------------------------------------------------
+  
+  $.extend({
+    highlight: function (node, re, nodeName, className) {
+      if (node.nodeType === 3) {
+        var match = node.data.match(re);
+        if (match) {
+          var highlight = document.createElement(nodeName || "span");
+          highlight.className = className || "highlight";
+          var wordNode = node.splitText(match.index);
+          wordNode.splitText(match[0].length);
+          var wordClone = wordNode.cloneNode(true);
+          highlight.appendChild(wordClone);
+          wordNode.parentNode.replaceChild(highlight, wordNode);
+          return 1; //skip added node in parent
+        }
+      } else if ((node.nodeType === 1 && node.childNodes) && // only element nodes that have children
+                 !/(script|style)/i.test(node.tagName) && // ignore script and style nodes
+                 !(node.tagName === nodeName.toUpperCase() && node.className === className)) { // skip if already highlighted
+        for (var i = 0; i < node.childNodes.length; i++) {
+          i += $.highlight(node.childNodes[i], re, nodeName, className);
+        }
+      }
+      return 0;
+    }
+  });
+
+  $.fn.highlight = function (words, options) {
+    var settings = { className: "highlight", element: "span", caseSensitive: false, wordsOnly: false };
+    $.extend(settings, options);
+    
+    if (words.constructor === String) {
+      words = [words];
+    }
+    words = $.grep(words, function(word, i){
+      return word != '';
+    });
+    words = $.map(words, function(word, i) {
+      return word.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+    });
+    if (words.length == 0) { return this; };
+
+    var flag = settings.caseSensitive ? "" : "i";
+    var pattern = "(" + words.join("|") + ")";
+    if (settings.wordsOnly) {
+      pattern = "\\b" + pattern + "\\b";
+    }
+    var re = new RegExp(pattern, flag);
+    
+    return this.each(function () {
+      $.highlight(this, re, settings.element, settings.className);
+    });
+  };
+
   return AutoComplete;
 
 });
-
-
