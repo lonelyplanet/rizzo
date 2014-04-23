@@ -13,6 +13,14 @@ define([ "jquery" ], function($) {
       var target = event.target,
           $document = $(document);
 
+      // We need to allow elements to opt-out of the flyout functionality since the listener
+      //  is a generic toggleActive listener (i.e.: not flyout specific).
+      // To further complicate matters, any component using this as a mixin don't even need
+      //  to init for this listener to become active so this is currently the best solution.
+      if ($(target).data("preventFlyout")) {
+        return;
+      }
+
       if (data.isActive) {
         $document.on("click.toggleActive", function(event) {
           if (!$(event.target).closest(data.targets).length) {
