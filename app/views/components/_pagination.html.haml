@@ -40,7 +40,7 @@
             - finish = properties[:current_page] + offset - 1
         - for num in start..finish
           - if properties[:current_page] != num
-            %a.pagination__link{ href: href.gsub(/%i/, num.to_s), data: { current: properties[:current_page], num: num} }<
+            %a.pagination__link.mv--inline-block{ href: href.gsub(/%i/, num.to_s), data: { current: properties[:current_page], num: num} }<
               = num
           - else
             .pagination__link.pagination__link--current<
