@@ -81,7 +81,7 @@ describe "components/_pagination.html.haml" do
 
       render
 
-      rendered.should_not have_css('.pagination__backwards')
+      rendered.should_not have_css('.pagination__backwards .pagination__link')
       rendered.should_not have_css('.pagination__link--prev')
       rendered.should_not have_css('.pagination__link--first')
     end
@@ -108,7 +108,7 @@ describe "components/_pagination.html.haml" do
 
       render
 
-      rendered.should_not have_css('.pagination__forwards')
+      rendered.should_not have_css('.pagination__forwards .pagination__link')
       rendered.should_not have_css('.pagination__link--next')
       rendered.should_not have_css('.pagination__link--last')
 
