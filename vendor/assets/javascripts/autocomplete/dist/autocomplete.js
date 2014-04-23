@@ -1,6 +1,14 @@
 define([ "jquery" ], function($) {
 
   "use strict";
+
+  // polyfill for older browsers that don't support .trim()
+  if (!String.prototype.trim) {
+    String.prototype.trim = function () {
+      return this.replace(/^\s+|\s+$/g, "");
+    };
+  }
+  
   var AutoComplete, methods;
 
   AutoComplete = function(args) {
@@ -135,7 +143,7 @@ define([ "jquery" ], function($) {
 
       this.$el.on("blur", function() {
         if (!_this.visible) {
-          // _this.clearResults();
+          _this.clearResults();
         }
       });
     },

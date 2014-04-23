@@ -29,34 +29,13 @@ define([ "jquery", "autocomplete" ], function($, Autocomplete) {
 
       },
       fetch: function(searchTerm, cb) {
-        var results = [
-            {
-              name: "Gabon",
-              type: "place",
-              slug: "gabon"
-            }, {
-              name: "Gabon Hotels",
-              type: "hotel",
-              slug: "gabon/hotels"
-            }, {
-              name: "Gabon Tours",
-              type: "tour",
-              slug: "gabon/tours"
-            }, {
-              name: "Gabon Activities",
-              type: "activity",
-              slug: "gabon/activities"
-            }, {
-              name: "Gabon Sights",
-              type: "sight",
-              slug: "gabon/sights"
-            }, {
-              name: "Gabon Guides",
-              type: "guide",
-              slug: "http://shop.lonelyplanet.com/shopSearch?q=gabon"
-            }
-            ];
-        cb(results);
+        $.ajax({
+          url: "http://localhost:7000/search.json?q=" + searchTerm,
+          dataType: "json",
+          success: function(data) {
+            cb(data);
+          }
+        });
       },
       onItem: this.onItem
     });
