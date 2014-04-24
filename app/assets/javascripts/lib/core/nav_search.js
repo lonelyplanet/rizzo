@@ -23,7 +23,7 @@ define([ "jquery", "autocomplete" ], function($, Autocomplete) {
         resultsWrapper: "<div class='autocomplete'></div>",
         resultsContainer: "<div class='autocomplete__results icon--tapered-arrow-up--after icon--white--after'></div>",
         resultsItemHighlightClass: "autocomplete__results__item--highlight",
-        resultsItem: "<a class='autocomplete__results__item icon--{{type}}--before icon--body-grey--before' href='{{slug}}'>{{name}}</a>",
+        resultsItem: "<div><a class='autocomplete__results__item icon--{{type}}--before icon--body-grey--before' href='{{slug}}'>{{name}}</a></div>",
         searchTermHighlightClass: "autocomplete__search-term--highlight",
         hiddenClass: "is-hidden"
 
@@ -41,8 +41,8 @@ define([ "jquery", "autocomplete" ], function($, Autocomplete) {
     });
   }
 
-  NavSearch.prototype.onItem = function(el) {
-    window.location = $(el).attr("href");
+  NavSearch.prototype.onItem = function(el, e) {
+    window.location = $(el).children("a").attr("href");
   };
 
   return NavSearch;
