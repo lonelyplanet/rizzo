@@ -1,4 +1,4 @@
-.hero-banner.js-bg-parallax.row{style: "background-image: url(#{properties[:image_url]})", class: properties[:image_info] ? 'hero-banner__flickr' : '' }
+.hero-banner.js-bg-parallax.row{style: "background-image: url(#{properties[:image_url]})", class: properties[:image_info] ? 'hero-banner--flickr' : '' }
   .hero-banner__content.row__inner
 
     - if properties[:title]
@@ -12,17 +12,18 @@
     - if image_info = properties[:image_info]
       .hero-banner__image-content
         .hero-banner__image-header
-          .icon--flickr.icon
-          .hero-banner__image-description
+          .hero-banner__image-description.text-icon.icon--flickr--before
             = image_info[:image_description]
         .hero-banner__image-footer
-          .hero-banner__source
+          %a.hero-banner__source{href: image_info[:user_url]}
             %img{src: image_info[:user_image], class: 'hero-banner__avatar', alt: image_info[:user_name]}
             %span.hero-banner__source-text
               by
             %span.hero-banner__username
               = image_info[:user_name]
-            %span.badge--green
-              Winner
           .hero-banner__image-title
             = image_info[:image_title]
+
+    - if properties[:sponsored]
+      .hero-banner__sponsor.ad-sponsorTile
+        = ui_component('ads/sponsor_tile', properties: { sizes: '150x120' })

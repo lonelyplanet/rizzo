@@ -56,7 +56,6 @@ field_components:
     :styleguide_title: "Date field"
     :label: "Choose Date"
     :id: "text_id"
-    :class: "icon--calendar icon--calendar--grey"
     :name: "text_name"
     :placeholder: "dd/mm/yyyy"
     :data:

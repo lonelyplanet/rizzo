@@ -1,7 +1,5 @@
 Rizzo::Application.routes.draw do
 
-  root to: redirect('/styleguide/ui-components/colours')
-
   get 'head'                         => 'head#index'
   get 'breadcrumb'                   => 'global_resources#breadcrumb'
   get "r/:encrypted_url"             => 'redirector#show', :as => :redirector
@@ -41,12 +39,17 @@ Rizzo::Application.routes.draw do
   get 'homepage'                         => 'global_resources#homepage'
 
   # Styleguide
-  get 'styleguide/',               to: redirect('/styleguide/ui-components/colours')
-  get 'styleguide/ui-components',  to: redirect('/styleguide/ui-components/colours')
-  get 'styleguide/js-components',  to: redirect('/styleguide/js-components/toggle-active')
-  get 'styleguide/css-utilities/', to: redirect('/styleguide/css-utilities/utility-classes')
+  root                              to: redirect('/styleguide/design-elements/colours')
+  get 'styleguide/',                to: redirect('/styleguide/design-elements/colours')
+  get 'styleguide/design-elements', to: redirect('/styleguide/design-elements/colours')
+  get 'styleguide/ui-components',   to: redirect('/styleguide/ui-components/cards')
+  get 'styleguide/js-components',   to: redirect('/styleguide/js-components/toggle-active')
+  get 'styleguide/css-utilities/',  to: redirect('/styleguide/css-utilities/proportional-grid')
 
-  get 'styleguide/ui-components/colours'                  => 'styleguide#colours'
+  get 'styleguide/design-elements/colours'                => 'styleguide#colours'
+  get 'styleguide/design-elements/ui-colours'             => 'styleguide#uiColours'
+  get 'styleguide/design-elements/icons'                  => 'styleguide#icons'
+  get 'styleguide/design-elements/typography'             => 'styleguide#typography'
   get 'styleguide/ui-components/secondary-nav'            => 'styleguide#secondaryNavigation'
   get 'styleguide/ui-components/left-nav'                 => 'styleguide#leftNavigation'
   get 'styleguide/ui-components/navigational_dropdown'    => 'styleguide#navigational_dropdown'
@@ -54,12 +57,7 @@ Rizzo::Application.routes.draw do
   get 'styleguide/ui-components/buttons'                  => 'styleguide#buttons'
   get 'styleguide/ui-components/badges'                   => 'styleguide#badges'
   get 'styleguide/ui-components/page-title'               => 'styleguide#pageTitle'
-  get 'styleguide/ui-components/typography'               => 'styleguide#typography'
-  get 'styleguide/ui-components/ui-colours'               => 'styleguide#uiColours'
-  get 'styleguide/ui-components/icons'                    => 'styleguide#icons'
   get 'styleguide/ui-components/pagination'               => 'styleguide#pagination'
-  get 'styleguide/ui-components/proportional-grid'        => 'styleguide#proportionalGrid'
-  get 'styleguide/ui-components/cards-grid'               => 'styleguide#cardsGrid'
   get 'styleguide/ui-components/activity_list'            => 'styleguide#activity_list'
   get 'styleguide/ui-components/tags'                     => 'styleguide#tags'
   get 'styleguide/ui-components/inputs'                   => 'styleguide#inputs'
@@ -68,15 +66,20 @@ Rizzo::Application.routes.draw do
   get 'styleguide/ui-components/alerts'                   => 'styleguide#alerts'
   get 'styleguide/ui-components/tooltips'                 => 'styleguide#tooltips'
   get 'styleguide/ui-components/ad-units'                 => 'styleguide#adUnits'
+  get 'styleguide/ui-components/tiles'                    => 'styleguide#tiles'
 
   get 'styleguide/js-components/toggle-active'            => 'styleguide#toggle_active'
   get 'styleguide/js-components/proximity-loader'         => 'styleguide#proximity_loader'
   get 'styleguide/js-components/asset-reveal'             => 'styleguide#asset_reveal'
   get 'styleguide/js-components/image-helper'             => 'styleguide#image_helper'
   get 'styleguide/js-components/lightbox'                 => 'styleguide#lightbox'
+  get 'styleguide/js-components/link-to'                  => 'styleguide#link_to'
   get 'styleguide/js-components/konami'                   => 'styleguide#konami'
   get 'styleguide/js-components/template'                 => 'styleguide#template'
+  get 'styleguide/js-components/swipe'                    => 'styleguide#swipe'
 
+  get 'styleguide/css-utilities/proportional-grid'        => 'styleguide#proportionalGrid'
+  get 'styleguide/css-utilities/cards-grid'               => 'styleguide#cardsGrid'
   get 'styleguide/css-utilities/utility-classes'          => 'styleguide#utilityClasses'
   get 'styleguide/css-utilities/legacy'                   => 'styleguide#legacy'
   get 'styleguide/css-utilities/no-js'                    => 'styleguide#noJs'

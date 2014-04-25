@@ -12,3 +12,18 @@
 @mixin icon-color($color: '')
   $colors: body-grey, white, lp-blue, custom, custom-2
   background-position: 0 percentage(index($colors, $color) * .2)
+
+
+// -----------------------------------------------------------------------------
+// [doc]
+//
+// Add a svg as a background image
+//
+//
+// [/doc]
+// -----------------------------------------------------------------------------
+@mixin svg-bg-icon($iconName, $section)
+  .icon--#{$iconName}
+    .supports-svg &
+      background-image: image_url(icons/#{$section}/#{$iconName}#{"."}svg)
+

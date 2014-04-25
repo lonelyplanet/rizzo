@@ -1,10 +1,6 @@
 :ruby
-  if properties[:style] == "mini"
-    return render "components/cards/mini_card", properties: properties.merge({ css_classes: ["card--poi--destination", "card--mini--destination", "card--full-image"] })
-  end
 
   css_classes = [
-
     "card",
     "card--place",
     "card--destination",
@@ -12,14 +8,11 @@
     "icon--destination--pin--before",
     "#{properties[:image_url] && !properties[:double?] ? 'card--extended-content' : 'card--no-image'}",
     "#{properties[:double?] ? 'card--double card--full-image' : 'card--single'}"
-
   ].join(" ")
 
   show_footer = properties[:things_to_do_count] && properties[:lodging_count] && !properties[:double?]
 
-
 %article.js-card{class: css_classes}
-
   %a.link--wrapper{href: properties[:url]}
 
     = render partial: "components/cards/partials/card_content", locals: {properties: properties}

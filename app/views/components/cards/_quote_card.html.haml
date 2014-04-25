@@ -1,12 +1,9 @@
 :ruby
   css_classes = [
     "card",
-    "card--poi",
-    "card--icon",
     "card--mini",
     "card--single",
-    "card--quote",
-    "card--media-container"
+    "card--quote"
   ].join(" ")
 
 %article.js-card{class: css_classes}
@@ -15,7 +12,7 @@
       = properties[:context] || "Thorntree"
     %blockquote.card__name{cite: properties[:slug]}
       = properties[:title]
-    .card__source
+    %footer.card__source
       = safe_image_tag(properties[:avatar], class: "card__avatar", alt: "Avatar of #{properties[:name]}", lazyload: defined?(lazyload)) 
       by 
       %span.card__username

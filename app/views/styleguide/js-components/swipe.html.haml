@@ -1,0 +1,50 @@
+= render 'styleguide/partials/shared'
+
+.card.styleguide-intro.copy--body.context--content
+  .clearfix
+    %h1.copy--h1 Swipe
+
+    %p 
+      A cross platform component that announces left and right swiping events
+      without disabling up and down scrolling on the elements. Just add the
+      %code js-onswipe
+      class to an element and then listen on that element for
+      %code :swipe/left
+      or
+      %code :swipe/right
+      \.
+
+    .btn.btn--icon.icon--ipad--before.icon--white--before.js-onswipe.js-swipe-me
+      swipe me
+
+.styleguide-block.styleguide-block__description.card.copy--body
+
+  %h2.copy--h2
+    html
+
+  %pre.styleguide.copy--body.language-markup
+    %code
+      :escaped
+        <article class="eggs js-onswipe" data-threshold="10"></article>
+
+  %p
+    You can also add the
+    %code data-threshold
+    property to set the pixel offset by which one should be required to swipe in
+    order to trigger a swipe event.
+
+.styleguide-block.styleguide-block__description.card.copy--body
+
+  %h2.copy--h2
+    javascript
+
+  %pre.styleguide.copy--body.language-javascript
+    %code
+      = preserve do
+        :plain
+          $(".eggs").on(":swipe/left", function() {
+            console.log("so you've just left me here?");
+          });
+          $(".eggs").on(":swipe/right", function() {
+            console.log("all right then.");
+          });

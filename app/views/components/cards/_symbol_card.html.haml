@@ -1,0 +1,11 @@
+%article.card.card--single.card--mini.card--symbol.js-card
+  %a.link--wrapper{href: properties[:slug]}
+    - if properties[:image_url]
+      %figure.card__hero
+        = safe_image_tag(properties[:image_url], class: "card__image", alt: properties[:title], lazyload: defined?(lazyload))
+    - else
+      %figure.card__hero.card__hero--no-image
+    .card__content
+      .card__icon.icon--white{class: "icon--#{properties[:icon]}"}
+      %h2.card__name
+        = properties[:title]

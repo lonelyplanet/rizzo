@@ -12,4 +12,4 @@ $ ->
         prevText = $(this).text()
         $(this).text(newText).attr("data-alt", prevText)
         $(@parentNode).find("pre").toggleClass "is-open"
-      @.parentNode.appendChild button
+      $(@).after(button)

@@ -18,7 +18,7 @@
 
       -# This form is only visible on wide screens, and not on the homepage
       - unless homepage
-        %form.search--primary.search--primary-wv.js-nav-search.wv--inline-block{:action => host_with_subdomain_and_path("www", "searchResult"), :method => "get" }
+        %form.search--primary.search--primary-wv.js-nav-search.wv--inline-block{:action => host_with_subdomain_and_path("www", "search"), :method => "get" }
           %label.accessibility(for='search-q') Search
           %input.search__input.search__input--primary.js-primary-search(type="search" id="search" maxlength="2048" name="q" value="" autocomplete="off" tabindex="1")
           .icon.icon--search.search__input__icon

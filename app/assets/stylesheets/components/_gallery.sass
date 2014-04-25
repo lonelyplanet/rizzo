@@ -38,6 +38,8 @@ $slide-width: 1000px
   left: 0
   position: absolute
   width: 100%
+  .gallery-box &
+    top: 120px
 
 .gallery__slide-background
   +slide-height()
@@ -195,10 +197,12 @@ $slide-width: 1000px
   line-height: 1.2
   margin-left: 9px
   padding: 5px 10px 5px 15px
-  +respond-to(480)
-    width: $slide-width-phone - 50px
-  +respond-to(768)
-    width: 100%
+  width: 95%
+  .responsive &
+    +respond-to(480)
+      width: $slide-width-phone - 50px
+    +respond-to(768)
+      width: 95%
 
   @for $i from 1 through length($poi-names)
     $type: nth($poi-names, $i)
@@ -313,8 +317,13 @@ $slide-width: 1000px
 
 .gallery__slide-counter
   bottom: 0
+  color: white
   display: none
+  font-size: 14px
+  font-weight: bold
   right: 0
   padding: 1em
   position: absolute
   z-index: 10
+  .supports-touch
+    display: block

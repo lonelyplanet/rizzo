@@ -28,39 +28,36 @@
   overflow: hidden
   position: relative
   text-align: center
-  &:after
-    @extend %transition--slower
-    @extend %empty-abs-generated-content
-    background-color: transparent
-    height: 100%
-    left: 0
-    top: 0
-    width: 100%
+
   .responsive &
     height: $mobile-standard-card-image-height
     +respond-to(medium-view)
       height: $standard-card-image-height
-  .card--mini &
-    height: 192px
-  .card__image
-    height: 100%
-    &.is-portrait
-      height: auto
-      max-width: 100%
-    .responsive &
-      width: 100%
-      height: auto
-      +respond-to(medium-view)
-        height: 100%
-        width: auto
 
-  // darken the image when card is hovered over
+  &:after
+    @extend %transition--slower
+    @extend %empty-abs-generated-content
+    background-color: transparent
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    pointer-events: none
+
   .card:hover &
     &:after
-      background-color: rgba(0,0,0,0.3)
+      +image-overlay--flat
 
-  .card--small-image &
-    height: $small-card-image-height
+  .card__image
+    width: auto
+    min-height: 100%
+    max-height: 100%
+    &.is-portrait
+      min-width: 100%
+      max-width: 100%
+      height: auto
+      min-height: 0
+      max-height: none
 
   .card--full-image &
     height: $card-grid-height
@@ -69,12 +66,16 @@
       +respond-to(medium-view)
         height: $card-grid-height
 
-  .card--image-only &
+  .card--mini &
     height: $card-grid-half-height
     .responsive &
       height: $mobile-card-grid-half-height
       +respond-to(medium-view)
         height: $card-grid-half-height
+
+  .card--small-image &
+    &, .responsive &
+      height: $small-card-image-height
 
 .card__hero__overlay
   height: $standard-card-image-height
@@ -86,9 +87,7 @@
   img
     height: 100%
     // Filters currently add a lot of jank on scroll
-    &
-      filter: drop-shadow(0px 0px 15px rgba(0,0,0,0.35))
-
+    filter: drop-shadow(0px 0px 15px rgba(0,0,0,0.35))
 
 // -----------------------------------------------------------------------------
 // Card Content Areas
@@ -276,6 +275,3 @@
 
   .tag--price__inner
     border-radius: 0 3px 3px 3px
-
-.card--mini
-  +size(192px)

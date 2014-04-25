@@ -1,4 +1,4 @@
-define ["jquery", "lib/forms/input_validator"], ($, InputValidator) ->
+define ["jquery", "lib/forms/input_validator", "lib/utils/debounce"], ($, InputValidator, debounce) ->
 
   class FieldInput
 

@@ -1,4 +1,4 @@
-define( ['jquery','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/shopping_cart', 'lib/core/msg', 'lib/utils/local_store', 'lib/managers/select_group_manager', 'lib/core/ad_manager_v2', 'lib/core/nav_search'], ($, AssetFetch, Authenticator, ShoppingCart, Msg, LocalStore, SelectGroupManager, AdManager, NavSearch) ->
+define( ['jquery','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/shopping_cart', 'lib/core/msg', 'lib/utils/local_store', 'lib/managers/select_group_manager', 'lib/core/ad_manager_v2', 'lib/core/nav_search', 'lib/utils/swipe'], ($, AssetFetch, Authenticator, ShoppingCart, Msg, LocalStore, SelectGroupManager, AdManager, NavSearch, Swipe) ->
 
   class Base
 
@@ -9,6 +9,7 @@ define( ['jquery','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/sh
       @initialiseSelectGroupManager()
       @addNavTracking()
       @addAutocomplete()
+      @initSwipe()
 
     initAds: ->
       if (window.lp && window.lp.ads)
@@ -55,4 +56,7 @@ define( ['jquery','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/sh
 
     addAutocomplete: ->
       new NavSearch(".js-primary-search")
+      
+    initSwipe: ->
+      new Swipe()
 )

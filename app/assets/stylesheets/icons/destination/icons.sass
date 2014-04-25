@@ -1,0 +1,9 @@
+.icon--destinations
+  height: 30px
+  width: 28px
+  display: inline-block
+  top: 7px
+  position: relative
+
+@each $icon in $destination-icons
+  @include svg-bg-icon($icon, 'destination')

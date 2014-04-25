@@ -66,6 +66,18 @@ body
   .responsive &
     min-width: 0
 
+.row--billboard
+  @extend %transition--slower
+  overflow: hidden
+  padding: 16px 0
+  min-height: 50px
+  background: darken($body-background, 2.5%)
+
+  &.is-closed
+    min-height: 0
+    height: 0
+    padding: 0
+
 
 // ----------------------------------------------------------------------------
 //
@@ -87,8 +99,6 @@ body
     height: 55px
     +respond-to(wide-view)
       display: none
-
-
 
 
 // ----------------------------------------------------------------------------
@@ -130,3 +140,16 @@ body
   position: fixed
   pointer-events: none
   display: none
+
+
+// -----------------------------------------------------------------------------
+//
+// Microsoft touch actions
+//
+// This is so that while you are swiping that element, internet explorer won't
+// override it with history fiddling and whatever else it feels like.
+//
+// -----------------------------------------------------------------------------
+
+.js-onswipe
+  -ms-touch-action: none

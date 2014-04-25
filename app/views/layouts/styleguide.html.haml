@@ -13,13 +13,7 @@
           .split--left
             .wv--nav--inline.nav--primary#js-nav--primary
               %a.media--lp-logo.logo--header.icon--lp-logo.icon--white{href: 'http://rizzo.lonelyplanet.com/styleguide'}
-              %h1.title--primary.title--styleguide Styleguide
-
-          .split--right
-            .wv--nav--inline.split--right__inner.nav--user
-              %form.nav__item.search--primary
-                %label.accessibility(for='search-q') Search
-                %input{id: "search", "ng-model" => "search", placeholder: "Search", class: "search__input search__input--primary", name: "q", value: "", autocomplete: "off", tabindex: "1"}
+              %h1.title--primary.title--styleguide Style Guide
 
       .row.row--content#js-row--content
         .row__inner.row__inner--content
@@ -41,4 +35,4 @@
 
       = javascript_include_tag 'prism'
 
-  = render 'layouts/core/snippets/pointer_cover'
+    = render 'layouts/core/snippets/pointer_cover'

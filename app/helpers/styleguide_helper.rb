@@ -8,6 +8,10 @@ module StyleguideHelper
     # Add new sections here.
     [
       {
+        title: "Design Elements",
+        slug: "/design-elements"
+      },
+      {
         title: "UI Components",
         slug: "/ui-components"
       },
@@ -31,6 +35,19 @@ module StyleguideHelper
     #===== yeoman begin-hook =====#
     {
       css_utilities: [
+        {
+          title: "Grids",
+          items: [
+            {
+              name: "Proportional Grid",
+              slug: "proportional-grid"
+            },
+            {
+              name: "Cards Grid",
+              slug: "cards-grid"
+            }
+          ]
+        },
         {
           title: "Classes",
           items: [
@@ -116,17 +133,25 @@ module StyleguideHelper
               path: "konami"
             },
             {
+              name: "Link To",
+              slug: "link-to"
+            },
+            {
               name: "Lightbox",
               slug: "lightbox"
             },
             {
               name: "Template",
               slug: "template"
+            },
+            {
+              name: "Swipe",
+              slug: "swipe"
             }
           ]
         }
       ],
-      ui_components: [
+      design_elements: [
         {
           title: "Design",
           items: [
@@ -145,6 +170,53 @@ module StyleguideHelper
             {
               name: "Typography",
               slug: "typography"
+            }
+          ]
+        }
+      ],
+      ui_components: [
+        {
+          title: "Components",
+          items: [
+            {
+              name: "Cards",
+              slug: "cards"
+            },
+            {
+              name: "Ad units",
+              slug: "ad-units"
+            },
+            {
+              name: "Alerts",
+              slug: "alerts"
+            },
+            {
+              name: "Badges",
+              slug: "badges"
+            },
+            {
+              name: "Buttons",
+              slug: "buttons"
+            },
+            {
+              name: "Page title",
+              slug: "page-title"
+            },
+            {
+              name: "Pagination",
+              slug: "pagination"
+            },
+            {
+              name: "Tiles",
+              slug: "tiles"
+            },
+            {
+              name: "Tags",
+              slug: "tags"
+            },
+            {
+              name: "Tooltips",
+              slug: "tooltips"
             }
           ]
         },
@@ -166,19 +238,6 @@ module StyleguideHelper
           ]
         },
         {
-          title: "Helpers",
-          items: [
-            {
-              name: "Proportional Grid",
-              slug: "proportional-grid"
-            },
-            {
-              name: "Cards Grid",
-              slug: "cards-grid"
-            }
-          ]
-        },
-        {
           title: "Form Elements",
           items: [
             {
@@ -192,51 +251,6 @@ module StyleguideHelper
             {
               name: "Range Slider",
               slug: "range-slider"
-            }
-          ]
-        },
-        {
-          title: "Components",
-          items: [
-            {
-              name: "Ad units",
-              slug: "ad-units"
-            },
-            {
-              name: "Alerts",
-              slug: "alerts"
-            },
-            {
-              name: "Badges",
-              slug: "badges"
-            },
-            {
-              name: "Buttons",
-              slug: "buttons"
-            },
-            {
-              name: "Cards",
-              slug: "cards"
-            },
-            {
-              name: "Headers",
-              slug: "headers"
-            },
-            {
-              name: "Page title",
-              slug: "page-title"
-            },
-            {
-              name: "Pagination",
-              slug: "pagination"
-            },
-            {
-              name: "Tags",
-              slug: "tags"
-            },
-            {
-              name: "Tooltips",
-              slug: "tooltips"
             }
           ]
         }

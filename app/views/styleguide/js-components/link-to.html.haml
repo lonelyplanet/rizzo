@@ -1,0 +1,79 @@
+= render 'styleguide/partials/shared'
+
+.card.styleguide-intro.copy--body.context--content
+  .clearfix
+    %h1.copy--h1 Link To
+
+    %p.copy--feature A simple util to make any element linkable using a data attribute.
+    %p Useful for cases where the element can't be wrapped with an anchor tag.
+
+.styleguide-block.styleguide-block__description.card.copy--body
+
+  %h2.copy--h2.styleguide-block__heading
+    Basic Usage
+
+  %p.copy--body
+    This util will self instantiate and automatically be set up for elements with a
+    %code.language--markup data-link-to
+    attribute on them.
+
+  %pre.styleguide.copy--body.language-markup
+    %code
+      = preserve do
+        :plain
+          &lt;div data-link-to="/foo">&lt;/div>
+
+  %pre.styleguide.copy--body.language-javascript
+    %code
+      = preserve do
+        :plain
+          require([ "lib/utils/link_to" ], function(LinkTo) {
+            // No need to do anything.
+          });
+
+  %p.copy--meta
+    Note: This util tries to be "clever" about not hijacking expected click behaviour. Should there be an element where a JS event needs to take precedence that is not in the list below, a
+    %code.language--markup js-prevent-link-to
+    class can be used.
+
+  %p.copy--meta
+    Blacklisted elements:
+    %code.language-markup a
+    ,
+    %code.language-markup button
+    ,
+    %code.language-markup input
+    ,
+    %code.language-markup label
+    ,
+    %code.language-markup option
+    ,
+    %code.language-markup select
+
+.styleguide-block.styleguide-block__description.card.copy--body
+
+  %h2.copy--h2.styleguide-block__heading
+    Providing a context
+
+  %p.copy--body
+    For situations where content is loaded via AJAX (for example), the
+    %code.language--javascript
+      LinkTo
+    constructor receives a
+    %code.language--javascript
+      context
+    argument so you can specify the new context for this.
+
+  %pre.styleguide.copy--body.language-markup
+    %code
+      = preserve do
+        :plain
+          &lt;div class="js-lightbox">
+            &lt;div data-link-to="/foo">&lt;/div>
+          &lt;/div>
+
+  %pre.styleguide.copy--body.language-javascript
+    %code
+      = preserve do
+        :plain
+          new LinkTo(".js-lightbox");

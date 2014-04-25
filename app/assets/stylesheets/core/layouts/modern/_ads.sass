@@ -24,13 +24,6 @@
     padding: 0
     min-height: 0
 
-  // This can be removed when switching to the new DFP server
-  .ad-leaderboard__inner
-    .homepage &
-      border: 1px solid $subduedgray
-      &:after
-        background-position: -106px 4px
-
   > .row__inner
     display: table
 
@@ -64,6 +57,13 @@
 // Other ads
 //
 // ----------------------------------------------------------------------------
+
+.ad-billboard
+  text-align: center
+
+.ad-billboard__inner
+  display: inline-block
+  vertical-align: bottom
 
 .ad-label
   +font-size(10)

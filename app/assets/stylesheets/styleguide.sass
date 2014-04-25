@@ -1,20 +1,20 @@
-@import 'base_helpers'
-@import 'sprites/pois_sprite'
-@import 'components/*'
-@import 'prism'
+@import "base_helpers"
+@import "sprites/pois_sprite"
+@import "components/*"
+@import "prism"
 
 .box
   box-sizing: border-box
   padding: 20px
 
 pre[class*="language-"]
-  box-sizing: border-box
-  padding: 1em
-  overflow: auto
-  max-height: 200px
   background: $body-background-offset
   border-top: 1px solid #DEE2E6
   border-bottom: 1px solid #DEE2E6
+  box-sizing: border-box
+  max-height: 200px
+  overflow: auto
+  padding: 1em
 
   .tag
     +font-size(16)
@@ -31,6 +31,12 @@ pre.styleguide.is-open
   max-height: none
   &:after
     background: none
+
+*:not(pre) > code[class*="language-"]
+  background: $body-background-offset
+  border: 1px solid #DEE2E6
+  font-size: 1rem
+  padding: .1em .3em
 
 .snippet-expand
   width: 100%
@@ -68,6 +74,8 @@ pre.styleguide.is-open
 .styleguide-block__item--left
   float: left
   margin-right: 20px
+  .styleguide--section__tiles &
+    width: 323px
 
 .styleguide__subtitle
   margin: 20px 10px
@@ -247,8 +255,6 @@ pre.styleguide.is-open
     &.is-closed
       height: 100px
 
-
-
 .filter--links
   .svg-colourise
     width: 170px
@@ -270,3 +276,6 @@ pre.styleguide.is-open
     height: 17px
     padding-bottom: 12px
     padding-top: 12px
+
+.js-onswipe
+  -ms-touch-action: none

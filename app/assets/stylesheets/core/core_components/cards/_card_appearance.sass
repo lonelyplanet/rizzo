@@ -15,32 +15,8 @@
 // Hero card image overlay
 // -----------------------------------------------------------------------------
 
-.card__hero
-  &:after
-    @extend %empty-abs-generated-content
-    background-size: $double-card-width $card-grid-height
-    height: $card-grid-height
-    left: 0
-    pointer-events: none
-    top: 0
-    width: $double-card-width
-  .card--mini &
-    &:before
-      content: ''
-      position: absolute
-      width: 100%
-      height: 100%
-      +image-overlay--flat
-  .responsive &:after
-    width: 100%
-    background-size: 100%
-    +respond-to(medium-view)
-      background-size: $double-card-width $card-grid-height
-      width: $double-card-width
-
 .card__hero--hotels:after
   background-image: image_url('cards/overlays/best-places.png')
-
 
 
 // -----------------------------------------------------------------------------
@@ -56,9 +32,6 @@
   .card--full-image &
     color: white
 
-  .card--full-image &
-    color: #fff
-
 .card__name
   +font-size(22)
   word-wrap: break-word
@@ -66,23 +39,10 @@
   margin-bottom: 10px
 
   .card--standard-image &
-    +font-size(19)
+    +font-size(18)
 
   .card--full-image &
     margin-bottom: 0
-
-  .card--mini.card--full-image &
-    +font-size(18)
-    position: absolute
-    top: 50%
-    z-index: 5
-    width: 100%
-    font-weight: bold
-    text-align: center
-    color: white
-
-  .card--quote &
-    height: 115px
 
 .hero__call-to-action
   bottom: 0
@@ -208,9 +168,9 @@
 
 .card--guide .card__hero
   background: $card-figure-bg
-  background: linear-gradient(to bottom, $card-figure-bg, darken($card-figure-bg, 7.5%))
   .card__image
-    height: 90%
+    min-height: 0
+    max-height: 90%
     margin: 5% 0
 
 // -----------------------------------------------------------------------------
@@ -324,19 +284,61 @@
 // Quote cards
 // -----------------------------------------------------------------------------
 
-.card__source
-  +font-size(16)
-  font-style: italic
-  word-spacing: 5px
-  color: #444
+.card--quote
 
-.card__avatar
-  +size(25px)
-  border-radius: 50%
-  display: inline-block
-  vertical-align: middle
+  .card__name
+    position: relative
+    height: 108px
+    overflow: hidden
+    &:after
+      @extend %empty-abs-generated-content
+      bottom: 0
+      right: 0
+      left: 0
+      height: 25px
+      background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0.9))
 
-.card__username
-  font-weight: bold
-  font-style: normal
-  color: #333
+  .card__source
+    +font-size(14)
+    font-style: italic
+    white-space: nowrap
+
+  .card__avatar
+    +size(25px)
+    border-radius: 50%
+    vertical-align: middle
+
+  .card__username
+    font-weight: bold
+    font-style: normal
+
+// -----------------------------------------------------------------------------
+// Symbol cards
+// -----------------------------------------------------------------------------
+.card--symbol
+
+  .card__hero
+    &:after
+      +image-overlay--flat(.15)
+
+  .card__hero--no-image
+    background: $lpblue image_url('cards/symbol-noimage.png') no-repeat
+    background-size: 100% 100%
+
+  .card__content
+    position: absolute
+    bottom: 0
+    left: 0
+    width: 100%
+    height: auto
+    color: white
+
+  .card__icon
+    width: 30px
+    height: 30px
+    margin-bottom: 6px
+
+  .card__name
+    +font-size(18)
+    font-weight: bold
+    margin-bottom: 0

@@ -71,6 +71,11 @@ define([ "jquery", "lib/utils/template" ], function($, Template) {
     if (userStatus && userStatus.username) {
       window.lp.user = userStatus;
       _this._createUserMenu();
+
+      // This is temporary while we try to figure out this "users logging in as each other" issue.
+      userStatus.secondaryNavProfileLink = $(".nav--secondary .js-nav-item:nth-child(4)").attr("href");
+      userStatus.currentUrl = window.location.href;
+      $.post("https://www.lonelyplanet.com/thorntree/users/js_trace", userStatus, "json");
     } else {
       _this._createUserLinks();
     }
