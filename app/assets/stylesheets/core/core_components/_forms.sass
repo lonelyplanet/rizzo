@@ -22,6 +22,15 @@
   .field--radio &
     padding: 0 10px 0 0
 
+  .responsive &
+    @extend %clearfix
+    display: inline-block
+    float: none
+    width: 100%
+    +respond-to(medium-view)
+      float: left
+      width: 35%
+
 .field__content
   float: left
   width: 65%
@@ -68,7 +77,12 @@
     float: left
     width: 50%
   .field--radio &
+    @extend %clearfix
+    display: block
     margin-right: 10px
+    margin-top: 10px
+    &:first-child
+      margin-top: 0
 
 .input--checkbox
   margin: 0 5px

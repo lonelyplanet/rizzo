@@ -44,7 +44,7 @@ define ["jquery", "lib/utils/debounce"], ($, debounce) ->
 
       @broadcast($el)
 
-      if event.target.nodeName.toUpperCase() is "A"
+      if event.target.nodeName.toUpperCase() is "A" and !$el.closest(".js-toggle-active").data("allowLinks")
         event.preventDefault()
 
     _addInitialState: ->

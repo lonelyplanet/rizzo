@@ -1,4 +1,4 @@
-= render :layout => 'components/forms/partials/field', :locals => { id: properties[:id], label: properties[:label], error: properties[:error], tooltip: properties[:tooltip] } do
+= render :layout => 'components/forms/partials/field', :locals => { id: properties[:id], label: properties[:label], error: properties[:error], extra_class: properties[:extra_class], tooltip: properties[:tooltip] } do
   - properties[:fields].each_with_index do |dropdown, i|
 
     - field_id = i==0 ? properties[:id] : "#{properties[:id]}-#{i}"
