@@ -41,7 +41,7 @@ define([ "jquery", "autocomplete" ], function($, Autocomplete) {
     });
   }
 
-  NavSearch.prototype.onItem = function(el, e) {
+  NavSearch.prototype.onItem = function(el) {
     window.location = $(el).children("a").attr("href");
   };
 

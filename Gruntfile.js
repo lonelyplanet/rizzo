@@ -33,6 +33,8 @@ module.exports = function(grunt) {
           cssprefix: ".icon--",
           customselectors: {
             "*": [ ".icon--$1--before:before, .icon--$1--after:after" ],
+            "place--pin": [ ".icon--place, .icon--place--before:before, .icon--place--after:after" ],
+            "magazine": [ ".icon--guide, .icon--guide--before:before, .icon--guide--after:after" ],
             "chevron-right": [ ".picker__nav--next" ],
             "chevron-left": [ ".picker__nav--prev" ],
             "chevron-down": [ ".select2-choice:after" ],
@@ -163,7 +165,8 @@ module.exports = function(grunt) {
                 sCode: "./vendor/assets/javascripts/omniture/s_code",
                 gpt: "http://www.googletagservices.com/tag/js/gpt",
                 pickadate: "./vendor/assets/javascripts/pickadate",
-                dfp: "./vendor/assets/javascripts/jquery.dfp.js/jquery.dfp"
+                dfp: "./vendor/assets/javascripts/jquery.dfp.js/jquery.dfp",
+                autocomplete: "./vendor/assets/javascripts/autocomplete/dist/autocomplete"
               }
             }
           }
