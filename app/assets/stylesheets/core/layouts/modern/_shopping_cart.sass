@@ -7,8 +7,8 @@
 .responsive .user-basket,
 .user-basket
   position: relative
-  margin-left: 15px
-  padding: 1px 8px 16px
+  margin-left: 5px
+  padding: 4px 8px
   .responsive .wv--nav--inline > &.nav__item
     display: none
     +respond-to(wide-view)
@@ -17,10 +17,13 @@
 .user-basket__icon
   @extend %image-replacement
   @extend %inline-block
-  height: 28px
+  @extend %transition--base
+  height: 23px
+  width: 24px
   margin-right: 5px
-  width: 28px
-
+  opacity: 0.75
+  &:hover
+    opacity: 1
 .nav__submenu--user
   width: 165px
   right: -10px
@@ -39,10 +42,8 @@
   position: relative
 
 .nav__submenu__notification
-  background: white
-  color: $green
-  border-radius: 4px
-  padding: 0 5px
+  color: $bodygray
   position: absolute
   right: 10px
   top: 12px
+  +font-size(12)

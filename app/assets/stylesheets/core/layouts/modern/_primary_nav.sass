@@ -76,9 +76,15 @@
       margin-left: 157px
 
 .nav__item--primary
-  padding: 21px 4px
+  padding: 21px 6px
+  text-transform: uppercase
+  +font-size(13)
   .nav__icon
     display: none
+  &.btn--small
+    margin: 13px 6px 10px 0
+    padding: 9px 12px 8px 12px
+    +font-size(13)
   .responsive &
     +font-size(18)
     padding: 17px 10px
@@ -189,9 +195,10 @@
 
 .nav__item--user-avatar
   @extend %rounded-corners
-  border: 2px solid $row-primary--darker
-  height: 30px
-  width: 30px
+  border: none
+  border-radius: 17px
+  height: 34px
+  width: 34px
   .responsive &
     border-radius: 0px
     border: none
@@ -220,3 +227,10 @@
     display: none
     +respond-to(wide-view)
       display: inline
+.nav__item--primary
+  &.sign_up
+    color: white
+  &.or
+    text-transform: lowercase
+    padding-left: 1px
+    padding-right: 1px
