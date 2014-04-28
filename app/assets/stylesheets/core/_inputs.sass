@@ -144,15 +144,7 @@ input[type="submit"]
       left: 50%
       margin-left: -10px
       width: 20px
-      height: 20px
-    .autocomplete__results__item:last-child
-      border: 0px
-    .autocomplete__results__item:before
-      width: 20px
-      height: 20px
-      position: absolute
-      top: 6px
-      left: 9px
+      height: 20px      
     .autocomplete__results__item
       cursor: pointer
       +font-size(14)
@@ -166,8 +158,16 @@ input[type="submit"]
       border-bottom: 1px solid $subduedgray
       position: relative
       text-decoration: none
-    .autocomplete__results__item:hover, .autocomplete__results__item--highlight
-      background: $body-background-offset
+      &:last-child
+        border: 0px
+      &:before
+        width: 20px
+        height: 20px
+        position: absolute
+        top: 6px
+        left: 9px
+      &:hover, .autocomplete__results__item--highlight
+        background: $body-background-offset
     .autocomplete__search-term--highlight
       font-weight: bold
 
