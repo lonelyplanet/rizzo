@@ -14,6 +14,29 @@
     .ie7 &, .no-boxsizing &
       padding-left: 0
 
+  &.grid--collapse--below-mv > [class*="col--"]
+    float: none
+    +respond-to(medium-view)
+      float: left
+
+  &.grid--collapse--below-wv > [class*="col--"]
+    float: none
+    +respond-to(wide-view)
+      float: left
+
+
+// -----------------------------------------------------------------------------
+// Main page layout - Left Nav + Content
+//
+// We have to adapt it for small screen when in responsive view
+// -----------------------------------------------------------------------------
+
+.responsive
+  .grid--main-layout
+    margin-left: 0
+    > [class*="col--"]
+      padding-left: 0
+
 
 // -----------------------------------------------------------------------------
 // The modifier on the grid-wrapper determines the width of the gutters
@@ -21,12 +44,6 @@
 // -----------------------------------------------------------------------------
 
 $gutter-widths: 10, 15, 20, 30
-
-.responsive
-  [class*="grid-wrapper--"]
-    margin-left: 0
-    > [class*="col--"]
-      padding-left: 0
 
 @each $gutter-width in $gutter-widths
 
@@ -53,6 +70,10 @@ $gutter-widths: 10, 15, 20, 30
 
 .col--one-half
   width: percentage(1/2)
+  .grid--collapse--below-mv > &
+    width: 100%
+    +respond-to(medium-view)
+      width: percentage(1/2)
 
 .col--one-third
   width: percentage(1/3)

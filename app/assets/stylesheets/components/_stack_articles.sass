@@ -110,19 +110,24 @@
         transform: translateX(150px) rotateY(-104deg)
 
 .related
-  padding: 40px 0px
-  margin: 20px -25px -10px
+  padding: 40px 20px
   background: $high-contrast-bg
   text-shadow: 1px 1px 1px #3b444f
-  border-bottom-right-radius: 4px
-  border-bottom-left-radius: 4px
+  +respond-to(wide-view)
+    border-bottom-right-radius: 4px
+    border-bottom-left-radius: 4px
 
-// .related__articles
-//   margin-right: 32px
+.related__articles
+  margin-bottom: 20px
+  padding-bottom: 10px
+  border-bottom: 1px solid $high-contrast-fg
+  +respond-to(medium-view)
+    margin-bottom: 0
+    padding-bottom: 0
+    border-bottom: none
 
 .related__articles,
 .related__guides
-  width: 50%
   display: inline-block
   vertical-align: top
 
