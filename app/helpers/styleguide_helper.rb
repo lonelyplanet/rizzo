@@ -43,6 +43,10 @@ module StyleguideHelper
               slug: "proportional-grid"
             },
             {
+              name: "Responsive Grid",
+              slug: "responsive-grid"
+            },
+            {
               name: "Cards Grid",
               slug: "cards-grid"
             }

@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 //
-//  Column based grid setup
+//  Base Grid setup
 //
 // -----------------------------------------------------------------------------
 
@@ -10,103 +10,98 @@
 
   > [class*="col--"]
     box-sizing: border-box
-    float: left
     .ie7 &, .no-boxsizing &
       padding-left: 0
 
-  &.grid--collapse--below-mv > [class*="col--"]
-    float: none
-    +respond-to(medium-view)
-      float: left
-
-  &.grid--collapse--below-wv > [class*="col--"]
-    float: none
-    +respond-to(wide-view)
-      float: left
-
 
 // -----------------------------------------------------------------------------
-// Main page layout - Left Nav + Content
+// Grid Mixins - to differentiate responsive styles
 //
-// We have to adapt it for small screen when in responsive view
+// Prefix with mv-- if you want the grid to collapse on small screens
+//
+// To add more breakpoint classes (e.g. wv-- ) simply add them in the two mixins
+// below. They have been left out as they are not yet needed.
 // -----------------------------------------------------------------------------
 
-.responsive
-  .grid--main-layout
-    margin-left: 0
-    > [class*="col--"]
-      padding-left: 0
+@mixin responsive-grid($gutter-width)
+
+  .grid-wrapper--#{$gutter-width}
+    @content
+
+  .mv--grid-wrapper--#{$gutter-width}
+    +respond-to(medium-view)
+      @content
+
+
+@mixin responsive-col($colWidth)
+
+  width: $colWidth
+
+  [class*="mv--grid-wrapper--"] > &
+    width: 100%
+    +respond-to(medium-view)
+      width: $colWidth
 
 
 // -----------------------------------------------------------------------------
 // The modifier on the grid-wrapper determines the width of the gutters
-// e.g. grid-wrapper--10
+//
+// e.g. grid-wrapper--10, grid-wrapper--20
 // -----------------------------------------------------------------------------
 
-$gutter-widths: 10, 15, 20, 30
+@each $gutter-width in 0, 10, 15, 20, 30
 
-@each $gutter-width in $gutter-widths
-
-  .grid-wrapper--#{$gutter-width}
+  +responsive-grid($gutter-width)
     margin-left: -#{$gutter-width}px
 
-    > [class*="col--"]
+    & > [class*="col--"]
+      float: left
       padding-left: #{$gutter-width}px
-
-  .responsive
-    +respond-to(wide-view)
-      .grid-wrapper--#{$gutter-width}
-        margin-left: -#{$gutter-width}px
-
-        > [class*="col--"]
-          padding-left: #{$gutter-width}px
 
 
 // -----------------------------------------------------------------------------
-// Proportional Grids
 //
 // The modifier on the column determines its own width
+//
 // -----------------------------------------------------------------------------
 
 .col--one-half
-  width: percentage(1/2)
-  .grid--collapse--below-mv > &
-    width: 100%
-    +respond-to(medium-view)
-      width: percentage(1/2)
+  +responsive-col(percentage(1/2))
 
 .col--one-third
-  width: percentage(1/3)
+  +responsive-col(percentage(1/3))
 
 .col--two-thirds
-  width: percentage(2/3)
+  +responsive-col(percentage(2/3))
 
 .col--one-quarter
-  width: percentage(1/4)
+  +responsive-col(percentage(1/4))
 
 .col--three-quarters
-  width: percentage(3/4)
+  +responsive-col(percentage(3/4))
 
 .col--one-fifth
-  width: percentage(1/5)
+  +responsive-col(percentage(1/5))
 
 .col--two-fifths
-  width: percentage(2/5)
+  +responsive-col(percentage(2/5))
 
 .col--three-fifths
-  width: percentage(3/5)
+  +responsive-col(percentage(3/5))
 
 .col--four-fifths
-  width: percentage(4/5)
+  +responsive-col(percentage(4/5))
 
 .col--one-whole
   width: 100%
+
 
 // -----------------------------------------------------------------------------
 // Flexible, collapsible grid
 //
 // 1 to 2 to 3 to 4 to 6 columns
 // -----------------------------------------------------------------------------
+
 .grid-flex
   overflow: hidden
   min-width: 180px
@@ -125,16 +120,16 @@ $gutter-widths: 10, 15, 20, 30
   .responsive &
     width: 100%
 
-    @media only screen and (min-width: 320px)
+    +respond-to(320)
       width: percentage(1 / 2)
 
-    @media only screen and (min-width: 580px)
+    +respond-to(580)
       width: percentage(1 / 3)
 
-    @media only screen and (min-width: 760px)
+    +respond-to(760)
       width: percentage(1 / 4)
 
-    @media only screen and (min-width: 1020px)
+    +respond-to(1020)
       width: percentage(1 / 6)
 
   > .tile

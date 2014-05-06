@@ -82,6 +82,7 @@ Rizzo::Application.routes.draw do
   get 'styleguide/js-components/swipe'                    => 'styleguide#swipe'
 
   get 'styleguide/css-utilities/proportional-grid'        => 'styleguide#proportionalGrid'
+  get 'styleguide/css-utilities/responsive-grid'          => 'styleguide#responsiveGrid'
   get 'styleguide/css-utilities/cards-grid'               => 'styleguide#cardsGrid'
   get 'styleguide/css-utilities/utility-classes'          => 'styleguide#utilityClasses'
   get 'styleguide/css-utilities/legacy'                   => 'styleguide#legacy'
