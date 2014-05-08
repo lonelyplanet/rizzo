@@ -1,4 +1,11 @@
 GIT
+  remote: https://github.com/lonelyplanet/lp-fonts/
+  revision: c0d5ae2580da1dd66b2703db4ba0987bc23a2332
+  specs:
+    lp-fonts (1.0.0)
+      railties (~> 3.1)
+
+GIT
   remote: https://github.com/lonelyplanet/requirejs-rails.git
   revision: 6e321a240dc35585141c058b8a32d136df097a29
   specs:
@@ -198,6 +205,7 @@ DEPENDENCIES
   haml-rails
   lograge
   logstash-event
+  lp-fonts!
   rails (= 3.2.17)
   rake
   requirejs-rails!

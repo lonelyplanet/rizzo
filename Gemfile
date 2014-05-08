@@ -15,6 +15,8 @@ gem 'unicorn'
 gem 'rake'
 gem 'sanitize'
 
+gem 'lp-fonts', git: 'https://github.com/lonelyplanet/lp-fonts/'
+
 group :test do
   gem 'rspec', '~> 2.10.0'
   gem 'rspec-rails'
