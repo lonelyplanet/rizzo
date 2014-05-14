@@ -77,73 +77,57 @@
 //
 // -----------------------------------------------------------------------------
 
-.grid-wrapper--responsive
++respond-to(medium-view, false)
 
-  +respond-to(narrow-view, false)
+  .mv--col--one-whole
+    width: 100%
 
-    .nv--col--one-whole
-      width: 100%
+  .mv--col--one-half
+    width: percentage(1/2)
 
-    .nv--col--one-half
-      width: percentage(1/2)
+  .mv--col--one-third
+    width: percentage(1/3)
 
-    .nv--col--one-third
-      width: percentage(1/3)
+  .mv--col--two-thirds
+    width: percentage(2/3)
 
-    .nv--col--two-thirds
-      width: percentage(2/3)
+  .mv--col--one-quarter
+    width: percentage(1/4)
 
-  +respond-to(medium-view, false)
+  .mv--col--three-quarters
+    width: percentage(3/4)
 
-    .mv--col--one-whole
-      width: 100%
++respond-to(wide-view)
 
-    .mv--col--one-half
-      width: percentage(1/2)
+  .wv--col--one-whole
+    width: 100%
 
-    .mv--col--one-third
-      width: percentage(1/3)
+  .wv--col--one-half
+    width: percentage(1/2)
 
-    .mv--col--two-thirds
-      width: percentage(2/3)
+  .wv--col--one-third
+    width: percentage(1/3)
 
-    .mv--col--one-quarter
-      width: percentage(1/4)
+  .wv--col--two-thirds
+    width: percentage(2/3)
 
-    .mv--col--three-quarters
-      width: percentage(3/4)
+  .wv--col--one-quarter
+    width: percentage(1/4)
 
-  +respond-to(wide-view)
+  .wv--col--three-quarters
+    width: percentage(3/4)
 
-    .wv--col--one-whole
-      width: 100%
+  .wv--col--one-fifth
+    width: percentage(1/5)
 
-    .wv--col--one-half
-      width: percentage(1/2)
+  .wv--col--two-fifths
+    width: percentage(2/5)
 
-    .wv--col--one-third
-      width: percentage(1/3)
+  .wv--col--three-fifths
+    width: percentage(3/5)
 
-    .wv--col--two-thirds
-      width: percentage(2/3)
-
-    .wv--col--one-quarter
-      width: percentage(1/4)
-
-    .wv--col--three-quarters
-      width: percentage(3/4)
-
-    .wv--col--one-fifth
-      width: percentage(1/5)
-
-    .wv--col--two-fifths
-      width: percentage(2/5)
-
-    .wv--col--three-fifths
-      width: percentage(3/5)
-
-    .wv--col--four-fifths
-      width: percentage(4/5)
+  .wv--col--four-fifths
+    width: percentage(4/5)
 
 
 // -----------------------------------------------------------------------------
