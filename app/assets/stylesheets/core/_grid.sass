@@ -15,43 +15,19 @@
 
 
 // -----------------------------------------------------------------------------
-// Grid Mixins - to differentiate responsive styles
-//
-// Prefix with mv-- if you want the grid to collapse on small screens
-//
-// To add more breakpoint classes (e.g. wv-- ) simply add them in the two mixins
-// below. They have been left out as they are not yet needed.
-// -----------------------------------------------------------------------------
-
-@mixin responsive-grid($gutter-width)
-
-  .grid-wrapper--#{$gutter-width}
-    @content
-
-  .mv--grid-wrapper--#{$gutter-width}
-    +respond-to(medium-view)
-      @content
-
-
-@mixin responsive-col($colWidth)
-
-  width: $colWidth
-
-  [class*="mv--grid-wrapper--"] > &
-    width: 100%
-    +respond-to(medium-view)
-      width: $colWidth
-
-
-// -----------------------------------------------------------------------------
 // The modifier on the grid-wrapper determines the width of the gutters
 //
 // e.g. grid-wrapper--10, grid-wrapper--20
 // -----------------------------------------------------------------------------
 
+@mixin grid-wrapper($gutter-width)
+
+  .grid-wrapper--#{$gutter-width}
+    @content
+
 @each $gutter-width in 0, 10, 15, 20, 30
 
-  +responsive-grid($gutter-width)
+  +grid-wrapper($gutter-width)
     margin-left: -#{$gutter-width}px
 
     & > [class*="col--"]
@@ -61,39 +37,113 @@
 
 // -----------------------------------------------------------------------------
 //
-// The modifier on the column determines its own width
+// Default grid
 //
 // -----------------------------------------------------------------------------
 
-.col--one-half
-  +responsive-col(percentage(1/2))
-
-.col--one-third
-  +responsive-col(percentage(1/3))
-
-.col--two-thirds
-  +responsive-col(percentage(2/3))
-
-.col--one-quarter
-  +responsive-col(percentage(1/4))
-
-.col--three-quarters
-  +responsive-col(percentage(3/4))
-
-.col--one-fifth
-  +responsive-col(percentage(1/5))
-
-.col--two-fifths
-  +responsive-col(percentage(2/5))
-
-.col--three-fifths
-  +responsive-col(percentage(3/5))
-
-.col--four-fifths
-  +responsive-col(percentage(4/5))
-
 .col--one-whole
   width: 100%
+
+.col--one-half
+  width: percentage(1/2)
+
+.col--one-third
+  width: percentage(1/3)
+
+.col--two-thirds
+  width: percentage(2/3)
+
+.col--one-quarter
+  width: percentage(1/4)
+
+.col--three-quarters
+  width: percentage(3/4)
+
+.col--one-fifth
+  width: percentage(1/5)
+
+.col--two-fifths
+  width: percentage(2/5)
+
+.col--three-fifths
+  width: percentage(3/5)
+
+.col--four-fifths
+  width: percentage(4/5)
+
+// -----------------------------------------------------------------------------
+//
+// Responsive grid allowing columns to be composed for multiple screen sizes
+//
+// -----------------------------------------------------------------------------
+
+.grid-wrapper--responsive
+
+  +respond-to(narrow-view, false)
+
+    .nv--col--one-whole
+      width: 100%
+
+    .nv--col--one-half
+      width: percentage(1/2)
+
+    .nv--col--one-third
+      width: percentage(1/3)
+
+    .nv--col--two-thirds
+      width: percentage(2/3)
+
+  +respond-to(medium-view, false)
+
+    .mv--col--one-whole
+      width: 100%
+
+    .mv--col--one-half
+      width: percentage(1/2)
+
+    .mv--col--one-third
+      width: percentage(1/3)
+
+    .mv--col--two-thirds
+      width: percentage(2/3)
+
+    .mv--col--one-quarter
+      width: percentage(1/4)
+
+    .mv--col--three-quarters
+      width: percentage(3/4)
+
+  +respond-to(wide-view)
+
+    .wv--col--one-whole
+      width: 100%
+
+    .wv--col--one-half
+      width: percentage(1/2)
+
+    .wv--col--one-third
+      width: percentage(1/3)
+
+    .wv--col--two-thirds
+      width: percentage(2/3)
+
+    .wv--col--one-quarter
+      width: percentage(1/4)
+
+    .wv--col--three-quarters
+      width: percentage(3/4)
+
+    .wv--col--one-fifth
+      width: percentage(1/5)
+
+    .wv--col--two-fifths
+      width: percentage(2/5)
+
+    .wv--col--three-fifths
+      width: percentage(3/5)
+
+    .wv--col--four-fifths
+      width: percentage(4/5)
 
 
 // -----------------------------------------------------------------------------
@@ -136,4 +186,3 @@
     min-width: 0
     width: 100%
     max-width: none
-

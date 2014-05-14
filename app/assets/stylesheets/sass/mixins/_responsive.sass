@@ -12,7 +12,7 @@
 //
 // [/doc]
 // -----------------------------------------------------------------------------
-@mixin respond-to($screen-width)
+@mixin respond-to($screen-width, $fallback: true)
 
   // We have to set up a blank variable here or sass errors out
   $breakpoint: ''
@@ -31,5 +31,5 @@
   @if $is-ie == false
     @media only screen and (min-width : #{$breakpoint}px)
       @content
-  @else
+  @else if $fallback
     @content
