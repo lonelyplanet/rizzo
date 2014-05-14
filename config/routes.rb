@@ -70,6 +70,7 @@ Rizzo::Application.routes.draw do
   get 'styleguide/ui-components/tooltips'                 => 'styleguide#tooltips'
   get 'styleguide/ui-components/ad-units'                 => 'styleguide#adUnits'
   get 'styleguide/ui-components/tiles'                    => 'styleguide#tiles'
+  get 'styleguide/ui-components/social-buttons'           => 'styleguide#social_buttons'
 
   get 'styleguide/js-components/toggle-active'            => 'styleguide#toggle_active'
   get 'styleguide/js-components/proximity-loader'         => 'styleguide#proximity_loader'
