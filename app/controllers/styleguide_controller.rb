@@ -90,6 +90,10 @@ class StyleguideController < GlobalController
     render '/styleguide/ui-components/navigational_dropdown'
   end
 
+  def social_buttons
+    render '/styleguide/ui-components/social_buttons'
+  end
+
   def toggle_active
     render '/styleguide/js-components/toggle-active'
   end

@@ -7,19 +7,20 @@
 .card--page
   @extend %clearfix
   @extend %rounded-corners
-  padding: 25px
+  padding: 25px 25px 10px
   position: relative
 
   .copy--h1
     line-height: 1.1em
     margin: 0 0 10px 0
-  .sharing
-    clear: left
 
   .tag
     +font-size(14)
   .tag--price__amount
     +font-size(30)
+
+.card--page--full-image
+  margin-bottom: 0
 
 .card--page__hero
   border-radius: 4px 4px 0 0
@@ -54,6 +55,8 @@
   border-bottom: 1px solid $body-background
   margin-bottom: 20px
   padding-bottom: 20px
+  &.has-social
+    margin-bottom: 0
 
 .card--top-choice
   &:after

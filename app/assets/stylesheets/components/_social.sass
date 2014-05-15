@@ -4,31 +4,37 @@
 
 .sharing
   @extend %clearfix
+  padding: 15px 0
+
+  .stack__intro--empty &
+    padding-left: 20px
+    padding-right: 20px
 
   .row--sharing--below &
-    padding: 20px 0 0
     border-top: 1px solid $body-background
 
   .row--sharing--above &
     margin-bottom: 20px
-    padding: 0 0 18px
     border-bottom: 1px solid $body-background
-
-// Ensure that social plugin flyouts remain at the top layer
-.sharing__nav
-  +z-layer(top)
-  position: relative
 
 .sharing__label
   +font-size(12)
   text-transform: uppercase
   font-weight: bold
-  line-height: 22px
+  line-height: 30px
+
+
+// Sending buttons
+
+.sharing__nav__item
+  +size(30px)
+  box-sizing: border-box
+  padding: 6px
+  margin-left: 5px
 
 .sharing__icon
   @extend %inline-block
   color: $body-copy
-  margin-left: 15px
   position: relative
   width: 20px
   height: 20px
@@ -49,10 +55,31 @@
       color: $body-copy
       left: 53%
 
-.facebook-like
-  margin-left: 10px
-  min-width: 80px
 
-.tweet-button
-  margin-left: 5px
-  min-width: 90px
+// Social buttons
+
+.social
+  @extend %inline-block
+
+.social__item
+  +size(30px)
+  @extend %inline-block
+  vertical-align: bottom
+  box-sizing: border-box
+  padding: 4px
+  margin-left: 10px
+  border-radius: 20px
+
+.social__icon
+  +size(22px)
+  display: block
+
+.social__item--facebook
+  background-color: $facebook
+  padding: 4px 5px 4px 3px
+
+.social__item--twitter
+  background-color: $twitter
+
+.social__item--google-plus
+  background-color: $google-plus
