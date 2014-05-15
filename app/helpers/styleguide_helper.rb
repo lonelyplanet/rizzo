@@ -228,6 +228,10 @@ module StyleguideHelper
               slug: "pagination"
             },
             {
+              name: "Social Buttons",
+              slug: "social-buttons"
+            },
+            {
               name: "Tiles",
               slug: "tiles"
             },
