@@ -18,7 +18,7 @@ define ['jquery', 'lib/utils/page_state', 'lib/extends/events', 'lib/extends/pus
     init: ->
 
       # Controller uses the main listening element for pub & sub
-      new PushState();
+      new PushState()
       @$el = $(LISTENER)
       @_generateState()
 
@@ -112,5 +112,3 @@ define ['jquery', 'lib/utils/page_state', 'lib/extends/events', 'lib/extends/pus
       documentRoot = rootUrl or @getDocumentRoot()
       documentRoot = documentRoot.replace(/\/$/, '')
       documentRoot + "?" + @_serializeState()
-
-
