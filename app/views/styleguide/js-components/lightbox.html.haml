@@ -4,13 +4,8 @@
   .clearfix
     %h1.copy--h1 Lightbox
 
-    %p 
-      The lightbox goes hand-in-hand with the
-      %a{ href: "/styleguide/js-components/toggle-active" } ToggleActive component
-      so as to avoid duplication of functionality. As such, this component only appends the lightbox container and provides an event for updating the lightbox content.
-    
     %p
-      %a.btn.btn--icon.icon--sight--before.icon--white--before.js-lightbox-toggle.js-toggle-active.sg-lightbox-toggle{ href: "#", data: { toggle_target: ".lightbox" } } Example lightbox
+      %a.btn.btn--icon.icon--sight--before.icon--white--before.js-lightbox-toggle.sg-lightbox-toggle{ href: "#" } Example lightbox
 
 .styleguide-block.styleguide-block__description.card.copy--body
 
@@ -20,13 +15,12 @@
   %pre.styleguide.copy--body.language-markup
     %code
       :escaped
-        <a href="#" class="js-lightbox-toggle js-toggle-active" data-toggle-target=".lightbox">show lightbox</a>
+        <a href="#" class="js-lightbox-toggle">show lightbox</a>
 
   %p
     The
     %code js-lightbox-toggle
-    class will set up the lightbox and initiate the
-    %a{ href: "/styleguide/js-components/toggle-active" } ToggleActive component.
+    class will open the lightbox.
 
   %p Note: The component will self instantiate if that class exists on the page, but you can still fire up your own by running:
 
