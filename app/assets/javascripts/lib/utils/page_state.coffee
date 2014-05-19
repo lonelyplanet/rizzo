@@ -48,7 +48,8 @@ define [], () ->
         slug
 
     withinFilterUrl: ->
-      return document.getElementById('js-card-holder').getAttribute("data-filter-subcategory") == "true"
+      cardHolder = document.getElementById('js-card-holder')
+      return cardHolder && cardHolder.getAttribute("data-filter-subcategory") == "true"
 
     hasFiltered: ->
       return @withinFilterUrl() or @checkFilters.test(@getParams())
