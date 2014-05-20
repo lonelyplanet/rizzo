@@ -14,7 +14,7 @@ class RedirectorController < ActionController::Base
 
   def internal
     begin
-      url = Rizzo::UrlValidator.validate(params[:url])
+      url = Rizzo::UrlValidator.validate(params[:url] || params[:branch_id])
       redirect_to url
     rescue Rizzo::UrlValidator::InvalidUrl
       render text: 'Not Found', status: '404'

@@ -48,10 +48,16 @@ describe RedirectorController do
 
   describe "get#internal" do
     let(:url) { 'http://www.lonelyplanet.com/this-place' }
-    
+
     it 'validates the url' do
       Rizzo::UrlValidator.should_receive(:validate).with(url).and_return(url)
       get :internal, url: url
+      response.should redirect_to(url)
+    end
+
+    it 'supports legacy branch_id param instead of url' do
+      Rizzo::UrlValidator.should_receive(:validate).with(url).and_return(url)
+      get :internal, branch_id: url
       response.should redirect_to(url)
     end
 
