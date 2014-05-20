@@ -30,7 +30,8 @@ define([ "jquery", "pickadate/lib/picker", "pickadate/lib/picker.date", "pickada
   }
 
   Datepicker.prototype.init = function() {
-    var today = [],
+    var _this = this,
+        today = [],
         tomorrow = [],
         d = new Date(),
         inOpts, outOpts;
@@ -39,7 +40,7 @@ define([ "jquery", "pickadate/lib/picker", "pickadate/lib/picker.date", "pickada
     this.outDate = $(this.config.target).find(this.config.endSelector);
     this.inLabel = $(this.config.startLabelSelector);
     this.outLabel = $(this.config.endLabelSelector);
-    this.firstTime = this.inDate.val() ? false : true;
+    this.firstTime = !!this.inDate.val();
     this.day = 86400000;
 
     today.push(d.getFullYear(), d.getMonth(), d.getDate());
@@ -48,14 +49,15 @@ define([ "jquery", "pickadate/lib/picker", "pickadate/lib/picker.date", "pickada
     inOpts = {
       format: this.config.dateFormat,
       onSet: function() {
-        this._dateSelected(this.get("select", this.config.dateFormatLabel), "start");
-      }.bind(this)
+        _this._dateSelected(this.get("select", _this.config.dateFormatLabel), "start");
+      }
     };
+
     outOpts = {
       format: this.config.dateFormat,
       onSet: function() {
-        this._dateSelected(this.get("select", this.config.dateFormatLabel), "end");
-      }.bind(this)
+        _this._dateSelected(this.get("select", _this.config.dateFormatLabel), "end");
+      }
     };
 
     if (this.config.backwards) {
@@ -95,15 +97,15 @@ define([ "jquery", "pickadate/lib/picker", "pickadate/lib/picker.date", "pickada
   };
 
   Datepicker.prototype._inValue = function() {
-    new Date($(this.inDate).data("pickadate").get("select", this.config.dateFormatLabel));
+    return new Date($(this.inDate).data("pickadate").get("select", this.config.dateFormatLabel));
   };
 
   Datepicker.prototype._outValue = function() {
-    new Date($(this.outDate).data("pickadate").get("select", this.config.dateFormatLabel));
+    return new Date($(this.outDate).data("pickadate").get("select", this.config.dateFormatLabel));
   };
 
   Datepicker.prototype._isValidEndDate = function() {
-    this._inValue() < this._outValue();
+    return this._inValue() < this._outValue();
   };
 
   return Datepicker;
