@@ -40,7 +40,7 @@ define([ "jquery", "pickadate/lib/picker", "pickadate/lib/picker.date", "pickada
     this.outDate = $(this.config.target).find(this.config.endSelector);
     this.inLabel = $(this.config.startLabelSelector);
     this.outLabel = $(this.config.endLabelSelector);
-    this.firstTime = !!this.inDate.val()
+    this.firstTime = !!this.inDate.val();
     this.day = 86400000;
 
     today.push(d.getFullYear(), d.getMonth(), d.getDate());
