@@ -20,14 +20,14 @@ define ['jquery', 'lib/utils/page_state', 'lib/extends/events', 'lib/extends/pus
       # Controller uses the main listening element for pub & sub
       new PushState()
       @$el = $(LISTENER)
-      @_generateState()
+      @_generateState(@getSlug())
 
 
     # Subscribe
     listen: ->
       $(LISTENER).on ':cards/request', (e, data, analytics) =>
         @_updateState(data)
-        @navigate(@_serializeState())
+        @navigate(@_serializeState(), @states[@currentState].documentRoot)
         @_callServer(@_createRequestUrl(), @replace, analytics)
 
       $(LISTENER).on ':cards/append', (e, data, analytics) =>

@@ -53,8 +53,7 @@ define ['jquery', 'lib/utils/page_state', 'lib/extends/events'], ($, PageState, 
       @isHashEnabled ?= ("onhashchange" of window)
 
     # If navigating to a subsection we pass in the new document root
-    _createUrl: (state, rootUrl) ->
-      documentRoot = rootUrl or @getDocumentRoot()
+    _createUrl: (state, documentRoot) ->
       params = if state then "?" + state else ""
       if @_supportsHistory()
         base = documentRoot + params

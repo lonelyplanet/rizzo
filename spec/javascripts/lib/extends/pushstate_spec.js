@@ -62,13 +62,12 @@ require([ "jquery", "public/assets/javascripts/lib/extends/pushstate.js" ], func
       beforeEach(function() {
         window.pushstate = new Pushstate();
         spyOn(pushstate, "getParams").andReturn(serialized.newUrlWithSearchAndFilters);
-        spyOn(pushstate, "getDocumentRoot").andReturn("/");
       });
 
       describe("with pushState support", function() {
         it("serializes the application state with the document root", function() {
           var newUrl;
-          newUrl = pushstate._createUrl(serialized.newUrlWithSearchAndFilters);
+          newUrl = pushstate._createUrl(serialized.newUrlWithSearchAndFilters, "/");
           expect(newUrl).toBe("/?" + serialized.newUrlWithSearchAndFilters);
         });
         it("serializes the application state with the *new* document root", function() {
@@ -84,7 +83,7 @@ require([ "jquery", "public/assets/javascripts/lib/extends/pushstate.js" ], func
         });
         it("creates a hashbang url with the document root", function() {
           var newUrl;
-          newUrl = pushstate._createUrl(serialized.newUrlWithSearchAndFilters);
+          newUrl = pushstate._createUrl(serialized.newUrlWithSearchAndFilters, "/");
           expect(newUrl).toBe("#!/" + "?" + serialized.newUrlWithSearchAndFilters);
         });
         it("creates a hashbang url with the *new* document root", function() {
