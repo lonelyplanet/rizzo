@@ -27,16 +27,59 @@
   %pre.styleguide.copy--body.language-javascript
     %code
       :escaped
-        new LightBox({ el: ".js-other-lightbox-selector" });
+        new LightBox({ opener: ".js-other-lightbox-opener" });
+
+.styleguide-block.styleguide-block__description.card.copy--body
+
+  %h2.copy--h2.styleguide-block__heading
+    Parameters
+  %p
+    Some parameters can be customized with data attributes in the opener element:
+
+  %p
+    %code
+      data-lightbox-class
+    and
+    %code
+      lightbox-showpreloader
+    usefull when you want to fetch content with an ajax call
+
+  %pre.styleguide.copy--body.language-javascript
+    %code
+      :escaped
+        <a href="#" class="js-lightbox-toggle" data-lightbox-class"some-custom-class" data-lightbox-showpreloader="true">show lightbox</a>
 
 .styleguide-block.styleguide-block__description.card.copy--body
 
   %h2.copy--h2.styleguide-block__heading
     Updating the content
+  %p
+    You can update the content with HTML directly triggering the 
+    %code
+      ":lightbox/renderContent"
+    event. Also, you can fetch content from remote triggering the event
+    %code
+      ":lightbox/fetchContent"
+    with the url where you want to load the content
+
+  %p
+    This events can be triggered in the 
+    %code
+      ":lightbox/open"
+    event, that you can capture
 
   %pre.styleguide.copy--body.language-javascript
     %code
       :escaped
-        $("#js-row--content").trigger(":lightbox/updateContent", "HTML content goes here");
+        $("#js-row--content").on(":lightbox/open", function( ) { 
+          $("#js-row--content").trigger( ":lightbox/renderContent", "<img src='http://assets.staticlp.com/assets/rizzo-sloth-404.jpg' height='600' width='800' />" );
+        });
+
+  %pre.styleguide.copy--body.language-javascript
+    %code
+      :escaped
+        $("#js-row--content").on(":lightbox/open", function( ) {
+          $("#js-row--content").trigger( ":lightbox/fetchContent", "http://www.lonelyplanet.com/..." );
+        });
 
   %p Note that this will need to happen where it's being implemented (after an ajax call for example).

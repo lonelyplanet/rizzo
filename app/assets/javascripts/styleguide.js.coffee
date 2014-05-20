@@ -30,4 +30,5 @@ require ['jquery'], ($) ->
     $('.input--datepicker').pickadate({
       min: [d.getFullYear(), (d.getMonth() + 1), d.getDate()]
     })
+
     new Konami()
