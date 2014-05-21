@@ -8,7 +8,7 @@
 //
 // ------------------------------------------------------------------------------
 
-define([ "jquery", "lib/utils/template" ], function($, Template) {
+define([ "jquery", "lib/utils/template", "lib/core/user_feed"], function($, Template, UserFeed) {
   "use strict";
 
   var Authenticator = function() {
@@ -33,9 +33,7 @@ define([ "jquery", "lib/utils/template" ], function($, Template) {
       url: this.statusUrl,
       dataType: "jsonp",
       jsonpCallback: "lpUserStatusCallback",
-      error: this._updateStatus,
-      success: this._updateStatus
-    });
+    }).done(_this._updateStatus);
   };
 
   // -------------------------------------------------------------------------
@@ -62,6 +60,8 @@ define([ "jquery", "lib/utils/template" ], function($, Template) {
     // Remove any previously generated user navigation.
     $(".js-user-signed-in, .js-user-signed-out").remove();
     _this.templateContainer.after($rendered);
+
+    new UserFeed();
 
     $userAvatar = $(".js-user-avatar");
     $userAvatar.attr("src", $userAvatar.data("src"));
