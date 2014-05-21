@@ -29,24 +29,46 @@
     <span class="wv--hidden nav--offscreen__title">{{username}}</span>
 
     <div class="nav__submenu nav__submenu--user">
-      <div class="nav--stacked nav__submenu__content icon--tapered-arrow-up--after icon--custom--after nav__submenu__content--user nav-user-options js-user-options">
-        <div class="nav__submenu__item nav__submenu__title">{{username}}</div>
-        <a class="nav__item nav__submenu__item nav__submenu__link nav-user-options__item js-nav-item js-user-profile" href="https://www.lonelyplanet.com/thorntree/profiles/{{profileSlug}}">
-          My profile
-        </a>
-        <a class="nav__item nav__submenu__item nav__submenu__link nav-user-options__item js-nav-item js-user-settings" href="https://www.lonelyplanet.com/thorntree/forums/settings">
-          Settings
-        </a>
-        <a class="nav__item nav__submenu__item nav__submenu__link nav-user-options__item js-nav-item js-user-messages" href="https://www.lonelyplanet.com/thorntree/profiles/{{profileSlug}}/messages">
-          Messages
-          <span class="nav__submenu__notification is-hidden js-unread-messages">{{unreadMessageCount}}</span>
-        </a>
-        <a class="nav__item nav__submenu__item nav__submenu__link nav-user-options__item js-nav-item nav-user-options__item--forum js-user-activities" href="https://www.lonelyplanet.com/thorntree/profiles/{{profileSlug}}/activities">
-          Forum activity
-        </a>
-        <a class="nav__item nav__submenu__item nav__submenu__link nav-user-options__item js-nav-item nav-user-options__item--sign_out js-user-sign_out" href="https://www.lonelyplanet.com/thorntree/users/sign_out">
-          Sign out
-        </a>
+      <div class="nav--stacked nav__submenu__content nav__submenu__content--user icon--tapered-arrow-up--after icon--white--after icon--white--bordered nav-user-options js-user-options">
+        <div class="nav__submenu__item nav__submenu__title nav__submenu__title--user-name">
+          {{username}}
+          <a class="split--right icon--settings icon--body-grey" href="https://www.lonelyplanet.com/thorntree/forums/settings"></a>
+        </div>
+        <div class="nav__submenu__item nav__submenu__title nav__submenu__title--user-email">{{email}}</div>
+        <div class="nav__submenu__item nav__submenu__item--user-buttons">
+          <div class="grid-wrapper--10">
+            <div class="col--one-half">
+              <a class="btn btn--small btn--full-width" href="https://www.lonelyplanet.com/thorntree/profiles/{{profileSlug}}">View Profile</a>
+            </div>
+            <div class="col--one-half">
+              <a class="btn btn--small btn--subtle btn--full-width" href="https://www.lonelyplanet.com/thorntree/users/sign_out">Sign Out</a>
+            </div>
+          </div>
+        </div>
+        <div class="nav__submenu__feed js-user-feed tabs">
+          <div class="nav__submenu__feed__toggle-buttons">
+            <div class="grid-wrapper--0">
+              <div class="col--one-half">
+                <a class="btn btn--white btn--feed-toggle js-tab-trigger is-active" href="#js-user-feed-activities">
+                  Recent activity <span class="nav__submenu__feed__unread-number js-unread-activities-number"></span>
+                </a>
+              </div>
+              <div class="col--one-half">
+                <a class="btn btn--white btn--feed-toggle js-tab-trigger" href="#js-user-feed-messages">
+                  Messages <span class="nav__submenu__feed__unread-number js-unread-messages-number">({{unreadMessageCount}})</span>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="js-tabs-content">
+            <ul class="nav__submenu__feed__activities is-active" id="js-user-feed-activities">
+              <li class="activity-list__item--empty">Your feed is empty</li>
+            </ul>
+            <ul class="nav__submenu__feed__messages" id="js-user-feed-messages">
+              <li class="activity-list__item--empty">Your have no messages</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   </div>
