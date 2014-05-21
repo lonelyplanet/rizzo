@@ -94,6 +94,9 @@ module.exports = function(grunt) {
       },
       enableHooks: {
         command: "ln -s -f ../../git-hooks/pre-commit .git/hooks/pre-commit"
+      },
+      fetchSubmodules: {
+        command: "git submodule init && git submodule update"
       }
     },
     coffee: {
@@ -214,5 +217,5 @@ module.exports = function(grunt) {
   grunt.registerTask("icon:active", [ "grunticon:active", "shell:cleanIcons", "shell:move" ]);
   grunt.registerTask("icon:critical", [ "grunticon:critical", "shell:cleanIcons", "shell:move" ]);
   grunt.registerTask("icon", [ "svgmin", "icon:active", "icon:critical" ]);
-  grunt.registerTask("setup", [ "shell:enableHooks" ]);
+  grunt.registerTask("setup", [ "shell:fetchSubmodules", "shell:enableHooks" ]);
 };

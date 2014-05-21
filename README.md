@@ -1,8 +1,8 @@
 # Rizzo
 
-Rizzo is the UI layer for lonelyplanet.com. Rizzo also serves LP's header and footer, assets and styleguide.
+Rizzo is the UI layer for lonelyplanet.com. Rizzo also serves LP's header and footer, assets and Style Guide.
 
-> "Leave code in a better state than you found it."
+The main goal of Rizzo is to enable sharing of templates and assets across all LP applications. This helps us to reduce complexity and increase reusability. There is a write-up of the thought process behind Rizzo on the [engineering blog](http://engineering.lonelyplanet.com/a-maintainable-styleguide).
 
 
 ## Install & Get Dependencies
@@ -13,28 +13,36 @@ Rizzo is the UI layer for lonelyplanet.com. Rizzo also serves LP's header and fo
     $ cd .
     $ bundle install
     $ npm install
+    $ grunt setup
 
 
 # Table of contents
 
-1. [Rizzo as an application](#rizzo-as-an-application)
+1. [Rizzo Style guide](#rizzo-style-guide)
 2. [Rizzo as an engine](#rizzo-as-an-engine)
 3. [Rizzo as a service](#rizzo-as-a-service)
-4. [Styleguide](#styleguide)
-5. [Testing](#testing)
-6. [Images & icons](#images-and-icons)
-7. [Git Guidelines and Code Review](#git-guidelines-and-code-review)
-8. [Sass Guidelines](#sass-guidelines)
-9. [Javascript Guidelines](#javascript-guidelines)
+4. [Testing](#testing)
+5. [Images & icons](#images-and-icons)
+6. [Git Guidelines and Code Review](#git-guidelines-and-code-review)
+7. [Sass Guidelines](#sass-guidelines)
+8. [Javascript Guidelines](#javascript-guidelines)
 
 -----
-## Rizzo as an application
+## Rizzo Style Guide
 
-Rizzo is accessible at [http://rizzo.lonelyplanet.com](http://rizzo.lonelyplanet.com) and can also be run locally:
+The Style Guide is accessible at [http://rizzo.lonelyplanet.com](http://rizzo.lonelyplanet.com) and can also be run locally:
 
-```bash
+```
   bundle exec unicorn
 ```
+
+The Style Guide shows how the Component API works and how to call these components from within your apps.
+
+
+### Yeoman Generators
+
+If you want to create a new component within the styleguide you can get started with Yeoman. Find out about any Yeoman generators we have available and how to use them at our [Yeoman repo](https://github.com/lonelyplanet/yeoman).
+
 
 ## Rizzo as an engine
 
@@ -42,9 +50,9 @@ Primarily rizzo is used as an engine to provide layouts and assets to your rails
 
 To enable rizzo, add it to your gemfile:
 
-    gem 'rizzo', git: 'git@github.com:lonelyplanet/rizzo.git'
+    gem 'rizzo', git: 'git@github.com:lonelyplanet/rizzo.git', submodules: true
 
-This will add all the Javascript and Sass into your applications load paths. In order to use the layouts, specify it in your controller. There are currently four layouts that Rizzo provides:
+This will add Rizzo's Components, Javascript and Sass into your applications load paths. In order to use the layouts, specify it in your controller. There are currently three layouts that Rizzo provides:
 
 - Core (Fixed width) - [http://rizzo.lonelyplanet.com/global](http://rizzo.lonelyplanet.com/global)
 - Responsive - [http://rizzo.lonelyplanet.com/responsive](http://rizzo.lonelyplanet.com/responsive)
@@ -64,56 +72,41 @@ An example of the legacy navigation can be viewed at [http://rizzo.lonelyplanet.
 
 
 -----
-## Styleguide
-
-The styleguide is accessible at
-
-```bash
-  bundle exec unicorn
-```
-
-TODO: Write about the styleguide process
-
-### Yeoman Generators
-
-If you want to create a new component within the styleguide you can do so with Yeoman. Find out about any Yeoman generators we have available and how to use them at our [Yeoman repo](https://github.com/lonelyplanet/yeoman).
-
------
 ## Testing
 
 ### Unit Tests
 
 Each component as well as any helper methods should have unit tests.
 
-````bash
+````
   $ bundle exec rspec
 ````
 
 ### Integration Tests
 
-````bash
+````
   $ bundle exec cucumber
 ````
 
 ### Javascript Unit Tests
 
 To clean, compile and run all the tests headlessly
-````bash
+````
   $ grunt
 ````
 
 To run them headlessly without compiling them all, and to enable watching of files
-````bash
+````
   $ grunt dev
 ````
 
 To spawn a server and rerun failed tests
-````bash
+````
   $ grunt wip
 ````
 
 To run plato (Javascript sourcecode analysis)
-````bash
+````
   $ grunt report
 ````
 
@@ -121,7 +114,7 @@ To run plato (Javascript sourcecode analysis)
 
 Currently a work in progress. Eventually to be run on the styleguide as a pre-push hook. Uses phantomcss.
 
-````bash
+````
   $ phantomjs spec/lib/visual_regression.js
 ````
 
@@ -130,12 +123,13 @@ Currently a work in progress. Eventually to be run on the styleguide as a pre-pu
 -----
 ## Images and Icons
 
+A write-up of our Icon solution is available at: [http://ianfeather.co.uk/ten-reasons-we-switched-from-an-icon-font-to-svg/](http://ianfeather.co.uk/ten-reasons-we-switched-from-an-icon-font-to-svg/).
 
 The icons are built by a grunt task, `grunt icon`, which uses the Filament Group's [grunticon plugin](https://github.com/filamentgroup/grunticon). To add a new icon to the build step, simply copy the svg file into `rizzo/app/assets/images/icons/active`.
 
 The easiest way to copy multiple files into the `active` directory (supposing you have access to this folder in Dropbox) is by modifying and using the following rsync command:
 
-````bash
+````
 $ rsync -vr --delete ~/Dropbox/LP\ Patterns/Icons/svg/*.svg ~/projects/rizzo/app/assets/images/icons/active/
 ````
 
@@ -149,6 +143,7 @@ You only need to run `grunt icon` if you are building new icons. All current ico
 
 - Always work in a branch
 - Rebase into your own branch from master (as long as it is only you working on that branch, otherwise merge)
+- Squash your commits into meaningful and (release|revert)able chunks
 - Merge with --no-ff back into master when it has been code reviewed (or merge through github).
 - Use git pull --rebase to avoid commits like this:
 

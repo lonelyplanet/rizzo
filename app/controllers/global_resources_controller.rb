@@ -29,16 +29,4 @@ class GlobalResourcesController < GlobalController
     render '/global-nav/homepage', :layout=> 'homepage'
   end
 
-  def styleguide
-    render '/styleguide/index', :layout=> 'styleguide'
-  end
-
-  def styleguideNavigation
-    render '/styleguide/navigation', :layout=> 'styleguide'
-  end
-
-  def styleguideColours
-    render '/styleguide/colours', :layout=> 'styleguide'
-  end
-
 end
