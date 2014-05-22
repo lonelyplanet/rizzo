@@ -26,7 +26,7 @@
 <div class="js-user-signed-in-template">
   <div class="nav__item nav__item--user nav__submenu__trigger js-user-signed-in">
     <img class="nav__item--user-avatar js-user-avatar" data-src="{{avatar}}">
-    <span class="notification-badge notification-badge--unread-messages wv--inline-block is-hidden js-unread-messages">{{unreadMessageCount}}</span>
+    <span class="notification-badge notification-badge--unread-messages wv--inline-block is-hidden js-unread-feed-number">0</span>
     <span class="wv--hidden nav--offscreen__title">{{username}}</span>
 
     <div class="nav__submenu nav__submenu--user">
@@ -46,17 +46,17 @@
             </div>
           </div>
         </div>
-        <div class="nav__submenu__feed js-user-feed tabs">
+        <div class="nav__submenu__feed js-user-feed">
           <div class="nav__submenu__feed__toggle-buttons">
             <div class="grid-wrapper--0">
               <div class="col--one-half">
                 <a class="btn btn--white btn--feed-toggle js-tab-trigger is-active" href="#js-user-feed-activities">
-                  Recent activity <span class="nav__submenu__feed__unread-number js-unread-activities-number"></span>
+                  Recent activity <span class="nav__submenu__feed__unread-number">(<span class="js-unread-activities-number">0</span>)</span>
                 </a>
               </div>
               <div class="col--one-half">
                 <a class="btn btn--white btn--feed-toggle js-tab-trigger" href="#js-user-feed-messages">
-                  Messages <span class="nav__submenu__feed__unread-number js-unread-messages-number">({{unreadMessageCount}})</span>
+                  Messages <span class="nav__submenu__feed__unread-number">(<span class="js-unread-messages-number">0</span>)</span>
                 </a>
               </div>
             </div>
