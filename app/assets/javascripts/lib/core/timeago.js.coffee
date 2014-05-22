@@ -1,7 +1,7 @@
 # Config script for jquery.timeago.js plugin
 require [
   'lib/utils/debounce'
-  'jquery.timeago'
+  'timeago/jquery.timeago'
 ], (Debounce) ->
 
   jQuery ($) ->
