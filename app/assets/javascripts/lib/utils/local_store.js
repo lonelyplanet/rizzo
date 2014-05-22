@@ -2,7 +2,7 @@
 //
 // LocalStore (util)
 // Serialize key,value into localstorage with cookies fallback
-// for browsers that doesn"t support localstorage.
+// for browsers that don't support localstorage.
 //
 // ----------------------------------------------------------
 define(function() {
@@ -29,8 +29,8 @@ define(function() {
 
   LocalStore.getCookie = function(key) {
     var cookieArray = document.cookie.split("; "),
-    length = cookieArray.length,
-    cookie;
+        length = cookieArray.length,
+        cookie;
 
     for (var i = 0; i < length; i++) {
       cookie = cookieArray.split("=");
