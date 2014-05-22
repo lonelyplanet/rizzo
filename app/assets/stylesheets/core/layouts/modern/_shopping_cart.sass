@@ -26,7 +26,7 @@
   right: 0
   left: auto
   .responsive &
-    display: none
+    display: block
     +respond-to(wide-view)
       &:hover
         display: block
@@ -81,7 +81,8 @@
     border-radius: 0
     padding: 10px 0
     border-bottom: 2px solid $body-background
-    &:hover, &.is-active
+    &:hover, 
+    &.is-active
       color: $linkblue
       border-bottom: 2px solid $linkblue
 
@@ -95,30 +96,27 @@
   display: none
   &.is-active
     display: block
-  .activity-list__item,
-  .activity-list__item:first-of-type
-    padding: 10px 10px 30px 10px
-  .activity-list__item:first-of-type
-    border: 0
   .activity-list__item
     position: relative
     margin: 0
-    padding: 10px 10px 30px 10px
     border-top: 1px solid $body-background
     color: $titlegray
     font-weight: normal
+    &.highlighted
+      background: $card-figure-bg
+    &:first-of-type
+      border: 0
+    &, &:first-of-type
+      padding: 10px 10px 30px 10px
     .activity-list__time
       position: absolute
       margin: 0 0 10px 10px
       bottom: 0
       left: 0
-    .user-info__avatar
-      float: right
-    .user-info__avatar,
-    .user-info__avatar img
+  .user-info__avatar
+    float: right
+    &, & img
       +size(35px)
-    &.highlighted
-      background: $card-figure-bg
 
   .activity-list__item--empty
     text-align: center
