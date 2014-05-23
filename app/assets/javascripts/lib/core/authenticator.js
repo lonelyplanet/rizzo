@@ -8,7 +8,7 @@
 //
 // ------------------------------------------------------------------------------
 
-define([ "jquery", "lib/utils/template", "lib/core/user_feed"], function($, Template, UserFeed) {
+define([ "jquery", "lib/utils/template", "lib/core/user_feed" ], function($, Template, UserFeed) {
   "use strict";
 
   var Authenticator = function() {
