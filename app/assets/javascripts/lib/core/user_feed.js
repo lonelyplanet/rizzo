@@ -29,8 +29,8 @@ define([ "jquery", "lib/utils/template", "lib/components/tabs", "lib/core/timeag
     this.$unreadMessagesIndicator = $(this.config.unreadMessagesNumberSelector);
     this.$unreadFeedIndicator = $(this.config.unreadFeedNumberSelector);
     this.oldActivities;
-    this.oldMessages;
     this.highlightedActivitiesNumber = 0;
+
     this.init();
   };
 
@@ -108,7 +108,7 @@ define([ "jquery", "lib/utils/template", "lib/components/tabs", "lib/core/timeag
         newMessagesNumber = fetchedFeed.unreadMessagesCount;
 
     // Check if any activities exist
-    if (fetchedFeed.activities.length > 0) {
+    if (fetchedFeed && fetchedFeed.activities.length > 0) {
 
       // Create activities list on first run
       if (!this.oldActivities) {
@@ -138,9 +138,8 @@ define([ "jquery", "lib/utils/template", "lib/components/tabs", "lib/core/timeag
     }
 
     // Update messages
-    if (((fetchedFeed.messages.length > 0) && this.oldMessages) || !this.oldMessages) {
+    if (fetchedFeed.messages.length > 0) {
       this._createUserMessages(fetchedFeed.messages, newMessagesNumber);
-      this.oldMessages = true;
     }
 
     // Update new feed indicator
@@ -158,7 +157,9 @@ define([ "jquery", "lib/utils/template", "lib/components/tabs", "lib/core/timeag
       url: this.config.feedUrl,
       cache: false,
       dataType: "json",
-    }).done(this._updateFeed.bind(this));
+      success: this._updateFeed.bind(this),
+      error: this._updateFeed.bind(this)
+    });
   };
 
   return UserFeed;
