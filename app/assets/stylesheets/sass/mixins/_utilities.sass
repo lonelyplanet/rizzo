@@ -25,8 +25,8 @@
   width: $w
 
 // [doc] Gradient Background overlay (for images). [/doc]
-@mixin image-overlay--gradient( $color-start: $darkgray, $opacity-start: 0.35, $color-end: #FFF, $opacity-end: 0, $start: 0, $stop: 35% )
-  background: linear-gradient(to top, rgba($color-start, $opacity-start) $start, rgba($color-end, $opacity-end) $stop)
+@mixin image-overlay--gradient( $color-start: $darkgray, $opacity-start: 0.35, $color-end: #FFF, $opacity-end: 0, $start: 0, $stop: 35%, $direction: to top )
+  background: linear-gradient($direction, rgba($color-start, $opacity-start) $start, rgba($color-end, $opacity-end) $stop)
 
 // [doc] Flat Background overlay (for images). 35% percent. [/doc]
 @mixin image-overlay--flat( $percent: 0.35, $color: $darkgray )

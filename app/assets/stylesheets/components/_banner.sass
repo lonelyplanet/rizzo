@@ -4,7 +4,7 @@
   height: 350px
   overflow: hidden
   background-size: cover
-  background-position: center 30%
+  background-position: center bottom
 
   &:before
     +z-layer
@@ -22,6 +22,10 @@
     height: 350px
   +respond-to(1500)
     height: 450px
+
+  // Position bias
+  &.is-top
+    background-position: center 80%
 
 .hero-banner--flickr
   height: 400px

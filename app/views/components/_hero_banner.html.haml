@@ -1,4 +1,14 @@
-.hero-banner.js-bg-parallax.row{style: "background-image: url(#{properties[:image_url]})", class: properties[:image_info] ? 'hero-banner--flickr' : '' }
+:ruby
+
+  css_classes = [
+    "row",
+    "hero-banner",
+    properties[:image_info] ? "hero-banner--flickr" : "",
+    "js-bg-parallax",
+    properties[:top] ? "is-top" : ""
+  ].join(" ")
+
+%div{class: css_classes, style: "background-image: url(#{properties[:image_url]})"}
   .hero-banner__content.row__inner
 
     - unless properties[:image_info]
