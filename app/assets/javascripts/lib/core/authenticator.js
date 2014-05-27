@@ -33,7 +33,9 @@ define([ "jquery", "lib/utils/template", "lib/core/user_feed" ], function($, Tem
       url: this.statusUrl,
       dataType: "jsonp",
       jsonpCallback: "lpUserStatusCallback",
-    }).done(_this._updateStatus);
+      success: _this._updateStatus,
+      error: _this._updateStatus
+    });
   };
 
   // -------------------------------------------------------------------------
