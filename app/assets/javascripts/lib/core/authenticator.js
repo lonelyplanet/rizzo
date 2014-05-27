@@ -55,6 +55,11 @@ define([ "jquery", "lib/utils/template", "lib/core/user_feed" ], function($, Tem
         $rendered = $(Template.render(template, window.lp.user)),
         $userAvatar;
 
+
+    if (window.lp.user.unreadMessageCount > 0) {
+      $rendered.find(".js-responsive-unread-messages").removeClass("is-hidden");
+    }
+
     // Remove any previously generated user navigation.
     $(".js-user-signed-in, .js-user-signed-out").remove();
     _this.templateContainer.after($rendered);
