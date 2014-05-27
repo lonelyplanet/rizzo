@@ -32,16 +32,16 @@
       <div class="nav--stacked nav__submenu__content nav__submenu__content--user icon--tapered-arrow-up--after icon--white--after icon--white--bordered nav-user-options js-user-options">
         <div class="nav__submenu__item nav__submenu__title nav__submenu__title--user-name">
           {{username}}
-          <a class="split--right icon--settings icon--body-grey" href="https://www.lonelyplanet.com/thorntree/forums/settings"></a>
+          <a class="split--right icon--settings icon--body-grey js-user-settings" href="https://www.lonelyplanet.com/thorntree/forums/settings"></a>
         </div>
         <div class="nav__submenu__item nav__submenu__title nav__submenu__title--user-email">{{email}}</div>
         <div class="nav__submenu__item nav__submenu__item--user-buttons">
           <div class="grid-wrapper--10">
             <div class="col--one-half">
-              <a class="btn btn--small btn--full-width" href="https://www.lonelyplanet.com/thorntree/profiles/{{profileSlug}}">View Profile</a>
+              <a class="btn btn--small btn--full-width js-user-profile" href="https://www.lonelyplanet.com/thorntree/profiles/{{profileSlug}}">View Profile</a>
             </div>
             <div class="col--one-half">
-              <a class="btn btn--small btn--subtle btn--full-width" href="https://www.lonelyplanet.com/thorntree/users/sign_out">Sign Out</a>
+              <a class="btn btn--small btn--subtle btn--full-width js-user-sign_out" href="https://www.lonelyplanet.com/thorntree/users/sign_out">Sign Out</a>
             </div>
           </div>
         </div>
@@ -85,7 +85,7 @@
     <a class="nav__item nav__item--primary" href="https://www.lonelyplanet.com/thorntree/profiles/{{profileSlug}}/messages">
       <i class="nav__icon copy--icon--before icon--envelope--before icon--white--before"></i>
       Messages
-      <span class="is-hidden js-unread-messages"> ({{unreadMessageCount}})</span>
+      <span class="js-responsive-unread-messages is-hidden"> ({{unreadMessageCount}})</span>
     </a>
     <a class="nav__item nav__item--primary" href="https://www.lonelyplanet.com/thorntree/profiles/{{profileSlug}}/activities">
       <i class="nav__icon copy--icon--before icon--comment--before icon--white--before"></i>
