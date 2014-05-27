@@ -11,11 +11,12 @@ require([ "jquery", "public/assets/javascripts/lib/core/authenticator" ], functi
     loggedInStatus = {
       id: 1,
       username: "foobar",
+      email: "foo@bar.com",
       profileSlug: "foobar",
       facebookUid: null,
       avatar: "/foo.jpg",
       timestamp: "2014-03-31T14:33:47+01:00",
-      unreadMessageCount: 0
+      unreadMessageCount: 5
     };
 
     $("body").append("<div id='js-user-nav-template' />");
@@ -76,29 +77,31 @@ require([ "jquery", "public/assets/javascripts/lib/core/authenticator" ], functi
         auth._updateStatus(loggedInStatus);
       });
 
-      it("shows the user's avatar", function() {
+      it("shows user's avatar", function() {
         expect($(".nav__item--user-avatar").attr("src")).toBe("/foo.jpg");
       });
 
-      it("adds the username to the dropdown menu", function() {
-        expect($(".nav__submenu__title").text()).toBe("foobar");
+      it("adds username to the dropdown menu", function() {
+        expect($(".nav__submenu__title--user-name").text().trim()).toBe("foobar");
       });
 
-      it("adds the username to the responsive menu", function() {
+      it("adds user name to the responsive menu", function() {
         expect($(".nav--offscreen__title").text()).toBe("foobar");
       });
 
-      it("adds all the dropdown menu items", function() {
-        expect($(".nav__submenu__link").length).toBe(5);
+      it("adds user email address to the dropdown menu", function() {
+        expect($(".nav__submenu__title--user-email").text()).toBe("foo@bar.com");
       });
 
-      it("adds the responsive menu items", function() {
+      it("adds settings icon link to the dropdown menu", function() {
+        expect($(".js-user-settings").length).toBe(1);
+      });
+
+      it("adds responsive menu items", function() {
         expect($(".wv--nav--inline .nav__item").length).toBe(5);
       });
 
-      it("defines all link urls correctly", function() {
-        expect($(".js-user-activities").attr("href")).toBe("https://www.lonelyplanet.com/thorntree/profiles/foobar/activities");
-        expect($(".js-user-messages").attr("href")).toBe("https://www.lonelyplanet.com/thorntree/profiles/foobar/messages");
+      it("defines all drop-down menu link urls correctly", function() {
         expect($(".js-user-profile").attr("href")).toBe("https://www.lonelyplanet.com/thorntree/profiles/foobar");
         expect($(".js-user-settings").attr("href")).toBe("https://www.lonelyplanet.com/thorntree/forums/settings");
         expect($(".js-user-sign_out").attr("href")).toBe("https://www.lonelyplanet.com/thorntree/users/sign_out");
@@ -113,12 +116,8 @@ require([ "jquery", "public/assets/javascripts/lib/core/authenticator" ], functi
         auth._updateStatus(loggedInStatus);
       });
 
-      it("shows the notification badge with the number of unread messages in it", function() {
-        expect($(".notification-badge:visible").text()).toBe("5");
-      });
-
-      it("shows the number of unread messages on the submenu item", function() {
-        expect($(".nav__submenu__notification:visible").text()).toBe("5");
+      it("shows the number of unread messages in the responsive menu", function() {
+        expect($(".js-unread-messages:visible").text()).toBe("5");
       });
 
     });
