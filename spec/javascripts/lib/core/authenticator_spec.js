@@ -52,8 +52,8 @@ require([ "jquery", "public/assets/javascripts/lib/core/authenticator" ], functi
       });
 
       it("defines all link urls correctly", function() {
-        expect($(".js-user-sign_in").attr("href")).toBe("https://www.lonelyplanet.com/thorntree/users/sign_in");
-        expect($(".js-user-sign_up").attr("href")).toBe("https://www.lonelyplanet.com/thorntree/users/sign_up");
+        expect($(".js-user-sign_in").attr("href")).toBe("https://auth.lonelyplanet.com/users/sign_in");
+        expect($(".js-user-sign_up").attr("href")).toBe("https://auth.lonelyplanet.com/users/sign_up");
       });
 
     });
@@ -101,7 +101,7 @@ require([ "jquery", "public/assets/javascripts/lib/core/authenticator" ], functi
         expect($(".js-user-messages").attr("href")).toBe("https://www.lonelyplanet.com/thorntree/profiles/foobar/messages");
         expect($(".js-user-profile").attr("href")).toBe("https://www.lonelyplanet.com/thorntree/profiles/foobar");
         expect($(".js-user-settings").attr("href")).toBe("https://www.lonelyplanet.com/thorntree/forums/settings");
-        expect($(".js-user-sign_out").attr("href")).toBe("https://www.lonelyplanet.com/thorntree/users/sign_out");
+        expect($(".js-user-sign_out").attr("href")).toBe("https://auth.lonelyplanet.com/users/sign_out");
       });
 
     });
