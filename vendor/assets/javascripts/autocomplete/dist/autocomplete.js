@@ -138,7 +138,12 @@ define([ "jquery" ], function($) {
         _this.processTyping(e);
       });
 
-      this.$wrapper.on("keydown", function() {
+      this.$wrapper.on("keydown", function (e) {
+        var control = _this.resultIndex;
+        if (e.which === 9) {
+          _this.selectResult();
+          _this.clearResults();
+        }
         clearTimeout(typingTimer);
       });
 
@@ -177,7 +182,7 @@ define([ "jquery" ], function($) {
         } else {
           _this.clearResults();
         }
-      });
+      }, this.config.el);
     },
 
     processTyping: function(e) {
