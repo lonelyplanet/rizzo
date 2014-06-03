@@ -298,6 +298,10 @@ module StyleguideHelper
             {
               name: "Hero Banner",
               slug: "hero_banner"
+            },
+            {
+              name: "POI Maps",
+              slug: "poi-maps"
             }
           ]
         },

@@ -77,6 +77,7 @@ Rizzo::Application.routes.draw do
   get 'styleguide/ui-components/tiles'                    => 'styleguide#tiles'
   get 'styleguide/ui-components/social-buttons'           => 'styleguide#social_buttons'
   get 'styleguide/ui-components/hero_banner'              => 'styleguide#hero_banner'
+  get 'styleguide/ui-components/poi-maps'                 => 'styleguide#poiMaps'
 
   get 'styleguide/js-components/asset-reveal'             => 'styleguide#asset_reveal'
   get 'styleguide/js-components/autocomplete'             => 'styleguide#autocomplete'
