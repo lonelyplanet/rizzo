@@ -139,7 +139,6 @@ define([ "jquery" ], function($) {
       });
 
       this.$wrapper.on("keydown", function (e) {
-        var control = _this.resultIndex;
         if (e.which === 9) {
           _this.selectResult();
           _this.clearResults();
