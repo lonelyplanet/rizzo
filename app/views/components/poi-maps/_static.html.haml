@@ -1,0 +1,17 @@
+:ruby
+
+  attrs = {
+    alt: "",
+    zoom: 15,
+    scale: 2,
+    width: 320,
+    height: 240,
+    latitude: 51.5073,
+    longitude: -0.1277,
+    icon: "http://assets.staticlp.com/assets/shared/poi-map-marker.png"
+  }
+
+  attrs.merge!(properties) if defined? properties
+
+.poi-map.poi-map--static
+  = render :partial => '/components/poi-maps/partials/img', :locals => { properties: attrs }

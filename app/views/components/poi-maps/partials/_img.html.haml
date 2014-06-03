@@ -1,0 +1,1 @@
+%img.poi-map__img{ src: "https://maps.googleapis.com/maps/api/staticmap?size=#{properties[:width]}x#{properties[:height]}&zoom=#{properties[:zoom]}&scale=#{properties[:scale]}&markers=icon:#{CGI.escape(properties[:icon])}|#{properties[:latitude]},#{properties[:longitude]}&sensor=false", width: properties[:width], height: properties[:height], alt: properties[:alt] }

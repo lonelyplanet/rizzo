@@ -6,6 +6,7 @@ require([ "jquery" ], function($) {
     "lib/page/swipe",
     "lib/utils/konami",
     "lib/page/scroll_perf",
+    "lib/components/poi_map",
     "lib/components/toggle_active",
     "lib/components/select_group_manager",
     "lib/components/parallax",
@@ -22,12 +23,14 @@ require([ "jquery" ], function($) {
     "pickadate/lib/picker.date",
     "lib/components/range_slider",
     "lib/styleguide/snippet-expand"
-  ], function(Swipe, Konami, ScrollPerf, ToggleActive, SelectGroupManager) {
+  ], function(Swipe, Konami, ScrollPerf, POIMap, ToggleActive, SelectGroupManager) {
 
     new ScrollPerf();
     new ToggleActive();
     new Konami();
     new Swipe();
+    new POIMap();
+    new SelectGroupManager();
     new SelectGroupManager();
 
     var d = new Date();
