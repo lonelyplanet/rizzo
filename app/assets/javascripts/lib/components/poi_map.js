@@ -34,23 +34,31 @@ define([
 
   POIMap.prototype._init = function() {
     this.$el.addClass("is-closed");
-    this.$placeholder.on("click", this.toggle.bind(this));
+
+    this.$placeholder
+      .on("click.poi", this._mouseClickHandler.bind(this))
+      .on("mousemove.preload", this._mouseMoveHandler.bind(this))
+      .on("mouseleave.preload", this._mouseLeaveHandler.bind(this));
   };
 
   POIMap.prototype._load = function(callback) {
-    var _this = this;
-
-    window.mapsCallback = function() {
-      _this._build();
-      window.mapsCallback = undefined;
-      callback && callback.call(_this);
-    };
-
     this.$el.addClass("is-loading");
+
+    this.$placeholder.off(".preload");
+
+    function mapsCallback() {
+      this._build();
+      window.mapsCallback = undefined;
+      callback && callback.call(this);
+    }
+
+    window.mapsCallback = mapsCallback.bind(this);
 
     var script = document.createElement("script");
     script.src = "https://maps.googleapis.com/maps/api/js?key=" + API_KEY + "&sensor=false&callback=mapsCallback";
     document.body.appendChild(script);
+
+    this.isLoading = true;
   };
 
   POIMap.prototype._build = function() {
@@ -69,18 +77,34 @@ define([
     });
 
     this.gmap.setOptions({ styles: mapStyles });
+
+    this.isLoading = false;
+  };
+
+  POIMap.prototype._mouseLeaveHandler = function() {
+    clearTimeout(this._hoverIntent);
+  };
+
+  POIMap.prototype._mouseMoveHandler = function() {
+    clearTimeout(this._hoverIntent);
+    this._hoverIntent = setTimeout(this.toggle.bind(this), 500);
+  };
+
+  POIMap.prototype._mouseClickHandler = function(e) {
+    clearTimeout(this._hoverIntent);
+    e.preventDefault();
+
+    this.toggle();
   };
 
   // Public
 
-  POIMap.prototype.toggle = function(e) {
-    e.preventDefault();
-
-    if (!window.google || !window.google.maps) {
-      return this._load(this.open);
+  POIMap.prototype.toggle = function() {
+    if (window.google && window.google.maps) {
+      this[this.$el.hasClass("is-open") ? "close" : "open"]();
+    } else if (!this.isLoading) {
+      this._load(this.open);
     }
-
-    this[this.$el.hasClass("is-open") ? "close" : "open"]();
   };
 
   POIMap.prototype.open = function() {
@@ -96,7 +120,10 @@ define([
   };
 
   POIMap.prototype.teardown = function() {
-    this.$el.removeClass("is-open is-closed").off(".poi");
+    this.$el.removeClass("is-open is-closed is-loading");
+    this.$placeholder.off(".poi .preload");
+
+    delete this.isLoaded;
   };
 
   return POIMap;
