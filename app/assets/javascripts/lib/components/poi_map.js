@@ -1,7 +1,8 @@
 define([
   "jquery",
   "lib/mixins/events",
-  "lib/components/map_styles"
+  "lib/components/map_styles",
+  "polyfills/function_bind"
 ], function($, asEventEmitter, mapStyles) {
 
   "use strict";
@@ -33,7 +34,7 @@ define([
 
   POIMap.prototype._init = function() {
     this.$el.addClass("is-closed");
-    this.$placeholder.css("cursor", "pointer").on("click", this.toggle.bind(this));
+    this.$placeholder.on("click", this.toggle.bind(this));
   };
 
   POIMap.prototype._load = function(callback) {
@@ -58,14 +59,7 @@ define([
 
     this.$el.removeClass("is-loading");
 
-    this.$map = $("<div class='poi-map poi-map--gmap' />").css({
-      width: options.width,
-      height: options.height
-    });
-
-    this.$map.appendTo(this.$container);
-
-    this.gmap = new maps.Map(this.$map.get(0), {
+    this.gmap = new maps.Map(this.$container.get(0), {
       zoom: options.zoom,
       center: new maps.LatLng(options.latitude, options.longitude),
       mapTypeId: maps.MapTypeId.ROADMAP,
@@ -90,27 +84,19 @@ define([
   };
 
   POIMap.prototype.open = function() {
-    this.$container.css("display", "block");
-    this.$placeholder.css("display", "none");
-    // this.$el.removeClass("is-closed").addClass("is-open");
+    this.$el.removeClass("is-closed").addClass("is-open");
     this.trigger(":map/open");
     this.isOpen = true;
   };
 
   POIMap.prototype.close = function() {
-    this.$container.css("display", "none");
-    this.$placeholder.css("display", "block");
-    // this.$el.removeClass("is-open").addClass("is-closed");
+    this.$el.removeClass("is-open").addClass("is-closed");
     this.trigger(":map/close");
     this.isOpen = false;
   };
 
   POIMap.prototype.teardown = function() {
     this.$el.removeClass("is-open is-closed").off(".poi");
-
-    if (this.map) {
-      this.$map.remove();
-    }
   };
 
   return POIMap;

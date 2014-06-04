@@ -6,7 +6,6 @@
     scale: 2,
     width: 320,
     height: 240,
-    threshold: 600,
     latitude: 51.5073,
     longitude: -0.1277,
     icon: "http://assets.staticlp.com/assets/shared/poi-map-marker.png"
@@ -15,7 +14,7 @@
   attrs.merge!(properties) if defined? properties
 
 .poi-map.poi-map--dynamic.js-poi-map
-  %a.poi-map__link.js-poi-map-placeholder{ rel: "map", href: "https://www.google.co.uk/maps/place/#{attrs[:latitude]},#{attrs[:longitude]}/" }
+  %a.poi-map__toggle.js-poi-map-placeholder{ rel: "map", href: "https://www.google.co.uk/maps/place/#{attrs[:latitude]},#{attrs[:longitude]}/" }
     = render :partial => '/components/poi-maps/partials/img', :locals => { properties: attrs }
   = render :partial => '/components/poi-maps/partials/map', :locals => { properties: attrs }
   = render :partial => '/components/preloader'

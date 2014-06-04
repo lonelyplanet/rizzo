@@ -1,1 +1,9 @@
-.poi-map__container.js-poi-map-container{ data: properties }
+:ruby
+
+  aspect_ratio = ((100.00 / properties[:width]) * properties[:height]).round(2)
+
+  properties.delete(:alt)
+  properties.delete(:width)
+  properties.delete(:height)
+
+.poi-map__container.js-poi-map-container{ style: "padding-top: #{aspect_ratio}%", data: properties }

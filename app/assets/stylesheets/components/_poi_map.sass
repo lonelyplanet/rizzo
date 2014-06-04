@@ -1,0 +1,24 @@
+.poi-map
+  position: relative
+
+  .preloader
+    background: #FFF
+    @extend %large-shadow
+
+.poi-map__img
+  min-width: 100%
+  max-width: 100%
+  height: auto
+
+  .is-loading &
+    opacity: .5
+
+.poi-map__container
+  position: absolute
+  top: 0
+  right: 0
+  bottom: 0
+  left: 0
+
+  .is-closed &
+    display: none
