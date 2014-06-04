@@ -54,31 +54,33 @@ define([
 
     window.mapsCallback = mapsCallback.bind(this);
 
+    this._loadGoogleMaps();
+  };
+
+  POIMap.prototype._loadGoogleMaps = function() {
     var script = document.createElement("script");
     script.src = "https://maps.googleapis.com/maps/api/js?key=" + API_KEY + "&sensor=false&callback=mapsCallback";
     document.body.appendChild(script);
+  };
 
-    this.isLoading = true;
+  POIMap.prototype._googleMapsOptions = function() {
+    var options = this.$container.data();
+
+    return {
+      zoom: options.zoom,
+      center: new window.google.maps.LatLng(options.latitude, options.longitude),
+      mapTypeId: window.google.maps.MapTypeId.ROADMAP,
+      streetViewControl: false,
+      mapTypeControl: false,
+      panControl: false,
+      styles: mapStyles
+    };
   };
 
   POIMap.prototype._build = function() {
-    var maps = window.google.maps,
-        options = this.$container.data();
+    this.gmap = new window.google.maps.Map(this.$container.get(0), this._googleMapsOptions());
 
     this.$el.removeClass("is-loading");
-
-    this.gmap = new maps.Map(this.$container.get(0), {
-      zoom: options.zoom,
-      center: new maps.LatLng(options.latitude, options.longitude),
-      mapTypeId: maps.MapTypeId.ROADMAP,
-      streetViewControl: false,
-      mapTypeControl: false,
-      panControl: false
-    });
-
-    this.gmap.setOptions({ styles: mapStyles });
-
-    this.isLoading = false;
   };
 
   POIMap.prototype._mouseLeaveHandler = function() {
@@ -102,7 +104,7 @@ define([
   POIMap.prototype.toggle = function() {
     if (window.google && window.google.maps) {
       this[this.$el.hasClass("is-open") ? "close" : "open"]();
-    } else if (!this.isLoading) {
+    } else if (!this.$el.hasClass("is-loading")) {
       this._load(this.open);
     }
   };

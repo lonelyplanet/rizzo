@@ -158,8 +158,8 @@ module.exports = function(grunt) {
             requireConfig: {
               baseUrl: "./",
               paths: {
-                flamsteed: "flamsteed/lib/javascripts/flamsteed",
-                hogan: "hogan/dist/hogan-3.0.0.amd",
+                flamsteed: "./vendor/assets/javascripts/flamsteed/lib/javascripts/flamsteed",
+                hogan: "./vendor/assets/javascripts/hogan/dist/hogan-3.0.0.amd",
                 jplugs: "./vendor/assets/javascripts/jquery-plugins",
                 jquery: "./vendor/assets/javascripts/jquery/jquery",
                 sailthru: "./vendor/assets/javascripts/sailthru/v1",
