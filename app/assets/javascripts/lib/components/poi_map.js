@@ -37,13 +37,15 @@ define([
   };
 
   POIMap.prototype._load = function(callback) {
-    var self = this;
+    var _this = this;
 
     window.mapsCallback = function() {
-      self._build();
-      callback && callback.call(self);
-      delete window.mapsCallback;
+      _this._build();
+      window.mapsCallback = undefined;
+      callback && callback.call(_this);
     };
+
+    this.$el.addClass("is-loading");
 
     var script = document.createElement("script");
     script.src = "https://maps.googleapis.com/maps/api/js?key=" + API_KEY + "&sensor=false&callback=mapsCallback";
@@ -53,6 +55,8 @@ define([
   POIMap.prototype._build = function() {
     var maps = window.google.maps,
         options = this.$container.data();
+
+    this.$el.removeClass("is-loading");
 
     this.$map = $("<div class='poi-map poi-map--gmap' />").css({
       width: options.width,
@@ -82,7 +86,7 @@ define([
       return this._load(this.open);
     }
 
-    this[this.$target.hasClass("is-open") ? close : open]();
+    this[this.$el.hasClass("is-open") ? "close" : "open"]();
   };
 
   POIMap.prototype.open = function() {

@@ -18,3 +18,4 @@
   %a.poi-map__link.js-poi-map-placeholder{ rel: "map", href: "https://www.google.co.uk/maps/place/#{attrs[:latitude]},#{attrs[:longitude]}/" }
     = render :partial => '/components/poi-maps/partials/img', :locals => { properties: attrs }
   = render :partial => '/components/poi-maps/partials/map', :locals => { properties: attrs }
+  = render :partial => '/components/preloader'
