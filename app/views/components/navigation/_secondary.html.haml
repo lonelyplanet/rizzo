@@ -1,5 +1,5 @@
 -# The inline navigation for wide screens
-.wv--split--right.nav--inline.nav--secondary.wv--block
+.wv--split--right.nav--inline.nav--secondary.wv--block(role="navigation" aria-label="Secondary navigation")
   - properties[:items].each do |n|
     - active = 'current' if n[:title] == properties[:section_name] || (n[:slug].end_with? properties[:section_name].downcase.strip.gsub(' ', '-'))
     %a.nav__item.nav__item--secondary.js-nav-item{:class=>[active, n[:name]], :href=> n[:slug]}<

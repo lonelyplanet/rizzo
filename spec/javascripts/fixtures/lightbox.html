@@ -1,6 +1,15 @@
 <style type="text/css" media="screen">
-  .lightbox { position: absolute; }
+  #js-lightbox { position: absolute; }
 </style>
+<script id="tmpl-preloader" type="text-mustache">
+  <div class='preloader'>
+  </div>
+</script>
 <div id="js-row--content">
-  <a href="#" class="js-lightbox-spec js-toggle-active" data-toggle-target=".lightbox">show lightbox</a>
+  <div id="js-lightbox">
+    <div class="lightbox__content">
+      <div class="js-lightbox-content"></div>
+    </div>
+  </div>
+  <a href="#" class="js-lightbox-spec js-lightbox-toggle" data-toggle-target=".lightbox">show lightbox</a>
 </div>

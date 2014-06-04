@@ -72,3 +72,22 @@
   @extend %visually-hide
   .ie7 &, .no-js &
     @extend %visually-show
+
+// [doc] Float an image left. [/doc]
+.img--left
+  float: left
+  margin-right: 1em
+  margin-bottom: 1em
+
+// [doc] Float an image right. [/doc]
+.img--right
+  float: right
+  margin-bottom: 1em
+  margin-left: 1em
+
+// [doc] Force an image to fill its container. [/doc]
+.img--fill
+  display: block
+  min-width: 100%
+  max-width: 100%
+  height: auto

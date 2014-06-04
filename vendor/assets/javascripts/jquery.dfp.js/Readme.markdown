@@ -117,7 +117,7 @@ $('selector').dfp({
 <pre>
 $('selector').dfp({
     dfpID:'xxxxxxxxx',
-    setLocation: { latitude: 34, longitude: -45.12, precision: 1000 } 
+    setLocation: { latitude: 34, longitude: -45.12, precision: 1000 }
 });
 </pre>
 <pre>
@@ -186,6 +186,10 @@ Available Options
         <td>afterAllAdsLoaded</td>
         <td>This is a call back function, see below for more information.</td>
     </tr>
+    <tr>
+        <td>beforeEachAdLoaded</td>
+        <td>This is a call back function, see below for more information.</td>
+    </tr>
 </table>
 
 Callbacks
@@ -218,7 +222,7 @@ This script provides two callbacks which you can use to make working with DFP a 
         <td>This is called after all ad units have finished rendering.</td>
     </tr>
     <tr>
-        <td>alterAdUnitName(adUnitName,adUnit)</td>
+        <td>alterAdUnitName(adUnitName, adUnit)</td>
         <td>
             <ul>
                 <li>adUnitName - String - the default ad unit name</li>
@@ -226,6 +230,15 @@ This script provides two callbacks which you can use to make working with DFP a 
             </ul>
         </td>
         <td>Return the modified or overrided ad unit name.  This function is called once per ad unit.</td>
+    </tr>
+    <tr>
+        <td>beforeEachAdLoaded(adUnit)</td>
+        <td>
+            <ul>
+                <li>adUnit - jQuery Object - the jQuery object</li>
+            </ul>
+        </td>
+        <td>This is called before each ad unit has started rendering.</td>
     </tr>
 </table>
 
@@ -291,4 +304,5 @@ Thanks a lot to these contributors:
     <li>@soreng - https://github.com/soreng</li>
     <li>@i-like-robots - https://github.com/i-like-robots</li>
     <li>@pdbreen - https://github.com/pdbreen</li>
+    <li>@yesnoio - https://github.com/yesnoio</li>
 </ul>

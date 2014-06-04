@@ -1,2 +1,13 @@
-- properties = properties || {}
-.adunit.adunit--leaderboard{ id: properties[:id] || "js-ad-leaderboard-#{Time.now.to_i}", data: { dimensions: properties[:sizes] || '728x90,970x66,320x50', extension: properties[:extension] || nil, targeting: properties[:targeting] || nil, context: properties[:context] || nil } }
+:ruby
+
+  attrs = {
+    size: { mapping: "leaderboard" },
+    targeting: { position: nil },
+    extension: nil
+  }
+
+  attrs.merge!(properties) if defined? properties
+
+  attrs[:targeting] = attrs[:targeting].to_json
+
+.adunit.adunit--leaderboard{ data: attrs }

@@ -14,10 +14,15 @@
     top: -262px
     margin-bottom: -232px
 
-  .media-gallery__container, .tab__content, .slider__viewport, .slider__slide
+  .media-gallery__container,
+  .tab__content,
+  .slider__viewport,
+  .slider__slides
     height: 241px
     width: 427px
-  .media-gallery__container, .tab__content, .slider__viewport
+  .media-gallery__container,
+  .tab__content,
+  .slider__viewport
     +z-layer(middle)
     @extend %clearfix
     @extend %transition--slower
@@ -31,10 +36,10 @@
   .slider__viewport,
   .slider__slide
     overflow: hidden
-  .slider__viewport,
-  .slider__slide
+  .slider__viewport
     @extend %transition--slower
     width: 427px
+  .slider__slider,
   .slider__container
     @extend %transition--slower
     background: $body-background
@@ -44,7 +49,9 @@
 
 .media-gallery--lodging
 
-  .media-gallery__container, .tab__content, .slider__viewport, .slider__slide
+  .media-gallery__container,
+  .tab__content,
+  .slider__viewport
     width: 548px
     height: 308px
 
@@ -55,7 +62,9 @@
 // are on the same line below (because IE7/8 don't understand :checked, they discard the entire rule)
 @mixin media-gallery-full
   ~ .media-gallery
-    .media-gallery__container, .tab__content, .slider__viewport, .slider__slide
+    .media-gallery__container,
+    .tab__content,
+    .slider__viewport
       height: 422px
       width: 748px
     .slider__controls
@@ -101,7 +110,7 @@
   margin: 15%
 
 .media-gallery__container
-  perspective: 600
+  perspective: 1000
   background-color: $body-background
   overflow: hidden
   position: relative
@@ -117,7 +126,8 @@
   @extend %transition--base
   opacity: 1
   position: relative
-  width: 100%
+  min-height: 100%
+  max-width: 100%
   &.is-portrait, &.is-wider
     height: 100%
     width: auto

@@ -18,14 +18,13 @@
 
 %article.js-card{class: css_classes}
 
-  %a.link--wrapper{href: properties[:url]}
-
+  %a.link--wrapper{href: properties[:url], data: {lpa_category: topic.pluralize, lpa_action: "view-details", lpa_label: properties[:url]}}
 
     - if properties[:topchoice] or properties[:price]
       .card__tags
         - if properties[:price]
           = render :partial => '/components/cards/partials/card_price', :locals => { :properties => properties, :price_is_from => true }
-        -# Make lp_reviewed false first
+
         = render :partial => '/components/cards/partials/tags', :locals => { properties: properties }
 
     - if properties[:image_url]

@@ -1,0 +1,70 @@
+= render 'styleguide/partials/shared'
+
+.copy--body
+  .card.styleguide-intro.styleguide-block.context--content
+    %h1.copy--h1
+      Using Rizzo Layouts
+
+    %p
+      Rizzo provides the layout around your application. This includes the Header and Footer as well as links to core stylesheets and other assets. It also includes some JavaScript helpers such as the window.lp namespace.
+
+    %p
+      The layout is responsible for rendering your application code within it. Each layout is split into
+      %a{href: "rows"} Rows
+      and the core content is rendered withing .row--content.
+
+    %p
+      There are three main types of layout currently available using Rizzo, each of which have example pages:
+      %ul
+        %li
+          %a{href: "/responsive"} Responsive layout
+        %li
+          %a{href: "/global"} Fixed width layout
+        %li
+          %a{href: "/legacy"} Legacy layout
+          \- Provides backwards support for old applications
+
+
+  .card.styleguide-intro.styleguide-block.context--content
+    %h1.copy--h1
+      Rails Projects
+
+    %p
+      Define which layout you want to use within your controller. See other applications for examples of how this is done. 
+    
+    %p
+      Any view code you have in the application will be renderd within the layout.
+
+  .card.styleguide-intro.styleguide-block.context--content
+    %h1.copy--h1
+      Non-Rails Projects
+
+    %p
+      There are two layouts which are available via http endpoints: Modern and Legacy. These layouts are split into three parts: 
+      %ul
+        %li
+          %div
+            %strong global-head
+            \- This should be requested within the <head> of your application.
+          %div
+            %a{href: '/modern/head'} Modern Route
+            |
+            %a{href: '/global-head'} Legacy Route
+
+        %li
+          %div
+            %strong global-body-header
+            \- This should be requested immediately after the opening <body> tag
+          %div
+            %a{href: '/modern/body-header'} Modern Route
+            |
+            %a{href: '/global-body-header'} Legacy Route
+        
+        %li
+          %div
+            %strong global-body-footer
+            \- This should be requests after your application code and before the closing <body> tag.
+          %div
+            %a{href: '/modern/body-footer'} Modern Route
+            |
+            %a{href: '/global-body-footer'} Legacy Route

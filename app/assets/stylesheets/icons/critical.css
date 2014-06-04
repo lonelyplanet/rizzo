@@ -588,3 +588,5 @@
 .icon--youtube--before:before, .icon--youtube--after:after,
 .icon--youtube { background-image: url('png/youtube.png'); background-repeat: no-repeat; }
 
+.icon--stumbleupon--before:before, .icon--stumbleupon--after:after,
+.icon--stumbleupon { background-image: url('png/stumbleupon.png'); background-repeat: no-repeat; }

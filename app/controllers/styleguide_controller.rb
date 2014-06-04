@@ -2,6 +2,14 @@ class StyleguideController < GlobalController
 
   layout proc{|c| c.request.xhr? ? false : "styleguide" }
 
+  def usingRizzoLayouts
+    render '/styleguide/page-layout/using-rizzo-layouts'
+  end
+
+  def rows
+    render '/styleguide/page-layout/rows'
+  end
+
   def interfaceIcons
     render '/styleguide/design-elements/icons/interface'
   end
@@ -74,20 +82,20 @@ class StyleguideController < GlobalController
     render '/styleguide/ui-components/range_slider'
   end
 
-  def proportionalGrid
-    render '/styleguide/ui-components/proportional-grid'
-  end
-
-  def cardsGrid
-    render '/styleguide/ui-components/cards-grid'
-  end
-
   def activity_list
     render '/styleguide/ui-components/activity_list'
   end
 
   def navigational_dropdown
     render '/styleguide/ui-components/navigational_dropdown'
+  end
+
+  def social_buttons
+    render '/styleguide/ui-components/social_buttons'
+  end
+
+  def tooltips
+    render '/styleguide/ui-components/tooltips'
   end
 
   def toggle_active
@@ -118,6 +126,18 @@ class StyleguideController < GlobalController
     render '/styleguide/ui-components/alerts'
   end
 
+  def proportionalGrid
+    render '/styleguide/css-utilities/proportional-grid'
+  end
+
+  def responsiveGrid
+    render '/styleguide/css-utilities/responsive-grid'
+  end
+
+  def cardsGrid
+    render '/styleguide/css-utilities/cards-grid'
+  end
+
   def utilityClasses
     render '/styleguide/css-utilities/utility-classes'
   end
@@ -136,10 +156,6 @@ class StyleguideController < GlobalController
 
   def responsive
     render '/styleguide/css-utilities/responsive'
-  end
-
-  def tooltips
-    render '/styleguide/ui-components/tooltips'
   end
 
   def utilityPlaceholders

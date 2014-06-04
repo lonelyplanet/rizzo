@@ -1,0 +1,24 @@
+= render 'styleguide/partials/shared'
+
+.card.styleguide-intro.styleguide-block.copy--body.context--content
+  %h1.copy--h1 Responsive Grid
+  %p
+    This grid is the same as the proportional grid but columns may be decorated with additional, breakpoint-specific classes so grids can be composed across a range of screen sizes.
+
+  .copy--h4 N.b. The card appearance is applied separately - grid classes only provide dimensions
+
+.styleguide-block.styleguide-grid.context--content
+  %p.copy--h2 Proportional Grid with a 20 pixel gutter (.grid-wrapper--20)
+  .grid-wrapper--20.grid-wrapper--responsive
+
+    .col--one-whole
+      .card.copy--h4 .col--one-whole
+
+    .col--one-whole.mv--col--one-whole.wv--col--one-quarter
+      .card.copy--h4 .col--one-whole.mv--col--one-whole.wv--col--one-quarter
+    .col--one-half.mv--col--one-third.wv--col--one-quarter
+      .card.copy--h4 .col--one-half.mv--col--one-third.wv--col--one-quarter
+    .col--one-half.mv--col--one-third.wv--col--one-quarter
+      .card.copy--h4 .col--one-half.mv--col--one-third.wv--col--one-quarter
+    .col--one-whole.mv--col--one-third.wv--col--one-quarter
+      .card.copy--h4 .col--one-whole.mv--col--one-third.wv--col--one-quarter

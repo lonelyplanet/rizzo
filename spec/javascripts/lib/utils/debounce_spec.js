@@ -51,7 +51,7 @@ require([ "public/assets/javascripts/lib/utils/debounce.js" ], function(debounce
           instance();
         };
 
-        setInterval(bounce, 10);
+        interval = setInterval(bounce, 10);
 
         bounce();
       });
@@ -64,6 +64,56 @@ require([ "public/assets/javascripts/lib/utils/debounce.js" ], function(debounce
         expect(callbackProp).toBe(false);
       });
 
+    });
+
+    it("Should apply callback with arguments", function() {
+      var instance, callback;
+
+      runs(function() {
+        callback = jasmine.createSpy();
+        instance = debounce(callback, 10);
+        instance("foo", "bar");
+      });
+
+      waitsFor(function() {
+        return callback.wasCalled;
+      }, "Callback should be executed", 20);
+
+      runs(function() {
+        expect(callback).toHaveBeenCalledWith("foo", "bar");
+      });
+
+    });
+
+    it("Should apply callback with a given scope", function() {
+      var instance, callback, scope,
+          callbackInc = 0,
+          callbackProp = false;
+
+      runs(function() {
+        scope = {
+          prop: "change me"
+        };
+
+        callback = function(changeTo) {
+          callbackInc++;
+          callbackProp = true;
+          this.prop = changeTo;
+        }
+
+        instance = debounce(callback, 10, scope);
+
+        instance("changed");
+      });
+
+      waitsFor(function() {
+        return callbackInc === 1;
+      }, "Callback should be executed", 20);
+
+      runs(function() {
+        expect(callbackProp).toBe(true);
+        expect(scope.prop).toBe("changed");
+      });
     });
 
   });

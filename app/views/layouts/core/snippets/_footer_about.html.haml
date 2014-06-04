@@ -1,4 +1,4 @@
-.row.row--footer--about
+.row.row--footer--about(role="contentinfo")
   .row__inner.row__inner--footer
     .wv--split--left.nav--inline
       %a.wv--inline-block.nav__item.row--footer--about__logo.media--lp-logo.icon--lp-logo(href='http://www.lonelyplanet.com')
@@ -16,8 +16,6 @@
             - social_media_nav.each do |item|
               %a.nav__item.nav__item--social{href: "#{item[:url]}", class: "icon--#{item[:title]}"}
                 = item[:title].capitalize
-
-
 
 .row.row--smallprint
   .row__inner.row__inner--footer.row--smallprint__inner

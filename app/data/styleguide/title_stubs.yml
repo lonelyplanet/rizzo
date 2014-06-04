@@ -38,6 +38,6 @@ titles:
     :styleguide_title: "A very long and truncated place title"
     :no_place_link: true
     :title: "The city of Jerusalem"
-    :parent: "Israal and the Palestinian Territories"
+    :parent: "Israel and the Palestinian Territories"
     :parent_slug: "/israel-and-the-palestinian-territories/"
 

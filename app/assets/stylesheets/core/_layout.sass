@@ -20,6 +20,27 @@ body
     overflow: auto
     -webkit-overflow-scrolling: touch
 
+
+
+// -----------------------------------------------------------------------------
+// Main page layout - Left Nav + Content
+//
+// We have to adapt it for when we don't have a left nav in responsive view
+// -----------------------------------------------------------------------------
+
+.grid--main-layout
+
+  .responsive &
+    margin-left: 0
+    +respond-to(wide-view)
+      margin-left: -10px
+
+    > [class*="col--"]
+      padding-left: 0
+      +respond-to(wide-view)
+        padding-left: 10px
+
+
 // ----------------------------------------------------------------------------
 //
 // Row
@@ -38,6 +59,9 @@ body
     width: 90%
     +respond-to(wide-view)
       max-width: $fixed-layout-width
+
+  &.row__inner--full-width
+    width: 100%
 
 .row--text-centered
   text-align: center
@@ -102,10 +126,9 @@ body
   position: relative
   .responsive &
     @extend %transition--nav
-    margin-top: 55px
+    padding-top: 55px
   .homepage &
     margin-top: 0
-
 
 
 // ----------------------------------------------------------------------------

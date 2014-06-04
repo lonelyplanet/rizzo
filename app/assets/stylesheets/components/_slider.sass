@@ -11,23 +11,58 @@ $slidePadding: 3.357em
 $slideHoverPadding: 2.857em
 $slideArrowSpacing: 1.786em
 $slideHoverArrowSpacing: 0.357em
-$slideOffsetHome: -4.5em
+
+.slider
+  position: relative
 
 .slider__viewport
   overflow: hidden
 
 .slider__container
   @extend %transition--base
-  height: 100%
-  overflow: hidden
-  position: relative
   -ms-scroll-chaining: none
+  height: 100%
+  position: relative
 
 .slider__slide
   +hardware-acceleration()
-  float: left
+  display: none
+  position: absolute
+  transition: transform .2s ease-in-out, left .2s ease-in-out
   width: 100%
-  transition: none
+  &.is-previous-previous,
+  &.is-previous,
+  &.is-next,
+  &.is-next-next
+    +z-layer(default)
+    cursor: pointer
+    display: block
+  &.is-current
+    +z-layer(middle)
+    display: block
+  .supports-transform &
+    &.is-previous-previous
+      transform: translateX(-200%)
+    &.is-previous
+      transform: translateX(-100%)
+    &.is-current
+      transform: translateX(0)
+    &.is-next
+      transform: translateX(100%)
+    &.is-next-next
+      transform: translateX(200%)
+  .no-transform-support &
+    &.is-previous-previous
+      left: -200%
+    &.is-previous
+      left: -100%
+    &.is-next
+      left: 100%
+    &.is-next-next
+      left: 200%
+
+.slider__img
+  min-width: 100%
 
 .slider__controls-container
   position: relative
@@ -38,12 +73,9 @@ $slideOffsetHome: -4.5em
 .slider__controls
   @extend %clearfix
   @extend %transition--base
+  +z-layer(top)
   position: absolute
   width: 100%
-  z-index: 6
-
-  .homepage &
-    top: 350px
 
 .slider__control
   +font-size(14)
@@ -69,22 +101,9 @@ $slideOffsetHome: -4.5em
     position: absolute
     vertical-align: top
 
-  .homepage &
-    font-size: 24px
-    &:after, &:before
-      content: ""
-      width: 40px
-      top: 10px
-      background-size: 100%
-      margin-top: 0
-
 .slider__control--prev
   left: $slideOffset
   padding-right: $slidePadding
-
-  .homepage &
-    left: $slideOffsetHome
-
   &:after
     right: $chevronOffset
   &:hover
@@ -99,10 +118,6 @@ $slideOffsetHome: -4.5em
 .slider__control--next
   right: $slideOffset
   padding-left: $slidePadding
-
-  .homepage &
-    right: $slideOffsetHome
-
   &:before
     left: $chevronOffset
   &:hover
@@ -119,7 +134,7 @@ $slideOffsetHome: -4.5em
   margin: 25px auto 0
   text-align: center
   width: 100%
-  z-index: 6
+  +z-layer(top)
 
 .slider__pagination--link
   @extend %image-replacement

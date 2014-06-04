@@ -11,7 +11,8 @@
   %p
     Advertisements are targeted based on meta data about the current page provided by an inline JS
     configuration (<code>lp.ads</code>). The configuration provides information such as the 
-    destination and country the page content is about and the current page layout.
+    destination and country the page content is about and the current page layout. Each ad unit can be 
+    further targeted by decorating it with extra meta data.
 
   %p
     The ad manager is initialised within <code>lib/core/base.js</code> which should be included within 
@@ -38,31 +39,45 @@
       %li
         %code traffic_driver
 
-    %pre.styleguide.copy--body.language-html
+    %pre.styleguide.copy--body.language-haml
       %code
         = preserve do
           :plain
             = ui_component("ads/leaderboard", properties: {...})
 
     %p
-      Ad components can be configured in two ways:
+      Ad components can be configured in three ways:
 
     %dl
-      %dt.copy--h5 Size
+      %dt.copy--h5 Size mapping
       %dd 
-        The ad unit size is a comma-separated list of dimensions in the format 
-        <code>{width}x{height}</code>.
+        Size maps allow for loading differently sized ads based on the viewport. We use this 
+        as well to differentiate ad units based on their context.
+      
       %dt.copy--h5 Extension
       %dd
         Certain ad unit types require a callback to further configure them, for instance a
         double height MPU unit within a card stack needs to make space for itself.
 
-    %pre.styleguide.copy--body.language-html
+      %dt.copy--h5 Targeting
+      %dd
+        Ad units can be decorated with extra data about themselves to better target ads. It's 
+        sensible to add a position property.
+
+    %pre.styleguide.copy--body.language-haml
       %code
         = preserve do
           :plain
-            // Don't include the double height MPU
-            = ui_component('ads/mpu', properties: { sizes: '300x250,394x380' })
+
+            // Include a simple traffic driver
+            = ui_component('ads/traffic_driver')
+
+            // Include the double height MPU
+            = ui_component('ads/mpu', properties: { size: { mapping: 'mpu-double' }, extension: 'stackMPU' })
+            
+            // Include two leaderboards with different content
+            = ui_component("ads/leaderboard", properties: { targeting: { position: "top"} })
+            = ui_component("ads/leaderboard", properties: { targeting: { position: "bottom"} })
 
 .card.styleguide-block.copy--body.context--content
 
@@ -72,8 +87,8 @@
       Controlling ads
 
     %p
-      By default the ad manager will apply an event listener to the page which will listen for events
-      prefixed with <code>:ads/</code>. Currently configured actions are:
+      The ad manager will apply an event listeners to the page which will listen for events. Currently 
+      configured events are:
     
     %dl
       %dt.copy--h5 Refresh
@@ -83,5 +98,15 @@
 
         %pre.styleguide.copy--body.language-javascript
           %code
-            :plain
-              $el.trigger(":ads/refresh", "leaderboard");
+            = preserve do
+              :plain
+                $(LISTENER).trigger(":ads/refresh", "leaderboard");
+
+    %p
+      Individual ads can be refreshed by accessing the ad unit instance:
+
+    %pre.styleguide.copy--body.language-javascript
+      %code
+        = preserve do
+          :plain
+            $(".adunit").data("adUnit").refresh();

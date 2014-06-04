@@ -1,5 +1,5 @@
 /**
- * jQuery DFP v1.0.21
+ * jQuery DFP v1.0.22
  * http://github.com/coop182/jquery.dfp.js
  *
  * Copyright 2013 Matt Cooper
@@ -215,6 +215,10 @@
                 // Store googleAdUnit reference
                 $adUnit.data(storeAs, googleAdUnit);
 
+                // Allow altering of the ad slot before ad load
+                if (typeof dfpOptions.beforeEachAdLoaded === 'function') {
+                    dfpOptions.beforeEachAdLoaded.call(this, $adUnit);
+                }
             });
 
         });

@@ -4,9 +4,13 @@
 
 .row--sponsored
   @extend %transition--slower
-  min-height: 50px
-  padding: 16px 0
+  min-height: 100px
   overflow: hidden
+
+  .responsive &
+    min-height: 60px
+    +respond-to(728)
+      min-height: 100px
 
   &.is-closed
     min-height: 0
@@ -19,30 +23,33 @@
 
 .row--leaderboard
   +z-layer(modal)
-  background-color: $row-leaderboard
   position: relative
 
 .ad-leaderboard
+  padding: 16px 0
+  line-height: 100px
   text-align: center
+
+  .responsive &
+    padding: 12px 0
+    line-height: 60px
+    +respond-to(728)
+      padding: 16px 0
+      line-height: 100px
 
 .ad-leaderboard__inner
   @extend %inline-block
-  position: relative
   display: inline-block
-  border: 3px solid $header-blue
-  vertical-align: bottom
-  border-radius: 2px
-  background-color: $row-primary--darker
+  vertical-align: middle
 
-  &:after
-    @extend %empty-abs-generated-content
-    top: 50%
-    right: -15px
-    width: 10px
-    height: 96px
-    margin-top: -48px
-    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAABZCAMAAADbwf7VAAAAY1BMVEUVOnkrUY0eQXstVZATNnEZPHYWOXMRNG4oTokwWJQbPnkzW5cSNW8JLmkhRoAlSoUlR4ENMWsPMm0xV5EpTYcTN28zWpQXOnIWRocROHc4YJsAJWUANHcLP4IZQIAAKm8SNm4BAkT6AAAB20lEQVR4Xj2S53rkMAhFDaj24jolyb7/Uy5o4vDNjzOAzJUuy3IqjnQuk5JSQnu6c5sRFDrMsNbuTCvqEAK+OeeJ4/jinFYc+ofJjGTtydSMxMxFH71/XsvCJw3645unjV68k75dk8fO9GjRGWXmtEje++i4z3DKaM6BGSXk7RItlkre3JwGN1khqXqKnmRaQAwY2puJEVHoeBIAiOYG5ILdH6zABkewcfVUPRt4cnVPyLnG1Ubcl/blc5bo4GlaB/4hVzc1is7t60/V9acFmFQHfDXiKkEkJ6qac7VWkJvblHXFl9wcQyR5l6N0cK/NL9+rTYR9ntUhmgzX8thidAkO8UiHYYu8biulliLqHd1+NGVTSufP7ZvQiiJ6+sZ+RP904pvhOMPsS2n2oTbWKnyLqlidl9c4qvEUppc6u9pPIfWqJe8PqRaiqWADcA5WpmBHsl0z3c5MopsG4KQDNVUDkovxV1XTSZm5B6t3mPrOdKLz/Ec8st2Gj0fDoKOjiJdS3AOfYE9zPsVV7YjqZ6+gVr8yrTWPbufGyow+tag+Rm4wPeKITM1x1I2//K/n3PV6MVldfZS7sRTwNc89xeyq6Ju5kmUu95EH2XFlR8LVMaWkkpW+pGYs/wHCZCJNIACgZQAAAABJRU5ErkJggg==)
-    background-repeat: no-repeat
+.row--leaderboard--header
+  background-color: $row-leaderboard
+
+  .ad-leaderboard__inner
+    background-color: $row-primary--darker
+
+.row--leaderboard--footer
+  background: darken($body-background, 2.5%)
 
 // ----------------------------------------------------------------------------
 // Page billboard
@@ -52,7 +59,13 @@
   background: darken($body-background, 2.5%)
 
 .ad-billboard
+  padding: 20px 0
   text-align: center
+
+  .responsive &
+    padding: 12px 0
+    +respond-to(728)
+      padding: 20px 0
 
 .ad-billboard__inner
   display: inline-block
@@ -103,8 +116,6 @@
     margin-bottom: 10px
     p
       margin-bottom: 0
-    a
-
 
   .title
     font-weight: bold

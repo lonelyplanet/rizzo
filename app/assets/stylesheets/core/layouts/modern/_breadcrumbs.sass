@@ -4,11 +4,21 @@
 //
 // ----------------------------------------------------------------------------
 
+.row--breadcrumbs
+  .responsive &
+    padding: 0 10px
+    +respond-to(wide-view)
+      padding: 0
+
 .nav__item--breadcrumbs
   @extend %left-icon
   padding: 20px 8px 18px 20px
   line-height: 20px
   color: $body-copy
+  .responsive &
+    padding: 5px 8px 0 20px
+    +respond-to(medium-view)
+      padding: 20px 8px 18px 20px
   &:before
     height: 12px
     width: 12px
@@ -59,6 +69,10 @@ a.nav__item--breadcrumbs
   width: 24px
   height: 24px
   top: 15px
+  .responsive &
+    top: 0
+    +respond-to(medium-view)
+      top: 15px
   &:before
     width: 24px
     height: 24px

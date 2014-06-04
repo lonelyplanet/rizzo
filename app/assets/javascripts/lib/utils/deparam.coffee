@@ -1,6 +1,8 @@
 # Taken from Ben Alman's BBQ library and converted to CS
 # Explaine: http://benalman.com/code/projects/jquery-bbq/examples/deparam/
 # Source: https://github.com/cowboy/jquery-bbq/blob/master/jquery.ba-bbq.js#L466
+# Copyright (c) 2010 "Cowboy" Ben Alman
+# LICENSE: https://raw.githubusercontent.com/cowboy/jquery-bbq/a1cfc5347057762cdb9fbeb19c0acdd629f569c6/LICENSE-MIT
 
 define ["jquery"], (jQuery) ->
   decode = decodeURIComponent

@@ -1,2 +1,13 @@
-- properties = properties || {}
-.adunit.adunit--traffic-driver{ id: properties[:id] || "js-ad-trafficDriver-#{Time.now.to_i}", data: { dimensions: properties[:sizes] || '192x380', extension: properties[:extension] || nil, targeting: properties[:targeting] || nil } }
+:ruby
+
+  attrs = {
+    size: { mapping: "traffic-driver" },
+    targeting: { position: nil },
+    extension: nil
+  }
+
+  attrs.merge!(properties) if defined? properties
+
+  attrs[:targeting] = attrs[:targeting].to_json
+
+.adunit.adunit--traffic-driver{ data: attrs }

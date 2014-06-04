@@ -5,6 +5,11 @@
 .stack__breadcrumbs
   & + .stack__content
     margin-top: -20px
+  &.mv--block
+    & + .stack__content
+      margin-top: 0
+      +respond-to(medium-view)
+        margin-top: -20px
 
 .stack__breadcrumb
   @extend %rounded-corners
@@ -16,6 +21,11 @@
   position: relative
   text-decoration: none
   margin-bottom: 0
+
+  .row__inner--full-width &
+    border-radius: 0
+    +respond-to(wide-view)
+      border-radius: 4px
 
   &:hover
     transform: translate(0, -10px)

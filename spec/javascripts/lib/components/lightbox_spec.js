@@ -8,7 +8,7 @@ require([ "jquery", "public/assets/javascripts/lib/components/lightbox.js" ], fu
 
     beforeEach(function() {
       loadFixtures("lightbox.html");
-      lightbox = new LightBox({ el: ".js-lightbox-spec", customClass: "lightbox-foo" });
+      lightbox = new LightBox({ customClass: "lightbox-foo" });
     });
 
     describe("Initialisation", function() {
@@ -17,25 +17,37 @@ require([ "jquery", "public/assets/javascripts/lib/components/lightbox.js" ], fu
         expect(lightbox).toBeDefined();
       });
 
-      it("appends the lightbox", function() {
-        expect($(".lightbox").length).toBe(1);
+      it("found the lightbox", function() {
+        expect(lightbox.$lightbox.length).toBe(1);
       });
 
-      it("appends the lightbox container to the lightbox", function() {
-        expect($(".lightbox").find(".lightbox__content").length).toBe(1);
+      it("found the lightbox opener", function() {
+        expect(lightbox.$opener.length).toBe(1);
       });
 
       it("extends the flyout functionality", function() {
-        expect(lightbox.close).toBeDefined();
+        expect(lightbox.listenToFlyout).toBeDefined();
       });
 
-      it("defines a way to update the contents", function() {
-        expect(lightbox._updateContent).toBeDefined();
+      it("should extend asEventEmitter functionality", function() {
+        expect(lightbox.trigger).toBeDefined();
+      });
+
+      it("should extend viewport_helper functionality", function() {
+        expect(lightbox.viewport).toBeDefined();
+      });
+
+      it("defines a way to render the contents", function() {
+        expect(lightbox._renderContent).toBeDefined();
+      });
+
+      it("defines a way to fetch the contents via ajax", function() {
+        expect(lightbox._fetchContent).toBeDefined();
       });
 
       it("sets up the container to be the full height and width of the document", function() {
-        expect($(".lightbox").height()).toBe($("body").height());
-        expect($(".lightbox").width()).toBe($("body").width());
+        expect($("#js-lightbox").height()).toBe($("body").height());
+        expect($("#js-lightbox").width()).toBe($("body").width());
       });
 
     });
@@ -43,15 +55,25 @@ require([ "jquery", "public/assets/javascripts/lib/components/lightbox.js" ], fu
     describe("Functionality", function() {
 
       it("can update the lightbox contents", function() {
-        $("#js-row--content").trigger(":lightbox/updateContent", "Test content here.");
+        $("#js-row--content").trigger(":lightbox/renderContent", "Test content here.");
 
-        expect($(".lightbox__content").html()).toBe("Test content here.");
+        expect($(".js-lightbox-content").html()).toBe("Test content here.");
       });
 
       it("can add a custom class to the lightbox", function() {
-        expect($(".lightbox")).toHaveClass("lightbox-foo");
+        expect($("#js-lightbox")).toHaveClass("lightbox-foo");
       });
 
+    });
+
+    describe("Preloader", function() {
+      beforeEach(function() {
+        lightbox = new LightBox({ showPreloader: true });
+      });
+
+      it("should append the preloader HTML", function() {
+        expect(lightbox.$lightbox.find(".preloader").length).toBe(1);
+      });
     });
 
     describe("Lightbox centering", function() {
@@ -61,7 +83,13 @@ require([ "jquery", "public/assets/javascripts/lib/components/lightbox.js" ], fu
       });
 
       it("when the viewport has sufficient space", function() {
-        spyOn(lightbox, "_viewportDimensions").andReturn({ h: 800, w: 1000 });
+        spyOn(lightbox, "viewport").andReturn({
+          left: 0,
+          height: 800,
+          top: 0,
+          width: 1000
+        });
+
         lightbox._centerLightbox();
 
         expect(lightbox._centeredLeftPosition()).toBe(100);
@@ -69,14 +97,25 @@ require([ "jquery", "public/assets/javascripts/lib/components/lightbox.js" ], fu
       });
 
       it("when the viewport isn't tall enough", function() {
-        spyOn(lightbox, "_viewportDimensions").andReturn({ h: 400, w: 1000 });
+        spyOn(lightbox, "viewport").andReturn({
+          left: 0,
+          height: 400,
+          top: 0,
+          width: 1000
+        });
+
         lightbox._centerLightbox();
 
         expect(lightbox._centeredTopPosition()).toBe(0);
       });
 
       it("when the viewport isn't wide enough", function() {
-        spyOn(lightbox, "_viewportDimensions").andReturn({ h: 800, w: 600 });
+        spyOn(lightbox, "viewport").andReturn({
+          left: 0,
+          height: 800,
+          top: 0,
+          width: 600
+        });
         lightbox._centerLightbox();
 
         expect(lightbox._centeredLeftPosition()).toBe(0);

@@ -5,10 +5,6 @@ require ['public/assets/javascripts/lib/core/shopping_cart'], (ShoppingCart) ->
     it 'is defined', ->
       expect(ShoppingCart).toBeDefined()
 
-    it 'has a version', ->
-      expect(ShoppingCart.version).toBeDefined()
-
-
     describe 'Empty basket', ->
 
       beforeEach ->

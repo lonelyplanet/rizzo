@@ -16,6 +16,10 @@
           = yield :secondary
 
       = yield
+      
+      = ui_component('lightbox')
+      %script#tmpl-preloader{ type: 'text-mustache' }
+        = ui_component('preloader')
 
     .wrapper.wrapper--footer
       = yield :breadcrumbs
