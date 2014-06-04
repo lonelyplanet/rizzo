@@ -28,20 +28,21 @@
     %p
       The following example demonstrates the different lazy loading strategies.
 
-    %pre.styleguide.copy--body.language-coffeescript
+    %pre.styleguide.copy--body.language-javascript
       %code
         = preserve do
           :plain
-            require ['jquery', 'lib/utils/asset_reveal'], ($, AssetReveal) ->
+            require([ "jquery", "lib/utils/asset_reveal" ], function($, AssetReveal) {
 
-              assetReveal = new AssetReveal(
+              var assetReveal = new AssetReveal({
                 el: '#container'
-              )
+              });
 
-              $('button[data-event]').on('click', ->
-                this = $(this)
-                $this.trigger( $this.data('event') )
-              );
+              $("button[data-event]").on("click", function() {
+                var this = $(this);
+                $this.trigger($this.data('event'));
+              });
+            });
 
     %pre.styleguide.copy--body.language-html
       %code
@@ -52,9 +53,11 @@
                 <!-- <img src="..." alt="..." /> -->
               </div>
               <div data-script>
-                <!-- <script>
-                  alert('Uncommented')
-                </script> -->
+                <!--
+                  <script>
+                    alert('Uncommented')
+                  </script>
+                -->
               </div>
               <div class="rwd-image-blocker" style="background-image: url(...);"></div>
               <img data-src="..." data-alt="..." />

@@ -1,4 +1,4 @@
-require ['public/assets/javascripts/lib/maps/map_manager'], (MapManager) ->
+require ['public/assets/javascripts/lib/components/map_manager'], (MapManager) ->
 
   describe 'MapManager', ->
 

@@ -12,6 +12,14 @@
     background: transparent
   .row--secondary
     padding-top: 20px
+  .row__title--secondary
+    max-width: 100%
+    .place-title
+      padding-left: 28px
+      &:before
+        +size(24px)
+        top: 0px
+        left: 0px
 
 .card--layer__content
   @extend %clearfix
@@ -25,8 +33,6 @@
     width: 90%
     margin: 0 0 10px 0
     line-height: 1.1em
-  .sharing
-    clear: left
 
   .copy--feature
     +font-size(20)

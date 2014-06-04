@@ -28,6 +28,9 @@
             .main-content.stack#js-main-content
               = yield
 
+        = ui_component('lightbox')
+        %script#tmpl-preloader{ type: 'text-mustache' }
+          = ui_component('preloader')
 
     .js-config.is-hidden
       = render 'layouts/core/snippets/footer_js'

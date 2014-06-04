@@ -4,6 +4,12 @@ Then(/^the Core layout should be displayed$/) do
   page.should_not have_selector 'body.homepage'
 end
 
+Then(/^the Modern layout should be displayed$/) do
+  page.should have_selector 'body'
+  page.should_not have_selector 'body.responsive'
+  page.should_not have_selector 'body.homepage'
+end
+
 Then(/^the Legacy layout should be displayed$/) do
   page.should have_selector 'div.row--secondary'
   page.should have_content 'Buenos Aires'

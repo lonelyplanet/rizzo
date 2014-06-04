@@ -1,11 +1,12 @@
 require([ "public/assets/javascripts/lib/components/slider.js" ], function(Slider) {
+  "use strict";
   describe("Slider", function() {
 
-    var LISTENER = document,
-    config = {
-      animateDelay: 0,
-      el: "#js-slider"
-    };
+    var config = {
+        animateDelay: 0,
+        createControls: true,
+        el: "#js-slider"
+      };
 
     describe("object", function() {
       it("is defined", function() {
@@ -16,11 +17,11 @@ require([ "public/assets/javascripts/lib/components/slider.js" ], function(Slide
     describe("initialising", function() {
       beforeEach(function() {
         window.slider = new Slider(config);
-        spyOn(slider, "init");
+        spyOn(window.slider, "init");
       });
 
       it("does not initialise when the parent element does not exist", function() {
-        expect(slider.init).not.toHaveBeenCalled();
+        expect(window.slider.init).not.toHaveBeenCalled();
       });
     });
 
@@ -28,10 +29,6 @@ require([ "public/assets/javascripts/lib/components/slider.js" ], function(Slide
       beforeEach(function() {
         loadFixtures("slider.html");
         window.slider = new Slider(config);
-      });
-
-      it("sets up the width of the container for all the slides", function() {
-        expect($(".slider__container").width()).toBe(2135);
       });
 
       it("adds the next/prev links", function() {
@@ -60,31 +57,32 @@ require([ "public/assets/javascripts/lib/components/slider.js" ], function(Slide
       });
 
       it("updates the slide counter after navigating", function() {
-        slider._nextSlide();
+        window.slider._nextSlide();
         expect($(".slider__control--next").html()).toBe("3 of 5");
         expect($(".slider__control--prev").html()).toBe("1 of 5");
       });
 
       it("updates the pagination after navigating", function() {
-        slider._nextSlide();
+        window.slider._nextSlide();
         expect($(".slider__pagination--link").eq(0)).not.toHaveClass("is-active");
         expect($(".slider__pagination--link").eq(1)).toHaveClass("is-active");
       });
 
       it("goes to the next slide (first -> second)", function() {
-        slider._nextSlide();
-        expect($(".slider__container")[0].style.marginLeft).toBe("-100%");
+        window.slider._nextSlide();
+        window.slide  = $(".js-slide");
+        expect($(".js-slide").get(2)).toHaveClass("is-next")
       });
 
       it("goes to a given slide", function() {
-        slider._goToSlide(4);
-        expect($(".slider__container")[0].style.marginLeft).toBe("-300%");
+        window.slider._goToSlide(4);
+        expect($(".js-slide").get(3)).toHaveClass("is-current")
       });
 
       it("goes to the previous slide (third -> second)", function() {
-        slider._goToSlide(3);
-        slider._previousSlide();
-        expect($(".slider__container")[0].style.marginLeft).toBe("-100%");
+        window.slider._goToSlide(3);
+        window.slider._previousSlide();
+        expect($(".js-slide").get(0)).toHaveClass("is-previous")
       });
 
       it("knows when at the beginning", function() {
@@ -102,13 +100,13 @@ require([ "public/assets/javascripts/lib/components/slider.js" ], function(Slide
         loadFixtures("slider_hidden_content.html");
         config.deferLoading = true;
         window.slider = new Slider(config);
-        spyOnEvent($(slider.$el), ":asset/uncomment");
+        spyOnEvent($(window.slider.$el), ":asset/uncomment");
       });
 
       it("loads hidden content", function() {
         expect($(".slider__slide:nth-of-type(3) img").length).toBe(0);
         $(".slider__control--next").trigger("click");
-        expect(":asset/uncomment").toHaveBeenTriggeredOn($(slider.$el), [ $(".slider__slide").slice(1), "[data-uncomment]" ]);
+        expect(":asset/uncomment").toHaveBeenTriggeredOn($(window.slider.$el), [ $(".slider__slide").slice(1), "[data-uncomment]" ]);
       });
     });
   });

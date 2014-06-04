@@ -23,6 +23,8 @@
   "expr":         true,
 
   // relax
+  "boss":         true,
+  "eqnull":       true,
   "supernew":     true,
   "validthis":    true,
 

@@ -16,7 +16,13 @@
   window.lp = {
     tracking: {},
     analytics: {
-      dataLayer: {}
+      dataLayer: {},
+      eventBuffer: [],
+      api: {
+        trackEvent: function(data){
+          window.lp.analytics.eventBuffer.push(data);
+        }
+      }
     },
     supports: {}
   };
@@ -50,11 +56,14 @@
 
   // Initialise a flamsteed buffer
   window.lp.fs = {
-    buffer: [], 
+    buffer: [],
     log : function(x){this.buffer.push({e: x})},
     time: function(x){!!window.performance && !!window.performance.now && this.buffer.push({e: x, t: window.performance.now()})}
   };
 
+= yield :head_js
+
+:javascript
   // Google analytics
   (function(d,t,c){
     var filepath = d.cookie.match(/lpDev/) ? "analytics.dev.js?" +c.getTime() : "analytics.min.js",
@@ -64,7 +73,6 @@
     s.parentNode.insertBefore(g,s);
   }(document,"script",new Date));
 
-= yield :head_js
 = render 'layouts/core/inline_js/cut_the_mustard'
 = render 'layouts/core/inline_js/fonts_loader'
 = render 'layouts/core/inline_js/grunticon', sheet: 'active'

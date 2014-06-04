@@ -1,14 +1,14 @@
 .split--left.row__title--secondary
 
   - if properties[:is_body_title] == true
-    %h1.place-title.place-title-heading{class: ("icon--#{properties[:icon]}--before" if properties[:icon])}< #{properties[:title]}
+    %h1.place-title.place-title-heading{class: ("icon--#{properties[:icon]}--before" if properties[:icon])}<> #{properties[:title]}
 
   - else
-    .place-title{class: "icon--#{ properties[:icon] || "place--pin"}--before"}<
+    .place-title{class: "icon--#{ properties[:icon] || "place--pin"}--before"}<>
       - if properties[:no_place_link] == true || !properties[:slug]
-        %span.place-title-heading #{properties[:title]}
+        %span.place-title-heading<> #{properties[:title]}
       - else
-        %a.place-title-heading{href: "/#{properties[:slug].sub(/^\//, '')}"} #{properties[:title]}
+        %a.place-title-heading{href: "/#{properties[:slug].sub(/^\//, '')}"}<> #{properties[:title]}
 
       - if properties[:parent]
-        %a.place-title__parent{href: "/#{properties[:parent_slug].sub(/^\//, '')}"}, #{properties[:parent]}
+        %a.place-title__parent{href: "/#{properties[:parent_slug].sub(/^\//, '')}"}<> , #{properties[:parent]}

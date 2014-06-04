@@ -1,5 +1,6 @@
 = render 'layouts/core/snippets/accessibility'
-= render 'layouts/legacy/snippets/ad_setup'
+- unless defined? no_scripts
+  = render 'layouts/legacy/snippets/ad_setup'
 = render 'layouts/core/snippets/leaderboard'
 .row--primary#js-primary-nav
-  = render 'layouts/core/snippets/primary_navigation_bar', user_nav: user_nav, responsive: false, homepage: false
+  = render 'layouts/core/snippets/primary_navigation_bar', user_nav: user_nav, no_scripts: (defined? no_scripts), responsive: false, homepage: false

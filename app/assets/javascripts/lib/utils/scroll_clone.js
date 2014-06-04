@@ -1,4 +1,4 @@
-define([ "jquery", "lib/components/proximity_loader" ], function($, ProximityLoader) {
+define([ "jquery", "lib/utils/proximity_loader" ], function($, ProximityLoader) {
 
   "use strict";
 

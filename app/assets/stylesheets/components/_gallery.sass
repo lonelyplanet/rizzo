@@ -29,7 +29,6 @@ $slide-width: 1000px
       height: ($slide-width / 3) * 2
 
 .gallery
-  +slide-width()
   margin: auto
   transition: left .5s ease
 
@@ -51,19 +50,15 @@ $slide-width: 1000px
     top: 120px
 
 .gallery__slide-container
-  +hardware-acceleration()
-  +slide-height()
-  clear: both
-  position: relative
-  transition: margin-left 0.2s ease-in-out
-  overflow: hidden
-
-.gallery__slide
-  float: left
   +slide-height()
   +slide-width()
-  .no-touch-support &
-    transition: opacity .5s ease
+  position: relative
+  margin: auto
+  transition: margin-left 0.2s ease-in-out
+
+.gallery__slide
+  +slide-height()
+  +slide-width()
   &:nth-child(even)
     background-color: #3E4752
   &.is-loading.is-current:after
@@ -77,25 +72,11 @@ $slide-width: 1000px
     background: rgba(125, 125, 125, 0.5)
     border-radius: 100%
     animation: discmove 2s cubic-bezier(0.6, 1, 1, 1) infinite
-  &.is-previous,
-  &.is-next
-    cursor: pointer
-    opacity: .5
-    &:hover
-      opacity: 1
 
 .gallery__img
   display: block
   min-height: 100%
-  opacity: 0
-  transition: opacity 0.3s ease-in-out
   width: 100%
-  .gallery__slide.is-loaded.is-current &
-    opacity: 1
-  .gallery__slide.is-loaded.is-previous &,
-  .gallery__slide.is-loaded.is-next &
-    display: block
-    opacity: .7
 
 .gallery__img--portrait
   display: block
@@ -144,6 +125,7 @@ $slide-width: 1000px
 .gallery__footer
   +slide-width()
   background: white
+  margin: auto
   min-height: $footer-height
   overflow: hidden
 
@@ -261,7 +243,8 @@ $slide-width: 1000px
 
 .gallery__next,
 .gallery__previous
-  +z-layer(middle)
+  +hardware-acceleration()
+  +z-layer(top)
   background: #888
   background: rgba(#000, 0.5)
   padding: 10px 0
@@ -274,7 +257,7 @@ $slide-width: 1000px
   color: white
   text-decoration: none
   top: 50%
-  transition: left 0.2s, right 0.2s, opacity 0.1s
+  transition: left 0.2s, right 0.2s, transform 0.2s, opacity 0.2s
   white-space: nowrap
   width: 120px
   &:hover
@@ -299,7 +282,8 @@ $slide-width: 1000px
   &:after
     margin-right: 15px
   &:hover,
-  &.is-hover
+  &.is-hover,
+  &:focus
     left: 0
 
 .gallery__next
@@ -311,8 +295,12 @@ $slide-width: 1000px
   &:before
     margin-left: 15px
   &:hover,
-  &.is-hover
+  &.is-hover,
+  &:focus
     right: 0
+
+.gallery__slide-details
+  display: none
 
 .gallery__slide-counter
   +z-layer(middle)

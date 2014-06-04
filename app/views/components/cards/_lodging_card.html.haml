@@ -10,14 +10,13 @@
 
   ].join(" ")
 
-
 %article.js-lodging.js-card{class: css_classes }
 
-  %a.link--wrapper{href: properties[:path]}
+  %a.link--wrapper{href: properties[:path], data: {lpa_category: "hotels", lpa_action: "view-details", lpa_label: properties[:path]}}
 
     - if properties[:bookable?]
       %figure.card__hero
-        %img.card__image.js-card__image{src: properties[:list_image]["url"]}
+        %img.card__image.js-card__image{src: properties[:list_image]["url"], alt: properties[:name].titleize}
 
       - price = properties['total_price'] || properties[:indicative_price_in_user_currency]
       .card__tags

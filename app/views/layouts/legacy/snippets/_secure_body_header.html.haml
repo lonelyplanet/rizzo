@@ -1,3 +1,3 @@
 = render 'layouts/core/snippets/accessibility'
 .row--primary#js-primary-nav
-  = render 'layouts/core/snippets/primary_navigation_bar', :user_nav => user_nav, responsive: false, homepage: false
+  = render 'layouts/core/snippets/primary_navigation_bar', :user_nav => user_nav, responsive: false, homepage: false, no_scripts: (defined? no_scripts)

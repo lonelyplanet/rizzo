@@ -6,9 +6,9 @@
 
 - if homepage
   .logo--header
-    %a.media--lp-logo.icon--lp-logo.icon--white(href='http://www.lonelyplanet.com')
+    %a.media--lp-logo.icon--lp-logo.icon--white(href='http://www.lonelyplanet.com' title='Return to homepage')
 - else
-  %a.media--lp-logo.logo--header.icon--lp-logo.icon--white(href='http://www.lonelyplanet.com')
+  %a.media--lp-logo.logo--header.icon--lp-logo.icon--white(href='http://www.lonelyplanet.com' title='Return to homepage')
 
 .nav-container.m-hidden-menu
 
@@ -18,7 +18,7 @@
 
       -# This form is only visible on wide screens, and not on the homepage
       - unless homepage
-        %form.search--primary.search--primary-wv.js-nav-search.wv--inline-block{:action => host_with_subdomain_and_path("www", "search"), :method => "get" }
+        %form.search--primary.search--primary-wv.js-nav-search.wv--inline-block{ action: host_with_subdomain_and_path("www", "search"), method: "get", role: "search" }
           %label.accessibility(for='search-q') Search
           %input.search__input.search__input--primary.js-primary-search(type="search" id="search-q" maxlength="2048" name="q" value="" autocomplete="off" tabindex="1")
           %button.search__input__icon.icon--search.icon--white(class="search__button" type="submit" id="search-q-submit")
@@ -30,22 +30,25 @@
             %span.user-basket__icon.icon--shop-basket.icon--white
               View Basket
 
-          %script#js-user-nav-template{ type: "text/mustache" }
-            = render partial: "templates/global-nav/user_nav"
+          - unless no_scripts.present?
+            %script#js-user-nav-template{ type: "text/mustache" }
+              = render partial: "templates/global-nav/user_nav"
 
-          %noscript
-            %a.nav__item.nav__item--primary.js-nav-item{ href: "https://www.lonelyplanet.com/thorntree/my_account" }
-              %i.nav__icon.icon--user--before.icon--white--before
-              My account
+            %noscript
+              .nav__item.nav__item--user
+                %a.nav__item.nav__item--primary.js-nav-item{ href: "https://www.lonelyplanet.com/thorntree/my_account" }
+                  %i.nav__icon.icon--user--before.icon--white--before
+                  My account
 
 
   .wv--split--left
 
-    .wv--nav--inline.nav--primary#js-nav--primary
+    .wv--nav--inline.nav--primary#js-nav--primary(role="navigation" aria-label="Primary navigation")
       - if responsive
         %a.nav__item.nav__item--primary{ href: "http://www.lonelyplanet.com/search" }<
           %i.nav__icon{class: 'icon--search--before icon--white--before'}
           Search
+
       - core_navigation_items.each do |n|
         - if n[:submenu]
           .nav__item.nav__item--primary.nav__submenu__trigger

@@ -22,6 +22,7 @@ Rizzo::Application.routes.draw do
   get 'global-body-footer'           => 'global_resources#show', :defaults => { :snippet => "body_footer", :legacystyle => "true" }
 
   get 'noscript/global-head'         => 'global_resources#show', :defaults => { :snippet => "head", :noscript => "true"}
+  get 'noscript/global-body-header'  => 'global_resources#show', :defaults => { :snippet => "body_header", :noscript => "true" }
   get 'noscript/global-body-footer'  => 'global_resources#show', :defaults => { :snippet => "body_footer", :noscript => "true"}
 
   get 'secure/global-head'           => 'global_resources#show', :defaults => { :snippet => "head", :secure => "true", :suppress_tynt => "true" }
@@ -29,6 +30,7 @@ Rizzo::Application.routes.draw do
   get 'secure/global-body-footer'    => 'global_resources#show', :defaults => { :snippet => "body_footer", :secure => "true" }
 
   get 'secure/noscript/global-head'         => 'global_resources#show', :defaults => { :snippet => "head", :noscript => "true"}
+  get 'secure/noscript/global-body-header'  => 'global_resources#show', :defaults => { :snippet => "body_header", :noscript => "true" }
   get 'secure/noscript/global-body-footer'  => 'global_resources#show', :defaults => { :snippet => "body_footer", :noscript => "true"}
 
   get 'global'                           => 'global_resources#index'
@@ -45,6 +47,7 @@ Rizzo::Application.routes.draw do
   get 'styleguide/ui-components',   to: redirect('/styleguide/ui-components/cards')
   get 'styleguide/js-components',   to: redirect('/styleguide/js-components/toggle-active')
   get 'styleguide/css-utilities/',  to: redirect('/styleguide/css-utilities/proportional-grid')
+  get 'styleguide/page-layout/',    to: redirect('/styleguide/page-layout/using-rizzo-layouts')
 
   get 'styleguide/design-elements/colours'                => 'styleguide#colours'
   get 'styleguide/design-elements/ui-colours'             => 'styleguide#uiColours'
@@ -52,6 +55,8 @@ Rizzo::Application.routes.draw do
   get 'styleguide/design-elements/icons/interface'        => 'styleguide#interfaceIcons'
   get 'styleguide/design-elements/icons/destination'      => 'styleguide#destinationIcons'
   get 'styleguide/design-elements/icons/interests'        => 'styleguide#interestIcons'
+  get '/styleguide/page-layout/using-rizzo-layouts'       => 'styleguide#usingRizzoLayouts'
+  get '/styleguide/page-layout/rows'                      => 'styleguide#rows'
   get 'styleguide/ui-components/secondary-nav'            => 'styleguide#secondaryNavigation'
   get 'styleguide/ui-components/left-nav'                 => 'styleguide#leftNavigation'
   get 'styleguide/ui-components/navigational_dropdown'    => 'styleguide#navigational_dropdown'
@@ -70,6 +75,7 @@ Rizzo::Application.routes.draw do
   get 'styleguide/ui-components/tooltips'                 => 'styleguide#tooltips'
   get 'styleguide/ui-components/ad-units'                 => 'styleguide#adUnits'
   get 'styleguide/ui-components/tiles'                    => 'styleguide#tiles'
+  get 'styleguide/ui-components/social-buttons'           => 'styleguide#social_buttons'
 
   get 'styleguide/js-components/toggle-active'            => 'styleguide#toggle_active'
   get 'styleguide/js-components/proximity-loader'         => 'styleguide#proximity_loader'
@@ -83,6 +89,7 @@ Rizzo::Application.routes.draw do
   get 'styleguide/js-components/swipe'                    => 'styleguide#swipe'
 
   get 'styleguide/css-utilities/proportional-grid'        => 'styleguide#proportionalGrid'
+  get 'styleguide/css-utilities/responsive-grid'          => 'styleguide#responsiveGrid'
   get 'styleguide/css-utilities/cards-grid'               => 'styleguide#cardsGrid'
   get 'styleguide/css-utilities/utility-classes'          => 'styleguide#utilityClasses'
   get 'styleguide/css-utilities/legacy'                   => 'styleguide#legacy'

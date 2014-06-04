@@ -7,7 +7,6 @@
     "do",
     "try",
     "catch",
-    "case",
     "default"
   ],
 
@@ -143,8 +142,6 @@
     "!=",
     "!=="
   ],
-
-  "requireCamelCaseOrUpperCaseIdentifiers": true,
 
   "disallowMultipleLineStrings": true,
 

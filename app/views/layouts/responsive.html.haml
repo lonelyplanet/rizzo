@@ -11,7 +11,7 @@
   = render 'layouts/core/snippets/accessibility'
   = render 'layouts/core/snippets/leaderboard'
   .wrapper.js-wrapper
-    = render 'layouts/core/snippets/primary_navigation_bar', user_nav: true, responsive: true, homepage: false
+    = render 'layouts/core/snippets/primary_navigation_bar', user_nav: true, responsive: true, homepage: false, no_scripts: false
     .row.row--content{id: @no_wallpaper ? "" : "js-row--content"}
       - if (yield :secondary).present?
         .row.row--secondary#js-secondary-nav
@@ -19,6 +19,10 @@
             = yield :secondary  
 
       = yield
+
+      = ui_component('lightbox')
+      %script#tmpl-preloader{ type: 'text-mustache' }
+        = ui_component('preloader')
 
     .wrapper.wrapper--footer
       = yield :breadcrumbs

@@ -1,4 +1,6 @@
-require([ "public/assets/javascripts/lib/components/tabs.js" ], function(Tabs) {
+require([ "jquery", "public/assets/javascripts/lib/components/tabs.js" ], function($, Tabs) {
+
+  "use strict";
 
   describe("Tabs", function() {
 

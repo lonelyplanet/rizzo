@@ -45,6 +45,8 @@ GEM
     better_errors (1.0.1)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
+    binding_of_caller (0.7.2)
+      debug_inspector (>= 0.0.1)
     builder (3.0.4)
     capybara (1.1.4)
       mime-types (>= 1.16)
@@ -74,7 +76,11 @@ GEM
       cucumber (>= 1.2.0)
       nokogiri (>= 1.5.0)
       rails (>= 3.0.0)
+    debug_inspector (0.0.2)
     diff-lcs (1.1.3)
+    dotenv (0.11.1)
+      dotenv-deployment (~> 0.0.2)
+    dotenv-deployment (0.0.2)
     erubis (2.7.0)
     execjs (2.0.1)
     ffi (1.9.0)
@@ -193,11 +199,13 @@ DEPENDENCIES
   airbrake
   autoprefixer-rails
   better_errors
+  binding_of_caller
   capybara (< 2.0.0)
   coffee-rails (= 3.2.2)
   coffee-script-source (= 1.4.0)
   cucumber
   cucumber-rails
+  dotenv
   haml
   haml-rails
   lograge

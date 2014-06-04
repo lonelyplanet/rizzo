@@ -1,2 +1,13 @@
-- properties = properties || {}
-.adunit.adunit--sponsortile{ id: properties[:id] || "js-ad-sponsorTile-#{Time.now.to_i}", data: { dimensions: properties[:sizes] || '276x32', extension: properties[:extension] || nil, targeting: properties[:targeting] || nil } }
+:ruby
+
+  attrs = {
+    size: { mapping: "sponsor-tile" },
+    targeting: { position: nil },
+    extension: nil
+  }
+
+  attrs.merge!(properties) if defined? properties
+
+  attrs[:targeting] = attrs[:targeting].to_json
+
+.adunit.adunit--sponsortile{ data: attrs }

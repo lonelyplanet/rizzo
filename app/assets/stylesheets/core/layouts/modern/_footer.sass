@@ -14,7 +14,6 @@
 .row__inner--footer
 
   .responsive &
-    padding: 10px
     width: 100%
     +respond-to(wide-view)
       padding: 0
@@ -34,6 +33,11 @@
     +respond-to(wide-view)
       margin-bottom: 30px
       border-top: 1px solid $input-border
+    .col--footer
+      padding-left: 10px
+      +respond-to(wide-view)
+        padding: 0
+
 
 .row--sitemap__inner
   padding-top: 20px
@@ -56,7 +60,6 @@
   margin: 0 20px 15px 0
   .responsive &
     margin: 0
-    padding-right: 10px
     +respond-to(wide-view)
       float: left
       margin: 0 20px 15px 0
@@ -254,7 +257,7 @@
 .form--international
   width: 20%
   .responsive &
-    width: 50%
+    width: 60%
     margin: 20px auto
     +respond-to(wide-view)
       width: 20%

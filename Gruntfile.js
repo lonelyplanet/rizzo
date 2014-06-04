@@ -97,6 +97,9 @@ module.exports = function(grunt) {
       },
       enableHooks: {
         command: "ln -s -f ../../git-hooks/pre-commit .git/hooks/pre-commit"
+      },
+      fetchSubmodules: {
+        command: "git submodule init && git submodule update"
       }
     },
     coffee: {
@@ -158,16 +161,19 @@ module.exports = function(grunt) {
             requireConfig: {
               baseUrl: "./",
               paths: {
-                jquery: "./vendor/assets/javascripts/jquery/jquery",
-                jsmin: "./vendor/assets/javascripts/lonelyplanet_minjs/dist/$",
-                polyfills: "./vendor/assets/javascripts/polyfills",
-                lib: "./public/assets/javascripts/lib",
+                flamsteed: "flamsteed/lib/javascripts/flamsteed",
+                hogan: "hogan/dist/hogan-3.0.0.amd",
                 jplugs: "./vendor/assets/javascripts/jquery-plugins",
+                jquery: "./vendor/assets/javascripts/jquery/jquery",
+                sailthru: "./vendor/assets/javascripts/sailthru/v1",
                 sCode: "./vendor/assets/javascripts/omniture/s_code",
-                gpt: "http://www.googletagservices.com/tag/js/gpt",
-                pickadate: "./vendor/assets/javascripts/pickadate",
+                trackjs: "./vendor/assets/javascripts/trackjs/trackjs",
                 dfp: "./vendor/assets/javascripts/jquery.dfp.js/jquery.dfp",
-                autocomplete: "./vendor/assets/javascripts/autocomplete/dist/autocomplete"
+                autocomplete: "./vendor/assets/javascripts/autocomplete/dist/autocomplete",
+                nouislider: "./vendor/assets/javascripts/nouislider",
+                pickadate: "./vendor/assets/javascripts/pickadate",
+                polyfills: "./vendor/assets/javascripts/polyfills",
+                lib: "./public/assets/javascripts/lib"
               }
             }
           }
@@ -218,5 +224,5 @@ module.exports = function(grunt) {
   grunt.registerTask("icon:active", [ "grunticon:active", "shell:cleanIcons", "shell:move" ]);
   grunt.registerTask("icon:critical", [ "grunticon:critical", "shell:cleanIcons", "shell:move" ]);
   grunt.registerTask("icon", [ "svgmin", "icon:active", "icon:critical" ]);
-  grunt.registerTask("setup", [ "shell:enableHooks" ]);
+  grunt.registerTask("setup", [ "shell:fetchSubmodules", "shell:enableHooks" ]);
 };

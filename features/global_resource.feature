@@ -15,6 +15,10 @@ Feature: Global Resources
     Given I go to "/responsive"
     Then the Responsive layout should be displayed
 
+  Scenario: it serves the modern header and footer
+    Given I go to "/modern"
+    Then the Modern layout should be displayed
+
   Scenario: it serves the homepage header and footer
     Given I go to "/homepage"
     Then the Homepage layout should be displayed

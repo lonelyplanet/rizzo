@@ -1,40 +1,49 @@
 # Rizzo
 
-Rizzo is the UI layer for lonelyplanet.com. Rizzo also serves LP's header and footer, assets and styleguide.
+Rizzo is the UI layer for lonelyplanet.com. Rizzo also serves LP's header and footer, assets and Style Guide.
 
-> "Leave code in a better state than you found it."
+The main goal of Rizzo is to enable sharing of templates and assets across all LP applications. This helps us to reduce complexity and increase reusability. There is a write-up of the thought process behind Rizzo on the [engineering blog](http://engineering.lonelyplanet.com/2014/05/18/a-maintainable-styleguide.html).
 
 
 ## Install & Get Dependencies
 
-    $ git clone git@github.com:lonelyplanet/rizzo.git && cd rizzo
-    $ cp .ruby-version.example .ruby-version
-    $ cp .ruby-gemset.example .ruby-gemset
-    $ cd .
-    $ bundle install
-    $ npm install
-
+```bash
+$ git clone git@github.com:lonelyplanet/rizzo.git && cd rizzo
+$ cp .ruby-version.example .ruby-version
+$ cp .ruby-gemset.example .ruby-gemset
+$ cd .
+$ bundle install
+$ npm install
+$ grunt setup # sets up jscs & jshint git precommit hook for contributors, and inits the private font submodule
+```
 
 # Table of contents
 
-1. [Rizzo as an application](#rizzo-as-an-application)
+1. [Rizzo Style guide](#rizzo-style-guide)
 2. [Rizzo as an engine](#rizzo-as-an-engine)
 3. [Rizzo as a service](#rizzo-as-a-service)
-4. [Styleguide](#styleguide)
-5. [Testing](#testing)
-6. [Images & icons](#images-and-icons)
-7. [Git Guidelines and Code Review](#git-guidelines-and-code-review)
-8. [Sass Guidelines](#sass-guidelines)
-9. [Javascript Guidelines](#javascript-guidelines)
+4. [Testing](#testing)
+5. [Images & icons](#images-and-icons)
+6. [Git Guidelines and Code Review](#git-guidelines-and-code-review)
+7. [Sass Guidelines](#sass-guidelines)
+8. [Javascript Guidelines](#javascript-guidelines)
 
 -----
-## Rizzo as an application
+## Rizzo Style Guide
 
-Rizzo is accessible at [http://rizzo.lonelyplanet.com](http://rizzo.lonelyplanet.com) and can also be run locally:
+The Style Guide is accessible at [http://rizzo.lonelyplanet.com](http://rizzo.lonelyplanet.com) and can also be run locally:
 
-```bash
+```
   bundle exec unicorn
 ```
+
+The Style Guide shows how the Component API works and how to call these components from within your apps.
+
+
+### Yeoman Generators
+
+If you want to create a new component within the styleguide you can get started with Yeoman. Find out about any Yeoman generators we have available and how to use them at our [Yeoman repo](https://github.com/lonelyplanet/yeoman).
+
 
 ## Rizzo as an engine
 
@@ -42,9 +51,9 @@ Primarily rizzo is used as an engine to provide layouts and assets to your rails
 
 To enable rizzo, add it to your gemfile:
 
-    gem 'rizzo', git: 'git@github.com:lonelyplanet/rizzo.git'
+    gem 'rizzo', git: 'git@github.com:lonelyplanet/rizzo.git', submodules: true
 
-This will add all the Javascript and Sass into your applications load paths. In order to use the layouts, specify it in your controller. There are currently four layouts that Rizzo provides:
+This will add Rizzo's Components, Javascript and Sass into your applications load paths. In order to use the layouts, specify it in your controller. There are currently three layouts that Rizzo provides:
 
 - Core (Fixed width) - [http://rizzo.lonelyplanet.com/global](http://rizzo.lonelyplanet.com/global)
 - Responsive - [http://rizzo.lonelyplanet.com/responsive](http://rizzo.lonelyplanet.com/responsive)
@@ -64,56 +73,41 @@ An example of the legacy navigation can be viewed at [http://rizzo.lonelyplanet.
 
 
 -----
-## Styleguide
-
-The styleguide is accessible at
-
-```bash
-  bundle exec unicorn
-```
-
-TODO: Write about the styleguide process
-
-### Yeoman Generators
-
-If you want to create a new component within the styleguide you can do so with Yeoman. Find out about any Yeoman generators we have available and how to use them at our [Yeoman repo](https://github.com/lonelyplanet/yeoman).
-
------
 ## Testing
 
 ### Unit Tests
 
 Each component as well as any helper methods should have unit tests.
 
-````bash
+````
   $ bundle exec rspec
 ````
 
 ### Integration Tests
 
-````bash
+````
   $ bundle exec cucumber
 ````
 
 ### Javascript Unit Tests
 
 To clean, compile and run all the tests headlessly
-````bash
+````
   $ grunt
 ````
 
 To run them headlessly without compiling them all, and to enable watching of files
-````bash
+````
   $ grunt dev
 ````
 
 To spawn a server and rerun failed tests
-````bash
+````
   $ grunt wip
 ````
 
 To run plato (Javascript sourcecode analysis)
-````bash
+````
   $ grunt report
 ````
 
@@ -121,7 +115,7 @@ To run plato (Javascript sourcecode analysis)
 
 Currently a work in progress. Eventually to be run on the styleguide as a pre-push hook. Uses phantomcss.
 
-````bash
+````
   $ phantomjs spec/lib/visual_regression.js
 ````
 
@@ -130,12 +124,13 @@ Currently a work in progress. Eventually to be run on the styleguide as a pre-pu
 -----
 ## Images and Icons
 
+A write-up of our Icon solution is available at: [http://ianfeather.co.uk/ten-reasons-we-switched-from-an-icon-font-to-svg/](http://ianfeather.co.uk/ten-reasons-we-switched-from-an-icon-font-to-svg/).
 
 The icons are built by a grunt task, `grunt icon`, which uses the Filament Group's [grunticon plugin](https://github.com/filamentgroup/grunticon). To add a new icon to the build step, simply copy the svg file into `rizzo/app/assets/images/icons/active`.
 
 The easiest way to copy multiple files into the `active` directory (supposing you have access to this folder in Dropbox) is by modifying and using the following rsync command:
 
-````bash
+````
 $ rsync -vr --delete ~/Dropbox/LP\ Patterns/Icons/svg/*.svg ~/projects/rizzo/app/assets/images/icons/active/
 ````
 
@@ -149,6 +144,7 @@ You only need to run `grunt icon` if you are building new icons. All current ico
 
 - Always work in a branch
 - Rebase into your own branch from master (as long as it is only you working on that branch, otherwise merge)
+- Squash your commits into meaningful and (release|revert)able chunks
 - Merge with --no-ff back into master when it has been code reviewed (or merge through github).
 - Use git pull --rebase to avoid commits like this:
 
@@ -286,21 +282,17 @@ For example:
 
 * End files with no more and no less than 1 newline
 
-* The [.editorconfig](https://github.com/lonelyplanet/rizzo/blob/06b2c761b56184901d7a2341f6a872a541e7dee7/.editorconfig) will take care of the above for you
+* The [.editorconfig](https://github.com/lonelyplanet/rizzo/commit/8fb812c705c1a88135fed35074a5eddf1a359553) will take care of the above for you
 
-#### 2. Syntax
+#### 2. Language and appearence
 
 * Stick to double quotes
 
-* Spaces are encouraged, to improve readability
-   
-    ```javascript
-    if ( true ) {
-      this;
-    } else {
-      that;
-    }
-    ```
+* Please don't use comma first
+
+* Try to avoid single character variable names, words are easier to read and we have installed programs to minify code
+
+* Name collections (arrays, objects, sets, maps) in plural, ie: `badger` is a thing, `badgers` is a collection of `badger`s
 
 * Declare variables at the top of their scope:
 
@@ -316,31 +308,38 @@ For example:
 * Use strict as the first line inside your require function
 
     ```javascript
-    require("website", function( website ) {
+    require([
+      "website"
+    ], function(website) {
+
       "use strict";
+
       website.respond();
       website.enhance({ method: "progressive" });
     });
     ```
    
-* No space before paren in function decl, but spaces within:
+* No space before paren in function declaration :<
   
     ```javascript
-    function getDressed( hat, suit, scarf, cane ) {
+    function getDressed(hat, suit, scarf, cane) {
       // statements, innit
     }
-    var antelope = function( colour ) {
+    var antelope = function(colour) {
       // . . .
     }
     ```
 
-#### 3. Typechecking
+* When listing `require`ments, put each module name on a new line, as so:
 
-* In [this](http://contribute.jquery.org/style-guide/js/#type-checks) style, ten and sixpence.
+    ```javascript
+    require([
+      "lib/godliness"
+      "lib/cleanliness"
+    ], function(Godliness, Cleanliness) {
+    ```
 
-#### 4. Language
-
-* Use camelCase for method and variable names.
+* We like to use camelCase for method and variable names.
 
     `twistAgainLikeWeDidLastSummer()`
  
@@ -348,45 +347,73 @@ For example:
 
     `rock_around_the_clock()`
 
-* Try to avoid single character variable names, words are easier to read and we can leave minification to a minifier
-
-* Don't use comma first
-
-* Name collections (arrays, objects, sets, maps) in plural, ie: `badger` is a thing, `badgers` is a collection of things
-
-* test for truthiness:
+* Use truthiness to your advantage:
 
     ```javascript
-    if ( collection.length ) ...
-    if ( string ) ...
-    if ( truthyThing )
+    if (collection.length) ...
+    if (string) ...
+    if (truthyThing)
     ```
  
     __not__
 
     ```javascript
-    if ( collection.length > 0 ) ...
-    if ( string !== "" )
-    if ( truthyThing === true )
+    if (collection.length > 0) ...
+    if (string !== "")
+    if (truthyThing === true)
     ```
 
-* Put comments before the line or block they are about. Never use eol comments
+* Put comments before the line or block they are about. Don't use eol comments
  
     ```javascript
-    // sanitizes animals for collection by spooks
-    var animalSanitizer = function( animal ) {
+    // sanitize animals for collection by spooks
+    var animalSanitizer = function(animal) {
       animal.cut(animal.hair).shampoo().rinse();
     }
     ```
  
-    __never__
+    __not__
  
     ```javascript
-    var animalSanitizer = function( animal ) {
+    var animalSanitizer = function(animal) {
       animal.cut(animal.hair).shampoo().rinse(); // sanitizes animals for collection by spooks
     }
     ```
 
-* Try to use a function expression unless a function declaration [is necessary](http://javascriptweblog.wordpress.com/2010/07/06/function-declarations-vs-function-expressions/)
 
-whitespace
+The [.jshintrc](https://github.com/lonelyplanet/rizzo/blob/195a0ae5b47b315f4a5a7495316730b74bb1efe2/.jshintrc) and [.jsrc.json](https://github.com/lonelyplanet/rizzo/blob/195a0ae5b47b315f4a5a7495316730b74bb1efe2/.jscs.json) will gently scold you into most of the above.
+
+#### 3. Typechecking
+
+###### String
+
+```javascript
+typeof thing == "string"
+``` 
+###### Number
+
+```javascript
+typeof thing == "number"
+```
+###### Boolean
+
+```javascript
+typeof thing == "boolean"
+```
+
+###### Function
+
+```javascript
+typeof jQuery.isFunction(thing)
+```
+###### Element
+
+```javascript
+object.nodeType
+```
+
+###### null/undefined
+
+```javascript
+thing == null
+```
