@@ -39,17 +39,17 @@ module GlobalResourcesHelper
         uri: 'http://www.lonelyplanet.com/interests',
         icon_class: 'icon--place--pin--line--before icon--white--before',
         submenu: [
-          {title:'Adventure travel', uri:'http://www.lonelyplanet.com/adventure-travel'},
-          {title:'Beaches', uri:'http://www.lonelyplanet.com/beaches'},
-          {title:'Budget travel', uri:'http://www.lonelyplanet.com/budget-travel'},
-          {title:'Coasts and islands', uri:'http://www.lonelyplanet.com/coasts-and-islands'},
-          {title:'Family travel', uri:'http://www.lonelyplanet.com/family-travel'},
-          {title:'Festivals and events', uri:'http://www.lonelyplanet.com/festivals-and-events'},
-          {title:'Food and drink', uri:'http://www.lonelyplanet.com/food-and-drink'},
-          {title:'Honeymoons and romance', uri:'http://www.lonelyplanet.com/honeymoons-and-romance'},
-          {title:'Luxury travel', uri:'http://www.lonelyplanet.com/luxury-travel'},
-          {title:'Round the world travel', uri:'http://www.lonelyplanet.com/round-the-world-travel'},
-          {title:'Wildlife and nature', uri:'http://www.lonelyplanet.com/wildlife-and-nature'}
+          {title:'Adventure travel', uri:'http://www.lonelyplanet.com/adventure-travel', icon_class: 'icon--adventure-travel--before'},
+          {title:'Beaches', uri:'http://www.lonelyplanet.com/beaches', icon_class: 'icon--beaches--before'},
+          {title:'Budget travel', uri:'http://www.lonelyplanet.com/budget-travel', icon_class: 'icon--budget-travel--before'},
+          {title:'Coasts and islands', uri:'http://www.lonelyplanet.com/coasts-and-islands', icon_class: 'icon--coasts-and-islands--before'},
+          {title:'Family travel', uri:'http://www.lonelyplanet.com/family-travel', icon_class: 'icon--family-travel--before'},
+          {title:'Festivals and events', uri:'http://www.lonelyplanet.com/festivals-and-events', icon_class: 'icon--festivals-and-events--before'},
+          {title:'Food and drink', uri:'http://www.lonelyplanet.com/food-and-drink', icon_class: 'icon--food-and-drink--before'},
+          {title:'Honeymoons and romance', uri:'http://www.lonelyplanet.com/honeymoons-and-romance', icon_class: 'icon--honeymoons-and-romance--before'},
+          {title:'Luxury travel', uri:'http://www.lonelyplanet.com/luxury-travel', icon_class: 'icon--luxury-travel--before'},
+          {title:'Round the world travel', uri:'http://www.lonelyplanet.com/round-the-world-travel', icon_class: 'icon--round-the-world-travel--before'},
+          {title:'Wildlife and nature', uri:'http://www.lonelyplanet.com/wildlife-and-nature', icon_class: 'icon--wildlife-and-nature--before'}
         ]
       },
       {title:'Shop', uri: "http://shop.lonelyplanet.com", icon_class: "icon--shop-basket--line--before icon--white--before"},
