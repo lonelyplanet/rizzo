@@ -33,8 +33,6 @@ define([
   // Private
 
   POIMap.prototype._init = function() {
-    this.$el.addClass("is-closed");
-
     this.$placeholder
       .on("click.poi", this._mouseClickHandler.bind(this))
       .on("mousemove.preload", this._mouseMoveHandler.bind(this))

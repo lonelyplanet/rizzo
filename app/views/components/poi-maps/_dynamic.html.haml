@@ -13,7 +13,7 @@
 
   attrs.merge!(properties) if defined? properties
 
-.poi-map.poi-map--dynamic.js-poi-map
+.poi-map.poi-map--dynamic.js-poi-map.is-closed
   %a.poi-map__toggle.js-poi-map-placeholder{ rel: "map", href: "https://www.google.co.uk/maps/place/#{attrs[:latitude]},#{attrs[:longitude]}/" }
     = render :partial => '/components/poi-maps/partials/img', :locals => { properties: attrs }
   = render :partial => '/components/poi-maps/partials/map', :locals => { properties: attrs }
