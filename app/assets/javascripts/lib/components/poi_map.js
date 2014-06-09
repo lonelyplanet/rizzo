@@ -76,6 +76,7 @@ define([
   };
 
   POIMap.prototype._build = function() {
+
     var options = this._googleMapsOptions();
 
     this.gmap = new window.google.maps.Map(this.$container.get(0), options);
@@ -103,8 +104,6 @@ define([
 
     this.toggle();
   };
-
-  // Public
 
   POIMap.prototype.toggle = function() {
     if (window.google && window.google.maps) {

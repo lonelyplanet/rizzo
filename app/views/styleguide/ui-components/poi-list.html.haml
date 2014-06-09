@@ -1,0 +1,12 @@
+= render 'styleguide/partials/shared'
+
+- require "ostruct"
+- maps = YAML.load(File.read(File.expand_path('../../../../data/styleguide/poi_list_stubs.yml', __FILE__)))
+
+.card.styleguide-intro.copy--body.context--content
+  %h1.copy--h1 POI Maps
+  %p
+    POI List
+
+- maps.each_with_index do |map, i|
+  = sg_component("poi-maps/#{map[:styleguide_title].downcase.split(' ').first}", properties: map, count: i, card_style: true, full_width: true)

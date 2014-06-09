@@ -165,7 +165,7 @@ class StyleguideController < GlobalController
   def adUnits
     render '/styleguide/ui-components/ad-units'
   end
-  
+
   def asset_reveal
     render '/styleguide/js-components/asset-reveal'
   end
@@ -220,6 +220,10 @@ class StyleguideController < GlobalController
 
   def poiMaps
     render '/styleguide/ui-components/poi-maps'
+  end
+
+  def poiList
+    render '/styleguide/ui-components/poi-list'
   end
 
   #===== yeoman hook =====#

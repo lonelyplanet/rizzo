@@ -12,9 +12,12 @@
   }
 
   attrs.merge!(properties) if defined? properties
+  attrs[:pois] = attrs[:pois].to_json
 
 .poi-map.poi-map--dynamic.js-poi-map.is-closed
   %a.poi-map__toggle.js-poi-map-placeholder{ rel: "map", href: "https://www.google.co.uk/maps/place/#{attrs[:latitude]},#{attrs[:longitude]}/" }
     = render :partial => '/components/poi-maps/partials/img', :locals => { properties: attrs }
   = render :partial => '/components/poi-maps/partials/map', :locals => { properties: attrs }
+  - if properties[:pois]
+    = render :partial => '/components/poi-maps/partials/poi-list', :locals => { pois: properties[:pois] }
   = render :partial => '/components/preloader'

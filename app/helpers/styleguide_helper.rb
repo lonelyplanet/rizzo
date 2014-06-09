@@ -302,6 +302,10 @@ module StyleguideHelper
             {
               name: "POI Maps",
               slug: "poi-maps"
+            },
+            {
+              name: "POI List",
+              slug: "poi-list"
             }
           ]
         },
