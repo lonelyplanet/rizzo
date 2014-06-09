@@ -11,6 +11,8 @@ define([ "jquery", "lib/utils/template", "lib/components/tabs", "lib/core/timeag
   var defaults = {
     feedUrl: "https://www.lonelyplanet.com/thorntree/users/feed",
     feedSelector: ".js-user-feed",
+    feedItemSelector: ".js-user-feed-item",
+    targetLinkSelector: ".js-user-feed-item-target-link",
     activitiesSelector: "#js-user-feed-activities",
     messagesSelector: "#js-user-feed-messages",
     unreadFeedNumberSelector: ".js-unread-feed-number",
@@ -47,6 +49,13 @@ define([ "jquery", "lib/utils/template", "lib/components/tabs", "lib/core/timeag
   // Private Functions
   // -------------------------------------------------------------------------
 
+  UserFeed.prototype._bindLinks = function() {
+    var _this = this;
+    $(this.config.feedSelector + " " + this.config.feedItemSelector).off("click").on("click", function() {
+      window.location.href = $(this).find(_this.config.targetLinkSelector).attr("href");
+    });
+  };
+
   UserFeed.prototype._updateUnreadFeedIndicator = function(newFeedItemsNumber) {
     if (newFeedItemsNumber > 0) {
       this.$unreadFeedIndicator.text(newFeedItemsNumber).removeClass("is-hidden");
@@ -68,6 +77,9 @@ define([ "jquery", "lib/utils/template", "lib/components/tabs", "lib/core/timeag
 
     // Update activities list
     this.$activities.html(activitiesHtml);
+
+    // Bind target links to whole item
+    this._bindLinks();
 
     // Highlight new activities
     this.$activities
@@ -92,6 +104,9 @@ define([ "jquery", "lib/utils/template", "lib/components/tabs", "lib/core/timeag
 
     // Update messages list
     this.$messages.html(messagesHtml);
+
+    // Bind target links to whole item
+    this._bindLinks();
 
     // Highlight new messages
     this.$messages
