@@ -22,7 +22,7 @@
   width: 28px
 
 .nav__submenu--user
-  width: 300px
+  width: 320px
   right: 0
   left: auto
   .responsive &
@@ -34,18 +34,21 @@
 .nav__submenu__content--user
   background-color: #fff
   &:after
-    left: 268px
+    left: 288px
+
+.nav__submenu__title--user-name,
+.nav__submenu__title--user-email
+  padding: 0 15px 5px 15px
 
 .nav__submenu__title--user-name
-  +font-size(18)
-  padding-bottom: 5px
+  +font-size(22)
+  padding-top: 18px
   color: $titlegray
   .icon--settings
-    +size(30px)
+    +size(28px)
 
 .nav__submenu__title--user-email
-  +font-size(16)
-  padding-top: 0
+  +font-size(17)
   color: $titlegray
   font-weight: normal
 
@@ -62,28 +65,31 @@
   top: 12px
 
 .nav__submenu__item--user-buttons
+  padding: 10px 15px 20px 15px
   .btn
     +font-size(13)
+    line-height: 13px
     text-transform: uppercase
+    padding: 9px 0 8px 0
   .btn--subtle
-    padding: 5px 25px
+    padding: 8px 0 7px 0
 
 .nav__submenu__feed__toggle-buttons
   border-top: 1px solid $body-background
   padding: 0
   text-align: center
   .btn--feed-toggle
-    +font-size(14)
+    +font-size(15)
     +size(100%)
     display: inline-block
     vertical-align: bottom
     color: $grey-highlight
     border-radius: 0
-    padding: 10px 0
+    padding: 18px 0 10px 0
     border-bottom: 2px solid $body-background
     &:hover, 
     &.is-active
-      color: $linkblue
+      color: $titlegray
       border-bottom: 2px solid $linkblue
 
 .nav__submenu__feed__unread-number
@@ -103,18 +109,28 @@
     color: $titlegray
     font-weight: normal
     &.highlighted
-      background: $card-figure-bg
+      background: transparentize($linkblue, 0.97)
+    &:hover
+      background: transparentize($linkblue, 0.9)
     &:first-of-type
       border: 0
     &, &:first-of-type
-      padding: 10px 10px 30px 10px
+      padding: 15px 55px 30px 15px
+      min-height: 20px
+    .activity-list__activity-content
+      display: block
+      padding-bottom: 5px
     .activity-list__time
       position: absolute
-      margin: 0 0 10px 10px
+      margin: 0 0 15px 15px
       bottom: 0
       left: 0
+    .activity-list__link
+      color: $titlegray
   .user-info__avatar
-    float: right
+    position: absolute
+    margin: 0
+    right: 15px
     &, & img
       +size(35px)
 
