@@ -24,6 +24,15 @@ define([ "jquery", "lib/utils/template", "lib/components/tabs", "lib/core/timeag
   },
 
   UserFeed = function() {
+    this.construct();
+    this.init();
+  };
+
+  // ------------------------------------------------------------------------------
+  // Initialise
+  // ------------------------------------------------------------------------------
+
+  UserFeed.prototype.construct = function() {
     this.config = defaults;
     this.$activities = $(this.config.activitiesSelector);
     this.$messages = $(this.config.messagesSelector);
@@ -32,16 +41,10 @@ define([ "jquery", "lib/utils/template", "lib/components/tabs", "lib/core/timeag
     this.$unreadFeedIndicator = $(this.config.unreadFeedNumberSelector);
     this.oldActivities;
     this.highlightedActivitiesNumber = 0;
-
-    this.init();
   };
 
-  // ------------------------------------------------------------------------------
-  // Initialise
-  // ------------------------------------------------------------------------------
-
   UserFeed.prototype.init = function() {
-    new Tabs({ selector: this.config.feedSelector });
+    this._tabsInstance = new Tabs({ selector: this.config.feedSelector });
     this._fetchFeed();
   };
 
