@@ -13,14 +13,10 @@
     top: 0
     left: 0
     line-height: 20px
-  &:hover
+  &:hover, &.is-selected
     background-color: $body-background-offset
 
 .nearby-pois__poi__description
   +font-size(14)
   p:last-child
     margin-bottom: 0
-
-.nearby-pois__poi--highlighted
-  &, &:hover
-    background-color: $body-background-offset

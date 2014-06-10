@@ -101,7 +101,7 @@ define([
   };
 
   POIList.prototype._resetSelectedPOI = function() {
-    this.$el.find(".nearby-pois__poi--highlighted").removeClass("nearby-pois__poi--highlighted");
+    this.$el.find(".is-selected").removeClass("is-selected");
     for (var i = 0, len = poisMarkers.length; i < len; i++){
       poisMarkers[ i ].setIcon(this._getIcon( poisData[ i ].topic, "small" ));
     }
@@ -114,7 +114,7 @@ define([
 
     this._resetSelectedPOI();
 
-    $poiItem.addClass("nearby-pois__poi--highlighted");
+    $poiItem.addClass("is-selected");
     poiMarker.setIcon( this._getIcon( poiData.topic, "large" ) );
     poiMap.gmap.setCenter( poiMarker.getPosition() );
     poiMap.gmap.panBy( poiMap.$container.width() / 6, 0 );
