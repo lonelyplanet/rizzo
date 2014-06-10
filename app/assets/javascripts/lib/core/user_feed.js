@@ -95,13 +95,17 @@ define([ "jquery", "lib/utils/template", "lib/components/tabs", "lib/core/timeag
   };
 
   UserFeed.prototype._createUserMessages = function(feedMessages, newMessagesNumber) {
-    var _this = this,
-        messagesHtml = "",
+    var messagesHtml = "",
         i = 0;
 
     // Concatenate messages
     while ((i < feedMessages.length) && (i < this.config.maxFeedActivities)) {
-      messagesHtml += feedMessages[i].text;
+      if (!feedMessages[i]["read?"]) {
+        // Add highlight class if message has unread flag
+        messagesHtml += $(feedMessages[i].text).addClass(this.config.newFeedHighlightClass)[0].outerHTML;
+      } else {
+        messagesHtml += feedMessages[i].text;
+      }
       i++;
     }
 
@@ -110,12 +114,6 @@ define([ "jquery", "lib/utils/template", "lib/components/tabs", "lib/core/timeag
 
     // Bind target links to whole item
     this._bindLinks();
-
-    // Highlight new messages
-    this.$messages
-      .children()
-      .slice(0, newMessagesNumber)
-      .addClass(_this.config.newFeedHighlightClass);
 
     // Update new messages number
     this.$unreadMessagesIndicator.text(newMessagesNumber);
