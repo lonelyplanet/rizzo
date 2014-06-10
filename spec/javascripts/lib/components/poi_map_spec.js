@@ -13,7 +13,9 @@ require([ "jquery", "public/assets/javascripts/lib/components/poi_map.js" ], fun
 
       mockAPI = jasmine.createSpyObj("Google Maps", [ "Map", "LatLng", "Marker" ]);
 
-      spyOn(instance, "_googleMapsOptions").andReturn(null);
+      spyOn(instance, "_googleMapsOptions").andReturn({
+        center: null
+      });
     });
 
     afterEach(function() {
@@ -54,6 +56,10 @@ require([ "jquery", "public/assets/javascripts/lib/components/poi_map.js" ], fun
         expect(instance.$el).not.toHaveClass("is-loading");
         expect(instance.$el).toHaveClass("is-open");
         expect(window.mapsCallback).not.toBeDefined();
+        expect(mockAPI.Marker).toHaveBeenCalledWith({
+          position: null,
+          map: instance.gmap
+        });
       });
 
     });

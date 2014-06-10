@@ -76,7 +76,14 @@ define([
   };
 
   POIMap.prototype._build = function() {
-    this.gmap = new window.google.maps.Map(this.$container.get(0), this._googleMapsOptions());
+    var options = this._googleMapsOptions();
+
+    this.gmap = new window.google.maps.Map(this.$container.get(0), options);
+
+    this.marker = new window.google.maps.Marker({
+      position: options.center,
+      map: this.gmap
+    });
 
     this.$el.removeClass("is-loading");
   };
