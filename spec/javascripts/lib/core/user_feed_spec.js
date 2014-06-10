@@ -1,4 +1,4 @@
-require([ "jquery", "public/assets/javascripts/lib/core/user_feed", "lib/components/tabs", ], function ($, UserFeed, Tabs) {
+require([ "jquery", "public/assets/javascripts/lib/core/user_feed", "public/assets/javascripts/lib/components/tabs", ], function ($, UserFeed, Tabs) {
 
   "use strict";
 
