@@ -18,7 +18,7 @@ define([
   var LightBox = function(args) {
     this.customClass = args.customClass;
     this.$el = $(args.$el || "#js-row--content");
-    this.$opener = $(args.$opener || ".js-lightbox-toggle");
+    this.$opener = $(args.opener || ".js-lightbox-toggle");
     this.showPreloader = args.showPreloader || false;
 
     this.$lightbox = $("#js-lightbox");

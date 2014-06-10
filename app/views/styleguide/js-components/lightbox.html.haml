@@ -7,6 +7,8 @@
     %p
       %a.btn.btn--icon.icon--sight--before.icon--white--before.js-lightbox-toggle.sg-lightbox-toggle{ href: "#" } Example lightbox
 
+      %a.btn.btn--icon.icon--sight--before.icon--white--before.js-custom--class.sg-lightbox-toggle{ href: "#" } .js-custom--class Example
+
 .styleguide-block.styleguide-block__description.card.copy--body
 
   %h2.copy--h2.styleguide-block__heading
@@ -24,10 +26,17 @@
 
   %p Note: The component will self instantiate if that class exists on the page, but you can still fire up your own by running:
 
+.styleguide-block.styleguide-block__description.card.copy--body
+
+  %h2.copy--h2.styleguide-block__heading
+    Initiating using custom class
   %pre.styleguide.copy--body.language-javascript
     %code
       :escaped
-        new LightBox({ opener: ".js-other-lightbox-opener" });
+        new LightBox({ opener: ".js-custom--class" });
+        $(".js-custom--class").on("click", function( ) {
+          $("#js-row--content").trigger( ":lightbox/renderContent", "<img src='http://bit.ly/1keZULz' height='600' width='800' />" );
+        });
 
 .styleguide-block.styleguide-block__description.card.copy--body
 
@@ -54,16 +63,18 @@
   %h2.copy--h2.styleguide-block__heading
     Updating the content
   %p
-    You can update the content with HTML directly triggering the 
+    You can update the content with HTML directly triggering the
     %code
       ":lightbox/renderContent"
-    event. Also, you can fetch content from remote triggering the event
-    %code
-      ":lightbox/fetchContent"
-    with the url where you want to load the content
+    event.
+    // TODO: lightbox/fetchContent does not work removed from docs
+    / Also, you can fetch content from remote triggering the event
+    /   %code
+    /   ":lightbox/fetchContent"
+    /   with the url where you want to load the content
 
   %p
-    These events can be triggered in the 
+    These events can be triggered in the
     %code
       ":lightbox/open"
     event, that you can capture
@@ -71,15 +82,15 @@
   %pre.styleguide.copy--body.language-javascript
     %code
       :escaped
-        $("#js-row--content").on(":lightbox/open", function( ) { 
+        $("#js-row--content").on(":lightbox/open", function( ) {
           $("#js-row--content").trigger( ":lightbox/renderContent", "<img src='http://assets.staticlp.com/assets/rizzo-sloth-404.jpg' height='600' width='800' />" );
         });
+  // TODO: lightbox/fetchContent does not work removed from docs
+  /%pre.styleguide.copy--body.language-javascript
+  /  %code
+  /    :escaped
+  /      $("#js-row--content").on(":lightbox/open", function( ) {
+  /        $("#js-row--content").trigger( ":lightbox/fetchContent", "http://www.lonelyplanet.com/..." );
+  /      });
 
-  %pre.styleguide.copy--body.language-javascript
-    %code
-      :escaped
-        $("#js-row--content").on(":lightbox/open", function( ) {
-          $("#js-row--content").trigger( ":lightbox/fetchContent", "http://www.lonelyplanet.com/..." );
-        });
-
-  %p Note that this will need to happen where it's being implemented (after an ajax call for example).
+  /%p Note that this will need to happen where it's being implemented (after an ajax call for example).
