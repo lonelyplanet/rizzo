@@ -631,5 +631,6 @@ require([ "jquery", "public/assets/javascripts/lib/core/user_feed", "public/asse
 
     });
 
-});
+  });
+
 });
