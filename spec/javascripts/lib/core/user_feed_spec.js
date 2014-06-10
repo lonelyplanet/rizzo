@@ -60,7 +60,7 @@ require([ "jquery", "public/assets/javascripts/lib/core/user_feed", "public/asse
 
         it("should set '.config' to 'defaults'", function () {
           expect(fakeInstance.config).toEqual({
-            feedUrl: "/users/feed",
+            feedUrl: "https://www.lonelyplanet.com/thorntree/users/feed",
             feedSelector: ".js-user-feed",
             feedItemSelector: ".js-user-feed-item",
             targetLinkSelector: ".js-user-feed-item-target-link",
