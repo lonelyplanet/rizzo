@@ -17,31 +17,3 @@
   :height: 240
   :latitude: 47.5204612612298
   :longitude: 19.0831553936005
-  :pois:
-    -
-      :description: 'This Luna Park on 2.5 hectares dates back to the mid-19th century. A total 38 rides include the heart-stopping Ikarus Space Needle, a...'
-      :location-latitude: 47.5204612612298
-      :location-longitude: 19.0831553936005
-      :name: "Budapest Amusement Park"
-      :slug: "hungary/budapest/activities/theme-parks-attractions/budapest-amusement-park"
-      :topic: "activity"
-    -
-      :description: 'This huge zoo, which opened with 500 animals in 1866, considers itself a nature reserve and has an excellent collection of big cats,...'
-      :location-latitude: 47.5195644205131
-      :location-longitude: 19.0792689675369
-      :name: "Budapest Zoo"
-      :slug: "hungary/budapest/sights/nature-wildlife/budapest-zoo"
-      :topic: "sight"
-    -
-      :location-latitude: 47.515637
-      :location-longitude: 19.082775
-      :name: "Ják Chapel"
-      :slug: "hungary/budapest/sights/other/jak-chapel"
-      :topic: "sight"
-    -
-      :description: "Europe’s only permanent big top has everything one would expect from a circus, including acrobats, daredevils on horseback and ice shows..."
-      :location-latitude: 47.519577947565
-      :location-longitude: 19.0811360677533
-      :name: "Municipal Great Circus"
-      :slug: "hungary/budapest/entertainment-nightlife/other/municipal-great-circus"
-      :topic: "entertainment"

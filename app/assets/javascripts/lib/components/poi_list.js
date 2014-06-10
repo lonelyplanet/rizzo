@@ -7,7 +7,9 @@ define([
   "use strict";
 
   var poiMap,
-      poisMarkers = [];
+      poisMarkers = [],
+      poisData = [],
+      iterator;
 
   function POIList( args ) {
     var defaults = {
@@ -36,7 +38,7 @@ define([
 
     this.$el = $(this.config.el);
     this.$pois = this.$el.find( this.config.pois );
-    this._listen();
+    setTimeout(this._listen.bind(this), 200);
 
   };
 
@@ -63,33 +65,58 @@ define([
 
   };
 
-  POIList.prototype._addPois = function( e, pois ) {
-    var iterator = 0,
-        createMarker;
-    pois = pois || poiMap.$container.data().pois;
+  POIList.prototype._addPois = function( event, pois ) {
+    iterator = 0;
+    poisData = pois || poiMap.$container.data().pois;
 
-    createMarker = function() {
-      poisMarkers.push( new window.google.maps.Marker({
-        icon: this._getIcon(pois[ iterator ].topic, "small"),
-        animation: window.google.maps.Animation.DROP,
-        position: new window.google.maps.LatLng( pois[iterator]["location-latitude"], pois[iterator]["location-longitude"] ),
-        map: poiMap.gmap
-      }));
-      iterator += 1;
-    }.bind(this);
-
-    for ( var i = 0; i < pois.length; i++ ){
-      setTimeout(createMarker, (i + 1) + 150);
+    for ( var i = 0, len = poisData.length; i < len; i++ ){
+      setTimeout(this._createMarker.bind(this), 150);
     }
   };
 
-  POIList.prototype._listen = function() {
-    this.$pois.on("click", this._selectPOI.bind(this));
+  POIList.prototype._createMarker = function() {
+    var marker = new window.google.maps.Marker({
+      icon: this._getIcon( poisData[ iterator ].topic, "small" ),
+      animation: window.google.maps.Animation.DROP,
+      position: new window.google.maps.LatLng(
+                  poisData[ iterator ]["location-latitude"],
+                  poisData[ iterator ]["location-longitude"] ),
+      map: poiMap.gmap
+    });
+
+    poisMarkers.push( marker );
+    iterator += 1;
   };
 
-  POIList.prototype._selectPOI = function( event ) {
-    var index = $(event.target).closest("li").index();
-    poiMap.gmap.setCenter( poisMarkers[ index ].getPosition() );
+  POIList.prototype._listen = function() {
+
+    this.$pois.on("click", function(event) {
+      this._selectPOI( $(event.target).closest("li").index() );
+    }.bind(this));
+
+    for (var i = 0, len = poisMarkers.length; i < len; i++){
+      window.google.maps.event.addListener(poisMarkers[i], "click", this._selectPOI.bind(this, i));
+    }
+
+  };
+
+  POIList.prototype._resetSelectedPOI = function() {
+    this.$el.find(".nearby-pois__poi--highlighted").removeClass("nearby-pois__poi--highlighted");
+    for (var i = 0, len = poisMarkers.length; i < len; i++){
+      poisMarkers[ i ].setIcon(this._getIcon( poisData[ i ].topic, "small" ));
+    }
+  };
+
+  POIList.prototype._selectPOI = function( poiIndex ) {
+    var $poiItem = this.$el.find("[data-slug='" + poisData[ poiIndex ].slug + "']"),
+        poiData = poisData[ poiIndex ],
+        poiMarker = poisMarkers[ poiIndex ];
+
+    this._resetSelectedPOI();
+
+    $poiItem.addClass("nearby-pois__poi--highlighted");
+    poiMarker.setIcon( this._getIcon( poiData.topic, "large" ) );
+    poiMap.gmap.setCenter( poiMarker.getPosition() );
     poiMap.gmap.panBy( poiMap.$container.width() / 6, 0 );
   };
 

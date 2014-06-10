@@ -3,8 +3,8 @@
   :alt: "A map showing the centre of London"
   :zoom: 15
   :scale: 2
-  :width: 320
-  :height: 240
+  :width: 800
+  :height: 400
   :latitude: 47.5204612612298
   :longitude: 19.0831553936005
   :pois:
