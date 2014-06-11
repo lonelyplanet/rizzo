@@ -117,7 +117,7 @@ require([ "jquery", "public/assets/javascripts/lib/core/authenticator" ], functi
       });
 
       it("shows the number of unread messages in the responsive menu", function() {
-        expect($(".js-unread-messages:visible").text()).toBe("5");
+        expect($(".js-responsive-unread-messages:visible").text().trim()).toBe("(5)");
       });
 
     });
