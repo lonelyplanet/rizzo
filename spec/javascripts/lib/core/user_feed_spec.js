@@ -150,7 +150,7 @@ require([ "jquery", "public/assets/javascripts/lib/core/user_feed", "public/asse
 
         // check if any instance of Tabs was assigned to a variable
         it("should call 'new Tabs()' and assign instance to 'this._tabsInstance'", function () {
-          expect(fakeInstance._tabsInstance).toEqual(jasmine.any(Tabs));
+          expect(fakeInstance._tabsInstance.constructor.name).toBe('Tabs');
         });
       });
     });
@@ -386,11 +386,26 @@ require([ "jquery", "public/assets/javascripts/lib/core/user_feed", "public/asse
 
         beforeEach(function () {
           feedMessages = [
-            {text: 'a-'},
-            {text: 'b-'},
-            {text: 'c-'},
-            {text: 'd-'},
-            {text: 'e-'}
+            {
+              text: '<a/>',
+              'read?': false
+            },
+            {
+              text: 'b-',
+              'read?': true
+            },
+            {
+              text: 'c-',
+              'read?': true
+            },
+            {
+              text: 'd-',
+              'read?': true
+            },
+            {
+              text: 'e-',
+              'read?': true
+            }
           ];
 
           newMessagesNumber = 10;
@@ -401,14 +416,7 @@ require([ "jquery", "public/assets/javascripts/lib/core/user_feed", "public/asse
           };
 
           userFeed.$messages = { // here acts as holder for almost all used jQuery methods
-            html: jasmine.createSpy('html'),
-            addClass: jasmine.createSpy('addClass'),
-            children: jasmine.createSpy('children').andCallFake(function () {
-              return userFeed.$messages;
-            }),
-            slice: jasmine.createSpy('slice').andCallFake(function () {
-              return userFeed.$messages;
-            })
+            html: jasmine.createSpy('html')
           };
 
           userFeed.$unreadMessagesIndicator = {
@@ -425,19 +433,10 @@ require([ "jquery", "public/assets/javascripts/lib/core/user_feed", "public/asse
         });
 
         it("should call 'this.$messages.html( [proper String] )'", function () {
-          expect(userFeed.$messages.html).toHaveBeenCalledWith('a-b-c-d-');
-        });
-
-        it("should call 'this.$messages.children()'", function () {
-          expect(userFeed.$messages.children).toHaveBeenCalled();
-        });
-
-        it("should call 'this.$messages.children().slice( [proper args] )'", function () {
-          expect(userFeed.$messages.slice).toHaveBeenCalledWith(0, newMessagesNumber);
-        });
-
-        it("should call 'this.$messages.children().slice().addClass( [proper String ] )'", function () {
-          expect(userFeed.$messages.addClass).toHaveBeenCalledWith(userFeed.config.newFeedHighlightClass);
+          expect(userFeed.$messages.html).toHaveBeenCalledWith(
+            $('<a/>').addClass(userFeed.config.newFeedHighlightClass)[0].outerHTML +
+            'b-c-d-'
+          );
         });
 
         it("should call 'this.$unreadMessagesIndicator.text( [proper Number ] )'", function () {
@@ -521,7 +520,7 @@ require([ "jquery", "public/assets/javascripts/lib/core/user_feed", "public/asse
 
         it("should call function returned from 'userFeed._fetchFeed.bind(this)' after 'userFeed.config.fetchInterval' timeout", function () {
           expect(timedoutFetch).not.toHaveBeenCalled();
-          jasmine.clock().tick(userFeed.config.fetchInterval + 1001);
+          jasmine.Clock.tick(userFeed.config.fetchInterval + 1001);
           expect(timedoutFetch).toHaveBeenCalled();
         });
       });
@@ -620,10 +619,8 @@ require([ "jquery", "public/assets/javascripts/lib/core/user_feed", "public/asse
         });
 
         it("should call 'this._updateFeed.bind()' with 'this' as only arg", function () {
-          expect(userFeed._updateFeed.bind.calls).toEqual([
-            [userFeed],
-            [userFeed]
-          ]);
+          expect(userFeed._updateFeed.bind.calls[0].args).toEqual([userFeed]);
+          expect(userFeed._updateFeed.bind.calls[1].args).toEqual([userFeed]);
         });
 
       });
