@@ -2,16 +2,19 @@ define([
   "jquery",
   "lib/components/poi_map",
   "lib/components/map_styles",
+  "polyfills/function_bind"
 ], function($, POIMap, MapStyles) {
 
   "use strict";
 
   var poiMap,
-      poisMarkers = [],
-      poisData = [],
+      poisData,
+      poisMarkers,
       iterator;
 
   function POIList( args ) {
+    poisMarkers = poisData = [];
+
     var defaults = {
       poiMap: null,
       el: ".js-poi-list",
@@ -70,7 +73,7 @@ define([
     poisData = pois || poiMap.$container.data().pois;
 
     for ( var i = 0, len = poisData.length; i < len; i++ ){
-      setTimeout(this._createMarker.bind(this), 150);
+      setTimeout(this._createMarker.bind(this), ((i + 1) * 150));
     }
   };
 
