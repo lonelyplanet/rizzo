@@ -189,7 +189,7 @@ require([ "jquery", "public/assets/javascripts/lib/core/user_feed", "public/asse
           };
 
           spyOn($.fn, "on");
-          spyOn($.fn, "off").and.callThrough();
+          spyOn($.fn, "off").andCallThrough();
 
           userFeed._bindLinks();
         });
@@ -222,7 +222,7 @@ require([ "jquery", "public/assets/javascripts/lib/core/user_feed", "public/asse
         // add fake '$unreadFeedIndicator' field
         // used by tested method
         userFeed.$unreadFeedIndicator = {
-          text: jasmine.createSpy('text').and.callFake(function () {
+          text: jasmine.createSpy('text').andCallFake(function () {
             // return '$unreadFeedIndicator' because it's
             // connected with another jQuery method
             return userFeed.$unreadFeedIndicator;
@@ -234,9 +234,9 @@ require([ "jquery", "public/assets/javascripts/lib/core/user_feed", "public/asse
 
       afterEach(function () {
         // reset spies to 'notHaveBeenCalled'
-        userFeed.$unreadFeedIndicator.text.calls.reset();
-        userFeed.$unreadFeedIndicator.removeClass.calls.reset();
-        userFeed.$unreadFeedIndicator.addClass.calls.reset();
+        userFeed.$unreadFeedIndicator.text.reset();
+        userFeed.$unreadFeedIndicator.removeClass.reset();
+        userFeed.$unreadFeedIndicator.addClass.reset();
       });
 
       it("should be defined", function () {
@@ -318,10 +318,10 @@ require([ "jquery", "public/assets/javascripts/lib/core/user_feed", "public/asse
           userFeed.$activities = {
             html: jasmine.createSpy('html'),
             addClass: jasmine.createSpy('addClass'),
-            children: jasmine.createSpy('children').and.callFake(function () {
+            children: jasmine.createSpy('children').andCallFake(function () {
               return userFeed.$activities;
             }),
-            slice: jasmine.createSpy('slice').and.callFake(function () {
+            slice: jasmine.createSpy('slice').andCallFake(function () {
               return userFeed.$activities;
             })
           };
@@ -403,10 +403,10 @@ require([ "jquery", "public/assets/javascripts/lib/core/user_feed", "public/asse
           userFeed.$messages = { // here acts as holder for almost all used jQuery methods
             html: jasmine.createSpy('html'),
             addClass: jasmine.createSpy('addClass'),
-            children: jasmine.createSpy('children').and.callFake(function () {
+            children: jasmine.createSpy('children').andCallFake(function () {
               return userFeed.$messages;
             }),
-            slice: jasmine.createSpy('slice').and.callFake(function () {
+            slice: jasmine.createSpy('slice').andCallFake(function () {
               return userFeed.$messages;
             })
           };
@@ -487,21 +487,20 @@ require([ "jquery", "public/assets/javascripts/lib/core/user_feed", "public/asse
           timeago = jasmine.createSpy('timeago');
 
           spyOn(userFeed, "_updateUnreadFeedIndicator");
-          spyOn(userFeed._fetchFeed, "bind").and.returnValue(timedoutFetch);
+          spyOn(userFeed._fetchFeed, "bind").andReturn(timedoutFetch);
 
           // create jQuery plugin to check spyOn and check if jQuery was called with proper selector
           $.fn.timeago = function () {
             timeago(this.selector);
           };
 
-          jasmine.clock().install();
+          jasmine.Clock.useMock();
 
           userFeed._updateFeed(fetchedFeed);
         });
 
         afterEach(function () {
-          timedoutFetch.calls.reset();
-          jasmine.clock().uninstall();
+          timedoutFetch.reset();
         });
 
         it("should call 'this._updateUnreadFeedIndicator( [proper Number] )'", function () {
@@ -547,7 +546,7 @@ require([ "jquery", "public/assets/javascripts/lib/core/user_feed", "public/asse
           timeago = jasmine.createSpy('timeago');
 
           spyOn(userFeed, "_updateUnreadFeedIndicator");
-          spyOn(userFeed._fetchFeed, "bind").and.returnValue(function () {});
+          spyOn(userFeed._fetchFeed, "bind").andReturn(function () {});
           spyOn(userFeed, "_createUserMessages");
 
           // create jQuery plugin to check spyOn and check if jQuery was called with proper selector
@@ -594,7 +593,7 @@ require([ "jquery", "public/assets/javascripts/lib/core/user_feed", "public/asse
 
         beforeEach(function () {
           spyOn($, "ajax");
-          spyOn(userFeed._updateFeed, "bind").and.returnValue("TEST_BIND_OUTPUT");
+          spyOn(userFeed._updateFeed, "bind").andReturn("TEST_BIND_OUTPUT");
           userFeed.config = {
             feedUrl: "SOME/TEST/URL"
           };
@@ -603,7 +602,7 @@ require([ "jquery", "public/assets/javascripts/lib/core/user_feed", "public/asse
 
         afterEach(function () {
           // reset spies to 'notHaveBeenCalled'
-          userFeed._updateFeed.bind.calls.reset();
+          userFeed._updateFeed.bind.reset();
         });
 
         it("should call '$.ajax( [proper Object ] )'", function () {
@@ -617,11 +616,11 @@ require([ "jquery", "public/assets/javascripts/lib/core/user_feed", "public/asse
         });
 
         it("should call 'this._updateFeed.bind' twice", function () {
-          expect(userFeed._updateFeed.bind.calls.allArgs().length).toBe(2);
+          expect(userFeed._updateFeed.bind.calls.length).toBe(2);
         });
 
         it("should call 'this._updateFeed.bind()' with 'this' as only arg", function () {
-          expect(userFeed._updateFeed.bind.calls.allArgs()).toEqual([
+          expect(userFeed._updateFeed.bind.calls).toEqual([
             [userFeed],
             [userFeed]
           ]);
