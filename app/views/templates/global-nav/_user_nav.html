@@ -29,14 +29,14 @@
     <span class="notification-badge notification-badge--unread-messages wv--inline-block is-hidden js-unread-feed-number">0</span>
     <span class="wv--hidden nav--offscreen__title">{{username}}</span>
 
-    <div class="nav__submenu nav__submenu--user">
-      <div class="nav--stacked nav__submenu__content nav__submenu__content--user icon--tapered-arrow-up--after icon--white--after icon--white--bordered nav-user-options js-user-options">
-        <div class="nav__submenu__item nav__submenu__title nav__submenu__title--user-name">
+    <div class="user-feed nav__submenu">
+      <div class="user-feed__content nav--stacked nav__submenu__content icon--tapered-arrow-up--after icon--white--after icon--white--bordered nav-user-options js-user-options">
+        <div class="user-feed__user-name nav__submenu__item nav__submenu__title">
           {{username}}
           <a class="split--right icon--settings icon--body-grey js-user-settings" href="https://www.lonelyplanet.com/thorntree/forums/settings"></a>
         </div>
-        <div class="nav__submenu__item nav__submenu__title nav__submenu__title--user-email">{{email}}</div>
-        <div class="nav__submenu__item nav__submenu__item--user-buttons">
+        <div class="user-feed__user-email nav__submenu__item nav__submenu__title">{{email}}</div>
+        <div class="user-feed__profile-buttons nav__submenu__item">
           <div class="grid-wrapper--10">
             <div class="col--one-half">
               <a class="btn btn--small btn--full-width js-user-profile" href="https://www.lonelyplanet.com/thorntree/profiles/{{profileSlug}}">View Profile</a>
@@ -47,25 +47,25 @@
           </div>
         </div>
         <div class="nav__submenu__feed js-user-feed">
-          <div class="nav__submenu__feed__toggle-buttons">
+          <div class="user-feed__activities__toggle-buttons">
             <div class="grid-wrapper--0">
               <div class="col--one-half">
                 <a class="btn btn--white btn--feed-toggle js-tab-trigger is-active" href="#js-user-feed-activities">
-                  Recent activity <span class="nav__submenu__feed__unread-number">(<span class="js-unread-activities-number">0</span>)</span>
+                  Recent activity <span class="btn--feed-toggle__unread-count">(<span class="js-unread-activities-number">0</span>)</span>
                 </a>
               </div>
               <div class="col--one-half">
                 <a class="btn btn--white btn--feed-toggle js-tab-trigger" href="#js-user-feed-messages">
-                  Messages <span class="nav__submenu__feed__unread-number">(<span class="js-unread-messages-number">0</span>)</span>
+                  Messages <span class="btn--feed-toggle__unread-count">(<span class="js-unread-messages-number">0</span>)</span>
                 </a>
               </div>
             </div>
           </div>
           <div class="js-tabs-content">
-            <ul class="nav__submenu__feed__activities is-active" id="js-user-feed-activities">
-              <li class="activity-list__item--empty">Your feed is empty</li>
+            <ul class="user-feed__activities is-active" id="js-user-feed-activities">
+              <li class="activity-list__item--empty">Your have no recent activity</li>
             </ul>
-            <ul class="nav__submenu__feed__messages" id="js-user-feed-messages">
+            <ul class="user-feed__activities" id="js-user-feed-messages">
               <li class="activity-list__item--empty">Your have no messages</li>
             </ul>
           </div>

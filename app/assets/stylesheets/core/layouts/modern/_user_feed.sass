@@ -1,0 +1,115 @@
+// ----------------------------------------------------------------------------
+//
+// User feed fly-out menu component
+//
+// ----------------------------------------------------------------------------
+
+.user-feed
+  right: 0
+  left: auto
+  width: 320px
+  .responsive &
+    display: block
+    +respond-to(wide-view)
+      &:hover
+        display: block
+
+.user-feed__content
+  background-color: #fff
+  &:after
+    left: 288px
+
+.user-feed__user-name,
+.user-feed__user-email
+  padding: 0 15px 5px 15px
+  border: 0
+
+.user-feed__user-name
+  +font-size(22)
+  padding-top: 18px
+  color: $titlegray
+  .icon--settings
+    +size(28px)
+
+.user-feed__user-email
+  +font-size(17)
+  color: $titlegray
+  font-weight: normal
+
+.user-feed__profile-buttons
+  padding: 10px 15px 20px 15px
+  .btn
+    +font-size(13)
+    line-height: 13px
+    text-transform: uppercase
+    padding: 9px 0 8px 0
+  .btn--subtle
+    padding: 7px 0 6px 0
+
+.user-feed__activities__item
+  position: relative
+
+.user-feed__activities__toggle-buttons
+  padding: 0
+  border-top: 1px solid $body-background
+  text-align: center
+  .btn--feed-toggle
+    +font-size(15)
+    +size(100%)
+    padding: 18px 0 10px 0
+    vertical-align: bottom
+    display: inline-block
+    border-radius: 0
+    border-bottom: 2px solid $body-background
+    color: $grey-highlight
+    &:hover, 
+    &.is-active
+      border-bottom: 2px solid $linkblue
+      color: $titlegray
+  
+  .btn--feed-toggle__unread-count
+    font-weight: normal
+    color: $grey-highlight
+
+.user-feed__activities
+  display: none
+  list-style: none
+  &.is-active
+    display: block
+  .activity-list__item
+    position: relative
+    margin: 0
+    border-top: 1px solid $body-background
+    font-weight: normal
+    color: $titlegray
+    &.highlighted
+      background: transparentize($linkblue, 0.97)
+    &:hover
+      background: transparentize($linkblue, 0.9)
+    &:first-of-type
+      border: 0
+    &, &:first-of-type
+      padding: 15px 55px 30px 15px
+      min-height: 20px
+    .activity-list__activity-content
+      display: block
+      padding-bottom: 5px
+    .activity-list__time
+      position: absolute
+      bottom: 0
+      left: 0
+      margin: 0 0 15px 15px
+    .activity-list__link
+      color: $titlegray
+  .user-info__avatar
+    position: absolute
+    right: 15px
+    margin: 0
+    &, & img
+      +size(35px)
+
+  .activity-list__item--empty
+    padding: 20px 0
+    text-align: center
+    color: $subduedgray
+
