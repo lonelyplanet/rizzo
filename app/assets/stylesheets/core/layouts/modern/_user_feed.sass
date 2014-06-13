@@ -88,9 +88,9 @@
     font-weight: normal
     color: $titlegray
     &.highlighted
-      background: transparentize($linkblue, 0.97)
+      background: mix($linkblue, #fff, 3%)
     &:hover
-      background: transparentize($linkblue, 0.9)
+      background: mix($linkblue, #fff, 10%)
     &:first-of-type
       border: 0
     &, &:first-of-type
@@ -110,7 +110,7 @@
     position: absolute
     right: 15px
     margin: 0
-    &, & img
+    &, & .user-info__avatar__img
       +size(35px)
 
   .activity-list__item--empty
