@@ -18,7 +18,7 @@ define([ "jquery", "lib/utils/template", "lib/components/tabs", "lib/core/timeag
     unreadFeedNumberSelector: ".js-unread-feed-number",
     unreadActivitiesNumberSelector: ".js-unread-activities-number",
     unreadMessagesNumberSelector: ".js-unread-messages-number",
-    newFeedHighlightClass: "highlighted",
+    newFeedHighlightClass: "is-highlighted",
     maxFeedActivities: 5,
     fetchInterval: 15000
   };
