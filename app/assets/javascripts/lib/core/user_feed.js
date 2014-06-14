@@ -30,7 +30,7 @@ define([ "jquery", "lib/utils/template", "lib/components/tabs", "lib/core/timeag
     this.$unreadActivitiesIndicator = $(this.config.unreadActivitiesNumberSelector);
     this.$unreadMessagesIndicator = $(this.config.unreadMessagesNumberSelector);
     this.$unreadFeedIndicator = $(this.config.unreadFeedNumberSelector);
-    this.oldActivities;
+    this.currentActivities;
     this.highlightedActivitiesNumber = 0;
 
     this.init();
@@ -116,54 +116,65 @@ define([ "jquery", "lib/utils/template", "lib/components/tabs", "lib/core/timeag
     this.$unreadMessagesIndicator.text(newMessagesNumber);
   };
 
-  UserFeed.prototype._updateFeed = function(fetchedFeed) {
-    var newActivitiesNumber = 0,
-        newMessagesNumber = fetchedFeed.unreadMessagesCount;
+UserFeed.prototype._getActivityNumber = function(feed) {
+  if (!feed.activities.length) return;
 
-    // Check if any activities exist
-    if (fetchedFeed && fetchedFeed.activities.length > 0) {
+  var newActivitiesCount = 0,
+      i = 0;
 
-      // Create activities list on first run
-      if (!this.oldActivities) {
-        this._createUserActivities(fetchedFeed.activities, fetchedFeed.activities.length);
-        this.oldActivities = fetchedFeed.activities;
-      }
-      // Compare current activities with fetched ones
-      if (this.oldActivities) {
-        for (var i = 0; i < fetchedFeed.activities.length; i++) {
-          var newActivity = true;
-          for (var j = 0; j < this.oldActivities.length; j++) {
-            if (fetchedFeed.activities[i].timestamp == this.oldActivities[j].timestamp) {
-              newActivity = false;
-              break;
-            }
-          }
-          if (newActivity) { newActivitiesNumber++; }
-        }
-        if (this.highlightedActivitiesNumber < newActivitiesNumber) {
-          this.highlightedActivitiesNumber = newActivitiesNumber;
-        }
-        // Update activities if new available
-        if (newActivitiesNumber > 0) {
-          this._createUserActivities(fetchedFeed.activities);
-        }
-      }
+  for (i; i < feed.activities.length; i++) {
+    this._isNewActivity(feed.activities[i].timestamp) && newActivitiesCount++;
+  }
+
+  return newActivitiesCount;
+};
+
+UserFeed.prototype._isNewActivity = function(timestamp) {
+  for (var j = 0; j < this.currentActivities.length; j++) {
+    if ( timestamp == this.currentActivities[j].timestamp ) {
+      return false;
+    }
+  }
+  return true;
+}
+
+UserFeed.prototype._updateActivities = function(feed) {
+  if (this.currentActivities) {
+    var newActivitiesNumber = this._getActivityNumber(feed);
+
+    if (this.highlightedActivitiesNumber < newActivitiesNumber) {
+      this.highlightedActivitiesNumber = newActivitiesNumber;
     }
 
-    // Update messages
-    if (fetchedFeed.messages.length > 0) {
-      this._createUserMessages(fetchedFeed.messages, newMessagesNumber);
-    }
+    newActivitiesNumber && this._createUserActivities(feed.activities);
 
-    // Update new feed indicator
-    this._updateUnreadFeedIndicator(this.highlightedActivitiesNumber + newMessagesNumber);
+  } else {
+    // Create activities list
+    this._createUserActivities(feed.activities, feed.activities.length);
+    this.currentActivities = feed.activities;
+  }
+};
 
-    // Update timeago for feed content only
-    $(this.config.feedSelector + " time.timeago").timeago();
+UserFeed.prototype._updateMessages = function(feed) {
+  var newMessagesNumber = feed.unreadMessagesCount;
 
-    // Init fetch loop
-    setTimeout(this._fetchFeed.bind(this), this.config.fetchInterval);
-  };
+  feed.messages.length && this._createUserMessages(feed.messages, newMessagesNumber);
+  this._updateUnreadFeedIndicator(this.highlightedActivitiesNumber + newMessagesNumber);
+
+  // Update timeago for feed content only
+  $(this.config.feedSelector + " time.timeago").timeago();
+};
+
+UserFeed.prototype._updateFeed = function(fetchedFeed) {
+  if (!fetchedFeed) return;
+
+  this._updateActivities(fetchedFeed);
+  this._updateMessages(fetchedFeed);
+
+  // Init fetch loop
+  setTimeout(this._fetchFeed.bind(this), this.config.fetchInterval);
+
+};
 
   UserFeed.prototype._fetchFeed = function() {
     $.ajax({
