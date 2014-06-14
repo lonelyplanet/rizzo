@@ -116,65 +116,65 @@ define([ "jquery", "lib/utils/template", "lib/components/tabs", "lib/core/timeag
     this.$unreadMessagesIndicator.text(newMessagesNumber);
   };
 
-UserFeed.prototype._getActivityNumber = function(feed) {
-  if (!feed.activities.length) return;
+  UserFeed.prototype._getActivityNumber = function(feed) {
+    if (!feed.activities.length) { return; }
 
-  var newActivitiesCount = 0,
-      i = 0;
+    var newActivitiesCount = 0,
+        i = 0;
 
-  for (i; i < feed.activities.length; i++) {
-    this._isNewActivity(feed.activities[i].timestamp) && newActivitiesCount++;
-  }
-
-  return newActivitiesCount;
-};
-
-UserFeed.prototype._isNewActivity = function(timestamp) {
-  for (var j = 0; j < this.currentActivities.length; j++) {
-    if ( timestamp == this.currentActivities[j].timestamp ) {
-      return false;
-    }
-  }
-  return true;
-}
-
-UserFeed.prototype._updateActivities = function(feed) {
-  if (this.currentActivities) {
-    var newActivitiesNumber = this._getActivityNumber(feed);
-
-    if (this.highlightedActivitiesNumber < newActivitiesNumber) {
-      this.highlightedActivitiesNumber = newActivitiesNumber;
+    for (i; i < feed.activities.length; i++) {
+      this._isNewActivity(feed.activities[i].timestamp) && newActivitiesCount++;
     }
 
-    newActivitiesNumber && this._createUserActivities(feed.activities);
+    return newActivitiesCount;
+  };
 
-  } else {
-    // Create activities list
-    this._createUserActivities(feed.activities, feed.activities.length);
-    this.currentActivities = feed.activities;
-  }
-};
+  UserFeed.prototype._isNewActivity = function(timestamp) {
+    for (var j = 0; j < this.currentActivities.length; j++) {
+      if ( timestamp == this.currentActivities[j].timestamp ) {
+        return false;
+      }
+    }
+    return true;
+  };
 
-UserFeed.prototype._updateMessages = function(feed) {
-  var newMessagesNumber = feed.unreadMessagesCount;
+  UserFeed.prototype._updateActivities = function(feed) {
+    if (this.currentActivities) {
+      var newActivitiesNumber = this._getActivityNumber(feed);
 
-  feed.messages.length && this._createUserMessages(feed.messages, newMessagesNumber);
-  this._updateUnreadFeedIndicator(this.highlightedActivitiesNumber + newMessagesNumber);
+      if (this.highlightedActivitiesNumber < newActivitiesNumber) {
+        this.highlightedActivitiesNumber = newActivitiesNumber;
+      }
 
-  // Update timeago for feed content only
-  $(this.config.feedSelector + " time.timeago").timeago();
-};
+      newActivitiesNumber && this._createUserActivities(feed.activities);
 
-UserFeed.prototype._updateFeed = function(fetchedFeed) {
-  if (!fetchedFeed) return;
+    } else {
+      // Create activities list
+      this._createUserActivities(feed.activities, feed.activities.length);
+      this.currentActivities = feed.activities;
+    }
+  };
 
-  this._updateActivities(fetchedFeed);
-  this._updateMessages(fetchedFeed);
+  UserFeed.prototype._updateMessages = function(feed) {
+    var newMessagesNumber = feed.unreadMessagesCount;
 
-  // Init fetch loop
-  setTimeout(this._fetchFeed.bind(this), this.config.fetchInterval);
+    feed.messages.length && this._createUserMessages(feed.messages, newMessagesNumber);
+    this._updateUnreadFeedIndicator(this.highlightedActivitiesNumber + newMessagesNumber);
 
-};
+    // Update timeago for feed content only
+    $(this.config.feedSelector + " time.timeago").timeago();
+  };
+
+  UserFeed.prototype._updateFeed = function(fetchedFeed) {
+    if (!fetchedFeed) { return; }
+
+    this._updateActivities(fetchedFeed);
+    this._updateMessages(fetchedFeed);
+
+    // Init fetch loop
+    setTimeout(this._fetchFeed.bind(this), this.config.fetchInterval);
+
+  };
 
   UserFeed.prototype._fetchFeed = function() {
     $.ajax({
