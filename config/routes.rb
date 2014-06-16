@@ -109,4 +109,9 @@ Rizzo::Application.routes.draw do
   #===== yeoman hook =====#
   # NB! The above line is required for our yeoman generator and should not be changed.
 
+  get 'performance/',                         to: redirect('/performance/css-analysis')
+
+  get '/performance/css-analysis'             => 'performance#css_index'
+  get '/performance/css-analysis/:stylesheet' => 'performance#css_show'
+
 end if defined?(Rizzo::Application)

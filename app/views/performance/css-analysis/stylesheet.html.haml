@@ -1,0 +1,39 @@
+= render 'styleguide/partials/shared'
+
+.context--content
+
+  .card.styleguide-intro
+    %h1.copy--h1 #{@result[:name]}
+
+  .card.styleguide-intro
+    .grid-wrapper--10
+      .col--one-half
+        %h2.copy--h2 Gzipped Size
+        %span.stat--large #{@result[:core][:gzippedSize]}kb
+      
+      .col--one-half
+        %h2.copy--h2 Raw Size
+        %span.stat--large #{@result[:core][:size]}kb
+
+  .card.styleguide-intro
+    - @result[:other].each do |stat|
+      .grid-wrapper--10.perf--row
+        .col--one-half
+          %h3.copy--h3 #{stat[0]}
+        .col--one-half
+          %span.stat--medium #{stat[1]}
+
+  .card.styleguide-intro
+    - @result[:groups].each do |group|
+      .grid-wrapper--10.perf--row
+        .col--one-half
+          %h3.copy--h3 #{group[0]}
+        .col--one-half
+          - group[1].each do |stat|
+
+            - if group[0].to_s == "propertiesCount"
+              %div
+                %span.stat--medium #{stat['property']}: 
+                %span.stat--medium #{stat['count']}
+            - else
+              %div.stat--medium #{stat}
