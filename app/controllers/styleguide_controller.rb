@@ -4,7 +4,7 @@ class StyleguideController < GlobalController
   before_filter :setup
 
   def setup
-    @self = StyleGuide.new(request.fullpath)
+    @app = StyleGuide.new(request.fullpath)
   end
 
   def usingRizzoLayouts

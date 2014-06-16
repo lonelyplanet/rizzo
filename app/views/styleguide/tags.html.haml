@@ -4,6 +4,6 @@
 .card.styleguide-intro.context--content
   .clearfix
     %h1.copy--h1 Tags
-  
+
 - tags_list.each_with_index do | stub, i |
-  = sg_component('price_tag', properties: stub, count: i, card_style: true)
+  = styleguide_component('price_tag', properties: stub, count: i, card_style: true)

@@ -6,8 +6,8 @@
     %p
       These functions are used to provide some consistency around how we handle responsive states.
 
-- @self.get_css("sass/mixins/_responsive").each do |css|
+- @app.get_css("sass/mixins/_responsive").each do |css|
   = render "styleguide/partials/snippet", properties: css
 
-- @self.get_css("sass/mixins/_images").each do |css|
+- @app.get_css("sass/mixins/_images").each do |css|
   = render "styleguide/partials/snippet", properties: css

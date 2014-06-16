@@ -6,12 +6,12 @@
     %h1.copy--h1 Hero Banner
 
   %p<
-    This is how the hero banner looks. It has a parallax effect.    
+    This is how the hero banner looks. It has a parallax effect.
 
   %p<
-    The position and movement of the parallax is calculated based on the height of the hero and image and also with the height of the viewport 
+    The position and movement of the parallax is calculated based on the height of the hero and image and also with the height of the viewport
 
 .styleguide-block.styleguide-hero_banner
 
 - banners.each_with_index do | stub, i |
-  = sg_component('hero_banner', properties: stub)
+  = styleguide_component('hero_banner', properties: stub)

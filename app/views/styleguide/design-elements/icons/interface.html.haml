@@ -50,7 +50,7 @@
 
 .styleguide-block.styleguide-grid.styleguide-icons.context--content
   %div{class: "grid-wrapper--10"}
-    - @self.get_icons("active").each do |icon|
+    - @app.get_icons("active").each do |icon|
       .col--one-third
         .card.js-card.media{data: {icon: icon}}
           %div.media__img

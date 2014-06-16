@@ -12,4 +12,4 @@
     The width, height and scale properties are optional but the defaults for each are shown below.
 
 - maps.each_with_index do |map, i|
-  = sg_component("poi-maps/#{map[:styleguide_title].downcase.split(' ').first}", properties: map, count: i, card_style: true)
+  = styleguide_component("poi-maps/#{map[:styleguide_title].downcase.split(' ').first}", properties: map, count: i, card_style: true)

@@ -6,5 +6,5 @@
     %p
       These classes can be used to help our features degrade gracefully in older browsers.
 
-- @self.get_css("core/utilities/_legacy").each do |css|
+- @app.get_css("core/utilities/_legacy").each do |css|
   = render "styleguide/partials/snippet", properties: css

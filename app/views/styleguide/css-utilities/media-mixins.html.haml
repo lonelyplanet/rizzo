@@ -4,8 +4,8 @@
   .clearfix
     %h1.copy--h1 Mixins for Media
 
-- @self.get_css("sass/mixins/_svg").each do |css|
+- @app.get_css("sass/mixins/_svg").each do |css|
   = render "styleguide/partials/snippet", properties: css
 
-- @self.get_css("sass/mixins/_retina").each do |css|
+- @app.get_css("sass/mixins/_retina").each do |css|
   = render "styleguide/partials/snippet", properties: css

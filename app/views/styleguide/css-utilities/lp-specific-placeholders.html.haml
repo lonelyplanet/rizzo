@@ -6,8 +6,8 @@
     %p
       These are helper placeholders which provide often used styling specific to LP.
 
-- @self.get_css("sass/extends/lp_styles/_decoration").each do |css|
+- @app.get_css("sass/extends/lp_styles/_decoration").each do |css|
   = render "styleguide/partials/snippet", properties: css
 
-- @self.get_css("sass/extends/lp_styles/_transitions").each do |css|
+- @app.get_css("sass/extends/lp_styles/_transitions").each do |css|
   = render "styleguide/partials/snippet", properties: css

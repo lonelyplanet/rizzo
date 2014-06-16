@@ -6,10 +6,10 @@
     = render 'styleguide/partials/colour_finder'
 
   %p
-    This is the primary and secondary colour palettes as described in the PSD styleguide and in 
+    This is the primary and secondary colour palettes as described in the PSD styleguide and in
     %a{href: 'https://github.com/lonelyplanet/rizzo/blob/master/app/assets/stylesheets/sass/variables/_colour_palette.sass'}
       colour_palette.sass
 
 .grid-wrapper--10
-  - @self.get_colours('_colour_palette').each do |group|
+  - @app.get_colours('_colour_palette').each do |group|
     = render 'styleguide/partials/colour', group: group

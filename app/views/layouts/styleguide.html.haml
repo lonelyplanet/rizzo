@@ -13,7 +13,7 @@
           .split--left
             .wv--nav--inline.nav--primary#js-nav--primary
               %a.media--lp-logo.logo--header.icon--lp-logo.icon--white{href: 'http://rizzo.lonelyplanet.com/styleguide'}
-              - @self.primary_nav_items.each do |item|
+              - @app.primary_nav_items.each do |item|
                 %a.nav__item.nav__item--primary{ href: "#{item[:slug]}" }<
                   = item[:name]
 
@@ -25,7 +25,7 @@
               = yield :secondary
 
           .grid-wrapper--10
-            = ui_component('navigation/left', properties: @self.left_nav_items)
+            = ui_component('navigation/left', properties: @app.left_nav_items)
 
             .main-content.stack#js-main-content
               = yield

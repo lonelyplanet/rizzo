@@ -4,7 +4,7 @@ module ComponentHelper
     render "components/#{slug}", properties
   end
 
-  def sg_component(slug, properties)
+  def styleguide_component(slug, properties)
     card_style = properties.delete(:card_style)
     count = properties.delete(:count)
     full_width = properties.delete(:full_width)

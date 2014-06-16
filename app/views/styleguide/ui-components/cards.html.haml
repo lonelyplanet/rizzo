@@ -10,4 +10,4 @@
 
 .grid-wrapper--10
   - cards['cards'].each_with_index do |card, i|
-    = sg_component("cards/#{card[:styleguide_title].downcase.split(' ').join('_')}", properties: card, count: i)
+    = styleguide_component("cards/#{card[:styleguide_title].downcase.split(' ').join('_')}", properties: card, count: i)

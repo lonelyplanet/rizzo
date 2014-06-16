@@ -12,4 +12,4 @@
     Multiple select inputs default to equal widths, but can be styled individually using .multi-select-<span>index<span>
 
 - components['dropdown_components'].each_with_index do |component, i|
-  = sg_component("forms/#{component[:styleguide_title].downcase.split(' ').join('_')}", properties: component, count: i, anchor: component[:styleguide_title].downcase.strip.gsub(' ', '-').gsub(/[^\w-]/, ''))
+  = styleguide_component("forms/#{component[:styleguide_title].downcase.split(' ').join('_')}", properties: component, count: i, anchor: component[:styleguide_title].downcase.strip.gsub(' ', '-').gsub(/[^\w-]/, ''))

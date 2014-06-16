@@ -9,4 +9,4 @@
     POI List
 
 - maps.each_with_index do |map, i|
-  = sg_component("poi-maps/#{map[:styleguide_title].downcase.split(' ').first}", properties: map, count: i, card_style: true, full_width: true)
+  = styleguide_component("poi-maps/#{map[:styleguide_title].downcase.split(' ').first}", properties: map, count: i, card_style: true, full_width: true)

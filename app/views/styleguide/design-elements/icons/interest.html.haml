@@ -4,15 +4,15 @@
   .clearfix
     %h1.split--left.copy--h1 Interest Icons
     = render 'styleguide/partials/svg_filter'
-  
+
   .styleguide-intro__inner.js-intro-section
     .styleguide-intro__section
       %p
-        We use SVGs for these icons. They are included individually as background images. They won't show up in any browser that doesn't support background-size. 
+        We use SVGs for these icons. They are included individually as background images. They won't show up in any browser that doesn't support background-size.
 
 .styleguide-block.styleguide-grid.styleguide-icons.context--content.styleguide-icons--destination
   %div{class: "grid-wrapper--10"}
-    - @self.get_icons("interest").each do |icon|
+    - @app.get_icons("interest").each do |icon|
       .col--one-quarter
         .card.js-card{data: {icon: icon}}
           .icon.js-icon{class: icon, title: icon}

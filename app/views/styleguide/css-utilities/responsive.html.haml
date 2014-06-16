@@ -6,5 +6,5 @@
     %p
       These classes can be used to scope existing hooks to particular breakpoints.
 
-- @self.get_css("core/utilities/_responsive").each do |css|
+- @app.get_css("core/utilities/_responsive").each do |css|
   = render "styleguide/partials/snippet", properties: css
