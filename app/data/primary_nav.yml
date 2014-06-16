@@ -1,3 +1,9 @@
 -
   :name: "Style Guide"
   :slug: "/styleguide"
+-
+  :name: "Performance Monitoring"
+  :slug: "/performance"
+-
+  :name: "About Rizzo"
+  :slug: "http://engineering.lonelyplanet.com/2014/05/18/a-maintainable-styleguide.html"

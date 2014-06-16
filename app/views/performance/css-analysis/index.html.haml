@@ -1,0 +1,25 @@
+= render 'styleguide/partials/shared'
+
+.context--content.copy--body
+
+  .card.styleguide-intro
+    %h1.copy--h1 Stylesheet Trend and Comparison
+    %p Still working on the trending part...
+
+  .card.styleguide-intro
+    .grid-wrapper--10.perf--row
+      .col--one-third
+        %span.copy--h2 Stylesheet
+      .col--one-third
+        %span.copy--h2 Size
+      .col--one-third
+        %span.copy--h2 Gzipped Size
+
+    - @result.each do |stylesheet|
+      .grid-wrapper--10.perf--row
+        .col--one-third.stat--medium
+          = stylesheet[:name]
+        .col--one-third.stat--medium
+          #{stylesheet[:core][:size]}kb
+        .col--one-third.stat--medium
+          #{stylesheet[:core][:gzippedSize]}kb

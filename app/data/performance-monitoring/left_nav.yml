@@ -1,0 +1,74 @@
+---
+  :css_analysis:
+    -
+      :items:
+        -
+          :name: "All"
+          :slug: "/"
+    -
+      :title: "Rizzo"
+      :items:
+        -
+          :name: "Common Core"
+          :slug: "core"
+          :css_path: "common_core_no_font"
+        -
+          :name: "Fonts"
+          :slug: "fonts"
+          :css_path: "fonts"
+
+    -
+      :title: "Applications"
+      :items:
+        -
+          :name: "Homepage"
+          :slug: "homepage"
+          :css_path: "application-69770b61294605ebdfa2bdc3b790d718"
+        -
+          :name: "Waldorf"
+          :slug: "waldorf"
+          :css_path: "application-24e08ac923cfa55b4dddfcc6a19977ce"
+        -
+          :name: "Best in Travel"
+          :slug: "best-in-travel"
+          :css_path: "destinations"
+        -
+          :name: "Search"
+          :slug: "search"
+          :css_path: "application-a1ec1d4a3537d781b5bb17ea9b1c9eda"
+        -
+          :name: "Community"
+          :slug: "community"
+          :css_path: "main-4dac02c9185350195b9d668e36e88739"
+        -
+          :name: "Luna"
+          :slug: "luna"
+          :css_path: "main-f0510eb3fe46254f8400af5f591ba42a"
+
+    -
+      :title: "Landing Pages"
+      :items:
+        -
+          :name: "Car Rental"
+          :slug: "car-rental"
+          :css_path: "car-rental/car-rental-0cf7787b08c884ee0f5fc1f6ab493a6b"
+        -
+          :name: "Flights"
+          :slug: "flights"
+          :css_path: "flights/flights-836a29dbe83c84a1840486dc4c66309e"
+        -
+          :name: "Hotels"
+          :slug: "hotels"
+          :css_path: "hotels/hotels-ad8a20165d8dd0028f62746c5ab648d8"
+        -
+          :name: "Adventure Tours"
+          :slug: "adventure-tours"
+          :css_path: "adventure-tours/adventure-tours-6acd1af29b61f3a785fa703cdde5c664"
+        -
+          :name: "Sightseeing Tours"
+          :slug: "sightseeing-tours"
+          :css_path: "sightseeing-tours/sightseeing-c25adf93774ed17573cb331e997dc324"
+        -
+          :name: "Travel Insurance"
+          :slug: "travel-insurance"
+          :css_path: "travel-insurance/original/travel-insurance-0be09758a8b1ba83492d52130cad1a33"
