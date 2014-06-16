@@ -44,7 +44,7 @@ Rizzo::Application.routes.draw do
   get 'styleguide/',                to: redirect('/styleguide/design-elements/colours')
   get 'styleguide/design-elements', to: redirect('/styleguide/design-elements/colours')
   get 'styleguide/ui-components',   to: redirect('/styleguide/ui-components/cards')
-  get 'styleguide/js-components',   to: redirect('/styleguide/js-components/toggle-active')
+  get 'styleguide/js-components',   to: redirect('/styleguide/js-components/asset-reveal')
   get 'styleguide/css-utilities/',  to: redirect('/styleguide/css-utilities/proportional-grid')
   get 'styleguide/page-layout/',    to: redirect('/styleguide/page-layout/using-rizzo-layouts')
 

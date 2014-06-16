@@ -6,5 +6,5 @@
     %p
       These are single responsibility classes designed to help reduce duplication in our Sass.
 
-- get_css("core/utilities/_utility_classes").each do |css|
+- @self.get_css("core/utilities/_utility_classes").each do |css|
   = render "styleguide/partials/snippet", properties: css

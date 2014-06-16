@@ -1,6 +1,11 @@
 class StyleguideController < GlobalController
 
   layout proc{|c| c.request.xhr? ? false : "styleguide" }
+  before_filter :setup
+
+  def setup
+    @self = StyleGuide.new(request.fullpath)
+  end
 
   def usingRizzoLayouts
     render '/styleguide/page-layout/using-rizzo-layouts'

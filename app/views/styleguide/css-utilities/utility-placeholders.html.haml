@@ -6,20 +6,20 @@
     %p
       These are single responsibility placeholders which are to be extended to help reduce duplication in our Sass.
 
-- get_css("sass/extends/helpers/_clearfix").each do |css|
+- @self.get_css("sass/extends/helpers/_clearfix").each do |css|
   = render "styleguide/partials/snippet", properties: css
 
-- get_css("sass/extends/helpers/_cross_browser").each do |css|
+- @self.get_css("sass/extends/helpers/_cross_browser").each do |css|
   = render "styleguide/partials/snippet", properties: css
 
-- get_css("sass/extends/helpers/_image_replacement").each do |css|
+- @self.get_css("sass/extends/helpers/_image_replacement").each do |css|
   = render "styleguide/partials/snippet", properties: css
 
-- get_css("sass/extends/helpers/_pseudo_elements").each do |css|
+- @self.get_css("sass/extends/helpers/_pseudo_elements").each do |css|
   = render "styleguide/partials/snippet", properties: css
 
-- get_css("sass/extends/helpers/_states").each do |css|
+- @self.get_css("sass/extends/helpers/_states").each do |css|
   = render "styleguide/partials/snippet", properties: css
 
-- get_css("sass/extends/helpers/_typographic_modifiers").each do |css|
+- @self.get_css("sass/extends/helpers/_typographic_modifiers").each do |css|
   = render "styleguide/partials/snippet", properties: css

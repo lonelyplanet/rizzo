@@ -1,0 +1,208 @@
+# NB! The below line is required for our yeoman generator and should not be changed.
+#===== yeoman begin-hook =====#
+---
+  :css_utilities:
+    -
+      :title: "Grids"
+      :items:
+        -
+          :name: "Proportional Grid"
+          :slug: "proportional-grid"
+        -
+          :name: "Responsive Grid"
+          :slug: "responsive-grid"
+        -
+          :name: "Cards Grid"
+          :slug: "cards-grid"
+    -
+      :title: "Classes"
+      :items:
+        -
+          :name: "General"
+          :slug: "utility-classes"
+        -
+          :name: "Legacy Support"
+          :slug: "legacy"
+        -
+          :name: "No Javascript"
+          :slug: "no-js"
+        -
+          :name: "LP Specific"
+          :slug: "lp-specific-classes"
+        -
+          :name: "Responsive"
+          :slug: "responsive"
+    -
+      :title: "Placeholders"
+      :items:
+        -
+          :name: "General"
+          :slug: "utility-placeholders"
+        -
+          :name: "LP Specific"
+          :slug: "lp-specific-placeholders"
+        -
+          :name: "Icons"
+          :slug: "icon-placeholders"
+    -
+      :title: "Mixins"
+      :items:
+        -
+          :name: "Responsive"
+          :slug: "responsive-mixins"
+        -
+          :name: "Utility Mixins"
+          :slug: "utility-mixins"
+        -
+          :name: "Media"
+          :slug: "media-mixins"
+  :js_components:
+    -
+      :title: "Utils"
+      :items:
+        -
+          :name: "Asset Reveal"
+          :slug: "asset-reveal"
+        -
+          :name: "AutoComplete"
+          :slug: "autocomplete"
+        -
+          :name: "Debounce"
+          :slug: "debounce"
+        -
+          :name: "Image Helper"
+          :slug: "image-helper"
+        -
+          :name: "Konami"
+          :path: "konami"
+        -
+          :name: "Lightbox"
+          :slug: "lightbox"
+        -
+          :name: "Link To"
+          :slug: "link-to"
+        -
+          :name: "Proximity Loader"
+          :slug: "proximity-loader"
+        -
+          :name: "Template"
+          :slug: "template"
+        -
+          :name: "Toggle Active"
+          :slug: "toggle-active"
+        -
+          :name: "Swipe"
+          :slug: "swipe"
+  :page_layout:
+    -
+      :title: "Page Layout"
+      :items:
+        -
+          :name: "Using Rizzo Layouts"
+          :slug: "using-rizzo-layouts"
+        -
+          :name: "Rows"
+          :slug: "rows"
+  :design_elements:
+    -
+      :title: "Design"
+      :items:
+        -
+          :name: "Design palette"
+          :slug: "colours"
+        -
+          :name: "UI Colours"
+          :slug: "ui-colours"
+        -
+          :name: "Typography"
+          :slug: "typography"
+    -
+      :title: "Icons"
+      :items:
+        -
+          :name: "Interface"
+          :slug: "icons/interface"
+        -
+          :name: "Destination"
+          :slug: "icons/destination"
+        -
+          :name: "Interests"
+          :slug: "icons/interests"
+  :ui_components:
+    -
+      :title: "Components"
+      :items:
+        -
+          :name: "Cards"
+          :slug: "cards"
+        -
+          :name: "Ad units"
+          :slug: "ad-units"
+        -
+          :name: "Alerts"
+          :slug: "alerts"
+        -
+          :name: "Badges"
+          :slug: "badges"
+        -
+          :name: "Buttons"
+          :slug: "buttons"
+        -
+          :name: "Hero Banner"
+          :slug: "hero-banner"
+        -
+          :name: "Preloader"
+          :slug: "preloader"
+        -
+          :name: "Page title"
+          :slug: "page-title"
+        -
+          :name: "Pagination"
+          :slug: "pagination"
+        -
+          :name: "POI List"
+          :slug: "poi-list"
+        -
+          :name: "POI Maps"
+          :slug: "poi-maps"
+        -
+          :name: "Social Buttons"
+          :slug: "social-buttons"
+        -
+          :name: "Tiles"
+          :slug: "tiles"
+        -
+          :name: "Tags"
+          :slug: "tags"
+        -
+          :name: "Tooltips"
+          :slug: "tooltips"
+        -
+          :name: "Unsocial Buttons"
+          :slug: "unsocial-buttons"
+    -
+      :title: "Navigation"
+      :items:
+        -
+          :name: "Dropdown"
+          :slug: "navigational_dropdown"
+        -
+          :name: "Left Nav"
+          :slug: "left-nav"
+        -
+          :name: "Secondary Nav"
+          :slug: "secondary-nav"
+    -
+      :title: "Form Elements"
+      :items:
+        -
+          :name: "Inputs"
+          :slug: "inputs"
+        -
+          :name: "Dropdown"
+          :slug: "dropdown"
+        -
+          :name: "Range Slider"
+          :slug: "range-slider"
+#===== yeoman end-hook =====#
+# NB! The above line is required for our yeoman generator and should not be changed.

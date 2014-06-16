@@ -11,5 +11,5 @@
       colour_theme.sass
 
 .grid-wrapper--10
-  - get_colours('_colour_theme').each do |group|
+  - @self.get_colours('_colour_theme').each do |group|
     = render 'styleguide/partials/colour', group: group

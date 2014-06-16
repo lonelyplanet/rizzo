@@ -6,5 +6,5 @@
     %p
       These are intended to abstract out common code that depends on an argument.
 
-- get_css("sass/mixins/_utilities").each do |css|
+- @self.get_css("sass/mixins/_utilities").each do |css|
   = render "styleguide/partials/snippet", properties: css

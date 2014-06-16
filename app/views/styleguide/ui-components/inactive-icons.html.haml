@@ -12,7 +12,7 @@
 
 .styleguide-block.styleguide-grid.styleguide-icons.context--content
   %div{class: "grid-wrapper--10"}
-    - get_icons("inactive").each do |icon|
+    - @self.get_icons("inactive").each do |icon|
       .col--one-fifth
         .card
           %div.js-icon{class: icon, title: icon}

@@ -6,5 +6,5 @@
     %p
       These are helper classes which provide often used styling specific to LP.
 
-- get_css("core/utilities/_lp_specific").each do |css|
+- @self.get_css("core/utilities/_lp_specific").each do |css|
   = render "styleguide/partials/snippet", properties: css

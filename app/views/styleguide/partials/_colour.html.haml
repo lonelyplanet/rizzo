@@ -6,13 +6,13 @@
       - unless line == ""
 
         - colour_pair = line.gsub(" !default", "").strip().split(':')
-        - colour_value = get_colour_value(colour_pair[1], "_colour_palette")
+        - colour_value = @self.get_colour_value(colour_pair[1], "_colour_palette")
 
         - if colour_value
 
-          .col--one-third{ data: { luminance: get_luminance(colour_value) } }
+          .col--one-third{ data: { luminance: @self.get_luminance(colour_value) } }
             .card
-              .styleguide-block__item--colour.copy--h2{style: "background-color: #{colour_value}", class: get_luminance(colour_value) > 200 ? "is-light" : "" }<
+              .styleguide-block__item--colour.copy--h2{style: "background-color: #{colour_value}", class: @self.get_luminance(colour_value) > 200 ? "is-light" : "" }<
                 = colour_value
               %h3.copy--h4<
                 = colour_pair[0]

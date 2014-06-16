@@ -12,7 +12,7 @@
 
 .styleguide-block.styleguide-grid.styleguide-icons.context--content.styleguide-icons--destination
   %div{class: "grid-wrapper--10"}
-    - get_icons("destination").each do |icon|
+    - @self.get_icons("destination").each do |icon|
       .col--one-quarter
         .card.js-card{data: {icon: icon}}
           .icon.js-icon{class: icon, title: icon}
