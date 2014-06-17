@@ -46,3 +46,26 @@
   &.is-active:after
     color: $red
     display: block
+
+.nav__tabs
+  padding: 0
+  border-top: 1px solid $body-background
+  text-align: center
+  .nav__tabs__btn
+    +font-size(15)
+    +size(100%)
+    padding: 18px 0 10px 0
+    vertical-align: bottom
+    display: inline-block
+    border-radius: 0
+    border-bottom: 2px solid $body-background
+    color: $grey-highlight
+    &:hover, 
+    &.is-active
+      border-bottom: 2px solid $linkblue
+      color: $titlegray
+  
+  .nav__tabs__btn__unread-count
+    font-weight: normal
+    color: $grey-highlight
+
