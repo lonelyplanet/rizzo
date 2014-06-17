@@ -26,7 +26,7 @@ define([ "jquery" ], function($) {
     this.$tabs.on("click", ".js-tab-trigger", function(e) {
       e.preventDefault();
 
-      var $target = $(e.target),
+      var $target = $(e.currentTarget),
           $contents = $target.attr("href");
 
       _this._openTab($target, $contents);
