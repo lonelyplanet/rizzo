@@ -81,20 +81,8 @@ require([ "jquery", "public/assets/javascripts/lib/core/authenticator" ], functi
         expect($(".nav__item--user-avatar").attr("src")).toBe("/foo.jpg");
       });
 
-      it("adds username to the dropdown menu", function() {
-        expect($(".nav__submenu__title--user-name").text().trim()).toBe("foobar");
-      });
-
       it("adds user name to the responsive menu", function() {
         expect($(".nav--offscreen__title").text()).toBe("foobar");
-      });
-
-      it("adds user email address to the dropdown menu", function() {
-        expect($(".nav__submenu__title--user-email").text()).toBe("foo@bar.com");
-      });
-
-      it("adds settings icon link to the dropdown menu", function() {
-        expect($(".js-user-settings").length).toBe(1);
       });
 
       it("adds responsive menu items", function() {
