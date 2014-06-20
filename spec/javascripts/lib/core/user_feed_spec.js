@@ -1,12 +1,15 @@
-require([ "jquery", "public/assets/javascripts/lib/core/user_feed", "public/assets/javascripts/lib/components/tabs", ], function ($, UserFeed, Tabs) {
+require([ "jquery", "public/assets/javascripts/lib/core/user_feed", "public/assets/javascripts/lib/components/tabs" ], function ($, UserFeed, Tabs) {
   "use strict";
 
   describe("UserFeed", function () {
+
     var doc;
 
     beforeEach(function () {
       doc = $(document);
     });
+
+
 
     describe("initialize", function () {
       var userFeed;
@@ -18,17 +21,6 @@ require([ "jquery", "public/assets/javascripts/lib/core/user_feed", "public/asse
 
       it("should have called 'this.init()' on initialization", function () {
         expect(UserFeed.prototype.init).toHaveBeenCalled();
-      });
-
-      it("should set proper fields", function () {
-        expect(userFeed.hasOwnProperty('config')).toBe(true);
-        expect(userFeed.hasOwnProperty('$activities')).toBe(true);
-        expect(userFeed.hasOwnProperty('$messages')).toBe(true);
-        expect(userFeed.hasOwnProperty('$unreadActivitiesIndicator')).toBe(true);
-        expect(userFeed.hasOwnProperty('$unreadMessagesIndicator')).toBe(true);
-        expect(userFeed.hasOwnProperty('$unreadFeedIndicator')).toBe(true);
-        //expect(userFeed.hasOwnProperty('oldActivities')).toBe(true);
-        expect(userFeed.hasOwnProperty('highlightedActivitiesNumber')).toBe(true);
       });
 
       it("should set proper fields with proper types", function () {
@@ -43,113 +35,82 @@ require([ "jquery", "public/assets/javascripts/lib/core/user_feed", "public/asse
       });
     });
 
+
+
     describe(".init()", function () {
-      var Fake = function () {
-        this.config = {
-          feedSelector: '.fake-selector'
-        };
-      };
-      var fakeInstance;
-
-      beforeEach(function () {
-
-        // as the initialization of UserFeed calls other methods,
-        // we have to bind those methods to fake, empty object
-        Fake.prototype.init = UserFeed.prototype.init;
-        fakeInstance = new Fake();
-      });
-
-      it("should be defined", function () {
-        expect(fakeInstance.init).toBeDefined();
-      });
-
-      describe("when called", function () {
-        beforeEach(function () {
-
-          // fake instance doesn't have _fetchFeed method
-          // so instead of creating one and spying on it
-          // we create it as a spy
-          fakeInstance._fetchFeed = jasmine.createSpy("_fetchFeed");
-          fakeInstance.init();
-        });
-
-        it("should call 'this._fetchFeed()'", function () {
-          expect(fakeInstance._fetchFeed).toHaveBeenCalled();
-        });
-
-        // check if any instance of Tabs was assigned to a variable
-        it("should call 'new Tabs()' and assign instance to 'this._tabsInstance'", function () {
-          expect(fakeInstance._tabsInstance.constructor.name).toBe('Tabs');
-        });
-      });
-    });
-
-    describe("._bindLinks()", function () {
       var userFeed;
 
       beforeEach(function () {
-        // block init() as it's tested somewhere else
-        spyOn(UserFeed.prototype, "init");
+        spyOn(UserFeed.prototype, '_fetchFeed');
         userFeed = new UserFeed();
       });
 
+      it("should call 'this._fetchFeed()'", function () {
+        expect(userFeed._fetchFeed).toHaveBeenCalled();
+      });
+
+      it("should call 'new Tabs()' and assign instance to 'this._tabsInstance'", function () {
+        expect(userFeed._tabsInstance.constructor.name).toBe('Tabs');
+      });
+    });
+
+
+
+    describe("._bindLinks()", function () {
+      var userFeed, tempElement;
+
+      beforeEach(function () {
+        // block init() as it's tested somewhere else
+        $('fake-feed-item').remove();
+        spyOn(UserFeed.prototype, "init");
+        userFeed = new UserFeed();
+        userFeed.config = {
+              feedSelector: 'body',
+              feedItemSelector: '.fake-feed-item',
+              targetLinkSelector: 'a'
+        };
+        tempElement = $(
+            '<div class="fake-feed-item">' +
+                '<a href="FAKE_URL"></a>' +
+            '</div>'
+        );
+        doc.find('body').append(tempElement);
+      });
+
       describe("when called", function () {
-        var fakeJQoff, callback;
 
         beforeEach(function () {
-          userFeed.config = {
-            feedSelector: "fake-feedSelector",
-            feedItemSelector: "fake-feedItemSelector"
-          };
-
-          fakeJQoff = jasmine.createSpy('fakeJQoff');
-          $.fn.off = function () {
-            fakeJQoff(this.selector);
-            return $.fn;
-          };
-
-          spyOn($.fn, "on");
-          spyOn($.fn, "off").andCallThrough();
-
-          userFeed._bindLinks();
+            spyOn(userFeed, "_goToUrl");
+            userFeed._bindLinks();
+            tempElement.click();
         });
 
-        it("should call $( [..] ) with proper selector", function () {
-          expect(fakeJQoff).toHaveBeenCalledWith(userFeed.config.feedSelector + " " + userFeed.config.feedItemSelector);
-        });
-
-        it("should call $('selector').off('click')", function () {
-          expect($.fn.off).toHaveBeenCalledWith("click");
-        });
-
-        it("should call $('selectors').off( [..] ).on() with 'click' and callback", function () {
-          expect($.fn.on).toHaveBeenCalledWith("click", jasmine.any(Function));
+        it("should call set proper click event listener on proper element", function () {
+          expect(userFeed._goToUrl).toHaveBeenCalledWith('FAKE_URL');
         });
       });
     });
+
+
 
     describe("._updateUnreadFeedIndicator()", function () {
       var userFeed, testElement;
 
       beforeEach(function () {
-        // would be better if defaults config of UserFeed would be
+        // would be better if defaults (config) of UserFeed would be
         // available without initializing entity, or all initialization
-        // would be moved to separate method so here we could use just
+        // would be moved to separate method so here we cane use just
         // UserFeed.defaults.unreadFeedNumberSelector instead of
         // a raw string '.js-unread-feed-number' (if someone changes
-        // this selector in defaults, tests will break)
+        // this selector in defaults tests will break)
         spyOn(UserFeed.prototype, 'init');
+        $('.js-unread-feed-number').remove(); // should be in after each but jasmine fails to use after each properly
         testElement = $('<div/>').addClass('js-unread-feed-number').appendTo(doc.find('body'));
         userFeed = new UserFeed();
       });
 
       afterEach(function () {
-          testElement.remove();
           testElement = undefined;
-      });
-
-      it("should be a function", function () {
-        expect(userFeed._updateUnreadFeedIndicator).toEqual(jasmine.any(Function));
       });
 
       describe("called with one arg greater than 0", function () {
@@ -161,7 +122,7 @@ require([ "jquery", "public/assets/javascripts/lib/core/user_feed", "public/asse
         });
 
         it("should call this.$unreadFeedIndicator.text( [passed arg] ).removeClass('is-hidden')", function () {
-          //expect(userFeed.$unreadFeedIndicator.length).toBe(1);
+          expect(userFeed.$unreadFeedIndicator.length).toBe(1);
           expect(userFeed.$unreadFeedIndicator.text()).toBe('' + arg);
           expect(userFeed.$unreadFeedIndicator.hasClass('is-hidden')).toBe(false);
         });
@@ -177,16 +138,18 @@ require([ "jquery", "public/assets/javascripts/lib/core/user_feed", "public/asse
 
         it("should call this.$unreadFeedIndicator.addClass('is-hidden')", function () {
           expect(userFeed.$unreadFeedIndicator.length).toBe(1);
-          //expect(userFeed.$unreadFeedIndicator.hasClass('is-hidden')).toBe(true);
+          expect(userFeed.$unreadFeedIndicator.hasClass('is-hidden')).toBe(true);
         });
       });
     });
+
+
 
     describe("._createUserActivities()", function () {
       var userFeed;
 
       beforeEach(function () {
-        // block init() as it's tested somewhere else
+        // block 'init()' as it's tested somewhere else
         spyOn(UserFeed.prototype, "init");
         userFeed = new UserFeed();
       });
@@ -226,16 +189,15 @@ require([ "jquery", "public/assets/javascripts/lib/core/user_feed", "public/asse
         it("should call 'this.$unreadActivitiesIndicator.text( [proper Number ] )'", function () {
           expect(userFeed.$unreadActivitiesIndicator.text).toHaveBeenCalledWith(userFeed.highlightedActivitiesNumber);
         });
-
       });
-
     });
+
 
     describe("._createUserMessages()", function () {
       var userFeed;
 
       beforeEach(function () {
-        // block init() as it's tested somewhere else
+        // block 'init()' as it's tested somewhere else
         spyOn(UserFeed.prototype, "init");
         userFeed = new UserFeed();
       });
@@ -245,26 +207,11 @@ require([ "jquery", "public/assets/javascripts/lib/core/user_feed", "public/asse
 
         beforeEach(function () {
           feedMessages = [
-            {
-              text: '<a/>',
-              'read?': false
-            },
-            {
-              text: 'b-',
-              'read?': true
-            },
-            {
-              text: 'c-',
-              'read?': true
-            },
-            {
-              text: 'd-',
-              'read?': true
-            },
-            {
-              text: 'e-',
-              'read?': true
-            }
+            {text: '<a/>', 'read?': false},
+            {text: 'b-', 'read?': true},
+            {text: 'c-', 'read?': true},
+            {text: 'd-', 'read?': true},
+            {text: 'e-', 'read?': true}
           ];
 
           newMessagesNumber = 10;
@@ -301,10 +248,83 @@ require([ "jquery", "public/assets/javascripts/lib/core/user_feed", "public/asse
         it("should call 'this.$unreadMessagesIndicator.text( [proper Number ] )'", function () {
           expect(userFeed.$unreadMessagesIndicator.text).toHaveBeenCalledWith(newMessagesNumber);
         });
+      });
+    });
 
+
+
+    describe("._updateActivities()", function () {
+      var userFeed;
+
+      beforeEach(function () {
+          // block 'construct()' and 'init()' as they are tested somewhere else
+          spyOn(UserFeed.prototype, "init");
+          userFeed = new UserFeed();
+      });
+
+      it("should be UserFeed's method", function () {
+          expect(userFeed._updateActivities).toEqual(jasmine.any(Function));
       });
 
     });
+
+
+
+    describe("._updateMessages()", function () {
+      var userFeed;
+
+      beforeEach(function () {
+          // block 'construct()' and 'init()' as they are tested somewhere else
+          spyOn(UserFeed.prototype, "init");
+          $.fn.timeago = jasmine.createSpy("timeago");
+          userFeed = new UserFeed();
+          userFeed.highlightedActivitiesNumber = 14;
+          spyOn(userFeed, "_createUserMessages");
+          spyOn(userFeed, "_updateUnreadFeedIndicator");
+      });
+
+      describe("when called with no messages", function () {
+          var feed;
+
+          beforeEach(function () {
+              feed = {
+                  unreadMessagesCount: 14,
+                  messages: []
+              };
+
+              userFeed._updateMessages(feed);
+          });
+
+          it("should call _updateUnreadFeedIndicator and $( [..] ).timeago()", function () {
+            expect(userFeed._updateUnreadFeedIndicator).toHaveBeenCalledWith(28);
+            expect($.fn.timeago).toHaveBeenCalled();
+          });
+
+          it("should not call _createUserMessages", function () {
+            expect(userFeed._createUserMessages).not.toHaveBeenCalled();
+          });
+      });
+
+      describe("when called with some messages", function () {
+        var feed;
+
+        beforeEach(function () {
+          feed = {
+            unreadMessagesCount: 14,
+            messages: ['a','b','c']
+          };
+          userFeed._updateMessages(feed);
+        });
+
+        it("should call _updateUnreadFeedIndicator, _createUserMessages and $( [..] ).timeago()", function () {
+          expect(userFeed._updateUnreadFeedIndicator).toHaveBeenCalledWith(28);
+          expect(userFeed._createUserMessages).toHaveBeenCalledWith(feed.messages, 14);
+          expect($.fn.timeago).toHaveBeenCalled();
+        });
+      });
+    });
+
+
 
     describe("._updateFeed()", function () {
       var userFeed;
@@ -313,10 +333,6 @@ require([ "jquery", "public/assets/javascripts/lib/core/user_feed", "public/asse
         // block 'construct()' and 'init()' as they are tested somewhere else
         spyOn(UserFeed.prototype, "init");
         userFeed = new UserFeed();
-      });
-
-      it("should be a function", function () {
-        expect(userFeed._updateFeed).toEqual(jasmine.any(Function));
       });
 
       describe("called", function () {
@@ -378,11 +394,13 @@ require([ "jquery", "public/assets/javascripts/lib/core/user_feed", "public/asse
       });
     });
 
+
+
     describe("._fetchFeed()", function () {
       var userFeed;
 
       beforeEach(function () {
-        // block init() as it's tested somewhere else
+        // block 'construct()' and 'init()' as they are tested somewhere else
         spyOn(UserFeed.prototype, "init");
         userFeed = new UserFeed();
       });
