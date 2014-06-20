@@ -1,4 +1,4 @@
-define([ "jquery", "lib/utils/debounce", "timeago/jquery.timeago" ], function($, debounce) {
+define([ "jquery", "lib/utils/debounce", "jtimeago" ], function($, debounce) {
 
   "use strict";
 
