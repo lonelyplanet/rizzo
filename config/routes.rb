@@ -15,6 +15,12 @@ Rizzo::Application.routes.draw do
   get 'modern/body-header' => 'global_resources#show', :defaults => { :snippet => "body_header" }
   get 'modern/body-footer' => 'global_resources#show', :defaults => { :snippet => "body_footer" }
 
+  # Partner area for customized rizzo styles
+  get 'partners/skyscanner'             => 'global_resources#partners', :defaults => { :partner => "skyscanner", :responsive => "true" }
+  get 'partners/skyscanner/head'        => 'global_resources#show', :defaults => { :snippet => "head", :partner => "skyscanner", :responsive => "true" }
+  get 'partners/skyscanner/body-header' => 'global_resources#show', :defaults => { :snippet => "body_header", :partner => "skyscanner", :responsive => "true" }
+  get 'partners/skyscanner/body-footer' => 'global_resources#show', :defaults => { :snippet => "body_footer", :partner => "skyscanner", :responsive => "true" }
+
   # Legacy
   get 'global-head'                  => 'global_resources#show', :defaults => { :snippet => "head", :legacystyle => "true" }
   get 'global-head-thorntree'        => 'global_resources#show', :defaults => { :snippet => "head", :legacystyle => "true", :suppress_tynt => "true" }

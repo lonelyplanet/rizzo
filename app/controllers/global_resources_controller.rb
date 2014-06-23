@@ -6,7 +6,7 @@ class GlobalResourcesController < GlobalController
   layout nil
 
   def show
-    render template_for(params[:snippet], params[:secure], params[:noscript], params[:cs], params[:legacystyle] ),  :locals => { :user_nav => user_nav?(params), :suppress_tynt => params[:suppress_tynt] }
+    render template_for(params[:snippet], params[:secure], params[:noscript], params[:cs], params[:legacystyle], params[:partner] ),  :locals => { :user_nav => user_nav?(params), :suppress_tynt => params[:suppress_tynt], :responsive => params[:responsive] }
   end
 
   def index
@@ -15,6 +15,10 @@ class GlobalResourcesController < GlobalController
 
   def modern
     render '/global-nav/modern', :layout=> false,  :locals => { :user_nav => true }
+  end
+
+  def partners
+    render '/global-nav/partners', :layout=> false,  :locals => { :user_nav => user_nav?(params), :partner => params[:partner], :responsive => responsive?(params) }
   end
 
   def legacy

@@ -1,0 +1,11 @@
+!!! 5
+<!--[if IE 7]><html class="no-js ie7" lang="en"><![endif]-->
+<!--[if IE 8]><html class="no-js ie8" lang="en"><![endif]-->
+<!--[if IE 9]><html class="no-js ie9" lang="en"><![endif]-->
+<!--[if gt IE 9]><!--><html class='no-js' lang="en"><!--<![endif]-->
+%head
+  = render 'layouts/partners/' + partner + '/head', suppress_tynt: false, responsive: responsive
+
+= render 'layouts/partners/' + partner + '/body_header', user_nav: user_nav, responsive: responsive
+
+= render 'layouts/partners/' + partner + '/body_footer'

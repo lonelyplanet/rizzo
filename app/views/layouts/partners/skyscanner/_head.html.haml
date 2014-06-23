@@ -1,0 +1,20 @@
+%meta{charset: "utf-8"}
+%meta{name: "author", content: 'Lonely Planet'}
+%meta{name: "fb:app_id", content: "111537044496"}
+= yield :meta
+
+%title
+  = content_for?(:head_title) ? yield(:head_title) : 'Lonely Planet Travel Guides and Travel Information'
+
+%link{rel: "icon", type: "image/gif", href: "https://www.lonelyplanet.com/favicon.ico"}
+
+- if responsive
+  %meta{name:"viewport", content:"width=device-width, initial-scale=1"}
+- else
+  %meta{name:"viewport", content:"width=1024"}
+
+- content_for(:async_js) {"app_core"}
+= render 'layouts/core/snippets/head_js'
+
+= smart_stylesheet('common_core')
+= yield :stylesheets
