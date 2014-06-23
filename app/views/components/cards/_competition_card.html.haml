@@ -1,0 +1,54 @@
+:ruby
+
+  css_classes = [
+    "card",
+    "card--competition",    
+    " #{properties[:size] != 'mini' ? 'card--extended-content' : nil } ",
+    "card--#{ properties[:size] == 'mini' ? 'single card--mini' : properties[:size] }"
+  ].join(" ")
+
+  user_attribution_properties = properties[:user]
+  user_attribution_properties[:theme] = "dark"
+  user_attribution_properties[:size] = "small"
+
+  title_max_length = (properties[:size] == 'mini' ? 20 : 40)
+
+%article.js-card{class: css_classes}
+  .card__tags
+    - if properties[:position]
+      = ui_component('tags/competition', properties: { position: properties[:position] })
+
+  - if properties[:image_url]
+    %figure.card__hero.card--competition__hero
+      - if overlay_url = properties[:overlay_url]
+        .card__hero__overlay
+          = safe_image_tag(overlay_url, :alt => properties[:title])
+      = safe_image_tag(properties[:image_url], class: 'card__image', alt: "#{properties[:image_title]}", lazyload: defined?(lazyload))
+  .card__content.card--competition__content
+    %h2.card__name.js-card-name
+      = truncate( properties[:title], :length=> title_max_length )
+
+    %a.btn.card--competition__button{ href: "#", class: "#{ properties[:size] == 'single' || properties[:size] == 'mini' ? 'mv--split--left btn--slim btn--full-width' : 'mv--split--right btn--small' }" }
+      = 'Vote'
+    = ui_component('user_attribution', properties: user_attribution_properties)    
+
+    .card--competition__votes
+      - if properties[:valid_votes] && properties[:valid_votes].any?
+        - num_votes = properties[:valid_votes].length - 1
+        %ul.card--competition__list-votes
+          - properties[:valid_votes].each_with_index do |vote, i|
+            = succeed ( i < num_votes ? ', ' : nil ) do
+              %li.card--competition__list-votes__item<>
+                = link_to vote[:author_name], vote[:author_url], target: '_new'
+                %span.card--competition__list-votes__numvotes<>
+                  / TODO: Don't know what is this number
+                  (4) 
+                              
+  %footer.card__footer.card--competition__footer
+    .text-icon.icon--time--before.icon--body-grey--before
+      = "Taken #{properties[:image_date]}"
+    .text-icon.icon--sight--line--before.icon--body-grey--before
+      = "#{properties[:view_count]} views"
+    .text-icon.icon--comment--line--before.icon--body-grey--before
+      = "#{properties[:comment_count]} comments"
+
