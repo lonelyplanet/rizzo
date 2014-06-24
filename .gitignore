@@ -50,6 +50,8 @@ app/assets/stylesheets/icons/critical.png.css
 vendor/assets/javascripts/pickadate/lib/compressed/
 vendor/assets/javascripts/pickadate/lib/themes/
 vendor/assets/javascripts/pickadate/lib/translations/
+vendor/assets/javascripts/jquery-timeago/**
+!vendor/assets/javascripts/jquery-timeago/jquery.timeago.js
 
 # hogan
 vendor/assets/javascripts/hogan/lib
