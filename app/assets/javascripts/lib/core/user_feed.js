@@ -19,19 +19,20 @@ define([ "jquery", "lib/utils/template", "lib/components/tabs", "lib/core/timeag
     unreadActivitiesNumberSelector: ".js-unread-activities-number",
     unreadMessagesNumberSelector: ".js-unread-messages-number",
     newFeedHighlightClass: "is-highlighted",
+    initialHighlightedActivitiesNumber: 0,
     maxFeedActivities: 5,
     fetchInterval: 15000
   };
 
-  function UserFeed() {
-    this.config = defaults;
+  function UserFeed(args) {
+    this.config = $.extend({}, defaults, args);
     this.$activities = $(this.config.activitiesSelector);
     this.$messages = $(this.config.messagesSelector);
     this.$unreadActivitiesIndicator = $(this.config.unreadActivitiesNumberSelector);
     this.$unreadMessagesIndicator = $(this.config.unreadMessagesNumberSelector);
     this.$unreadFeedIndicator = $(this.config.unreadFeedNumberSelector);
     this.currentActivities;
-    this.highlightedActivitiesNumber = 0;
+    this.highlightedActivitiesNumber = this.config.initialHighlightedActivitiesNumber;
 
     this.init();
   }
