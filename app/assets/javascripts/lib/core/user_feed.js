@@ -122,7 +122,7 @@ define([ "jquery", "lib/utils/template", "lib/components/tabs", "lib/core/timeag
   };
 
   UserFeed.prototype._getActivityNumber = function(feed) {
-    if (!feed.activities.length) { return; }
+    if (!feed.activities) { return; }
 
     var newActivitiesCount = 0,
       i = 0;
@@ -155,7 +155,7 @@ define([ "jquery", "lib/utils/template", "lib/components/tabs", "lib/core/timeag
 
     } else {
       // Create activities list
-      this._createUserActivities(feed.activities, feed.activities.length);
+      feed.activities && this._createUserActivities(feed.activities, feed.activities.length);
       this.currentActivities = feed.activities;
     }
   };
@@ -163,7 +163,7 @@ define([ "jquery", "lib/utils/template", "lib/components/tabs", "lib/core/timeag
   UserFeed.prototype._updateMessages = function(feed) {
     var newMessagesNumber = feed.unreadMessagesCount;
 
-    feed.messages.length && this._createUserMessages(feed.messages, newMessagesNumber);
+    feed.messages && feed.messages.length && this._createUserMessages(feed.messages, newMessagesNumber);
     this._updateUnreadFeedIndicator(this.highlightedActivitiesNumber + newMessagesNumber);
 
     // Update timeago for feed content only
