@@ -242,3 +242,90 @@ cards:
   -
     :styleguide_title: "Traffic driver Card"
     :kind: "traffic_driver"
+
+  -
+    :styleguide_title: "Competition Card"
+    :kind: "competition"
+    :size: "double"
+    :title: "Long title to test the truncate"
+    :position: 1
+    :image_url: "http://media.lonelyplanet.com/lpi/24571/24571-47/469x264.jpg"
+    :image_date: "2 Oct 2014"
+    :view_count: 20
+    :comment_count: 152
+    :user:
+      :url: "https://www.google.es/webhp?sourceid=chrome-instant&ion=1&espv=2&es_th=1&ie=UTF-8#q=rizzo%20muppet"
+      :image: "http://img2.wikia.nocookie.net/__cb20111018235020/muppet/images/thumb/1/14/Rizzo11.png/300px-Rizzo11.png"
+      :name: "Rizzo"
+      :style: "dark"
+    :valid_votes:
+      -
+        :author_name: "Pepe"
+        :author_url: "http://www.google.com"
+      -
+        :author_name: "Jose"
+        :author_url: "http://www.google.com"
+      -
+        :author_name: "Francisco"
+        :author_url: "http://www.google.com"
+      -
+        :author_name: "Fran"
+        :author_url: "http://www.google.com"
+
+  -
+    :styleguide_title: "Competition Card"
+    :kind: "competition"
+    :size: "single"
+    :title: "Long title to test the truncate"
+    :position: 1
+    :image_url: "http://media.lonelyplanet.com/lpi/24571/24571-47/469x264.jpg"
+    :image_date: "2 Oct 2014"
+    :view_count: 20
+    :comment_count: 152
+    :user:
+      :url: "https://www.google.es/webhp?sourceid=chrome-instant&ion=1&espv=2&es_th=1&ie=UTF-8#q=rizzo%20muppet"
+      :image: "http://img2.wikia.nocookie.net/__cb20111018235020/muppet/images/thumb/1/14/Rizzo11.png/300px-Rizzo11.png"
+      :name: "Rizzo"
+      :style: "dark"
+    :valid_votes:
+      -
+        :author_name: "Pepe"
+        :author_url: "http://www.google.com"
+      -
+        :author_name: "Jose"
+        :author_url: "http://www.google.com"
+      -
+        :author_name: "Francisco"
+        :author_url: "http://www.google.com"
+      -
+        :author_name: "Fran"
+        :author_url: "http://www.google.com"
+  -
+    :styleguide_title: "Competition Card"
+    :kind: "competition"
+    :size: "mini"
+    :title: "Long title to test the truncate"
+    :position: 1
+    :image_url: "http://media.lonelyplanet.com/lpi/24571/24571-47/469x264.jpg"
+    :image_date: "2 Oct 2014"
+    :view_count: 20
+    :comment_count: 152
+    :user:
+      :url: "https://www.google.es/webhp?sourceid=chrome-instant&ion=1&espv=2&es_th=1&ie=UTF-8#q=rizzo%20muppet"
+      :image: "http://img2.wikia.nocookie.net/__cb20111018235020/muppet/images/thumb/1/14/Rizzo11.png/300px-Rizzo11.png"
+      :name: "Rizzo"
+      :style: "dark"
+    :valid_votes:
+      -
+        :author_name: "Pepe"
+        :author_url: "http://www.google.com"
+      -
+        :author_name: "Jose"
+        :author_url: "http://www.google.com"
+      -
+        :author_name: "Francisco"
+        :author_url: "http://www.google.com"
+      -
+        :author_name: "Fran"
+        :author_url: "http://www.google.com"
+

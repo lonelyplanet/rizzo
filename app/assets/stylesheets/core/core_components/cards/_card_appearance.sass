@@ -336,3 +336,61 @@
     +font-size(18)
     font-weight: bold
     margin-bottom: 0
+
+// -----------------------------------------------------------------------------
+// Competition cards
+// -----------------------------------------------------------------------------
+
+.card--competition
+  &.card--extended-content
+    .card__content
+      pointer-events: auto
+  .card--mini &
+    .user_attribution__source
+      display: none
+
+.card__hero.card--competition__hero
+  height: auto
+  .card__image
+    min-height: initial
+  .card--mini &
+    height: 100px
+
+.card__content.card--competition__content
+  .card--double &
+    height: 100px
+  .card--single &
+    height: 155px
+  .card--mini &
+    height: 60px
+    .card__name
+      +font-size(16)
+
+.card--competition__footer
+  .card--mini &
+    display: none
+  .text-icon
+    display: inline
+    .card--single &
+      display: block
+
+.card--competition__votes
+  width: 100%
+  display: inline-block
+  padding: 15px 0px
+  .card--mini &
+    display: none
+
+.card--competition__list-votes
+  list-style: none
+
+.card--competition__list-votes__item
+  +font-size(12)
+  display: inline
+
+.card--competition__list-votes__numvotes
+  color: $bodygray
+
+.card--competition__button
+  .card--single &
+    margin-bottom: 10px
