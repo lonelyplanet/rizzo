@@ -1,0 +1,5 @@
+= render 'layouts/core/snippets/accessibility'
+-unless options[:ads] == false
+  = render 'layouts/core/snippets/leaderboard'
+.row--primary#js-primary-nav
+  = render 'custom/snippets/primary_nav_bar', :options => options
