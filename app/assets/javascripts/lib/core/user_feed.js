@@ -155,7 +155,7 @@ define([ "jquery", "lib/utils/template", "lib/components/tabs", "lib/core/timeag
 
     } else {
       // Create activities list
-      feed.activities && this._createUserActivities(feed.activities, feed.activities.length);
+      feed.activities && feed.activities.length && this._createUserActivities(feed.activities, feed.activities.length);
       this.currentActivities = feed.activities;
     }
   };
