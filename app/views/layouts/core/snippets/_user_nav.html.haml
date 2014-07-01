@@ -1,0 +1,14 @@
+.nav__item.wv--nav--inline.nav--primary--user.js-user-nav.split--right__inner
+  %a.nav__item.nav__item--primary.nav__item--user.user-basket.js-user-basket.js-nav-cart(href='http://shop.lonelyplanet.com/cart/view')
+    %span.user-basket__icon.icon--shop-basket.icon--white
+      View Basket
+
+  - unless no_scripts
+    %script#js-user-nav-template{ type: "text/mustache" }
+      = render partial: "templates/global-nav/user_nav"
+
+    %noscript
+      .nav__item.nav__item--user
+        %a.nav__item.nav__item--primary.js-nav-item{ href: "https://www.lonelyplanet.com/thorntree/my_account" }
+          %i.nav__icon.icon--user--before.icon--white--before
+          My account

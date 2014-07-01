@@ -1,0 +1,23 @@
+.row--faux-banner
+%input{type: "checkbox", id: 'nav--primary__trigger', class: "is-hidden"}
+%label{for: 'nav--primary__trigger', class: 'nav--primary__trigger icon--hamburger icon--white js-toggle-active', 'data-toggle-target' => 'body', 'data-toggle-class' => 'show-nav'}
+
+%a.media--lp-logo.logo--header.icon--lp-logo.icon--white(href='http://www.lonelyplanet.com' title='Return to homepage')
+
+.nav-container.m-hidden-menu
+
+  .wv--split--right
+
+    .wv--nav--inline.split--right__inner.nav--user
+
+      - unless options[:search] == false
+        = render "layouts/core/snippets/search"
+
+      - unless options[:user_nav] == false
+        = render "layouts/core/snippets/user_nav", no_scripts: options[:no_scripts]
+
+  .wv--split--left
+
+    .wv--nav--inline.nav--primary#js-nav--primary(role="navigation" aria-label="Primary navigation")
+      - unless options[:menu] == false
+        = render "layouts/core/snippets/menu", responsive: options[:responsive]
