@@ -1,0 +1,24 @@
+= render 'layouts/core/doctype_declaration'
+%head
+  = render "custom_layouts/head", show_js: show_js
+
+  %script
+    window.lp.ads = {}
+
+  %body.responsive
+
+    = render 'layouts/core/snippets/accessibility'
+    -if ads_header
+      = render 'layouts/core/snippets/leaderboard'
+
+    .wrapper.js-wrapper
+      .row--primary#js-primary-nav
+        = render 'layouts/core/snippets/primary_navigation_bar', search: search, user_nav: user_nav, show_js: show_js, nav_primary: nav_primary
+
+      .row.row--content
+        .row.row--secondary#js-secondary-nav
+          .row__inner.row__inner--secondary
+            .split--left.row__title--secondary.place-title-heading
+              Buenos Aires
+
+      = render "custom_layouts/footer", ads_footer: ads_footer, nav_sitemap: nav_sitemap, about: about, languages: languages

@@ -1,0 +1,24 @@
+%a.nav__item.nav__item--primary.wv--hidden{ href: "http://www.lonelyplanet.com/search" }<
+  %i.nav__icon{class: 'icon--search--before icon--white--before'}
+  Search
+
+- core_navigation_items.each do |item|
+  - if item[:submenu]
+    .nav__item.nav__item--primary.nav__submenu__trigger
+      - if item[:uri]
+        %a.nav__item.nav__item--submenu.js-nav-item{ href: item[:uri] }
+          %i.nav__icon{class: item[:icon_class]}
+          = item[:title]
+      - else
+        %span.nav__item.nav__item--submenu
+          = item[:title]
+
+      .nav__submenu{ class: "nav__submenu--#{item[:title].downcase}"}
+        .nav--stacked.nav__submenu__content.js-submenu.icon--tapered-arrow-up--after.icon--white--after
+          - item[:submenu].each do |sub|
+            %a.js-nav-item{ href: sub[:uri], class: "nav__item nav__submenu__item nav__submenu__link nav__submenu__item--#{sub[:style]} #{sub[:icon_class] ? sub[:icon_class] : ''}"}<
+              = sub[:title]
+  - else
+    %a.nav__item.nav__item--primary{ href: item[:uri] }<
+      %i.nav__icon{class: item[:icon_class]}
+      = item[:title]

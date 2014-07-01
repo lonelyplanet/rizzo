@@ -4,9 +4,9 @@
 <!--[if IE 9]><html class="no-js ie9" lang="en"><![endif]-->
 <!--[if gt IE 9]><!--><html class='no-js' lang="en"><!--<![endif]-->
 %head
-  = render 'layouts/legacy/snippets/head', suppress_tynt: false
+  = render 'layouts/legacy/snippets/head', tynt: false, show_js: show_js
 %body
-  = render 'layouts/legacy/snippets/body_header', user_nav: user_nav
+  = render 'layouts/legacy/snippets/body_header', user_nav: user_nav, show_js: show_js
 
   .row.row--content
 
@@ -33,4 +33,4 @@
             %a.nav__item--footer.js-nav-item{href: "#", class: (v == 2) ? 'nav__item--breadcrumbs--current' : 'nav__item--breadcrumbs', itemprop:"url"}
               = breadcrumb
 
-  = render 'layouts/legacy/snippets/body_footer'
+  = render 'layouts/legacy/snippets/body_footer', show_js: show_js

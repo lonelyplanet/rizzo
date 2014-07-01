@@ -10,63 +10,14 @@
 
     .wv--nav--inline.split--right__inner.nav--user
 
-      %form.search--primary.search--primary-wv.js-nav-search.wv--inline-block{ action: host_with_subdomain_and_path("www", "search"), method: "get", role: "search" }
-        %label.accessibility(for='search-q') Search
-        %input.search__input.search__input--primary.js-primary-search(type="search" id="search-q" maxlength="2048" name="q" value="" autocomplete="off" tabindex="1" placeholder="Enter your search term")
-        %button.search__input__icon.js-search-icon.icon--search.icon--white(class="search__button" type="submit" id="search-q-submit")
-          Search
+      - if defined?(search) && show_nav_section(search)
+        = render "layouts/core/snippets/search"
 
-      - if user_nav
-        %nav.nav__item.wv--nav--inline.nav--primary--user.js-user-nav.split--right__inner(role="navigation" title="User navigation" aria-label="User navigation" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement")
-          %h6.accessibility User navigation
-          %a.nav__item.nav__item--primary.nav__item--user.user-basket.js-user-basket.js-nav-cart(href='http://shop.lonelyplanet.com/cart/view' itemprop="url")
-            %span.user-basket__icon.icon--shop-basket.icon--white(itemprop="name")
-              View Basket
-
-          - unless no_scripts.present?
-            %script#js-user-nav-template{ type: "text/mustache" }
-              = render partial: "templates/global-nav/user_nav"
-
-            %noscript
-              .nav__item.nav__item--user
-                %a.nav__item.nav__item--primary.js-nav-item{ href: "https://www.lonelyplanet.com/thorntree/my_account" }(itemprop="url")
-                  %i.nav__icon.icon--user--before.icon--white--before
-                  %span(itemprop="name")
-                    My account
-
+      - if defined?(user_nav) && show_nav_section(user_nav)
+        = render "layouts/core/snippets/user_nav", show_js: show_js
 
   .wv--split--left
 
-    %nav.wv--nav--inline.nav--primary#js-nav--primary(role="navigation" aria-label="Global navigation" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement")
-      %h6.accessibility Global navigation
-      - if responsive
-        %a.nav__item.nav__item--primary.wv--hidden{ href: "http://www.lonelyplanet.com/search" }(itemprop="url")<
-          %i.nav__icon{class: 'icon--search--before icon--white--before'}
-          %span(itemprop="name")
-            Search
-
-      - core_navigation_items.each do |n|
-        - if n[:submenu]
-          .nav__item.nav__item--primary.nav__submenu__trigger
-            - if n[:uri]
-              %a.nav__item.nav__item--submenu.js-nav-item{ href: n[:uri] }(itemprop="url")
-                - if responsive
-                  %i.nav__icon{class: n[:icon_class]}
-                %span(itemprop="name")
-                  = n[:title]
-            - else
-              %span.nav__item.nav__item--submenu(itemprop="name")
-                = n[:title]
-
-            .nav__submenu{ class: "nav__submenu--#{n[:title].downcase}"}
-              .nav--stacked.nav__submenu__content.js-submenu.icon--tapered-arrow-up--after.icon--white--after
-                - n[:submenu].each do |sub|
-                  %a.js-nav-item{ href: sub[:uri], class: "nav__item nav__submenu__item nav__submenu__link nav__submenu__item--#{sub[:style]} #{sub[:icon_class] ? sub[:icon_class] : ''}"}(itemprop="url")<
-                    %span(itemprop="name")
-                      = sub[:title]
-        - else
-          %a.nav__item.nav__item--primary{ href: n[:uri] }(itemprop="url")<
-            - if responsive
-              %i.nav__icon{class: n[:icon_class]}
-            %span(itemprop="name")
-              = n[:title]
+    .wv--nav--inline.nav--primary#js-nav--primary{role: "navigation", aria: {label:"Primary navigation"}}
+      - if defined?(nav_primary) && show_nav_section(nav_primary)
+        = render "layouts/core/snippets/nav_primary"

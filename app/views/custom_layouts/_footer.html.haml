@@ -1,0 +1,9 @@
+.wrapper--footer.js-wrapper
+  -if ads_footer
+    = render 'layouts/core/snippets/footer_leaderboard'
+  -if nav_sitemap
+    = render 'layouts/core/snippets/footer_sitemap'
+  -if about
+    = render 'layouts/core/snippets/footer_about', language_select: languages
+
+= render 'layouts/core/snippets/pointer_cover'

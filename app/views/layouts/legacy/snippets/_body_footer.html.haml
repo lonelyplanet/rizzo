@@ -1,7 +1,6 @@
 .wrapper--footer.js-wrapper
-  = render 'layouts/core/snippets/body_footer'
-
-- unless defined? no_scripts
+  = render 'layouts/core/snippets/body_footer', show_js: show_js
+- if show_js
   .js-config.is-hidden
     = render 'layouts/core/inline_js/fs_init'
     = js_configuration

@@ -2,11 +2,9 @@
 
 = smart_stylesheet('common_core_overrides')
 = static_ui_stylesheet('app-core-legacy', (defined? secure) ? secure : false)
-
 %link(rel="icon" type="image/gif" href="//www.lonelyplanet.com/favicon.ico")
-
-- unless defined? no_scripts
+- if show_js
   = render 'layouts/core/snippets/head_js'
-  = render 'layouts/core/inline_js/tynt' unless suppress_tynt
+  = render 'layouts/core/inline_js/tynt' unless tynt
   %script(type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js")
   = static_ui_script('lp-js-library-legacy', (defined? secure) ? secure : false)
