@@ -15,10 +15,6 @@ Rizzo::Application.routes.draw do
   get 'modern/body-header' => 'global_resources#show', :defaults => { :snippet => "body_header" }
   get 'modern/body-footer' => 'global_resources#show', :defaults => { :snippet => "body_footer" }
 
-  # Configurated routes :)
-  get 'custom/:route/:snippet'   => 'layout#snippet'
-  get 'custom/:route'            => 'layout#preview'
-
   # Legacy
   get 'global-head'                  => 'global_resources#show', :defaults => { :snippet => "head", :legacystyle => "true" }
   get 'global-head-thorntree'        => 'global_resources#show', :defaults => { :snippet => "head", :legacystyle => "true", :suppress_tynt => "true" }
