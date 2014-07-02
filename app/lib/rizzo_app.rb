@@ -18,11 +18,11 @@ class RizzoApp
 
   def secondary_nav_items
     {
-      section_name: active_section[:title],
       items: sections.map do |section|
         {
           title: section[:title],
-          slug: "#{root}#{section[:slug]}"
+          slug: "#{root}#{section[:slug]}",
+          current: section[:title] == active_section[:title]
         }
       end
     }
@@ -48,16 +48,12 @@ class RizzoApp
   private
 
   def active_section
-    section_from_slug = @path.match(/styleguide\/([^\/]+)/)
+    section_from_slug = @path.match(/(performance|styleguide)\/([^\/]+)/)
     section_from_slug && sections.map do |section|
-      if section[:slug].include? section_from_slug[1]
+      if section[:slug].include? section_from_slug[2]
         return section
       end
     end
-    default_section
-  end
-
-  def default_section
     sections[0]
   end
 

@@ -56,4 +56,7 @@ Rizzo::Application.routes.draw do
   get '/performance/css-analysis'             => 'performance#css_index'
   get '/performance/css-analysis/:stylesheet' => 'performance#css_show'
 
+  get '/performance/js-analysis'             => 'performance#js_index'
+  get '/performance/js-analysis/:javascript' => 'performance#js_show'
+
 end if defined?(Rizzo::Application)

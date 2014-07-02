@@ -192,7 +192,7 @@ module.exports = function(grunt) {
     plato: {
       rizzo: {
         files: {
-          ".plato/": [ "./public/assets/javascripts/**/*.js" ]
+          ".plato/": [ "./public/assets/javascripts/lib/**/*.js" ]
         }
       }
     },

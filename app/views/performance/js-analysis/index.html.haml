@@ -1,0 +1,47 @@
+= render 'styleguide/partials/shared'
+
+.context--content.copy--body
+
+  .card.styleguide-intro
+    %h1.copy--h1 JS Trend and Comparison
+
+  .card.styleguide-intro
+    .grid-wrapper--10.perf--row
+      .col--one-third
+        %span.copy--h2 Filename
+      .col--two-thirds
+        .grid-wrapper--10
+          .col--one-quarter
+            %span.copy--h2 Size
+          .col--one-quarter
+            %span.copy--h2 Gzipped
+          .col--one-quarter
+            %span.copy--h2 7 Day
+          .col--one-quarter
+            %span.copy--h2 1 Day
+
+    - if @result.present?
+      - @result.each do |file|
+        .grid-wrapper--10.perf--row
+          .col--one-third.stat--medium
+            = file['name']
+
+          .col--two-thirds
+            .grid-wrapper--10
+              .col--one-quarter.stat--medium
+                #{(file['sizes']['size']/1000)}kb
+              .col--one-quarter.stat--medium
+                #{(file['sizes']['gzippedSize']/1000)}kb
+              .col--one-quarter.stat--medium
+                .stat--trend.icon--white--before{class: file['compare']["last_week"] > 0 ? "stat--red icon--arrow-up--before" : file['compare']["last_week"] < 0 ? "stat--green icon--arrow-down--before" : "stat--stable"}
+                  #{file['compare']["last_week"]}%
+
+              .col--one-quarter.stat--medium
+                .stat--trend.icon--white--before{class: file['compare']["yesterday"] > 0 ? "stat--red icon--arrow-up--before" : file['compare']["yesterday"] < 0 ? "stat--green icon--arrow-down--before" : "stat--stable"}
+                  #{file['compare']["yesterday"]}%
+
+    - else
+      %h4.copy--h4 Sorry, something seems to be playing up.
+      %p
+        Check back later, hopefully it's merely a temporary thing.
+

@@ -11,6 +11,10 @@ class PerformanceMonitoring < RizzoApp
       {
         title: "CSS Analysis",
         slug: "/css-analysis"
+      },
+      {
+        title: "JS Analysis",
+        slug: "/js-analysis"
       }
     ]
   end

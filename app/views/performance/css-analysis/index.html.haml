@@ -24,21 +24,21 @@
       - @result.each do |stylesheet|
         .grid-wrapper--10.perf--row
           .col--one-third.stat--medium
-            = stylesheet[:name]
+            = stylesheet["name"]
 
           .col--two-thirds
             .grid-wrapper--10
               .col--one-quarter.stat--medium
-                #{stylesheet[:core][:size]}kb
+                #{stylesheet["sizes"]["size"]}kb
               .col--one-quarter.stat--medium
-                #{stylesheet[:core][:gzippedSize]}kb
+                #{stylesheet["sizes"]["gzippedSize"]}kb
               .col--one-quarter.stat--medium
-                .stat--trend.icon--white--before{class: stylesheet[:compare][:last_week] > 0 ? "stat--red icon--arrow-up--before" : stylesheet[:compare][:last_week] < 0 ? "stat--green icon--arrow-down--before" : "stat--stable"}
-                  #{stylesheet[:compare][:last_week]}%
+                .stat--trend.icon--white--before{class: stylesheet["compare"]["last_week"] > 0 ? "stat--red icon--arrow-up--before" : stylesheet["compare"]["last_week"] < 0 ? "stat--green icon--arrow-down--before" : "stat--stable"}
+                  #{stylesheet["compare"]["last_week"]}%
 
               .col--one-quarter.stat--medium
-                .stat--trend.icon--white--before{class: stylesheet[:compare][:yesterday] > 0 ? "stat--red icon--arrow-up--before" : stylesheet[:compare][:yesterday] < 0 ? "stat--green icon--arrow-down--before" : "stat--stable"}
-                  #{stylesheet[:compare][:yesterday]}%
+                .stat--trend.icon--white--before{class: stylesheet["compare"]["yesterday"] > 0 ? "stat--red icon--arrow-up--before" : stylesheet["compare"]["yesterday"] < 0 ? "stat--green icon--arrow-down--before" : "stat--stable"}
+                  #{stylesheet["compare"]["yesterday"]}%
 
     - else
       %h4.copy--h4 Sorry, something seems to be playing up.
