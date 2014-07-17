@@ -1,7 +1,7 @@
 = render 'layouts/core/doctype_declaration'
 
 %head
-  = render 'layouts/core/head', tynt: (defined?(tynt) ? tynt : tynt)
+  = render 'layouts/core/head', tynt: (defined?(tynt) ? tynt : false)
 
 %body.responsive
   = ui_component('lightbox')
@@ -10,7 +10,7 @@
   = render 'layouts/core/snippets/accessibility'
   = render 'layouts/core/snippets/leaderboard'
   .wrapper.js-wrapper
-    = render 'layouts/core/snippets/primary_navigation_bar', user_nav: true, show_js: true
+    = render 'layouts/core/snippets/primary_navigation_bar', user_nav: true, include_js: true, search: true, nav_primary: true, responsive: true
     .row.row--content{id: @no_wallpaper ? "" : "js-row--content"}
       - if (yield :secondary).present?
         .row.row--secondary#js-secondary-nav
@@ -25,7 +25,7 @@
 
     .wrapper.wrapper--footer
       = yield :breadcrumbs
-      = render 'layouts/core/snippets/body_footer', show_js: true
+      = render 'layouts/core/snippets/body_footer', include_js: true
 
     = render 'layouts/core/snippets/footer_js'
     = render 'layouts/core/snippets/pointer_cover'

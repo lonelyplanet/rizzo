@@ -1,5 +1,5 @@
 .wrapper--footer.js-wrapper
-  = render 'layouts/core/snippets/body_footer', show_js: show_js
+  = render 'layouts/core/snippets/body_footer', include_js: include_js
 
 .js-config.is-hidden
   %script{type: "text/javascript", async: true, src: "#{normalised_asset_path('requirejs/require.js')}", data: {main: "#{async_js_path("app_core_legacy")}"}}

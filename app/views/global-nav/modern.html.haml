@@ -9,9 +9,9 @@
     window.lp.ads = {}
 
 %body
-  = render 'layouts/core/snippets/modern_body_header', user_nav: user_nav, show_js: show_js
+  = render 'layouts/core/snippets/modern_body_header', user_nav: user_nav, include_js: include_js
   
   .row.row--content
     .row__inner.row__inner--content
 
-  = render 'layouts/core/snippets/modern_body_footer', show_js: show_js
+  = render 'layouts/core/snippets/modern_body_footer', include_js: include_js

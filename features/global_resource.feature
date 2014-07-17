@@ -4,7 +4,7 @@ Feature: Global Resources
   I should be able to serve the global-head, body-header and global-footer snippets
 
   Scenario: it serves the core header and footer
-    Given I go to "/global"
+    Given I go to "/layouts/global"
     Then the Core layout should be displayed
 
   Scenario: it serves the legacy header and footer
@@ -12,12 +12,8 @@ Feature: Global Resources
     Then the Legacy layout should be displayed
 
   Scenario: it serves the responsive header and footer
-    Given I go to "/responsive"
+    Given I go to "/layouts/responsive"
     Then the Responsive layout should be displayed
-
-  Scenario: it serves the modern header and footer
-    Given I go to "/modern"
-    Then the Modern layout should be displayed
 
   Scenario: it serves the global-head
     Given I go to "/global-head"

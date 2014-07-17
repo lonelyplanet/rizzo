@@ -30,36 +30,35 @@ Rizzo::Application.routes.draw do
   # This should all be removed over time
 
   # Core
-  get 'client-solutions/global-head'        => 'global_resources#show', :defaults => { :snippet => "head", :cs => "true", :show_js => false }
-  get 'client-solutions/global-body-header' => 'global_resources#show', :defaults => { :snippet => "body_header", :cs => "true", :show_js => false }
-  get 'client-solutions/global-body-footer' => 'global_resources#show', :defaults => { :snippet => "body_footer", :cs => "true", :show_js => false }
+  get 'client-solutions/global-head'        => 'global_resources#show', :defaults => { :snippet => "head", :cs => "true", :include_js => false }
+  get 'client-solutions/global-body-header' => 'global_resources#show', :defaults => { :snippet => "body_header", :cs => "true", :include_js => false }
+  get 'client-solutions/global-body-footer' => 'global_resources#show', :defaults => { :snippet => "body_footer", :cs => "true", :include_js => false }
 
   # Core for exposing modern layout as a service
-  get 'modern/head'        => 'global_resources#show', :defaults => { :snippet => "head", :show_js => true }
-  get 'modern/body-header' => 'global_resources#show', :defaults => { :snippet => "body_header", :show_js => true }
-  get 'modern/body-footer' => 'global_resources#show', :defaults => { :snippet => "body_footer", :show_js => true }
+  get 'modern/head'        => 'global_resources#show', :defaults => { :snippet => "head", :include_js => true }
+  get 'modern/body-header' => 'global_resources#show', :defaults => { :snippet => "body_header", :include_js => true }
+  get 'modern/body-footer' => 'global_resources#show', :defaults => { :snippet => "body_footer", :include_js => true }
 
   # Legacy
-  get 'global-head'                  => 'global_resources#show', :defaults => { :snippet => "head", :legacystyle => "true", :show_js => true }
-  get 'global-body-header'           => 'global_resources#show', :defaults => { :snippet => "body_header", :legacystyle => "true", :show_js => true }
-  get 'global-body-footer'           => 'global_resources#show', :defaults => { :snippet => "body_footer", :legacystyle => "true", :show_js => true }
+  get 'global-head'                  => 'global_resources#show', :defaults => { :snippet => "head", :legacystyle => "true", :include_js => true }
+  get 'global-body-header'           => 'global_resources#show', :defaults => { :snippet => "body_header", :legacystyle => "true", :include_js => true }
+  get 'global-body-footer'           => 'global_resources#show', :defaults => { :snippet => "body_footer", :legacystyle => "true", :include_js => true }
 
-  get 'noscript/global-head'         => 'global_resources#show', :defaults => { :snippet => "head", :show_js => false, :noscript => "true" }
-  get 'noscript/global-body-header'  => 'global_resources#show', :defaults => { :snippet => "body_header", :show_js => false, :noscript => "true" }
-  get 'noscript/global-body-footer'  => 'global_resources#show', :defaults => { :snippet => "body_footer", :show_js => false, :noscript => "true" }
+  get 'noscript/global-head'         => 'global_resources#show', :defaults => { :snippet => "head", :include_js => false, :noscript => "true" }
+  get 'noscript/global-body-header'  => 'global_resources#show', :defaults => { :snippet => "body_header", :include_js => false, :noscript => "true" }
+  get 'noscript/global-body-footer'  => 'global_resources#show', :defaults => { :snippet => "body_footer", :include_js => false, :noscript => "true" }
 
-  get 'secure/global-head'           => 'global_resources#show', :defaults => { :snippet => "head", :secure => "true", :tynt => "true", :show_js => true }
-  get 'secure/global-body-header'    => 'global_resources#show', :defaults => { :snippet => "body_header", :secure => "true", :show_js => true }
-  get 'secure/global-body-footer'    => 'global_resources#show', :defaults => { :snippet => "body_footer", :secure => "true", :show_js => true }
+  get 'secure/global-head'           => 'global_resources#show', :defaults => { :snippet => "head", :secure => "true", :tynt => "true", :include_js => true }
+  get 'secure/global-body-header'    => 'global_resources#show', :defaults => { :snippet => "body_header", :secure => "true", :include_js => true }
+  get 'secure/global-body-footer'    => 'global_resources#show', :defaults => { :snippet => "body_footer", :secure => "true", :include_js => true }
 
-  get 'secure/noscript/global-head'         => 'global_resources#show', :defaults => { :snippet => "head", :show_js => false}
-  get 'secure/noscript/global-body-header'  => 'global_resources#show', :defaults => { :snippet => "body_header", :show_js => false }
-  get 'secure/noscript/global-body-footer'  => 'global_resources#show', :defaults => { :snippet => "body_footer", :show_js => false}
+  get 'secure/noscript/global-head'         => 'global_resources#show', :defaults => { :snippet => "head", :include_js => false}
+  get 'secure/noscript/global-body-header'  => 'global_resources#show', :defaults => { :snippet => "body_header", :include_js => false }
+  get 'secure/noscript/global-body-footer'  => 'global_resources#show', :defaults => { :snippet => "body_footer", :include_js => false}
 
-  get 'global'                           => 'global_resources#index'
   get 'secure/global'                    => 'global_resources#index', :defaults => { :secure => "true" }
-  get 'legacy'                           => 'global_resources#legacy'
   get 'modern'                           => 'global_resources#modern'
+  get 'legacy'                           => 'global_resources#legacy'
   get 'responsive'                       => 'global_resources#responsive'
   get 'minimal'                          => 'global_resources#minimal'
 
