@@ -1,5 +1,6 @@
 class StyleguideController < GlobalController
 
+  include LayoutSupport
   layout proc{|c| c.request.xhr? ? false : "styleguide" }
   before_filter :setup
 
@@ -8,7 +9,7 @@ class StyleguideController < GlobalController
   end
 
   def show
-    render "/styleguide/#{params[:section]}"
+    render "/styleguide/#{params[:section]}", locals: layout_defaults.merge(legacy_options[:styleguide])
   end
 
 end

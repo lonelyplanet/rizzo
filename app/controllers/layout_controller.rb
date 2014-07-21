@@ -5,11 +5,11 @@ class LayoutController < GlobalController
   include LayoutSupport
 
   def snippet
-    render "custom_layouts/_#{params[:snippet]}", :locals => layout_defaults.merge(layout_options[:"#{params[:route]}"])
+    render "custom_layouts/_#{params[:snippet]}", locals: layout_defaults.merge(layout_options[:"#{params[:route]}"])
   end
 
   def preview
-    render "custom_layouts/preview", :locals => layout_defaults.merge(layout_options[:"#{params[:route]}"])
+    render "custom_layouts/preview", locals: layout_defaults.merge(layout_options[:"#{params[:route]}"])
   end
 
   def show_nav_section(section)

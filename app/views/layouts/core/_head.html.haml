@@ -13,13 +13,17 @@
 %link{rel: "icon", type: "image/gif", href: "https://www.lonelyplanet.com/favicon.ico"}
 = yield :pagination_links_rels
 
-%meta{name:"viewport", content:"width=device-width, initial-scale=1"}
+- if responsive
+  %meta{name:"viewport", content:"width=device-width, initial-scale=1"}
+- else
+  %meta{name:"viewport", content:"width=1024"}
 
 = csrf_meta_tags
 
 = render 'layouts/core/snippets/head_js'
-= render 'layouts/core/inline_js/tynt' unless tynt
+- if tynt
+  = render 'layouts/core/inline_js/tynt'
 
 = smart_stylesheet('common_core_no_font')
-= yield :stylesheets
 
+= yield :stylesheets

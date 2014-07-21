@@ -17,56 +17,56 @@
             Search
 
         - if (defined?(user_nav) && user_nav == true) || (!defined? user_nav)
-          %nav.nav__item.wv--nav--inline.nav--primary--user.js-user-nav.split--right__inner(role="navigation" title="User navigation" aria-label="User navigation" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement")
+          %nav.nav__item.wv--nav--inline.nav--primary--user.js-user-nav.split--right__inner{ role: "navigation", title: "User navigation", aria: { label: "User navigation" }, itemscope: "itemscope", itemtype: "http://schema.org/SiteNavigationElement" }
             %h6.accessibility User navigation
-            %a.nav__item.nav__item--primary.nav__item--user.user-basket.js-user-basket.js-nav-cart(href='http://shop.lonelyplanet.com/cart/view' itemprop="url")
-              %span.user-basket__icon.icon--shop-basket.icon--white(itemprop="name")
+            %a.nav__item.nav__item--primary.nav__item--user.user-basket.js-user-basket.js-nav-cart{ href: 'http://shop.lonelyplanet.com/cart/view' }
+              %span.user-basket__icon.icon--shop-basket.icon--white{ itemprop: "name" }
                 View Basket
 
             - if include_js
               %script#js-user-nav-template{ type: "text/mustache" }
                 = render partial: "templates/global-nav/user_nav"
 
-              %noscript
-                .nav__item.nav__item--user
-                  %a.nav__item.nav__item--primary.js-nav-item{ href: "https://www.lonelyplanet.com/thorntree/my_account" }(itemprop="url")
-                    %i.nav__icon.icon--user--before.icon--white--before
-                    %span(itemprop="name")
-                      My account
-
+            %noscript
+              .nav__item.nav__item--user
+                %a.nav__item.nav__item--primary.js-nav-item{ href: "https://www.lonelyplanet.com/thorntree/my_account", itemprop: "url" }
+                  %i.nav__icon.icon--user--before.icon--white--before
+                  %span{ itemprop: "name" }
+                    My account
 
   .wv--split--left
     - if (defined?(nav_primary) && nav_primary == true) || (!defined? nav_primary)
       %nav.wv--nav--inline.nav--primary#js-nav--primary(role="navigation" aria-label="Global navigation" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement")
         %h6.accessibility Global navigation
         - if (defined?(responsive) && responsive == true) || (!defined? responsive)
-          %a.nav__item.nav__item--primary.wv--hidden{ href: "http://www.lonelyplanet.com/search" }(itemprop="url")<
+          %a.nav__item.nav__item--primary.wv--hidden{ href: "http://www.lonelyplanet.com/search", itemprop: "url" }<
             %i.nav__icon{class: 'icon--search--before icon--white--before'}
-            %span(itemprop="name")
+            %span{ itemprop: "name" }
               Search
 
-        - core_navigation_items.each do |n|
-          - if n[:submenu]
+        - core_navigation_items.each do |item|
+          - if item[:submenu]
             .nav__item.nav__item--primary.nav__submenu__trigger
-              - if n[:uri]
-                %a.nav__item.nav__item--submenu.js-nav-item{ href: n[:uri] }(itemprop="url")
+              - if item[:uri]
+                %a.nav__item.nav__item--submenu.js-nav-item{ href: item[:uri], itemprop: "url" }
                   - if (defined?(responsive) && responsive == true) || (!defined? responsive)
-                    %i.nav__icon{class: n[:icon_class]}
-                  %span(itemprop="name")
-                    = n[:title]
+                    %i.nav__icon{class: item[:icon_class]}
+                  %span{ itemprop:"name" }
+                    = item[:title]
               - else
-                %span.nav__item.nav__item--submenu(itemprop="name")
-                  = n[:title]
+                %span.nav__item.nav__item--submenu{ itemprop: "name" }
+                  = item[:title]
 
-              .nav__submenu{ class: "nav__submenu--#{n[:title].downcase}"}
+              .nav__submenu{ class: "nav__submenu--#{item[:title].downcase}"}
                 .nav--stacked.nav__submenu__content.js-submenu.icon--tapered-arrow-up--after.icon--white--after
-                  - n[:submenu].each do |sub|
-                    %a.js-nav-item{ href: sub[:uri], class: "nav__item nav__submenu__item nav__submenu__link nav__submenu__item--#{sub[:style]} #{sub[:icon_class] ? sub[:icon_class] : ''}"}(itemprop="url")<
-                      %span(itemprop="name")
+                  - item[:submenu].each do |sub|
+                    %a.js-nav-item{ href: sub[:uri], class: "nav__item nav__submenu__item nav__submenu__link nav__submenu__item--#{sub[:style]} #{sub[:icon_class] ? sub[:icon_class] : ''}", itemprop:"url" }<
+                      %span{ itemprop: "name" }
                         = sub[:title]
           - else
-            %a.nav__item.nav__item--primary{ href: n[:uri] }(itemprop="url")<
+            %a.nav__item.nav__item--primary{ href: item[:uri], itemprop: "url" }<
               - if (defined?(responsive) && responsive == true) || (!defined? responsive)
-                %i.nav__icon{class: n[:icon_class]}
-              %span(itemprop="name")
-                = n[:title]
+                %i.nav__icon{class: item[:icon_class]}
+              %span{ itemprop: "name" }
+                = item[:title]
+

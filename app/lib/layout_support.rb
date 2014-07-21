@@ -5,13 +5,14 @@ module LayoutSupport
       about:          true,
       ads_header:     true,
       ads_footer:     false,
-      include_js:        true,
+      include_js:     true,
       languages:      true,
       nav_primary:    true,
       search:         true,
       nav_sitemap:    true,
       tynt:           false,
-      user_nav:       true
+      user_nav:       true,
+      responsive:     true
     }
   end
 
@@ -42,6 +43,45 @@ module LayoutSupport
       },
       global: {
         # defaults only
+      }
+    }
+  end
+
+  def legacy_options
+    {
+      index: {
+        # defaults
+      },
+      modern: {
+        responsive: false
+      },
+      legacy: {
+        # defaults
+      },
+      responsive: {
+        # defaults
+      },
+      minimal: {
+        # defaults
+      },
+      noscript: {
+        include_js: false
+      },
+      secure: {
+        # defaults
+      },
+      secure_noscript: {
+        tynt: true,
+        include_js: false
+      },
+      global: {
+        tynt: true
+      },
+      client_solutions: {
+        include_js: false
+      },
+      styleguide: {
+        tynt: true
       }
     }
   end

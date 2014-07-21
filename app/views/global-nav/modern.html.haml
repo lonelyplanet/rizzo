@@ -4,12 +4,12 @@
 <!--[if IE 9]><html class="no-js ie9" lang="en"><![endif]-->
 <!--[if gt IE 9]><!--><html class='no-js' lang="en"><!--<![endif]-->
 %head
-  = render 'layouts/core/snippets/modern_head', tynt: false
+  = render 'layouts/core/snippets/modern_head', tynt: true
   %script
     window.lp.ads = {}
 
 %body
-  = render 'layouts/core/snippets/modern_body_header', user_nav: user_nav, include_js: include_js
+  = render 'layouts/core/snippets/modern_body_header', user_nav: user_nav, include_js: include_js, nav_primary: nav_primary, search: search, responsive: responsive
   
   .row.row--content
     .row__inner.row__inner--content

@@ -18,45 +18,45 @@ Rizzo::Application.routes.draw do
   get 'styleguide/page-layout/',    to: redirect('/styleguide/page-layout/using-rizzo-layouts')
   get 'styleguide/widgets/',        to: redirect('/styleguide/widgets/flickr')
 
-  get 'styleguide/*section' => 'styleguide#show'
+  get 'styleguide/*section' => 'styleguide#show', defaults: { route: "styleguide" }
 
   get 'performance/',                         to: redirect('/performance/css-analysis')
-  get '/performance/css-analysis'             => 'performance#css_index'
-  get '/performance/css-analysis/:stylesheet' => 'performance#css_show'
+  get '/performance/css-analysis'             => 'performance#css_index', defaults: { route: "styleguide" }
+  get '/performance/css-analysis/:stylesheet' => 'performance#css_show', defaults: { route: "styleguide" }
 
-  get '/performance/js-analysis'             => 'performance#js_index'
-  get '/performance/js-analysis/:javascript' => 'performance#js_show'
+  get '/performance/js-analysis'             => 'performance#js_index', defaults: { route: "styleguide" }
+  get '/performance/js-analysis/:javascript' => 'performance#js_show', defaults: { route: "styleguide" }
 
   # This should all be removed over time
 
   # Core
-  get 'client-solutions/global-head'        => 'global_resources#show', :defaults => { :snippet => "head", :cs => "true", :include_js => false }
-  get 'client-solutions/global-body-header' => 'global_resources#show', :defaults => { :snippet => "body_header", :cs => "true", :include_js => false }
-  get 'client-solutions/global-body-footer' => 'global_resources#show', :defaults => { :snippet => "body_footer", :cs => "true", :include_js => false }
+  get 'client-solutions/global-head'        => 'global_resources#show', defaults: { snippet: "head", cs: "true", route: "client_solutions" }
+  get 'client-solutions/global-body-header' => 'global_resources#show', defaults: { snippet: "body_header", cs: "true", route: "client_solutions" }
+  get 'client-solutions/global-body-footer' => 'global_resources#show', defaults: { snippet: "body_footer", cs: "true", route: "client_solutions" }
 
   # Core for exposing modern layout as a service
-  get 'modern/head'        => 'global_resources#show', :defaults => { :snippet => "head", :include_js => true }
-  get 'modern/body-header' => 'global_resources#show', :defaults => { :snippet => "body_header", :include_js => true }
-  get 'modern/body-footer' => 'global_resources#show', :defaults => { :snippet => "body_footer", :include_js => true }
+  get 'modern/head'        => 'global_resources#show', defaults: { snippet: "head", route: "modern",  }
+  get 'modern/body-header' => 'global_resources#show', defaults: { snippet: "body_header", route: "modern" }
+  get 'modern/body-footer' => 'global_resources#show', defaults: { snippet: "body_footer", route: "modern" }
 
   # Legacy
-  get 'global-head'                  => 'global_resources#show', :defaults => { :snippet => "head", :legacystyle => "true", :include_js => true }
-  get 'global-body-header'           => 'global_resources#show', :defaults => { :snippet => "body_header", :legacystyle => "true", :include_js => true }
-  get 'global-body-footer'           => 'global_resources#show', :defaults => { :snippet => "body_footer", :legacystyle => "true", :include_js => true }
+  get 'global-head'                  => 'global_resources#show', defaults: { snippet: "head", legacystyle: "true", route: "global" }
+  get 'global-body-header'           => 'global_resources#show', defaults: { snippet: "body_header", legacystyle: "true", route: "global" }
+  get 'global-body-footer'           => 'global_resources#show', defaults: { snippet: "body_footer", legacystyle: "true", route: "global" }
 
-  get 'noscript/global-head'         => 'global_resources#show', :defaults => { :snippet => "head", :include_js => false, :noscript => "true" }
-  get 'noscript/global-body-header'  => 'global_resources#show', :defaults => { :snippet => "body_header", :include_js => false, :noscript => "true" }
-  get 'noscript/global-body-footer'  => 'global_resources#show', :defaults => { :snippet => "body_footer", :include_js => false, :noscript => "true" }
+  get 'noscript/global-head'         => 'global_resources#show', defaults: { snippet: "head", noscript: "true", route: "noscript" }
+  get 'noscript/global-body-header'  => 'global_resources#show', defaults: { snippet: "body_header", noscript: "true", route: "noscript" }
+  get 'noscript/global-body-footer'  => 'global_resources#show', defaults: { snippet: "body_footer", noscript: "true", route: "noscript" }
 
-  get 'secure/global-head'           => 'global_resources#show', :defaults => { :snippet => "head", :secure => "true", :tynt => "true", :include_js => true }
-  get 'secure/global-body-header'    => 'global_resources#show', :defaults => { :snippet => "body_header", :secure => "true", :include_js => true }
-  get 'secure/global-body-footer'    => 'global_resources#show', :defaults => { :snippet => "body_footer", :secure => "true", :include_js => true }
+  get 'secure/global-head'           => 'global_resources#show', defaults: { snippet: "head", secure: "true", route: "secure",  }
+  get 'secure/global-body-header'    => 'global_resources#show', defaults: { snippet: "body_header", secure: "true", route: "secure" }
+  get 'secure/global-body-footer'    => 'global_resources#show', defaults: { snippet: "body_footer", secure: "true", route: "secure" }
 
-  get 'secure/noscript/global-head'         => 'global_resources#show', :defaults => { :snippet => "head", :include_js => false}
-  get 'secure/noscript/global-body-header'  => 'global_resources#show', :defaults => { :snippet => "body_header", :include_js => false }
-  get 'secure/noscript/global-body-footer'  => 'global_resources#show', :defaults => { :snippet => "body_footer", :include_js => false}
+  get 'secure/noscript/global-head'         => 'global_resources#show', defaults: { snippet: "head", route: "secure_noscript" }
+  get 'secure/noscript/global-body-header'  => 'global_resources#show', defaults: { snippet: "body_header", route: "secure_noscript" }
+  get 'secure/noscript/global-body-footer'  => 'global_resources#show', defaults: { snippet: "body_footer", route: "secure_noscript" }
 
-  get 'secure/global'                    => 'global_resources#index', :defaults => { :secure => "true" }
+  get 'secure/global'                    => 'global_resources#index', defaults: { secure: "true" }
   get 'modern'                           => 'global_resources#modern'
   get 'legacy'                           => 'global_resources#legacy'
   get 'responsive'                       => 'global_resources#responsive'
