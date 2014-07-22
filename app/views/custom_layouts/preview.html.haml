@@ -5,10 +5,7 @@
   %script
     window.lp.ads = {}
     
-  - if responsive
-    %body.responsive
-  - else
-    %body
+  %body{ class: responsive ? "responsive" : false }
   
   = render 'layouts/core/snippets/accessibility'
 

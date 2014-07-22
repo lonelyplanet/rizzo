@@ -11,7 +11,7 @@ class GlobalResourcesController < GlobalController
   end
 
   def index
-    render '/global-nav/index', :layout=> 'core', locals: layout_defaults.merge(legacy_options[:index]).merge({ user_nav: user_nav?(params)})
+    render '/global-nav/index', :layout=> 'core', locals: layout_defaults.merge(legacy_options[:index])
   end
 
   def modern

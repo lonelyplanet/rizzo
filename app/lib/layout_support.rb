@@ -71,7 +71,6 @@ module LayoutSupport
         # defaults
       },
       secure_noscript: {
-        tynt: true,
         include_js: false
       },
       global: {
