@@ -7,7 +7,7 @@ class GlobalResourcesController < GlobalController
   layout nil
 
   def show
-    render template_for(params[:snippet], params[:secure], params[:noscript], params[:cs], params[:legacystyle] ), locals: layout_defaults.merge(legacy_options[:"#{params[:route]}"])
+    render template_for(params[:snippet], params[:secure], params[:noscript], params[:cs], params[:legacystyle] ), locals: get_layout_config(:"#{params[:route]}")
   end
 
   def index

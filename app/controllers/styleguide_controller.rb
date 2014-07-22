@@ -9,7 +9,7 @@ class StyleguideController < GlobalController
   end
 
   def show
-    render "/styleguide/#{params[:section]}", locals: layout_defaults.merge(legacy_options[:styleguide])
+    render "/styleguide/#{params[:section]}", locals: get_layout_config(:styleguide)
   end
 
 end
