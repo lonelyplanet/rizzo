@@ -35,9 +35,10 @@
                     My account
 
   .wv--split--left
-    - if (defined?(nav_primary) && nav_primary == true) || (!defined? nav_primary)
-      %nav.wv--nav--inline.nav--primary#js-nav--primary(role="navigation" aria-label="Global navigation" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement")
-        %h6.accessibility Global navigation
+    %nav.wv--nav--inline.nav--primary#js-nav--primary(role="navigation" aria-label="Global navigation" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement")
+      %h6.accessibility Global navigation
+      - if (defined?(nav_primary) && nav_primary == true) || (!defined? nav_primary)
+
         - if (defined?(responsive) && responsive == true) || (!defined? responsive)
           %a.nav__item.nav__item--primary.wv--hidden{ href: "http://www.lonelyplanet.com/search", itemprop: "url" }<
             %i.nav__icon{class: 'icon--search--before icon--white--before'}
