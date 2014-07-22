@@ -11,23 +11,23 @@ class GlobalResourcesController < GlobalController
   end
 
   def index
-    render '/global-nav/index', :layout=> 'core', locals: layout_defaults.merge(legacy_options[:index])
+    render '/global-nav/index', :layout=> 'core', locals: get_layout_config(:index)
   end
 
   def modern
-    render '/global-nav/modern', :layout=> false, locals: layout_defaults.merge(legacy_options[:modern])
+    render '/global-nav/modern', :layout=> false, locals: get_layout_config(:modern)
   end
 
   def legacy
-    render '/global-nav/legacy', :layout=> false, locals: layout_defaults.merge(legacy_options[:legacy])
+    render '/global-nav/legacy', :layout=> false, locals: get_layout_config(:legacy)
   end
 
   def responsive
-    render '/global-nav/responsive', :layout=> 'responsive', locals: layout_defaults.merge(legacy_options[:responsive])
+    render '/global-nav/responsive', :layout=> 'responsive', locals: get_layout_config(:responsive)
   end
 
   def minimal
-    render '/global-nav/minimal', :layout=> 'minimal', locals: layout_defaults.merge(legacy_options[:minimal])
+    render '/global-nav/minimal', :layout=> 'minimal', locals: get_layout_config(:minimal)
   end
 
 end

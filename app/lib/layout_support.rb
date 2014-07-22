@@ -85,4 +85,8 @@ module LayoutSupport
     }
   end
 
+  def get_layout_config(layout_type)
+    layout_defaults.merge(legacy_options[:"#{layout_type}"])
+  end
+
 end
