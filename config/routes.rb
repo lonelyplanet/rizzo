@@ -41,19 +41,19 @@ Rizzo::Application.routes.draw do
 
   # Legacy
   get 'global-head'                  => 'global_resources#show', defaults: { snippet: "head", legacystyle: "true", route: "legacy" }
-  get 'global-body-header'           => 'global_resources#show', defaults: { snippet: "body_header", legacystyle: "true", route: "legacy" }
+  get 'global-body-header'           => 'global_resources#show', defaults: { snippet: "header", legacystyle: "true", route: "legacy" }
   get 'global-body-footer'           => 'global_resources#show', defaults: { snippet: "body_footer", legacystyle: "true", route: "legacy" }
 
   get 'noscript/global-head'         => 'global_resources#show', defaults: { snippet: "head", noscript: "true", route: "noscript" }
-  get 'noscript/global-body-header'  => 'global_resources#show', defaults: { snippet: "body_header", noscript: "true", route: "noscript" }
+  get 'noscript/global-body-header'  => 'global_resources#show', defaults: { snippet: "header", noscript: "true", route: "noscript" }
   get 'noscript/global-body-footer'  => 'global_resources#show', defaults: { snippet: "body_footer", noscript: "true", route: "noscript" }
 
   get 'secure/global-head'           => 'global_resources#show', defaults: { snippet: "head", secure: "true", route: "secure",  }
-  get 'secure/global-body-header'    => 'global_resources#show', defaults: { snippet: "body_header", secure: "true", route: "secure" }
+  get 'secure/global-body-header'    => 'global_resources#show', defaults: { snippet: "header", secure: "true", route: "secure" }
   get 'secure/global-body-footer'    => 'global_resources#show', defaults: { snippet: "body_footer", secure: "true", route: "secure" }
 
   get 'secure/noscript/global-head'         => 'global_resources#show', defaults: { snippet: "head", route: "secure_noscript" }
-  get 'secure/noscript/global-body-header'  => 'global_resources#show', defaults: { snippet: "body_header", route: "secure_noscript" }
+  get 'secure/noscript/global-body-header'  => 'global_resources#show', defaults: { snippet: "header", route: "secure_noscript" }
   get 'secure/noscript/global-body-footer'  => 'global_resources#show', defaults: { snippet: "body_footer", route: "secure_noscript" }
 
   get 'legacy'                           => 'global_resources#legacy'

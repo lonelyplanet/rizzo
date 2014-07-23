@@ -1,6 +1,9 @@
 module SnippetSupport
 
   def template_for(snippet, secure=false, noscript=false, cs=false, legacystyle=false)
+    if snippet == "head" || snippet == "header"
+      return "custom_layouts/_#{snippet}"
+    end
     if secure
       "layouts/legacy/snippets/_secure_#{snippet}"
     elsif noscript
@@ -8,9 +11,6 @@ module SnippetSupport
     elsif cs
       "layouts/core/snippets/_cs_#{snippet}"
     elsif legacystyle
-      if snippet == "head"
-        return "custom_layouts/_#{snippet}"
-      end
       "layouts/legacy/snippets/_#{snippet}"
     else
       "layouts/core/snippets/_modern_#{snippet}"

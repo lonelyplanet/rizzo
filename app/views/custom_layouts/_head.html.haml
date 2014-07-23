@@ -19,9 +19,10 @@
 
 = csrf_meta_tags
 
-= render 'layouts/core/snippets/head_js'
-- if tynt
-  = render 'layouts/core/inline_js/tynt'
+- if include_js
+  = render 'layouts/core/snippets/head_js'
+  - if tynt
+    = render 'layouts/core/inline_js/tynt'
 
 = yield :stylesheets
 - if legacy_lp
@@ -33,6 +34,6 @@
 = yield :pagination_links_rels
 = yield :place_hotels_link
 
-- if legacy_lp
+- if legacy_lp && include_js
   %script(type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js")
   = static_ui_script('lp-js-library-legacy', (defined? secure) ? secure : false)

@@ -39,11 +39,19 @@ module LayoutSupport
       },
       noscript: {
         include_js: false,
-        tynt: false
+        tynt: false,
+        legacy_lp: true
+      },
+      secure: {
+        tynt: false,
+        secure: true,
+        legacy_lp: true
       },
       secure_noscript: {
         include_js: false,
-        tynt: false
+        tynt: false,
+        legacy_lp: true,
+        secure: true
       },
       global: {
         tynt: true
