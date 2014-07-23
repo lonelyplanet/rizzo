@@ -5,11 +5,12 @@ class LayoutController < GlobalController
   include LayoutSupport
 
   def snippet
-    render "custom_layouts/_#{params[:snippet]}", locals: get_layout_config(:"#{params[:route]}")
+    render "custom_layouts/_#{params[:snippet]}", locals: get_layout_config(params[:route])
   end
 
   def preview
-    render "custom_layouts/preview", locals: get_layout_config(:"#{params[:route]}")
+    layout_details = get_layout(params[:route])
+    render layout_details[:template], layout: layout_details[:layout], locals: get_layout_config(params[:route])
   end
 
 end

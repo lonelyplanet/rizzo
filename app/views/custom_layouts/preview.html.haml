@@ -5,22 +5,22 @@
   - if include_js
     %script
       window.lp.ads = {}
-    
+
   %body{ class: responsive ? "responsive" : false }
-  
-  = render 'layouts/core/snippets/accessibility'
 
-  - if ads_header
-    = render 'layouts/core/snippets/leaderboard'
+    = render 'layouts/core/snippets/accessibility'
 
-  .wrapper.js-wrapper
-    .nav-container
-      .row--primary#js-primary-nav
-        = render 'layouts/core/snippets/primary_navigation_bar', search: search, user_nav: user_nav, include_js: include_js, nav_primary: nav_primary, responsive: responsive
+    - if ads_header
+      = render 'layouts/core/snippets/leaderboard'
 
-    .row.row--content
-      .row.row--secondary#js-secondary-nav
-        .row__inner.row__inner--secondary
-          = ui_component("place_title", properties: {title: "Buenos Aires"})
+    .wrapper.js-wrapper
+      .nav-container
+        .row--primary#js-primary-nav
+          = render 'layouts/core/snippets/primary_navigation_bar', search: search, user_nav: user_nav, include_js: include_js, nav_primary: nav_primary, responsive: responsive
 
-    = render "custom_layouts/footer", ads_footer: ads_footer, nav_sitemap: nav_sitemap, about: about, languages: languages
+      .row.row--content
+        .row.row--secondary#js-secondary-nav
+          .row__inner.row__inner--secondary
+            = ui_component("place_title", properties: {title: "Buenos Aires"})
+
+      = render "custom_layouts/footer", ads_footer: ads_footer, nav_sitemap: nav_sitemap, about: about, languages: languages
