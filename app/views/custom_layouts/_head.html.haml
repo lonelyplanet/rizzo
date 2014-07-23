@@ -24,13 +24,13 @@
   - if tynt
     = render 'layouts/core/inline_js/tynt'
 
-= yield :stylesheets
 - if legacy_lp
   = smart_stylesheet('common_core_overrides')
   = static_ui_stylesheet('app-core-legacy', (defined? secure) ? secure : false)
 - else
   = smart_stylesheet('common_core_no_font')
 
+= yield :stylesheets
 = yield :pagination_links_rels
 = yield :place_hotels_link
 

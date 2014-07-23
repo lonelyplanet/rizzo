@@ -11,7 +11,7 @@
 = render 'layouts/core/snippets/pointer_cover'
 
 
-- if legacy_lp
+- if legacy_lp && include_js
   .js-config.is-hidden
     %script{type: "text/javascript", async: true, src: "#{normalised_asset_path('requirejs/require.js')}", data: {main: "#{async_js_path("app_core_legacy")}"}}
 

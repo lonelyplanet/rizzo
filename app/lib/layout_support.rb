@@ -40,21 +40,15 @@ module LayoutSupport
       noscript: {
         include_js:     false,
         tynt:           false,
-        legacy_lp:      true
+        legacy_lp:      true,
+        responsive:     false,
+        secure:         true
       },
       secure: {
         tynt:           false,
         secure:         true,
-        legacy_lp:      true
-      },
-      secure_noscript: {
-        include_js:     false,
-        tynt:           false,
         legacy_lp:      true,
-        secure:         true
-      },
-      secure: {
-        tynt: false
+        responsive:     false,
       },
       global: {
         tynt:           true
@@ -62,7 +56,8 @@ module LayoutSupport
       client_solutions: {
         include_js:     false,
         user_nav:       false,
-        nav_sitemap:    false
+        nav_sitemap:    false,
+        ads_header:     false
       },
       styleguide: {
         tynt:           false
