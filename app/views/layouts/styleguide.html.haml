@@ -2,7 +2,7 @@
 %html{ class: "no-js no-freight base", lang: "en" }
 
   %head
-    = render 'custom_layouts/head', tynt: (defined?(tynt) ? tynt : true), responsive: responsive, third_party: false, include_js: true, legacy_lp: false, app_core: false
+    = render 'custom_layouts/head', tynt: (defined?(tynt) ? tynt : true), responsive: false, third_party: false, include_js: true, legacy_lp: false, app_core: false
     = stylesheet_link_tag 'styleguide', :media => "all"
 
   %body
@@ -36,7 +36,7 @@
           = ui_component('preloader')
 
     .js-config.is-hidden
-      = render 'layouts/core/snippets/footer_js'
+      = render 'layouts/core/snippets/footer_js', third_party: false
       = yield :scripts
 
       = javascript_include_tag 'prism'

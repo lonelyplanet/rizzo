@@ -30,32 +30,26 @@ Rizzo::Application.routes.draw do
   # This should all be removed over time
 
   # Core
-  get 'client-solutions/global-head'        => 'global_resources#show', defaults: { snippet: "head", cs: "true", route: "client_solutions" }
-  get 'client-solutions/global-body-header' => 'global_resources#show', defaults: { snippet: "body_header", cs: "true", route: "client_solutions" }
-  get 'client-solutions/global-body-footer' => 'global_resources#show', defaults: { snippet: "body_footer", cs: "true", route: "client_solutions" }
+  get 'client-solutions/global-head'        => 'global_resources#show', defaults: { snippet: "head", route: "client_solutions" }
+  get 'client-solutions/global-body-header' => 'global_resources#show', defaults: { snippet: "header", route: "client_solutions" }
+  get 'client-solutions/global-body-footer' => 'global_resources#show', defaults: { snippet: "footer", route: "client_solutions" }
 
   # Core for exposing modern layout as a service
   get 'modern/head'        => 'global_resources#show', defaults: { snippet: "head", route: "modern",  }
-  get 'modern/body-header' => 'global_resources#show', defaults: { snippet: "body_header", route: "modern" }
-  get 'modern/body-footer' => 'global_resources#show', defaults: { snippet: "body_footer", route: "modern" }
+  get 'modern/body-header' => 'global_resources#show', defaults: { snippet: "header", route: "modern" }
+  get 'modern/body-footer' => 'global_resources#show', defaults: { snippet: "footer", route: "modern" }
 
   # Legacy
-  get 'global-head'                  => 'global_resources#show', defaults: { snippet: "head", legacystyle: "true", route: "legacy" }
-  get 'global-body-header'           => 'global_resources#show', defaults: { snippet: "header", legacystyle: "true", route: "legacy" }
-  get 'global-body-footer'           => 'global_resources#show', defaults: { snippet: "body_footer", legacystyle: "true", route: "legacy" }
+  get 'global-head'                  => 'global_resources#show', defaults: { snippet: "head", route: "legacy" }
+  get 'global-body-header'           => 'global_resources#show', defaults: { snippet: "header", route: "legacy" }
+  get 'global-body-footer'           => 'global_resources#show', defaults: { snippet: "footer", route: "legacy" }
 
-  get 'noscript/global-head'         => 'global_resources#show', defaults: { snippet: "head", noscript: "true", route: "noscript" }
-  get 'noscript/global-body-header'  => 'global_resources#show', defaults: { snippet: "header", noscript: "true", route: "noscript" }
-  get 'noscript/global-body-footer'  => 'global_resources#show', defaults: { snippet: "body_footer", noscript: "true", route: "noscript" }
+  get 'noscript/global-head'         => 'global_resources#show', defaults: { snippet: "head", route: "noscript" }
+  get 'noscript/global-body-header'  => 'global_resources#show', defaults: { snippet: "header", route: "noscript" }
+  get 'noscript/global-body-footer'  => 'global_resources#show', defaults: { snippet: "footer", route: "noscript" }
 
-  get 'secure/global-head'           => 'global_resources#show', defaults: { snippet: "head", secure: "true", route: "secure",  }
-  get 'secure/global-body-header'    => 'global_resources#show', defaults: { snippet: "header", secure: "true", route: "secure" }
-  get 'secure/global-body-footer'    => 'global_resources#show', defaults: { snippet: "body_footer", secure: "true", route: "secure" }
-
-  get 'secure/noscript/global-head'         => 'global_resources#show', defaults: { snippet: "head", route: "secure_noscript" }
-  get 'secure/noscript/global-body-header'  => 'global_resources#show', defaults: { snippet: "header", route: "secure_noscript" }
-  get 'secure/noscript/global-body-footer'  => 'global_resources#show', defaults: { snippet: "body_footer", route: "secure_noscript" }
-
-  get 'legacy'                           => 'global_resources#legacy'
+  get 'secure/global-head'           => 'global_resources#show', defaults: { snippet: "head", route: "secure",  }
+  get 'secure/global-body-header'    => 'global_resources#show', defaults: { snippet: "header", route: "secure" }
+  get 'secure/global-body-footer'    => 'global_resources#show', defaults: { snippet: "footer", route: "secure" }
 
 end if defined?(Rizzo::Application)

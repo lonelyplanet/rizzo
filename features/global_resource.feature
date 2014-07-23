@@ -4,9 +4,9 @@ Feature: Global Resources
   I should be able to serve the global-head, body-header and global-footer snippets
 
   Scenario: it serves the legacy header and footer
-    Given I go to "/legacy"
+    Given I go to "/layouts/legacy"
     Then the Legacy layout should be displayed
-    
+
   Scenario: it serves the global-head
     Given I go to "/global-head"
     Then the base global-head content should be displayed
