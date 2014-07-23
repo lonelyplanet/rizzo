@@ -1,22 +1,22 @@
 .row--faux-banner
-%input{type: "checkbox", id: 'nav--primary__trigger', class: "is-hidden"}
-%label{for: 'nav--primary__trigger', class: 'nav--primary__trigger icon--hamburger icon--white js-toggle-active', 'data-toggle-target' => 'body', 'data-toggle-class' => 'show-nav'}
+%input{ type: "checkbox", id: 'nav--primary__trigger', class: "is-hidden" }
+%label{ for: 'nav--primary__trigger', class: 'nav--primary__trigger icon--hamburger icon--white js-toggle-active', data: { toggle: { target: 'body', class: 'show-nav' } } }
 
-%a.media--lp-logo.logo--header.icon--lp-logo.icon--white(href='http://www.lonelyplanet.com' title='Return to homepage')
+%a.media--lp-logo.logo--header.icon--lp-logo.icon--white{ href: 'http://www.lonelyplanet.com', title: 'Return to homepage' }
 
 .nav-container.m-hidden-menu
 
   .wv--split--right
 
     .wv--nav--inline.split--right__inner.nav--user
-      - if (defined?(search) && search == true) || (!defined? search)
+      - if search
         %form.search--primary.search--primary-wv.js-nav-search.wv--inline-block{ action: host_with_subdomain_and_path("www", "search"), method: "get", role: "search" }
           %label.accessibility(for='search-q') Search
-          %input.search__input.search__input--primary.js-primary-search(type="search" id="search-q" maxlength="2048" name="q" value="" autocomplete="off" tabindex="1" placeholder="Enter your search term")
-          %button.search__input__icon.js-search-icon.icon--search.icon--white(class="search__button" type="submit" id="search-q-submit")
+          %input.search__input.search__input--primary.js-primary-search{ type: "search", id: "search-q", maxlength: "2048", name: "q", value: "", autocomplete: "off", tabindex: "1", placeholder: "Enter your search term" }
+          %button.search__input__icon.js-search-icon.icon--search.icon--white{ class: "search__button", type: "submit", id: "search-q-submit" }
             Search
 
-        - if (defined?(user_nav) && user_nav == true) || (!defined? user_nav)
+        - if user_nav
           %nav.nav__item.wv--nav--inline.nav--primary--user.js-user-nav.split--right__inner{ role: "navigation", title: "User navigation", aria: { label: "User navigation" }, itemscope: "itemscope", itemtype: "http://schema.org/SiteNavigationElement" }
             %h6.accessibility User navigation
             %a.nav__item.nav__item--primary.nav__item--user.user-basket.js-user-basket.js-nav-cart{ href: 'http://shop.lonelyplanet.com/cart/view' }
@@ -35,11 +35,10 @@
                     My account
 
   .wv--split--left
-    %nav.wv--nav--inline.nav--primary#js-nav--primary(role="navigation" aria-label="Global navigation" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement")
-      %h6.accessibility Global navigation
-      - if (defined?(nav_primary) && nav_primary == true) || (!defined? nav_primary)
-
-        - if (defined?(responsive) && responsive == true) || (!defined? responsive)
+    %nav.wv--nav--inline.nav--primary#js-nav--primary{ role: "navigation", aria: { label: "Global navigation" }, itemscope: "itemscope", itemtype: "http://schema.org/SiteNavigationElement" }
+      - if nav_primary
+        %h6.accessibility Global navigation
+        - if responsive
           %a.nav__item.nav__item--primary.wv--hidden{ href: "http://www.lonelyplanet.com/search", itemprop: "url" }<
             %i.nav__icon{class: 'icon--search--before icon--white--before'}
             %span{ itemprop: "name" }
@@ -50,7 +49,7 @@
             .nav__item.nav__item--primary.nav__submenu__trigger
               - if item[:uri]
                 %a.nav__item.nav__item--submenu.js-nav-item{ href: item[:uri], itemprop: "url" }
-                  - if (defined?(responsive) && responsive == true) || (!defined? responsive)
+                  - if responsive
                     %i.nav__icon{class: item[:icon_class]}
                   %span{ itemprop:"name" }
                     = item[:title]
@@ -66,7 +65,7 @@
                         = sub[:title]
           - else
             %a.nav__item.nav__item--primary{ href: item[:uri], itemprop: "url" }<
-              - if (defined?(responsive) && responsive == true) || (!defined? responsive)
+              - if responsive
                 %i.nav__icon{class: item[:icon_class]}
               %span{ itemprop: "name" }
                 = item[:title]
