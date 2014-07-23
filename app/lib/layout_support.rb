@@ -39,6 +39,9 @@ module LayoutSupport
         include_js: false,
         tynt: false
       },
+      secure: {
+        tynt: false
+      },
       global: {
         tynt: true
       },
