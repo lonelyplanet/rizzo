@@ -1,14 +1,16 @@
 = render 'layouts/core/doctype_declaration'
 
 %head
-  = render 'layouts/core/head', tynt: (defined?(tynt) ? tynt : true), include_js: true, responsive: false
+  = render 'custom_layouts/head', tynt: (defined?(tynt) ? tynt : true), include_js: true, responsive: false, third_party: false, legacy_lp: false, app_core: false
 
 %body
   = ui_component('lightbox')
   %script#tmpl-preloader{ type: 'text-mustache' }
     = ui_component('preloader')
+
   .wrapper.js-wrapper
-    = render 'layouts/core/snippets/body_header', user_nav: true, include_js: true, nav_primary: true, search: true, responsive: false
+
+    = render 'custom_layouts/header', user_nav: true, include_js: true, nav_primary: true, search: true, responsive: false, ads_header: true, third_party: false
 
     .row.row--content#js-row--content
       - if content_for?(:secondary)
@@ -23,13 +25,10 @@
 
     .wrapper.wrapper--footer
       = yield :breadcrumbs
-      = render 'layouts/core/snippets/body_footer', include_js: true
-
-  = render 'layouts/core/snippets/pointer_cover'
+      = render 'custom_layouts/footer', include_js: true, ads_footer: false, nav_sitemap: true, about: true, languages: true, third_party: false, legacy_lp: false
 
   = render 'layouts/core/snippets/one_by_one'
 
-  = render 'layouts/core/snippets/footer_js'
   
   - if defined? Variant
     /

@@ -12,7 +12,10 @@ module LayoutSupport
       nav_sitemap:    true,
       tynt:           true,
       user_nav:       true,
-      responsive:     true
+      responsive:     true,
+      third_party:    false,
+      legacy_lp:      false,
+      app_core:       false
     }
   end
 
@@ -21,36 +24,47 @@ module LayoutSupport
       india: {
         about:          false,
         ads_header:     false,
-        include_js:     false,
+        include_js:     true,
         nav_primary:    false,
         search:         false,
         nav_sitemap:    false,
         user_nav:       false,
-        tynt:           false
+        tynt:           false,
+        third_party:    true,
+        app_core:       true
       },
       modern: {
-        responsive: false
+        responsive:     false,
+        app_core:       true
       },
       noscript: {
-        include_js: false,
-        tynt: false
+        include_js:     false,
+        tynt:           false,
+        legacy_lp:      true,
+        responsive:     false,
+        secure:         true
       },
-      secure_noscript: {
-        include_js: false,
-        tynt: false
+      secure: {
+        tynt:           false,
+        secure:         true,
+        legacy_lp:      true,
+        responsive:     false,
       },
       global: {
-        tynt: true
+        tynt:           true
       },
       client_solutions: {
-        include_js: false,
-        user_nav: false
+        include_js:     false,
+        user_nav:       false,
+        nav_sitemap:    false,
+        ads_header:     false
       },
       styleguide: {
-        tynt: false
+        tynt:           false
       },
       legacy: {
-        responsive: false
+        responsive:     false,
+        legacy_lp:      true
       }
     }
   end

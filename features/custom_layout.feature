@@ -24,3 +24,8 @@ Feature: Custom Layouts
     Given I go to "/layouts/responsive"
     Then the Preview route should be displayed
     And the body should have a class of responsive
+
+  Scenario: it serves the default preview file
+    Given I go to "/layouts/global"
+    Then the Preview route should be displayed
+    And the body should have a class of responsive

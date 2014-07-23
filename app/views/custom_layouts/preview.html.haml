@@ -1,7 +1,7 @@
 = render 'layouts/core/doctype_declaration'
 %head
-  = render "custom_layouts/head", include_js: include_js, responsive: responsive, tynt: tynt
-  
+  = render "custom_layouts/head", include_js: include_js, responsive: responsive, tynt: tynt, third_party: third_party, app_core: app_core, legacy_lp: legacy_lp
+
   - if include_js
     %script
       window.lp.ads = {}
@@ -23,4 +23,4 @@
           .row__inner.row__inner--secondary
             = ui_component("place_title", properties: {title: "Buenos Aires"})
 
-      = render "custom_layouts/footer", ads_footer: ads_footer, nav_sitemap: nav_sitemap, about: about, languages: languages
+      = render "custom_layouts/footer", ads_footer: ads_footer, nav_sitemap: nav_sitemap, about: about, languages: languages, include_js: include_js, third_party: third_party, legacy_lp: false

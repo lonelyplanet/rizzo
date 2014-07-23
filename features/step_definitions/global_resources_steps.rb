@@ -99,11 +99,11 @@ end
 
 Then(/^the client\-solutions global\-head should have the correct content$/) do
   page.should_not have_xpath("//meta[@content=\"width=1024\" and @name=\"viewport\"]")
-  page.should have_xpath("//link[@href=\"/assets/common_core.css\"]")
+  page.should have_xpath("//link[@href=\"/assets/common_core_no_font.css\"]")
 end
 
 Then(/^the client\-solutions global\-body\-header response should have the correct content$/) do
-  page.should_not have_selector 'div.accessibility'
+  page.should have_selector 'div.accessibility'
   page.should_not have_selector 'div.row--leaderboard'
   page.should have_selector '.nav--primary'
   page.should have_selector 'form.search--primary'

@@ -1,5 +1,10 @@
+- unless third_party
+  = render 'layouts/core/snippets/cookie_compliance'
+
 = render 'layouts/core/snippets/accessibility'
--if ads_header
+
+- if ads_header
   = render 'layouts/core/snippets/leaderboard'
+
 .row--primary#js-primary-nav
-  = render 'layouts/core/snippets/primary_navigation_bar', search: search, user_nav: user_nav, include_js: include_js, nav_primary: nav_primary
+  = render 'layouts/core/snippets/primary_navigation_bar', search: search, user_nav: user_nav, include_js: include_js, nav_primary: nav_primary, responsive: responsive

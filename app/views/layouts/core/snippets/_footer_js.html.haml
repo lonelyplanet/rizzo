@@ -1,7 +1,7 @@
 .js-config.is-hidden
   = render 'layouts/core/inline_js/fonts_async'
   = render 'layouts/core/inline_js/fs_init'
-  = render 'layouts/core/inline_js/base_js_async'
+  = render 'layouts/core/inline_js/base_js_async' unless third_party
   = yield :scripts
 
   = js_configuration
