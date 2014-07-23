@@ -1,20 +1,19 @@
-%meta{charset: "utf-8"}
-%meta{name: "author", content: 'Lonely Planet'}
+%meta{ charset: "utf-8" }
+%meta{ name: "author", content: 'Lonely Planet' }
 
-%title XYZ
+%title Lonely Planet Travel Guides and Travel Information
 
-%link{rel: "dns-prefetch", href: "http://assets.staticlp.com"}
+%link{ rel: "dns-prefetch", href: "http://assets.staticlp.com" }
 
-%link{rel: "icon", type: "image/gif", href: "https://www.lonelyplanet.com/favicon.ico"}
-= yield :pagination_links_rels
+%link{ rel: "icon", type: "image/gif", href: "https://www.lonelyplanet.com/favicon.ico" }
 
 - if responsive
-  %meta{name:"viewport", content:"width=device-width, initial-scale=1"}
+  %meta{ name:"viewport", content:"width=device-width, initial-scale=1" }
 - else
-  %meta{name:"viewport", content:"width=1024"}
+  %meta{ name:"viewport", content:"width=1024" }
 
 - if include_js
-  - content_for(:async_js) {"app_core"}
+  - content_for(:async_js) { "app_core" }
 
 = csrf_meta_tags
 

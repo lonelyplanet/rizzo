@@ -4,7 +4,7 @@ Feature: Custom Layouts
   I should be able to customize layouts for each route
 
   Scenario: it serves the default preview file
-    Given I go to "/layouts/default"
+    Given I go to "/layouts/anything"
     Then the Preview route should be displayed
     And the body should have a class of responsive
 
@@ -19,12 +19,6 @@ Feature: Custom Layouts
     And about nav should not be present
     And the header ad should not be present
     And the tynt tag should not be displayed
-
-  Scenario: it serves the default preview file
-    Given I go to "/layouts/cs"
-    Then the Preview route should be displayed
-    And the body should have a class of responsive
-    And the languages dropdown should not be present
 
   Scenario: it serves the default preview file
     Given I go to "/layouts/responsive"

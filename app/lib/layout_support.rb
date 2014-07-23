@@ -27,13 +27,6 @@ module LayoutSupport
         nav_sitemap:    false,
         user_nav:       false
       },
-      cs: {
-        ads_header:     false,
-        include_js:     false,
-        languages:      false,
-        nav_sitemap:    false,
-        user_nav:       false
-      },
       modern: {
         responsive: false
       },
