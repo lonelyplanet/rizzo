@@ -6,7 +6,7 @@
 %head
   = render 'custom_layouts/head', tynt: true, include_js: include_js, legacy_lp: true, third_party: false, responsive: false
 %body
-  = render 'layouts/legacy/snippets/body_header', user_nav: user_nav, include_js: include_js, nav_primary: nav_primary, search: search, responsive: responsive
+  = render 'custom_layouts/header', user_nav: user_nav, include_js: include_js, nav_primary: nav_primary, search: search, responsive: responsive, legacy_lp: true
 
   .row.row--content
 

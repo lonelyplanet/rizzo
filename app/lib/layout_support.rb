@@ -14,7 +14,8 @@ module LayoutSupport
       user_nav:       true,
       responsive:     true,
       third_party:    false,
-      legacy_lp:      false
+      legacy_lp:      false,
+      app_core:       false
     }
   end
 
@@ -29,10 +30,12 @@ module LayoutSupport
         nav_sitemap:    false,
         user_nav:       false,
         tynt:           false,
-        third_party:    true
+        third_party:    true,
+        app_core:       true
       },
       modern: {
-        responsive: false
+        responsive:     false,
+        app_core:       true
       },
       noscript: {
         include_js: false,

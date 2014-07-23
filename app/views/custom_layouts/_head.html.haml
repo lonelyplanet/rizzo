@@ -14,7 +14,7 @@
 
 %meta{ name:"viewport", content: responsive ? "width=device-width, initial-scale=1" : "width=1024" }
 
-- if include_js && third_party
+- if include_js && app_core
   - content_for(:async_js) { "app_core" }
 
 = csrf_meta_tags
