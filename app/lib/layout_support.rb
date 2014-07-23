@@ -12,7 +12,9 @@ module LayoutSupport
       nav_sitemap:    true,
       tynt:           true,
       user_nav:       true,
-      responsive:     true
+      responsive:     true,
+      third_party:    false,
+      legacy_lp:      false
     }
   end
 
@@ -21,12 +23,13 @@ module LayoutSupport
       india: {
         about:          false,
         ads_header:     false,
-        include_js:     false,
+        include_js:     true,
         nav_primary:    false,
         search:         false,
         nav_sitemap:    false,
         user_nav:       false,
-        tynt:           false
+        tynt:           false,
+        third_party:    true
       },
       modern: {
         responsive: false
@@ -50,7 +53,8 @@ module LayoutSupport
         tynt: false
       },
       legacy: {
-        responsive: false
+        responsive: false,
+        legacy_lp: true
       }
     }
   end

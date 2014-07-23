@@ -2,7 +2,7 @@
 %html{ class: "no-js no-freight base", lang: "en" }
 
   %head
-    = render 'layouts/core/head', tynt: (defined?(tynt) ? tynt : true), responsive: responsive
+    = render 'custom_layouts/head', tynt: (defined?(tynt) ? tynt : true), responsive: responsive, third_party: false, include_js: true, legacy_lp: false
     = stylesheet_link_tag 'styleguide', :media => "all"
 
   %body

@@ -1,18 +1,20 @@
+= yield :meta
 %meta{ charset: "utf-8" }
 %meta{ name: "author", content: 'Lonely Planet' }
+- unless third_party
+  %meta{name: "fb:app_id", content: "111537044496"} 
 
-%title Lonely Planet Travel Guides and Travel Information
+%title
+  = content_for?(:head_title) ? yield(:head_title) : 'Lonely Planet Travel Guides and Travel Information'
 
+= yield :dns_prefetch
 %link{ rel: "dns-prefetch", href: "http://assets.staticlp.com" }
 
 %link{ rel: "icon", type: "image/gif", href: "https://www.lonelyplanet.com/favicon.ico" }
 
-- if responsive
-  %meta{ name:"viewport", content:"width=device-width, initial-scale=1" }
-- else
-  %meta{ name:"viewport", content:"width=1024" }
+%meta{ name:"viewport", content: responsive ? "width=device-width, initial-scale=1" : "width=1024" }
 
-- if include_js
+- if include_js && third_party
   - content_for(:async_js) { "app_core" }
 
 = csrf_meta_tags
@@ -21,4 +23,16 @@
 - if tynt
   = render 'layouts/core/inline_js/tynt'
 
-= smart_stylesheet('common_core')
+= yield :stylesheets
+- if legacy_lp
+  = smart_stylesheet('common_core_overrides')
+  = static_ui_stylesheet('app-core-legacy', (defined? secure) ? secure : false)
+- else
+  = smart_stylesheet('common_core_no_font')
+
+= yield :pagination_links_rels
+= yield :place_hotels_link
+
+- if legacy_lp
+  %script(type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js")
+  = static_ui_script('lp-js-library-legacy', (defined? secure) ? secure : false)

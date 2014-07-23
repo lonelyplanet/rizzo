@@ -1,7 +1,7 @@
 = render 'layouts/core/doctype_declaration'
 %head
-  = render "custom_layouts/head", include_js: include_js, responsive: responsive, tynt: tynt
-  
+  = render "custom_layouts/head", include_js: include_js, responsive: responsive, tynt: tynt, third_party: third_party
+
   - if include_js
     %script
       window.lp.ads = {}
