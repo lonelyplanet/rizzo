@@ -38,37 +38,38 @@ module LayoutSupport
         app_core:       true
       },
       noscript: {
-        include_js: false,
-        tynt: false,
-        legacy_lp: true
+        include_js:     false,
+        tynt:           false,
+        legacy_lp:      true
       },
       secure: {
-        tynt: false,
-        secure: true,
-        legacy_lp: true
+        tynt:           false,
+        secure:         true,
+        legacy_lp:      true
       },
       secure_noscript: {
-        include_js: false,
-        tynt: false,
-        legacy_lp: true,
-        secure: true
+        include_js:     false,
+        tynt:           false,
+        legacy_lp:      true,
+        secure:         true
       },
       secure: {
         tynt: false
       },
       global: {
-        tynt: true
+        tynt:           true
       },
       client_solutions: {
-        include_js: false,
-        user_nav: false
+        include_js:     false,
+        user_nav:       false,
+        nav_sitemap:    false
       },
       styleguide: {
-        tynt: false
+        tynt:           false
       },
       legacy: {
-        responsive: false,
-        legacy_lp: true
+        responsive:     false,
+        legacy_lp:      true
       }
     }
   end

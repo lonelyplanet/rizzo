@@ -25,13 +25,10 @@
 
     .wrapper.wrapper--footer
       = yield :breadcrumbs
-      = render 'layouts/core/snippets/body_footer', include_js: true
-
-  = render 'layouts/core/snippets/pointer_cover'
+      = render 'custom_layouts/footer', include_js: true, ads_footer: false, nav_sitemap: true, about: true, languages: true, third_party: false, legacy_lp: false
 
   = render 'layouts/core/snippets/one_by_one'
 
-  = render 'layouts/core/snippets/footer_js'
   
   - if defined? Variant
     /

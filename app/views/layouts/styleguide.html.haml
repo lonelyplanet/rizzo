@@ -36,7 +36,7 @@
           = ui_component('preloader')
 
     .js-config.is-hidden
-      = render 'layouts/core/snippets/footer_js'
+      = render 'layouts/core/snippets/footer_js', third_party: false
       = yield :scripts
 
       = javascript_include_tag 'prism'
