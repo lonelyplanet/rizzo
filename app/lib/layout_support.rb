@@ -10,7 +10,7 @@ module LayoutSupport
       nav_primary:    true,
       search:         true,
       nav_sitemap:    true,
-      tynt:           false,
+      tynt:           true,
       user_nav:       true,
       responsive:     true
     }
@@ -25,16 +25,19 @@ module LayoutSupport
         nav_primary:    false,
         search:         false,
         nav_sitemap:    false,
-        user_nav:       false
+        user_nav:       false,
+        tynt:           false
       },
       modern: {
         responsive: false
       },
       noscript: {
-        include_js: false
+        include_js: false,
+        tynt: false
       },
       secure_noscript: {
-        include_js: false
+        include_js: false,
+        tynt: false
       },
       global: {
         tynt: true
@@ -44,7 +47,10 @@ module LayoutSupport
         user_nav: false
       },
       styleguide: {
-        tynt: true
+        tynt: false
+      },
+      legacy: {
+        responsive: false
       }
     }
   end
@@ -55,6 +61,19 @@ module LayoutSupport
     else
       layout_defaults
     end
+  end
+
+  def get_layout(route)
+    if route == "core" ||  route == "responsive" || route == "minimal"
+      return {
+        layout: route,
+        template: "/global-nav/#{route}"
+      }
+    end
+    {
+      layout: false,
+      template: "custom_layouts/preview"
+    }
   end
 
 end

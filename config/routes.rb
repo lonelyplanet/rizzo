@@ -56,11 +56,6 @@ Rizzo::Application.routes.draw do
   get 'secure/noscript/global-body-header'  => 'global_resources#show', defaults: { snippet: "body_header", route: "secure_noscript" }
   get 'secure/noscript/global-body-footer'  => 'global_resources#show', defaults: { snippet: "body_footer", route: "secure_noscript" }
 
-  get 'global'                           => 'global_resources#index'
-  get 'secure/global'                    => 'global_resources#index', defaults: { secure: "true" }
-  get 'modern'                           => 'global_resources#modern'
   get 'legacy'                           => 'global_resources#legacy'
-  get 'responsive'                       => 'global_resources#responsive'
-  get 'minimal'                          => 'global_resources#minimal'
 
 end if defined?(Rizzo::Application)
