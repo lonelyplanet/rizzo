@@ -1,7 +1,7 @@
 = render 'layouts/core/doctype_declaration'
 
 %head
-  = render 'layouts/core/head', tynt: (defined?(tynt) ? tynt : true), include_js: true, responsive: false
+  = render 'custom_layouts/head', tynt: (defined?(tynt) ? tynt : true), include_js: true, responsive: false, third_party: false, legacy_lp: false, app_core: false
 
 %body
   = ui_component('lightbox')

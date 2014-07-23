@@ -8,6 +8,9 @@ module SnippetSupport
     elsif cs
       "layouts/core/snippets/_cs_#{snippet}"
     elsif legacystyle
+      if snippet == "head"
+        return "custom_layouts/_#{snippet}"
+      end
       "layouts/legacy/snippets/_#{snippet}"
     else
       "layouts/core/snippets/_modern_#{snippet}"

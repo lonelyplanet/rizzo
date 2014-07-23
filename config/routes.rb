@@ -40,9 +40,9 @@ Rizzo::Application.routes.draw do
   get 'modern/body-footer' => 'global_resources#show', defaults: { snippet: "body_footer", route: "modern" }
 
   # Legacy
-  get 'global-head'                  => 'global_resources#show', defaults: { snippet: "head", legacystyle: "true", route: "global" }
-  get 'global-body-header'           => 'global_resources#show', defaults: { snippet: "body_header", legacystyle: "true", route: "global" }
-  get 'global-body-footer'           => 'global_resources#show', defaults: { snippet: "body_footer", legacystyle: "true", route: "global" }
+  get 'global-head'                  => 'global_resources#show', defaults: { snippet: "head", legacystyle: "true", route: "legacy" }
+  get 'global-body-header'           => 'global_resources#show', defaults: { snippet: "body_header", legacystyle: "true", route: "legacy" }
+  get 'global-body-footer'           => 'global_resources#show', defaults: { snippet: "body_footer", legacystyle: "true", route: "legacy" }
 
   get 'noscript/global-head'         => 'global_resources#show', defaults: { snippet: "head", noscript: "true", route: "noscript" }
   get 'noscript/global-body-header'  => 'global_resources#show', defaults: { snippet: "body_header", noscript: "true", route: "noscript" }
