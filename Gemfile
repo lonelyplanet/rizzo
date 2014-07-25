@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.18'
 gem 'haml'
-gem 'sass'
+gem 'sass', '~> 3.3.10'
 gem 'sass-globbing'
 gem 'haml-rails'
 gem 'sass-rails', '~> 3.2.3'
