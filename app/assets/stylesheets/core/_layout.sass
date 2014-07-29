@@ -55,11 +55,27 @@ body
   margin: 0 auto
   position: relative
   width: $fixed-layout-width
+
   .responsive &
     width: auto
-    max-width: $responsive-layout-width
-    padding-left: 10px
-    padding-right: 10px
+    min-width: $adaptive-layout-min-width
+    padding-left: $adaptive-layout-gutter
+    padding-right: $adaptive-layout-gutter
+
+    +respond-to(micro-view)
+      width: $double-card-width
+
+    +respond-to(small-view)
+      width: $triple-card-width
+
+    +respond-to(medium-view)
+      width: $quadruple-card-width
+
+    +respond-to(wide-view)
+      width: $triple-card-width + $adaptive-rail-width + $adaptive-rail-gutter
+
+    +respond-to(larger-than-ipad)
+      width: $quadruple-card-width + $adaptive-rail-width + $adaptive-rail-gutter
 
   &.row__inner--full-width
     padding-left: 0

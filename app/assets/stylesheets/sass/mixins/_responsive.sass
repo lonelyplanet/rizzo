@@ -19,17 +19,21 @@
 
   @if $screen-width == narrow-view
     $breakpoint: 360
+  @else if $screen-width == micro-view
+    $breakpoint: $double-card-width + ($adaptive-layout-gutter * 2)
+  @else if $screen-width == small-view
+    $breakpoint: $triple-card-width + ($adaptive-layout-gutter * 2)
   @else if $screen-width == medium-view
-    $breakpoint: 600
+    $breakpoint: $quadruple-card-width + ($adaptive-layout-gutter * 2)
   @else if $screen-width == wide-view
-    $breakpoint: 980
+    $breakpoint: $triple-card-width + ($adaptive-layout-gutter * 2) + $adaptive-rail-width + $adaptive-rail-gutter
   @else if $screen-width == larger-than-ipad
-    $breakpoint: 1025
+    $breakpoint: $quadruple-card-width + ($adaptive-layout-gutter * 2) + $adaptive-rail-width + $adaptive-rail-gutter
   @else
     $breakpoint: $screen-width
 
   @if $is-ie == false
-    @media only screen and (min-width : #{$breakpoint}px)
+    @media only screen and (min-width : $breakpoint + 0px)
       @content
   @else if $fallback
     @content
