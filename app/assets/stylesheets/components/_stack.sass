@@ -38,6 +38,28 @@
       width: auto
 
 // -----------------------------------------------------------------------------
+// New responsive layout with fixed ad rail
+// -----------------------------------------------------------------------------
+
+.stack--with-rail
+  position: relative
+  margin-left: 0
+
+  +respond-to(wide-view)
+    // This takes the ad rail out of context so
+    // you don't have to think about it.
+    // Just focus on the content area!
+    padding-right: 320px
+
+.stack__rail
+
+  +respond-to(wide-view)
+    position: absolute
+    top: 0
+    right: 0
+    width: 300px
+
+// -----------------------------------------------------------------------------
 // Places View type
 // -----------------------------------------------------------------------------
 

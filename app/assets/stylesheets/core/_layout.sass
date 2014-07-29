@@ -56,12 +56,15 @@ body
   position: relative
   width: $fixed-layout-width
   .responsive &
-    width: 90%
-    +respond-to(wide-view)
-      max-width: $fixed-layout-width
+    width: auto
+    max-width: $responsive-layout-max-width
+    padding-left: $responsive-layout-gutter
+    padding-right: $responsive-layout-gutter
 
   &.row__inner--full-width
-    width: 100%
+    padding-left: 0
+    padding-right: 0
+
 .row__inner--content
   padding-top: 15px
 

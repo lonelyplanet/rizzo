@@ -1,0 +1,49 @@
+// -----------------------------------------------------------------------------
+//
+// Card stack
+//
+// The existing, fixed-width site layout is a grid based on the width of a single
+// card but now we're responsive we can't go basing layout on fixed width things.
+//
+// -----------------------------------------------------------------------------
+
+// It's a layout conundrum (detailed here: http://codepen.io/anon/pen/BHjfF) and
+// there are a few ways to solve it: manually or algorithmically. This mixin
+// loops over all the viewport sizes within a given range and calculates all the
+// required breakpoints to best fit a stack of fixed-width cards.
+@mixin card-stack-sizes-with-constraints($min-width, $max-width, $gutter, $item-width, $item-gutter, $breakpoints)
+
+  $last-breakpoint-applied: 0
+  $last-breakpoint-added: 0
+
+  $total-item-width: $item-width + $item-gutter
+
+  @for $i from $min-width through $max-width
+
+    // Get available width while accounting for breakpoints
+    // that affect the total dimensions of the container.
+    @if map-has-key($breakpoints, $i)
+      $last-breakpoint-applied: map-get($breakpoints, $i)
+
+    $available-area: $i - ($gutter * 2) + $last-breakpoint-applied
+
+    // Calculate how many items will fit horizontally within the
+    // container (and account for negative left margin).
+    $max-items: ($available-area + $item-gutter) / $total-item-width
+    $container-width: $total-item-width * floor($max-items)
+
+    // Only add a new breakpoint if the calculated width is
+    // different to that added by the last breakpoint.
+    @if $container-width != $last-breakpoint-added
+
+      $last-breakpoint-added: $container-width
+
+      @media screen and (min-width: $i)
+        &
+          width: $container-width - $item-gutter
+
+.card-stack
+  margin-left: auto
+  margin-right: auto
+
+  +card-stack-sizes-with-constraints($double-card-width, $responsive-layout-max-width, $responsive-layout-gutter, $card-width, $card-gutter, ( 980px: -320px ))
