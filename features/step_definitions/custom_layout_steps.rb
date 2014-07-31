@@ -26,14 +26,6 @@ Then(/^sitemap nav should not be present$/) do
   page.should_not have_selector '#js-footer-nav'
 end
 
-Then(/^the requirejs script block should not exist$/) do
-  page.should_not have_selector '.js-require-config'
-end
-
-Then(/^the requirejs script block should exist$/) do
-  page.should have_selector '.js-require-config'
-end
-
 Then(/^about nav should not be present$/) do
   page.should_not have_selector '.row--footer--about'
 end
