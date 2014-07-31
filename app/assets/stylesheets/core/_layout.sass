@@ -55,13 +55,32 @@ body
   margin: 0 auto
   position: relative
   width: $fixed-layout-width
+
   .responsive &
-    width: 90%
+    width: auto
+    min-width: $adaptive-layout-min-width
+    padding-left: $adaptive-layout-gutter
+    padding-right: $adaptive-layout-gutter
+
+    +respond-to(x-small-view)
+      width: $double-card-width
+
+    +respond-to(small-view)
+      width: $triple-card-width
+
+    +respond-to(medium-view)
+      width: $quadruple-card-width
+
     +respond-to(wide-view)
-      max-width: $fixed-layout-width
+      width: $triple-card-width + $adaptive-rail-width + $adaptive-rail-gutter
+
+    +respond-to(x-wide-view)
+      width: $quadruple-card-width + $adaptive-rail-width + $adaptive-rail-gutter
 
   &.row__inner--full-width
-    width: 100%
+    padding-left: 0
+    padding-right: 0
+
 .row__inner--content
   padding-top: 15px
 

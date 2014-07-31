@@ -6,7 +6,7 @@
 // Always use this mixin to apply breakpoints so we can support legacy browsers.
 //
 // You can pass in named arguments or integers.
-// Named argument options are: narrow-view (360px), medium-view (600px) and wide-view(1025px).
+// Named argument options are: narrow-view, x-small-view, small-view, medium-view, wide-view and x-wide-view.
 //
 // Example of use: http://sassmeister.com/gist/8047633.
 //
@@ -19,17 +19,21 @@
 
   @if $screen-width == narrow-view
     $breakpoint: 360
+  @else if $screen-width == x-small-view
+    $breakpoint: $double-card-width + ($adaptive-layout-gutter * 2)
+  @else if $screen-width == small-view
+    $breakpoint: $triple-card-width + ($adaptive-layout-gutter * 2)
   @else if $screen-width == medium-view
-    $breakpoint: 600
+    $breakpoint: $quadruple-card-width + ($adaptive-layout-gutter * 2)
   @else if $screen-width == wide-view
-    $breakpoint: 980
-  @else if $screen-width == larger-than-ipad
-    $breakpoint: 1025
+    $breakpoint: $triple-card-width + ($adaptive-layout-gutter * 2) + $adaptive-rail-width + $adaptive-rail-gutter
+  @else if $screen-width == x-wide-view
+    $breakpoint: $quadruple-card-width + ($adaptive-layout-gutter * 2) + $adaptive-rail-width + $adaptive-rail-gutter
   @else
     $breakpoint: $screen-width
 
   @if $is-ie == false
-    @media only screen and (min-width : #{$breakpoint}px)
+    @media only screen and (min-width : $breakpoint + 0px)
       @content
   @else if $fallback
     @content

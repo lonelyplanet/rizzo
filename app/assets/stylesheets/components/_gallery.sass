@@ -14,7 +14,7 @@ $slide-width: 1000px
       width: $slide-width-phone + $offset
     +respond-to(768)
       width: $slide-width-tablet + $offset
-    +respond-to(larger-than-ipad)
+    +respond-to(x-wide-view)
       width: $slide-width + $offset
 
 @mixin slide-height()
@@ -25,7 +25,7 @@ $slide-width: 1000px
       height: ($slide-width-phone / 3) * 2
     +respond-to(768)
       height: ($slide-width-tablet / 16) * 9
-    +respond-to(larger-than-ipad)
+    +respond-to(x-wide-view)
       height: ($slide-width / 3) * 2
 
 .gallery
