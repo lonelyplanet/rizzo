@@ -79,7 +79,6 @@
 = render 'layouts/partials/inline_js/fonts_loader'
 = render 'layouts/partials/inline_js/grunticon'
 
-- if app_core
-  = render 'layouts/partials/inline_js/require_js_config'
+= render 'layouts/partials/inline_js/require_js_config'
 - if (yield :async_js).present?
   = render 'layouts/partials/inline_js/require_js_async', script_name: "#{yield :async_js}"
