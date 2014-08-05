@@ -26,7 +26,7 @@
 
     .input__container.js-input{ class: [input_class, container_class] }
 
-      = ui_component('forms/dropdown', properties: { id: field_id, name: dropdown[:name], placeholder: dropdown[:placeholder], options: dropdown[:options], class: dropdown_class, selected: dropdown[:selected], tooltip: properties[:tooltip], data: dropdown[:data]})
+      = ui_component('forms/dropdown', properties: { id: field_id, name: dropdown[:name], placeholder: dropdown[:placeholder], options: dropdown[:options], class: dropdown_class, selected: dropdown[:selected], tooltip: properties[:tooltip], data: dropdown[:data], name: properties[:name] })
 
     - if dropdown[:error]
       .field__error.js-error
