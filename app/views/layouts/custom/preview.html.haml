@@ -1,0 +1,21 @@
+= render 'layouts/partials/doctype_declaration'
+%head
+  = render "layouts/custom/head", include_js: include_js, responsive: responsive, tynt: tynt, third_party: third_party, app_core: app_core, legacy_lp: legacy_lp, default_title: default_title
+
+  - if include_js
+    %script
+      window.lp.ads = {}
+
+  %body{ class: responsive ? "responsive" : false }
+
+    = render 'layouts/custom/pre_header', third_party: third_party, ads_header: ads_header
+
+    .wrapper.js-wrapper
+      = render 'layouts/custom/post_header', search: search, user_nav: user_nav, include_js: include_js, nav_primary: nav_primary, responsive: responsive
+
+      .row.row--content
+        .row.row--secondary#js-secondary-nav
+          .row__inner.row__inner--secondary
+            = ui_component("place_title", properties: {title: "Buenos Aires"})
+
+      = render "layouts/custom/footer", ads_footer: ads_footer, nav_sitemap: nav_sitemap, about: about, languages: languages, include_js: include_js, third_party: third_party, legacy_lp: legacy_lp

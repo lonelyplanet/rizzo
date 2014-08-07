@@ -1,9 +1,19 @@
 = render 'styleguide/partials/shared'
+- content_for :stylesheets do
+  %link{rel: "stylesheet", href: "#{asset_path('nvd3/nv.d3.min.css')}"}
+
+- configure_js("chartData", @chart_data)
 
 .context--content.copy--body
 
   .card.styleguide-intro
     %h1.copy--h1 Stylesheet Trend and Comparison
+
+  .card.chart-section.styleguide-intro
+    %h4.copy--h4 File Size (kB) changes over the previous 7 days
+    #js-chart.perf-chart.is-loading
+      = ui_component("preloader")
+      %svg
 
   .card.styleguide-intro
     - if @result.present?
@@ -12,13 +22,15 @@
           %span.copy--h2 Stylesheet
         .col--two-thirds
           .grid-wrapper--10
-            .col--one-quarter
+            .col--one-fifth
               %span.copy--h2 Size
-            .col--one-quarter
+            .col--one-fifth
               %span.copy--h2 Gzipped
-            .col--one-quarter
+            .col--one-fifth
+              %span.copy--h2 30 Day
+            .col--one-fifth
               %span.copy--h2 7 Day
-            .col--one-quarter
+            .col--one-fifth
               %span.copy--h2 1 Day
 
       - @result.each do |stylesheet|
@@ -28,15 +40,19 @@
 
           .col--two-thirds
             .grid-wrapper--10
-              .col--one-quarter.stat--medium
-                #{stylesheet[:core][:size]}kb
-              .col--one-quarter.stat--medium
-                #{stylesheet[:core][:gzippedSize]}kb
-              .col--one-quarter.stat--medium
+              .col--one-fifth.stat--medium
+                #{stylesheet[:sizes][:size]}kb
+              .col--one-fifth.stat--medium
+                #{stylesheet[:sizes][:gzippedSize]}kb
+              .col--one-fifth.stat--medium
+                .stat--trend.icon--white--before{class: stylesheet[:compare][:last_month] > 0 ? "stat--red icon--arrow-up--before" : stylesheet[:compare][:last_month] < 0 ? "stat--green icon--arrow-down--before" : "stat--stable"}
+                  #{stylesheet[:compare][:last_month]}%
+
+              .col--one-fifth.stat--medium
                 .stat--trend.icon--white--before{class: stylesheet[:compare][:last_week] > 0 ? "stat--red icon--arrow-up--before" : stylesheet[:compare][:last_week] < 0 ? "stat--green icon--arrow-down--before" : "stat--stable"}
                   #{stylesheet[:compare][:last_week]}%
 
-              .col--one-quarter.stat--medium
+              .col--one-fifth.stat--medium
                 .stat--trend.icon--white--before{class: stylesheet[:compare][:yesterday] > 0 ? "stat--red icon--arrow-up--before" : stylesheet[:compare][:yesterday] < 0 ? "stat--green icon--arrow-down--before" : "stat--stable"}
                   #{stylesheet[:compare][:yesterday]}%
 

@@ -50,7 +50,7 @@ define([ "jquery", "lib/core/ad_sizes", "lib/core/ad_unit" ], function($, adSize
         self.refresh(type);
       });
 
-      self.$listener.on(":ads/reload :page/changed", function() {
+      self.$listener.on(":ads/reload :page/changed :lightbox/contentReady", function() {
         self.load();
       });
 

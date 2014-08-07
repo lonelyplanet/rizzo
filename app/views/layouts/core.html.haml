@@ -1,14 +1,18 @@
-= render 'layouts/core/doctype_declaration'
+= render 'layouts/partials/doctype_declaration'
 
 %head
-  = render 'layouts/core/head', responsive: false, suppress_tynt: (defined?(suppress_tynt) ? suppress_tynt : false)
+  = render 'layouts/custom/head', tynt: (defined?(tynt) ? tynt : true), include_js: true, responsive: false, third_party: false, legacy_lp: false, app_core: false, default_title: true
 
 %body
   = ui_component('lightbox')
   %script#tmpl-preloader{ type: 'text-mustache' }
     = ui_component('preloader')
+
   .wrapper.js-wrapper
-    = render 'layouts/core/snippets/body_header', user_nav: defined?(user_nav) ? user_nav : true
+  
+    = render 'layouts/custom/pre_header', third_party: false, ads_header: true
+    = render 'layouts/custom/post_header', search: true, user_nav: true, include_js: true, nav_primary: true, responsive: false
+
 
     .row.row--content#js-row--content
       - if content_for?(:secondary)
@@ -23,13 +27,11 @@
 
     .wrapper.wrapper--footer
       = yield :breadcrumbs
-      = render 'layouts/core/snippets/body_footer'
+      = render 'layouts/custom/footer', include_js: true, ads_footer: false, nav_sitemap: true, about: true, languages: true, third_party: false, legacy_lp: false
 
-  = render 'layouts/core/snippets/pointer_cover'
+  = render 'layouts/partials/snippets/one_by_one'
 
-  = render 'layouts/core/snippets/one_by_one'
 
-  = render 'layouts/core/snippets/footer_js'
   - if defined? Variant
     /
       = "build: #{Variant.full_namespace}"

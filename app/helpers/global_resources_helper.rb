@@ -69,15 +69,6 @@ module GlobalResourcesHelper
     ]
   end
 
-  def default_breadcrumbs
-    [
-      {:place=>"South America", :slug=>"south-america"},
-      {:place=>"Argentina", :slug=>"argentina"},
-      {:place=>"Buenos Aires", :slug=>"buneos-aires"},
-      {:place=>"Buenos Aires Hotels", "slug"=>nil}
-    ]
-  end
-
   def cart_item_element
     capture_haml do
       haml_tag(:a, 'Cart: 0', class: 'nav__item--cart js-user-cart', href: 'http://shop.lonelyplanet.com/cart/view')
@@ -121,22 +112,6 @@ module GlobalResourcesHelper
             haml_concat(", " + parent)
           end
         end
-      end
-    end
-  end
-
-  def breadcrumbs_nav(breadcrumb_content)
-    render :partial=>'layouts/core/snippets/footer_breadcrumbs', locals: {breadcrumbs: breadcrumb_content} if breadcrumb_content.present?
-  end
-
-  def breadcrumb_for(breadcrumb, last)
-    capture_haml do
-      if last == true
-        haml_tag(:span, class: "nav__item js-nav-item nav__item--breadcrumbs icon--chevron-right--before current", itemprop: "url") { haml_concat breadcrumb[:place] }
-      elsif breadcrumb[:slug].blank?
-        haml_tag(:span, class: "nav__item js-nav-item nav__item--breadcrumbs icon--chevron-right--before", itemprop: "url") { haml_concat breadcrumb[:place] }
-      else
-        haml_tag(:a, class: "nav__item js-nav-item nav__item--breadcrumbs icon--chevron-right--before", href: "http://www.lonelyplanet.com/#{breadcrumb[:slug]}", itemprop:"url") { haml_concat breadcrumb[:place] }
       end
     end
   end

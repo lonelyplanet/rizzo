@@ -17,10 +17,6 @@
       .enhanced &
         box-shadow: 0 2px 2px 0 rgba(3, 46, 92, 0.10)
 
-  // hide the content area for image-only cards when it's not hovered over
-  &.card--image-only
-    overflow: hidden
-
 
 // -----------------------------------------------------------------------------
 // Card Images
@@ -31,11 +27,6 @@
   overflow: hidden
   position: relative
   text-align: center
-
-  .responsive &
-    height: $mobile-standard-card-image-height
-    +respond-to(medium-view)
-      height: $standard-card-image-height
 
   &:after
     @extend %transition--slower
@@ -59,28 +50,27 @@
       min-width: 100%
       max-width: 100%
       height: auto
-      min-height: 0
       max-height: none
+    .card--image-only &
+      max-width: none
+      max-height: 100%
+      left: 50%
+      position: relative
+    .card--image-only.card--single &
+      margin-left: -$card-width
+    .card--image-only.card--double &
+      margin-left: -$double-card-width
 
-  .card--full-image &
+  .card--full-image &, .card--image-only &
     height: $card-grid-height
     &:after
       +image-overlay--gradient()
-    .responsive &
-      height: $mobile-card-grid-height
-      +respond-to(medium-view)
-        height: $card-grid-height
 
   .card--mini &
     height: $card-grid-half-height
-    .responsive &
-      height: $mobile-card-grid-half-height
-      +respond-to(medium-view)
-        height: $card-grid-half-height
 
   .card--small-image &
-    &, .responsive &
-      height: $small-card-image-height
+    height: $small-card-image-height
 
 .card__hero__overlay
   +z-layer
@@ -110,10 +100,6 @@
 
   .card--small-image &
     height: ($card-grid-height - $small-card-image-height - (2 * $card-content-vertical-padding) )
-    .responsive &
-      height: ($mobile-card-grid-height - $small-card-image-height - (2 * $card-content-vertical-padding) )
-      +respond-to(medium-view)
-        height: ($card-grid-height - $small-card-image-height - (2 * $card-content-vertical-padding) )
 
   .card--full-image &
     @extend %transition--base
@@ -144,10 +130,9 @@
     background: none
 
   .card--image-only &
-    @extend %transition--base
     +font-size(20)
-    bottom: -76px // This accommodates for 3 lines of copy.
-    color: #fff
+    bottom: 10px
+    color: white
     height: auto
     left: 0
     line-height: 22px
@@ -167,10 +152,6 @@
 .card--extended-content,
 .card--extended-content--half
   height: $card-grid-height
-  .responsive &
-    height: $mobile-card-grid-height
-    +respond-to(medium-view)
-      height: $card-grid-height
 
   .card__content
     +z-layer
@@ -210,11 +191,6 @@
   &:hover
     .card__content
       height: $card-grid-height - ( 2*$card-content-vertical-padding) - 40px
-  .js-hover.responsive &:hover
-    .card__content
-      height: $mobile-card-grid-height - ( 2*$card-content-vertical-padding) - 40px
-      +respond-to(medium-view)
-        height: $card-grid-height - ( 2*$card-content-vertical-padding) - 40px
 
 .card--extended-content--half
   .card__content
@@ -223,6 +199,15 @@
     .card__content
       height: $card-grid-height - ( 2*$card-content-vertical-padding) - 225px
 
+
+// -----------------------------------------------------------------------------
+// Image-only cards
+// -----------------------------------------------------------------------------
+
+.card--image-only
+  &.card--mini
+    .card__name
+      display: none
 
 // -----------------------------------------------------------------------------
 // Transparent cards (related)
@@ -287,41 +272,3 @@
 
 .card--media-container .card
   margin-left: 0
-
-// ----------------------------------------------------------------------------
-// Ads in cards
-// ----------------------------------------------------------------------------
-
-.card--sponsored
-  @extend %transition--slower
-
-  &.is-closed
-    width: 0
-    height: 0
-    margin: 0
-    padding: 0
-    overflow: hidden
-
-.card--sponsored--mpu
-  .card__content
-    text-align: center
-
-    .adunit
-      display: inline-block
-
-.card--sponsored--double-mpu
-  float:right
-  height: 770px
-
-  .card__content
-    height: 600px
-    top: 80px
-
-.card--sponsored--traffic-driver
-
-  .card__content
-    top: 0
-    width: 192px
-    height: 380px
-    margin: 0 auto
-    padding: 0

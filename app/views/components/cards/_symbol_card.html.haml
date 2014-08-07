@@ -4,9 +4,12 @@
 
     "card",
     "card--symbol",
-    properties[:double?] ? "card--double card--full-image" : "card--single card--mini",
-
+    properties[:double?] ? "card--double card--full-image" : "card--single card--mini"
   ].join(" ")
+
+/set defaults
+- icon_color = properties[:icon_color] ? properties[:icon_color] : "white"
+- text_color = properties[:text_color] ? properties[:text_color] : "white"
 
 %article.js-card{class: css_classes}
   %a.link--wrapper{href: properties[:slug]}
@@ -15,7 +18,7 @@
         = safe_image_tag(properties[:image_url], class: "card__image", alt: properties[:title], lazyload: defined?(lazyload))
     - else
       %figure.card__hero.card__hero--no-image
-    .card__content
-      .card__icon.icon--white{class: "icon--#{properties[:icon_type]} icon--#{properties[:icon]}"}
+    .card__content{class: "color--#{text_color}"}
+      .card__icon{class: "icon--#{properties[:icon_type]} icon--#{properties[:icon]} icon--#{icon_color}"}
       %h2.card__name
         = properties[:title]

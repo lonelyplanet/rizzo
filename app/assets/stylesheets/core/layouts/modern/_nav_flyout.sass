@@ -7,6 +7,14 @@
 // Variables - to make the below calculations more obvious
 $submenu--width:         200px
 $submenu__arrow--width:  10px
+$submenu__icon--left: 10px
+$submenu__icon--top: 8px
+$submenu__padding: 20px 10px 10px
+$submenu__padding--content: 4px 0
+$submenu__padding__item: 12px
+$submenu__padding__item--icon-left: 39px
+$submenu__left-offset: -(($submenu--width/2) + $submenu__arrow--width)
+$submenu__vertical-padding: 18px
 
 .nav__submenu__trigger
   cursor: pointer
@@ -14,11 +22,50 @@ $submenu__arrow--width:  10px
   &:hover
     .nav__submenu
       display: block
-  .responsive &:hover
-    .nav__submenu
-      display: none
-      +respond-to(wide-view)
+  .responsive &
+    &:hover
+      .nav__submenu
+        display: none
+        +respond-to(wide-view)
+          display: block
+    &.is-visible
+      padding-bottom: 0
+      .nav__submenu
         display: block
+      +respond-to(wide-view)
+        padding-bottom: $submenu__vertical-padding
+
+.responsive
+  .nav__submenu__trigger--responsive
+    +size(52px)
+    display: none
+    padding-right: 4px
+    position: absolute
+    right: 0
+    top: 0
+    .js &
+      display: block
+    &.is-visible
+      .icon--chevron-up
+        display: block
+      .icon--chevron-down
+        display: none
+    &:after
+      background: $body-background
+      content: ''
+      display: block
+      height: 70%
+      position: absolute
+      left: 0
+      top: 15%
+      width: 1px
+
+  .nav__submenu__trigger--icon
+    +size(15px)
+    display: block
+    margin: 16px auto
+    &.icon--chevron-up
+      display: none
 
 // padding around the submenu gives the submenu flyout more area to hover over
 .nav__submenu
@@ -26,24 +73,22 @@ $submenu__arrow--width:  10px
   position: absolute
   display: none
   width: $submenu--width
-  padding: 20px 10px 10px
+  padding: $submenu__padding
   // Centralise the submenu relative to its parent
   left: 50%
   top: 54%
-  margin-left: -(($submenu--width/2) + $submenu__arrow--width)
+  margin-left: $submenu__left-offset
 
 .nav__submenu__content
   @extend %transition--base
   @extend %fly-out-shadow
   @extend %rounded-corners
   background-color: white
-  padding: 4px 0
+  padding: $submenu__padding--content
   position: relative
   +css-arrow-central(top, $size: 30px)
   &:after
     position: absolute
-  &.nav__submenu__content--user:after
-    left: 73%
 
   .ie8.home &
     &:after
@@ -52,7 +97,7 @@ $submenu__arrow--width:  10px
 .nav__submenu__item
   color: $body-copy
   font-weight: normal
-  padding: 12px
+  padding: $submenu__padding__item
   text-transform: none
 
 .nav__submenu__title
@@ -71,6 +116,66 @@ $submenu__arrow--width:  10px
 .nav__submenu--destinations
   width: 170px
 
+// -----------------------------------------------------------------------------
+// Secondary Nav Responsive Flyout
+// -----------------------------------------------------------------------------
+
+.responsive
+  .nav__submenu--secondary
+    margin-left: -20px
+    margin-top: $submenu__vertical-padding
+    padding: 0
+    position: static
+    width: 106%
+    +respond-to(wide-view)
+      border-top: none
+      margin-left: $submenu__left-offset
+      margin-top: 0
+      padding: $submenu__padding
+      position: absolute
+      width: $submenu--width
+
+  .nav__submenu--secondary__content
+    border-top: 1px solid $body-background
+    box-shadow: none
+    margin-right: -23px
+    padding: 0
+    &:after
+      display: none
+    +respond-to(wide-view)
+      // We can't use `@extend %fly-out-shadow` within a mixin, thus:
+      box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.4)
+      padding: $submenu__padding--content
+      &:after
+        display: block
+
+  .nav__submenu__item--secondary
+    background-color: mix($linkblue, #FFF, 3%)
+    border-bottom: none
+    border-top: 1px solid $body-background
+    padding: $submenu__vertical-padding 20px
+    padding-left: 45px
+    text-transform: uppercase
+    &:hover
+      color: $linkblue
+    &:before
+      +size(20px)
+      left: 18px
+      position: absolute
+      top: 14px
+    &:first-child
+      border-top: none
+    +respond-to(wide-view)
+      background-color: transparent
+      padding: $submenu__padding__item
+      padding-left: $submenu__padding__item--icon-left
+      text-transform: none
+      &:hover
+        background-color: $body-background-offset
+        color: $body-copy
+      &:before
+        left: $submenu__icon--left
+        top: $submenu__icon--top
 
 // ----------------------------------------------------------------------------
 //
@@ -81,9 +186,9 @@ $submenu__arrow--width:  10px
 .nav__submenu--bookings, .nav__submenu--interests
   .nav__submenu__item
     @extend %left-icon
-    padding-left: 39px
+    padding-left: $submenu__padding__item--icon-left
     &:before
-      top: 8px
-      left: 10px
+      top: $submenu__icon--top
+      left: $submenu__icon--left
       width: 20px
       height: 20px

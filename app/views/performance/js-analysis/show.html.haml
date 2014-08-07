@@ -1,0 +1,16 @@
+= render 'styleguide/partials/shared'
+
+.context--content
+
+  .card.styleguide-intro
+    %h1.copy--h1 #{@result[:name]}
+
+  .card.styleguide-intro
+    .grid-wrapper--10
+      .col--one-half
+        %h2.copy--h2 Gzipped Size
+        %span.stat--large #{@result[:core][:gzippedSize]}kb
+
+      .col--one-half
+        %h2.copy--h2 Raw Size
+        %span.stat--large #{@result[:core][:size]}kb

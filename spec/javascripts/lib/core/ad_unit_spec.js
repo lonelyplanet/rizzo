@@ -26,6 +26,20 @@ require([ "public/assets/javascripts/lib/core/ad_unit" ], function(AdUnit) {
         expect(instance.extensions.mpu).toHaveBeenCalled();
       });
 
+      it("Should trigger :ads/visible event if !isEmpty()", function() {
+        spyOn(instance, "isEmpty").andReturn(false);
+        var SpyEvent = spyOnEvent(instance.$target, ":ads/visible");
+        instance._init();
+        expect(SpyEvent).toHaveBeenTriggered();
+      });
+
+      it("Should trigger :ads/hidden event if isEmpty()", function() {
+        spyOn(instance, "isEmpty").andReturn(true);
+        var SpyEvent = spyOnEvent(instance.$target, ":ads/hidden");
+        instance._init();
+        expect(SpyEvent).toHaveBeenTriggered();
+      });
+
     });
 
     describe(".isEmpty()", function() {

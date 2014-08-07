@@ -21,7 +21,8 @@ module Rizzo::Assets
       'fonts.css',
       'styleguide.css',
       'jquery/jquery.js',
-      'requirejs/require.js'
+      'requirejs/require.js',
+      'nvd3/nv.d3.min.css'
     ]
   end
 end

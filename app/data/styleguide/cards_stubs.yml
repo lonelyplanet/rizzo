@@ -48,11 +48,14 @@ cards:
 
   -
     :styleguide_title: "Symbol Card"
+    :styleguide_description: "icon_colors options are: ('header-grey','body-grey','white','lp-blue') default is white. text_color can be any color from the Rizzo Colour Palette for ex. 'navblue', 'green', 'plum' default is white"
     :slug: "#"
     :title: "Canada, aye"
     :image_url: "http://assets.staticlp.com/assets/stubs/article.jpg"
     :icon_type: "destinations"
     :icon: "canada"
+    :icon_color: "lp-blue"
+    :text_color: "subduedgray"
 
   -
     :styleguide_title: "Quote Card"
@@ -89,6 +92,24 @@ cards:
     :card_description: "This lodging isn't bookable online"
     :property_type_title: "Guesthouse"
     :top_choice: true
+
+  -
+    :styleguide_title: "Things to Do Card"
+    :styleguide_description: "Topic must match the class name in Rizzo for the correct icon to show up ex. 'activity' shows up as '.icon--activity--pin' in the code. When 'show_place_name' is set to true and 'place_name' is entered in, it will show up under the large name text. When 'bookable?' is set to true, the yellow button will appear. Set it to false to omit this button. When 'button_text' and 'button_class' are entered in that text will appear as the button text and the class will be added to the button. If one or both are omitted the default 'Book now' will appear. Set 'top_choice' and/or 'lp-reviewed' to true to make the blue tag at the top appear."
+    :topic: "activity"
+    :image_url: "http://assets.staticlp.com/landing-pages/chitown.jpg"
+    :url: "#"
+    :top_choice: true
+    :currency_symbol: "$"
+    :price: 65
+    :category: "Food & Drink"
+    :name: "Small group Chicago-style hot dog tour"
+    :show_place_name?: false
+    :duration: "4 hours"
+    :description: "Some information about Chicago but definitely not ketchup."
+    :bookable?: true
+    :button_text: "Give me hot dogs!"
+    :button_class: "btn--mustard"
 
   -
     :styleguide_title: "Shop Card"
@@ -144,14 +165,6 @@ cards:
     -
       :url: "/"
       :title: "Warnings"
-
-  -
-    :styleguide_title: "Media Card"
-    :kind: "media"
-    :resized_image_url: "http://assets.staticlp.com/assets/stubs/sight.jpg"
-    :resized_video_url: "http://assets.staticlp.com/assets/stubs/video-thumb.jpg"
-    :image_description: "A photo of a building"
-    :video_description: "A video filmed from a bus"
 
   -
     :styleguide_title: "Place Card"
@@ -239,3 +252,43 @@ cards:
   -
     :styleguide_title: "Traffic driver Card"
     :kind: "traffic_driver"
+
+  -
+    :styleguide_title: "Image Card"
+    :size: "double"
+    :url: "#"
+    :image_description: "Canada, aye with a long description very very long "
+    :resized_image_url: "http://assets.staticlp.com/assets/stubs/article.jpg"
+    :position: 1
+    :user:
+      :image: "http://img2.wikia.nocookie.net/__cb20111018235020/muppet/images/thumb/1/14/Rizzo11.png/300px-Rizzo11.png"
+      :name: "Rizzo"
+      :theme: "light"
+      :size: "small"
+
+  -
+    :styleguide_title: "Image Card"
+    :size: "single"
+    :url: "#"
+    :image_description: "Canada, aye"
+    :resized_image_url: "http://assets.staticlp.com/assets/stubs/article.jpg"
+    :position: 2
+    :user:
+      :name: "Rizzo"
+      :theme: "light"
+      :size: "small"
+
+  -
+    :styleguide_title: "Image Card"
+    :size: "mini"
+    :url: "#"
+    :image_description: "Canada, aye"
+    :resized_image_url: "http://assets.staticlp.com/assets/stubs/article.jpg"
+    :position: 3
+    :user:
+      :name: "Rizzo with a long name"
+      :theme: "light"
+      :size: "small"
+
+
+

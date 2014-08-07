@@ -91,3 +91,25 @@
   min-width: 100%
   max-width: 100%
   height: auto
+
+// [doc] 
+// Apply default user avatar style - 50px & round. 
+//
+// [/doc]
+.user-avatar
+  +user-avatar-size(50)
+
+// -----------------------------------------------------------------------------
+// color classes
+// -----------------------------------------------------------------------------
+
+$colors: darkgray $darkgray,titlegray $titlegray, bodygray $bodygray,lightgray $lightgray,subduedgray $subduedgray,darkblue $darkblue,navblue $navblue,lpblue $lpblue,linkblue $linkblue,teal $teal,green $green,yella $yella,orange $orange,red $red,plum $plum,mauve $mauve,pink $pink,darkcyan $darkcyan,softgreen $softgreen,beige $beige,maroon $maroon,darkred $darkred
+.color--white
+  color: #fff
+
+@each $color in $colors
+  $key: nth($color, 1)
+  $value: nth($color, 2)
+
+  .color--#{$key}
+    color: #{$value}

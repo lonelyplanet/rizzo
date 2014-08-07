@@ -1,89 +1,9 @@
 = render 'styleguide/partials/shared'
+- alerts = YAML.load(File.read(File.expand_path('../../../../data/styleguide/alert_stubs.yml', __FILE__)))
 
 .card.styleguide-intro.copy--body.context--content
   .clearfix
     %h1.copy--h1 Alerts
-    %p.copy--h2 Please note:
-    %p
-      Alerts do not call this component directly as the abstraction would be overkill. Alerts should always look like these through a combination of the modifier classes detailed below and in
-      %a{href: 'https://github.com/lonelyplanet/rizzo/blob/master/app/assets/stylesheets/components/_alerts.sass'}
-        alerts.sass
 
-    %p.copy--meta
-      You can add (or remove) the
-      %code.language--css is-closed
-      class to animate the alert in/out.
-
-.card.styleguide-block__description.card.context--content
-  %h2.copy--h2.styleguide-block__heading
-    Success
-
-  .alert.alert--success.icon--tick--before
-    .alert__title
-      Congratulations, that was a success.
-
-  %pre.styleguide.copy--body.language-markup.media__body
-    %code
-      = preserve do
-        :escaped
-          <div class="alert alert--success icon--tick--before">Congratulations, that was a success.</div>
-
-.card.styleguide-block__description.card.context--content
-  %h2.copy--h2.styleguide-block__heading
-    .alert__title
-      Error
-
-  .alert.alert--error.icon--cross--before
-    Oops, there was an error.
-
-  %pre.styleguide.copy--body.language-markup.media__body
-    %code
-      = preserve do
-        :escaped
-          <div class="alert alert--error icon--cross--before">Oops, there was an error.</div>
-
-.card.styleguide-block__description.card.context--content
-  %h2.copy--h2.styleguide-block__heading
-    .alert__title
-      Warning
-
-  .alert.alert--warning.icon--caution--before
-    There are currently travel issues with this destination.
-
-  %pre.styleguide.copy--body.language-markup.media__body
-    %code
-      = preserve do
-        :escaped
-          <div class="alert alert--warning icon--caution--before">There are currently travel issues with this destination.</div>
-
-.card.styleguide-block__description.card.context--content
-  %h2.copy--h2.styleguide-block__heading
-    .alert__title
-      Announcement
-
-  .alert.alert--announcement.icon--loudspeaker--before
-    Hear ye, hear ye!
-
-  %pre.styleguide.copy--body.language-markup.media__body
-    %code
-      = preserve do
-        :escaped
-          <div class="alert alert--announcement icon--loudspeaker--before">Hear ye, hear ye!</div>
-
-.card.styleguide-block__description.card.context--content
-  %h2.copy--h2.styleguide-block__heading
-    Alert with a heading
-
-  .alert.alert--success.icon--tick--before
-    .alert__title Congratulations that was a success.
-    %p.alert__content
-      Pass go, collect £200. Do not go to jail.
-
-  %pre.styleguide.copy--body.language-markup.media__body
-    %code
-      = preserve do
-        :escaped
-          <div class="alert alert--success icon--tick--before">
-            <div class="alert__title">Congratulations, that was a success.</div>
-            <p class="alert__content">Pass go, collect £200. Do not go to jail.</p>
-          </div>
+- alerts['alerts'].each_with_index do |alert, i|
+  = styleguide_component("alert", properties: alert, count: i, full_width: true)

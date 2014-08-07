@@ -3,16 +3,11 @@ class PerformanceMonitoring < RizzoApp
   private
 
   def left_nav
-    @left_nav ||= (YAML.load(File.read(File.expand_path('../../data/performance-monitoring/left_nav.yml', __FILE__))))
+    @left_nav ||= (YAML.load_file(File.expand_path('../../data/performance-monitoring/left_nav.yml', __FILE__)))
   end
 
   def sections
-    [
-      {
-        title: "CSS Analysis",
-        slug: "/css-analysis"
-      }
-    ]
+    @sections ||= (YAML.load_file(File.expand_path('../../data/performance-monitoring/secondary_nav.yml', __FILE__)))
   end
 
   def root

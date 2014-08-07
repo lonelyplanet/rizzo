@@ -109,6 +109,7 @@ define([
   };
 
   Swipe.prototype._gestureMoves = function(event) {
+    if (!this.startPoint) return;
     var currentPoint;
 
     event = event.originalEvent;
@@ -148,6 +149,7 @@ define([
     this.$window.off("touchmove", this._prevent).removeData("scrollfreeze");
 
     this.difference = null;
+    this.startPoint = null;
   };
 
   return Swipe;

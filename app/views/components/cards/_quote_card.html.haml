@@ -1,7 +1,7 @@
 :ruby
+
   css_classes = [
     "card",
-    "card--mini",
     "card--single",
     "card--quote"
   ].join(" ")
@@ -12,8 +12,9 @@
       = properties[:context] || "Thorntree"
     %blockquote.card__name{cite: properties[:slug]}
       = properties[:title]
-    %footer.card__source
-      = safe_image_tag(properties[:avatar], class: "card__avatar", alt: "Avatar of #{properties[:name]}", lazyload: defined?(lazyload)) 
-      by 
-      %span.card__username
-        = properties[:name]
+    - if properties[:name].present?
+      %footer.card__source
+        = safe_image_tag(properties[:avatar], class: "card__avatar", alt: "Avatar of #{properties[:name]}", lazyload: defined?(lazyload))
+        by
+        %span.card__username
+          = properties[:name]

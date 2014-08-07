@@ -11,6 +11,9 @@
   .card--single + &
     overflow: hidden
 
+  .results
+    position: relative
+
   .nav--left + &
     display: table-cell
     overflow: visible
@@ -33,66 +36,6 @@
       display: block
       overflow: hidden
       width: auto
-
-
-// -----------------------------------------------------------------------------
-// Stack Intro Card
-// -----------------------------------------------------------------------------
-
-$stack-intro-text-line-height: 25px
-$stack-intro-lines-to-show: 2
-
-.stack
-  .results
-    position: relative
-
-.stack__intro
-  // Ensure flyout filters sit up above the other cards
-  +z-layer(top)
-  @extend %rounded-corners
-  padding: 25px
-
-  .copy--h1
-    margin: 0
-
-.stack__intro--empty
-  padding: 10px 25px
-
-  .card--full-image + &
-    padding: 0
-
-.stack__intro--full
-  padding: 25px 0px 0px 10px
-
-.stack__intro__toolbar
-  margin-top: 15px
-
-.stack__intro__content
-  transition: max-height 0.5s ease-in-out
-  overflow: hidden
-  position: relative
-
-  .is-open &
-    padding-bottom: 25px
-
-  .js-read-more &
-    max-height: 0
-
-  .no-js &
-    max-height: none
-
-  .copy--h1 + &
-    margin-top: 0.8em
-
-// We cannot guarantee that the content will be decorated with classes
-.stack__intro__content
-  @extend %text--body
-  p:first-of-type
-    @extend %text--feature
-  h2
-    @extend %heading--2
-
-
 
 // -----------------------------------------------------------------------------
 // Places View type

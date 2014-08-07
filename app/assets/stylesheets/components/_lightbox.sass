@@ -1,11 +1,13 @@
 .lightbox
   +z-layer(modal)
+  width: 100%
+  height: 100%
   background: $body-background
   background: rgba($body-background, 0.95)
   left: 0
   opacity: 0
   position: fixed
-  transition: 0.3s opacity ease-out
+  transition: 0.3s opacity
   top: 0
   visibility: hidden
 
@@ -14,7 +16,6 @@
 
   &.is-active
     opacity: 1
-
 
     .lightbox__content
       > iframe
@@ -25,15 +26,18 @@
   overflow-y: scroll
   overflow-x: hidden
   height: 100%
+  perspective: 700
   width: 100%
 
 .lightbox__content
   margin: auto
   position: relative
-  transition: transform 0.3s ease-out, opacity 0.1s
-  transform: translate3d(0, 1000px, 0)
+  transition: transform 0.75s cubic-bezier(0.075, 0.820, 0.165, 1.000), opacity 0.1s
+  transform: translate3d(0, 250px, 50px)
   opacity: 0
-  width: 600px
+  width: 95%
+  max-width: 600px
+
   .lightbox__close
     +z-layer
     height: 25px
@@ -57,14 +61,14 @@
     padding-bottom: 50px
 
   .lightbox--layer &
-    width: 800px
+    max-width: 800px
 
   .is-loading &
     @extend %rounded-corners
     @extend %large-shadow
     width: 90px
     transform: translate3d(0, 0, 0)
-    transition: transform 0.3s ease-out, opacity 0.5s
+    transition: transform 0.3s, opacity 0.3s
     top: 45%
     height: 50px
     background-color: #FFF
@@ -79,6 +83,25 @@
     height: 100%
     width: 100%
 
+  .row--billboard
+    display: none
+    .content-ready &
+      display: block
+
 .lightbox--open
   overflow: hidden
   -webkit-overflow-scrolling: touch
+
+.lightbox-arrow__text
+  display: inline-block
+  overflow: hidden
+  text-overflow: ellipsis
+  width: 65px
+  +font-size(12)
+  white-space: normal
+  line-height: 1
+  height: 100%
+  .arrow-left &
+    margin-left: 10px
+    width: 55px
+    text-align: left

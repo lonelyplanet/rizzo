@@ -23,7 +23,7 @@ define([ "jquery", "lib/utils/debounce" ], function($, debounce) {
   }
 
   ToggleActive.prototype._init = function() {
-    var i, len, $toggle;
+    var i, len, $toggle, $targets;
 
     this.$toggles.css("cursor", "pointer");
 
@@ -35,12 +35,13 @@ define([ "jquery", "lib/utils/debounce" ], function($, debounce) {
 
     for (i = 0, len = this.$toggles.length; i < len; i++) {
       $toggle = this.$toggles.eq(i);
+      $targets = this._getTargetEls($toggle);
 
-      if ($toggle.data("toggleMe")) {
+      if ($toggle.data("toggleMe") && !$toggle.hasClass("is-active")) {
         $toggle.addClass("is-not-active");
       }
 
-      this._getTargetEls($toggle).addClass("is-not-active");
+      $targets.addClass("is-not-active");
     }
 
     this._listen();
@@ -49,7 +50,7 @@ define([ "jquery", "lib/utils/debounce" ], function($, debounce) {
   ToggleActive.prototype._listen = function() {
     var _this = this;
 
-    $(LISTENER).on(":toggleActive/update", function(e, target) {
+    $(this.config.context || LISTENER).on(":toggleActive/update", function(e, target) {
       _this._updateClasses($(target));
     });
   };

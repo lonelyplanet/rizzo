@@ -72,7 +72,7 @@ $slide-width: 1000px
     background: rgba(125, 125, 125, 0.5)
     border-radius: 100%
     animation: discmove 2s cubic-bezier(0.6, 1, 1, 1) infinite
-  &:hover .social__item--pinned
+  &.is-current:hover .social__item--pinned
     opacity: 1
 
 .gallery__img
@@ -243,10 +243,12 @@ $slide-width: 1000px
   cursor: pointer
   opacity: .25
 
+.arrow--left,
+.arrow--right,
 .gallery__next,
 .gallery__previous
   +hardware-acceleration()
-  +z-layer(top)
+  +z-layer(modal)
   background: #888
   background: rgba(#000, 0.5)
   padding: 10px 0
@@ -267,6 +269,8 @@ $slide-width: 1000px
   .supports-touch &
     display: none
 
+.arrow--left:after,
+.arrow--right:before,
 .gallery__next:before,
 .gallery__previous:after
   display: inline-block
@@ -274,6 +278,7 @@ $slide-width: 1000px
   vertical-align: top
   width: 35px
 
+.arrow--left,
 .gallery__previous
   border-radius: 0 50px 50px 0
   left: -70px
@@ -288,6 +293,7 @@ $slide-width: 1000px
   &:focus
     left: 0
 
+.arrow--right,
 .gallery__next
   border-radius: 50px 0 0 50px
   right: -70px

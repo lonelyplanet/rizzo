@@ -4,11 +4,11 @@ define([ "jquery" ], function($) {
 
   // polyfill for older browsers that don't support .trim()
   if (!String.prototype.trim) {
-    String.prototype.trim = function () {
+    String.prototype.trim = function() {
       return this.replace(/^\s+|\s+$/g, "");
     };
   }
-  
+
   var AutoComplete, methods, typingTimer;
 
   AutoComplete = function(args) {
@@ -35,7 +35,7 @@ define([ "jquery" ], function($) {
       results: [],
       searchTerm: "",
       displayed: false,
-      resultIndex: 0,
+      resultIndex: -1,
       specialkeys: {
         9: "tab",
         27: "esc",
@@ -51,7 +51,7 @@ define([ "jquery" ], function($) {
     // cache references to dom elements used
     this.$el = $(this.config.el);
     this.$resultsItemList = $();
-    
+
     this.init();
 
   };
@@ -74,7 +74,7 @@ define([ "jquery" ], function($) {
       // http://jsperf.com/find-sibling-vs-find-wrapper-child
       this.$resultsPanel = this.$el.next();
     },
-    
+
     showResultsPanel: function() {
       this.$resultsItemList.highlight(this.searchTerm.trim().split(" "), {
         element: "span",
@@ -82,20 +82,19 @@ define([ "jquery" ], function($) {
       });
       this.$resultsPanel.removeClass(this.config.template.hiddenClass);
       this.displayed = true;
-      this.highlightResult();
     },
 
     hideResultsPanel: function() {
       this.$resultsPanel.addClass(this.config.template.hiddenClass);
       this.displayed = false;
     },
-    
+
     clearResults: function() {
       this.results = [];
       this.$resultsPanel.html("");
       this.hideResultsPanel();
     },
-    
+
     renderList: function() {
       var $container = $(this.config.template.resultsContainer);
       this.$resultsItemList = $(this.processTemplate(this.results));
@@ -128,9 +127,8 @@ define([ "jquery" ], function($) {
       var _this = this;
 
       this.$wrapper.on("keypress", function(e) {
-        if(e.which === 13) {
+        if (e.which === 13 && _this.displayed && _this.resultIndex > -1) {
           e.preventDefault();
-          return false;
         }
       });
 
@@ -169,7 +167,7 @@ define([ "jquery" ], function($) {
       this.config.fetch(searchTerm, function(results) {
         if (results.length > 0) {
           if (_this.config.limit > 0) {
-            _this.results = results.length > _this.config.limit ? results.slice(0, _this.config.limit) : results;            
+            _this.results = results.length > _this.config.limit ? results.slice(0, _this.config.limit) : results;
           } else {
             _this.results = results;
           }
@@ -208,7 +206,7 @@ define([ "jquery" ], function($) {
 
     processSearch: function(searchTerm) {
       var _this = this;
-      this.resultIndex = 0;
+      this.resultIndex = -1;
       if (searchTerm && searchTerm.length >= this.config.threshold) {
         this.callFetch(searchTerm, function() {
           _this.populateResultPanel();
@@ -255,8 +253,11 @@ define([ "jquery" ], function($) {
     selectResult: function() {
       // pass actual DOM element to onItem()
       var el = this.$resultsItemList[this.resultIndex];
-      this.config.onItem(el);
-      this.clearResults();
+
+      if (el) {
+        this.config.onItem(el);
+        this.clearResults();
+      }
     },
 
     // These three templates are the defaults that a user would override
@@ -299,9 +300,9 @@ define([ "jquery" ], function($) {
   //------------------------------------------------------
   // From jquery.highlight.js:
   //------------------------------------------------------
-  
+
   $.extend({
-    highlight: function (node, re, nodeName, className) {
+    highlight: function(node, re, nodeName, className) {
       if (node.nodeType === 3) {
         var match = node.data.match(re);
         if (match) {
@@ -325,14 +326,14 @@ define([ "jquery" ], function($) {
     }
   });
 
-  $.fn.highlight = function (words, options) {
+  $.fn.highlight = function(words, options) {
     var settings = { className: "highlight", element: "span", caseSensitive: false, wordsOnly: false };
     $.extend(settings, options);
-    
+
     if (words.constructor === String) {
-      words = [words];
+      words = [ words ];
     }
-    words = $.grep(words, function(word, i){
+    words = $.grep(words, function(word, i) {
       return word != "";
     });
     words = $.map(words, function(word, i) {
@@ -340,14 +341,16 @@ define([ "jquery" ], function($) {
     });
     if (words.length == 0) { return this; };
 
-    var flag = settings.caseSensitive ? "" : "i";
-    var pattern = "(" + words.join("|") + ")";
+    var flag = settings.caseSensitive ? "" : "i",
+        pattern = "(" + words.join("|") + ")";
+
     if (settings.wordsOnly) {
       pattern = "\\b" + pattern + "\\b";
     }
+
     var re = new RegExp(pattern, flag);
-    
-    return this.each(function () {
+
+    return this.each(function() {
       $.highlight(this, re, settings.element, settings.className);
     });
   };

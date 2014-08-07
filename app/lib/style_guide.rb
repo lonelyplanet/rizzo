@@ -54,39 +54,18 @@ class StyleGuide < RizzoApp
     (0.2126*rgb[0]) + (0.7152*rgb[1]) + (0.0722*rgb[2])
   end
 
-  private
-
   def sections
-    [
-      {
-        title: "Design Elements",
-        slug: "/design-elements"
-      },
-      {
-        title: "UI Components",
-        slug: "/ui-components"
-      },
-      {
-        title: "JS Components",
-        slug: "/js-components"
-      },
-      {
-        title: "CSS Utilities",
-        slug: "/css-utilities"
-      },
-      {
-        title: "Page layout",
-        slug: "/page-layout"
-      }
-    ]
+    @sections ||= (YAML.load_file(File.expand_path('../../data/styleguide/secondary_nav.yml', __FILE__)))
   end
+
+  private
 
   def root
     "/styleguide"
   end
 
   def left_nav
-    @left_nav ||= (YAML.load(File.read(File.expand_path('../../data/styleguide/left_nav.yml', __FILE__))))
+    @left_nav ||= (YAML.load_file(File.expand_path('../../data/styleguide/left_nav.yml', __FILE__)))
   end
 
   def description_from_snippet(snippet)

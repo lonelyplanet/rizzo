@@ -1,0 +1,32 @@
+.read-more
+  @extend %transition--slower
+  overflow: hidden
+  position: relative
+  max-height: 0
+
+  .no-js &
+    max-height: none
+
+.read-more-block
+  padding-bottom: 32px
+
+.read-more__handler
+  position: absolute
+  bottom: 0
+  height: 70px
+  width: 100%
+  overflow: auto
+  pointer-events: none
+
+  .btn--clear
+    position: absolute
+    bottom: 0
+    pointer-events: all
+
+  .is-closed &
+    background: #fff
+    .enhanced &
+      background: linear-gradient(to top, #fff, #fff 50%, rgba(255,255,255, 0) 100%)
+
+  .is-open &
+    background: transparent

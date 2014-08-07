@@ -84,14 +84,6 @@
   &.is-closed
     opacity: 0
 
-  .stack__intro &
-    position: absolute
-    right: 25px
-    margin-top: 8px
-
-  + .copy--h1
-    width: 450px
-
 .ad-sponsorTile__tag
   margin-bottom: 2px
   text-align: right
@@ -100,25 +92,8 @@
 // Ad sense
 // ----------------------------------------------------------------------------
 
-.ad-adSense
-  font-size: 12px
-  line-height: 15px
-
-  p,
-  .title a,
-  .googleHeading a
-    color: $body-copy
-
-  a
-    word-wrap: break-word
-
-  .ad
-    margin-bottom: 10px
-    p
-      margin-bottom: 0
-
-  .title
-    font-weight: bold
+.ad-adSense--leaderboard
+  margin-top: 20px
 
 // ----------------------------------------------------------------------------
 // Page wallpaper
@@ -130,7 +105,8 @@
 .ad-wallpaper
   position: relative
   background-repeat: no-repeat
-  background-position: center top
+  background-position-x: center
+  background-position-y: 56px !important
   cursor: pointer
 
   &:after

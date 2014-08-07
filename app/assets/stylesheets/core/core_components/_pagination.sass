@@ -5,15 +5,6 @@
     @extend %rounded-corners
     padding: 8px 20px
 
-    .topic-header + &,
-    .forum-header + &,
-    .replies + &
-      +z-layer(middle)
-      border-top: 1px solid mix($subduedgray, #fff, 50%)
-      border-radius: 0 0 4px 4px
-      // This bumps it over the bottom border radius of the .stack__intro
-      margin-top: -12px
-
 .pagination__link
   border-radius: 5px
   background-color: #fff

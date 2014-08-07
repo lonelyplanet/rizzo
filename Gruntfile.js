@@ -100,6 +100,9 @@ module.exports = function(grunt) {
       },
       fetchSubmodules: {
         command: "git submodule init && git submodule update"
+      },
+      killPhantom: {
+        command: "pkill -f phantomjs || true"
       }
     },
     coffee: {
@@ -165,6 +168,7 @@ module.exports = function(grunt) {
                 hogan: "./vendor/assets/javascripts/hogan/dist/hogan-3.0.0.amd",
                 jplugs: "./vendor/assets/javascripts/jquery-plugins",
                 jquery: "./vendor/assets/javascripts/jquery/jquery",
+                jtimeago: "./vendor/assets/javascripts/jquery-timeago/jquery.timeago",
                 sailthru: "./vendor/assets/javascripts/sailthru/v1",
                 sCode: "./vendor/assets/javascripts/omniture/s_code",
                 trackjs: "./vendor/assets/javascripts/trackjs/trackjs",
@@ -192,7 +196,7 @@ module.exports = function(grunt) {
     plato: {
       rizzo: {
         files: {
-          ".plato/": [ "./public/assets/javascripts/**/*.js" ]
+          ".plato/": [ "./public/assets/javascripts/lib/**/*.js" ]
         }
       }
     },
@@ -215,9 +219,9 @@ module.exports = function(grunt) {
   require("matchdep").filterDev("grunt-*").forEach(grunt.loadNpmTasks);
 
   // Tasks
-  grunt.registerTask("default", [ "shell:cleanJs", "coffee", "copy", "connect", "jasmine" ]);
+  grunt.registerTask("default", [ "shell:cleanJs", "coffee", "copy", "connect", "jasmine", "shell:killPhantom" ]);
   grunt.registerTask("ci", [ "coffee", "copy", "connect", "jasmine" ]);
-  grunt.registerTask("dev", [ "connect", "open:jasmine", "jasmine", "watch" ]);
+  grunt.registerTask("dev", [ "connect", "open:jasmine", "jasmine", "watch", "shell:killPhantom" ]);
   grunt.registerTask("wip", [ "jasmine:rizzo:build", "open:jasmine", "connect:server:keepalive" ]);
   grunt.registerTask("report", [ "shell:cleanJs", "coffee", "copy", "plato", "shell:openPlato" ]);
   grunt.registerTask("imageoptim", [ "imageoptim" ]);

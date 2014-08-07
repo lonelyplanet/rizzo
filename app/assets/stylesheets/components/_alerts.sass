@@ -3,48 +3,77 @@
 // -----------------------------------------------------------------------------
 
 .alert
+  +font-size(14)
   @extend %transition--base
-  @extend %rounded-corners
-  clear: both
-  margin: 10px 0
-  padding: 15px 15px 13px 15px
+  padding: 20px 15px
+  line-height: 1
+
+.alert__inner
   position: relative
-
+  box-sizing: border-box
   &:before
-    +icon-color("custom")
-    height: 18px
-    left: 15px
+    +size(20px)
     position: absolute
-    top: 13px
-    width: 20px
+    top: -4px
+    left: 0
 
-  &[class*=icon--]
-    padding-left: 45px
+  &[class*=" icon--"]
+    padding-left: 30px
 
-  &.is-closed
-    height: 0
-    margin-bottom: 0
-    margin-top: 0
-    overflow: hidden
-    padding-bottom: 0
-    padding-top: 0
-
-.alert__title
+.alert__title, .alert a
   font-weight: bold
 
-.alert__content
-  margin-top: 10px
+.alert--block
+  color: white
+  .alert__inner
+    &:before
+      +icon-color(white)
+
+.alert--subtle
+  @extend %rounded-corners
+  border: 2px solid
+  .alert__inner
+    &:before
+      +icon-color(custom)
+
+
+// -----------------------------------------------------------------------------
+// Alert style
+// -----------------------------------------------------------------------------
+
+@mixin alert-variation($color, $title: true)
+
+  &.alert--block
+    background: $color
+
+  &.alert--subtle
+    border-color: $color
+    @if $title
+      .alert__title
+        color: $color
+
+
+// -----------------------------------------------------------------------------
+// Colour Variations
+// -----------------------------------------------------------------------------
 
 .alert--success
-  background: $highlight-success
+  +alert-variation($green)
 
 .alert--error
-  background: $highlight-error
-
-.alert--warning
-  background: $highlight-warning
+  +alert-variation($red)
 
 .alert--announcement
-  background: $highlight-announcement
-  &:before, &:after
-    background-position: 0 60%
+  +alert-variation($lpblue)
+  &.alert--subtle
+    .alert__inner
+      &:before
+        +icon-color(lp-blue)
+
+.alert--warning
+  +alert-variation($yella, false)
+  color: $titlegray
+  &.alert--block
+    .alert__inner
+      &:before
+        +icon-color(custom)

@@ -5,8 +5,10 @@
 // -----------------------------------------------------------------------------
 
 .card--layer
-  width: 800px
+  width: 100%
+  max-width: 800px
   margin: 0px auto
+
   .row--billboard
     width: 100%
     background: transparent
@@ -27,12 +29,9 @@
 
 .card--layer__content
   @extend %clearfix
-  @extend %rounded-corners
   @extend %large-shadow
   position: relative
   margin-top: 50px
-  padding: 25px 25px 0px 25px
-  background-color: white
 
   .copy--h1
     width: 90%
@@ -42,18 +41,13 @@
   .copy--feature
     +font-size(20)
 
-  .related
-    width: 800px
-    margin-left: -25px
-    .related_articles, .related_guides
-      margin: 0px
-
   a > img
     width: 100%
     height: auto
 
 .card--layer__close
   +size(30px)
+  +z-layer(modal)
   position: absolute
   top: 26px
   right: 20px

@@ -61,7 +61,7 @@ require([ "jquery", "public/assets/javascripts/lib/components/datepicker.js" ], 
       });
 
       it("can limit searching to only be in the past", function() {
-        var sibling;
+        var cell, sibling;
 
         new Datepicker({
           backwards: true,
@@ -69,9 +69,16 @@ require([ "jquery", "public/assets/javascripts/lib/components/datepicker.js" ], 
         });
 
         $("#js-av-start").trigger("focus");
-        sibling = $(".picker--opened .picker__day--today").closest("td").next().find(".picker__day");
 
-        expect(sibling).toHaveClass("picker__day--disabled");
+        cell = $(".picker--opened .picker__day--today").closest("td");
+
+        if (cell.next().length) {
+          sibling = cell.next();
+        } else {
+          sibling = cell.parent().next().children().first();
+        }
+
+        expect(sibling.find(".picker__day")).toHaveClass("picker__day--disabled");
       });
 
       describe("Choosing dates", function(){

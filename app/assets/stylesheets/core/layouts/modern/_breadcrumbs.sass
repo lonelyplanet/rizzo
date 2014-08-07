@@ -27,7 +27,8 @@
     font-weight: bold
     &:hover
       text-decoration: none
-  .stack &
+  .stack &,
+  .nav--inline &
     font-weight: normal
     padding: 0 0.2em 0 0.65em
     &.current
@@ -56,10 +57,11 @@
 // Qualified selector because not all breadcrumbs are links
 // with slugs and should not be underlined
 a.nav__item--breadcrumbs
+  font-weight: normal
   &:hover
     text-decoration: underline
 
-  .stack__intro .copy--h2 &
+  .card .copy--h2 &
     +font-size(13)
     color: $body-copy
 
@@ -68,14 +70,11 @@ a.nav__item--breadcrumbs
   position: relative
   width: 24px
   height: 24px
-  top: 15px
+  top: -4px
   .responsive &
     top: 0
     +respond-to(medium-view)
-      top: 15px
-  &:before
-    width: 24px
-    height: 24px
+      top: -4px
   .ie7 &
     @extend .nav__item--breadcrumbs
     text-indent: 0

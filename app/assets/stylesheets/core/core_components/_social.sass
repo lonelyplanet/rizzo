@@ -1,0 +1,100 @@
+// -----------------------------------------------------------------------------
+// Social Footer
+// -----------------------------------------------------------------------------
+
+.sharing
+  @extend %clearfix
+  padding: 15px 0
+
+  .stack__intro--empty &
+    padding-left: 20px
+    padding-right: 20px
+
+  .row--sharing--below &
+    border-top: 1px solid $body-background
+
+  .row--sharing--above &
+    margin-bottom: 20px
+    border-bottom: 1px solid $body-background
+
+.sharing__label
+  +font-size(12)
+  text-transform: uppercase
+  font-weight: bold
+  line-height: 30px
+
+
+// Sending buttons
+
+.sharing__nav__item
+  +size(30px)
+  box-sizing: border-box
+  padding: 6px
+  margin-left: 5px
+
+  .tooltip
+    font-weight: bold
+    padding: 5px 12px
+    margin-left: 50%
+    transform: translateX(-50%)
+
+.sharing__icon
+  @extend %inline-block
+  color: $body-copy
+  position: relative
+  width: 20px
+  height: 20px
+  text-align: left
+  &:hover
+    text-decoration: none
+  &:before
+    top: -16px
+  .no-js &, .no-background-size &
+    text-indent: 0
+    width: auto
+
+// Social buttons
+
+.social
+  @extend %inline-block
+  .sharing__label + &
+    margin-left: 10px
+
+.social__item
+  +size(30px)
+  @extend %inline-block
+  vertical-align: bottom
+  box-sizing: border-box
+  padding: 4px
+  margin-left: 10px
+  border-radius: 20px
+  &:first-of-type
+    margin-left: 0
+
+.social__item--pinned
+  right: 10px
+  opacity: 0
+  margin: 0
+  position: absolute
+  transition: opacity 0.2s ease
+  top: 10px
+
+.social__icon
+  +size(22px)
+  display: block
+
+.social__item--facebook
+  background-color: $facebook
+  padding: 4px 5px 4px 3px
+
+.social__item--google-plus
+  background-color: $google-plus
+
+.social__item--pinterest
+  background-color: $pinterest
+
+.social__item--stumbleupon
+  background-color: $stumbleupon
+
+.social__item--twitter
+  background-color: $twitter

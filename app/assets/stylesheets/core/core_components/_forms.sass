@@ -15,32 +15,26 @@
 
 .field__label
   box-sizing: border-box
-  float: left
   padding: 10px 10px 10px 0
-  width: 35%
-
   .field--radio &
     padding: 0 10px 0 0
-
   .responsive &
-    @extend %clearfix
-    display: inline-block
-    float: none
-    width: 100%
     +respond-to(medium-view)
-      float: left
       width: 35%
 
 .field__content
-  float: left
-  width: 65%
+  .responsive &
+    +respond-to(medium-view)
+      width: 65%
 
-.field__security-code
-  background: url("#{image_path('shared/lp-checkout.png')}") -81px -106px no-repeat
-  float: left
-  height: 27px
-  margin: 6px 0 0 10px
-  width: 46px
+.field__label,
+.field__content
+  @extend %clearfix
+  display: inline-block
+  width: 100%
+  .responsive &
+    +respond-to(medium-view)
+      float: left
 
 .field__input--error,
 .field__input--valid

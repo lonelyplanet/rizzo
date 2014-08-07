@@ -2,14 +2,6 @@
 // Slider
 // -----------------------------------------------------------------------------
 
-$chevronOffset: 0.35em
-$slideOffset: -5.4em
-$slideHoverOffset: -0.714em
-$slidePadding: 3.357em
-$slideHoverPadding: 2.857em
-$slideArrowSpacing: 1.786em
-$slideHoverArrowSpacing: 0.357em
-
 .slider
   position: relative
 
@@ -19,23 +11,22 @@ $slideHoverArrowSpacing: 0.357em
 .slider__container
   @extend %transition--base
   -ms-scroll-chaining: none
-  height: 100%
   position: relative
 
   .slider--16x9 &
-    padding: 0 0 56.25%
+    +intrinsic-ratio(16, 9)
 
   .slider--4x3 &
-    padding: 0 0 75%
+    +intrinsic-ratio(4, 3)
 
 .slider__slide
   +hardware-acceleration()
-  display: none
   position: absolute
   top: 0
-  transition: transform .2s ease-in-out, left .2s ease-in-out
+  display: none
   width: 100%
   height: 100%
+  transition: transform .2s ease-in-out, left .2s ease-in-out
   &.is-previous-previous,
   &.is-previous,
   &.is-next,
@@ -68,14 +59,7 @@ $slideHoverArrowSpacing: 0.357em
       left: 200%
 
 .slider__img
-  position: absolute
-  top: 0
-  left: 0
-  right: 0
-  bottom: 0
-  margin: auto
-  min-height: 100%
-  max-height: 100%
+  +best-fit-media
 
 .slider__controls
   @extend %clearfix
@@ -86,23 +70,19 @@ $slideHoverArrowSpacing: 0.357em
   display: none
   width: 100%
   height: 100%
-  opacity: 0
   .slider__show-controls &
     display: initial
-
-  .slider:hover &
-    opacity: 1
 
 .slider__control
   +font-size(14)
   @extend %transition--base
   background: $body-copy
-  background: rgba(0,0,0,0.6)
+  background: rgba(0, 0, 0, .65)
   color: white
   font-weight: bold
   line-height: 1.66em
   opacity: 0.5
-  padding: 0.643em 2.286em 0.643em
+  padding: 10px 40px
   margin-top: -1.15em
   position: absolute
   top: 50%
@@ -121,23 +101,21 @@ $slideHoverArrowSpacing: 0.357em
     vertical-align: top
 
 .slider__control--prev
-  left: $slideOffset
-  padding-right: $slidePadding
+  left: -70px
+  padding-left: 30px
   &:after
-    right: $chevronOffset
+    right: .35em
   &:hover
-    left: $slideHoverOffset
-    padding-right: $slideHoverPadding
+    left: 0
   .at-beginning &
     display: none
 
 .slider__control--next
-  right: $slideOffset
-  padding-left: $slidePadding
+  right: -70px
+  padding-right: 30px
   &:before
-    left: $chevronOffset
+    left: .35em
   &:hover
-    right: $slideHoverOffset
-    padding-left: $slideHoverPadding
+    right: 0
   .at-end &
     display: none

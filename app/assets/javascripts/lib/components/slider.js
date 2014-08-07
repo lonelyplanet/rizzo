@@ -111,7 +111,6 @@ define([
     var _this = this,
         $next, $prev;
 
-    this._fadeControls();
     this.$sliderControlsContainer.addClass("slider__show-controls");
 
     $next = this.$sliderControlsContainer.find(".js-slider-next").attr("href", "");
@@ -196,14 +195,6 @@ define([
 
     next.html(currentHTML.replace(/([0-9]+)/, nextIndex));
     previous.html(currentHTML.replace(/([0-9]+)/, prevIndex));
-  };
-
-  Slider.prototype._fadeControls = function() {
-    var _this = this;
-
-    setTimeout(function() {
-      _this.$sliderControlsContainer.find(".js-slider-controls").addClass("is-faded-out");
-    }, 1000);
   };
 
   return Slider;

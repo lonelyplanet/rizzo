@@ -1,9 +1,14 @@
 .user_attribution__source
   +font-size(16)
+  overflow: hidden
+  text-overflow: ellipsis
+  width: 75%
+  white-space: nowrap
+
   &:hover
     text-decoration: none
   &.theme--dark
-    color: $base-font-color
+    color: $body-copy
   &.theme--light
     color: white
 

@@ -1,8 +1,0 @@
-.card--single.card--media-container.js-card.js-double-image-card
-  - properties[:cards].each do |card|
-
-    - if card.resized_image_url
-      = render 'components/cards/image_card', properties: card
-
-    - if card.resized_video_url
-      = render 'components/cards/video_card', properties: card

@@ -1,0 +1,85 @@
+= render 'styleguide/partials/shared'
+
+.copy--body
+  .card.styleguide-intro.styleguide-block.context--content
+    %h1.copy--h1
+      Layout Content
+
+    %p
+      Our layout is split into rows. Rows are full width and serve to segment the hierarchy of the page. Any application code you write will be rendered within the main content row (.row--content) and below row--secondary.
+
+    %p
+      All rows have a child of .row__inner. This inner container surrounds the content and positions it within the row. On wide screens this means it becomes centrally aligned with a set max width. On smaller screens it sometimes provides some padding on either side, other times it doesn't have any applied rules. Variance is applied using modifier classes e.g. .row__inner--secondary
+
+  .card.styleguide-row.clearfix
+    .split--left
+      %h3.copy--h3 .row--cookie-compliance
+    .split--right
+      %p Only shown to users from the EU and only shown on the first visit.
+
+  .card.styleguide-row.clearfix
+    .split--left
+      %h3.copy--h3 .row--accessibility
+    .split--right
+      %p Only visible to Screen Readers.
+
+  .card.styleguide-row.clearfix
+    .split--left
+      %h3.copy--h3 .row--leaderboard
+    .split--right
+      %p The primary advertising row.
+
+    %br
+    %p.alert.alert--warning
+      May be hidden by setting
+      %code @hide_leaderboard = true
+      in the controller.
+
+  .card.styleguide-row.clearfix
+    .split--left
+      %h3.copy--h3 .row--primary
+    .split--right
+      %p Houses the primary nav, search and user nav.
+
+  .card.styleguide-row.clearfix
+    .split--left
+      %h3.copy--h3 .row--secondary
+    .split--right
+      %p Houses the Page Title and Secondary Nav.
+
+  .card.styleguide-row.clearfix.alert--success
+    .split--left
+      %h3.copy--h3 .row--content
+    .split--right
+      %p This is where your application code is rendered.
+
+  .card.styleguide-row.clearfix
+    .split--left
+      %h3.copy--h3 .row--leaderboard
+    .split--right
+      %p The optional secondary advertising row.
+    %br
+    %p.alert.alert--warning
+      May be displayed by setting
+      %code @display_footer_leaderboard = true
+      in the controller.
+
+  .card.styleguide-row.clearfix
+    .split--left
+      %h3.copy--h3 .row--sitemap
+    .split--right
+      %p Footer Row - Site Links.
+
+  .card.styleguide-row.clearfix
+    .split--left
+      %h3.copy--h3 .row--footer--about
+    .split--right
+      %p Footer Row - Company Links.
+
+  .card.styleguide-row.clearfix
+    .split--left
+      %h3.copy--h3 .row--smallprint
+    .split--right
+      %p Footer Row - Copyright and Legal Text
+
+

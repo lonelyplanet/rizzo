@@ -109,6 +109,7 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    method_source (0.8.2)
     mime-types (1.25.1)
     mini_portile (0.5.1)
     multi_json (1.10.0)
@@ -116,6 +117,12 @@ GEM
     nokogiri (1.6.0)
       mini_portile (~> 0.5.0)
     polyglot (0.3.4)
+    pry (0.9.12.6)
+      coderay (~> 1.0)
+      method_source (~> 0.8)
+      slop (~> 3.4)
+    pry-rails (0.3.2)
+      pry (>= 0.9.10)
     rack (1.4.5)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -170,6 +177,7 @@ GEM
       libwebsocket (~> 0.1.3)
       multi_json (~> 1.0)
       rubyzip
+    slop (3.6.0)
     sprockets (2.2.2)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -210,6 +218,7 @@ DEPENDENCIES
   haml-rails
   lograge
   logstash-event
+  pry-rails
   rails (= 3.2.18)
   rake
   requirejs-rails!

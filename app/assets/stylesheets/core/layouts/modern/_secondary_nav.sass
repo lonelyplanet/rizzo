@@ -6,40 +6,38 @@
 
 .row--secondary
   background: #fff
-  .wv--split--right
-    .responsive &
-      +respond-to(400)
-        float: right
-        text-align: right
   .responsive &
-    background: none
+    +z-layer(modal)
+    position: relative8
     +respond-to(wide-view)
       background: #fff
+      position: static
 
 .row__inner--secondary
-  padding-top: 32px
+  padding-top: 28px
   .responsive &
     padding-top: 15px
     +respond-to(wide-view)
       width: $fixed-layout-width
       margin: 0 auto
-      padding-top: 32px
+      padding-top: 28px
 
 .row__title--secondary
-  margin-bottom: 15px
+  margin-bottom: 8px
   max-width: 340px
   .responsive &
     max-width: 100%
-    margin-bottom: 20px
+    margin-bottom: 15px
     padding: 4px 0
     +respond-to(400)
       max-width: 70%
       float: left
-      margin-bottom: 0
     +respond-to(medium-view)
       max-width: 340px
     +respond-to(wide-view)
       +vertically-center(30)
+      margin-bottom: 0
+      margin-top: 0
       padding: 0
   &:hover
     max-width: none
@@ -53,29 +51,100 @@
 //
 // ----------------------------------------------------------------------------
 
+.nav--secondary__container
+  position: relative
+  .responsive &
+    clear: both
+    +respond-to(wide-view)
+      clear: none
+
 .nav--secondary
-  +font-size(13)
   @extend %subpixel-text
   +font-size(14)
+  margin-top: 6px
 
-.nav--secondary__dropdown
-  box-sizing: border-box
-  width: 100%
-  +respond-to(400)
-    width: auto
-  +respond-to(wide-view)
-    margin-left: 10px
-  .dropdown__value
-    background-color: white
-    +font-size(16)
+  .responsive &
+    +z-layer(modal)
+    clear: left
+    left: -5.5%
+    margin-top: 0
+    position: absolute
+    top: 46px
+    width: 111%
+    &.is-active
+      border-top: 1px solid $body-background
+      display: block
+    &.nav__tabs
+      position: relative
+      top: 0
+    +respond-to(wide-view)
+      +z-layer
+      clear: none
+      position: static
+      width: auto
+
+.responsive
+  .nav--secondary__col
+    border-top: 1px solid $body-background
+    padding: 18px 10%
+    text-align: left
+  .nav--secondary__other-toggle
+    color: $bodygray
+    display: block
+    font-weight: bold
+    padding-top: 15px
+    text-align: right
+    text-transform: uppercase
+    &:hover
+      text-decoration: none
+    &.is-active
+      .icon--chevron-up
+        display: inline-block
+      .icon--chevron-down
+        display: none
+
+  .nav--secondary__other-toggle--icon
+    +size(15px)
+    display: inline-block
+    left: 2px
+    position: relative
+    top: 3px
+    &.icon--chevron-up
+      display: none
 
 .nav__item--secondary
   +font-size(14)
-  color: $titlegray
-  padding: 6px 8px 18px
+  background: white
+  box-sizing: border-box
+  letter-spacing: 0.02em
+  margin: 0 8px
+  padding: 6px 0 12px
   text-transform: uppercase
-  &:active, &:hover, &.current
+  &, & > .nav__item
+    color: $titlegray
+  &:active, &:hover, &.current,
+  &.nav__submenu__trigger:hover > .nav__item
     color: $lpblue
   &.current
     border-bottom: 2px solid $lpblue
     font-weight: bold
+  > .nav__item--submenu
+    display: block
+    margin: -18px 0
+    padding: 18px 0
+  .responsive &
+    border-bottom: 1px solid $body-background
+    display: block
+    margin: 0
+    padding: 18px 24px
+    text-align: left
+    width: 100%
+    +respond-to(wide-view)
+      background: none
+      border-bottom: none
+      display: inline-block
+      margin: 0 8px
+      padding: 6px 0 12px
+      width: auto
+      &.current
+        border-bottom: 2px solid $lpblue

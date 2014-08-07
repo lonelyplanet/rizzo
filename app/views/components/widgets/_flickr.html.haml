@@ -1,0 +1,22 @@
+.widget__flickr
+  .copy--h1
+    = properties[:tag]
+
+  - if properties[:comments].present?
+    - properties[:comments].first(5).each.with_index do |(id, entry), index|
+      - if index.zero?
+        - entry[:size] = "double"
+        - entry[:user] = {image: entry[:owner_image], name: entry[:owner_name], theme: "light", size: "small"}
+      - elsif (1..2).include?(index)
+        - entry[:size] = "single"
+        - entry[:user] = {name: entry[:owner_name], theme: "light", size: "small"}
+      - elsif index > 2
+        - entry[:size] = "mini"
+        - entry[:user] = {name: entry[:owner_name], theme: "light", size: "small"}
+
+      - entry[:position] = index + 1
+
+      = ui_component("cards/image_card", { properties: entry })
+  - else
+    .no--content
+      No content found, please try again later

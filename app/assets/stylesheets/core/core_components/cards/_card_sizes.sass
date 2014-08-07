@@ -15,13 +15,14 @@
   @extend %card-as-column
   width: $card-width
 
+.card--single--full-height
+  @extend %card-as-column
+  height: $card-grid-height
+  width: $card-width
+
 .card--double
   @extend %card-as-column
   width: $double-card-width
-  .responsive &
-    width: 310px
-    +respond-to(medium-view)
-      width: $double-card-width
 
 .card--triple
   @extend %card-as-column

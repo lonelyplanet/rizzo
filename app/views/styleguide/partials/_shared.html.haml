@@ -6,6 +6,8 @@
 %script#tmpl-preloader{ type: 'text-mustache' }
   = ui_component('preloader')
 
+- configure_js("pageHopper", @app.page_hopper_sections)
+
 :ruby
   def ad_config
     {hints: "", channels: ""}

@@ -1,5 +1,10 @@
 #js-lightbox.lightbox
-  .lightbox__wrapper
+  .lightbox__wrapper.js-lightbox-wrapper
+    .lightbox__controls
+      %a.js-lightbox-arrow.lightbox-arrow.arrow--left.is-hidden.js-lightbox-previous.icon--chevron-left--after.icon--white--after
+        .lightbox-arrow__text
+      %a.js-lightbox-arrow.lightbox-arrow.arrow--right.is-hidden.js-lightbox-next.icon--chevron-right--before.icon--white--before
+        .lightbox-arrow__text
     .lightbox__content
       .lightbox__close.icon--cross.js-lightbox-close
-      .js-lightbox-content    
+      .js-lightbox-content

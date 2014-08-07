@@ -1,9 +1,10 @@
 ---
   :css_analysis:
     -
+      :title: "Comparisons"
       :items:
         -
-          :name: "All"
+          :name: "Filesize"
           :slug: ""
     -
       :title: "Rizzo"
@@ -68,3 +69,11 @@
           :name: "Sightseeing Tours"
           :slug: "sightseeing-tours"
           :css_path: "sightseeing-tours/sightseeing-c25adf93774ed17573cb331e997dc324"
+
+  :js_analysis:
+    -
+      :title: "Comparisons"
+      :items:
+        -
+          :name: "Filesize"
+          :slug: ""

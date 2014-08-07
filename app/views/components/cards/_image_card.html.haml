@@ -1,10 +1,27 @@
-%article.card.card--mini.card--image-only
-  %a.link--wrapper{href: properties[:url]}
-    %span.card__icon.icon--image.icon--white
+:ruby
+
+  css_classes = [
+    "card",            
+    "card--#{properties[:size]}",
+    "card--image-only",
+    "#{ properties[:size] == 'mini' ? 'card--single' : nil }",
+    "#{properties[:position] ? 'card--competition' : nil}"
+  ].join(" ")
+
+  text_length = properties[:size] == 'mini' || properties[:size] == 'single' ? 30 : nil
+
+%article{ class: css_classes }
+  - if properties[:position]
+    .card__tags    
+      = ui_component('tags/competition', properties: { position: properties[:position] })
+
+  %a.link--wrapper{href: properties[:url], title: properties[:image_title]}
+    - if properties[:icon?]
+      %span.card__icon.icon--image.icon--white
     %figure.card__hero
-      = safe_image_tag(properties[:resized_image_url], class: 'portrait card__image', lazyload: defined?(lazyload))
-    .card__content
-      %h2.card__name.accessibility
-        Image gallery
-      %p
-        = properties[:image_description]
+      = safe_image_tag(properties[:image_url], class: 'is-portrait card__image', lazyload: defined?(lazyload))    
+    .card__content             
+      %p.card__name
+        = text_length ? truncate( properties[:image_title], {length: text_length}) : properties[:image_title]
+      - if properties[:user]
+        = ui_component('user_attribution', properties: properties[:user])

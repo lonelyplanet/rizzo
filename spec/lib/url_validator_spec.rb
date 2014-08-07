@@ -8,7 +8,7 @@ describe Rizzo::UrlValidator do
 
   describe 'validate' do
     let(:url) { expected_url }
-    
+
     it { should eq(expected_url_with_port) }
   end
 
@@ -16,6 +16,14 @@ describe Rizzo::UrlValidator do
     let(:url) { 'africa' }
 
     it { should eq(expected_url_with_port) }
+  end
+
+  context 'url is nil' do
+    let(:url) { nil }
+
+    it "raises InvalidUrl exception" do
+      expect { described_class.validate(url)}.to raise_error(Rizzo::UrlValidator::InvalidUrl)
+    end
   end
 
   context 'different domain' do

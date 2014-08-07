@@ -8,15 +8,15 @@
     "icon--article--pin--before",
     properties[:double?] ? "card--double card--full-image" : "card--single card--small-image card--extended-content"
   ].join(" ")
-  
+
 %article.js-card{class: css_classes}
-  - if properties[:open_layer]  
-    - link_properties =  {href: properties[:url], class: 'js-lightbox-toggle', data: {lightbox: {showpreloader: 'true', class: 'lightbox--layer'} }}
-  - else  
+  - if properties[:open_layer]
+    - link_properties =  {href: properties[:url], class: 'js-lightbox-toggle', data: {lightbox: {showPreloader: 'true', class: 'lightbox--layer'} }}
+  - else
     - link_properties =  {href: properties[:url]}
 
   %a.link--wrapper{ link_properties }
-  
+
     = render partial: "components/cards/partials/card_content", locals: {properties: properties}
 
     - if properties[:post_date] && !properties[:double?]

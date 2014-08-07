@@ -1,0 +1,39 @@
+// -----------------------------------------------------------------------------
+//
+//  Card sponsored module
+//
+// -----------------------------------------------------------------------------
+
+.card--sponsored
+  @extend %transition--slower
+
+  &.is-closed
+    width: 0
+    height: 0
+    margin: 0
+    padding: 0
+    overflow: hidden
+
+.card--sponsored--mpu
+  .card__content
+    text-align: center
+
+    .adunit
+      display: inline-block
+
+.card--sponsored--double-mpu
+  float: right
+  height: 770px
+
+  .card__content
+    height: 600px
+    top: 80px
+
+.card--sponsored--traffic-driver
+
+  .card__content
+    top: 0
+    width: 192px
+    height: 380px
+    margin: 0 auto
+    padding: 0

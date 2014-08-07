@@ -1,0 +1,28 @@
+= render 'styleguide/partials/shared'
+
+.copy--body
+  .card.styleguide-intro.styleguide-block.context--content
+    %h1.copy--h1
+      Custom Rizzo Layouts
+
+    %p
+      Rizzo provides the ability to serve custom layouts
+      %a{href: "core-layouts#layouts-as-a-service"} as a service.
+      These custom layouts are used by more bespoke sites within lonelyplanet.com and also by foreign partners and other third parties.
+
+    %p
+      How these layouts are structured is defined within layout_support.rb. Layouts will begin with the default configuration, so
+      %a{href: "http://rizzo.lonelyplanet.com/layouts/housekeeper"} http://rizzo.lonelyplanet.com/layouts/housekeeper
+      will automatically work. To update the housekeeper route, you would create a new config for housekeeper and toggle the settings.
+
+    %p
+      Layouts can be previewed at 
+      %code http://rizzo.lonelyplanet.com/layouts/{{your route}}
+      and then the head, header and footer are exposed as endpoints:
+      %ul
+        %li
+          %a{href: "http://rizzo.lonelyplanet.com/layouts/housekeeper/head"} http://rizzo.lonelyplanet.com/layouts/housekeeper/head
+        %li
+          %a{href: "http://rizzo.lonelyplanet.com/layouts/housekeeper/header"} http://rizzo.lonelyplanet.com/layouts/housekeeper/header
+        %li
+          %a{href: "http://rizzo.lonelyplanet.com/layouts/housekeeper/footer"} http://rizzo.lonelyplanet.com/layouts/housekeeper/footer

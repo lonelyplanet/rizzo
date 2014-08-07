@@ -74,7 +74,7 @@
           :slug: "image-helper"
         -
           :name: "Konami"
-          :path: "konami"
+          :slug: "konami"
         -
           :name: "Lightbox"
           :slug: "lightbox"
@@ -84,6 +84,9 @@
         -
           :name: "Proximity Loader"
           :slug: "proximity-loader"
+        -
+          :name: "Tabs"
+          :slug: "tabs"
         -
           :name: "Template"
           :slug: "template"
@@ -98,11 +101,14 @@
       :title: "Page Layout"
       :items:
         -
-          :name: "Using Rizzo Layouts"
-          :slug: "using-rizzo-layouts"
+          :name: "Core Layouts"
+          :slug: "core-layouts"
         -
-          :name: "Rows"
-          :slug: "rows"
+          :name: "Custom Layouts"
+          :slug: "custom-layouts"
+        -
+          :name: "Layout Content"
+          :slug: "layout-content"
   :design_elements:
     -
       :title: "Design"
@@ -145,8 +151,8 @@
           :name: "Badges"
           :slug: "badges"
         -
-          :name: "User Attribution"
-          :slug: "user-attribution"
+          :name: "Breadcrumbs"
+          :slug: "breadcrumbs"
         -
           :name: "Buttons"
           :slug: "buttons"
@@ -186,6 +192,9 @@
         -
           :name: "Unsocial Buttons"
           :slug: "unsocial-buttons"
+        -
+          :name: "User Attribution"
+          :slug: "user-attribution"
     -
       :title: "Navigation"
       :items:
@@ -210,5 +219,15 @@
         -
           :name: "Range Slider"
           :slug: "range-slider"
+  :widgets:
+    -
+      :title: "Widgets"
+      :items:
+        -
+          :name: "Flickr widget"
+          :slug: "flickr"
+        -
+          :name: "Promo widget"
+          :slug: "promo"
 #===== yeoman end-hook =====#
 # NB! The above line is required for our yeoman generator and should not be changed.

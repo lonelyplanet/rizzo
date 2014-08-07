@@ -21,9 +21,13 @@ define([
     this.$el = $(args.$el || "#js-row--content");
     this.$opener = $(args.$opener || ".js-lightbox-toggle");
     this.showPreloader = args.showPreloader || false;
+    this.customRenderer = args.customRenderer || false;
 
     this.$lightbox = $("#js-lightbox");
+    this.$lightboxWrapper = this.$lightbox.find(".js-lightbox-wrapper");
     this.$lightboxContent = this.$lightbox.find(".js-lightbox-content");
+    this.$previous = this.$lightbox.find(".js-lightbox-previous");
+    this.$next = this.$lightbox.find(".js-lightbox-next");
 
     this.requestMade = false;
 
@@ -46,9 +50,6 @@ define([
 
     this.customClass && this.$lightbox.addClass(this.customClass);
 
-    // Just in case there are defined dimensions already specified.
-    this._centerLightbox();
-
     if (this.showPreloader) {
       this.preloaderTmpl = Template.render($("#tmpl-preloader").text(), {});
       this.$lightboxContent.parent().append( this.preloaderTmpl );
@@ -70,14 +71,28 @@ define([
 
     this.$opener.on("click", function(event) {
       event.preventDefault();
-      this.trigger(":lightbox/open", { opener: event.currentTarget,  target: this.$lightboxContent, listener: this.$el });
+      this.trigger(":lightbox/open", {
+        listener: this.$el,
+        opener: event.currentTarget,
+        target: this.$lightboxWrapper
+      });
+    }.bind(this));
+
+    this.$previous.add(this.$next).on("click", function(event) {
+      var element = this.$lightbox.find(event.target);
+      element.hasClass("js-lightbox-arrow") || (element = element.closest(".js-lightbox-arrow"));
+      this.$lightbox.removeClass("content-ready");
+      this.$el.trigger(":lightbox/fetchContent", element.attr("href"));
+      this.$lightbox.find(".js-lightbox-arrow").addClass("is-hidden");
+      this.$lightboxContent.empty();
+
+      event.preventDefault();
     }.bind(this));
 
     this.$el.on(":lightbox/open", function(event, data) {
 
       $("html").addClass("lightbox--open");
       this.$lightbox.addClass("is-active is-visible");
-      this._centerLightbox();
 
       setTimeout(function() {
         this.listenToFlyout(event, data);
@@ -95,13 +110,15 @@ define([
 
         if (this.requestMade){
           this.requestMade = false;
-          $("#js-card-holder").trigger(":controller/back");
+          $("#js-card-holder").trigger(":controller/reset");
         }
 
+        this.$lightbox.removeClass("is-active");
         // Waits for the end of the transition.
         setTimeout(function() {
+          this.$lightbox.removeClass("is-visible");
           this.$lightboxContent.empty();
-          this.$lightbox.removeClass("is-active is-visible");
+          this.trigger(":lightbox/is-closed");
         }.bind(this), 300);
 
         this.$lightbox.removeClass("content-ready");
@@ -115,7 +132,7 @@ define([
     }.bind(this));
 
     $("#js-card-holder").on(":layer/received", function(event, data) {
-      // TODO render pagination
+      this._renderPagination(data);
       this._renderContent(data.content);
     }.bind(this));
   };
@@ -135,7 +152,7 @@ define([
 
     // Waits for the end of the transition.
     setTimeout(function() {
-      this.$lightboxContent.html(content);
+      this.$lightboxContent.html(this.customRenderer ? this.customRenderer(content) : content);
       this.$lightbox.addClass("content-ready");
       this.trigger(":lightbox/contentReady");
     }.bind(this), 300);
@@ -143,13 +160,22 @@ define([
     this.$lightbox.removeClass("is-loading");
   };
 
-  LightBox.prototype._centerLightbox = function() {
-    var viewport = this.viewport();
-    this.$lightbox.css({
-      left: 0,
-      height: viewport.height,
-      width: viewport.width
-    });
+  LightBox.prototype._renderPagination = function(data) {
+    var setupArrow = function($element, obj) {
+
+      if (obj && obj.url && obj.title) {
+        $element.removeClass("is-hidden");
+        $element.attr("href", obj.url);
+        $element.find(".lightbox-arrow__text").text(obj.title);
+      } else {
+        $element.addClass("is-hidden");
+      }
+    };
+
+    if (data.pagination) {
+      setupArrow(this.$next, data.pagination.next);
+      setupArrow(this.$previous, data.pagination.prev);
+    }
   };
 
   // Self instantiate if the default class is used.

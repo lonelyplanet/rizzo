@@ -68,7 +68,6 @@ left_nav_stub:
 
 
 secondary_navigation_stub:
-  :section_name: 'Hotels'
   :items:
     -
       :title: 'Overview'
@@ -76,9 +75,39 @@ secondary_navigation_stub:
     -
       :title: 'Things to do'
       :slug: 'things-to-do'
+      :submenu:
+        -
+          :title: 'Sights'
+          :slug: '#sights'
+          :icon_class: 'icon--sight--before'
+        -
+          :title: 'Restaurants'
+          :slug: '#restaurants'
+          :icon_class: 'icon--restaurant--before'
+        -
+          :title: 'Shopping'
+          :slug: '#shopping'
+          :icon_class: 'icon--shopping--before'
+        -
+          :title: 'Entertainment'
+          :slug: '#entertainment'
+          :icon_class: 'icon--entertainment--before'
+        -
+          :title: 'Activities'
+          :slug: '#activities'
+          :icon_class: 'icon--activity--before'
+        -
+          :title: 'Tours'
+          :slug: '#tours'
+          :icon_class: 'icon--tour--before'
+        -
+          :title: 'Events'
+          :slug: '#events'
+          :icon_class: 'icon--event--before'
     -
       :title: 'Hotels'
       :slug: 'hotels'
+      :current: true
     -
       :title: 'Tips & articles'
       :slug: 'travel-tips-and-articles'

@@ -32,10 +32,13 @@ define([
   // Private
 
   POIMap.prototype._init = function() {
-    this.$placeholder
-      .on("click.poi", this._mouseClickHandler.bind(this))
-      .on("mousemove.preload", this._mouseMoveHandler.bind(this))
-      .on("mouseleave.preload", this._mouseLeaveHandler.bind(this));
+    if (window.innerWidth < 980)  return;
+
+    this.$placeholder.on({
+      "click.poi": this._mouseClickHandler.bind(this),
+      "mousemove.preload": this._mouseMoveHandler.bind(this),
+      "mouseleave.preload": this._mouseLeaveHandler.bind(this)
+    });
   };
 
   POIMap.prototype._load = function(callback) {

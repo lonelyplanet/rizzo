@@ -1,42 +1,11 @@
--# TODO: Upgrade this to DFP
-- properties = properties || {}
-#js-ad-adSense
+- type = defined?(properties) ? properties[:type] : "default"
+- adsense = ad_sense_properties(type)
+
+- content_for :scripts do
+  %script{ async: true, src: "//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"}
   :javascript
-    //<![CDATA[
-    google_ad_client = 'ca-pub-7631757607433655';
-    google_hints = "#{ properties[:hints] || '' }";
-    google_ad_channel = "#{ properties[:channels] || '' }";
-    google_ad_output = 'js';
+    (adsbygoogle = window.adsbygoogle || []).push({});
 
-    google_max_num_ads = 3;
-    google_ad_type = 'text';
-    google_feedback = 'on';
-
-    google_test = 'on';
-
-    window.google_ad_request_done = function(google_ads) {
-      var adHtml, feedback_link, googleAd, i;
-
-      if (google_ads.length === 0) {
-        return;
-      }
-
-      feedback_link = google_info ? google_info.feedback_url : "http://www.google.com/adsense";
-      adHtml = '<p class="googleHeading"><a rel="external" href=\"' + feedback_link + '\">Ads by Google</a></p>';
-
-      i = 0;
-      while (i < google_ads.length) {
-        googleAd = google_ads[i];
-        adHtml += '<div class="ad">';
-        adHtml += '  <p class="title"><a href="' + googleAd.url + '">' + googleAd.line1 + '</a></p>';
-        adHtml += '  <p>' + googleAd.line2 + ' ' + googleAd.line3 + '</p>';
-        adHtml += '  <p><a href="' + googleAd.url + '">' + googleAd.visible_url + '</a></p>';
-        adHtml += '</div>';
-        i++;
-      }
-
-      document.getElementById('js-ad-adSense').innerHTML += adHtml;
-    };
-    //]]>
-
-  %script{ :type => "text/javascript", :src  => "//pagead2.googlesyndication.com/pagead/show_ads.js" }
+#js-ad-adSense{class: type == "leaderboard" ? "ad-adSense--leaderboard" : false}
+  %ins{class: "adsbygoogle", style: "display:inline-block;width:#{adsense[:width]}px;height:#{adsense[:height]}px", data: {ad_client: adsense[:id], ad_slot: adsense[:ad_slot] }}
+  

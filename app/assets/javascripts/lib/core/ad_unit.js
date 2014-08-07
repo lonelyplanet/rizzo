@@ -10,10 +10,12 @@ define(function() {
 
   AdUnit.prototype._init = function() {
     if (this.isEmpty()) {
+      this.$target.trigger(":ads/hidden");
       return;
     }
 
     this.$target.closest(".is-closed").removeClass("is-closed");
+    this.$target.trigger(":ads/visible");
 
     var extension = this.$target.data("extension");
 

@@ -14,7 +14,7 @@
     forms in order to take advantage of their accessibility and responsive features.
 
 - components['form_components'].each_with_index do |component, i|
-  = styleguide_component("forms/#{component[:styleguide_title].downcase.split(' ').join('_')}", properties: component, count: i, anchor: component[:styleguide_title].downcase.strip.gsub(' ', '-').gsub(/[^\w-]/, ''))
+  = styleguide_component("forms/#{component[:styleguide_title].downcase.split(' ').join('_')}", properties: component, count: i)
 
 .card.styleguide-intro.styleguide-block
 
@@ -23,4 +23,4 @@
 
 
 - components['field_components'].each_with_index do |component, i|
-  = styleguide_component("forms/#{component[:styleguide_title].downcase.split(' ').join('_')}", properties: component, count: i, anchor: component[:styleguide_title].downcase.strip.gsub(' ', '-').gsub(/[^\w-]/, ''))
+  = styleguide_component("forms/#{component[:styleguide_title].downcase.split(' ').join('_')}", properties: component, count: i)

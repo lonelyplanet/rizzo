@@ -1,4 +1,4 @@
 = find_and_preserve do
-  %textarea.input.input--text-area{ id: properties[:id], name: properties[:name], placeholder: properties[:placeholder], rows: properties[:rows], cols: properties[:cols], data: properties[:data], maxlength: properties[:maxlength], data: properties[:rules] ? { rules: properties[:rules] } : {} }
+  %textarea.input.input--text-area{ id: properties[:id], name: properties[:name], placeholder: properties[:placeholder], rows: properties[:rows], cols: properties[:cols], data: properties[:data], maxlength: properties[:maxlength], data: properties[:rules] ? { rules: properties[:rules] } : {}, readonly: properties[:readonly].present? }
     = properties[:value] || ""
 = render :partial => 'components/forms/partials/tooltip', :locals => { tooltip: properties[:tooltip] }

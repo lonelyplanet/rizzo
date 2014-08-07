@@ -17,20 +17,24 @@
           %p.hero-banner__strapline
             = properties[:strapline]
 
-    - if image_info = properties[:image_info]
+    - if properties[:image_info].present? && properties[:image_info][:attribution].present?
+      - image_info = properties[:image_info]
       .hero-banner__image-content
-        .hero-banner__image-header
-          .hero-banner__image-description.text-icon.icon--flickr--before
-            = image_info[:image_description]
         .hero-banner__image-footer
-          %a.hero-banner__source{href: image_info[:user_url]}
-            %img{src: image_info[:user_image], class: 'hero-banner__avatar', alt: image_info[:user_name]}
+          %a.hero-banner__source{href: image_info[:attribution_url]}
+            %img{src: image_info[:attribution_image_url], class: 'hero-banner__avatar', alt: image_info[:attribution]}
             %span.hero-banner__source-text
               by
             %span.hero-banner__username
-              = image_info[:user_name]
+              = image_info[:attribution]
           .hero-banner__image-title
-            = image_info[:image_title]
+            = image_info[:title]
+
+    - elsif image_info = properties[:image_info]
+      .hero-banner__image-content
+        .hero-banner__image-footer
+          .hero-banner__image-title
+            = image_info[:title]
 
     - if properties[:sponsored]
       .hero-banner__sponsor.ad-sponsorTile.is-closed

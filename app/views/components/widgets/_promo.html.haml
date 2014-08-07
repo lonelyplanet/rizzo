@@ -1,0 +1,8 @@
+.row.widget__promo
+  .row__inner
+    %h2.promo__heading--secondary
+      = properties[:title]
+      %span= properties[:description]
+    - 3.times do
+      = ui_component("ads/mpu")
+

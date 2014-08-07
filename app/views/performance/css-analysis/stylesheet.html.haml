@@ -9,11 +9,11 @@
       .grid-wrapper--10
         .col--one-half
           %h2.copy--h2 Gzipped Size
-          %span.stat--large #{@result[:core][:gzippedSize]}kb
+          %span.stat--large #{@result[:sizes][:gzippedSize]}kb
 
         .col--one-half
           %h2.copy--h2 Raw Size
-          %span.stat--large #{@result[:core][:size]}kb
+          %span.stat--large #{@result[:sizes][:size]}kb
 
     .card.styleguide-intro
       - @result[:other].each do |stat|

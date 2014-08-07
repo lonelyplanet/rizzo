@@ -1,32 +1,40 @@
-// Params: @args {
-//   selector: tabs element selector
-// }
-
+// ------------------------------------------------------------------------------
+//
+// Tabs
+//
+// ------------------------------------------------------------------------------
 define([ "jquery" ], function($) {
 
   "use strict";
 
   var defaults = {
-    selector: ".tabs"
+    activeClassName: "is-active",
+    selector: ".tabs",
+    tabContent: ".js-tabs-content",
+    tabTrigger: ".js-tab-trigger"
   };
 
   function Tabs(args) {
     this.config = $.extend({}, defaults, args);
 
     this.$tabs = $(this.config.selector);
-    this.$labels = this.$tabs.find(".js-tab-trigger");
-    this.$container = this.$tabs.find(".js-tabs-content");
+    this.$labels = this.$tabs.find(this.config.tabTrigger);
+    this.$container = this.$tabs.find(this.config.tabContent);
 
     this._init();
   }
 
+  // -------------------------------------------------------------------------
+  // Initialise
+  // -------------------------------------------------------------------------
+
   Tabs.prototype._init = function() {
     var _this = this;
 
-    this.$tabs.on("click", ".js-tab-trigger", function(e) {
+    this.$tabs.on("click", this.config.tabTrigger, function(e) {
       e.preventDefault();
 
-      var $target = $(e.target),
+      var $target = $(e.currentTarget),
           $contents = $target.attr("href");
 
       _this._openTab($target, $contents);
@@ -37,16 +45,20 @@ define([ "jquery" ], function($) {
     this.$container.removeClass("is-loading");
   };
 
+  // -------------------------------------------------------------------------
+  // Private Functions
+  // -------------------------------------------------------------------------
+
   Tabs.prototype._openTab = function($label, contents) {
-    if ($label.hasClass("is-active")) {
+    if ($label.hasClass(this.config.activeClassName)) {
       return;
     }
 
-    this.$labels.removeClass("is-active");
-    this.$container.find(".is-active").removeClass("is-active");
+    this.$labels.removeClass(this.config.activeClassName);
+    this.$container.find("." + this.config.activeClassName).removeClass(this.config.activeClassName);
 
-    $label.addClass("is-active");
-    this.$container.find(contents).addClass("is-active");
+    $label.addClass(this.config.activeClassName);
+    this.$container.find(contents).addClass(this.config.activeClassName);
   };
 
   return Tabs;

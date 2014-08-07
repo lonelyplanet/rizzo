@@ -1,8 +1,8 @@
 !!! 5
-%html{class: "no-js no-freight base", lang: "en"}
+%html{ class: "no-js no-freight base", lang: "en" }
 
   %head
-    = render 'layouts/core/head', responsive: false, suppress_tynt: (defined?(suppress_tynt) ? suppress_tynt : false)
+    = render 'layouts/custom/head', tynt: (defined?(tynt) ? tynt : true), responsive: false, third_party: false, include_js: true, legacy_lp: false, app_core: false, default_title: true
     = stylesheet_link_tag 'styleguide', :media => "all"
 
   %body
@@ -22,7 +22,7 @@
         .row.row--secondary#js-secondary-nav
           .row__inner.row__inner--secondary
             = yield :secondary
-            
+
         .row__inner.row__inner--content
 
           .grid-wrapper--10
@@ -36,9 +36,9 @@
           = ui_component('preloader')
 
     .js-config.is-hidden
-      = render 'layouts/core/snippets/footer_js'
+      = render 'layouts/partials/snippets/footer_js', third_party: false
       = yield :scripts
 
       = javascript_include_tag 'prism'
 
-    = render 'layouts/core/snippets/pointer_cover'
+    = render 'layouts/partials/snippets/pointer_cover'

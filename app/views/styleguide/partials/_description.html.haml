@@ -2,6 +2,7 @@
   .styleguide-block__tabs
 
     .copy--h2.styleguide-block__heading #{properties.delete(:styleguide_title)}
+    %p #{properties.delete(:styleguide_description)}
     .styleguide__partial.copy--body.js-styleguide-partial
       \= ui_component('#{component}', properties:
       %b {as_below}

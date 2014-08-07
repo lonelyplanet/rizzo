@@ -7,8 +7,6 @@ require([ "public/assets/javascripts/lib/core/ad_manager" ], function(AdManager)
     beforeEach(function() {
       loadFixtures("ad_iframe.html");
 
-      window.lp = window.lp || {};
-
       window.lp.getCookie = function() {
         return [];
       };

@@ -105,19 +105,20 @@ require([ "jquery", "public/assets/javascripts/lib/components/lightbox.js" ], fu
       });
     });
 
-    describe("Lightbox centering", function() {
+    describe("Custom renderer", function() {
+      var renderer;
 
-      it("sets up the container to be the full height and width of the viewport", function() {
+      beforeEach(function() {
+        renderer = jasmine.createSpy("renderer");
+        lightbox = new LightBox({ customRenderer: renderer });
+        lightbox._renderContent("foo");
+      });
 
-        spyOn(lightbox, "viewport").andReturn({
-          height: 800,
-          width: 1000
+      it("gets called if defined", function() {
+        waits(300);
+        runs(function() {
+          expect(renderer).toHaveBeenCalled();
         });
-
-        lightbox._centerLightbox();
-
-        expect($("#js-lightbox").height()).toBe(800);
-        expect($("#js-lightbox").width()).toBe(1000);
       });
 
     });

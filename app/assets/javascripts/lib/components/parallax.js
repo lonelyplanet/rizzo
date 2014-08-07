@@ -1,23 +1,44 @@
 define([
   "jquery",
   "lib/page/viewport_helper",
-  "lib/core/feature_detect"
-], function($, withViewportHelper, features) {
+  "lib/core/feature_detect",
+  "lib/utils/debounce"
+], function($, withViewportHelper, features, debounce) {
 
   "use strict";
 
   var HeroParallax,
       _autoInit,
-      _stopScroll,
+      _stopWindowEvents,
       _frame,
       _started = false,
       _heroBanners = [],
-      _transform = features.transform().js;
+      _parallaxReady = true,
+      _transform = window.lp.supports.transform && window.lp.supports.transform.js;
 
   HeroParallax = function( args ) {
     if (this.viewport().width <= 1024) { return; }
 
     this.$els = args.$els || $(".js-bg-parallax");
+
+    this.calculateInitialPosition( true );
+
+    $(window).on("scroll", this._onScroll.bind(this));
+    $(window).on("resize", debounce(this._onResize.bind(this), 100));
+
+  };
+
+  withViewportHelper.call(HeroParallax.prototype);
+
+  HeroParallax.prototype._onResize = function() {
+    this.calculateInitialPosition( false );
+
+    clearTimeout(_stopWindowEvents);
+    _stopWindowEvents = setTimeout(this._stopRAF.bind(this), 100);
+    this._startRAF();
+  };
+
+  HeroParallax.prototype.calculateInitialPosition = function( withAnimation ) {
 
     $.each(this.$els, function(i) {
 
@@ -31,22 +52,20 @@ define([
         heroHeight: $el.height()
       };
 
-      if (this.withinViewport($el)) {
+      if (withAnimation){
+        _parallaxReady = false;
         $animEl
-          .addClass("hero-banner__image-first-position")
+          .addClass("hero-banner__image-initial-position")
           .on(window.lp.supports.transitionend, function() {
-            $(event.target).removeClass("hero-banner__image-first-position");
+            $animEl.removeClass("hero-banner__image-initial-position");
+            _parallaxReady = true;
           });
+        $animEl.css(_transform, "translate3d(0, " + this.calculatePosition(i).toFixed(2) + "px, 0) scale(1) rotate(0deg)");
       }
-
-      $animEl.css(_transform, "translate3d(0, " + this.calculatePosition(i).toFixed(2) + "px, 0) scale(1) rotate(0deg)");
 
     }.bind(this));
 
-    $(window).on("scroll", this._onScroll.bind(this));
   };
-
-  withViewportHelper.call(HeroParallax.prototype);
 
   HeroParallax.prototype.calculatePosition = function(i) {
     var banner = _heroBanners[i],
@@ -56,7 +75,12 @@ define([
         maxParallax = (banner.imageHeight - banner.heroHeight),
         scrolledPercentage = (positionInViewport.top + banner.heroHeight) / lengthOnPage;
 
-    return -1 * maxParallax * scrolledPercentage;
+    if (maxParallax * scrolledPercentage > maxParallax){
+      return -1 * maxParallax;
+    } else {
+      return -1 * maxParallax * scrolledPercentage;
+    }
+
   };
 
   HeroParallax.prototype._updateBg = function( i ) {
@@ -86,9 +110,11 @@ define([
   };
 
   HeroParallax.prototype._onScroll = function() {
-    clearTimeout(_stopScroll);
-    _stopScroll = setTimeout(this._stopRAF.bind(this), 100);
-    this._startRAF();
+    clearTimeout(_stopWindowEvents);
+    _stopWindowEvents = setTimeout(this._stopRAF.bind(this), 100);
+    if (_parallaxReady){
+      this._startRAF();
+    }
   };
 
   _autoInit = function() {
@@ -102,10 +128,10 @@ define([
     }
   };
 
-  //Waits for feature detect to be available
+  // Waits for feature detect to be available
   if (window.lp.supports.requestAnimationFrame){
     _autoInit();
-  }else {
+  } else {
     $(document).on(":featureDetect/available", function() {
       _autoInit();
     });

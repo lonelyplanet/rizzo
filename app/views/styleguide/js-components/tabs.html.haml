@@ -1,0 +1,58 @@
+= render 'styleguide/partials/shared'
+
+#js-card-holder.card.styleguide-intro.copy--body.context--content
+  .clearfix
+    %h1.copy--h1 Tabs
+
+.styleguide-block.styleguide-block__description.card.copy--body
+
+  %h2.copy--h2.styleguide-block__heading Config
+
+  %p
+    %code.language-javascript
+      activeClassName
+    The CSS class name to give the active tab and content container.
+
+  %p
+    %code.language-javascript
+      selector
+    The selector for the element containing both the tabs and their content.
+
+  %p
+    %code.language-javascript
+      tabContent
+    The selector for the content related to each tab. Scoped to
+    %code.language-javascript
+      selector
+    \.
+
+  %p
+    %code.language-javascript
+      tabTrigger
+    The selector for the tabs that will trigger the content changing. Scoped to
+    %code.language-javascript
+      selector
+    \.
+
+
+.styleguide-block__description.card.copy--body
+
+  %h2.copy--h2.styleguide-block__heading Usage
+
+  %p
+    The following shows how to instantiate the component with a custom
+    %code.language-javascript
+      selector
+    passed in.
+
+  %p All the above config options can be passed in the same way.
+
+  %pre.styleguide.copy--body.language-javascript
+    %code
+      = preserve do
+        :plain
+          require([ "lib/components/tabs" ], function(Tabs) {
+            new Tabs({
+              selector: ".my-tabs"
+            });
+          });

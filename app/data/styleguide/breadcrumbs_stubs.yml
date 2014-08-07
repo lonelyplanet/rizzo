@@ -1,0 +1,15 @@
+:breadcrumbs:
+
+  -
+    :place: "South America"
+    :slug: "/south-america"
+  -
+    :place: "Argentina"
+    :slug: "/argentina"
+  -
+    :place: "Buenos Aires"
+    :slug: "/buenos-aires"
+  -
+    :place: "Buenos Aires Hotels"
+    :slug: nil
+

@@ -51,6 +51,7 @@ field_components:
     :placeholder: "Placeholder"
     :cols: 40
     :rows: 4
+    :readonly: true
 
   -
     :styleguide_title: "Date field"
@@ -98,17 +99,6 @@ field_components:
         :data:
           :key: "value"
           :super: "man"
-
-  -
-    :styleguide_title: "Security Code field"
-    :label: "Field label"
-    :id: "text_id"
-    :name: "text_name"
-    :placeholder: "Placeholder"
-    :data:
-      :key: "value"
-      :super: "man"
-
 
 dropdown_components:
   -

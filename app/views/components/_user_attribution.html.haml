@@ -1,6 +1,23 @@
-%a.user_attribution__source.mv--split--left{href: properties[:url], class: "theme--#{properties[:theme]} user_attribution--#{properties[:size]}"}
-  = safe_image_tag(properties[:image], class: 'user_attribution__avatar', alt: properties[:name], lazyload: defined?(lazyload))
+:ruby
+
+  css_classes = [
+    "user_attribution__source",            
+    "mv--split--left",
+    "theme--#{properties[:theme]}",
+    "user_attribution--#{properties[:size]}"    
+  ].join(" ")
+
+- single_content_for :user_attribution_content do
+  - if properties[:image]
+    = safe_image_tag(properties[:image], class: 'user_attribution__avatar', alt: properties[:name], lazyload: defined?(lazyload))
   %span.user_attribution__source-text
     by
   %span.user_attribution__username
-    = properties[:name]
+    = properties[:name]    
+
+- if properties[:url]
+  %a{ href: properties[:url], class: css_classes }
+    = yield :user_attribution_content
+- else
+  %span{ class: css_classes }
+    = yield :user_attribution_content

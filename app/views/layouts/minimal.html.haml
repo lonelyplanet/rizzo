@@ -1,15 +1,18 @@
-= render 'layouts/core/doctype_declaration'
+= render 'layouts/partials/doctype_declaration'
 
 %head
-  = render 'layouts/core/head', responsive: true, suppress_tynt: true
+  = render 'layouts/custom/head', tynt: false, responsive: true, include_js: true, third_party: false, legacy_lp: false, app_core: false, default_title: true
 
 %body.responsive.minimal
   .wrapper.js-wrapper
 
     .row--faux-banner
-      %a.media--lp-logo.logo--header.icon--lp-logo.icon--white(href='http://www.lonelyplanet.com' title='Return to homepage')
+      %a.media--lp-logo.logo--header.icon--lp-logo.icon--white{ href: 'http://www.lonelyplanet.com', title: 'Return to homepage' }
 
     .row.row--content{ id: 'js-row--content' }
+      - if content_for?(:secondary)
+        .row.row--secondary#js-secondary-nav
+          = yield :secondary
 
       - if (yield :alerts).present?
         .row.row--alerts
@@ -18,4 +21,4 @@
 
       = yield
 
-    = render 'layouts/core/snippets/footer_js'
+    = render 'layouts/partials/snippets/footer_js', third_party: false

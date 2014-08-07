@@ -9,16 +9,16 @@ module ComponentHelper
     count = properties.delete(:count)
     full_width = properties.delete(:full_width)
     original_stub = properties.delete(:original_stub)
-    anchor = properties.delete(:anchor)
 
     item_class = full_width ? "styleguide-block__item" : "styleguide-block__item--left"
     item_class += card_style ? " card styleguide-block__item--card" : ""
-    item_class += count ? " styleguide-block__item--#{count}" : ""
+
+    item_id = count ? "styleguide-block__item--#{count}" : ""
 
     capture_haml do
-      haml_tag(:div, class: "styleguide-block#{anchor.nil? ? '' : ' styleguide__anchor'}", id: anchor) do
-        unless anchor.nil?
-          haml_tag(:a, name: anchor, href: "##{anchor}", class: "icon--link icon--lp-blue")
+      haml_tag(:div, class: "styleguide-block#{item_id.present? ? ' styleguide__anchor' : ''}", id: item_id) do
+        if item_id.present?
+          haml_tag(:a, name: item_id, href: "##{item_id}", class: "icon--link--after icon--lp-blue--after")
         end
         haml_tag(:div, class: item_class) do
           haml_concat ui_component(slug, properties)

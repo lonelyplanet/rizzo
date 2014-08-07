@@ -1,0 +1,84 @@
+/[if lt IE 9]
+  :javascript
+    document.createElement('header');
+    document.createElement('nav');
+    document.createElement('section');
+    document.createElement('article');
+    document.createElement('aside');
+    document.createElement('footer');
+    document.createElement('figure');
+    document.createElement('figurecap');
+    document.createElement('hgroup');
+    document.createElement('time');
+
+:javascript
+  // Setup our namespace
+  window.lp = window.lp || {};
+
+  // Allow legacy apps to add their own properties
+  window.lp.tracking = window.lp.tracking || {};
+  window.lp.supports = window.lp.supports || {};
+
+  window.lp.analytics = window.lp.analytics || {
+    dataLayer: {},
+    eventBuffer: [],
+    api: {
+      trackEvent: function(data){
+        window.lp.analytics.eventBuffer.push(data);
+      }
+    }
+  };
+
+  // Utility cookie retrieval function
+  window.lp.getCookie = function (name) {
+    return unescape(document.cookie.replace(new RegExp("(?:(?:^|.*;)\\s*" + escape(name).replace(/[\-\.\+\*]/g, "\\$&") + "\\s*\\=\\s*([^;]*).*$)|^.*$"), "$1")) || null;
+  };
+
+  // Test for LocalStorage support (and space)
+  window.lp.supports.localStorage = 'localStorage' in window && (function() {
+    try {
+      localStorage.setItem("test", "test");
+      localStorage.removeItem("test");
+      return true;
+    } catch(e){
+      return false;
+    }
+  }());
+
+  // Setup js error logging
+  var _trackJs = {
+    customer: '3cd28f4c5df14f6e9fffa815ed7712b0',
+    globalAlias: false,
+    consoleDisplay: true,
+    userId: window.lp.getCookie('lpUid')
+  };
+
+  // Switch no-js class for js
+  (function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement);
+
+  // Initialise a flamsteed buffer
+  window.lp.fs = {
+    buffer: [],
+    log : function(x){this.buffer.push({e: x})},
+    time: function(x){!!window.performance && !!window.performance.now && this.buffer.push({e: x, t: window.performance.now()})}
+  };
+
+= yield :head_js
+
+:javascript
+  // Google analytics
+  (function(d,t,c){
+    var filepath = d.cookie.match(/lpDev/) ? "analytics.dev.js?" +c.getTime() : "analytics.min.js",
+        g=d.createElement(t),
+        s=d.getElementsByTagName(t)[0];
+    g.src="//assets.staticlp.com/analytics/" + filepath;
+    s.parentNode.insertBefore(g,s);
+  }(document,"script",new Date));
+
+= render 'layouts/partials/inline_js/cut_the_mustard'
+= render 'layouts/partials/inline_js/fonts_loader'
+= render 'layouts/partials/inline_js/grunticon'
+
+= render 'layouts/partials/inline_js/require_js_config'
+- if (yield :async_js).present?
+  = render 'layouts/partials/inline_js/require_js_async', script_name: "#{yield :async_js}"

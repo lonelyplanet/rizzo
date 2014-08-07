@@ -41,6 +41,8 @@ define([ "jquery" ], function($) {
     if (this.totalHeight > (this.config.maxHeight + this.config.tolerance)) {
       this.addToggle();
       this.setWrapperState("closed");
+    } else {
+      this.setWrapperState("open");
     }
   };
 

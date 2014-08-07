@@ -1,0 +1,63 @@
+= render 'styleguide/partials/shared'
+- content_for :stylesheets do
+  %link{rel: "stylesheet", href: "#{asset_path('nvd3/nv.d3.min.css')}"}
+
+- configure_js("chartData", @chart_data)
+
+.context--content.copy--body
+
+  .card.styleguide-intro
+    %h1.copy--h1 JS Trend and Comparison
+
+  .card.chart-section.styleguide-intro
+    %h4.copy--h4 File Size (kB) changes over the previous 7 days
+    #js-chart.perf-chart.is-loading
+      = ui_component("preloader")
+      %svg
+
+  .card.styleguide-intro
+    .grid-wrapper--10.perf--row
+      .col--one-third
+        %span.copy--h2 Filename
+      .col--two-thirds
+        .grid-wrapper--10
+          .col--one-fifth
+            %span.copy--h2 Size
+          .col--one-fifth
+            %span.copy--h2 Gzipped
+          .col--one-fifth
+            %span.copy--h2 30 Day
+          .col--one-fifth
+            %span.copy--h2 7 Day
+          .col--one-fifth
+            %span.copy--h2 1 Day
+
+    - if @result.present?
+      - @result.each do |file|
+        .grid-wrapper--10.perf--row
+          .col--one-third.stat--medium
+            = file[:name]
+
+          .col--two-thirds
+            .grid-wrapper--10
+              .col--one-fifth.stat--medium
+                #{file[:sizes][:size]}kb
+              .col--one-fifth.stat--medium
+                #{file[:sizes][:gzippedSize]}kb
+              .col--one-fifth.stat--medium
+                .stat--trend.icon--white--before{class: file[:compare][:last_month] > 0 ? "stat--red icon--arrow-up--before" : file[:compare][:last_month] < 0 ? "stat--green icon--arrow-down--before" : "stat--stable"}
+                  #{file[:compare][:last_month]}%
+
+              .col--one-fifth.stat--medium
+                .stat--trend.icon--white--before{class: file[:compare][:last_week] > 0 ? "stat--red icon--arrow-up--before" : file[:compare][:last_week] < 0 ? "stat--green icon--arrow-down--before" : "stat--stable"}
+                  #{file[:compare][:last_week]}%
+
+              .col--one-fifth.stat--medium
+                .stat--trend.icon--white--before{class: file[:compare][:yesterday] > 0 ? "stat--red icon--arrow-up--before" : file[:compare][:yesterday] < 0 ? "stat--green icon--arrow-down--before" : "stat--stable"}
+                  #{file[:compare][:yesterday]}%
+
+    - else
+      %h4.copy--h4 Sorry, something seems to be playing up.
+      %p
+        Check back later, hopefully it's merely a temporary thing.
+

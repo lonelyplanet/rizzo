@@ -24,26 +24,3 @@
   opacity: 0.75
   &:hover
     opacity: 1
-.nav__submenu--user
-  width: 165px
-  right: -10px
-  left: auto
-  .responsive &
-    display: none
-    +respond-to(wide-view)
-      &:hover
-        display: block
-
-.nav__submenu__content--user
-  &:before
-    left: 123px
-
-.nav__submenu__item
-  position: relative
-
-.nav__submenu__notification
-  +font-size(12)
-  color: $bodygray
-  position: absolute
-  right: 10px
-  top: 12px

@@ -1,0 +1,10 @@
+= render 'styleguide/partials/shared'
+
+.card.styleguide-intro.copy--body.context--content
+  .clearfix
+    %h1.split--left.copy--h1 Promo widget
+
+  %p
+    This is the promo widget
+
+= styleguide_component("widgets/promo", properties: {title: 'foo', description: 'bar'})

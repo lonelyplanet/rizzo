@@ -154,7 +154,6 @@
   "disallowTrailingWhitespace": true,
 
   "disallowKeywords": [
-    "delete"
   ],
 
   "disallowKeywordsOnNewLine": [

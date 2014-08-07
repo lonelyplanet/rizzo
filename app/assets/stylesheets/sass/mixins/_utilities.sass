@@ -48,3 +48,9 @@
     z-index: 9999
   @else
     z-index: 1
+
+// [doc] Specify user avatar size and make it round. [/doc]
+@mixin user-avatar-size($size)
+  &, & img
+    +size(#{$size}px)
+    border-radius: #{$size/2}px

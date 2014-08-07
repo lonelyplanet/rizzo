@@ -1,0 +1,37 @@
+alerts:
+  -
+    :type: "success"
+    :title: "Congratulations!"
+    :message: "You are now logged in."
+  -
+    :type: "success"
+    :title: "Congratulations!"
+    :message: "You are now logged in."
+    :subtle: true
+  -
+    :type: "error"
+    :title: "Oops!"
+    :message: "Maybe check yourself before..."
+  -
+    :type: "error"
+    :title: "Oops!"
+    :message: "Maybe check yourself before..."
+    :subtle: true
+  -
+    :type: "warning"
+    :title: "Be careful"
+    :message: "Mind the gap."
+  -
+    :type: "warning"
+    :title: "Be careful"
+    :message: "Mind the gap."
+    :subtle: true
+  -
+    :type: "announcement"
+    :title: "Half price books"
+    :message: "Get them now, they're hot."
+  -
+    :type: "announcement"
+    :title: "Half price books"
+    :message: "Get them now, they're hot."
+    :subtle: true
