@@ -5,25 +5,21 @@ require([ "jquery", "public/assets/javascripts/lib/core/authenticator" ], functi
   describe("Authenticator", function() {
 
     var auth,
-        lp = {},
         loggedInStatus;
 
     loggedInStatus = {
       id: 1,
       username: "foobar",
       email: "foo@bar.com",
-      profileSlug: "foobar",
+      profileSlug: "12345",
       facebookUid: null,
       avatar: "/foo.jpg",
       timestamp: "2014-03-31T14:33:47+01:00",
-      unreadMessageCount: 5
     };
 
     $("body").append("<div id='js-user-nav-template' />");
 
     beforeEach(function() {
-      var $fixtures;
-
       loadFixtures("authenticator.html");
       $("#js-user-nav-template").html($("#jasmine-fixtures").html());
 
@@ -35,7 +31,7 @@ require([ "jquery", "public/assets/javascripts/lib/core/authenticator" ], functi
 
     describe("config", function() {
 
-      it("always checks the status from the live site", function() {
+      it("should check the status from the live site", function() {
         expect(auth.statusUrl).toBe("https://auth.lonelyplanet.com/users/status");
       });
 
@@ -47,12 +43,12 @@ require([ "jquery", "public/assets/javascripts/lib/core/authenticator" ], functi
         auth._updateStatus();
       });
 
-      it("generates the sign in / join links for both mobile and wide views", function() {
+      it("should generate the sign in / join links for both mobile and wide views", function() {
         expect($(".js-user-sign_in").length).toBe(2);
         expect($(".js-user-sign_up").length).toBe(2);
       });
 
-      it("defines all link urls correctly", function() {
+      it("should define all link urls correctly", function() {
         expect($(".js-user-sign_in").attr("href")).toBe("https://auth.lonelyplanet.com/users/sign_in");
         expect($(".js-user-sign_up").attr("href")).toBe("https://auth.lonelyplanet.com/users/sign_up");
       });
@@ -65,7 +61,7 @@ require([ "jquery", "public/assets/javascripts/lib/core/authenticator" ], functi
         auth._updateStatus(loggedInStatus);
       });
 
-      it("sets up window.lp.user", function() {
+      it("should set up window.lp.user", function() {
         expect(window.lp.user).toBe(loggedInStatus);
       });
 
@@ -77,35 +73,32 @@ require([ "jquery", "public/assets/javascripts/lib/core/authenticator" ], functi
         auth._updateStatus(loggedInStatus);
       });
 
-      it("shows user's avatar", function() {
+      it("should show user's avatar", function() {
         expect($(".nav__item--user-avatar").attr("src")).toBe("/foo.jpg");
       });
 
-      it("adds user name to the responsive menu", function() {
-        expect($(".nav--offscreen__title").text()).toBe("foobar");
-      });
-
-      it("adds responsive menu items", function() {
-        expect($(".wv--nav--inline .nav__item").length).toBe(5);
-      });
-
-      it("defines all drop-down menu link urls correctly", function() {
-        expect($(".js-user-profile").attr("href")).toBe("https://www.lonelyplanet.com/thorntree/profiles/foobar");
+      it("should define all drop-down menu link urls correctly", function() {
+        expect($(".js-user-profile").attr("href")).toBe("https://www.lonelyplanet.com/thorntree/profiles/" + loggedInStatus.profileSlug);
         expect($(".js-user-settings").attr("href")).toBe("https://www.lonelyplanet.com/thorntree/forums/settings");
         expect($(".js-user-sign_out").attr("href")).toBe("https://auth.lonelyplanet.com/users/sign_out");
       });
 
-    });
-
-    describe("unread message", function() {
-
-      beforeEach(function() {
-        loggedInStatus.unreadMessageCount = 5;
-        auth._updateStatus(loggedInStatus);
+      it("should add user name to the responsive menu", function() {
+        expect($(".nav--offscreen__title").text()).toBe("foobar");
       });
 
-      it("shows the number of unread messages in the responsive menu", function() {
-        expect($(".js-responsive-unread-messages:visible").text().trim()).toBe("(5)");
+      it("should add responsive menu items", function() {
+        expect($(".js-user-signed-in .nav__item").length).toBe(5);
+      });
+
+      it("should define responsive menu link urls correctly", function() {
+        var $respMenu = $(".js-user-signed-in .nav__item");
+
+        expect($respMenu.eq(0).attr("href")).toBe("https://www.lonelyplanet.com/thorntree/profiles/" + loggedInStatus.profileSlug);
+        expect($respMenu.eq(1).attr("href")).toBe("https://www.lonelyplanet.com/thorntree/forums/settings");
+        expect($respMenu.eq(2).attr("href")).toBe("https://www.lonelyplanet.com/thorntree/profiles/" + loggedInStatus.profileSlug + "/messages");
+        expect($respMenu.eq(3).attr("href")).toBe("https://www.lonelyplanet.com/thorntree/profiles/" + loggedInStatus.profileSlug + "/activities");
+        expect($respMenu.eq(4).attr("href")).toBe("https://auth.lonelyplanet.com/users/sign_out");
       });
 
     });
