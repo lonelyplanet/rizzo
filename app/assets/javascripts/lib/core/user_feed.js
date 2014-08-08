@@ -24,6 +24,7 @@ define([
     unreadFeedNumberSelector: ".js-unread-feed-number",
     unreadActivitiesNumberSelector: ".js-unread-activities-number",
     unreadMessagesNumberSelector: ".js-unread-messages-number",
+    unreadMessagesMobileNumberSelector: ".js-responsive-unread-messages",
     newFeedHighlightClass: "is-highlighted",
     initialHighlightedActivitiesNumber: 0,
     maxFeedActivities: 5,
@@ -37,6 +38,7 @@ define([
     this.$footer = $(this.config.footerSelector);
     this.$unreadActivitiesIndicator = $(this.config.unreadActivitiesNumberSelector);
     this.$unreadMessagesIndicator = $(this.config.unreadMessagesNumberSelector);
+    this.$unreadMessagesMobileIndicator = $(this.config.unreadMessagesMobileNumberSelector);
     this.$unreadFeedIndicator = $(this.config.unreadFeedNumberSelector);
     this.currentActivities;
     this.highlightedActivitiesNumber = this.config.initialHighlightedActivitiesNumber;
@@ -67,6 +69,16 @@ define([
 
   UserFeed.prototype._goToUrl = function(url) {
     window.location.href = url;
+  };
+
+  UserFeed.prototype._updateUnreadMessagesMobileIndicator = function(unreadMessagesCount) {
+    if (unreadMessagesCount > 0) {
+      this.$unreadMessagesMobileIndicator
+          .text("(" + unreadMessagesCount + ")")
+          .removeClass("is-hidden");
+    } else {
+      this.$unreadMessagesMobileIndicator.addClass("is-hidden");
+    }
   };
 
   UserFeed.prototype._updateUnreadFeedIndicator = function(newFeedItemsNumber) {
@@ -173,28 +185,31 @@ define([
 
     feed.messages && feed.messages.length && this._createUserMessages(feed.messages, newMessagesNumber);
     this._updateUnreadFeedIndicator(this.highlightedActivitiesNumber + newMessagesNumber);
-
-    this._timeagoInstance.updateStrings();
   };
 
-  UserFeed.prototype._updateFeed = function(fetchedFeed) {
+  UserFeed.prototype._updateFeed = function(clientWidth, fetchedFeed) {
     if (!fetchedFeed) { return; }
 
-    this._updateActivities(fetchedFeed);
-    this._updateMessages(fetchedFeed);
+    // Poll for wide screens
+    if (clientWidth >= 980) {
+      this._updateActivities(fetchedFeed);
+      this._updateMessages(fetchedFeed);
+      this._timeagoInstance.updateStrings();
 
-    // Init fetch loop
-    setTimeout(this._fetchFeed.bind(this), this.config.fetchInterval);
-
+      setTimeout(this._fetchFeed.bind(this), this.config.fetchInterval);
+    }
+    // Poll for small & medium screens where this component is not visible
+    this._updateUnreadMessagesMobileIndicator(fetchedFeed.unreadMessagesCount);
   };
 
   UserFeed.prototype._fetchFeed = function() {
     $.ajax({
       url: this.config.feedUrl,
       cache: false,
-      dataType: "json",
-      success: this._updateFeed.bind(this),
-      error: this._updateFeed.bind(this)
+      jsonpCallback: "lpUserFeedCallback",
+      dataType: "jsonp",
+      success: this._updateFeed.bind(this, document.documentElement.clientWidth),
+      error: this._updateFeed.bind(this, document.documentElement.clientWidth)
     });
   };
 
