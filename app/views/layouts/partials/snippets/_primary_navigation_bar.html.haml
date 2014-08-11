@@ -1,6 +1,6 @@
 .row--faux-banner
 %input{ type: "checkbox", id: 'nav--primary__trigger', class: "is-hidden" }
-%label{ for: 'nav--primary__trigger', class: 'nav--primary__trigger icon--hamburger icon--white js-toggle-active', data: { toggle: { target: 'body', class: 'show-nav' } } }
+%label{ for: 'nav--primary__trigger', class: 'copy--h2 wv--hidden nav--primary__trigger icon--hamburger--before icon--white--before js-toggle-active', data: { toggle: { target: 'body', class: 'show-nav' } } } Menu
 
 %a.media--lp-logo.logo--header.icon--lp-logo.icon--white{ href: 'http://www.lonelyplanet.com', title: 'Return to homepage' }
 
@@ -16,57 +16,29 @@
           %button.search__input__icon.js-search-icon.icon--search.icon--white{ class: "search__button", type: "submit", id: "search-q-submit" }
             Search
 
-        - if user_nav
-          %nav.nav__item.wv--nav--inline.nav--primary--user.js-user-nav.split--right__inner{ role: "navigation", title: "User navigation", aria: { label: "User navigation" }, itemscope: "itemscope", itemtype: "http://schema.org/SiteNavigationElement" }
-            %h6.accessibility User navigation
-            %a.nav__item.nav__item--primary.nav__item--user.user-basket.js-user-basket.js-nav-cart{ href: 'http://shop.lonelyplanet.com/cart/view' }
-              %span.user-basket__icon.icon--shop-basket.icon--white{ itemprop: "name" }
-                View Basket
+      - if user_nav
+        %nav.nav__item.wv--nav--inline.nav--primary--user.js-user-nav.split--right__inner{ role: "navigation", title: "User navigation", aria: { label: "User navigation" }, itemscope: "itemscope", itemtype: "http://schema.org/SiteNavigationElement" }
+          %h6.accessibility User navigation
+          %a.nav__item.nav__item--primary.nav__item--user.user-basket.js-user-basket.js-nav-cart{ href: 'http://shop.lonelyplanet.com/cart/view' }
+            %span.user-basket__icon.icon--shop-basket.icon--white{ itemprop: "name" }
+              View Basket
 
-            - if include_js
-              %script#js-user-nav-template{ type: "text/mustache" }
-                = render partial: "templates/global-nav/user_nav"
+          - if include_js
+            %script#js-user-nav-template{ type: "text/mustache" }
+              = render partial: "templates/global-nav/user_nav"
 
-            %noscript
-              .nav__item.nav__item--user
-                %a.nav__item.nav__item--primary.js-nav-item{ href: "https://www.lonelyplanet.com/thorntree/my_account", itemprop: "url" }
-                  %i.nav__icon.icon--user--before.icon--white--before
-                  %span{ itemprop: "name" }
-                    My account
+          %noscript
+            .nav__item.nav__item--user
+              = render "components/navigation/nav_item", item: user_navigation_items[:my_account], active: false, primary: true
 
   .wv--split--left
     %nav.wv--nav--inline.nav--primary#js-nav--primary{ role: "navigation", aria: { label: "Global navigation" }, itemscope: "itemscope", itemtype: "http://schema.org/SiteNavigationElement" }
       - if nav_primary
         %h6.accessibility Global navigation
-        - if responsive
-          %a.nav__item.nav__item--primary.wv--hidden{ href: "http://www.lonelyplanet.com/search", itemprop: "url" }<
-            %i.nav__icon{class: 'icon--search--before icon--white--before'}
-            %span{ itemprop: "name" }
-              Search
-
-        - core_navigation_items.each do |item|
+        
+        - primary_navigation_items(responsive).each do |item|
           - if item[:submenu]
-            .nav__item.nav__item--primary.nav__submenu__trigger
-              - if item[:uri]
-                %a.nav__item.nav__item--submenu.js-nav-item{ href: item[:uri], itemprop: "url" }
-                  - if responsive
-                    %i.nav__icon{class: item[:icon_class]}
-                  %span{ itemprop:"name" }
-                    = item[:title]
-              - else
-                %span.nav__item.nav__item--submenu{ itemprop: "name" }
-                  = item[:title]
-
-              .nav__submenu{ class: "nav__submenu--#{item[:title].downcase}"}
-                .nav--stacked.nav__submenu__content.js-submenu.icon--tapered-arrow-up--after.icon--white--after
-                  - item[:submenu].each do |sub|
-                    %a.js-nav-item{ href: sub[:uri], class: "nav__item nav__submenu__item nav__submenu__link nav__submenu__item--#{sub[:style]} #{sub[:icon_class] ? sub[:icon_class] : ''}", itemprop:"url" }<
-                      %span{ itemprop: "name" }
-                        = sub[:title]
+            .nav__submenu__trigger.nav__item.nav__item--primary
+              = render "components/navigation/nav_item", item: item, active: false, primary: true, has_submenu: true
           - else
-            %a.nav__item.nav__item--primary{ href: item[:uri], itemprop: "url" }<
-              - if responsive
-                %i.nav__icon{class: item[:icon_class]}
-              %span{ itemprop: "name" }
-                = item[:title]
-
+            = render "components/navigation/nav_item", item: item, active: false, primary: true

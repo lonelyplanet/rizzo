@@ -1,0 +1,47 @@
+---
+
+  :my_account:
+    :title: "My account"
+    :slug: "https://www.lonelyplanet.com/thorntree/my_account"
+    :icon_class: "icon--user--line--before icon--white--before"
+
+  :signed_in_links:
+    -
+      :title: "My profile"
+      :slug: "https://www.lonelyplanet.com/thorntree/profiles/{{profileSlug}}"
+      :icon_class: "icon--user--before icon--white--before"
+    -
+      :title: "Settings"
+      :slug: "https://www.lonelyplanet.com/thorntree/forums/settings"
+      :icon_class: "icon--settings--before icon--white--before"
+    -
+      :title: "Messages"
+      :slug: "https://www.lonelyplanet.com/thorntree/profiles/{{profileSlug}}/messages"
+      :icon_class: "icon--envelope--before icon--white--before"
+      :extra_class: "js-responsive-messages"
+    -
+      :title: "Forum Activity"
+      :slug: "https://www.lonelyplanet.com/thorntree/profiles/{{profileSlug}}/activities"
+      :icon_class: "icon--comment--before icon--white--before"
+    -
+      :title: "Sign out"
+      :slug: "https://auth.lonelyplanet.com/users/sign_out"
+      :icon_class: "icon--sign-out--before icon--white--before"
+
+  :signed_out_links:
+    -
+      :title: "Sign in"
+      :slug: "https://auth.lonelyplanet.com/users/sign_in"
+      :icon_class: "icon--user--before icon--white--before"
+      :extra_class: "js-user-sign_in"
+      :analytics:
+        :category: "account"
+        :action: "sign-in"
+    -
+      :title: "Join"
+      :slug: "https://auth.lonelyplanet.com/users/sign_up"
+      :icon_class: "icon--sign-in--before icon--white--before"
+      :extra_class: "js-user-sign_up"
+      :analytics:
+        :category: "account"
+        :action: "join"

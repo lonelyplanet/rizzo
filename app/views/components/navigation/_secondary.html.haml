@@ -5,7 +5,7 @@
   .nav--secondary.nav__tabs.wv--hidden-block
     .grid-wrapper--0
       .col--one-half
-        .nav--secondary__col.copy--h2
+        .nav--secondary__col.nav--secondary__title.copy--h4
           - if !!responsive_items
             = (responsive_items.find {|i| i[:current]} || responsive_items.first)[:title]
           - else
@@ -16,10 +16,12 @@
           %span.nav--secondary__other-toggle--icon.icon--chevron-down.icon--body-grey
           %span.nav--secondary__other-toggle--icon.icon--chevron-up.icon--body-grey
 
-  %nav.wv--split--right.wv--block.nav--inline.nav--secondary.js-secondary-nav-other-menu(role="navigation" aria-label="Category navigation" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement")
+  %nav.wv--split--right.wv--block.nav--secondary.js-secondary-nav-other-menu(role="navigation" aria-label="Category navigation" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement")
     %h6.accessibility Category navigation
-    %div{ class: !!responsive_items ? "wv--block" : "" }
+
+    .wv--nav--inline.split--right__inner{ class: !!responsive_items ? "wv--block" : "" }
       = render :partial => "components/navigation/secondary_items", locals: { items: properties[:items] }
+
     - if !!responsive_items && responsive_items.length > 0
-      .wv--hidden-block
+      .wv--hidden-block.split--right__inner
         = render :partial => "components/navigation/secondary_items", locals: { items: responsive_items }

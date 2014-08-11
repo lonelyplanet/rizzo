@@ -1,4 +1,4 @@
-= render 'layouts/partials/doctype_declaration'
+= render 'layouts/partials/snippets/doctype_declaration'
 
 %head
   = render 'layouts/custom/head', tynt: (defined?(tynt) ? tynt : true), include_js: true, responsive: false, third_party: false, legacy_lp: false, app_core: false, default_title: true
@@ -25,12 +25,8 @@
 
       = yield
 
-    .wrapper.wrapper--footer
-      = yield :breadcrumbs
-      = render 'layouts/custom/footer', include_js: true, ads_footer: false, nav_sitemap: true, about: true, languages: true, third_party: false, legacy_lp: false
-
-  = render 'layouts/partials/snippets/one_by_one'
-
+    = yield :breadcrumbs
+    = render 'layouts/custom/footer', include_js: true, ads_footer: false, nav_sitemap: true, about: true, languages: true, third_party: false, legacy_lp: false
 
   - if defined? Variant
     /

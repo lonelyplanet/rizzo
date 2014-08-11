@@ -16,25 +16,38 @@
   // Fix the text-overflow bug in firefox to avoid the final letter being clipped
   padding-right: 6px
   padding-left: 22px
+  &:before
+    +size(20px)
+    top: 3px
+    left: -2px
+
   .responsive &
+    +font-size(16)
+    padding: 7px 6px 7px 20px
     text-overflow: none
     overflow: visible
     white-space: normal
+    margin-left: 20px
+    &:before
+      +size(18px)
+      top: 10px
     +respond-to(medium-view)
       text-overflow: ellipsis
       overflow: hidden
       white-space: nowrap
     +respond-to(wide-view)
+      +font-size(20)
+      padding-top: 0
+      padding-bottom: 0
       margin-left: 0
+      &:before
+        +size(20px)
+        top: 3px
   .no-background-size &
     padding-left: 0
     &:before
       display: none
-  &:before
-    top: 4px
-    left: 0px
-    height: 18px
-    width: 18px
+
 
 .place-title-heading
   font-weight: bold

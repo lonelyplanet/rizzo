@@ -1,12 +1,18 @@
+// [doc] Utility to simply strip units from any value. [/doc]
+@function strip-unit($value)
+  @return $value / ($value * 0 + 1)
+
 // [doc] Rem with pixel fallback for font sizes. [/doc]
 @mixin font-size($sizeValue: 14)
-  font-size: #{$sizeValue + px}
-  font-size: #{($sizeValue / $base-font-size) + rem}
+  $value: strip-unit($sizeValue)
+  font-size: #{$value + px}
+  font-size: #{($value / $base-font-size) + rem}
 
 // [doc] Vertically center using line-height (not suitable for multiple lines of text). [/doc]
 @mixin vertically-center($x: 20)
-  height: #{$x + px}
-  line-height: #{$x + px}
+  $value: strip-unit($x)
+  height: #{$value + px}
+  line-height: #{$value + px}
 
 // [doc] Style input placeholders (Pass in a content block). [/doc]
 @mixin placeholder()

@@ -33,6 +33,24 @@
     +respond-to(wide-view)
       display: none !important
 
+// [doc] Hide :before content on wide screens
+.wv--hidden--before
+  &:before
+    display: none
+    .responsive &
+      display: block
+      +respond-to(wide-view)
+        display: none !important
+
+// [doc] Hide :after content on wide screens
+.wv--hidden--after
+  &:after
+    display: none
+    .responsive &
+      display: block
+      +respond-to(wide-view)
+        display: none !important
+
 // [doc] Hide content but show it on wider screens. [/doc]
 .wv--block
   display: block

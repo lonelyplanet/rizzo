@@ -1,1 +1,92 @@
-../../../app/views/templates/global-nav/_user_nav.html
+<div class='js-user-signed-out-template'>
+  <div class='wv--nav--inline nav__item--user-menu js-user-signed-out'>
+    <a class='js-nav-item js-user-sign_in nav__item nav__item--primary' data-action='sign-in' data-category='account' href='https://auth.lonelyplanet.com/users/sign_in' itemprop='url'><div class='nav__icon icon--user--before icon--white--before wv--hidden--before' itemprop='name'>
+      Sign in</div></a>
+    <a class='js-nav-item js-user-sign_up nav__item nav__item--primary' data-action='join' data-category='account' href='https://auth.lonelyplanet.com/users/sign_up' itemprop='url'><div class='nav__icon icon--sign-in--before icon--white--before wv--hidden--before' itemprop='name'>
+      Join</div></a>
+  </div>
+  <div class='wv--nav--inline nav__item--user-menu--wv js-user-signed-out'>
+    <a class='btn btn--small js-nav-item js-user-sign_up nav__item nav__item--primary' data-action='join' data-category='account' href='https://auth.lonelyplanet.com/users/sign_up' itemprop='url'><div class='nav__icon icon--sign-in--before icon--white--before wv--hidden--before' itemprop='name'>
+      Join</div></a>
+    <span class='nav__item nav__item--primary or'>
+      or
+    </span>
+    <a class='js-nav-item js-user-sign_in nav__item nav__item--primary' data-action='sign-in' data-category='account' href='https://auth.lonelyplanet.com/users/sign_in' itemprop='url'><div class='nav__icon icon--user--before icon--white--before wv--hidden--before' itemprop='name'>
+      Sign in</div></a>
+  </div>
+</div>
+<div class='js-user-signed-in-template'>
+  <div class='nav__item nav__item--user nav__submenu__trigger js-user-signed-in'>
+    <img class='nav__item--user-avatar js-user-avatar' data-src='{{avatar}}'>
+    <span class='notification-badge notification-badge--unread-messages wv--inline-block is-hidden js-unread-feed-number'>0</span>
+    <span class='wv--hidden nav--offscreen__title'>{{username}}</span>
+    <div class='user-feed nav__submenu'>
+      <div class='user-feed__content nav--stacked nav__submenu__content icon--tapered-arrow-up--after icon--white--after icon--white--bordered nav-user-options js-user-options'>
+        <div class='user-feed__user-name nav__submenu__title'>
+          {{username}}
+          <a class='split--right icon--settings icon--body-grey js-user-settings' href='https://www.lonelyplanet.com/thorntree/forums/settings'></a>
+        </div>
+        <div class='user-feed__user-email nav__submenu__title'>{{email}}</div>
+        <div class='user-feed__profile-buttons'>
+          <div class='grid-wrapper--10'>
+            <div class='col--one-half'>
+              <a class='btn btn--small btn--full-width js-user-profile' href='https://www.lonelyplanet.com/thorntree/profiles/{{profileSlug}}'>View Profile</a>
+            </div>
+            <div class='col--one-half'>
+              <a class='btn btn--small btn--subtle btn--full-width js-user-sign_out' href='https://auth.lonelyplanet.com/users/sign_out'>Sign Out</a>
+            </div>
+          </div>
+        </div>
+        <div class='user-feed__activities js-user-feed'>
+          <div class='nav__tabs'>
+            <div class='grid-wrapper--0'>
+              <div class='col--one-half'>
+                <a class='btn btn--white nav__tabs__btn js-tab-trigger is-active' href='#js-user-feed-activities'>
+                  Recent activity
+                  <span class='user-feed__activities__unread-count'>
+                    (
+                    <span class='js-unread-activities-number'>0</span>
+                    )
+                  </span>
+                </a>
+              </div>
+              <div class='col--one-half'>
+                <a class='btn btn--white nav__tabs__btn js-tab-trigger' href='#js-user-feed-messages'>
+                  Messages
+                  <span class='user-feed__activities__unread-count'>
+                    (
+                    <span class='js-unread-messages-number'>0</span>
+                    )
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class='js-tabs-content'>
+            <ul class='user-feed__activities__tab is-active' id='js-user-feed-activities'>
+              <li class='activity-list__item--empty'>You have no recent activity</li>
+            </ul>
+            <ul class='user-feed__activities__tab' id='js-user-feed-messages'>
+              <li class='activity-list__item--empty'>You have no messages</li>
+              <li class='user-feed__footer user-feed__profile-buttons js-user-feed-footer'>
+                <a class='btn btn--full-width' href='https://www.lonelyplanet.com/thorntree/profiles/{{profileSlug}}/messages'>See all messages</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='wv--nav--inline nav__item--user-menu js-user-signed-in'>
+    <a class='js-nav-item nav__item nav__item--primary' href='https://www.lonelyplanet.com/thorntree/profiles/{{profileSlug}}' itemprop='url'><div class='nav__icon icon--user--before icon--white--before wv--hidden--before' itemprop='name'>
+      My profile</div></a>
+    <a class='js-nav-item nav__item nav__item--primary' href='https://www.lonelyplanet.com/thorntree/forums/settings' itemprop='url'><div class='nav__icon icon--settings--before icon--white--before wv--hidden--before' itemprop='name'>
+      Settings</div></a>
+    <a class='js-nav-item js-responsive-messages nav__item nav__item--primary' href='https://www.lonelyplanet.com/thorntree/profiles/{{profileSlug}}/messages' itemprop='url'><div class='nav__icon icon--envelope--before icon--white--before wv--hidden--before' itemprop='name'>
+      Messages</div></a>
+    <a class='js-nav-item nav__item nav__item--primary' href='https://www.lonelyplanet.com/thorntree/profiles/{{profileSlug}}/activities' itemprop='url'><div class='nav__icon icon--comment--before icon--white--before wv--hidden--before' itemprop='name'>
+      Forum Activity</div></a>
+    <a class='js-nav-item nav__item nav__item--primary' href='https://auth.lonelyplanet.com/users/sign_out' itemprop='url'><div class='nav__icon icon--sign-out--before icon--white--before wv--hidden--before' itemprop='name'>
+      Sign out</div></a>
+  </div>
+</div>

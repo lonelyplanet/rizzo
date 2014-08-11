@@ -1,27 +1,8 @@
-- items.each do |n|
-  - active = 'current' if n[:current]
+- items.each do |item|
 
-  - if n[:submenu]
-    .nav__item.nav__item--secondary.nav__submenu__trigger.js-secondary-nav-submenu
-      - if n[:slug]
-        %a.nav__item.nav__item--submenu.js-nav-item{ class: [active, n[:name]], href: n[:slug], aria: { label: (n[:current] ? "Current page" : nil) } }<
-          %i.nav__icon{ class: n[:icon_class] }
-          = n[:title]
-      - else
-        %span.nav__item.nav__item--submenu
-          = n[:title]
+  - if item[:submenu]
+    .nav__item.nav__submenu__trigger.js-secondary-nav-submenu
+      = render "components/navigation/nav_item", item: item, active: item[:current] ? 'is-current' : nil
 
-      .nav__submenu__trigger--responsive.wv--hidden.js-toggle-active{ data: { toggle_target: ".js-secondary-nav-submenu", toggle_class: "is-visible", toggle_me: "true" } }
-        %span.nav__submenu__trigger--icon.icon--chevron-down.icon--body-grey
-        %span.nav__submenu__trigger--icon.icon--chevron-up.icon--body-grey
-
-      .nav__submenu.nav__submenu--secondary{ class: "nav__submenu--#{n[:title].downcase.gsub(' ', '-')}"}
-        .nav--stacked.nav__submenu__content.nav__submenu--secondary__content.js-submenu.icon--tapered-arrow-up--after.icon--white--after
-          - n[:submenu].each do |sub|
-            %a.js-nav-item{ href: sub[:slug], class: "nav__item nav__submenu__item nav__submenu__link nav__submenu__item--secondary #{sub[:icon_class] ? sub[:icon_class] : ''}" }(itemprop="url")<
-              %span(itemprop="name")
-                = sub[:title]
   - else
-    %a.nav__item.nav__item--secondary.js-nav-item{ class: [active, n[:name]], href: n[:slug], aria: { label: (n[:current] ? "Current page" : nil) } }(itemprop="url")<
-      %span(itemprop="name")
-        = n[:title]
+    = render "components/navigation/nav_item", item: item, active: item[:current] ? 'is-current' : nil

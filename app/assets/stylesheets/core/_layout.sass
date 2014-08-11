@@ -56,19 +56,22 @@ body
   position: relative
   width: $fixed-layout-width
   .responsive &
-    width: 90%
+    width: 100%
+    box-sizing: border-box
+    padding: 0 20px
     +respond-to(wide-view)
       max-width: $fixed-layout-width
 
   &.row__inner--full-width
-    width: 100%
+    padding-left: 0
+    padding-right: 0
+
 .row__inner--content
-  padding-top: 15px
+  margin-top: 15px
 
 .row--text-centered
   text-align: center
   .row__inner
-    width: 95%
     +respond-to(wide-view)
       width: 600px
 
@@ -84,13 +87,6 @@ body
     display: block
     position: absolute
     right: 55%
-
-.row--fluid
-  min-width: $fixed-layout-width
-  padding-left: 20px
-  padding-right: 20px
-  .responsive &
-    min-width: 0
 
 
 // ----------------------------------------------------------------------------
@@ -110,7 +106,7 @@ body
     left: 0
     right: 0
     background-color: $navblue
-    height: 55px
+    height: $primary-nav-height
     +respond-to(wide-view)
       display: none
   .minimal &
@@ -131,7 +127,7 @@ body
   position: relative
   .responsive &
     @extend %transition--nav
-    padding-top: 55px
+    padding-top: $primary-nav-height
 
 
 // ----------------------------------------------------------------------------

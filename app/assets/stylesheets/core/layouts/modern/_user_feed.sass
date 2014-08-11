@@ -8,9 +8,12 @@
   right: 0
   left: auto
   width: 320px
+  cursor: default
   .responsive &
     display: none
     +respond-to(wide-view)
+      // Only required because of .responsive specificity
+      width: 320px
       &:hover
         display: block
 
@@ -62,11 +65,11 @@
     border-radius: 0
     border-bottom: 2px solid $body-background
     color: $grey-highlight
-    &:hover, 
+    &:hover,
     &.is-active
       border-bottom: 2px solid $linkblue
       color: $titlegray
-  
+
   .btn--feed-toggle__unread-count
     font-weight: normal
     color: $grey-highlight
@@ -96,7 +99,7 @@
     &:hover
       background: mix($linkblue, #fff, 10%)
     &, &:first-child
-      padding: 15px 55px 30px 15px
+      padding: 15px $primary-nav-height 30px 15px
       min-height: 20px
     &:last-child
       border-bottom: 0

@@ -20,11 +20,12 @@ define([
     targetLinkSelector: ".js-user-feed-item-target-link",
     activitiesSelector: "#js-user-feed-activities",
     messagesSelector: "#js-user-feed-messages",
+    messagesResponsiveSelector: ".js-responsive-messages",
     footerSelector: ".js-user-feed-footer",
     unreadFeedNumberSelector: ".js-unread-feed-number",
     unreadActivitiesNumberSelector: ".js-unread-activities-number",
     unreadMessagesNumberSelector: ".js-unread-messages-number",
-    unreadMessagesMobileNumberSelector: ".js-responsive-unread-messages",
+    unreadMessagesResponsiveNumberSelector: ".js-responsive-unread-messages",
     newFeedHighlightClass: "is-highlighted",
     initialHighlightedActivitiesNumber: 0,
     maxFeedActivities: 5,
@@ -35,10 +36,10 @@ define([
     this.config = $.extend({}, defaults, args);
     this.$activities = $(this.config.activitiesSelector);
     this.$messages = $(this.config.messagesSelector);
+    this.$messagesResponsive = $(this.config.messagesResponsiveSelector);
     this.$footer = $(this.config.footerSelector);
     this.$unreadActivitiesIndicator = $(this.config.unreadActivitiesNumberSelector);
     this.$unreadMessagesIndicator = $(this.config.unreadMessagesNumberSelector);
-    this.$unreadMessagesMobileIndicator = $(this.config.unreadMessagesMobileNumberSelector);
     this.$unreadFeedIndicator = $(this.config.unreadFeedNumberSelector);
     this.currentActivities;
     this.highlightedActivitiesNumber = this.config.initialHighlightedActivitiesNumber;
@@ -53,6 +54,7 @@ define([
   UserFeed.prototype.init = function() {
     this._tabsInstance = new Tabs({ selector: this.config.feedSelector });
     this._timeagoInstance = new TimeAgo({ context: this.config.feedSelector });
+
     this._fetchFeed();
   };
 
@@ -71,13 +73,10 @@ define([
     window.location.href = url;
   };
 
-  UserFeed.prototype._updateUnreadMessagesMobileIndicator = function(unreadMessagesCount) {
-    if (unreadMessagesCount > 0) {
-      this.$unreadMessagesMobileIndicator
-          .text("(" + unreadMessagesCount + ")")
-          .removeClass("is-hidden");
-    } else {
-      this.$unreadMessagesMobileIndicator.addClass("is-hidden");
+  UserFeed.prototype._updateUnreadMessagesResponsiveIndicator = function(unreadMessagesCount) {
+    if ((unreadMessagesCount > 0) && (!$(this.config.unreadMessagesResponsiveNumberSelector).length)) {
+      this.$messagesResponsive.children().last()
+          .append("<span class=" + this.config.unreadMessagesResponsiveNumberSelector.replace(".", "") + "> (" + unreadMessagesCount + ")</span>");
     }
   };
 
@@ -199,7 +198,7 @@ define([
       setTimeout(this._fetchFeed.bind(this), this.config.fetchInterval);
     }
     // Poll for small & medium screens where this component is not visible
-    this._updateUnreadMessagesMobileIndicator(fetchedFeed.unreadMessagesCount);
+    this._updateUnreadMessagesResponsiveIndicator(fetchedFeed.unreadMessagesCount);
   };
 
   UserFeed.prototype._fetchFeed = function() {

@@ -2,7 +2,7 @@ module UiHelper
 
   def ui_classes_alert_type(properties, classes = [])
     classes.push(properties[:subtle] ? "alert--subtle" : "alert--block")
-    classes.push("alert--#{properties[:type].downcase}").join(" ")
+    classes.push("alert alert--#{properties[:type].downcase}").join(" ")
   end
 
   def ui_classes_alert_icon(properties)

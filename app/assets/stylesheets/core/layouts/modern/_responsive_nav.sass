@@ -15,7 +15,7 @@ $responsive-nav-width: 240px
   width: 100%
   background: $navblue
   overflow: visible
-  height: 55px
+  height: $primary-nav-height
   .responsive &
     +z-layer(middle)
     @extend %transition--nav
@@ -29,45 +29,41 @@ $responsive-nav-width: 240px
     .enhanced &
       box-shadow: 16px 4px 20px -6px rgba(0, 0, 0, 0.2) inset
     +respond-to(wide-view)
-      box-shadow: none
       width: 100%
       background: $navblue
       overflow: visible
-      height: 55px
+      height: $primary-nav-height
       left: 0
       right: auto
+      .enhanced &
+        box-shadow: none
 
 .nav--offscreen__title
-  display: none
-  .responsive &
-    +font-size(20)
-    +vertically-center(50)
-    @extend %inline-block
-    vertical-align: top
-    color: white
-    font-weight: bold
-    text-indent: 10px
-    +respond-to(wide-view)
-      display: none
+  +font-size(20)
+  +vertically-center(50)
+  vertical-align: top
+  color: white
+  font-weight: bold
+  text-indent: 10px
 
 // The button to activate the global nav
 .nav--primary__trigger
-  display: none
-  .responsive &
-    +z-layer(middle)
-    @extend %transition--nav
-    color: white
-    display: block
-    top: 10px
-    right: 5%
-    width: 35px
-    height: 35px
+  +z-layer(middle)
+  +vertically-center($primary-nav-height)
+  @extend %transition--nav
+  position: absolute
+  color: white
+  right: 0
+  cursor: pointer
+  // Indent larger than the icon and use `left and padding-right`
+  // to create a larger hit area
+  padding-right: 20px
+  text-indent: 35px
+  &:before
+    +size(18px)
     position: absolute
-    cursor: pointer
-    +respond-to(wide-view)
-      top: 10px
-      right: 15px
-      display: none
+    top: 18px
+    left: 10px
 
 // On click..
 

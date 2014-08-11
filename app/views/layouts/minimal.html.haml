@@ -1,4 +1,4 @@
-= render 'layouts/partials/doctype_declaration'
+= render 'layouts/partials/snippets/doctype_declaration'
 
 %head
   = render 'layouts/custom/head', tynt: false, responsive: true, include_js: true, third_party: false, legacy_lp: false, app_core: false, default_title: true
@@ -16,8 +16,7 @@
 
       - if (yield :alerts).present?
         .row.row--alerts
-          .row__inner
-            = yield :alerts
+          = yield :alerts
 
       = yield
 

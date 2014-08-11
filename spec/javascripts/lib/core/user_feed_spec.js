@@ -30,7 +30,6 @@ require([
         expect(userFeed.$footer).toEqual($(userFeed.config.footerSelector));
         expect(userFeed.$unreadActivitiesIndicator).toEqual($(userFeed.config.unreadActivitiesNumberSelector));
         expect(userFeed.$unreadMessagesIndicator).toEqual($(userFeed.config.unreadMessagesNumberSelector));
-        expect(userFeed.$unreadMessagesMobileIndicator).toEqual($(userFeed.config.unreadMessagesMobileNumberSelector));
         expect(userFeed.$unreadFeedIndicator).toEqual($(userFeed.config.unreadFeedNumberSelector));
         expect(userFeed.oldActivities).toBeUndefined();
         expect(userFeed.highlightedActivitiesNumber).toBe(userFeed.config.initialHighlightedActivitiesNumber);
@@ -418,16 +417,19 @@ require([
           describe("for screen width < 980px", function() {
 
             beforeEach(function() {
-              spyOn(userFeed, "_updateUnreadMessagesMobileIndicator").andCallThrough();
+              spyOn(userFeed, "_updateUnreadMessagesResponsiveIndicator").andCallThrough();
               userFeed._updateFeed(979, fetchedFeed);
             });
 
-            it("should call '_updateUnreadMessagesMobileIndicator' with 'unreadMessageCount'", function() {
-              expect(userFeed._updateUnreadMessagesMobileIndicator).toHaveBeenCalledWith(fetchedFeed.unreadMessagesCount);
+            it("should call '_updateUnreadMessagesResponsiveIndicator' with 'unreadMessageCount'", function() {
+              expect(userFeed._updateUnreadMessagesResponsiveIndicator).toHaveBeenCalledWith(fetchedFeed.unreadMessagesCount);
             });
 
-            it("should update unread messages indicator", function() {
-              expect($(userFeed.config.unreadMessagesMobileNumberSelector).text()).toBe("(" + fetchedFeed.unreadMessagesCount + ")");
+            it("should append undread messages count indicator to responsive menu", function() {
+              var $indicator = $(userFeed.config.unreadMessagesResponsiveNumberSelector);
+
+              expect($indicator.length).toEqual(1);
+              expect($indicator.text().trim()).toBe("(" + fetchedFeed.unreadMessagesCount + ")");
             });
 
           });

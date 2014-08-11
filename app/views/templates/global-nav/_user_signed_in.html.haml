@@ -1,0 +1,53 @@
+.nav__item.nav__item--user.nav__submenu__trigger.js-user-signed-in
+  %img.nav__item--user-avatar.js-user-avatar{ data: { src: "{{avatar}}"} }
+  %span.notification-badge.notification-badge--unread-messages.wv--inline-block.is-hidden.js-unread-feed-number 0
+  %span.wv--hidden.nav--offscreen__title {{username}}
+
+  .user-feed.nav__submenu
+    .user-feed__content.nav--stacked.nav__submenu__content.icon--tapered-arrow-up--after.icon--white--after.icon--white--bordered.nav-user-options.js-user-options
+      .user-feed__user-name.nav__submenu__title
+        {{username}}
+        %a.split--right.icon--settings.icon--body-grey.js-user-settings{ href: "https://www.lonelyplanet.com/thorntree/forums/settings"}
+
+      .user-feed__user-email.nav__submenu__title {{email}}
+      .user-feed__profile-buttons
+        .grid-wrapper--10
+
+          .col--one-half
+            %a.btn.btn--small.btn--full-width.js-user-profile{ href: "https://www.lonelyplanet.com/thorntree/profiles/{{profileSlug}}"} View Profile
+          
+          .col--one-half
+            %a.btn.btn--small.btn--subtle.btn--full-width.js-user-sign_out{ href: "https://auth.lonelyplanet.com/users/sign_out"} Sign Out
+
+      .user-feed__activities.js-user-feed
+        .nav__tabs
+          .grid-wrapper--0
+            .col--one-half
+              %a.btn.btn--white.nav__tabs__btn.js-tab-trigger.is-active{ href: "#js-user-feed-activities"}
+                Recent activity
+                %span.user-feed__activities__unread-count
+                  (
+                  %span.js-unread-activities-number 0
+                  )
+              
+            .col--one-half
+              %a.btn.btn--white.nav__tabs__btn.js-tab-trigger{ href: "#js-user-feed-messages"}
+                Messages
+                %span.user-feed__activities__unread-count
+                  (
+                  %span.js-unread-messages-number 0
+                  )
+
+        .js-tabs-content
+          %ul.user-feed__activities__tab.is-active#js-user-feed-activities
+            %li.activity-list__item--empty You have no recent activity
+
+          %ul.user-feed__activities__tab#js-user-feed-messages
+            %li.activity-list__item--empty You have no messages
+            %li.user-feed__footer.user-feed__profile-buttons.js-user-feed-footer
+              %a.btn.btn--full-width{ href: "https://www.lonelyplanet.com/thorntree/profiles/{{profileSlug}}/messages"} See all messages
+            
+
+.wv--nav--inline.nav__item--user-menu.js-user-signed-in
+  - user_navigation_items[:signed_in_links].each do |item|
+    = render "components/navigation/nav_item", item: item, active: false, primary: true

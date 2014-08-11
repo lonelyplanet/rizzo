@@ -1,0 +1,10 @@
+.nav__submenu
+  .nav--stacked.nav__submenu__content.js-submenu.icon--tapered-arrow-up--after.icon--white--after
+    - item[:submenu].each do |sub|
+      = render "components/navigation/nav_item", item: sub, active: false, submenu_item: true
+
+-# Responsive Trigger - Desktop nav uses hover
+- if show_responsive_toggle
+  .nav__submenu__trigger--responsive.wv--hidden.js-toggle-active{ data: { toggle_target: ".js-secondary-nav-submenu", toggle_class: "is-visible", toggle_me: "true" } }
+    %div.nav__submenu__trigger--icon.icon--chevron-down.icon--body-grey
+    %div.nav__submenu__trigger--icon.icon--chevron-up.icon--body-grey

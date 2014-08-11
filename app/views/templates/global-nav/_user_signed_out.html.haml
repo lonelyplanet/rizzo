@@ -1,0 +1,7 @@
+.wv--nav--inline.nav__item--user-menu.js-user-signed-out
+  - user_navigation_signed_out_items("mobile").each do |item|
+    = render "components/navigation/nav_item", item: item, active: false, primary: true
+
+.wv--nav--inline.nav__item--user-menu--wv.js-user-signed-out
+  - user_navigation_signed_out_items.each do |item|
+    = render "components/navigation/nav_item", item: item, active: false, primary: true

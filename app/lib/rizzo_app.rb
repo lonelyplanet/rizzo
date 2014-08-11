@@ -14,7 +14,7 @@ class RizzoApp
   end
 
   def primary_nav_items
-    @primary_nav_items ||= (YAML.load(File.read(File.expand_path('../../data/primary_nav.yml', __FILE__))))
+    @primary_nav_items ||= (YAML.load(File.read(File.expand_path('../../styleguide/data/primary_nav.yml', __FILE__))))
   end
 
   def secondary_nav_items
