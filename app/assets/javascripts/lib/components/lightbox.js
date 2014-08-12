@@ -69,14 +69,16 @@ define([
       this._closeFlyout(this.$el);
     }.bind(this));
 
-    this.$opener.on("click", function(event) {
-      event.preventDefault();
-      this.trigger(":lightbox/open", {
-        listener: this.$el,
-        opener: event.currentTarget,
-        target: this.$lightboxWrapper
-      });
-    }.bind(this));
+    if (this.viewport().width > 500) {
+      this.$opener.on("click", function(event) {
+        event.preventDefault();
+        this.trigger(":lightbox/open", {
+          listener: this.$el,
+          opener: event.currentTarget,
+          target: this.$lightboxWrapper
+        });
+      }.bind(this));
+    }
 
     this.$previous.add(this.$next).on("click", function(event) {
       var element = this.$lightbox.find(event.target);
