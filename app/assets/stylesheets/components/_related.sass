@@ -5,13 +5,18 @@
 .related
   box-sizing: border-box
   padding: 40px 20px
-  background: $high-contrast-bg
   text-shadow: 1px 1px 1px rgba(255, 255, 255, .15)
+  &.related__collection
+    background: $high-contrast-bg
 
-.related__articles,
-.related__guides
-  display: inline-block
-  vertical-align: top
+.related__title
+  +font-size(35)
+  border-bottom: 1px solid $lightgray
+  margin-bottom: 1em
+  padding-bottom: .5em
+  .related__collection &
+    border-bottom: 1px solid $high-contrast-fg
+    color: white
 
 .related__articles
   margin-bottom: 20px
@@ -20,54 +25,57 @@
     margin-bottom: 0
     padding-bottom: 0
 
-.related__list--articles
-  border-bottom: 1px solid $high-contrast-fg
+.related__article, .related__featured-article
+  .media__description
+    display: none
+
+.related__article, .related__guide
+  display: inline-block
   margin-bottom: 20px
-  +respond-to(medium-view)
-    border-bottom: none
-    margin-bottom: 0
+  width: 100%
 
-.related__list-title
-  +font-size(24)
-  color: white
-  padding-bottom: 1em
-  margin-bottom: .5em
-  .related__articles &
+.related__collection
+  .related__item:nth-child(1)
     border-bottom: 1px solid $high-contrast-fg
-  .related__guides &
-    margin-bottom: 0
 
-.related__list-number
-  +font-size(16)
-  color: $subduedgray
-  &:before
-    content: "("
-  &:after
-    content: ")"
+.related__articles
+  .related__item:nth-child(-n+3)
+    .related__article
+      border-bottom: 1px solid $subduedgray
 
-.related__btn
-  text-shadow: none
+.related__guides
+  .related__item:nth-child(-n+3)
+    .related__guide
+      border-bottom: 1px solid $subduedgray
 
-.related__list-link
-  +font-size(16)
-  display: block
-  color: $subduedgray
-  padding-bottom: 0
+
+.related__guide
+  .user_attribution__source
+    display: none
+  .media__img
+    position: relative
+    background-color: $subduedgray
+    text-align: center
+    overflow: visible
+    img
+      display: initial
+
+.related__featured-article
+  .responsive &
+    border-bottom: 1px solid $high-contrast-fg
+    margin-bottom: 20px
+    +respond-to(medium-view)
+      border-bottom: none
+      margin-bottom: 0
+
 
 .related__list-item--guide
-  width: 75px
   display: inline-block
   position: relative
   vertical-align: top
+  width: 75px
   &:not(:last-child)
     margin-right: 20px
   +respond-to(medium-view)
     width: 95px
 
-.related__list-date
-  +font-size(14)
-  display: block
-  padding-bottom: 1em
-  font-style: italic
-  line-height: 1.5
-  color: $high-contrast-fg

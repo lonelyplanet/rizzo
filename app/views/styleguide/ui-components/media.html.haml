@@ -1,0 +1,12 @@
+= render 'styleguide/partials/shared'
+
+- cards = YAML.load(File.read(File.expand_path('../../../../data/styleguide/media_stubs.yml', __FILE__)))
+
+.responsive
+  .card.styleguide-intro.copy--body.context--content
+    %h1.copy--h1 Media 
+    %p
+      This is the media component
+
+  - cards['cards'].each_with_index do |card, i|
+    = styleguide_component("media", properties: { data: card[:data], options: card[:options] }, full_width: true)
