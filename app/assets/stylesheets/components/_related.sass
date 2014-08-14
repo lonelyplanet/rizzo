@@ -30,23 +30,33 @@
     display: none
 
 .related__article, .related__guide
+  margin-bottom: 10px
   display: inline-block
-  margin-bottom: 20px
-  width: 100%
+  box-sizing: border-box
+  .related__articles &, .related__guides &
+    padding-left: 30px
+  .responsive &
+    +respond-to(medium-view)
+      margin-bottom: 20px
 
 .related__collection
   .related__item:nth-child(1)
     border-bottom: 1px solid $high-contrast-fg
 
-.related__articles
-  .related__item:nth-child(-n+3)
-    .related__article
+.related__articles, .related__guides
+  .related__item
+    .media
       border-bottom: 1px solid $subduedgray
+      padding-bottom: 10px
+    &:last-child
+      .media
+        border-bottom: none
 
-.related__guides
-  .related__item:nth-child(-n+3)
-    .related__guide
-      border-bottom: 1px solid $subduedgray
+  .responsive &
+    +respond-to(medium-view)
+      .related__item:nth-child(-n+2)
+        .media
+          border-bottom: 1px solid $subduedgray
 
 
 .related__guide
