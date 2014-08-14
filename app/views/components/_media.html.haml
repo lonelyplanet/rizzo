@@ -9,7 +9,7 @@
 
 .media{ class: css_classes }  
   .media__img
-    .card__tags.card__tags--guides
+    .media__tags
       - if data[:price]
         = render :partial => "/components/cards/partials/card_price", :locals => { :properties => data, :icon => data[:price_icon] }
 
@@ -17,7 +17,7 @@
   .media__body
     .media__title.copy--h1
       - if data[:context]
-        %span.media__context.card__context
+        %span.media__context
           = data[:context]       
       = data[:title]
 

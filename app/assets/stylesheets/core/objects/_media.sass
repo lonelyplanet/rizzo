@@ -8,8 +8,6 @@
 
 .media
   @extend %clearfix
-  &.media--light
-    background-color: transparent
 
   &.media--small
     .responsive &
@@ -49,7 +47,6 @@
 
   .media--full-image &
     .responsive &
-      float: left
       width: 90px
       height: 90px
       +respond-to(medium-view)
@@ -64,22 +61,21 @@
 
 .media__title
   margin-bottom: 5px
-  color: $body-copy
 
+  .media--dark &
+    color: $body-copy
   .media--light &
     color: white
 
   .media--full-image &
     +font-size(16)
     .responsive &
-      +font-size(16)
       +respond-to(medium-view)
         +font-size(22)
 
   .media--small &
     +font-size(18)
     .responsive &
-      +font-size(18)
       +respond-to(medium-view)
         +font-size(20)
 
@@ -101,3 +97,15 @@
     display: none
     +respond-to(medium-view)
       display: block
+
+.media__tags
+  z-index: 10
+  position: absolute
+  right: 8px
+  top: -3px
+
+.media__context
+  +font-size(13)
+  display: block
+  margin-bottom: 2px
+  font-style: italic
