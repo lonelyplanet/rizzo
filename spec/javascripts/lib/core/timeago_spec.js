@@ -59,6 +59,8 @@ require([ "jquery", "lib/core/timeago" ], function($, TimeAgo) {
     describe("Screen width > breakpoint", function() {
 
       beforeEach(function() {
+        loadFixtures("timeago.html");
+        timeago = new TimeAgo();
         spyOn(timeago, "_isAboveBreakpoint").andReturn(true);
         timeago.updateStrings();
       });
@@ -73,6 +75,8 @@ require([ "jquery", "lib/core/timeago" ], function($, TimeAgo) {
     describe("Screen width < breakpoint", function() {
 
       beforeEach(function() {
+        loadFixtures("timeago.html");
+        timeago = new TimeAgo();
         spyOn(timeago, "_isAboveBreakpoint").andReturn(false);
         timeago.updateStrings();
       });

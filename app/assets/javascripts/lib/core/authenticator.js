@@ -12,7 +12,7 @@ define([ "jquery", "lib/utils/template", "lib/core/user_feed" ], function($, Tem
   "use strict";
 
   var Authenticator = function() {
-    this.statusUrl = "https://www.lonelyplanet.com/thorntree/users/status";
+    this.statusUrl = "https://auth.lonelyplanet.com/users/status";
 
     this.init();
   },
@@ -54,11 +54,6 @@ define([ "jquery", "lib/utils/template", "lib/core/user_feed" ], function($, Tem
     var template = _this.$template.filter(".js-user-signed-in-template").html(),
         $rendered = $(Template.render(template, window.lp.user)),
         $userAvatar;
-
-    if (window.lp.user.unreadMessageCount > 0) {
-      $rendered.find(".js-responsive-messages")
-        .append("<span class='js-responsive-unread-messages'>(" + window.lp.user.unreadMessageCount + ")");
-    }
 
     // Remove any previously generated user navigation.
     $(".js-user-signed-in, .js-user-signed-out").remove();
