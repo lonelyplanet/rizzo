@@ -1,5 +1,7 @@
 class StyleGuide < RizzoApp
 
+  set_root("/styleguide")
+
   def get_icons(type)
     icons = []
     Dir["app/assets/images/icons/#{type}/*.svg"].each do |file_name|
@@ -59,10 +61,6 @@ class StyleGuide < RizzoApp
   end
 
   private
-
-  def root
-    "/styleguide"
-  end
 
   def left_nav
     @left_nav ||= (YAML.load_file(File.expand_path('../../data/styleguide/left_nav.yml', __FILE__)))

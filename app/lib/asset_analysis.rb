@@ -61,7 +61,6 @@ class AssetAnalysis
 
   def chart_data_for_file(file)
     days = DAYS.keys[0...-2]
-
     {
       key: file[:id],
       values: days.reverse.map do |day_key|

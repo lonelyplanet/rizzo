@@ -1,5 +1,13 @@
 class RizzoApp
 
+  class << self
+    attr_reader :root
+
+    def set_root(root)
+      @root = root
+    end
+  end
+
   def initialize(path)
     @path = path
     @page_hopper_sections = flatten_page_hopper_sections
@@ -59,6 +67,10 @@ class RizzoApp
   end
 
   private
+
+  def root
+    self.class.root
+  end
 
   def active_section
     section_from_slug = @path.match(/(performance|styleguide|documentation)\/([^\/]+)/)
