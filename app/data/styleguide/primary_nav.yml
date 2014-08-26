@@ -1,9 +1,12 @@
 -
   :name: "Style Guide"
-  :slug: "/styleguide"
+  :slug: "/styleguide/design-elements/colours"
+-
+  :name: "Documentation"
+  :slug: "/documentation/general/development-principles"
 -
   :name: "Performance Monitoring"
-  :slug: "/performance"
+  :slug: "/performance/css-analysis"
 -
   :name: "About Rizzo"
   :slug: "http://engineering.lonelyplanet.com/2014/05/18/a-maintainable-styleguide.html"

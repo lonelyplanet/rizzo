@@ -35,6 +35,9 @@ pre[class*="language-"]
   overflow: auto
   padding: 1em
 
+  .context--documentation &
+    max-height: none
+
   .tag
     +font-size(16)
     margin: 0
@@ -43,6 +46,9 @@ pre[class*="language-"]
 pre[class*="language-"].styleguide
   margin: 20px -20px 10px
   font-size: 15px
+  .styleguide-intro &
+    margin: 20px -25px 10px
+    padding: 15px 25px
   .styleguide-intro__inner &
     margin: 0
 
@@ -51,7 +57,7 @@ pre.styleguide.is-open
   &:after
     background: none
 
-*:not(pre) > code[class*="language-"]
+*:not(pre) > code
   background: $body-background-offset
   border: 1px solid #DEE2E6
   font-size: 1rem
@@ -346,3 +352,6 @@ pre.styleguide.is-open
   p
     span
       font-style: italic
+
+.context--content ul
+  margin-bottom: 30px

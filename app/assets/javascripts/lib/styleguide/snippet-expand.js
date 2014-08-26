@@ -2,6 +2,8 @@ require([ "jquery" ], function($) {
 
   "use strict";
 
+  if (window.location.href.match(/\/documentation\//)) return;
+
   $("pre").each(function() {
 
     if (this.firstChild.getBoundingClientRect().height > this.getBoundingClientRect().height) {

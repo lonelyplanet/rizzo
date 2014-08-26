@@ -149,6 +149,7 @@ GEM
     rake (10.3.1)
     rdoc (3.12.2)
       json (~> 1.4)
+    redcarpet (3.1.1)
     rspec (2.10.0)
       rspec-core (~> 2.10.0)
       rspec-expectations (~> 2.10.0)
@@ -221,6 +222,7 @@ DEPENDENCIES
   pry-rails
   rails (= 3.2.18)
   rake
+  redcarpet
   requirejs-rails!
   rspec (~> 2.10.0)
   rspec-rails

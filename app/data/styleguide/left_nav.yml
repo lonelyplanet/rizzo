@@ -96,19 +96,6 @@
         -
           :name: "Swipe"
           :slug: "swipe"
-  :page_layout:
-    -
-      :title: "Page Layout"
-      :items:
-        -
-          :name: "Core Layouts"
-          :slug: "core-layouts"
-        -
-          :name: "Custom Layouts"
-          :slug: "custom-layouts"
-        -
-          :name: "Layout Content"
-          :slug: "layout-content"
   :design_elements:
     -
       :title: "Design"
