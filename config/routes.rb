@@ -10,7 +10,6 @@ Rizzo::Application.routes.draw do
 
   # Styleguide
   root                              to: redirect('/styleguide/design-elements/colours')
-  get 'styleguide/',                to: redirect('/styleguide/design-elements/colours')
   get 'styleguide/design-elements', to: redirect('/styleguide/design-elements/colours')
   get 'styleguide/ui-components',   to: redirect('/styleguide/ui-components/cards')
   get 'styleguide/js-components',   to: redirect('/styleguide/js-components/asset-reveal')
@@ -20,12 +19,14 @@ Rizzo::Application.routes.draw do
 
   get 'styleguide/*section' => 'styleguide#show', defaults: { route: "styleguide" }
 
-  get 'performance/',                         to: redirect('/performance/css-analysis')
-  get '/performance/css-analysis'             => 'performance#css_index', defaults: { route: "styleguide" }
-  get '/performance/css-analysis/:stylesheet' => 'performance#css_show', defaults: { route: "styleguide" }
+  get 'performance/css-analysis'             => 'performance#css_index', defaults: { route: "styleguide" }
+  get 'performance/css-analysis/:stylesheet' => 'performance#css_show', defaults: { route: "styleguide" }
 
-  get '/performance/js-analysis'             => 'performance#js_index', defaults: { route: "styleguide" }
-  get '/performance/js-analysis/:javascript' => 'performance#js_show', defaults: { route: "styleguide" }
+  get 'performance/js-analysis'             => 'performance#js_index', defaults: { route: "styleguide" }
+  get 'performance/js-analysis/:javascript' => 'performance#js_show', defaults: { route: "styleguide" }
+
+  get 'documentation/*section' => 'documentation#show', defaults: { route: "styleguide" }
+
 
   # This should all be removed over time
 

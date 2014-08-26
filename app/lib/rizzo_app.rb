@@ -61,7 +61,7 @@ class RizzoApp
   private
 
   def active_section
-    section_from_slug = @path.match(/(performance|styleguide)\/([^\/]+)/)
+    section_from_slug = @path.match(/(performance|styleguide|documentation)\/([^\/]+)/)
     section_from_slug && sections.map do |section|
       if section[:slug].include? section_from_slug[2]
         return section

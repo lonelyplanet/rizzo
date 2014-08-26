@@ -15,6 +15,7 @@ gem 'unicorn'
 gem 'rake'
 gem 'sanitize'
 gem 'dotenv'
+gem 'redcarpet'
 
 group :test do
   gem 'rspec', '~> 2.10.0'
