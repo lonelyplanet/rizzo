@@ -10,7 +10,7 @@
     item_classlist += " nav--left__item--icon icon--#{item[:icon]}--before icon--body-grey--before"
   end
 
-%a.nav--left__item{href: item_href, class: "#{item_classlist}", data: item_data}
+%a.nav--left__item{href: item_href, class: "#{item_classlist}", data: item_data}<
   = item_title
 
   - if item[:count]
