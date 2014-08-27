@@ -3,7 +3,7 @@ cards:
     :styleguide_title: "Collection Card"
     :double?: true
     :kind: "collection"
-    :slug: "#"
+    :url: "#"
     :title: "Four days in Argentina"
     :context: "Collection"
     :image_url: 'http://assets.staticlp.com/assets/stubs/itinerary-full.jpg'
@@ -12,7 +12,7 @@ cards:
     :styleguide_title: "Collection Card"
     :double?: true
     :kind: "collection"
-    :slug: "#"
+    :url: "#"
     :title: "Four days in Argentina"
     :context: "Collection"
     :image_url: 'http://assets.staticlp.com/assets/stubs/itinerary-full.jpg'
@@ -24,7 +24,7 @@ cards:
     :styleguide_title: "Collection Card"
     :double?: false
     :kind: "collection"
-    :slug: "#"
+    :url: "#"
     :title: "Top picks for Iceland"
     :image_url: 'http://assets.staticlp.com/assets/stubs/collection.jpg'
 
@@ -32,7 +32,7 @@ cards:
     :styleguide_title: "Collection Card"
     :double?: false
     :kind: "collection"
-    :slug: "#"
+    :url: "#"
     :title: "Top picks for Iceland"
     :image_url: 'http://assets.staticlp.com/assets/stubs/collection.jpg'
     :image_license: 'by-sa'
