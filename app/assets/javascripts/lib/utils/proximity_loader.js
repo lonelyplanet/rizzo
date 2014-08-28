@@ -50,7 +50,7 @@ define([ "jquery", "lib/mixins/events", "lib/utils/debounce" ], function($, asEv
   };
 
   ProximityLoader.prototype.check = function() {
-    var i, len, target,
+    var args, i, len, target,
         targets = [],
         viewport = this._getViewportEdge();
 
@@ -58,7 +58,13 @@ define([ "jquery", "lib/mixins/events", "lib/utils/debounce" ], function($, asEv
       target = this.targets[i];
 
       if ((target.top - target.threshold) <= viewport) {
-        this.trigger(this.config.success, [ target.$el, this.config.klass ]);
+        args = [ target.$el, this.config.klass ];
+
+        if (typeof this.config.success == "function") {
+          this.config.success(args);
+        } else {
+          this.trigger(this.config.success, args);
+        }
       } else {
         targets.push(target);
       }
