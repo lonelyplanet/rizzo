@@ -1,10 +1,11 @@
 require([ "public/assets/javascripts/lib/utils/proximity_loader.js" ], function(ProximityLoader) {
 
   var config = {
-    list: ".js-loader-one, .js-loader-two, .js-loader-three",
-    success: ":foo/bar",
-    debounce: 0
-  };
+      list: ".js-loader-one, .js-loader-two, .js-loader-three",
+      success: ":foo/bar",
+      debounce: 0
+    },
+    viewportHeights = [0, 200, 500];
 
   describe("Proximity Loader", function() {
     var instance, eventSpy;
@@ -46,7 +47,6 @@ require([ "public/assets/javascripts/lib/utils/proximity_loader.js" ], function(
     });
 
     describe("._check()", function() {
-      var viewportHeights = [0, 200, 500];
 
       beforeEach(function() {
         spyOn(instance, "_getViewportEdge").andReturn(viewportHeights.shift());
@@ -67,6 +67,28 @@ require([ "public/assets/javascripts/lib/utils/proximity_loader.js" ], function(
         expect(instance.targets.length).toBe(0);
         expect(eventSpy).toHaveBeenTriggered();
       });
+    });
+
+    describe("success function", function() {
+
+      var success;
+
+      beforeEach(function() {
+        success = jasmine.createSpy('success');
+
+        instance && instance.teardown();
+        config.success = success;
+
+        instance = new ProximityLoader(config);
+
+        spyOn(instance, "_getViewportEdge").andReturn(viewportHeights.shift());
+        instance._init();
+      });
+
+      it("calls success when passed as a function", function() {
+        expect(success).toHaveBeenCalled();
+      });
+
     });
 
   });
