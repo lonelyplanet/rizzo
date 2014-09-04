@@ -1,5 +1,6 @@
-- unless @hide_leaderboard
-  .row.row--sponsored.row--leaderboard.row--leaderboard--header
-    .ad-leaderboard
-      .ad-leaderboard__inner
-        = ui_component('ads/leaderboard', properties: { targeting: { position: "header" } })
+- cache [__FILE__, @hide_leaderboard] do
+  - unless @hide_leaderboard
+    .row.row--sponsored.row--leaderboard.row--leaderboard--header
+      .ad-leaderboard
+        .ad-leaderboard__inner
+          = ui_component('ads/leaderboard', properties: { targeting: { position: "header" } })

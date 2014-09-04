@@ -1,12 +1,13 @@
-:javascript
-  window.lp.fs.log(function(){
-    return {
-      url: window.location.href,
-      referrer: document.referrer,
-      username: window.lp.getCookie("lpCookie") && window.lp.getCookie("lpCookie").split('#')[0],
-      country: window.lp.getCookie("country"),
-      viewport: document.documentElement.clientWidth,
-      variant: window.lp.getCookie("_v"),
-      schema: "0.1"
-    };
-  }());
+- cache [__FILE__, local_assigns.map(&:to_s)] do
+  :javascript
+    window.lp.fs.log(function(){
+      return {
+        url: window.location.href,
+        referrer: document.referrer,
+        username: window.lp.getCookie("lpCookie") && window.lp.getCookie("lpCookie").split('#')[0],
+        country: window.lp.getCookie("country"),
+        viewport: document.documentElement.clientWidth,
+        variant: window.lp.getCookie("_v"),
+        schema: "0.1"
+      };
+    }());

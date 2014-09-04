@@ -1,24 +1,25 @@
-:javascript
-  if (!window.lp.enhanced) {
-    (function() {
+- cache [__FILE__, local_assigns.map(&:to_s)] do
+  :javascript
+    if (!window.lp.enhanced) {
+      (function() {
 
-      var firstScript = document.getElementsByTagName("script")[0],
-          js = document.createElement("script");
+        var firstScript = document.getElementsByTagName("script")[0],
+            js = document.createElement("script");
 
-      js.src = "#{normalised_asset_path('omniture/s_code.js')}";
+        js.src = "#{normalised_asset_path('omniture/s_code.js')}";
 
-      js.onload = function(){
-        var property;
-        if (window.s && window.lp.tracking) {
-          for (property in window.lp.tracking) {
-            window.s[property] = window.lp.tracking[property];
+        js.onload = function(){
+          var property;
+          if (window.s && window.lp.tracking) {
+            for (property in window.lp.tracking) {
+              window.s[property] = window.lp.tracking[property];
+            }
+            if (typeof window.s.t === 'function') {
+              window.s.t();
+            }
           }
-          if (typeof window.s.t === 'function') {
-            window.s.t();
-          }
-        }
-      };
+        };
 
-      firstScript.parentNode.insertBefore(js, firstScript);
-    }());
-  }
+        firstScript.parentNode.insertBefore(js, firstScript);
+      }());
+    }

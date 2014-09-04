@@ -1,9 +1,9 @@
-:javascript
-  if('querySelector' in document && 
-     'localStorage' in window && 
-     'addEventListener' in window &&
-     'classList' in document.documentElement) {
-    (function(H){H.className=H.className.replace(/\bbase\b/,'enhanced')})(document.documentElement);
-    window.lp.enhanced = true;
-  }
-  
+- cache [__FILE__] do
+  :javascript
+    if('querySelector' in document && 
+       'localStorage' in window && 
+       'addEventListener' in window &&
+       'classList' in document.documentElement) {
+      (function(H){H.className=H.className.replace(/\bbase\b/,'enhanced')})(document.documentElement);
+      window.lp.enhanced = true;
+    }

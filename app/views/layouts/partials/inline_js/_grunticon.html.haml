@@ -1,40 +1,41 @@
-:javascript
-  (function() {
-    var docElement = document.documentElement,
-        activePath = "#{normalised_asset_path('icons/active.css')}",
-        criticalPath = "#{normalised_asset_path('icons/critical.css')}";
-    
-    function styleSheet(path) {
-      var link = document.createElement("link");
-      link.rel = "stylesheet";
-      link.type = "text/css";
-      link.href = path;
-      return link;
-    }
-    
-    function supportsSVG() {
-      var hasBgSize = ("background-size" in docElement.style || "backgroundSize" in docElement.style),
-          hasSvg = !!window.document.createElementNS && 
-                   !!window.document.createElementNS('http://www.w3.org/2000/svg', 'svg').createSVGRect && 
-                   !!document.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#Image", "1.1") && 
-                   !(window.opera && navigator.userAgent.indexOf('Chrome') === -1),
-          enhanced = window.lp.enhanced;
-      
-      return hasBgSize && hasSvg && enhanced;
-    }
+- cache [__FILE__, local_assigns.map(&:to_s)] do
+  :javascript
+    (function() {
+      var docElement = document.documentElement,
+          activePath = "#{normalised_asset_path('icons/active.css')}",
+          criticalPath = "#{normalised_asset_path('icons/critical.css')}";
 
-    window.setTimeout(function(){
-      var script = document.getElementsByTagName("script")[0];
-      var head = script.parentNode;
-      if (supportsSVG()) {
-        head.insertBefore(styleSheet(activePath), script);
-        docElement.className += " supports-svg";
-      } else {
-        head.insertBefore(styleSheet(criticalPath), script);
-        docElement.className += " no-background-size";
+      function styleSheet(path) {
+        var link = document.createElement("link");
+        link.rel = "stylesheet";
+        link.type = "text/css";
+        link.href = path;
+        return link;
       }
-    }, 0)
-  }());
 
-%noscript
-  %link{href: "#{normalised_asset_path('icons/critical.css')}", rel: "stylesheet"}
+      function supportsSVG() {
+        var hasBgSize = ("background-size" in docElement.style || "backgroundSize" in docElement.style),
+            hasSvg = !!window.document.createElementNS && 
+                     !!window.document.createElementNS('http://www.w3.org/2000/svg', 'svg').createSVGRect && 
+                     !!document.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#Image", "1.1") && 
+                     !(window.opera && navigator.userAgent.indexOf('Chrome') === -1),
+            enhanced = window.lp.enhanced;
+
+        return hasBgSize && hasSvg && enhanced;
+      }
+
+      window.setTimeout(function(){
+        var script = document.getElementsByTagName("script")[0];
+        var head = script.parentNode;
+        if (supportsSVG()) {
+          head.insertBefore(styleSheet(activePath), script);
+          docElement.className += " supports-svg";
+        } else {
+          head.insertBefore(styleSheet(criticalPath), script);
+          docElement.className += " no-background-size";
+        }
+      }, 0)
+    }());
+
+  %noscript
+    %link{href: "#{normalised_asset_path('icons/critical.css')}", rel: "stylesheet"}

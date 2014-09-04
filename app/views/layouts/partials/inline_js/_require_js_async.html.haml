@@ -1,13 +1,14 @@
-:javascript
-  (function(d, s) {
-    var ie = document.documentElement.className.match(/ie([0-9]+)/);
-    if (window.lp.enhanced || ie) {
-      var firstJs, js;
-      firstJs = d.getElementsByTagName(s)[0];
-      js = d.createElement(s);
-      js.async = true;
-      js.src = "#{normalised_asset_path('requirejs/require.js')}";
-      js.setAttribute("data-main", "#{async_js_path(script_name)}");
-      firstJs.parentNode.insertBefore(js, firstJs);
-    }
-  })(document, 'script');
+- cache [__FILE__, local_assigns.map(&:to_s), Rizzo::COMMIT] do
+  :javascript
+    (function(d, s) {
+      var ie = document.documentElement.className.match(/ie([0-9]+)/);
+      if (window.lp.enhanced || ie) {
+        var firstJs, js;
+        firstJs = d.getElementsByTagName(s)[0];
+        js = d.createElement(s);
+        js.async = true;
+        js.src = "#{normalised_asset_path('requirejs/require.js')}";
+        js.setAttribute("data-main", "#{async_js_path(script_name)}");
+        firstJs.parentNode.insertBefore(js, firstJs);
+      }
+    })(document, 'script');

@@ -1,20 +1,21 @@
-:javascript
-  var require = require || {
-    baseUrl: '/assets',
-    paths: {
-      flamsteed: "flamsteed/lib/javascripts/flamsteed",
-      hogan: "hogan/dist/hogan-3.0.0.amd",
-      jplugs: "jquery-plugins",
-      jquery:  "jquery/jquery",
-      jtimeago: "jquery-timeago/jquery.timeago",
-      sailthru: "sailthru/v1",
-      sCode: "omniture/s_code",
-      trackjs: "trackjs/trackjs",
-      dfp: "jquery.dfp.js/jquery.dfp",
-      autocomplete: "autocomplete/dist/autocomplete",
-      d3: "d3/d3",
-      nvd3: "nvd3/nv.d3",
-      picturefill: "picturefill/dist/picturefill"
-    },
-    waitSeconds: 30
-  };
+- cache [__FILE__] do
+  :javascript
+    var require = {
+      baseUrl: '/assets',
+      paths: {
+        flamsteed: "flamsteed/lib/javascripts/flamsteed",
+        hogan: "hogan/dist/hogan-3.0.0.amd",
+        jplugs: "jquery-plugins",
+        jquery:  "jquery/jquery",
+        jtimeago: "jquery-timeago/jquery.timeago",
+        sailthru: "sailthru/v1",
+        sCode: "omniture/s_code",
+        trackjs: "trackjs/trackjs",
+        dfp: "jquery.dfp.js/jquery.dfp",
+        autocomplete: "autocomplete/dist/autocomplete",
+        d3: "d3/d3",
+        nvd3: "nvd3/nv.d3",
+        picturefill: "picturefill/dist/picturefill"
+      },
+      waitSeconds: 30
+    };

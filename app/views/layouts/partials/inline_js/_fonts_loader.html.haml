@@ -1,15 +1,16 @@
-:javascript
-  if (window.lp.enhanced && window.localStorage.getItem('_lpfont') == "true") {
-    var ss = document.createElement('link'),
-        firstLink = document.getElementsByTagName('link')[0],
-        fontPath = "#{font_path('fonts.css')}";
+- cache [__FILE__] do
+  :javascript
+    if (window.lp.enhanced && window.localStorage.getItem('_lpfont') == "true") {
+      var ss = document.createElement('link'),
+          firstLink = document.getElementsByTagName('link')[0],
+          fontPath = "#{font_path('fonts.css')}";
 
-    
-    ss.href= fontPath;
-    ss.rel = "stylesheet";
-    ss.type = "text/css";
-    firstLink.parentNode.insertBefore(ss, firstLink);
 
-    // Replace the no-freight classname
-    (function(H){H.className=H.className.replace(/\bno-freight\b/,'freight')})(document.documentElement);
-  }
+      ss.href= fontPath;
+      ss.rel = "stylesheet";
+      ss.type = "text/css";
+      firstLink.parentNode.insertBefore(ss, firstLink);
+
+      // Replace the no-freight classname
+      (function(H){H.className=H.className.replace(/\bno-freight\b/,'freight')})(document.documentElement);
+    }

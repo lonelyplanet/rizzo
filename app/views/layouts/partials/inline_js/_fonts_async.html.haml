@@ -1,21 +1,22 @@
-:javascript
-  (function(){
-    if (window.lp.enhanced && 
-        window.lp.supports.localStorage && 
-        window.localStorage.getItem('_lpfont') != "true") {
+- cache [__FILE__, local_assigns.map(&:to_s)] do
+  :javascript
+    (function(){
+      if (window.lp.enhanced && 
+          window.lp.supports.localStorage && 
+          window.localStorage.getItem('_lpfont') != "true") {
 
-      window.onload = function() {
-        var xhr = new XMLHttpRequest(),
-            fontPath = "#{font_path('fonts.css')}";
+        window.onload = function() {
+          var xhr = new XMLHttpRequest(),
+              fontPath = "#{font_path('fonts.css')}";
 
-        xhr.open('GET', fontPath);
+          xhr.open('GET', fontPath);
 
-        xhr.onload = function (e) {
-          window.localStorage.setItem('_lpfont', 'true')
-        };
+          xhr.onload = function (e) {
+            window.localStorage.setItem('_lpfont', 'true')
+          };
 
-        xhr.send();
+          xhr.send();
+        }
+
       }
-
-    }
-  })()
+    })()
