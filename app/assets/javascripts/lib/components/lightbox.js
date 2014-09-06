@@ -22,6 +22,7 @@ define([
     this.$opener = $(args.$opener || ".js-lightbox-toggle");
     this.showPreloader = args.showPreloader || false;
     this.customRenderer = args.customRenderer || false;
+    this.mobile = args.mobile || false;
 
     this.$lightbox = $("#js-lightbox");
     this.$lightboxWrapper = this.$lightbox.find(".js-lightbox-wrapper");
@@ -69,16 +70,17 @@ define([
       this._closeFlyout(this.$el);
     }.bind(this));
 
-    if (this.viewport().width > 500) {
-      this.$opener.on("click", function(event) {
+    this.$opener.on("click", function(event) {
+      console.log(this.viewport().width);
+      if (this.mobile || this.viewport().width > 500) {
         event.preventDefault();
         this.trigger(":lightbox/open", {
           listener: this.$el,
           opener: event.currentTarget,
           target: this.$lightboxWrapper
         });
-      }.bind(this));
-    }
+      }
+    }.bind(this));
 
     this.$previous.add(this.$next).on("click", function(event) {
       var element = this.$lightbox.find(event.target);
