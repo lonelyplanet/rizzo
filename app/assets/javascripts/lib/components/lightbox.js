@@ -71,7 +71,6 @@ define([
     }.bind(this));
 
     this.$opener.on("click", function(event) {
-      console.log(this.viewport().width);
       if (this.mobile || this.viewport().width > 500) {
         event.preventDefault();
         this.trigger(":lightbox/open", {
