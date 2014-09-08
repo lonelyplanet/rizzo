@@ -22,7 +22,7 @@ define([
     this.$opener = $(args.$opener || ".js-lightbox-toggle");
     this.showPreloader = args.showPreloader || false;
     this.customRenderer = args.customRenderer || false;
-    this.mobileBreakpoint = args.mobileBreakpoint || 600;
+    this.mobileBreakpoint = args.mobileBreakpoint || 500;
 
     this.$lightbox = $("#js-lightbox");
     this.$lightboxWrapper = this.$lightbox.find(".js-lightbox-wrapper");
