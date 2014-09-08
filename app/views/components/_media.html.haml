@@ -26,6 +26,6 @@
         = data[:strapline] || data[:description]        
     
     / User data is stubbed, delete this when have real data
-    - if data[:user] || true
+    - if data[:user]
       = ui_component("user_attribution", properties: {image: "http://img2.wikia.nocookie.net/__cb20111018235020/muppet/images/thumb/1/14/Rizzo11.png/300px-Rizzo11.png", name: "Rizzo", theme: options[:theme], size: "small"} )
 
