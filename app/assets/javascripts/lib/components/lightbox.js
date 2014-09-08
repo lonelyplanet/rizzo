@@ -22,7 +22,7 @@ define([
     this.$opener = $(args.$opener || ".js-lightbox-toggle");
     this.showPreloader = args.showPreloader || false;
     this.customRenderer = args.customRenderer || false;
-    this.mobile = args.mobile || false;
+    this.mobileBreakpoint = args.mobileBreakpoint || 600;
 
     this.$lightbox = $("#js-lightbox");
     this.$lightboxWrapper = this.$lightbox.find(".js-lightbox-wrapper");
@@ -71,7 +71,7 @@ define([
     }.bind(this));
 
     this.$opener.on("click", function(event) {
-      if (this.mobile || this.viewport().width > 500) {
+      if (this.viewport().width > this.mobileBreakpoint) {
         event.preventDefault();
         this.trigger(":lightbox/open", {
           listener: this.$el,
