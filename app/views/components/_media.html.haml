@@ -1,0 +1,31 @@
+:ruby
+  data = properties[:data]
+  options = properties[:options]
+
+  css_classes = [    
+    "media--#{ options[:theme] }",
+    "media--#{ options[:size] }"    
+  ].join(" ")  
+
+.media{ class: css_classes }  
+  .media__img
+    .media__tags
+      - if data[:price]
+        = render :partial => "/components/cards/partials/card_price", :locals => { :properties => data, :icon => data[:price_icon] }
+
+    = safe_image_tag( data[:image_url], class: '', alt: data[:title], lazyload: defined?(lazyload))
+  .media__body
+    .media__title.copy--h1
+      - if data[:context]
+        %span.media__context
+          = data[:context]       
+      = data[:title]
+
+    - if data[:strapline] || data[:description]
+      %p.media__description.mv--inline-block
+        = data[:strapline] || data[:description]        
+    
+    / User data is stubbed, delete this when have real data
+    - if data[:user] || true
+      = ui_component("user_attribution", properties: {image: "http://img2.wikia.nocookie.net/__cb20111018235020/muppet/images/thumb/1/14/Rizzo11.png/300px-Rizzo11.png", name: "Rizzo", theme: options[:theme], size: "small"} )
+

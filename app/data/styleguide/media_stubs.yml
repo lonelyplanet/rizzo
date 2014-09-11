@@ -1,0 +1,34 @@
+cards:
+  -
+    :styleguide_title: "Media Dark"
+    :data:
+      :slug: "#"
+      :title: "Four days in Argentina"
+      :text: "Cards should be included as components where possible, and always in rails apps. You can include the ui_component includes as detailed below."
+      :image_url: 'http://assets.staticlp.com/assets/stubs/itinerary-full.jpg'
+      :user:
+        :image: "http://img2.wikia.nocookie.net/__cb20111018235020/muppet/images/thumb/1/14/Rizzo11.png/300px-Rizzo11.png"
+        :name: "Rizzo"
+        :theme: "dark"
+        :size: "small"
+    :options:
+      :theme: "dark"
+      :size: "small"
+  -
+    :styleguide_title: "Media Light"
+    :data:
+      :slug: "#"
+      :title: "Four days in Argentina"
+      :text: "Cards should be included as components where possible, and always in rails apps. You can include the ui_component includes as detailed below."
+      :image_url: 'http://assets.staticlp.com/assets/stubs/itinerary-full.jpg'
+      :user:
+        :image: "http://img2.wikia.nocookie.net/__cb20111018235020/muppet/images/thumb/1/14/Rizzo11.png/300px-Rizzo11.png"
+        :name: "Rizzo"
+        :theme: "dark"
+        :size: "small"
+    :options:
+      :theme: "dark"
+      :size: "full-image"
+
+
+
