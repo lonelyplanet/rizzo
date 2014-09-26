@@ -20,34 +20,33 @@
   .grid-wrapper--30
     .col--one-half.context--content
       .copy--h3 Colour variations
-      .styleguide-block__description.card.copy--body
-        .styleguide-block__items.clearfix
-
-          %h2.copy--h2.styleguide-block__heading.split--left
-            Default Button
-
-          .styleguide-block__item.split--right{class: " styleguide-block__item--0"}
-            %a.btn{ href: '#' } Submit
-
-        %pre.styleguide.copy--body.language-markup
-          %code
-            = preserve do
-              :escaped
-                <a class='btn' href='#'>Submit</a>
-
-      - count = 1
-      - buttons.each_with_index do | button, i |
-        .styleguide-block__description.card.copy--body
+      - colors.each_with_index do | color, i |
+      - color[:modifiers] = "btn--medium"
+        .styleguide-block__description.card.copy--body{class: color[:type] == "white" ? "theme--dark" : nil}
           .styleguide-block__items.clearfix
 
             %h2.copy--h2.styleguide-block__heading.split--left
-              = button[:styleguide_title]
+              = color[:styleguide_title]
 
-            .styleguide-block__item.split--right{class: " styleguide-block__item--#{count}"}
-              = ui_component("button", button: button)
+            .styleguide-block__item.split--right{class: " styleguide-block__item--#{i}"}
+              = ui_component("button", button: color)
 
           %pre.styleguide.copy--body.language-markup
-            %code #{raw(CGI::escapeHTML(Haml::Engine.new(template).render(template, button: button)))}
+            %code #{raw(CGI::escapeHTML(Haml::Engine.new(template).render(template, button: color)))}
+      .copy--h3 Outline buttons
+      - colors.each_with_index do | color, i |
+      - color[:modifiers] = "btn--medium btn--outline"
+        .styleguide-block__description.card.copy--body{class: color[:type] == "white" ? "theme--dark" : nil}
+          .styleguide-block__items.clearfix
+
+            %h2.copy--h2.styleguide-block__heading.split--left
+              = color[:styleguide_title]
+
+            .styleguide-block__item.split--right{class: " styleguide-block__item--#{i}"}
+              = ui_component("button", button: color)
+
+          %pre.styleguide.copy--body.language-markup
+            %code #{raw(CGI::escapeHTML(Haml::Engine.new(template).render(template, button: color)))}
 
 
     .col--one-half.context--content
@@ -57,8 +56,8 @@
       - modifier_classes = variation.delete(:modifiers)
 
       - while i < modifier_classes.length
-        - variation[:modifiers] = modifier_classes[i]
-        - heading = variation[:modifiers].split('btn--').last.split(' ').first
+        - variation[:modifiers] =  modifier_classes[i]
+        - heading = variation[:modifiers].split(' ').last.split('btn--').last
 
         .styleguide-block__description.card.context--content
           .styleguide-block__items.clearfix
@@ -66,37 +65,16 @@
             %h2.copy--h2.styleguide-block__heading.split--left
               = heading
 
-            .styleguide-block__item.split--right{class: "styleguide-block__item--#{count}", style: variation[:modifiers] == "btn--full-width" ? "float: none;" : ""}
+            .styleguide-block__item.split--right{class: "styleguide-block__item--#{i}", style: variation[:modifiers] =~ /btn--full-width/ ? "float: none;" : ""}
               = ui_component("button", button: variation)
 
           %pre.styleguide.copy--body.language-markup
             %code #{raw(CGI::escapeHTML(Haml::Engine.new(template).render(template, button: variation)))}
         - i += 1
 
-      .styleguide-block__description.card.context--content
-        .styleguide-block__items.clearfix
-
-          %h2.copy--h2.styleguid-block__heading.split--left
-            Loading
-
-          .styleguide-block__item.split--right
-            %a.btn.is-loading{ href: "#", disabled: "disabled" }
-              = ui_component("preloader")
-              Load more
-
-        %pre.styleguide.copy--body.language-ruby
-          %code
-            = preserve do
-              :plain
-                %a.btn.is-loading{ href: "#", disabled: "disabled" }
-                  = ui_component("preloader")
-                  Load more
-
-
     .col--one-half.context--content
       .copy--h3 Social Media
 
-      - count = 1
       - social_media.each_with_index do | button, i |
         .styleguide-block__description.card.copy--body
           .styleguide-block__items.clearfix
@@ -104,7 +82,7 @@
             %h2.copy--h2.styleguide-block__heading.split--left
               = button[:styleguide_title]
 
-            .styleguide-block__item.split--right{class: " styleguide-block__item--#{count}"}
+            .styleguide-block__item.split--right{class: " styleguide-block__item--#{i}"}
               = ui_component("button", button: button)
 
           %pre.styleguide.copy--body.language-markup

@@ -30,7 +30,7 @@
 
 pre[class*="language-"]
   @extend %rounded-corners
-  background: rgba($subduedgray, 0.1)
+  background: mix($subduedgray, white, 10%)
   border: 1px solid #DEE2E6
   box-sizing: border-box
   max-height: 200px
@@ -171,6 +171,9 @@ pre.styleguide.is-open
   box-sizing: border-box
   overflow: hidden
   padding: 20px
+  &.theme--dark,
+  .theme--dark &
+    background: $darkgray
 
 .styleguide-block__heading
   margin-top: 0

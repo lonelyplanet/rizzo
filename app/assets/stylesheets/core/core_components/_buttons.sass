@@ -2,38 +2,43 @@
 // Base button
 // -----------------------------------------------------------------------------
 
+@mixin btn-font-size($font-size)
+  +font-size($font-size)
+  &.btn--caps
+    text-transform: UPPERCASE
+    +font-size($font-size - 2)
+  &.btn--icon-only
+    +font-size($font-size + 3)
+    background-size: $font-size + 10px
+  &.btn--icon:before
+    +size(#{$font-size}px)
+  &.btn--social-icon:before
+    +size($font-size + 5px)
+
+@mixin btn-color($primary, $secondary: white)
+  $highlight: mix($primary, white, 80%)
+  background-color: $primary
+  color: $secondary
+  &.btn--outline
+    background-color: transparent
+    border: 1px solid
+    color: $primary
+  &:hover
+    background-color: $highlight
+    color: $secondary
+
 .btn
-  +font-size(16)
   @extend %inline-block
   @extend %rounded-corners
   @extend %transition--base
   box-sizing: border-box
-  background-color: $linkblue
-  color: white
   cursor: pointer
   font-weight: bold
-  line-height: 1em
+  line-height: 2em
   overflow: hidden
-  padding: 10px 25px
   text-align: center
-  border: none
   &:hover
     text-decoration: none
-  &.is-disabled, &[disabled]
-    background-color: $subduedgray
-    color: white
-    cursor: default
-    &:hover
-      background-color: $subduedgray
-    &.is-loading
-      color: $subduedgray
-  &.is-loading
-    position: relative
-    min-width: 74px
-
-    &:before,
-    &:after
-      display: none
 
 // -----------------------------------------------------------------------------
 // Button Size Modifiers
@@ -41,39 +46,42 @@
 
 .btn--full-width
   display: block
-  width: 100% // Ensure inputs also stretch full width
+  width: 100%
 
 .btn--small
-  padding: 7px 25px
+  +btn-font-size(14)
+  padding: 0 15px
+
+.btn--medium
+  +btn-font-size(15)
+  padding: 0 20px
 
 .btn--large
-  padding: 12px 25px
+  +btn-font-size(16)
+  padding: 0 30px
 
-.btn--slim
-  min-height: 0
-  padding: 4px 6px
+.btn--x-large
+  +btn-font-size(18)
+  padding: 0 40px
 
-.btn--icon
-  &.is-loading
-    background-image: none
-  &:before
-    display: inline-block
-    height: 1em
-    // -0.2em makes sure the button is still the correct height.
-    margin: -0.2em 0.5em 0 -0.5em
-    position: relative
-    top: 0.1em
-    width: 1em
-
-    .no-background-size &
-      display: none
+// -----------------------------------------------------------------------------
+// Buttons with icons
+// -----------------------------------------------------------------------------
 
 .btn--icon-only
   @extend %image-replacement
-  padding: 10px 20px
-  width: 1em
-  &.is-loading
-    background-image: none
+  padding: 0
+  width: 2.2em
+
+.btn--icon:before
+  display: inline-block
+  vertical-align: text-bottom
+  margin-right: 4px
+
+.btn--social-icon:before
+  display: inline-block
+  vertical-align: sub
+  margin-right: 4px
 
 .btn--icon--minus:before
   content: '\2212'
@@ -90,53 +98,48 @@
   overflow: visible
 
 // -----------------------------------------------------------------------------
-// Button Types
+// Button Colors
 // -----------------------------------------------------------------------------
 
-.btn--yellow
-  background-color: $yella
-  color: $body-copy
-  &:hover
-    background-color: $yella-highlight
+.btn
+  &.is-disabled, &[disabled]
+    +btn-color($input-border, $lightgray)
+    cursor: default
+    opacity: .75
+    &:hover
+      background-color: $subduedgray
 
-.btn--grey
-  background-color: $body-copy
-  color: white
-  &:hover
-    background-color: #57636b
+.btn--linkblue
+  +btn-color($linkblue)
 
-.btn--grey-highlight
-  background-color: $grey-highlight
-  color: white
-  &:hover
-    background-color: $feature-copy
+.btn--yella
+  +btn-color($yella, $body-copy)
 
-.btn--light-grey
-  background-color: $disabled
-  color: white
-  &:hover
-    background-color: $disabled
+.btn--darkgray
+  +btn-color($darkgray)
+
+.btn--lightgray
+  +btn-color($lightgray)
 
 .btn--green
-  background-color: $green
-  color: white
+  +btn-color($green)
 
 .btn--red
-  background-color: $red
-  color: white
+  +btn-color($red)
 
 .btn--white
-  background-color: #fff
-  color: $lpblue
+  +btn-color(white, $lpblue)
   &:hover
     color: $linkblue
 
-.btn--subtle
-  background-color: transparent
-  border: 2px solid $grey-highlight
-  color: $grey-highlight
-  &:before, &:after
-    +icon-color(body-grey)
+.btn--facebook
+  +btn-color($facebook)
+
+.btn--google-plus
+  +btn-color($google-plus)
+
+.btn--twitter
+  +btn-color($twitter)
 
 .btn--clear
   background-color: transparent
@@ -176,19 +179,3 @@
 // -----------------------------------------------------------------------------
 // Social Media
 // -----------------------------------------------------------------------------
-%btn--social
-  &:before
-    +size(20px)
-    top: 3px
-
-.btn--facebook
-  @extend %btn--social
-  background: $facebook
-
-.btn--google-plus
-  @extend %btn--social
-  background: $google-plus
-
-.btn--twitter
-  @extend %btn--social
-  background: $twitter

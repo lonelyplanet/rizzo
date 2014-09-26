@@ -1,4 +1,10 @@
-buttons:
+colors:
+
+  -
+    :styleguide_title: "Standard button"
+    :type: "linkblue"
+    :text: "Lonely"
+    :href: "#"
 
   -
     :styleguide_title: "Green button"
@@ -14,7 +20,7 @@ buttons:
 
   -
     :styleguide_title: "Yellow button"
-    :type: "yellow"
+    :type: "yella"
     :text: "Book"
     :href: "#"
 
@@ -25,27 +31,15 @@ buttons:
     :href: "#"
 
   -
-    :styleguide_title: "Grey button"
-    :type: "grey"
+    :styleguide_title: "Dark Gray button"
+    :type: "darkgray"
     :text: "Load more"
     :href: "#"
 
   -
-    :styleguide_title: "Light Grey button"
-    :type: "light-grey"
+    :styleguide_title: "Light Gray button"
+    :type: "lightgray"
     :text: "Load more"
-    :href: "#"
-
-  -
-    :styleguide_title: "Clear button"
-    :type: "clear"
-    :text: "Read more"
-    :href: "#"
-
-  -
-    :styleguide_title: "Subtle button"
-    :type: "subtle"
-    :text: "Filters"
     :href: "#"
 
 variation:
@@ -53,26 +47,28 @@ variation:
   :text: "Submit"
   :href: "#"
   :modifiers:
-    - "btn--small"
-    - "btn--slim"
-    - "is-disabled"
-    - "btn--icon icon--globe--before icon--white--before"
-    - "btn--icon-only icon--globe icon--white"
-    - "btn--full-width"
+    - "btn--linkblue btn--small"
+    - "btn--linkblue btn--medium"
+    - "btn--linkblue btn--large"
+    - "btn--linkblue btn--x-large"
+    - "btn--medium is-disabled"
+    - "btn--medium btn--linkblue icon--globe--before icon--white--before btn--icon"
+    - "btn--medium btn--linkblue icon--globe icon--white btn--icon-only"
+    - "btn--linkblue btn--full-width"
 
 social_media:
   -
     :styleguide_title: "Facebook"
-    :type: "facebook btn--icon icon--facebook--before icon--white--before"
+    :type: "facebook btn--social-icon btn--medium icon--facebook--before icon--white--before"
     :text: "Facebook"
     :href: "#"
   -
     :styleguide_title: "Google plus"
-    :type: "google-plus btn--icon icon--google-plus--before icon--white--before"
+    :type: "google-plus btn--social-icon btn--medium icon--google-plus--before icon--white--before"
     :text: "Google plus"
     :href: "#"
   -
     :styleguide_title: "Twitter"
-    :type: "twitter btn--icon icon--twitter--before icon--white--before"
+    :type: "twitter btn--social-icon btn--medium icon--twitter--before icon--white--before"
     :text: "Twitter"
     :href: "#"
