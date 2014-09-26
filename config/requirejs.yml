@@ -13,6 +13,7 @@ paths:
   nvd3: "nvd3/nv.d3"
   picturefill: "picturefill/dist/picturefill"
   infobox: "google/infobox"
+  zeroclipboard: "zeroclipboard/dist/ZeroClipboard"
 
 modules:
   - name: 'app_core'

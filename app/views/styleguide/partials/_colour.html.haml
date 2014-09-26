@@ -12,7 +12,7 @@
 
           .col--one-third{ data: { luminance: @app.get_luminance(colour_value) } }
             .card
-              .styleguide-block__item--colour.copy--h2{style: "background-color: #{colour_value}", class: @app.get_luminance(colour_value) > 200 ? "is-light" : "" }<
+              .styleguide-block__item--colour.copy--h2{style: "background-color: #{colour_value}", class: @app.get_luminance(colour_value) > 200 ? "is-light" : "", "data-clipboard-text" => colour_value.strip}<
                 = colour_value
-              %h3.copy--h4<
+              %h3.copy--h4{"data-clipboard-text" => colour_pair[0].strip}<
                 = colour_pair[0]

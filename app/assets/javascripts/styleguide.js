@@ -3,6 +3,7 @@ require([ "jquery" ], function($) {
   "use strict";
 
   require([
+    "zeroclipboard",
     "lib/page/swipe",
     "lib/utils/konami",
     "lib/core/ad_manager",
@@ -31,7 +32,7 @@ require([ "jquery" ], function($) {
     "lib/components/range_slider",
     "lib/styleguide/snippet-expand",
     "picturefill"
-  ], function(Swipe, Konami, AdManager, ScrollPerf, Slider, Charts, POIMap, POIList, PageHopper, ToggleActive, SelectGroupManager, WidgetTravelInsurance) {
+  ], function(ZeroClipboard, Swipe, Konami, AdManager, ScrollPerf, Slider, Charts, POIMap, POIList, PageHopper, ToggleActive, SelectGroupManager, WidgetTravelInsurance) {
 
     new ScrollPerf();
     new ToggleActive();
@@ -54,5 +55,10 @@ require([ "jquery" ], function($) {
     if (document.getElementById("js-travel-widget")) {
       (new WidgetTravelInsurance).init();
     }
+
+    $("[data-clipboard-text]").each(function(_, element) {
+      new ZeroClipboard(element);
+    });
+
   });
 });
