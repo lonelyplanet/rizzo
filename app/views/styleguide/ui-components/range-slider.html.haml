@@ -1,6 +1,6 @@
 = render 'styleguide/partials/shared'
 
-- components = YAML.load(File.read(File.expand_path('../../../../data/styleguide/forms_stubs.yml', __FILE__)))
+- components = styleguide_stubs('forms')
 
 .card.styleguide-intro.styleguide-block.copy--body.context--content
   %h1.copy--h1

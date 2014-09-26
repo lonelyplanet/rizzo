@@ -1,6 +1,6 @@
 = render 'styleguide/partials/shared'
 
-- secondary_nav_stub = YAML.load(File.read(File.expand_path('../../../../data/styleguide/navigation_stubs.yml', __FILE__)))['secondary_navigation_stub']
+- secondary_nav_stub = styleguide_stubs('navigation')['secondary_navigation_stub']
 
 .card.styleguide-intro.copy--body.context--content
   %h1.copy--h1 Secondary Navigation

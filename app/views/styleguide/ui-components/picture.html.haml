@@ -1,6 +1,6 @@
 = render 'styleguide/partials/shared'
 
-- pictures = YAML.load(File.read(File.expand_path('../../../../data/styleguide/picture_stubs.yml', __FILE__)))
+- pictures = styleguide_stubs('picture')
 .card.styleguide-intro.copy--body.context--content
   .clearfix
     %h1.copy--h1 Picture

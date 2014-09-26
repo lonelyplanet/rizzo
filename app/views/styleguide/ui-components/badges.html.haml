@@ -1,7 +1,7 @@
 = render 'styleguide/partials/shared'
 
 :ruby
-  badge_stub = YAML.load(File.read(File.expand_path('../../../../data/styleguide/badges_stubs.yml', __FILE__)))
+  badge_stub = styleguide_stubs('badges')
   badges = badge_stub['badges']
   variation = badge_stub['variation']
   template = File.read(File.expand_path("../../../components/_badge.html.haml", __FILE__))

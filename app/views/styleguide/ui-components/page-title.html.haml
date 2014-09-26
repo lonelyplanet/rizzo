@@ -1,6 +1,6 @@
 = render 'styleguide/partials/shared'
 
-- page_titles = YAML.load(File.read(File.expand_path('../../../../data/styleguide/title_stubs.yml', __FILE__)))['titles']
+- page_titles = styleguide_stubs('title')['titles']
 
 .card.styleguide-intro.copy--body.context--content
   %h1.copy--h1 Page titles

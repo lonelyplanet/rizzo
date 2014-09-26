@@ -1,7 +1,7 @@
 = render 'styleguide/partials/shared'
 
 - require "ostruct"
-- maps = YAML.load(File.read(File.expand_path('../../../../data/styleguide/poi_list_stubs.yml', __FILE__)))
+- maps = styleguide_stubs('poi_list')
 
 .card.styleguide-intro.copy--body.context--content
   %h1.copy--h1 POI List

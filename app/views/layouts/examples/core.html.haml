@@ -1,10 +1,10 @@
-- default_secondary_nav = YAML.load(File.read(File.expand_path('../../../../data/styleguide/navigation_stubs.yml', __FILE__)))['secondary_navigation_stub']
-- default_breadcrumbs = YAML.load(File.read(File.expand_path('../../../../data/styleguide/breadcrumbs_stubs.yml', __FILE__)))[:breadcrumbs]
+- default_secondary_nav = styleguide_stubs('navigation')['secondary_navigation_stub']
+- default_breadcrumbs = styleguide_stubs('breadcrumbs')[:breadcrumbs]
 
 - content_for(:secondary) do
   .row__inner.row__inner--secondary
-    = ui_component('place_title', properties: {no_place_link: true, title: "The city of Jerusalem", parent: "Israel and the Palestinian Territories", parent_slug: "/israel-and-the-palestinian-territories/" })
+    = ui_component('place_title', properties: {no_place_link: true, title: 'The city of Jerusalem', parent: 'Israel and the Palestinian Territories', parent_slug: '/israel-and-the-palestinian-territories/' })
     = ui_component('navigation/secondary', properties: default_secondary_nav)
 
 - content_for(:breadcrumbs) do
-  = ui_component("navigation/footer_breadcrumbs", properties: {breadcrumbs: default_breadcrumbs})
+  = ui_component('navigation/footer_breadcrumbs', properties: {breadcrumbs: default_breadcrumbs})

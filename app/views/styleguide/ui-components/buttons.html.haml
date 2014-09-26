@@ -1,8 +1,8 @@
 = render 'styleguide/partials/shared'
 
 :ruby
-  button_stub = YAML.load(File.read(File.expand_path('../../../../data/styleguide/buttons_stubs.yml', __FILE__)))
-  buttons = button_stub['buttons']
+  button_stub = styleguide_stubs('buttons')
+  colors = button_stub['colors']
   variation = button_stub['variation']
   social_media = button_stub['social_media']
   template = File.read(File.expand_path("../../../components/_button.html.haml", __FILE__))

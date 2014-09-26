@@ -77,7 +77,7 @@ class StyleGuide < RizzoApp
       else
         decorated_snippet[:snippet] = section.split("\n").delete_if(&:empty?).delete_if do |line|
           line.index("//") == 0
-        end[0].gsub("@mixin ", "+")
+        end[0].gsub('@mixin ', '+')
       end
     end
     decorated_snippet[:syntax_lang] = "sass"

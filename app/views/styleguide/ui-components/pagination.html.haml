@@ -1,6 +1,6 @@
 = render 'styleguide/partials/shared'
 
-- pagination = YAML.load(File.read(File.expand_path('../../../../data/styleguide/pagination_stubs.yml', __FILE__)))
+- pagination = styleguide_stubs('pagination')
 .card.styleguide-intro.copy--body.context--content
   .clearfix
     %h1.copy--h1 Pagination

@@ -1,6 +1,6 @@
 = render 'styleguide/partials/shared'
 
-- banners = YAML.load(File.read(File.expand_path('../../../../data/styleguide/herobanner_stubs.yml', __FILE__)))
+- banners = styleguide_stubs('herobanner')
 .card.styleguide-intro.copy--body.context--content
   .clearfix
     %h1.copy--h1 Hero Banner
