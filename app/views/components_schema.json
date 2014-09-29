@@ -1,0 +1,174 @@
+{
+  // General properties
+  "id" : "Used in forms and in price tag", // Remove from pice tag?
+  "type" : "Used in badge, adsense and in the text input", // Replace with XXX_type, like "field_type" ¿?
+  "user" : "User hash with the user info. Used in user attribution component",
+  "topic" : "Used in some cards and in poi list.",
+  "stack_kind" : "Kind of stack in collection cards", // replace with "kind"
+  "category" : "Only used in things to do card",
+
+  // Styling
+  "theme" : "", "text_color" : "", // replace with "theme" and set the text color in the class of the theme
+  //CSS classes
+  "class" : "", "extra_class" : "", "classes" : "", // replace with "class_name"
+  // "subcomponents": Use always "[subcomponent]_class"
+  "button_class" : "",
+  "dropdown_class" : "",
+  "autocomplete" : "Class to render an autocomplete", // replace with "autocomplete_class"
+  "icon" : "", // This is used as a boolean and as a class. replace with "icon_class" for classes and for "show_icon" when is boolean
+  "icon_color" : "", "icon_type" : "", // replace with "icon_theme" ¿?
+  "price_icon" : "", // replace with "icon_class"
+
+  // Text properties
+  // -- For small texts used as titles, always use "name", or "[subcomponent]_name".
+  // -- For general/description texts, use text. If is a text of a "subcomponent", use "[subcomponent]_text"
+  // -- For alt, tooltip properties, use always "tooltip"
+  "alt" : "", "tooltip" : "", // replace with "tooltip"
+  "label" : "", "description" : "", "text" : "",  // replace with "text"
+  "name" : "", "title" : "", // replaces with "name"
+  "lead_in" : "Used in hero banner, text before the main title", "strapline" : "", // replace with "strapline"
+  "placeholder" : "",
+  "subtitle" : "",
+  "tag" : "",
+  // "subcomponents"/"objects" properties
+  "button_text" : "",
+  "card_description" : "", // replace with "card_text"
+  "page_title" : "", "place_name" : "", // replace with "place_title"
+  "nearby_place_text" : "", // replace with "place_text" ¿?
+
+  // - Images/Videos text
+  "image_title" : "",
+  "video_description" : "", // replace with "video_text"
+  "image_alt" : "", // replace with "image_tooltip"
+  "image_attribution" : "",
+  "image_info" : "",
+  "image_license" : "",
+
+  // URLs
+  // -- "url" should be used if it includes the protocol and domain
+  // -- "slug" should be used otherwise. Don't use path|href
+  // "image_src" for image source, "image_url" for the link of the image
+  "url" : "", "link_url" : "", "overlay_url" : "", "path" : "", // replace with "url"
+  "image_src" : "", "image_url" : "", "image" : "", "avatar" : "", "resized_image_url" : "", "image_attribution_link" : "", // replaced with "image_src"
+  "resized_video_url" : "", // replace with video_src
+  "video_href" : "", // replace with video_url
+  "parent_slug" : "",
+  "slug" : "",
+
+  //List of things
+  "cards" : "",
+  "comments" : "",
+  "fields" : "",
+  "data" : "",
+  "groups" : "",
+  "items" : "",
+  "links" : "",
+  "list_image" : "Used in lodging card", // Can be replaced with image_src ¿?
+  "options" : "",
+  "rules" : "",
+  "pois" : "",
+  "responsive_items" : "",
+  "images" : "",
+
+  // Show/Hide
+  // -- Use always "show_[whatever]" or "hide_[whatever]"
+  "shop_link" : "",
+  "show" : "",
+  "show_detailed" : "",
+  "show_image_attribution" : "",
+  "show_label" : "",
+  "show_place_name" : "",
+  "hide" : "",
+  "no_place_link" : "", // replace with "hide_place_link"
+  //I think that this and the next one are the same
+  "on_sale" : "Used in card price to show/hide the tag--price__retail", // replace with "show_on_sale"
+  "on_sale_here" : "Used in price to show/hide the tag--price__retail",
+
+  // Status
+  "bookable" : "",
+  "checked" : "",
+  "selected" : "",
+  "current_page" : "",
+  "context" : "", "scope" : "", // replace with "context"
+
+  //Size / Position
+  "size" : "",  "double" : "", // Replace with "size" and specify the size in thre property (double, single...)
+  "height" : "",
+  "width" : "",
+  "aspectRatio" : "",
+  "position" : "",
+  "rows" : "Used within forms for the text area height",
+  "cols" : "Used within forms for the text area width",
+
+
+  // These ones can be merged
+  "lazyLoad" : "",
+  "lazyload" : "",
+
+  //Counters
+  "count" : "",
+  "things_to_do_count" : "",
+  "lodging_count" : "",
+
+
+  // Price / Money
+  "currency" : "",
+  "currency_symbol" : "",
+  "indicative_price_in_user_currency" : "",
+  "price" : "",
+  "total_price": "",
+  "retail_price" : "",
+
+
+  // -----------------
+  // TOO SPECIFIC TO BE HERE
+  // ----------------
+
+
+  // Config values/options specific for a component
+  // -- Place title
+  "parent" : "Only used in place_title. It's the parent of the place",
+  // -- Text area and text field
+  "maxlength" : "",
+  // -- Range slider
+  "max" : "Used in range slider",
+  "min" : "Used in range slider",
+  "cap_level" : "",
+  "unit" : "",
+  "unit_position" : "",
+  // -- Link card, collection card
+  "filter" : "",
+  // -- things to do card
+  "duration" : "",
+  // -- Lodgings card
+  "hotel_star_ranking" : "",
+  "neighbourhood" : "",
+  "property_type" : "",
+  "property_type_title" : "",
+  // -- Hero banner
+  "open_layer" : "",
+  "sponsored" : "",
+  // -- Place title
+  "is_body_title" : "",
+  // -- Tags
+  "lp_reviewed" : "",
+  // -- Article card
+  "post_date" : "",
+  // -- Social Buttons
+  "tweet" : "",
+  // -- Pagination
+  "results_per_page" : "",
+  "total_results" : "",
+  "visible_pages" : "Used in pagination. Num of visible pages",
+  "param" : "Only used in pagination",
+  // -- Forms
+  "value" : "Used only in forms", //Replace with "field_value" ¿?
+  "action" : "User for the action in the form", // Replace with "form_action"
+  "error" : "Used in forms for the error messages", // Repalce with error_text
+
+  //These ones can be merged
+  "top_choice" : "",
+  "topchoice" : "",
+
+
+}
