@@ -63,7 +63,7 @@ define([
     .on(":controller/reset", function() {
       this.states = [ this.states[0] ];
       this.currentState = 0;
-      this.pushState.navigate(this._serializeState(), this._currentRoot());
+      this.pushState.navigate(this._serializeState(), this._currentRoot(), true);
     }.bind(this));
   };
 
