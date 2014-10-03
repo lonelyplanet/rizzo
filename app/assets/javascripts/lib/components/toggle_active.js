@@ -40,7 +40,7 @@ define([ "jquery", "lib/utils/debounce" ], function($, debounce) {
         $toggle.addClass("is-not-active");
       }
 
-      $targets.addClass("is-not-active");
+      $targets.not(".is-active").addClass("is-not-active");
     }
 
     this._listen();

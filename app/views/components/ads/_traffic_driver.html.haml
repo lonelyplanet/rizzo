@@ -1,13 +1,1 @@
-:ruby
-
-  attrs = {
-    size: { mapping: "traffic-driver" },
-    targeting: { position: nil },
-    extension: nil
-  }
-
-  attrs.merge!(properties) if defined? properties
-
-  attrs[:targeting] = attrs[:targeting].to_json
-
-.adunit.adunit--traffic-driver{ data: attrs }
+.adunit.adunit--traffic-driver{ data: ad_unit_data('traffic-driver', defined?(properties) ? properties : nil) }

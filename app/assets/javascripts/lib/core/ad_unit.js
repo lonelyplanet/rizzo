@@ -51,7 +51,7 @@ define(function() {
     stackMPU: function() {
       var $container = this.$target.closest(".js-card-sponsored");
 
-      if (this.$iframe.height() > $container.height()) {
+      if (this.$iframe.height() > $container.outerHeight()) {
         $container.addClass("card--sponsored--double-mpu");
       }
     }

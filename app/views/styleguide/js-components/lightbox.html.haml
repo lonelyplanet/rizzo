@@ -69,6 +69,23 @@
         :escaped
           <a href="#" class="js-lightbox-toggle" data-lightbox-class"some-custom-class" data-lightbox-showpreloader="true">show lightbox</a>
 
+  %p
+    You can add a 
+    %code
+      mobileBreakpoint
+    parameter to set a specific breakpoint based on the window width. The Lightbox by default won't open on devices with small screens (< 500px), unless this parameter is set.
+
+  %p
+    Note: To disable the breakpoint entirely, set the value to 0 as follows:
+
+  %pre.styleguide.copy--body.language-javascript
+    %code
+      = preserve do
+        :escaped
+          new Lightbox({
+            mobileBreakpoint: 0
+          });
+
 .styleguide-block.styleguide-block__description.card.copy--body
 
   %h2.copy--h2.styleguide-block__heading

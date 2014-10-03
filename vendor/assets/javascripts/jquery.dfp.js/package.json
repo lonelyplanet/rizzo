@@ -1,6 +1,6 @@
 {
 	"name": "jquery.dfp",
-	"version": "1.0.23",
+	"version": "1.1.4",
 	"devDependencies": {
 		"grunt": "~0.4",
 		"grunt-contrib-jshint": "~0.9",
@@ -9,5 +9,9 @@
 	},
 	"scripts": {
 		"test": "grunt travis --verbose"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/coop182/jquery.dfp.js"
 	}
 }

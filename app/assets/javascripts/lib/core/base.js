@@ -19,7 +19,7 @@ define([
     new Swipe();
     new NavSearch();
     new ShoppingCart();
-    new ToggleActive;
+    new ToggleActive();
 
     if (window.lp && window.lp.ads) {
       new AdManager(window.lp.ads);

@@ -4,9 +4,10 @@ Rizzo::Application.routes.draw do
   get "redirector"                   => 'redirector#internal'
 
   # Custom layouts
-  get 'layouts/:route/:snippet'   => 'layout#snippet'
-  get 'layouts/:route'            => 'layout#preview'
-  get 'layouts',                  to: redirect('/styleguide/page-layout/core-layouts')
+  get 'secure/layouts/:route/:snippet'  => 'layout#snippet'
+  get 'layouts/:route/:snippet'         => 'layout#snippet'
+  get 'layouts/:route'                  => 'layout#preview'
+  get 'layouts',                        to: redirect('/styleguide/page-layout/core-layouts')
 
   # Styleguide
   root                              to: redirect('/styleguide/design-elements/colours')

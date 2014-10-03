@@ -7,14 +7,17 @@ require([
   "use strict";
 
   describe("UserFeed", function() {
-    var doc;
+
+    var userFeed,
+        _selectors;
 
     beforeEach(function() {
-      doc = $(document);
+      loadFixtures("user_feed.html");
+      userFeed = new UserFeed({ feedUrl: "foo/bar" });
+      _selectors = userFeed.config.selectors;
     });
 
     describe("initialize", function() {
-      var userFeed;
 
       beforeEach(function() {
         spyOn(UserFeed.prototype, "init");
@@ -25,28 +28,30 @@ require([
         expect(UserFeed.prototype.init).toHaveBeenCalled();
       });
 
-      it("should set proper fields with proper types", function() {
-        expect(userFeed.$activities).toEqual($(userFeed.config.activitiesSelector));
-        expect(userFeed.$messages).toEqual($(userFeed.config.messagesSelector));
-        expect(userFeed.$footer).toEqual($(userFeed.config.footerSelector));
-        expect(userFeed.$unreadActivitiesIndicator).toEqual($(userFeed.config.unreadActivitiesNumberSelector));
-        expect(userFeed.$unreadMessagesIndicator).toEqual($(userFeed.config.unreadMessagesNumberSelector));
-        expect(userFeed.$unreadFeedIndicator).toEqual($(userFeed.config.unreadFeedNumberSelector));
-        expect(userFeed.oldActivities).toBeUndefined();
-        expect(userFeed.highlightedActivitiesNumber).toBe(userFeed.config.initialHighlightedActivitiesNumber);
+      it("should find all elements", function() {
+        expect(userFeed.$content.length).toEqual(1);
+        expect(userFeed.$activities.length).toEqual(1);
+        expect(userFeed.$messages.length).toEqual(1);
+        expect(userFeed.$messagesResponsiveMenuItem.length).toEqual(1);
+
+        expect(userFeed.$unreadActivitiesIndicator.length).toEqual(1);
+        expect(userFeed.$unreadMessagesIndicator.length).toEqual(1);
+        expect(userFeed.$unreadFeedIndicator.length).toEqual(1);
+
+        expect(userFeed.$flyoutTrigger.length).toEqual(1);
+        expect(userFeed.$flyout.length).toEqual(1);
+
+        expect(userFeed.$tabsContent.length).toEqual(1);
+
+        expect(userFeed.$footer.length).toEqual(1);
       });
     });
 
-    describe(".init()", function() {
-      var userFeed;
+    describe("init()", function() {
 
       beforeEach(function() {
         spyOn(UserFeed.prototype, "_fetchFeed");
         userFeed = new UserFeed({ feedUrl: "foo/bar" });
-      });
-
-      it("should call 'this._fetchFeed()'", function() {
-        expect(userFeed._fetchFeed).toHaveBeenCalled();
       });
 
       it("should call 'new Tabs()' and assign instance to 'this._tabsInstance'", function() {
@@ -56,253 +61,287 @@ require([
       it("should call 'new TimeAgo()' and assign instance to 'this._timeagoInstance'", function() {
         expect(userFeed._timeagoInstance.constructor.name).toBe("TimeAgo");
       });
+
+      it("should call 'this._fetchFeed()'", function() {
+        expect(userFeed._fetchFeed).toHaveBeenCalled();
+      });
+
     });
 
-    describe("._bindLinks()", function() {
-      var userFeed, tempElement;
+    describe("_responsifyTabsContentHeight()", function() {
 
       beforeEach(function() {
-        $(".fake-feed-item").remove();
-        userFeed = new UserFeed({
-          feedSelector: "body",
-          feedItemSelector: ".fake-feed-item",
-          targetLinkSelector: "a",
-          feedUrl: "foo/bar"
+        spyOnEvent(userFeed.$flyoutTrigger, "mouseenter");
+        spyOnEvent(userFeed.$flyout, "mouseenter");
+        spyOnEvent(userFeed.$flyout, "mouseleave");
+        spyOn(userFeed.$tabsContent, "css");
+      });
+
+      describe("called", function() {
+
+        beforeEach(function() {
+          userFeed._responsifyTabsContentHeight();
         });
-        tempElement = $("<div class='fake-feed-item'><a href='FAKE_URL'></a></div>");
-        doc.find("body").append(tempElement);
+
+        describe("hover over user feed flyout trigger and flyout itself", function() {
+
+          beforeEach(function() {
+            userFeed.$flyoutTrigger.trigger("mouseenter");
+            userFeed.$flyout.trigger("mouseenter");
+          });
+
+          afterEach(function() {
+            $("html, body").removeClass("no-scroll");
+          });
+
+          it("should set initial content height", function() {
+            expect(userFeed.contentHeight).toEqual(userFeed.$tabsContent.height());
+          });
+
+          it("should add 'no-scroll' class to html and body elements", function() {
+            expect($("html, body").hasClass("no-scroll")).toBe(true);
+          });
+
+          it("should call 'css()' on tabs content with proper arguments", function() {
+            expect(userFeed.$tabsContent.css.argsForCall[0][0]).toEqual("max-height");
+            expect(userFeed.$tabsContent.css.argsForCall[0][1]).toMatch(/[0-9]/);
+          });
+
+          describe("then leave flyout", function() {
+
+            beforeEach(function() {
+              userFeed.$flyout.trigger("mouseleave");
+            });
+
+            it("should remove 'no-scroll' class from html and body elements", function() {
+              expect($("html, body").hasClass("no-scroll")).toBe(false);
+            });
+
+          });
+
+        });
+
+      });
+
+    });
+
+    describe("_bindLinks()", function() {
+
+      beforeEach(function() {
+        userFeed = new UserFeed({ feedUrl: "foo/bar" });
         spyOn(userFeed, "_goToUrl");
         userFeed._bindLinks();
-        tempElement.click();
+        $(_selectors.feedItem).click();
       });
 
-      it("should call set proper click event listener on proper element", function() {
-        expect(userFeed._goToUrl).toHaveBeenCalledWith("FAKE_URL");
+      it("should call _goToUrl with proper url", function() {
+        expect(userFeed._goToUrl).toHaveBeenCalledWith("bar/foo");
       });
+
     });
 
-    describe("._updateUnreadFeedIndicator()", function() {
-      var userFeed, testElement, unreadFeedNumberClass;
+    describe("_updateUnreadMessagesResponsiveIndicator()", function() {
 
       beforeEach(function() {
-        unreadFeedNumberClass = "fake-testing-number-class";
-        $("." + unreadFeedNumberClass).remove(); // should be in after each but jasmine fails to use after each properly
-        testElement = $("<div/>").addClass(unreadFeedNumberClass).appendTo(doc.find("body"));
-        userFeed = new UserFeed({
-          unreadFeedNumberSelector: "." + unreadFeedNumberClass,
-          feedUrl: "foo/bar"
-        });
+        userFeed._updateUnreadMessagesResponsiveIndicator(5);
       });
 
-      afterEach(function() {
-        testElement = undefined;
+      it("should append unread messages number indicator to responsive menu", function() {
+        expect($(_selectors.unreadMessagesResponsiveNumber).text().trim()).toEqual("(5)");
       });
 
-      describe("called with one arg greater than 0", function() {
-        var arg = 1;
+    });
+
+    describe("_updateUnreadFeedIndicator()", function() {
+
+      beforeEach(function() {
+        userFeed = new UserFeed({ feedUrl: "foo/bar" });
+      });
+
+      describe("called with number > 0", function() {
 
         beforeEach(function() {
-          userFeed.$unreadFeedIndicator.text("").addClass("is-hidden");
-          userFeed._updateUnreadFeedIndicator(arg);
+          userFeed._updateUnreadFeedIndicator(1);
         });
 
-        it("should call this.$unreadFeedIndicator.text( [passed arg] ).removeClass('is-hidden')", function() {
-          expect(userFeed.$unreadFeedIndicator.length).toBe(1);
-          expect(userFeed.$unreadFeedIndicator.text()).toBe("" + arg);
+        it("should update and show unread feed number indicator", function() {
+          expect(userFeed.$unreadFeedIndicator.text()).toEqual("1");
           expect(userFeed.$unreadFeedIndicator.hasClass("is-hidden")).toBe(false);
         });
+
       });
 
-      describe("called with one arg not greater than 0", function() {
-        var arg = 0;
+      describe("called with 0", function() {
 
         beforeEach(function() {
-          userFeed.$unreadFeedIndicator.text("").addClass("is-hidden");
-          userFeed._updateUnreadFeedIndicator(arg);
+          userFeed._updateUnreadFeedIndicator(0);
         });
 
-        it("should call this.$unreadFeedIndicator.addClass('is-hidden')", function() {
-          expect(userFeed.$unreadFeedIndicator.length).toBe(1);
+        it("should hide the indicator", function() {
           expect(userFeed.$unreadFeedIndicator.hasClass("is-hidden")).toBe(true);
         });
+
       });
+
     });
 
-    describe("._createUserActivities()", function() {
-      var userFeed,
-          feedActivities;
+    describe("_createUserActivities()", function() {
+      var oldFeedctivities;
 
       beforeEach(function() {
-        userFeed = new UserFeed({
-          maxFeedActivities: 4,
-          newFeedHighlightClass: "FAKE-TEST-CLASS",
-          initialHighlightedActivitiesNumber: 10,
-          feedUrl: "foo/bar"
-        }),
-        feedActivities = [
-          { text: "a-" },
-          { text: "b-" },
-          { text: "c-" },
-          { text: "d-" },
-          { text: "e-" }
+        userFeed = new UserFeed({ feedUrl: "foo/bar" }),
+        oldFeedctivities = [
+          { text: "1" },
+          { text: "2" },
+          { text: "3" },
+          { text: "4" },
+          { text: "5" },
+          { text: "6" }
         ];
-
-        userFeed.$unreadActivitiesIndicator = {
-          text: jasmine.createSpy("text")
-        };
-
+        userFeed.highlightedActivitiesNumber = 5;
         spyOn(userFeed, "_bindLinks");
+        userFeed._createUserActivities(oldFeedctivities);
+      });
 
-        userFeed._createUserActivities(feedActivities);
+      it("sould concatenate and display 5 activities", function() {
+        expect(userFeed.$activities.text()).toMatch("12345");
+        expect(userFeed.$activities.text()).not.toMatch("123456");
       });
 
       it("should call 'this._bindLinks()'", function() {
         expect(userFeed._bindLinks).toHaveBeenCalled();
       });
 
-      it("should call 'this.$unreadActivitiesIndicator.text( [proper Number ] )'", function() {
-        expect(userFeed.$unreadActivitiesIndicator.text).toHaveBeenCalledWith(userFeed.highlightedActivitiesNumber);
+      it("should update unread activities number indicator", function() {
+        expect(userFeed.$unreadActivitiesIndicator.text()).toEqual("(5)");
       });
 
     });
 
-    describe("._createUserMessages()", function() {
-      var userFeed;
+    describe("_createUserMessages()", function() {
+      var feedMessages;
 
       beforeEach(function() {
-        userFeed = new UserFeed({
-          maxFeedActivities: 4,
-          newFeedHighlightClass: "FAKE-TEST-CLASS",
-          feedUrl: "foo/bar"
-        });
+        feedMessages = [
+          { text: "<span>1</span>", "read?": false },
+          { text: "<span>2</span>", "read?": false },
+          { text: "<span>3</span>", "read?": true }
+        ];
+        userFeed = new UserFeed({ feedUrl: "foo/bar" }),
+        spyOn(userFeed, "_bindLinks");
+        userFeed._createUserMessages(feedMessages, 2);
       });
 
-      describe("called with proper arg", function() {
-        var feedMessages, newMessagesNumber;
-
-        beforeEach(function() {
-          feedMessages = [
-            { text: "<a/>", "read?": false },
-            { text: "b-", "read?": true },
-            { text: "c-", "read?": true },
-            { text: "d-", "read?": true },
-            { text: "e-", "read?": true }
-          ];
-          newMessagesNumber = 10;
-          userFeed.$footer = "FAKE_FOOTER";
-          userFeed.$messages = {
-            append: jasmine.createSpy("append")
-          };
-          userFeed.$messages.html = jasmine.createSpy("html").andReturn(userFeed.$messages);
-          userFeed.$unreadMessagesIndicator = {
-            text: jasmine.createSpy("text")
-          };
-          spyOn(userFeed, "_bindLinks");
-          userFeed._createUserMessages(feedMessages, newMessagesNumber);
-        });
-
-        it("should call 'this._bindLinks()'", function() {
-          expect(userFeed._bindLinks).toHaveBeenCalled();
-        });
-
-        it("should call 'this.$messages.html( [proper String] ).append( [ footer ] )'", function() {
-          expect(userFeed.$messages.html).toHaveBeenCalledWith(
-            $("<a/>").addClass(userFeed.config.newFeedHighlightClass)[0].outerHTML +
-              "b-c-d-"
-          );
-          expect(userFeed.$messages.append).toHaveBeenCalledWith("FAKE_FOOTER");
-        });
-
-        it("should call 'this.$unreadMessagesIndicator.text( [proper Number ] )'", function() {
-          expect(userFeed.$unreadMessagesIndicator.text).toHaveBeenCalledWith(newMessagesNumber);
-        });
+      it("sould concatenate, display 3 activities and highlight 2", function() {
+        expect(userFeed.$messages.find("span").length).toEqual(3);
+        expect(userFeed.$messages.find(".is-highlighted").length).toEqual(2);
       });
+
+      it("should call 'this._bindLinks()'", function() {
+        expect(userFeed._bindLinks).toHaveBeenCalled();
+      });
+
+      it("should append footer after last message and unhide it", function() {
+        expect($(_selectors.messages).children().last().text()).toEqual("footer");
+        expect($(_selectors.footer).hasClass("is-hidden")).toBe(false);
+      });
+
+      it("should update unread messages number indicator", function() {
+        expect(userFeed.$unreadMessagesIndicator.text()).toEqual("(2)");
+      });
+
     });
 
-    describe("._updateActivities()", function() {
-      var userFeed, feed;
+    describe("_updateActivities()", function() {
+      var oldFeed, newFeed;
 
       beforeEach(function() {
-        userFeed = new UserFeed({
-          initialHighlightedActivitiesNumber: 2,
-          feedUrl: "foo/bar"
-        });
-        feed = {
-          activities: [ "ITEM_ONE", "ITEM_TWO" ]
-        };
+        oldFeed = {
+          activities: [
+            { text: "<span>1</span>", timestamp: "a" },
+            { text: "<span>2</span>", timestamp: "b" },
+            { text: "<span>3</span>", timestamp: "c" },
+            { text: "<span>4</span>", timestamp: "d" }
+          ]
+        },
+        newFeed = {
+          activities: [
+            { text: "<span>3</span>", timestamp: "c" },
+            { text: "<span>4</span>", timestamp: "d" },
+            { text: "<span>5</span>", timestamp: "e" },
+            { text: "<span>6</span>", timestamp: "f" },
+            { text: "<span>7</span>", timestamp: "g" }
+          ]
+        },
+        userFeed = new UserFeed({ feedUrl: "foo/bar" });
       });
 
       describe("called when holding no activities", function() {
         beforeEach(function() {
-          userFeed.currentActivities = undefined;
-          spyOn(userFeed, "_createUserActivities");
-          userFeed._updateActivities(feed);
+          userFeed.currentActivities = [];
+          userFeed._updateActivities(oldFeed);
         });
 
-        it("should create new activities", function() {
-          expect(userFeed._createUserActivities).toHaveBeenCalledWith([ "ITEM_ONE", "ITEM_TWO" ], 2);
-          expect(userFeed.currentActivities).toEqual([ "ITEM_ONE", "ITEM_TWO" ]);
+        it("should get 0 new activities number", function() {
+          expect(userFeed._getActivityNumber(oldFeed)).toEqual(0);
         });
+
+        it("should create activities", function() {
+          expect($(_selectors.activities).find("span").length).toEqual(4);
+        });
+
+        it("should not highlight any activities", function() {
+          expect($(_selectors.activities).find(".is-highlighted").length).toEqual(0);
+        });
+
       });
 
       describe("called when holding some activities", function() {
-        describe("if passed object has any new activities", function() {
-          describe("and new activities count is higher than highlighted count", function() {
-            beforeEach(function() {
-              userFeed.currentActivities = [ "a","b","c" ];
-              spyOn(userFeed, "_getActivityNumber").andReturn(5);
-              spyOn(userFeed, "_createUserActivities");
-              userFeed._updateActivities(feed);
-            });
 
-            it("should check new activities number, update activities list and highlighted activities number", function() {
-              expect(userFeed._getActivityNumber).toHaveBeenCalledWith(feed);
-              expect(userFeed._createUserActivities).toHaveBeenCalledWith([ "ITEM_ONE", "ITEM_TWO" ]);
-              expect(userFeed.highlightedActivitiesNumber).toBe(5);
-            });
+        describe("if passed object has new activities", function() {
+
+          beforeEach(function() {
+            userFeed._updateActivities(oldFeed);
+            userFeed._updateActivities(newFeed);
           });
 
-          describe("and new activities count is lower than highlighted count", function() {
-            beforeEach(function() {
-              userFeed.currentActivities = [ "a","b","c" ];
-              spyOn(userFeed, "_getActivityNumber").andReturn(1);
-              spyOn(userFeed, "_createUserActivities");
-              userFeed._updateActivities(feed);
-            });
-
-            it("should check new activities number, update activities list but not highlighted activities number", function() {
-              expect(userFeed._getActivityNumber).toHaveBeenCalledWith(feed);
-              expect(userFeed._createUserActivities).toHaveBeenCalledWith([ "ITEM_ONE", "ITEM_TWO" ]);
-              expect(userFeed.highlightedActivitiesNumber).toBe(2);
-            });
+          it("should get proper new activities number", function() {
+            expect(userFeed._getActivityNumber(newFeed)).toEqual(3);
           });
+
+          it("should update activities list", function() {
+            expect($(_selectors.activities).find("span").length).toEqual(5);
+          });
+
+          it("should highlight new activities", function() {
+            expect($(_selectors.activities).find(".is-highlighted").length).toEqual(3);
+          });
+
         });
 
         describe("if passed object has no new activities", function() {
+
           beforeEach(function() {
-            userFeed.currentActivities = [ "a","b","c" ];
-            spyOn(userFeed, "_getActivityNumber").andReturn(0);
-            spyOn(userFeed, "_createUserActivities");
-            userFeed._updateActivities(feed);
+            userFeed._updateActivities(oldFeed);
+            userFeed._updateActivities(oldFeed);
           });
 
-          it("should only check new activities number and change nothing", function() {
-            expect(userFeed._getActivityNumber).toHaveBeenCalledWith(feed);
-            expect(userFeed._createUserActivities).not.toHaveBeenCalled();
-            expect(userFeed.highlightedActivitiesNumber).toBe(2);
+          it("should get 0 for new activities number", function() {
+            expect(userFeed._getActivityNumber(oldFeed)).toEqual(0);
+          });
+
+          it("should not change current activities", function() {
+            expect($(_selectors.activities).find("span").length).toEqual(4);
           });
         });
       });
     });
 
-    describe("._updateMessages()", function() {
+    describe("_updateMessages()", function() {
       var userFeed;
 
       beforeEach(function() {
-        userFeed = new UserFeed({
-          initialHighlightedActivitiesNumber: 14,
-          feedUrl: "foo/bar"
-        });
+        userFeed = new UserFeed({ feedUrl: "foo/bar" });
         spyOn(userFeed, "_createUserMessages");
         spyOn(userFeed, "_updateUnreadFeedIndicator");
       });
@@ -315,17 +354,18 @@ require([
             unreadMessagesCount: 14,
             messages: []
           };
-
+          userFeed.highlightedActivitiesNumber = 3;
           userFeed._updateMessages(feed);
         });
 
-        it("should correctly update the unread feed indicator", function() {
-          expect(userFeed._updateUnreadFeedIndicator).toHaveBeenCalledWith(28);
+        it("should call _updateUnreadFeedIndicator with proper value", function() {
+          expect(userFeed._updateUnreadFeedIndicator).toHaveBeenCalledWith(17);
         });
 
         it("should not call _createUserMessages", function() {
           expect(userFeed._createUserMessages).not.toHaveBeenCalled();
         });
+
       });
 
       describe("when called with some messages", function() {
@@ -333,49 +373,50 @@ require([
 
         beforeEach(function() {
           feed = {
-            unreadMessagesCount: 14,
+            unreadMessagesCount: 8,
             messages: [ "a","b","c" ]
           };
+          userFeed.highlightedActivitiesNumber = 1;
           userFeed._updateMessages(feed);
         });
 
-        it("should correctly update the unread feed indicator", function() {
-          expect(userFeed._updateUnreadFeedIndicator).toHaveBeenCalledWith(28);
-          expect(userFeed._createUserMessages).toHaveBeenCalledWith(feed.messages, 14);
+        it("should call '_updateUnreadFeedIndicator' with proper value", function() {
+          expect(userFeed._updateUnreadFeedIndicator).toHaveBeenCalledWith(9);
         });
+
+        it("should call _createUserMessages", function() {
+          expect(userFeed._createUserMessages).toHaveBeenCalledWith(feed.messages, 8);
+        });
+
       });
     });
 
-    describe("._updateFeed()", function() {
-      var userFeed;
+    describe("_updateFeed()", function() {
 
       beforeEach(function() {
         userFeed = new UserFeed({
-          fetchInterval: 100,
-          feedUrl: "foo/bar"
+          feedUrl: "foo/bar",
+          fetchInterval: 100
         });
       });
 
       describe("called", function() {
-        var fetchedFeed, timedoutFetch;
+        var fetchedFeed;
 
         beforeEach(function() {
-          timedoutFetch = jasmine.createSpy("timedoutFetch");
-          spyOn(UserFeed.prototype, "_updateActivities");
-          spyOn(UserFeed.prototype, "_updateMessages");
-          spyOn(userFeed._fetchFeed, "bind").andReturn(timedoutFetch);
+          spyOn(userFeed, "_updateActivities");
+          spyOn(userFeed, "_updateMessages");
           spyOn(userFeed._timeagoInstance, "updateStrings");
-          jasmine.Clock.useMock();
-        });
+          spyOn(userFeed, "_responsifyTabsContentHeight");
+          spyOn(userFeed, "_fetchFeed");
 
-        afterEach(function() {
-          timedoutFetch.reset();
+          jasmine.Clock.useMock();
         });
 
         describe("with any truthy argument", function() {
 
           beforeEach(function() {
-            fetchedFeed = { ANYTHING: "ANYWHERE", unreadMessagesCount: 5 };
+            fetchedFeed = { foo: "bar", unreadMessagesCount: 5 };
           });
 
           describe("for screen width >= 980px", function() {
@@ -387,41 +428,34 @@ require([
             it("should call proper methods", function() {
               expect(userFeed._updateActivities).toHaveBeenCalledWith(fetchedFeed);
               expect(userFeed._updateMessages).toHaveBeenCalledWith(fetchedFeed);
-              expect(userFeed._fetchFeed.bind).toHaveBeenCalledWith(userFeed);
               expect(userFeed._timeagoInstance.updateStrings).toHaveBeenCalled();
+              expect(userFeed._responsifyTabsContentHeight).toHaveBeenCalled();
             });
 
-            it("should call function returned from 'userFeed._fetchFeed.bind(this)' after 'userFeed.config.fetchInterval' timeout", function() {
-              expect(timedoutFetch).not.toHaveBeenCalled();
+            it("should setTimeout properly", function() {
               jasmine.Clock.tick(userFeed.config.fetchInterval + 1);
-              expect(timedoutFetch).toHaveBeenCalled();
+              expect(userFeed._fetchFeed).toHaveBeenCalled();
             });
 
           });
 
           describe("for screen width < 980px", function() {
 
-            var messagesSelector,
-                $indicator;
-
             beforeEach(function() {
-              messagesSelector = userFeed.config.messagesResponsiveSelector.replace(".", "");
-              doc.find(messagesSelector).remove();
-              doc.find("body").append(
-                "<div class=" + messagesSelector + "><div>some</div><a>children</a></div>"
-              );
-              userFeed = new UserFeed({ feedUrl: "foo/bar" });
+              spyOn(userFeed, "_updateUnreadMessagesResponsiveIndicator");
+
               userFeed._updateFeed(979, fetchedFeed);
-
-              $indicator = $(userFeed.config.unreadMessagesResponsiveNumberSelector);
             });
 
-            it("should append undread messages count indicator to responsive menu", function() {
-              expect($indicator.length).toEqual(1);
-            });
+            it("should call _updateUnreadMessagesResponsiveIndicator only", function() {
+              expect(userFeed._updateUnreadMessagesResponsiveIndicator)
+                .toHaveBeenCalledWith(fetchedFeed.unreadMessagesCount);
 
-            it("should update unread messages count", function() {
-              expect($indicator.text().trim()).toBe("(" + fetchedFeed.unreadMessagesCount + ")");
+              expect(userFeed._updateActivities).not.toHaveBeenCalled();
+              expect(userFeed._updateMessages).not.toHaveBeenCalled();
+              expect(userFeed._fetchFeed).not.toHaveBeenCalled();
+              expect(userFeed._timeagoInstance.updateStrings).not.toHaveBeenCalled();
+              expect(userFeed._responsifyTabsContentHeight).not.toHaveBeenCalled();
             });
 
           });
@@ -432,37 +466,32 @@ require([
 
           beforeEach(function() {
             fetchedFeed = null;
-            userFeed._updateFeed(fetchedFeed);
           });
 
           it("should not call anything", function() {
-            expect(userFeed._updateActivities).not.toHaveBeenCalled();
-            expect(userFeed._updateMessages).not.toHaveBeenCalled();
-            expect(userFeed._fetchFeed.bind).not.toHaveBeenCalled();
-            expect(timedoutFetch).not.toHaveBeenCalled();
-            jasmine.Clock.tick(userFeed.config.fetchInterval + 1);
-            expect(timedoutFetch).not.toHaveBeenCalled();
-            jasmine.Clock.tick(2000);
-            expect(timedoutFetch).not.toHaveBeenCalled();
+            expect(userFeed._updateFeed(500, fetchedFeed)).toBe(false);
+            expect(userFeed._updateFeed(1500, fetchedFeed)).toBe(false);
           });
+
         });
+
       });
+
     });
 
-    describe("._fetchFeed()", function() {
+    describe("_fetchFeed()", function() {
       var userFeed;
 
       beforeEach(function() {
-        userFeed = new UserFeed({
-          feedUrl: "SOME/TEST/URL"
-        });
+        userFeed = new UserFeed({ feedUrl: "foo/bar" });
       });
 
       describe("called", function() {
 
         beforeEach(function() {
           spyOn($, "ajax");
-          spyOn(userFeed._updateFeed, "bind").andReturn("TEST_BIND_OUTPUT");
+          spyOn(userFeed._updateFeed, "bind").andReturn(true);
+
           userFeed._fetchFeed();
         });
 
@@ -471,14 +500,14 @@ require([
           userFeed._updateFeed.bind.reset();
         });
 
-        it("should call '$.ajax( [proper Object ] )'", function() {
+        it("should call '$.ajax()' with proper arguments", function() {
           expect($.ajax).toHaveBeenCalledWith({
-            url: "SOME/TEST/URL",
+            url: userFeed.config.feedUrl,
             cache: false,
             jsonpCallback: "lpUserFeedCallback",
             dataType: "jsonp",
-            success: "TEST_BIND_OUTPUT",
-            error: "TEST_BIND_OUTPUT"
+            success: true,
+            error: true
           });
         });
       });

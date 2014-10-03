@@ -8,16 +8,36 @@
   %p
     Responsive image slider component
 
-  %h2.copy--h2 Javascript Parameters
+  %h2.copy--h2 Default Javascript Parameters
   %p
     %code
-      showSliderControls:
-    true by default. You can hide the controls in the slider with this parameter when the slider is created.
-
+      slides: ".js-slide"
+      %br
+      slidesContainer: ".js-slider-container"
+      %br
+      slidesViewport: ".js-slider-viewport"
+      %br
+      assetBalance: 2
+    the number of images to load on either side of is-current
+    %br
+    %code
+      assetReveal: false
+    Must be set to true if setting lazyLoad to true in the component properties.
+    %br
+    %code
+      keyboardControl: false
+    Next: R arrow / l / n; Previous: L arrow / h / p
+    %br
+    %code
+      showSliderControls: true 
+      %br
+      loopAround: false
+    Set to true for carousel mode
+  You can change any slider defaults when the slider is created. For example:
   %pre.styleguide.copy--body.language-javascript
     %code
       :escaped
-        new Slider({ el: ".js-slider", showSliderControls: false });
+        new Slider({ el: ".js-slider", showSliderControls: false, loopAround: true });
 
 - sliders.each_with_index do |slider, i|
   = styleguide_component("slider", properties: slider, count: i, card_style: true, full_width: true)

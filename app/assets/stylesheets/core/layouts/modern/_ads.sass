@@ -3,7 +3,7 @@
 // ----------------------------------------------------------------------------
 
 .row--sponsored
-  @extend %transition--slower
+  transition: height 0.5s ease
   min-height: 100px
   overflow: hidden
 
@@ -22,8 +22,8 @@
 // ----------------------------------------------------------------------------
 
 .row--leaderboard
-  +z-layer(top)
-  position: relative
+  .responsive &
+    @extend %transition--nav
 
 .ad-leaderboard
   padding: 16px 0

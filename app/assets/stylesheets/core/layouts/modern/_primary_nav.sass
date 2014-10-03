@@ -9,6 +9,7 @@
   position: relative
   .responsive &
     position: static
+    margin-bottom: $primary-nav-height
 
 // ----------------------------------------------------------------------------
 //
@@ -58,7 +59,7 @@
 
 .nav__item--primary
   +font-size(13)
-  padding: 21px 6px 20px
+  padding: 21px 4px 18px
   text-transform: uppercase
   &.btn--small
     &, .responsive &
@@ -84,7 +85,7 @@
       background-size: 40%
     +respond-to(wide-view)
       +font-size(13)
-      padding: 21px 4px
+      padding: 21px 4px 18px
       border: none
       text-transform: uppercase
       &:before

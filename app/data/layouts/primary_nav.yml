@@ -115,7 +115,7 @@
 
   -
     :title: "Bookings"
-    :slug: "http://www.lonelyplanet.com/hotels/"
+    :slug: "http://www.lonelyplanet.com/bookings/"
     :icon_class: "icon--flights--line--before icon--white--before"
     :submenu:
       -

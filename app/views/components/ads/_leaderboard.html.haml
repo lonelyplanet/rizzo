@@ -1,13 +1,1 @@
-:ruby
-
-  attrs = {
-    size: { mapping: "leaderboard" },
-    targeting: { position: nil },
-    extension: nil
-  }
-
-  attrs.merge!(properties) if defined? properties
-
-  attrs[:targeting] = attrs[:targeting].to_json
-
-.adunit.adunit--leaderboard{ data: attrs }
+.adunit.adunit--leaderboard{ data: ad_unit_data('leaderboard', defined?(properties) ? properties : nil) }

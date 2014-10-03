@@ -5,55 +5,58 @@
 // ----------------------------------------------------------------------------
 
 .user-feed,
-  left: -160px
+  left: -200px
   cursor: default
   &, .responsive & // because .nav__submenu overwrites width when .responsive used
-    width: 320px 
+    width: 360px 
 
-.user-feed__content
-  +css-arrow(top, 30px, 277px)
+.user-feed__container
+  +css-arrow(top, 30px, 317px)
 
-.user-feed__user-name,
-.user-feed__user-email
-  padding: 0 15px 5px 15px
-  border: 0
+.user-feed__header
+  position: relative
+  padding: 20px 15px
 
-.user-feed__user-name
+.user-feed__username
   +font-size(22)
   font-weight: bold
-  padding-top: 18px
   color: $titlegray
-  .icon--settings
-    +size(28px)
 
-.user-feed__user-email
+.user-feed__email
   +font-size(17)
+  padding-top: 5px
   color: $titlegray
   font-weight: normal
 
-.user-feed__profile-buttons
-  padding: 10px 15px 20px 15px
+.user-feed__buttons
+  padding-top: 15px
   .btn
     +font-size(13)
     line-height: 13px
     text-transform: uppercase
-    padding: 9px 0 8px 0
+    padding: 9px 0 8px
   .btn--subtle
-    padding: 7px 0 6px 0
+    padding: 7px 0 6px
+  .icon--settings
+    +size(28px)
+    position: absolute
+    top: 14px
+    right: 14px
 
-.user-feed__activities__item
-  position: relative
-
-.user-feed__activities
+.user-feed__content
+  .nav__tabs__content
+    overflow-y: auto
+    min-height: 77px // empty list height
+    border-radius: 0 0 4px 4px // prevent hover highlight from making square corners
   .ie7 &,
   .ie8 &
     display: none
 
-.user-feed__activities__unread-count
+.user-feed__content__unread-count
   font-weight: normal
   color: $grey-highlight
 
-.user-feed__activities__tab
+.user-feed__list
   display: none
   list-style: none
   &.is-active
@@ -87,10 +90,10 @@
         margin: 0 0 15px 15px
         color: $bodygray
       &:before
+        +size(1.1em)
         display: inline-block
         margin: -0.2em 0.2em 0 0
         vertical-align: middle
-        +size(1.1em)
 
     .activity-list__link
       font-weight: bold
@@ -102,11 +105,11 @@
     right: 15px
     margin: 0
 
-  .user-feed__footer
-    padding: 18px 15px 13px 15px
+.user-feed__footer
+  padding: 18px 15px 13px
 
-  .activity-list__item--empty
-    padding: 20px 0
-    text-align: center
-    color: $subduedgray
-
+.activity-list__item--empty
+  +font-size(16)
+  padding: 30px 0
+  text-align: center
+  color: $lightgray

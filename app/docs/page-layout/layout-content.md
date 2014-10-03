@@ -16,13 +16,13 @@ All rows have a child of `.row__inner`. This inner container surrounds the conte
 </div>
 
 <div class="card styleguide-row clearfix context--content">
-  <h4 class="copy--h2">.row--leaderboard</h4>
-  <p>The primary advertising row.</p>
+  <h4 class="copy--h2">.row--primary</h4>
+  <p>Houses the primary nav, search and user nav.</p>
 </div>
 
 <div class="card styleguide-row clearfix context--content">
-  <h4 class="copy--h2">.row--primary</h4>
-  <p>Houses the primary nav, search and user nav.</p>
+  <h4 class="copy--h2">.row--leaderboard</h4>
+  <p>The primary advertising row.</p>
 </div>
 
 <div class="card styleguide-row clearfix context--content">

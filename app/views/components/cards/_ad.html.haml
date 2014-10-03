@@ -1,7 +1,7 @@
 %div{ class: card_classes(properties.merge({ kind: 'sponsored' })).push("card--sponsored--#{properties[:format]} js-card-sponsored").join(" ") }
   .card__mask
     .card__content
-      = ui_component("ads/#{properties[:partial_type]}", properties[:properties])
+      = ui_component("ads/#{properties[:partial_type]}", properties: properties[:properties])
 
   .tag--horizontal.tag--horizontal--left
     = properties[:label]

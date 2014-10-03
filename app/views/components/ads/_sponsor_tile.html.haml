@@ -1,13 +1,1 @@
-:ruby
-
-  attrs = {
-    size: { mapping: "sponsor-tile" },
-    targeting: { position: nil },
-    extension: nil
-  }
-
-  attrs.merge!(properties) if defined? properties
-
-  attrs[:targeting] = attrs[:targeting].to_json
-
-.adunit.adunit--sponsortile{ data: attrs }
+.adunit.adunit--sponsortile{ data: ad_unit_data('sponsor-tile', defined?(properties) ? properties : nil) }

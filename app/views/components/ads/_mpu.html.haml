@@ -1,13 +1,1 @@
-:ruby
-
-  attrs = {
-    size: { mapping: "mpu" },
-    targeting: { position: nil },
-    extension: nil
-  }
-
-  attrs.merge!(properties) if defined? properties
-
-  attrs[:targeting] = attrs[:targeting].to_json
-
-.adunit.adunit--mpu{ data: attrs }
+.adunit.adunit--mpu{ data: ad_unit_data('mpu', defined?(properties) ? properties : nil) }

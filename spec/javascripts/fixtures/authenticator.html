@@ -21,13 +21,13 @@
     <span class='notification-badge notification-badge--unread-messages wv--inline-block is-hidden js-unread-feed-number'>0</span>
     <span class='wv--hidden nav--offscreen__title'>{{username}}</span>
     <div class='user-feed nav__submenu'>
-      <div class='user-feed__content nav--stacked nav__submenu__content icon--tapered-arrow-up--after icon--white--after icon--white--bordered nav-user-options js-user-options'>
-        <div class='user-feed__user-name nav__submenu__title'>
+      <div class='user-feed__content nav--stacked nav__submenu__content icon--tapered-arrow-up--after icon--white--after icon--white--bordered nav-user-options js-user-feed'>
+        <div class='user-feed__username nav__submenu__title'>
           {{username}}
           <a class='split--right icon--settings icon--body-grey js-user-settings' href='https://www.lonelyplanet.com/thorntree/forums/settings'></a>
         </div>
-        <div class='user-feed__user-email nav__submenu__title'>{{email}}</div>
-        <div class='user-feed__profile-buttons'>
+        <div class='user-feed__email nav__submenu__title'>{{email}}</div>
+        <div class='user-feed__buttons'>
           <div class='grid-wrapper--10'>
             <div class='col--one-half'>
               <a class='btn btn--small btn--full-width js-user-profile' href='https://www.lonelyplanet.com/thorntree/profiles/{{profileSlug}}'>View Profile</a>
@@ -37,11 +37,11 @@
             </div>
           </div>
         </div>
-        <div class='user-feed__activities js-user-feed'>
+        <div class='user-feed__activities'>
           <div class='nav__tabs'>
             <div class='grid-wrapper--0'>
               <div class='col--one-half'>
-                <a class='btn btn--white nav__tabs__btn js-tab-trigger is-active' href='#js-user-feed-activities'>
+                <a class='btn btn--white nav__tabs__btn js-tab-trigger is-active' href='#js-user-feed-activities-list'>
                   Recent activity
                   <span class='user-feed__activities__unread-count'>
                     (
@@ -51,7 +51,7 @@
                 </a>
               </div>
               <div class='col--one-half'>
-                <a class='btn btn--white nav__tabs__btn js-tab-trigger' href='#js-user-feed-messages'>
+                <a class='btn btn--white nav__tabs__btn js-tab-trigger' href='#js-user-feed-messages-list'>
                   Messages
                   <span class='user-feed__activities__unread-count'>
                     (
@@ -63,12 +63,12 @@
             </div>
           </div>
           <div class='js-tabs-content'>
-            <ul class='user-feed__activities__tab is-active' id='js-user-feed-activities'>
+            <ul class='user-feed__activities__tab is-active' id='js-user-feed-activities-list'>
               <li class='activity-list__item--empty'>You have no recent activity</li>
             </ul>
-            <ul class='user-feed__activities__tab' id='js-user-feed-messages'>
+            <ul class='user-feed__activities__tab' id='js-user-feed-messages-list'>
               <li class='activity-list__item--empty'>You have no messages</li>
-              <li class='user-feed__footer user-feed__profile-buttons js-user-feed-footer'>
+              <li class='user-feed__footer user-feed__buttons js-user-feed-footer'>
                 <a class='btn btn--full-width' href='https://www.lonelyplanet.com/thorntree/profiles/{{profileSlug}}/messages'>See all messages</a>
               </li>
             </ul>

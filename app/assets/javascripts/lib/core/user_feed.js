@@ -14,35 +14,53 @@ define([
   "use strict";
 
   var defaults = {
-    feedUrl: "https://www.lonelyplanet.com/thorntree/users/feed",
-    feedSelector: ".js-user-feed",
-    feedItemSelector: ".js-user-feed-item",
-    targetLinkSelector: ".js-user-feed-item-target-link",
-    activitiesSelector: "#js-user-feed-activities",
-    messagesSelector: "#js-user-feed-messages",
-    messagesResponsiveSelector: ".js-responsive-messages",
-    footerSelector: ".js-user-feed-footer",
-    unreadFeedNumberSelector: ".js-unread-feed-number",
-    unreadActivitiesNumberSelector: ".js-unread-activities-number",
-    unreadMessagesNumberSelector: ".js-unread-messages-number",
-    unreadMessagesResponsiveNumberSelector: ".js-responsive-unread-messages",
-    newFeedHighlightClass: "is-highlighted",
-    initialHighlightedActivitiesNumber: 0,
-    maxFeedActivities: 5,
-    fetchInterval: 15000
-  };
+        feedUrl: "https://www.lonelyplanet.com/thorntree/users/feed",
+        maxFeedActivities: 5,
+        fetchInterval: 15000,
+        selectors: {
+          feedContent: ".js-user-feed-content",
+          feedItem: ".js-user-feed-item",
+          flyoutTrigger: ".js-user-signed-in",
+          flyout: ".js-user-feed",
+          tabsContent: ".js-tabs-content",
+          targetLink: ".js-user-feed-item-target-link",
+          activities: "#js-user-feed-activities-list",
+          messages: "#js-user-feed-messages-list",
+          messagesResponsiveMenuItem: ".js-responsive-messages",
+          footer: ".js-user-feed-footer",
+          unreadFeedNumber: ".js-unread-feed-count",
+          unreadActivitiesNumber: ".js-unread-activities-count",
+          unreadMessagesNumber: ".js-unread-messages-count",
+          unreadMessagesResponsiveNumber: ".js-responsive-unread-messages"
+        }
+      },
+      _selectors;
 
   function UserFeed(args) {
     this.config = $.extend({}, defaults, args);
-    this.$activities = $(this.config.activitiesSelector);
-    this.$messages = $(this.config.messagesSelector);
-    this.$messagesResponsive = $(this.config.messagesResponsiveSelector);
-    this.$footer = $(this.config.footerSelector);
-    this.$unreadActivitiesIndicator = $(this.config.unreadActivitiesNumberSelector);
-    this.$unreadMessagesIndicator = $(this.config.unreadMessagesNumberSelector);
-    this.$unreadFeedIndicator = $(this.config.unreadFeedNumberSelector);
-    this.currentActivities;
-    this.highlightedActivitiesNumber = this.config.initialHighlightedActivitiesNumber;
+    _selectors = this.config.selectors;
+
+    this.$content = $(_selectors.feedContent);
+    this.$activities = $(_selectors.activities);
+    this.$messages = $(_selectors.messages);
+    this.$messagesResponsiveMenuItem = $(_selectors.messagesResponsiveMenuItem);
+
+    this.$unreadFeedIndicator = $(_selectors.unreadFeedNumber);
+    this.$unreadActivitiesIndicator = $(_selectors.unreadActivitiesNumber);
+    this.$unreadMessagesIndicator = $(_selectors.unreadMessagesNumber);
+
+    this.$flyoutTrigger = $(_selectors.flyoutTrigger);
+    this.$flyout = $(_selectors.flyout);
+
+    this.$tabsContent = $(_selectors.tabsContent);
+
+    this.$footer = $(_selectors.footer);
+
+    this.$body = $("html, body");
+
+    this.currentActivities = [];
+    this.highlightedActivitiesNumber = 0;
+    this.contentHeight;
 
     this.init();
   }
@@ -52,8 +70,8 @@ define([
   // ------------------------------------------------------------------------------
 
   UserFeed.prototype.init = function() {
-    this._tabsInstance = new Tabs({ selector: this.config.feedSelector });
-    this._timeagoInstance = new TimeAgo({ context: this.config.feedSelector });
+    this._tabsInstance = new Tabs({ selector: _selectors.feedContent });
+    this._timeagoInstance = new TimeAgo({ context: _selectors.feedContent });
 
     this._fetchFeed();
   };
@@ -62,10 +80,35 @@ define([
   // Private Functions
   // -------------------------------------------------------------------------
 
+  UserFeed.prototype._responsifyTabsContentHeight = function() {
+    var _this = this,
+        contentOffset, windowHeight;
+
+    this.$flyoutTrigger.on("mouseenter", function() {
+
+      if (!_this.contentHeight) { // init hover listeners
+        _this.$flyout
+          .on("mouseenter", function() {
+            _this.$body.addClass("no-scroll");
+          })
+          .on("mouseleave", function() {
+            _this.$body.removeClass("no-scroll");
+          });
+
+        _this.contentHeight = _this.$tabsContent.height(); //set initial content height
+      }
+
+      contentOffset = _this.$tabsContent.offset().top - $(window).scrollTop();
+      windowHeight = $(window).height() - 20; // leaving 20px for margin
+      _this.$tabsContent.css("max-height", windowHeight - contentOffset);
+    });
+  };
+
   UserFeed.prototype._bindLinks = function() {
     var _this = this;
-    $(this.config.feedSelector + " " + this.config.feedItemSelector).off("click").on("click", function() {
-      _this._goToUrl($(this).find(_this.config.targetLinkSelector).attr("href"));
+
+    this.$content.find(_selectors.feedItem).off("click").on("click", function() {
+      _this._goToUrl($(this).find(_selectors.targetLink).attr("href"));
     });
   };
 
@@ -74,9 +117,12 @@ define([
   };
 
   UserFeed.prototype._updateUnreadMessagesResponsiveIndicator = function(unreadMessagesCount) {
-    if ((unreadMessagesCount > 0) && (!$(this.config.unreadMessagesResponsiveNumberSelector).length)) {
-      this.$messagesResponsive.children().last()
-          .append("<span class=" + this.config.unreadMessagesResponsiveNumberSelector.replace(".", "") + "> (" + unreadMessagesCount + ")</span>");
+    if ((unreadMessagesCount > 0) && (!$(_selectors.unreadMessagesResponsiveNumber).length)) {
+      this.$messagesResponsiveMenuItem.children().last()
+          .append(
+            "<span class=" + _selectors.unreadMessagesResponsiveNumber.substr(1) +
+            "> (" + unreadMessagesCount + ")</span>"
+          );
     }
   };
 
@@ -109,10 +155,12 @@ define([
     this.$activities
       .children()
       .slice(0, _this.highlightedActivitiesNumber)
-      .addClass(_this.config.newFeedHighlightClass);
+      .addClass("is-highlighted");
 
     // Update new activities number
-    this.$unreadActivitiesIndicator.text(_this.highlightedActivitiesNumber);
+    if (_this.highlightedActivitiesNumber > 0) {
+      this.$unreadActivitiesIndicator.text("(" + _this.highlightedActivitiesNumber + ")");
+    }
   };
 
   UserFeed.prototype._createUserMessages = function(feedMessages, newMessagesNumber) {
@@ -123,7 +171,7 @@ define([
     while ((i < feedMessages.length) && (i < this.config.maxFeedActivities)) {
       if (!feedMessages[i]["read?"]) {
         // Add highlight class if message has unread flag
-        messagesHtml += $(feedMessages[i].text).addClass(this.config.newFeedHighlightClass)[0].outerHTML;
+        messagesHtml += $(feedMessages[i].text).addClass("is-highlighted")[0].outerHTML;
       } else {
         messagesHtml += feedMessages[i].text;
       }
@@ -131,13 +179,17 @@ define([
     }
 
     // Update messages list
-    this.$messages.html(messagesHtml).append(this.$footer);
+    this.$messages.find("li").not(":last").remove();
+    this.$messages.prepend(messagesHtml);
+    this.$footer.removeClass("is-hidden");
 
     // Bind target links to whole item
     this._bindLinks();
 
     // Update new messages number
-    this.$unreadMessagesIndicator.text(newMessagesNumber);
+    if (newMessagesNumber > 0) {
+      this.$unreadMessagesIndicator.text("(" + newMessagesNumber + ")");
+    }
   };
 
   UserFeed.prototype._getActivityNumber = function(feed) {
@@ -163,7 +215,7 @@ define([
   };
 
   UserFeed.prototype._updateActivities = function(feed) {
-    if (this.currentActivities) {
+    if (this.currentActivities.length) {
       var newActivitiesNumber = this._getActivityNumber(feed);
 
       if (this.highlightedActivitiesNumber < newActivitiesNumber) {
@@ -174,7 +226,7 @@ define([
 
     } else {
       // Create activities list
-      feed.activities && feed.activities.length && this._createUserActivities(feed.activities, feed.activities.length);
+      feed.activities && feed.activities.length && this._createUserActivities(feed.activities);
       this.currentActivities = feed.activities;
     }
   };
@@ -187,13 +239,14 @@ define([
   };
 
   UserFeed.prototype._updateFeed = function(clientWidth, fetchedFeed) {
-    if (!fetchedFeed) { return; }
+    if (!fetchedFeed) { return false; }
 
     // Poll for wide screens
     if (clientWidth >= 980) {
       this._updateActivities(fetchedFeed);
       this._updateMessages(fetchedFeed);
       this._timeagoInstance.updateStrings();
+      this._responsifyTabsContentHeight();
 
       setTimeout(this._fetchFeed.bind(this), this.config.fetchInterval);
     }

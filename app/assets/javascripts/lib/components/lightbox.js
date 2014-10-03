@@ -30,6 +30,7 @@ define([
     this.customClass = args.customClass || "";
     this.showPreloader = args.showPreloader || false;
     this.customRenderer = args.customRenderer || false;
+    this.mobileBreakpoint = args.mobileBreakpoint || 500;
 
     this.$lightbox = $("#js-lightbox");
     this.$lightboxWrapper = this.$lightbox.find(".js-lightbox-wrapper");
@@ -79,12 +80,14 @@ define([
     }.bind(this));
 
     this.$el.on("click", this.opener, function(event) {
-      event.preventDefault();
-      this.trigger(":lightbox/open", {
-        listener: this.$el,
-        opener: event.currentTarget,
-        target: this.$lightboxContent
-      });
+      if (this.viewport().width > this.mobileBreakpoint) {
+        event.preventDefault();
+        this.trigger(":lightbox/open", {
+          listener: this.$el,
+          opener: event.currentTarget,
+          target: this.$lightboxContent
+        });
+      }
     }.bind(this));
 
     this.$previous.add(this.$next).on("click", function(event) {

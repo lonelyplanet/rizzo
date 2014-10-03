@@ -1,0 +1,13 @@
+.hero-slider.js-onswipe
+  = ui_component('preloader', properties: { styled: true })
+  
+  .hero-slider__image.js-hero-slider-image.is-visible{ style: "background-image: url(\"#{properties[:image_url]}\");" }
+  .hero-slider__image.hero-slider__image--placeholder.js-hero-slider-placeholder-image{ style: "background-image: url(\"#{properties[:image_url]}\");" }
+
+  .hero-slider__overlay
+    - if properties[:show_controls]
+      .gallery__controls
+        %a.arrow--left.js-hero-slider-navigate.js-hero-slider-previous.icon--chevron-left--after.icon--white--after{ href: properties[:pagination_previous_url], data: { title: properties[:pagination_previous_title] } }
+        %a.arrow--right.js-hero-slider-navigate.js-hero-slider-next.icon--chevron-right--before.icon--white--before{ href: properties[:pagination_next_url], data: { title: properties[:pagination_next_title] } }
+
+    = render partial: properties[:content_template]

@@ -38,6 +38,23 @@ module CardsHelper
     }
   end
 
+  def card_from_widget_data(data, index)
+    {
+      fixed?: true,
+      cover?: true,
+      short?: index > 2,
+      double?: index.zero?,
+      kind: 'flickr',
+      url: data[:url],
+      title: data[:image_title],
+      image_url: data[:image_url],
+      image_alt: data[:image_title],
+      author_name: data[:owner_name],
+      author_avatar: data[:owner_image],
+      tags: { position: index + 1 }
+    }
+  end
+
   def card_icon(props)
     props[:kind] == 'need-to-know' ? 'information' : props[:kind]
   end

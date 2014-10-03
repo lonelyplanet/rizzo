@@ -3,18 +3,9 @@
     = properties[:tag]
 
   - if properties[:comments].present?
-    - properties[:comments].first(5).each.with_index do |(id, entry), index|
-      
-      - entry[:author_name] = entry[:owner_name]
-      - entry[:tags] = { position: index + 1 }
-
-      - if index.zero?
-        - entry[:double?] = true
-        - entry[:author_avatar] = entry[:owner_image]
-      - elsif index > 2
-        - entry[:short?] = true
-
-      = ui_component("cards/card", { properties: entry })
+    .grid-wrapper--10.results
+      - properties[:comments].first(5).each.with_index do |(id, entry), index|
+        = ui_component("cards/card", properties: card_from_widget_data(entry, index))
   - else
     .no--content
       No content found, please try again later

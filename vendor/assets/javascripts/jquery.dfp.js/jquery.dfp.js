@@ -1,8 +1,8 @@
 /**
- * jQuery DFP v1.0.23
+ * jQuery DFP v1.1.4
  * http://github.com/coop182/jquery.dfp.js
  *
- * Copyright 2013 Matt Cooper
+ * Copyright 2014 Matt Cooper
  * Released under the MIT license
  */
 (function ($, window, undefined) {
@@ -17,10 +17,9 @@
     // DFP account ID
     dfpID = '',
 
-    // Count of ads
+    // Init counters
     count = 0,
-
-    // Count of rendered ads
+    uid = 0,
     rendered = 0,
 
     // Default DFP selector
@@ -45,6 +44,10 @@
      * @param  Object options  Custom options to apply
      */
     init = function (id, selector, options) {
+
+        // Reset counters on each call
+        count = 0;
+        rendered = 0;
 
         dfpID = id;
         $adCollection = $(selector);
@@ -115,13 +118,13 @@
             var adUnitName = getName($adUnit);
 
             // adUnit id - this will use an existing id or an auto generated one.
-            var adUnitID = getID($adUnit, adUnitName, count);
+            var adUnitID = getID($adUnit, adUnitName);
 
             // get dimensions of the adUnit
             var dimensions = getDimensions($adUnit);
 
-            // get existing content
-            var $existingContent = $adUnit.html();
+            // set existing content
+            $adUnit.data('existingContent', $adUnit.html());
 
             // wipe html clean ready for ad and set the default display class.
             $adUnit.html('').addClass('display-none');
@@ -180,38 +183,6 @@
                     googleAdUnit.defineSizeMapping(map.build());
                 }
 
-                // The following hijacks an internal google method to check if the div has been
-                // collapsed after the ad has been attempted to be loaded.
-                googleAdUnit.oldRenderEnded = googleAdUnit.oldRenderEnded || googleAdUnit.renderEnded;
-                googleAdUnit.renderEnded = function () {
-
-                    rendered++;
-
-                    var display = $adUnit.css('display');
-
-                    // if the div has been collapsed but there was existing content expand the
-                    // div and reinsert the existing content.
-                    if (display === 'none' && $.trim($existingContent).length > 0 && dfpOptions.collapseEmptyDivs === 'original') {
-                        $adUnit.show().html($existingContent);
-                        display = 'block display-original';
-                    }
-
-                    $adUnit.removeClass('display-none').addClass('display-' + display);
-
-                    // Excute afterEachAdLoaded callback if provided
-                    if (typeof dfpOptions.afterEachAdLoaded === 'function') {
-                        dfpOptions.afterEachAdLoaded.call(this, $adUnit);
-                    }
-
-                    // Excute afterAllAdsLoaded callback if provided
-                    if (typeof dfpOptions.afterAllAdsLoaded === 'function' && rendered === count) {
-                        dfpOptions.afterAllAdsLoaded.call(this, $adCollection);
-                    }
-
-                    googleAdUnit.oldRenderEnded();
-
-                };
-
                 // Store googleAdUnit reference
                 $adUnit.data(storeAs, googleAdUnit);
 
@@ -266,6 +237,37 @@
             if (dfpOptions.noFetch) {
                 window.googletag.pubads().noFetch();
             }
+
+            // Setup event listener to listen for renderEnded event and fire callbacks.
+            window.googletag.pubads().addEventListener('slotRenderEnded', function(event) {
+
+                rendered++;
+
+                var $adUnit = $('#' + event.slot.getSlotId().getDomId());
+
+                var display = event.isEmpty ? 'none' : 'block';
+
+                // if the div has been collapsed but there was existing content expand the
+                // div and reinsert the existing content.
+                var $existingContent = $adUnit.data('existingContent');
+                if (display === 'none' && $.trim($existingContent).length > 0 && dfpOptions.collapseEmptyDivs === 'original') {
+                    $adUnit.show().html($existingContent);
+                    display = 'block display-original';
+                }
+
+                $adUnit.removeClass('display-none').addClass('display-' + display);
+
+                // Excute afterEachAdLoaded callback if provided
+                if (typeof dfpOptions.afterEachAdLoaded === 'function') {
+                    dfpOptions.afterEachAdLoaded.call(this, $adUnit, event);
+                }
+
+                // Excute afterAllAdsLoaded callback if provided
+                if (typeof dfpOptions.afterAllAdsLoaded === 'function' && rendered === count) {
+                    dfpOptions.afterAllAdsLoaded.call(this, $adCollection);
+                }
+
+            });
 
             window.googletag.enableServices();
 
@@ -349,12 +351,12 @@
      * Get the id of the adUnit div or generate a unique one.
      * @param  Object $adUnit     The adunit to work with
      * @param  String adUnitName The name of the adunit
-     * @param  Integer count     The current count of adunit, for uniqueness
      * @return String             The ID of the adunit or a unique autogenerated ID
      */
-    getID = function ($adUnit, adUnitName, count) {
+    getID = function ($adUnit, adUnitName) {
 
-        return $adUnit.attr('id') || $adUnit.attr('id', adUnitName + '-auto-gen-id-' + count).attr('id');
+        uid++;
+        return $adUnit.attr('id') || $adUnit.attr('id', adUnitName.replace(/[^A-z0-9]/g, '_') + '-auto-gen-id-' + uid).attr('id');
 
     },
 
@@ -366,7 +368,7 @@
      */
     getName = function ($adUnit) {
 
-        var adUnitName = $adUnit.data('adunit') || dfpOptions.namespace || $adUnit.attr('id');
+        var adUnitName = $adUnit.data('adunit') || dfpOptions.namespace || $adUnit.attr('id') || '';
         if (typeof dfpOptions.alterAdUnitName === 'function') {
           adUnitName = dfpOptions.alterAdUnitName.call(this, adUnitName, $adUnit);
         }

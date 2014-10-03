@@ -60,7 +60,7 @@ define([
 
   Slider.prototype._gatherElements = function() {
     this.$currentSlide = this.$slides.filter(".is-current");
-    this.$listener = $(this.config.$listener || "#js-row-content");
+    this.$listener = $(this.config.$listener || "#js-row--content");
     this.$slidesContainer = this.$el.find(this.config.slidesContainer);
     this.$slidesViewport = this.$el.find(this.config.slidesViewport);
     this.$sliderControlsContainer = $(".js-slider-controls-container");
@@ -72,11 +72,14 @@ define([
 
     this.$listener.on(":slider/next", this._nextSlide.bind(this));
     this.$listener.on(":slider/previous", this._previousSlide.bind(this));
+    this.$listener.on(":slider/goto", function(e, index) {
+      _this._goToSlide(index);
+    });
 
     this.$el.on(":swipe/left", this._nextSlide.bind(this));
     this.$el.on(":swipe/right", this._previousSlide.bind(this));
 
-    this.config.keyboardControls && $(document).on("keydown", function(event) {
+    this.config.keyboardControl && $(document).on("keydown", function(event) {
       if (event.metaKey || event.ctrlKey) return;
 
       switch (event.which) {
@@ -92,8 +95,8 @@ define([
     });
 
     this.$images.on("load", function(event) {
-      if (!this.$slides.hasClass("is-loaded")) return;
-      var slide = this.$slides.has(event.target);
+      if (!_this.$slides.hasClass("is-loaded")) return;
+      var slide = _this.$slides.has(event.target);
       slide.removeClass("is-loading").addClass("is-loaded");
     });
   };
@@ -179,7 +182,7 @@ define([
   };
 
   Slider.prototype._nextSlide = function() {
-    if (this.$sliderControlsContainer.is(".at-end")) {
+    if (this.$sliderControlsContainer.is(".at-loop-end")) {
       if (this.config.loopAround) {
         this._goToSlide(1);
       }
@@ -210,25 +213,27 @@ define([
   };
 
   Slider.prototype._updateSlideClasses = function() {
-    var atBeginning, atEnd,
+    var atBeginning, atLoopEnd,
         current = this.$slides.eq(this.currentSlide - 1),
         next = current.next(),
         prev = current.prev();
 
-    this.$sliderControlsContainer.removeClass("at-beginning at-end");
+    this.$sliderControlsContainer.removeClass("at-beginning at-end at-loop-end");
 
     if (this.currentSlide == 1) {
       this.$sliderControlsContainer.addClass("at-beginning");
       atBeginning = true;
+    } else if (this.config.loopAround && this.currentSlide == this.numSlides) {
+      this.$sliderControlsContainer.addClass("at-loop-end");
+      atLoopEnd = true;
     } else if (this.currentSlide == this.numSlides) {
       this.$sliderControlsContainer.addClass("at-end");
-      atEnd = true;
     }
 
     if (this.config.loopAround) {
       if (atBeginning) {
         prev = this.$slides.eq(this.numSlides - 1);
-      } else if (atEnd) {
+      } else if (atLoopEnd) {
         next = this.$slides.eq(0);
       }
     }
@@ -244,7 +249,8 @@ define([
     var next = this.$sliderControlsContainer.find(".js-slider-next"),
         previous = this.$sliderControlsContainer.find(".js-slider-previous"),
         currentHTML = next.html() || "",
-        nextIndex = Math.min(this.currentSlide + 1, this.numSlides),
+        atLoopEnd = this.$sliderControlsContainer.is(".at-loop-end"),
+        nextIndex =  atLoopEnd ? 1 : Math.min(this.currentSlide + 1, this.numSlides),
         prevIndex = Math.max(this.currentSlide - 1, 1);
 
     next.html(currentHTML.replace(/([0-9]+)/, nextIndex));

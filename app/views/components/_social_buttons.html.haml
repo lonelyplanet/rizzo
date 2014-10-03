@@ -1,5 +1,5 @@
 :ruby
-  show = properties[:show] || %w(facebook twitter google-plus stumbleupon)
+  show = properties[:show] || %w(facebook twitter google-plus stumbleupon tumblr pinterest)
   show = show - (properties[:hide] || [])
   encoded_url = CGI.escape("#{properties[:url]}")
   image_url = CGI.escape("#{properties[:image_url]}")
@@ -27,8 +27,13 @@
       %a.social__item.social__item--stumbleupon{ href: "http://www.stumbleupon.com/submit?url=#{encoded_url}", target: "_blank", data: {lpa_category: "share", lpa_action: "stumbleupon", lpa_label: "#{properties[:url]}"}}
         %span.accessibility Share on Stumbleupon
         %span.social__icon.icon--stumbleupon.icon--white
-
+    
+    - if show.include? 'tumblr'
+      %a.social__item.social__item--tumblr{ href: "http://www.tumblr.com/share/link?url=#{encoded_url}", target: "_blank", data: {lpa_category: "share", lpa_action: "tumblr", lpa_label: "#{properties[:url]}"}}
+        %span.accessibility Share on Tumblr
+        %span.social__icon.icon--tumblr.icon--white
+    
     - if show.include? 'pinterest'
-      %a.social__item.social__item--pinterest{ href: "http://pinterest.com/pin/create/button/?url=#{encoded_url}&media=#{image_url}&description=#{properties[:description]}", target: "blank" }
+      %a.social__item.social__item--pinterest{ href: "http://pinterest.com/pin/create/button/?url=#{encoded_url}&media=#{image_url}&description=#{properties[:description]}", target: "blank", data: {lpa_category: "share", lpa_action: "pinterest", lpa_label: "#{properties[:url]}"}}
         %span.accessibility Pin this image
         %span.social__icon.icon--pinterest.icon--white

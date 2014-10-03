@@ -17,10 +17,9 @@ require([ "jquery", "public/assets/javascripts/lib/core/authenticator" ], functi
       timestamp: "2014-03-31T14:33:47+01:00",
     };
 
-    $("body").append("<div id='js-user-nav-template' />");
-
     beforeEach(function() {
       loadFixtures("authenticator.html");
+      $("#jasmine-fixtures").append("<div id='js-user-nav-template' />");
       $("#js-user-nav-template").html($("#jasmine-fixtures").html());
 
       // We don't need to test the actual ajax request, and this now being a `jsonp` request, it breaks Phantom.

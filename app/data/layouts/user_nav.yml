@@ -33,7 +33,7 @@
       :title: "Sign in"
       :slug: "https://auth.lonelyplanet.com/users/sign_in"
       :icon_class: "icon--user--before icon--white--before"
-      :extra_class: "js-user-sign_in"
+      :extra_class: "js-user-sign_in sign-in"
       :analytics:
         :category: "account"
         :action: "sign-in"

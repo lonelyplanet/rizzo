@@ -8,10 +8,10 @@
 
   %body{ class: responsive ? "responsive" : false }
 
-    = render 'layouts/custom/pre_header', third_party: third_party, ads_header: ads_header
+    = render 'layouts/custom/pre_header', third_party: third_party
 
     .wrapper.js-wrapper
-      = render 'layouts/custom/post_header', search: search, user_nav: user_nav, include_js: include_js, nav_primary: nav_primary, responsive: responsive
+      = render 'layouts/custom/post_header', search: search, user_nav: user_nav, include_js: include_js, nav_primary: nav_primary, responsive: responsive, ads_header: ads_header
 
       .row.row--content{ id: "js-row--content" }
         .row.row--secondary#js-secondary-nav

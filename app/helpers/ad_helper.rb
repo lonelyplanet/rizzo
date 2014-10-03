@@ -9,4 +9,17 @@ module AdHelper
     { height: 312, width: 162, ad_slot: 2903404846, id: AD_SENSE_ID }
   end
 
+  def ad_unit_data(type, props)
+    attrs = {
+      size: { mapping: type },
+      targeting: { position: nil },
+      extension: nil
+    }
+
+    attrs.merge!(props.symbolize_keys) if props.present?
+    attrs[:targeting] = attrs[:targeting].to_json
+
+    attrs
+  end
+
 end

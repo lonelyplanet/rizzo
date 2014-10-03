@@ -10,9 +10,8 @@
 
   .wrapper.js-wrapper
   
-    = render 'layouts/custom/pre_header', third_party: false, ads_header: true
-    = render 'layouts/custom/post_header', search: true, user_nav: true, include_js: true, nav_primary: true, responsive: false
-
+    = render 'layouts/custom/pre_header', third_party: false
+    = render 'layouts/custom/post_header', search: true, user_nav: true, include_js: true, nav_primary: true, responsive: false, ads_header: true
 
     .row.row--content#js-row--content
       - if content_for?(:secondary)

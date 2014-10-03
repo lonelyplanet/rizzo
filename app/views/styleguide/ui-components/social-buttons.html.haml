@@ -2,6 +2,22 @@
 
 .card.styleguide-intro.copy--body.context--content
   %h1.copy--h1 Social Buttons
+  %h3.copy--h3 Open Graph Data
+  %p.copy--body When using these social sharing icons, don't forget to add open graph data to your page. This way if you share on social channels that scrape that content, you will get the benefit of pre-set descriptions, titles, images, etc.
+  %pre.code
+    = preserve do
+      :escaped
+        %meta{property: "og:title", content: "Lonely Planet"}
+        %meta{property: "og:description", content: "The ultimate online destination..."}
+        %meta{property: "og:image", content: "\#{asset_path('header.jpg')}"}
+  
+  %h3.copy--h3
+  %p.copy--body
+    Also, remember you can hide items from the list of buttons by using the <strong>hide</strong> array.
+
+  %h3.copy--h3 Twitter
+  %p.copy--body Twitter looks for a custom <strong>tweet</strong> property, as it's the only service that limits your characters. Remember, if you're tweeting a link, that twitter will auto-convert any URL to 22 or 23 characters (for http or https). If you add in a space, then you have 117 characters to work with for the message.
 
 .styleguide--section--social
-  = styleguide_component("social_buttons", properties: {url: "http://rizzo.lonelyplanet.com/styleguide"})
+  = styleguide_component("social_buttons", properties: {url: "http://rizzo.lonelyplanet.com/styleguide", hide: ["tumblr"]})
+  = styleguide_component("social_buttons", properties: {url: "http://rizzo.lonelyplanet.com/styleguide", show_label?: true, hide: ["facebook"], tweet: "Custom text can be used for tweets. URLs appear for everything else."})

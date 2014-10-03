@@ -12,9 +12,9 @@ paths:
   d3: "d3/d3"
   nvd3: "nvd3/nv.d3"
   picturefill: "picturefill/dist/picturefill"
-  infobox: "google/infobox"
 
 modules:
+  - name: 'infobox'
   - name: 'app_core'
     exclude:
       - 'infobox'

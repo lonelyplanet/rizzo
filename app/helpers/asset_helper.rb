@@ -41,6 +41,10 @@ module AssetHelper
     end
   end
 
+  def requirejs_config_path(script_name)
+    normalised_asset_path("#{script_name}.js").split(".js")[0]
+  end
+
   # Rails 3 and 4 deal with assets differently
   def normalised_asset_path (asset_name)
     asset_path(asset_name).sub(/(.*\.com)?\/?(assets\/)?\/?(.*)/, '\1/assets/\3')

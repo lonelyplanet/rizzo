@@ -2,12 +2,10 @@
 - flickr_widgets = YAML.load(File.read(File.expand_path('../../../../data/styleguide/flickr_widget_stubs.yml', __FILE__)))
 
 .card.styleguide-intro.copy--body.context--content
-  .clearfix
-    %h1.split--left.copy--h1 Flickr widget
+  %h1.copy--h1 Flickr Widget
 
   %p
     This is the flickr widget
 
-.grid-wrapper--10
-  - flickr_widgets.each_with_index do |widget, i|
-    = styleguide_component("widgets/flickr", properties: widget, num_items: 5, count: i, full_width: true)
+- flickr_widgets.each_with_index do |widget, i|
+  = styleguide_component("widgets/flickr", properties: widget.merge(fixed?: true), num_items: 5, count: i, full_width: true)
