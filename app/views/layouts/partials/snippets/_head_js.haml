@@ -66,6 +66,9 @@
 
 = yield :head_js
 
+- if params[:krux].to_i == 1
+  = render 'layouts/partials/inline_js/krux'
+
 
 :javascript
   // Google analytics
