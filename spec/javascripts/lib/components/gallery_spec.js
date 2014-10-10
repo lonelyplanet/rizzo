@@ -4,12 +4,6 @@ require([ "jquery", "public/assets/javascripts/lib/components/gallery.js" ], fun
 
   describe("Gallery", function() {
 
-    lp.supports = {
-      transform: {
-        css: ""
-      }
-    };
-
     var gallery;
 
     beforeEach(function () {
@@ -24,25 +18,18 @@ require([ "jquery", "public/assets/javascripts/lib/components/gallery.js" ], fun
         spyOn(gallery, "_updateImageInfo");
         spyOn(gallery, "_updateSlug");
         spyOn(gallery, "_updateGoogleAnalytics");
+
+        gallery._afterNavigation();
       });
 
-      ["transform", "-webkit-transform"].forEach(function(transitionValue){
-        it("updates image info after a transition value of " + transitionValue, function() {
-          lp.supports.transform.css = transitionValue;
-          gallery._afterNavigation({ originalEvent: { propertyName: "transform" } });
-
-          expect(gallery._updateImageInfo).toHaveBeenCalled();
-          expect(gallery.analytics.track).toHaveBeenCalled();
-          expect(gallery._updateSlug).toHaveBeenCalled();
-          expect(gallery._updateGoogleAnalytics).toHaveBeenCalled();
-          expect(":ads/refresh").toHaveBeenTriggeredOn(gallery.$listener);
-        });
+      it("updates image meta data and refreshes the ads and oms", function() {
+        expect(gallery._updateImageInfo).toHaveBeenCalled();
+        expect(gallery.analytics.track).toHaveBeenCalled();
+        expect(gallery._updateSlug).toHaveBeenCalled();
+        expect(gallery._updateGoogleAnalytics).toHaveBeenCalled();
+        expect(":ads/refresh").toHaveBeenTriggeredOn(gallery.$listener);
       });
 
-      it("ignores other transitions", function() {
-        gallery._afterNavigation({ originalEvent: { propertyName: "opacity" } });
-        expect(gallery._updateImageInfo).not.toHaveBeenCalled();
-      });
     });
 
     describe("Updating the image info", function() {

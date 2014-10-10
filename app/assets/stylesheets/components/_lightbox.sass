@@ -2,10 +2,9 @@ $lightbox-width: 800px !default
 
 .lightbox
   +z-layer(modal)
+  +alpha-background($body-background, 0.95)
   width: 100%
   height: 100%
-  background: $body-background
-  background: rgba($body-background, 0.95)
   left: 0
   opacity: 0
   position: fixed

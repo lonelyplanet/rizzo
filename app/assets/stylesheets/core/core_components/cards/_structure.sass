@@ -76,11 +76,20 @@
   margin-bottom: 4px
   color: $bodygray
 
+// Locale is moved to footer in simplified A/B test
+.card__footer__locale,
 .card__content__locale
+  position: relative
   margin-top: 6px
+  white-space: nowrap
+  overflow: hidden
+  text-overflow: ellipsis
 
   &:before
-    +size(10px)
+    +size(16px)
+    top: 0.25em
+    margin-top: -2px
+    margin-bottom: -2px
 
 .card__content__context
   &:before
@@ -93,11 +102,15 @@
     border: 2px solid
     background-size: 100%
 
+.card__content__ribbon
+  position: absolute
+  top: 12px
+  right: 0
+  width: 56px
+  height: 18px
+
 .card__content__title
   +font-size(20)
-
-  .card--has-tags &
-    padding-right: 40px
 
 .card__content__desc
   +font-size(15)
@@ -186,6 +199,10 @@
 
     .card__content
       padding-top: 15px
+
+    &.card--has-tags
+      .card__content__title
+        padding-right: 40px
 
 .card--short
   // Short cards are always a single width

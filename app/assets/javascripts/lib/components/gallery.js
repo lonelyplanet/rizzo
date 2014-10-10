@@ -3,8 +3,7 @@ define([
   "lib/utils/debounce",
   "lib/components/slider",
   "lib/analytics/analytics",
-  "lib/utils/on_transition_end"
-], function($, debounce, Slider, Analytics, onTransitionEnd) {
+], function($, debounce, Slider, Analytics) {
 
   "use strict";
 
@@ -74,10 +73,7 @@ define([
   };
   /* jshint ignore:end */
 
-  Gallery.prototype._afterNavigation = function(event) {
-    // Ensure we're handling the correct transitionend event
-    if (!event || window.lp.supports.transform.css.indexOf(event.originalEvent.propertyName) < 0) return;
-
+  Gallery.prototype._afterNavigation = function() {
     var partial = this.slider.$currentSlide.data("partial-slug");
     this.analytics.track();
     this._updateImageInfo();
@@ -88,10 +84,9 @@ define([
 
   Gallery.prototype._handleEvents = function() {
 
-    onTransitionEnd({
-      $listener: this.slider.$slides,
-      fn: debounce(this._afterNavigation.bind(this), 200)
-    });
+    this.$listener.on(":slider/slideChanged", function() {
+      window.setTimeout(this._afterNavigation.bind(this), +this.slider.config.transition);
+    }.bind(this));
 
     this.$gallery.on("click", ".is-previous", function() {
       this.slider._previousSlide();

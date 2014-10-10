@@ -1,5 +1,9 @@
 window.lp = {};
-window.lp.supports = {};
+window.lp.supports = {
+  transform: {
+    css: ""
+  }
+};
 window.lp.isMobile = false;
 window.lpUserStatusCallback = function() {};
 

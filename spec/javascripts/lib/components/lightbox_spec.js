@@ -8,7 +8,7 @@ require([ "jquery", "public/assets/javascripts/lib/components/lightbox.js" ], fu
 
     beforeEach(function() {
       loadFixtures("lightbox.html");
-      lightbox = new LightBox({ customClass: "lightbox-foo" });
+      lightbox = new LightBox();
 
     });
 
@@ -54,13 +54,17 @@ require([ "jquery", "public/assets/javascripts/lib/components/lightbox.js" ], fu
         jasmine.Clock.useMock();
         lightbox = new LightBox({ showPreloader: true });
 
-        $("#js-row--content").trigger(":lightbox/open");
+        $("#js-row--content").trigger(":lightbox/open", {
+          opener: lightbox.opener
+        });
       });
 
       it("should have css classes", function() {
         jasmine.Clock.tick(301);
         expect($("#js-lightbox")).toHaveClass("is-active is-visible");
         expect($("html")).toHaveClass("lightbox--open");
+        // custom class
+        expect($("#js-lightbox")).toHaveClass("lightbox-foo");
       });
 
       it("should close and clean the lightbox", function() {
@@ -87,10 +91,6 @@ require([ "jquery", "public/assets/javascripts/lib/components/lightbox.js" ], fu
         expect($(".js-lightbox-content").html()).toBe("Test content here.");
         expect($("#js-lightbox")).toHaveClass("content-ready");
 
-      });
-
-      it("can add a custom class to the lightbox", function() {
-        expect($("#js-lightbox")).toHaveClass("lightbox-foo");
       });
 
     });

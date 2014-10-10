@@ -156,7 +156,7 @@ module.exports = function(grunt) {
       rizzo: {
         src: [ "./public/assets/javascripts/lib/**/*.js", "!./public/assets/javascripts/lib/styleguide/*.js" ],
         options: {
-          helpers: [ "./spec/javascripts/helpers/**/*.js", "./vendor/assets/javascripts/jquery/jquery.js" ],
+          helpers: [ "./spec/javascripts/helpers/**/*.js", "./vendor/assets/javascripts/jquery/dist/jquery.js" ],
           host: "http://127.0.0.1:8888/",
           specs: "./public/assets/javascripts/spec/**/*.js",
           template: require("grunt-template-jasmine-requirejs"),
@@ -167,7 +167,7 @@ module.exports = function(grunt) {
                 flamsteed: "./vendor/assets/javascripts/flamsteed/lib/javascripts/flamsteed",
                 hogan: "./vendor/assets/javascripts/hogan/dist/hogan-3.0.0.amd",
                 jplugs: "./vendor/assets/javascripts/jquery-plugins",
-                jquery: "./vendor/assets/javascripts/jquery/jquery",
+                jquery: "./vendor/assets/javascripts/jquery/dist/jquery",
                 jtimeago: "./vendor/assets/javascripts/jquery-timeago/jquery.timeago",
                 sailthru: "./vendor/assets/javascripts/sailthru/v1",
                 sCode: "./vendor/assets/javascripts/omniture/s_code",

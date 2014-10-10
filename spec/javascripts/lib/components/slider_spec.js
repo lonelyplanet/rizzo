@@ -6,7 +6,8 @@ require([ "jquery", "public/assets/javascripts/lib/components/slider.js" ], func
         animateDelay: 0,
         assetReveal: true,
         createControls: true,
-        el: "#js-slider"
+        el: "#js-slider",
+        showPagination: true
       };
 
     describe("object", function() {
@@ -41,6 +42,15 @@ require([ "jquery", "public/assets/javascripts/lib/components/slider.js" ], func
         expect($(".slider__control--next").html()).toBe("2 of 5");
       });
 
+      it("adds pagination links for the slides", function() {
+        expect($(".js-slider-pagination").length).toBeGreaterThan(0);
+        expect($(".js-slider-pagination-link").eq(0)).toHaveClass("is-current");
+      });
+
+      it("adds a pagination link for each slide", function() {
+        expect($(".js-slider-pagination-link").length).toEqual($(".slider__slide").length);
+      });
+
     });
 
     describe("standard functionality:", function() {
@@ -55,6 +65,12 @@ require([ "jquery", "public/assets/javascripts/lib/components/slider.js" ], func
         expect($(".slider__control--prev").html()).toBe("1 of 5");
       });
 
+      it("updates the pagination after navigating", function() {
+        window.slider._nextSlide();
+        expect($(".js-slider-pagination-link").eq(0)).not.toHaveClass("is-current");
+        expect($(".js-slider-pagination-link").eq(1)).toHaveClass("is-current");
+      });
+
       it("goes to the next slide (first -> second)", function() {
         window.slider._nextSlide();
         window.slide  = $(".js-slide");
@@ -63,6 +79,11 @@ require([ "jquery", "public/assets/javascripts/lib/components/slider.js" ], func
 
       it("goes to a given slide", function() {
         window.slider._goToSlide(4);
+        expect($(".js-slide").get(3)).toHaveClass("is-current");
+      });
+
+      it("goes to a given slide when using the pagination", function() {
+        $(".js-slider-pagination-link").eq(3).trigger("click");
         expect($(".js-slide").get(3)).toHaveClass("is-current");
       });
 
@@ -138,6 +159,25 @@ require([ "jquery", "public/assets/javascripts/lib/components/slider.js" ], func
         expect($(".slider__slide:nth-of-type(3) img").length).toBe(0);
         $(".slider__control--next").trigger("click");
         expect(":asset/uncomment").toHaveBeenTriggeredOn($(window.slider.$el), [ $(".slider__slide").slice(1), "[data-uncomment]" ]);
+      });
+    });
+
+    describe("auto sliding", function() {
+      beforeEach(function() {
+        jasmine.Clock.useMock();
+        loadFixtures("slider.html");
+        config.autoSlideDelay = 200;
+        window.slider = new Slider(config);
+      });
+
+      it("automatically slides after the given delay and does so at least more than once", function() {
+        expect($(".js-slide").eq(0)).toHaveClass("is-current");
+        jasmine.Clock.tick(201);
+        expect($(".js-slide").eq(0)).not.toHaveClass("is-current");
+        expect($(".js-slide").eq(1)).toHaveClass("is-current");
+        jasmine.Clock.tick(201);
+        expect($(".js-slide").eq(1)).not.toHaveClass("is-current");
+        expect($(".js-slide").eq(2)).toHaveClass("is-current");
       });
     });
   });

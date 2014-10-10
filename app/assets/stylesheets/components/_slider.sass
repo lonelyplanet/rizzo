@@ -26,7 +26,6 @@
   display: none
   width: 100%
   height: 100%
-  transition: transform .2s ease-in-out, left .2s ease-in-out, opacity .5s ease
   &.is-previous-previous,
   &.is-previous,
   &.is-next,
@@ -75,9 +74,8 @@
 
 .slider__control
   +font-size(14)
+  +alpha-background(black, 0.65, $body-copy)
   @extend %transition--base
-  background: $body-copy
-  background: rgba(0, 0, 0, .65)
   color: white
   font-weight: bold
   line-height: 1.66em
@@ -119,3 +117,18 @@
     right: 0
   .at-end &
     display: none
+
+.slider__pagination
+  bottom: 0
+  position: absolute
+  text-align: center
+  width: 100%
+.slider__pagination--link
+  @extend %transition--base
+  +size(6px)
+  background: $bodygray
+  border-radius: 6px
+  display: inline-block
+  margin: 5px
+  &.is-current
+    background: $linkblue

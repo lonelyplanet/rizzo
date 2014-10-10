@@ -45,8 +45,7 @@ $footer-height: 250px
     animation: discmove 2s cubic-bezier(0.6, 1, 1, 1) infinite
 
 .gallery__slide__caption
-  background: $dark-blue-gray
-  background: rgba($dark-blue-gray, 0.75)
+  +alpha-background($dark-blue-gray, 0.75)
   bottom: 0
   box-sizing: border-box
   color: white
@@ -190,8 +189,7 @@ $footer-height: 250px
 
 .gallery-underlay
   +z-layer(middle)
-  background: $body-background
-  background: rgba($body-background, 0.95)
+  +alpha-background($body-background, 0.95)
   bottom: 0
   left: 0
   opacity: 0
@@ -231,8 +229,7 @@ $arrow-size: 50px
   +hardware-acceleration()
   +z-layer(modal)
   +size($arrow-size)
-  background: #888
-  background: rgba($darkgray, 0.15)
+  +alpha-background($darkgray, 0.15, #888)
   border: 2px solid white
   border-radius: $arrow-size
   box-sizing: border-box
@@ -245,7 +242,7 @@ $arrow-size: 50px
   &:hover,
   &.is-hover,
   &:focus
-    background: rgba($darkgray, 0.5)
+    +alpha-background($darkgray, 0.5)
     opacity: 1
     text-decoration: none
   .supports-touch &

@@ -56,7 +56,7 @@ define([
 
     this.$footer = $(_selectors.footer);
 
-    this.$body = $("html, body");
+    this.$body = $("body");
 
     this.currentActivities = [];
     this.highlightedActivitiesNumber = 0;
@@ -89,10 +89,12 @@ define([
       if (!_this.contentHeight) { // init hover listeners
         _this.$flyout
           .on("mouseenter", function() {
-            _this.$body.addClass("no-scroll");
+            _this.$body.addClass("js-no-scroll");
+            _this._toggleBodyScroll();
           })
           .on("mouseleave", function() {
-            _this.$body.removeClass("no-scroll");
+            _this.$body.removeClass("js-no-scroll");
+            _this._toggleBodyScroll();
           });
 
         _this.contentHeight = _this.$tabsContent.height(); //set initial content height
@@ -102,6 +104,17 @@ define([
       windowHeight = $(window).height() - 20; // leaving 20px for margin
       _this.$tabsContent.css("max-height", windowHeight - contentOffset);
     });
+  };
+
+  UserFeed.prototype._toggleBodyScroll = function() {
+    if (this.$body.hasClass("js-no-scroll")) {
+      this.$body.on("scroll touchmove mousewheel", function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+      });
+    } else {
+      this.$body.off("scroll touchmove mousewheel");
+    }
   };
 
   UserFeed.prototype._bindLinks = function() {

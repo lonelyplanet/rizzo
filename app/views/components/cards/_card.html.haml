@@ -1,7 +1,9 @@
-%article{ class: card_classes(properties).join(" ") }
+- ab_variation = card_ab_test_variation(params)
+
+%article{ class: card_classes(properties, ab_variation).join(" ") }
   .card__mask
 
-    - card_link_if(properties[:url], href: properties[:url], data: card_link_data(properties), class: properties[:layer?] ? 'js-lightbox-toggle' : '') do
+    - card_link_if(properties[:url], href: card_href_for_test_variation(properties, ab_variation), data: card_link_data(properties), class: properties[:layer?] ? 'js-lightbox-toggle' : '') do
 
       - if properties[:image_url].present?
         %figure.card__figure
@@ -19,12 +21,16 @@
           %p.card__content__context{ class: properties[:context_icon] ? "copy--icon--before icon--#{card_icon(properties)}--before" : "" }
             = properties[:context_text]
 
+        - if properties[:tags] && properties[:tags][:top_choice?] && ab_variation == :simple
+          .card__content__ribbon.icon--top-pick
+            .accessibility Top Pick
+
         - if properties[:title].present?
           %h1.card__content__title
             = properties[:title]
 
-        - if properties[:context_locale]
-          %p.card__content__locale.copy--icon--before.icon--place--before
+        - if properties[:context_locale] && ab_variation != :simple
+          %p.card__content__locale.copy--icon--before.icon--place--pin--line--before<>
             = properties[:context_locale]
 
         .card__content__desc
@@ -34,7 +40,14 @@
             %p
               = properties[:description]
 
-      = render :partial => "/components/cards/partials/footer", :locals => { :properties => properties }
+      = render partial: "/components/cards/partials/footer", locals: { properties: properties, variation: ab_variation }
 
-  - if properties[:tags].present? || properties[:price_tag].present?
-    = render :partial => "/components/cards/partials/tags", :locals => { :properties => properties }
+  - if ab_variation == :simple 
+
+    - if properties[:price_tag].present?
+      = render partial: "/components/cards/partials/price_label", locals: { properties: properties[:price_tag] }
+
+  - else
+
+    - if properties[:tags].present? || properties[:price_tag].present?
+      = render partial: "/components/cards/partials/tags", locals: { properties: properties }

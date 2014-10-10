@@ -86,20 +86,25 @@ require([
         describe("hover over user feed flyout trigger and flyout itself", function() {
 
           beforeEach(function() {
+            spyOn(userFeed, "_toggleBodyScroll");
             userFeed.$flyoutTrigger.trigger("mouseenter");
             userFeed.$flyout.trigger("mouseenter");
           });
 
           afterEach(function() {
-            $("html, body").removeClass("no-scroll");
+            $("body").removeClass("js-no-scroll");
           });
 
           it("should set initial content height", function() {
             expect(userFeed.contentHeight).toEqual(userFeed.$tabsContent.height());
           });
 
-          it("should add 'no-scroll' class to html and body elements", function() {
-            expect($("html, body").hasClass("no-scroll")).toBe(true);
+          it("should add 'js-no-scroll' class to body element", function() {
+            expect($("body").hasClass("js-no-scroll")).toBe(true);
+          });
+
+          it("should call _toggleBodyScroll() on flyout content mouseenter", function() {
+            expect(userFeed._toggleBodyScroll).toHaveBeenCalled();
           });
 
           it("should call 'css()' on tabs content with proper arguments", function() {
@@ -113,8 +118,8 @@ require([
               userFeed.$flyout.trigger("mouseleave");
             });
 
-            it("should remove 'no-scroll' class from html and body elements", function() {
-              expect($("html, body").hasClass("no-scroll")).toBe(false);
+            it("should remove 'js-no-scroll' class from body element", function() {
+              expect($("body").hasClass("js-no-scroll")).toBe(false);
             });
 
           });

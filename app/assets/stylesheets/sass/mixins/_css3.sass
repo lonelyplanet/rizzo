@@ -8,6 +8,9 @@
   -moz-appearance:    $value
   appearance:         $value
 
+@mixin alpha-background($color, $opacity: 0.8, $fallback: false)
+  background-color: if($fallback, $fallback, $color)
+  background-color: rgba($color, $opacity)
 
 @mixin background-slide-in-from($direction, $color, $speed: 0.3s)
   transition: all $speed ease

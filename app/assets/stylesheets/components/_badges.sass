@@ -5,31 +5,50 @@
 %badge--base
   +font-size(11)
   @extend %rounded-corners
-  text-transform: uppercase
+  display: inline-block
   padding: 1px 4px
   color: #fff
   font-weight: bold
   line-height: 12px
+  text-transform: uppercase
+  white-space: no-wrap
 
 .badge--green
   @extend %badge--base
   background-color: $green
 
+  &.badge--outline
+    color: $green
+
 .badge--blue
   @extend %badge--base
-  background-color: $header-blue
+  background-color: $linkblue
+
+  &.badge--outline
+    color: $linkblue
 
 .badge--red
   @extend %badge--base
   background-color: $red
-  
+
+  &.badge--outline
+    color: $red
+
 .badge--pink
   @extend %badge--base
   background-color: $pink
 
+  &.badge--outline
+    color: $pink
+
+.badge--outline
+  border: 1px solid
+  background: none
+
 .badge--small
   +font-size(10)
-  padding: 1px 2px
+  vertical-align: middle
+  padding: 0 2px
 
 .badge--large
   padding: 4px 6px

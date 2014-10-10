@@ -84,6 +84,9 @@
 .icon--top-choice--before:before, .icon--top-choice--after:after,
 .icon--top-choice { background-image: url('png/top-choice.png'); background-repeat: no-repeat; }
 
+.icon--top-pick--before:before, .icon--top-pick--after:after,
+.icon--top-pick { background-image: url('png/top-pick.png'); background-repeat: no-repeat; }
+
 .icon--trash--before:before, .icon--trash--after:after,
 .icon--trash { background-image: url('png/trash.png'); background-repeat: no-repeat; }
 

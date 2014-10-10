@@ -20,7 +20,7 @@ module Rizzo::Assets
       'icons/critical.css',
       'fonts.css',
       'styleguide.css',
-      'jquery/jquery.js',
+      'jquery/dist/jquery.js',
       'requirejs/require.js',
       'nvd3/nv.d3.min.css'
     ]

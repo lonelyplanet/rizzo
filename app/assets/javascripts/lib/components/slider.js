@@ -18,9 +18,12 @@ define([
     // the number of images to load on either side of is-current
     assetBalance: 2,
     assetReveal: false,
+    autoSlideDelay: 0,
     keyboardControl: false,
+    loopAround: false,
+    showPagination: false,
     showSliderControls: true,
-    loopAround: false
+    transition: 200
   };
 
   function Slider(args) {
@@ -34,16 +37,27 @@ define([
   }
 
   Slider.prototype.init = function() {
+    var transform = window.lp.supports.transform.css,
+        transition = this.$el.data("transition") || this.config.transition,
+        transitionString = transform + " " + transition + "ms ease-in-out, left " + transition + "ms ease-in-out",
+        currentSlideSpecified;
+
+    this.$slides.css("transition", transitionString);
+
     this._gatherElements();
     this._addClasses();
 
-    // if gatherElements finds an element called "is-current", go there.
-    if (this.$currentSlide.length) {
-      this._goToSlide(this.$slides.index(this.$currentSlide) + 1);
+    if (this.config.showSliderControls) {
+      this._showControls();
+    }
+    if (this.config.showPagination) {
+      this._showPagination();
     }
 
-    if (this.config.showSliderControls){
-      this._showControls();
+    // if gatherElements finds an element called "is-current", go there.
+    currentSlideSpecified = this.$currentSlide.length;
+    if (currentSlideSpecified) {
+      this._goToSlide(this.$slides.index(this.$currentSlide) + 1);
     }
 
     this._updateSlideClasses();
@@ -55,6 +69,11 @@ define([
 
     if (this.config.assetReveal) {
       this.assetReveal = new AssetReveal({ el: this.$el });
+    }
+
+    // This gets called in `_goToSlide`, so don't call it again.
+    if (!currentSlideSpecified) {
+      this._setupAutoSlide();
     }
   };
 
@@ -123,12 +142,12 @@ define([
     $prev = this.$sliderControlsContainer.find(".js-slider-previous").attr("href", "");
 
     $next.on("click", function() {
-      _this._nextSlide();
+      _this._nextSlide(true);
       return false;
     });
 
     $prev.on("click", function() {
-      _this._previousSlide();
+      _this._previousSlide(true);
       return false;
     });
 
@@ -136,6 +155,28 @@ define([
       _this._loadHiddenContent();
     });
 
+  };
+
+  Slider.prototype._showPagination = function() {
+    var _this = this;
+
+    this.$slides.each(function(i) {
+      var $link = $("<a href='#" + (i + 1) + "' class='slider__pagination--link js-slider-pagination-link'></a>");
+      if (!_this.$sliderPaginationLinks) {
+        _this.$sliderPaginationLinks = $link.addClass("is-current");
+      } else {
+        _this.$sliderPaginationLinks = _this.$sliderPaginationLinks.add($link);
+      }
+    });
+
+    this.$sliderPaginationLinks.on("click", function(e) {
+      _this._goToSlide($(this).attr("href").replace("#", ""));
+      e.preventDefault();
+    });
+
+    this.$sliderPagination = $("<div class='slider__pagination js-slider-pagination'></div>");
+    this.$sliderPagination.append(this.$sliderPaginationLinks);
+    this.$sliderControlsContainer.append(this.$sliderPagination);
   };
 
   Slider.prototype._loadHiddenContent = function() {
@@ -209,6 +250,10 @@ define([
     this._updateCount();
     this._loadHiddenContent();
 
+    if (this.config.loopAround || ( !this.config.loopAround && this.currentSlide != this.numSlides )) {
+      this._setupAutoSlide();
+    }
+
     this.$listener.trigger(":slider/slideChanged");
   };
 
@@ -238,11 +283,20 @@ define([
       }
     }
 
+    if (this.config.showPagination) {
+      this.$sliderPaginationLinks.removeClass("is-current").eq(this.currentSlide - 1).addClass("is-current");
+    }
+
     this.$slides.removeClass("is-hidden is-previous-previous is-previous is-current is-next is-next-next");
     current.addClass("is-current");
 
-    prev.addClass("is-previous").prev().addClass("is-previous-previous");
-    next.addClass("is-next").next().addClass("is-next-next");
+    prev.addClass("is-previous");
+    next.addClass("is-next");
+
+    if (this.$slides.length > 5) {
+      prev.prev().addClass("is-previous-previous");
+      next.next().addClass("is-next-next");
+    }
   };
 
   Slider.prototype._updateCount = function() {
@@ -255,6 +309,13 @@ define([
 
     next.html(currentHTML.replace(/([0-9]+)/, nextIndex));
     previous.html(currentHTML.replace(/([0-9]+)/, prevIndex));
+  };
+
+  Slider.prototype._setupAutoSlide = function() {
+    if (this.config.autoSlideDelay > 0) {
+      window.clearTimeout(this.autoSlideTimeout);
+      this.autoSlideTimeout = window.setTimeout(this._nextSlide.bind(this), this.config.autoSlideDelay);
+    }
   };
 
   return Slider;

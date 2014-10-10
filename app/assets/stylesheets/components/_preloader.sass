@@ -58,7 +58,8 @@ $discBoxSize: $discSize + ($discMargin * 2)
   position: relative
   top: $discSize / 2
   width: $discSize
-  animation: discmove 1.75s infinite
+  .is-loading &
+    animation: discmove 1.75s infinite
 
 .preloader__disc--blue
   background: $teal

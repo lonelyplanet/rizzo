@@ -12,11 +12,14 @@
   %p
     %code
       slides: ".js-slide"
-      %br
+    %br
+    %code
       slidesContainer: ".js-slider-container"
-      %br
+    %br
+    %code
       slidesViewport: ".js-slider-viewport"
-      %br
+    %br
+    %code
       assetBalance: 2
     the number of images to load on either side of is-current
     %br
@@ -25,14 +28,25 @@
     Must be set to true if setting lazyLoad to true in the component properties.
     %br
     %code
+      autoSlideDelay: 0
+    The delay after which to automatically slide. A value of 0 means this feature is off.
+    %br
+    %code
       keyboardControl: false
     Next: R arrow / l / n; Previous: L arrow / h / p
     %br
     %code
-      showSliderControls: true 
-      %br
       loopAround: false
-    Set to true for carousel mode
+    %br
+    %code
+      showPagination: false
+    %br
+    %code
+      showSliderControls: true
+    %code
+      %br
+      transition: "200"
+    The duration for the slide transitions
   You can change any slider defaults when the slider is created. For example:
   %pre.styleguide.copy--body.language-javascript
     %code

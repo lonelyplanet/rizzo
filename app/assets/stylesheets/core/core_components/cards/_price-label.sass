@@ -1,0 +1,31 @@
+.price-label
+  @extend %rounded-corners
+  margin-top: 10px
+  padding: 5px 10px 3px
+  font-weight: bold
+  text-align: center
+  letter-spacing: -0.015em
+  color: white
+  background: $titlegray
+  background: transparentize($titlegray, 0.2)
+
+.price-label__currency
+  +font-size(15)
+  position: relative
+  top: -0.2em
+
+.price-label__price
+  +font-size(20)
+
+.price-label__decimal
+  position: relative
+  top: -0.35em
+  font-size: 65%
+
+.price-label__retail
+  +font-size(12)
+  margin: 0 -5px 2px
+  text-decoration: line-through
+  color: $bodygray
+  background-color: white
+  border-radius: 2px

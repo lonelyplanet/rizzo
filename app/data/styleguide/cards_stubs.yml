@@ -50,11 +50,10 @@
   :image_url: "http://www.lonelyplanet.com/travel-blog/tip-article/wordpress_uploads/2013/09/2-seine.jpg"
   :button_text: "Learn more"
 -
-  :styleguide_title: "Card with image, context text, context icon, context locale, price tag and button"
+  :styleguide_title: "Card with image, context text, context locale, price tag and button"
   :url: "#"
   :kind: "hotel"
   :context_text: "5 star hotel"
-  :context_icon: true
   :context_locale: "St-Germain & Les Invalides"
   :title: "L'hôtel"
   :description: "In a quiet quayside street, this award-winning hostelry is the stuff of romance, Parisian myths and urban legends"

@@ -1,0 +1,15 @@
+- price_parts = properties[:price].to_s.split(".")
+
+.card__tags
+  .price-label{ class: "price-label--#{properties[:size]}" }
+    %span.price-label__currency.js-currency<>
+      != properties[:currency]
+    %span.price-label__price.js-price<>
+      = price_parts.first
+      %span.price-label__decimal<>
+        = price_parts.length == 2 ? ".#{price_parts.last}" : ""
+
+    - if properties[:on_sale?]
+      .price-label__retail<>
+        != properties[:currency]
+        = properties[:retail_price]
