@@ -90,7 +90,7 @@ require([ "public/assets/javascripts/lib/page/stack_intro.js" ], function(StackI
         this.stackIntro._update({
           lead: lead
         });
-        expect($("" + this.stackIntro.config.lead)).toHaveClass("is-hidden");
+        expect($("" + this.stackIntro.config.lead).parent()).toHaveClass("is-hidden");
       });
 
       it("shows lead container", function() {
@@ -98,7 +98,7 @@ require([ "public/assets/javascripts/lib/page/stack_intro.js" ], function(StackI
         this.stackIntro._update({
           lead: lead
         });
-        expect($("" + this.stackIntro.config.lead)).not.toHaveClass("is-hidden");
+        expect($("" + this.stackIntro.config.lead).parent()).not.toHaveClass("is-hidden");
       });
     });
 

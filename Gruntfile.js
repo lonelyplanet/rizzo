@@ -68,9 +68,11 @@ module.exports = function(grunt) {
     },
     svgmin: {
       options: {
-        plugins: [ {
-          removeViewBox: false
-        } ]
+        plugins: [
+          { removeDesc: true },
+          { removeTitle: true },
+          { removeViewBox: false }
+        ]
       },
       dist: {
         files: [ {
@@ -177,6 +179,7 @@ module.exports = function(grunt) {
                 nouislider: "./vendor/assets/javascripts/nouislider",
                 pickadate: "./vendor/assets/javascripts/pickadate",
                 polyfills: "./vendor/assets/javascripts/polyfills",
+                usabilla: "./vendor/assets/javascripts/usabilla",
                 lib: "./public/assets/javascripts/lib"
               }
             }

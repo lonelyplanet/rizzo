@@ -20,6 +20,7 @@ define([
   }
 
   Controller.prototype.states = null;
+  Controller.prototype.layerResetState = -1;
 
   asEventEmitter.call(Controller.prototype);
   withPageState.call(Controller.prototype);
@@ -43,14 +44,23 @@ define([
     }.bind(this))
 
     .on(":page/request", function(event, data, analytics) {
-      this._generateState(data.url.split("?")[0]);
+      var urlParts = data.url.split("?");
+      this._generateState(urlParts[0], urlParts[1]);
       this.pushState.navigate(this._serializeState(), this._currentRoot());
       this._callServer(this._createJSONUrl(data.url), this.newPage, analytics);
     }.bind(this))
 
     .on(":layer/request", function(event, data) {
-      this._generateState(data.url.split("?")[0]);
-      this.pushState.navigate(this._serializeState(), this._currentRoot(), true);
+      var replaceState = true,
+          urlParts;
+      if (this.layerResetState === -1){
+        this.layerResetState = this.currentState;
+        replaceState = false;
+      }
+
+      urlParts = data.url.split("?");
+      this._generateState(urlParts[0], urlParts[1]);
+      this.pushState.navigate(this._serializeState(), this._currentRoot(), replaceState);
       this._callServer(this._createJSONUrl(data.url), this.newLayer);
     }.bind(this))
 
@@ -61,14 +71,23 @@ define([
     }.bind(this))
 
     .on(":controller/reset", function() {
-      this.states = [ this.states[0] ];
+      if ( this.layerResetState != -1 ) {
+        this.states = [ this.states[this.layerResetState] ];
+        this.layerResetState = -1;
+      } else {
+        this.states = [ this.states[0] ];
+      }
       this.currentState = 0;
+
       this.pushState.navigate(this._serializeState(), this._currentRoot(), true);
     }.bind(this))
 
     .on(":controller/updatePath", function(event, data) {
-      this._generateState(data.url.split("?")[0]);
+      var urlParts = data.url.split("?");
+      this._generateState(urlParts[0], urlParts[1]);
       this.pushState.navigate(this._serializeState(), this._currentRoot());
+      this._updateGoogleAnalytics(data);
+      this.trigger(":ads/refresh");
     }.bind(this));
   };
 
@@ -115,11 +134,11 @@ define([
     });
   };
 
-  Controller.prototype._generateState = function(newDocumentRoot) {
+  Controller.prototype._generateState = function(newDocumentRoot, newParams) {
     this.states || (this.states = []);
     this.currentState == null ? this.currentState = 0 : this.currentState += 1;
     this.states.push({
-      state: $.deparam(this.getParams()),
+      state: $.deparam(newParams || this.getParams()),
       documentRoot: newDocumentRoot || this.getDocumentRoot()
     });
     return this._removePageParam();

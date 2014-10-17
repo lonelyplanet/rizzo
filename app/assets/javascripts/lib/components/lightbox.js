@@ -27,6 +27,7 @@ define([
       this.opener = ".js-lightbox-toggle";
     }
 
+    this.customClass = args.customClass || false;
     this.showPreloader = args.showPreloader || false;
     this.customRenderer = args.customRenderer || false;
     this.mobileBreakpoint = args.mobileBreakpoint || 500;
@@ -56,13 +57,6 @@ define([
   // -------------------------------------------------------------------------
 
   LightBox.prototype.init = function() {
-
-    this.customClass && this.$lightbox.addClass(this.customClass);
-
-    if (this.showPreloader) {
-      this.preloaderTmpl = Template.render($("#tmpl-preloader").text(), {});
-      this.$lightboxContent.parent().append(this.preloaderTmpl);
-    }
 
     this.listen();
   };
@@ -104,10 +98,17 @@ define([
     this.$el.on(":lightbox/open", function(event, data) {
       $("html").addClass("lightbox--open");
       this.$lightbox.addClass("is-active is-visible");
+
       if (data && data.opener) {
-        this.customClass = $(data.opener).data().lightboxClass;
-        if (this.customClass) {
-          this.$lightbox.addClass(this.customClass);
+        var showPreloader,
+            $opener = $(data.opener);
+
+        this.$lightbox.addClass(this.customClass = this.customClass || $opener.data().lightboxClass);
+
+        showPreloader = this.showPreloader || $opener.data().lightboxShowpreloader;
+        if (showPreloader && !this.$lightbox.find(".js-preloader").length){
+          this.preloaderTmpl = Template.render($("#tmpl-preloader").text(), {});
+          this.$lightboxContent.parent().append(this.preloaderTmpl);
         }
       }
 
@@ -198,10 +199,7 @@ define([
   // Self instantiate if the default class is used.
   if ($(".js-lightbox-toggle").length) {
     $(document).ready(function() {
-      var $lightboxToggle = $(".js-lightbox-toggle");
-      new LightBox({
-        showPreloader: $lightboxToggle.data("lightbox-showpreloader")
-      });
+      new LightBox();
     });
   }
 

@@ -7,5 +7,5 @@
     .tooltip.tooltip--above.icon--tapered-arrow-down--after Print
   
   .nav__item.sharing__nav__item.tooltip--hover
-    %a.sharing__icon.icon--envelope.icon--body-grey{href: "mailto:?subject=#{properties[:page_title]}&body=#{properties[:url]}", data: {lpa_category: "share", lpa_action: "email", lpa_label: "#{properties[:url]}"}}
+    %a.sharing__icon.icon--envelope.icon--body-grey.js-mailto-share{href: "mailto:?subject=#{properties[:page_title]}&body=#{properties[:url]}", data: {lpa_category: "share", lpa_action: "email", lpa_label: "#{properties[:url]}"}}
     .tooltip.tooltip--above.icon--tapered-arrow-down--after Email

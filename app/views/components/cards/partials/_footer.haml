@@ -1,17 +1,12 @@
 .card__footer
-  .card__footer__content
 
-    - if properties[:author_name]
-      = ui_component("user_attribution", :properties => { image: properties[:author_avatar], name: properties[:author_name], size: "nano" })
+  - if properties[:author_name]
+    = ui_component("user_attribution", :properties => { image: properties[:author_avatar], name: properties[:author_name], size: "nano" })
 
-    - elsif properties[:post_date]
-      %time.copy--icon--before.icon--time--before{datetime: properties[:post_date]}
-        = card_datetime(properties[:post_date])
+  - elsif properties[:post_date]
+    %time.copy--icon--before.icon--time--before{datetime: properties[:post_date]}
+      = card_datetime(properties[:post_date])
 
-    - elsif properties[:button_text] && variation != :simple
-      %span.btn.btn--small.btn--yellow.btn--full-width{ class: properties[:button_class] }
-        = properties[:button_text]
-
-    - elsif properties[:context_locale] && variation == :simple
-      .card__footer__locale.copy--icon--before.icon--place--pin--line--before<>
-        = properties[:context_locale]
+  - elsif properties[:context_locale]
+    .card__footer__locale.copy--icon--before.icon--place--pin--line--before<>
+      = properties[:context_locale]

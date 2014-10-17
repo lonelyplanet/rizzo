@@ -1,4 +1,4 @@
-.hero-banner.js-bg-parallax.row{ class: properties[:image_info] ? 'hero-banner--flickr' : '' }
+.hero-banner.row{ class: properties[:image_info] ? 'hero-banner--flickr' : 'js-bg-parallax' }
   = safe_image_tag(properties[:image_url], class: "hero-banner__image", alt: properties[:title])
 
   .hero-banner__content.row__inner

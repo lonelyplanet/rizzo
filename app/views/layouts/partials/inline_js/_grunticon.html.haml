@@ -2,14 +2,24 @@
   (function() {
     var docElement = document.documentElement,
         activePath = "#{normalised_asset_path('icons/active.css')}",
-        criticalPath = "#{normalised_asset_path('icons/critical.css')}";
+        criticalPath = "#{normalised_asset_path('icons/critical.css')}",
+        script = document.getElementsByTagName("script")[0],
+        head = script.parentNode;
     
-    function styleSheet(path) {
+    function insertStyleSheet(path) {
       var link = document.createElement("link");
       link.rel = "stylesheet";
       link.type = "text/css";
       link.href = path;
-      return link;
+      // The browser will ignore unknow media attributes
+      // https://github.com/filamentgroup/loadCSS
+      link.media = "only sloths";
+      head.insertBefore(link, script);
+
+      setTimeout(function() {
+        link.media = "all";
+      });
+
     }
     
     function supportsSVG() {
@@ -23,17 +33,14 @@
       return hasBgSize && hasSvg && enhanced;
     }
 
-    window.setTimeout(function(){
-      var script = document.getElementsByTagName("script")[0];
-      var head = script.parentNode;
-      if (supportsSVG()) {
-        head.insertBefore(styleSheet(activePath), script);
-        docElement.className += " supports-svg";
-      } else {
-        head.insertBefore(styleSheet(criticalPath), script);
-        docElement.className += " no-background-size";
-      }
-    }, 0)
+    if (supportsSVG()) {
+      insertStyleSheet(activePath);
+      docElement.className += " supports-svg";
+    } else {
+      insertStyleSheet(criticalPath);
+      docElement.className += " no-background-size";
+    }
+
   }());
 
 %noscript

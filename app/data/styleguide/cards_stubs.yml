@@ -1,19 +1,17 @@
 -
   :styleguide_title: "Card"
   :url: "#"
-  :kind: "need-to-know"
-  :title: "Need to know"
+  :title: "Paris"
   :description: "Paris has all but exhausted the superlatives that can reasonably be applied to any city. Notre Dame and the Eiffel Tower have been described countless times, as have the Seine and the subtle (and not-so-subtle) differences between the Left and Right Banks. Yet, what writers have never been able to even slightly reflect is the grandness and magic."
 -
   :styleguide_title: "Card with image"
   :url: "#"
-  :kind: "activity"
   :title: "Moulin Rouge in Paris"
   :description: "Immortalised in the posters of Toulouse-Lautrec and later on screen by Baz Luhrmann, the Moulin Rouge twinkles beneath a 1925 replica of its original red windmill. Yes, it’s rife with bus-tour crowds. But from the opening bars of music to the last high kick it’s a whirl of fantastical costumes, sets, choreography and Champagne. Booking advised."
   :image_alt: ""
   :image_url: "http://cache.graphicslib.viator.com/graphicslib/thumbs674x446/5022/SITours/moulin-rouge-show-paris-in-paris-116546.jpg"
 -
-  :styleguide_title: "Card with context text and context pin"
+  :styleguide_title: "Card with kind, context text and context pin"
   :url: "#"
   :kind: "destination"
   :context_pin: true
@@ -23,7 +21,6 @@
 -
   :styleguide_title: "Card with image and post date"
   :url: "#"
-  :kind: "article"
   :title: "Classic Paris: a fresh look at the city of light"
   :description: "Immortalised in the posters of Toulouse-Lautrec and later on screen by Baz Luhrmann, the Moulin Rouge twinkles beneath a 1925 replica of its original red windmill. Yes, it’s rife with bus-tour crowds. But from the opening bars of music to the last high kick it’s a whirl of fantastical costumes, sets, choreography and Champagne. Booking advised."
   :image_alt: ""
@@ -32,7 +29,6 @@
 -
   :styleguide_title: "Card with image and author"
   :url: "#"
-  :kind: "article"
   :title: "Classic Paris: a fresh look at the city of light"
   :description: "Immortalised in the posters of Toulouse-Lautrec and later on screen by Baz Luhrmann, the Moulin Rouge twinkles beneath a 1925 replica of its original red windmill. Yes, it’s rife with bus-tour crowds. But from the opening bars of music to the last high kick it’s a whirl of fantastical costumes, sets, choreography and Champagne. Booking advised."
   :image_alt: ""
@@ -40,19 +36,18 @@
   :author_avatar: "https://community-media.lonelyplanet.com/users/avatars/001/140/591/thumb/J_Crew_-_Crew_Mutt.jpg"
   :author_name: "Phil McCracken"
 -
-  :styleguide_title: "Card with image, context text, context icon and button"
+  :styleguide_title: "Card with kind, image, context text and context icon"
   :url: "#"
   :kind: "activity"
   :context_text: "Tour"
   :context_icon: true
   :title: "Classic Paris: a fresh look at the city of light"
+  :description: "Immortalised in the posters of Toulouse-Lautrec and later on screen by Baz Luhrmann, the Moulin Rouge twinkles beneath a 1925 replica of its original red windmill. Yes, it’s rife with bus-tour crowds. But from the opening bars of music to the last high kick it’s a whirl of fantastical costumes, sets, choreography and Champagne. Booking advised."
   :image_alt: ""
   :image_url: "http://www.lonelyplanet.com/travel-blog/tip-article/wordpress_uploads/2013/09/2-seine.jpg"
-  :button_text: "Learn more"
 -
-  :styleguide_title: "Card with image, context text, context locale, price tag and button"
+  :styleguide_title: "Card with image, context text, context locale and price tag"
   :url: "#"
-  :kind: "hotel"
   :context_text: "5 star hotel"
   :context_locale: "St-Germain & Les Invalides"
   :title: "L'hôtel"
@@ -63,9 +58,8 @@
     :price: "223"
     :currency: "£"
     :scope: "per night"
-  :button_text: "Learn more"
 -
-  :styleguide_title: "Guide card with image, context text, price tag and button"
+  :styleguide_title: "Guide card with image, context text and price tag"
   :url: "#"
   :kind: "guide"
   :context_text: "Book & Ebook"
@@ -78,16 +72,14 @@
     :currency: "£"
     :on_sale?: true
     :retail_price: "16.00"
-  :button_text: "Buy now"
 -
   :styleguide_title: "Short card"
   :url: "#"
   :short?: true
-  :kind: "need-to-know"
-  :title: "Need to know"
+  :title: "Paris"
   :description: "Paris has all but exhausted the superlatives that can reasonably be applied to any city. Notre Dame and the Eiffel Tower have been described countless times, as have the Seine and the subtle (and not-so-subtle) differences between the Left and Right Banks. Yet, what writers have never been able to even slightly reflect is the grandness and magic."
 -
-  :styleguide_title: "Short quote card"
+  :styleguide_title: "Short quote card with author"
   :url: "#"
   :short?: true
   :kind: "quote"
@@ -99,7 +91,6 @@
   :styleguide_title: "Short card with image and author"
   :url: "#"
   :short?: true
-  :kind: "article"
   :title: "Travel shopping"
   :description: ""
   :image_alt: ""
@@ -107,10 +98,18 @@
   :author_avatar: "https://community-media.lonelyplanet.com/users/avatars/001/140/591/thumb/J_Crew_-_Crew_Mutt.jpg"
   :author_name: "Phil McCracken"
 -
-  :styleguide_title: "Short card with image and icon"
+  :styleguide_title: "Short card with image and date"
   :url: "#"
   :short?: true
-  :kind: "article"
+  :title: "Travel shopping"
+  :description: ""
+  :image_alt: ""
+  :image_url: "http://images-resrc.staticlp.com/C=W3514,H3386,X1161,Y0/S=W300,H300/http://media.lonelyplanet.com/a/g/hi/t/a03b63e2de8b540613e1cab75404b5a2-travel-shopping.jpg"
+  :post_date: "Tue Oct 31 2014 11:50:00 GMT+0100"
+-
+  :styleguide_title: "Short card with image and image icon"
+  :url: "#"
+  :short?: true
   :title: "Kyoto"
   :description: ""
   :image_alt: ""
@@ -119,7 +118,6 @@
 -
   :styleguide_title: "Card with cover image"
   :url: "#"
-  :kind: "article"
   :cover?: true
   :title: "The best bars in Paris"
   :image_alt: ""
@@ -127,7 +125,6 @@
 -
   :styleguide_title: "Card with cover image and author"
   :url: "#"
-  :kind: "article"
   :cover?: true
   :title: "The best bars in Paris"
   :image_alt: ""
@@ -135,13 +132,11 @@
   :author_avatar: "https://community-media.lonelyplanet.com/users/avatars/001/140/591/thumb/J_Crew_-_Crew_Mutt.jpg"
   :author_name: "Phil McCracken"
 -
-  :styleguide_title: "Double width card with cover image and author"
+  :styleguide_title: "Double width card with cover image and date"
   :url: "#"
-  :kind: "article"
   :cover?: true
   :double?: true
   :title: "Top things to do in Paris"
   :image_alt: ""
   :image_url: "http://media.lonelyplanet.com/a/g/hi/t/d79818893c366ac9d63dd756a86cb968-best-places-to-stay-in-paris.jpg"
-  :author_avatar: "https://community-media.lonelyplanet.com/users/avatars/001/140/591/thumb/J_Crew_-_Crew_Mutt.jpg"
-  :author_name: "Phil McCracken"
+  :post_date: "Tue Oct 31 2014 11:50:00 GMT+0100"

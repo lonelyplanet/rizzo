@@ -172,6 +172,7 @@
   "excludeFiles": [
     "node_modules/**",
     "public",
-    "vendor"
+    "vendor",
+    "app/assets/javascripts/lib/components/usabilla.js"
   ]
 }

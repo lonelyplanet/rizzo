@@ -1,7 +1,7 @@
 module CardsHelper
 
-  def card_classes(props, variation=nil)
-    class_names = [
+  def card_classes(props)
+    [
       "card",
       "js-card",
       "card--#{props[:kind]}",
@@ -11,26 +11,8 @@ module CardsHelper
       "card--#{props[:double?] ? 'double' : 'single'}",
       "card--#{props[:image_url].present? ? 'has-img' : 'no-img'}",
       "card--#{props[:tags].present? || props[:price_tag].present? ? 'has-tags' : 'no-tags'}",
-      "card--#{props[:button_text] || props[:author_name] || props[:post_date] || (variation == :simple && props[:context_locale]) ? 'has-footer' : 'no-footer'}"
+      "card--#{props[:author_name] || props[:post_date] || props[:context_locale] ? 'has-footer' : 'no-footer'}"
     ]
-
-    class_names.push("card--variation--#{variation}") if variation
-
-    class_names
-  end
-
-  def card_href_for_test_variation(props, variation=nil)
-    url = props[:url]
-
-    if url.present? && variation.present?
-      url += "#{props[:url].match(/\?/) ? '&' : '?'}abv=#{variation}"
-    end
-
-    url
-  end
-
-  def card_ab_test_variation(params)
-    params[:ab_test_simplified_cards] if params.present?
   end
 
   def card_link_data(props)

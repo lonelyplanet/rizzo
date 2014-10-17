@@ -3,10 +3,7 @@
     return {
       url: window.location.href,
       referrer: document.referrer,
-      username: window.lp.getCookie("lpCookie") && window.lp.getCookie("lpCookie").split('#')[0],
-      country: window.lp.getCookie("country"),
       viewport: document.documentElement.clientWidth,
-      variant: window.lp.getCookie("_v"),
-      schema: "0.1"
+      variant: window.lp.getCookie("_v")
     };
   }());

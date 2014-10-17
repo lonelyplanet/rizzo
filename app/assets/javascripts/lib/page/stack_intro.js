@@ -48,9 +48,9 @@ define([ "jquery", "lib/mixins/events" ], function($, asEventEmitter) {
 
   StackIntro.prototype._checkContent = function(args) {
     if (args.lead) {
-      this.$lead.removeClass("is-hidden");
+      this.$lead.parent().removeClass("is-hidden");
     } else {
-      this.$lead.addClass("is-hidden");
+      this.$lead.parent().addClass("is-hidden");
     }
   };
 

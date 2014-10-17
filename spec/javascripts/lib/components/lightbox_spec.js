@@ -49,32 +49,79 @@ require([ "jquery", "public/assets/javascripts/lib/components/lightbox.js" ], fu
     });
 
     describe("Open/Close", function() {
-      beforeEach(function() {
-        loadFixtures("lightbox.html");
-        jasmine.Clock.useMock();
-        lightbox = new LightBox({ showPreloader: true });
 
-        $("#js-row--content").trigger(":lightbox/open", {
-          opener: lightbox.opener
+      describe("with the config from opener", function() {
+        beforeEach(function() {
+          loadFixtures("lightbox.html");
+          jasmine.Clock.useMock();
+          lightbox = new LightBox();
+
+          $("#js-row--content").trigger(":lightbox/open", {
+            opener: lightbox.opener
+          });
+        });
+
+        it("should have css classes", function() {
+          jasmine.Clock.tick(301);
+          expect($("#js-lightbox")).toHaveClass("is-active is-visible");
+          expect($("html")).toHaveClass("lightbox--open");
+          // custom class
+          expect($("#js-lightbox")).toHaveClass("lightbox-foo");
+
+        });
+
+        it("should't have preloader", function() {
+          jasmine.Clock.tick(301);
+          expect($("#js-lightbox").find(".preloader").length).toBe(0);
+        });
+
+        it("should close and clean the lightbox", function() {
+
+          $("#js-row--content").trigger(":flyout/close");
+          jasmine.Clock.tick(301);
+
+          expect($("#js-lightbox")).not.toHaveClass("content-ready");
+          expect($("#js-lightbox")).not.toHaveClass("is-active");
+          expect($("#js-lightbox")).not.toHaveClass("lightbox-foo");
+          expect($("html")).not.toHaveClass("lightbox--open");
         });
       });
 
-      it("should have css classes", function() {
-        jasmine.Clock.tick(301);
-        expect($("#js-lightbox")).toHaveClass("is-active is-visible");
-        expect($("html")).toHaveClass("lightbox--open");
-        // custom class
-        expect($("#js-lightbox")).toHaveClass("lightbox-foo");
-      });
+      describe("with the config in constructor", function() {
+        beforeEach(function() {
+          loadFixtures("lightbox.html");
+          jasmine.Clock.useMock();
+          lightbox = new LightBox({
+            showPreloader: true,
+            customClass: "lightbox-bar"
+          });
 
-      it("should close and clean the lightbox", function() {
+          $("#js-row--content").trigger(":lightbox/open", {
+            opener: lightbox.opener
+          });
+        });
 
-        $("#js-row--content").trigger(":flyout/close");
-        jasmine.Clock.tick(301);
+        it("should have custom css class", function() {
+          jasmine.Clock.tick(301);
+          expect($("#js-lightbox")).toHaveClass("lightbox-bar");
+        });
 
-        expect($("#js-lightbox")).not.toHaveClass("content-ready");
-        expect($("#js-lightbox")).not.toHaveClass("is-active");
-        expect($("html")).not.toHaveClass("lightbox--open");
+        it("should't have preloader", function() {
+          jasmine.Clock.tick(301);
+          expect($("#js-lightbox").find(".preloader").length).toBe(1);
+        });
+
+        it("should close and clean the lightbox", function() {
+
+          $("#js-row--content").trigger(":flyout/close");
+          jasmine.Clock.tick(301);
+
+          expect($("#js-lightbox")).not.toHaveClass("content-ready");
+          expect($("#js-lightbox")).not.toHaveClass("is-active");
+          expect($("#js-lightbox")).not.toHaveClass("lightbox-bar");
+          expect($("html")).not.toHaveClass("lightbox--open");
+        });
+
       });
 
     });
@@ -98,6 +145,9 @@ require([ "jquery", "public/assets/javascripts/lib/components/lightbox.js" ], fu
     describe("Preloader", function() {
       beforeEach(function() {
         lightbox = new LightBox({ showPreloader: true });
+        $("#js-row--content").trigger(":lightbox/open", {
+          opener: lightbox.opener
+        });
       });
 
       it("should append the preloader HTML", function() {

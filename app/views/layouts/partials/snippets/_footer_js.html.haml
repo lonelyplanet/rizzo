@@ -1,5 +1,5 @@
 .js-config.is-hidden
-  = render 'layouts/partials/inline_js/fonts_async'
+  = render 'layouts/partials/inline_js/fonts_async' unless third_party
   = render 'layouts/partials/inline_js/fs_init'
   = render 'layouts/partials/inline_js/base_js_async' unless third_party
   = yield :scripts

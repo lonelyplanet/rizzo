@@ -1,7 +1,7 @@
 - price_parts = properties[:price].to_s.split(".")
 
 .card__tags
-  .price-label{ class: "price-label--#{properties[:size]}" }
+  .price-label{ class: "price-label--#{properties[:size]} js-price-tag" }
     %span.price-label__currency.js-currency<>
       != properties[:currency]
     %span.price-label__price.js-price<>
@@ -10,6 +10,6 @@
         = price_parts.length == 2 ? ".#{price_parts.last}" : ""
 
     - if properties[:on_sale?]
-      .price-label__retail<>
+      .price-label__retail.js-price-retail<>
         != properties[:currency]
         = properties[:retail_price]

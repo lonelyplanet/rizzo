@@ -75,6 +75,8 @@ define([
     if (!currentSlideSpecified) {
       this._setupAutoSlide();
     }
+
+    this.$listener.trigger(":slider/ready", [ this.$slides ]);
   };
 
   Slider.prototype._gatherElements = function() {

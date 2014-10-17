@@ -7,19 +7,19 @@ RUM is built-in.
 
     // setup
     var fs = new _FS({
-      url: "http://f.example.com"  
+      url: "http://f.example.com"
     });
-    
+
     // log something happened
     fs.log({
         d: "data"
     });
-    
+
     // log something happened and when it happened
     fs.time({
         d: "event"
     });
-    
+
 flamsteed buffers logged events. The buffer is only flushed back to the
 server (and logged events are sent) when:
 
@@ -28,14 +28,28 @@ server (and logged events are sent) when:
 * `unload` event is triggered when the visitor navigates away from
   the page
 
-When flamsteed first initializes, it generates a `uuid`. The `uuid` is
-sent back with every bunch of events, so it can be used to identify
+When flamsteed first initializes, it generates `session_id` and `fid` attributes.
+These are sent back with every bunch of events, so it can be used to identify
 all the events associated with a particular page impression.
+
+These can be set on `new _FS`, e.g:
+
+    var fs = new _FS({
+      session_id: "rZeDeb14LcKdWcqLA9AnBzs4Nmms5bWG",
+      page_impression_id: "rZeDeb14LcKdWcqLA9AnBzs4Nmms5bWG-1413212917346"
+    });
+
+    var fs = new _FS({
+      u: "rZeDeb14LcKdWcqLA9AnBzs4Nmms5bWG",
+      fid: "rZeDeb14LcKdWcqLA9AnBzs4Nmms5bWG-1413212917346"
+    });
 
 Each payload flushed back to the server looks like this:
 
     {
-      u: "b57deb09-c6f5-4e0b-99a9-e0618d3b5711",
+      fid: "rZeDeb14LcKdWcqLA9AnBzs4Nmms5bWG-1413212917346",
+      session_id: "rZeDeb14LcKdWcqLA9AnBzs4Nmms5bWG",
+      schema: "0.1",
       t: 1354880453288,
       d: [
         { some: "data" },
@@ -43,7 +57,17 @@ Each payload flushed back to the server looks like this:
         // snip
       ]
     }
-    
+
+Given the following example:
+
+    var fs = new _FS({
+      session_id: "rZeDeb14LcKdWcqLA9AnBzs4Nmms5bWG"
+    });
+
+The `fid` generated would be the `session_id` and [`Date.now()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/now) delimited with `-`, e.g:
+
+    "rZeDeb14LcKdWcqLA9AnBzs4Nmms5bWG-1413223038373"
+
 ### Options
 
 * `debug`: print to console events logged and flushed
@@ -54,6 +78,9 @@ Each payload flushed back to the server looks like this:
 * `strategy`: either `"ajax"` (send data as JSON via Ajax POST) or
   `"pixel"` (send data serialized as URL params in GET to tracking pixel)
 * `url`: url of AJAX endpoint or tracking pixel
+* `session_id` | `u` (Optional, but recommended) - Unique identifier for the context user or session
+* `page_impression_id` | `fid` (Optional) - Unique identifier for the Flamsteed page impression instance
+* `schema` - Schema version to append to each event
 
 ### RUM (real user-monitoring)
 
@@ -69,11 +96,6 @@ two sources:
 * `window.performance.timing`
 * `chrome.loadTimes` (if available) (TODO: blocked by https://code.google.com/p/chromium/issues/detail?id=160547)
 
-Empty timings (values equal to 0) are not sent. There will be empty
-timings, for example, if the visitor leaves before `onload` has fired.
-
-To save space, timings are sent relative to `navigationStart`.
-
 #### Custom "business" timing
 
 The point at which the page is usuable or ready might not line up exactly within any of the
@@ -82,7 +104,7 @@ components, widgets, or ads lazy-loaded after `domComplete`, but
 you're specifically interested in one of them (e.g. timeline for
 Facebook).
 
-flamsteed lets you time custom events, relative to the 
+flamsteed lets you time custom events, relative to the
 `window.performance.timing.navigationStart` timestamp.
 
     fs.time({
@@ -115,7 +137,7 @@ accurate values.
 First of all, make sure you follow [this guide](http://gruntjs.com/getting-started) and have the grunt cli installed, then:
 
     $ npm install
-    
+
 One-shot test run:
 
     $ grunt

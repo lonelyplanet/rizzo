@@ -61,17 +61,17 @@ $discBoxSize: $discSize + ($discMargin * 2)
   .is-loading &
     animation: discmove 1.75s infinite
 
-.preloader__disc--blue
-  background: $teal
-.preloader__disc--red
-  background: $red
-  animation-delay: 0.25s
-.preloader__disc--green
-  background: $green
-  animation-delay: 0.5s
-.preloader__disc--orange
-  background: $orange
-  animation-delay: 0.75s
+  &.preloader__disc--blue
+    background: $teal
+  &.preloader__disc--red
+    background: $red
+    animation-delay: 0.25s
+  &.preloader__disc--green
+    background: $green
+    animation-delay: 0.5s
+  &.preloader__disc--orange
+    background: $orange
+    animation-delay: 0.75s
 
 @keyframes discmove
   0%

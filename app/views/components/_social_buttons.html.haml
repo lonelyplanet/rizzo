@@ -9,31 +9,31 @@
 
   .social
     - if show.include? 'facebook'
-      %a.social__item.social__item--facebook{ href: "https://www.facebook.com/sharer/sharer.php?u=#{encoded_url}", target: "blank", data: {lpa_category: 'share', lpa_action: 'facebook', lpa_label: "#{properties[:url]}"} }
+      %a.social__item.social__item--facebook.js-facebook-share{ href: "https://www.facebook.com/sharer/sharer.php?u=#{encoded_url}", target: "_blank", data: {lpa_category: 'share', lpa_action: 'facebook', lpa_label: "#{properties[:url]}"} }
         %span.accessibility Share on Facebook
         %span.social__icon.icon--facebook.icon--white
 
     - if show.include? 'twitter'
-      %a.social__item.social__item--twitter{ href: "https://twitter.com/intent/tweet?text=#{tweet}", target: "blank", data: {lpa_category: 'share', lpa_action: 'twitter', lpa_label: '#{properties[:url]}'} }
+      %a.social__item.social__item--twitter.js-twitter-share{ href: "https://twitter.com/intent/tweet?text=#{tweet}", target: "_blank", data: {lpa_category: 'share', lpa_action: 'twitter', lpa_label: "#{properties[:url]}"} }
         %span.accessibility Share on Twitter
         %span.social__icon.icon--twitter.icon--white
 
     - if show.include? 'google-plus'
-      %a.social__item.social__item--google-plus{ href: "https://plus.google.com/share?url=#{encoded_url}", target: "blank", data: {lpa_category: 'share', lpa_action: 'google-plus', lpa_label: "#{properties[:url]}"}}
+      %a.social__item.social__item--google-plus.js-google-plus-share{ href: "https://plus.google.com/share?url=#{encoded_url}", target: "_blank", data: {lpa_category: 'share', lpa_action: 'google-plus', lpa_label: "#{properties[:url]}"}}
         %span.accessibility Share on Google+
         %span.social__icon.icon--google-plus.icon--white
 
     - if show.include? 'stumbleupon'
-      %a.social__item.social__item--stumbleupon{ href: "http://www.stumbleupon.com/submit?url=#{encoded_url}", target: "_blank", data: {lpa_category: "share", lpa_action: "stumbleupon", lpa_label: "#{properties[:url]}"}}
+      %a.social__item.social__item--stumbleupon.js-stumbleupon-share{ href: "http://www.stumbleupon.com/submit?url=#{encoded_url}", target: "_blank", data: {lpa_category: "share", lpa_action: "stumbleupon", lpa_label: "#{properties[:url]}"}}
         %span.accessibility Share on Stumbleupon
         %span.social__icon.icon--stumbleupon.icon--white
     
     - if show.include? 'tumblr'
-      %a.social__item.social__item--tumblr{ href: "http://www.tumblr.com/share/link?url=#{encoded_url}", target: "_blank", data: {lpa_category: "share", lpa_action: "tumblr", lpa_label: "#{properties[:url]}"}}
+      %a.social__item.social__item--tumblr.js-tumblr-share{ href: "http://www.tumblr.com/share/link?url=#{encoded_url}", target: "_blank", data: {lpa_category: "share", lpa_action: "tumblr", lpa_label: "#{properties[:url]}"}}
         %span.accessibility Share on Tumblr
         %span.social__icon.icon--tumblr.icon--white
     
     - if show.include? 'pinterest'
-      %a.social__item.social__item--pinterest{ href: "http://pinterest.com/pin/create/button/?url=#{encoded_url}&media=#{image_url}&description=#{properties[:description]}", target: "blank", data: {lpa_category: "share", lpa_action: "pinterest", lpa_label: "#{properties[:url]}"}}
+      %a.social__item.social__item--pinterest.js-pinterest-share{ href: "http://pinterest.com/pin/create/button?url=#{encoded_url}&media=#{image_url}&description=#{properties[:description]}", target: "_blank", data: {lpa_category: "share", lpa_action: "pinterest", lpa_label: "#{properties[:url]}"}}
         %span.accessibility Pin this image
         %span.social__icon.icon--pinterest.icon--white

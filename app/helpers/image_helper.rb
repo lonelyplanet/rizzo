@@ -22,10 +22,10 @@ module ImageHelper
     helper = src.is_a?(String) ? ResrcIt.new(opts, src) : src.dup
 
     helper = helper.crop(opts[:crop]) if opts[:crop]
-    helper = helper.optimize(opts[:optimize]) if opts[:optimize]
     helper = helper.square_crop if opts[:square_crop]
     helper = helper.aspect_ratio({ ratio: opts[:aspect_ratio] }) if opts[:aspect_ratio]
     helper = helper.resize(opts[:resize]) if opts[:resize]
+    helper = helper.optimize(opts[:optimize]) if opts[:optimize]
 
     helper.generated_url
   end

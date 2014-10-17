@@ -30,6 +30,7 @@ require([ "jquery" ], function($) {
     "lib/utils/last_input_device",
     "lib/components/range_slider",
     "lib/styleguide/snippet-expand",
+    "lib/styleguide/alert"
   ], function(Swipe, Konami, AdManager, ScrollPerf, Slider, Charts, POIMap, POIList, PageHopper, ToggleActive, SelectGroupManager, WidgetTravelInsurance) {
 
     new ScrollPerf();

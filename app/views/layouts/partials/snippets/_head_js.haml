@@ -48,9 +48,10 @@
 
   // Setup js error logging
   var _trackJs = {
-    customer: '3cd28f4c5df14f6e9fffa815ed7712b0',
-    globalAlias: false,
-    consoleDisplay: true,
+    token: '3cd28f4c5df14f6e9fffa815ed7712b0',
+    console: {
+      display: true
+    },
     userId: window.lp.getCookie('lpUid')
   };
 
@@ -81,7 +82,8 @@
   }(document,"script",new Date));
 
 = render 'layouts/partials/inline_js/cut_the_mustard'
-= render 'layouts/partials/inline_js/fonts_loader'
+- unless third_party
+  = render 'layouts/partials/inline_js/fonts_loader'
 = render 'layouts/partials/inline_js/grunticon'
 
 = render 'layouts/partials/inline_js/require_js_config'

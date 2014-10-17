@@ -24,7 +24,8 @@ require([ "jquery" ], function($) {
         if (window.lp.getCookie) {
           window.lp.fs = new Flamsteed({
             events: window.lp.fs.buffer,
-            u: window.lp.getCookie("lpUid")
+            u: window.lp.getCookie("lpUid"),
+            schema: "0.2"
           });
         }
 

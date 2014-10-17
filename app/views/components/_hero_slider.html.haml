@@ -1,8 +1,9 @@
 .hero-slider.js-onswipe{ class: properties[:class_name] }
   = ui_component('preloader', properties: { styled: true })
   
-  .hero-slider__image.js-hero-slider-image.is-visible{ style: "background-image: url(\"#{properties[:image_url]}\");" }
-  .hero-slider__image.hero-slider__image--placeholder.js-hero-slider-placeholder-image{ style: "background-image: url(\"#{properties[:image_url]}\");" }
+  .hero-slider__image-wrapper  
+    .hero-slider__image.js-hero-slider-image.is-visible{ style: "background-image: url(\"#{properties[:image_url]}\");" }
+    .hero-slider__image.hero-slider__image--placeholder.js-hero-slider-placeholder-image{ style: "background-image: url(\"#{properties[:image_url]}\");" }
 
   .hero-slider__overlay
     - if properties[:show_controls]

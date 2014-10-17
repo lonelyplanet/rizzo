@@ -2,7 +2,7 @@
 - discount_modifier = properties[:on_sale?] ? "tag--price--discount" : nil
 - size_modifier = properties[:size] ? "tag--price--#{properties[:size]}" : nil
 
-.tag.tag--price{ id: properties[:id] ? properties[:id] : nil, class: "#{discount_modifier} #{size_modifier}"}
+.tag.tag--price.js-price-tag{ id: properties[:id] ? properties[:id] : nil, class: "#{discount_modifier} #{size_modifier}"}
   .tag--price__inner
     .tag--price__values
       from
@@ -19,6 +19,6 @@
           = properties[:scope]
 
     - if properties[:on_sale?]
-      .tag--price__retail<>
+      .tag--price__retail.js-price-retail<>
         != properties[:currency]
         = properties[:retail_price]

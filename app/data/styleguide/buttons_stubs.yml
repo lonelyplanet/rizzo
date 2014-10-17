@@ -76,3 +76,8 @@ social_media:
     :type: "twitter btn--icon icon--twitter--before icon--white--before"
     :text: "Twitter"
     :href: "#"
+  -
+    :styleguide_title: "Pinterest"
+    :type: "pinterest btn--icon icon--pinterest--before icon--white--before"
+    :text: "Pinterest"
+    :href: "#"

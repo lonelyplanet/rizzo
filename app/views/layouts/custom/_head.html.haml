@@ -21,7 +21,7 @@
 = csrf_meta_tags
 
 - if include_js
-  = render 'layouts/partials/snippets/head_js'
+  = render 'layouts/partials/snippets/head_js', third_party: third_party
   - if tynt
     = render 'layouts/partials/inline_js/tynt'
 

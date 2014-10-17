@@ -1,0 +1,141 @@
+= render 'styleguide/partials/shared'
+
+.card.styleguide-intro.styleguide-block.copy--body.context--content
+
+  %h1.copy--h1
+    Alert
+
+  %p.copy--feature
+    Flash #{ link_to "alerts", "http://localhost:3002/styleguide/ui-components/alerts" } like a baws.
+
+.styleguide-block
+
+  .styleguide-block__description.card.copy--body
+
+    %h2.copy--h2.styleguide-block__heading
+      Arguments
+
+    %li
+      %code.language-markup container 
+      \- selector for alert container
+    %li
+      %code.language-markup isSubtle
+      \- boolean for alert appearance
+
+
+
+  .styleguide-block__description.card.copy--body
+
+    %h2.copy--h2.styleguide-block__heading
+      Usage
+
+    %p
+      Use       
+      %code.language-markup success()
+      \/
+      %code.language-markup error()
+      \/
+      %code.language-markup warning()
+      \/
+      %code.language-markup announcement()
+      methods for rendering alerts.
+
+      %li
+        Pass message as a
+        %code { title: "your_title", content: "your_content" }
+        object. Feel free to put some
+        %code HTML 
+        in it.
+
+      %li
+        You can change 
+        %code isSubtle
+        per alert. Just pass 
+        %code true 
+        as a second argument if you want it to be subtle.
+  
+    %p
+      Alerts will never stack (if fired one after another), but if you need to clear one manually, simply use
+      %code.language-markup clear()
+
+    %p
+      Screen will scroll to alert container automatically, but if you want to scroll again yourself use
+      %code.language-markup scrollTo()
+
+  .styleguide-block__description.card.copy--body
+
+    %h2.copy--h2.styleguide-block__heading
+      Example
+
+    .styleguide-block__item.js-alert-container
+
+    %p
+      = ui_component('forms/checkbox_field', properties: { label: "Go subtle" })
+
+    %p
+      %button.btn.btn--large.btn--inline.btn--green.js-alert-success
+        Success
+
+      %button.btn.btn--large.btn--inline.btn--red.js-alert-error
+        Error
+
+      %button.btn.btn--large.btn--inline.btn--yellow.js-alert-warning
+        Warning
+
+      %button.btn.btn--large.btn--inline.js-alert-announcement
+        Announcement
+
+      %button.btn.btn--large.btn--clear.split--right.js-alert-clear
+        Reset
+
+    %pre.styleguide.copy--body.language-javascript
+      %code
+        = preserve do
+          :plain
+            define([ "jquery", "lib/utils/alert" ], function($, Alert) {
+
+              "use strict";
+
+              var alert = new Alert({
+                    container: ".js-alert-container"
+                  }),
+                  defaultContent =
+                    "&lt;div class='alert alert--subtle'>&lt;code class='language-markup'>" +
+                    alert.config.container + "&lt;/code>&lt;/div>",
+                  $goSubtleCheckbox = $(".input--checkbox");
+
+              alert.$container.append(defaultContent);
+
+              $(".js-alert-success").on("click", function() {
+                alert.success(
+                  { title: "Congratulations! ", content: "This is so cool!" },
+                  $goSubtleCheckbox.is(":checked")
+                );
+              });
+
+              $(".js-alert-error").on("click", function() {
+                alert.error(
+                  { title: "Woah! This message is title only!" },
+                  $goSubtleCheckbox.is(":checked")
+                );
+              });
+
+              $(".js-alert-warning").on("click", function() {
+                alert.warning(
+                  { content: "Warning - this one is content only." },
+                  $goSubtleCheckbox.is(":checked")
+                );
+              });
+
+              $(".js-alert-announcement").on("click", function() {
+                alert.announcement(
+                  { title: "Yes! ", content: "You are the alert message god." },
+                  $goSubtleCheckbox.is(":checked")
+                );
+              });
+
+              $(".js-alert-clear").on("click", function() {
+                alert.clear();
+                alert.$container.append(defaultContent);
+              });
+            });

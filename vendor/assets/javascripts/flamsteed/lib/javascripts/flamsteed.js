@@ -10,7 +10,9 @@
       this.log_min_size = options.log_min_size || 3;
       this.log_max_interval = options.log_max_interval || 1500;
       this.debug = options.debug || false;
-      this.u = options.u || Math.random() * 100000000000000000; // uuid
+      this.session_id = options.u || options.session_id || Math.random() * 100000000000000000; // session_id id
+      this.fid = options.fid || options.page_impression_id || (this.session_id + "-" + Date.now()); // flamsteed id
+      this.schema = options.schema || "0.1";
       this.isCapable() && this._init(options.events);
     }
 
@@ -32,6 +34,7 @@
 
     fs.prototype.log = function(data) {
       if (this.isCapable()) {
+        data = this._addMetaData(data);
         this.debug && console.log("log:", data);
         this.buffer.push(data);
         this._flushIfFull();
@@ -40,17 +43,15 @@
 
     fs.prototype.time = function(data) {
       if (this.isNowCapable()) {
-        data.t = window.performance.now();
         this.log(data);
       }
     };
-    
+
     fs.prototype.flush = function() {
-      if (!this.flushing) {
+      if (!this.flushing && this.buffer.length > 0) {
         this.debug && console.log("flushing:", this.buffer);
         this.flushing = true;
         this.resetTimer(this);
-        this.buffer.push({u: this.u});
         this._sendData(this.buffer);
         this.emptyBuffer();
         this._tidyUp();
@@ -68,7 +69,7 @@
     fs.prototype._flushIfFull = function() {
       this.buffer.length >= this.log_max_size && this.flush();
     };
-    
+
     // PRIVATE
     fs.prototype._flushIfEnough = function() {
       this.buffer.length >= this.log_min_size && this.flush();
@@ -76,9 +77,7 @@
 
     // PRIVATE
     fs.prototype._sendData = function(data) {
-      if (data.length > 0) {
-        this._appendImage.call(this, data);
-      }
+      this._appendImage.call(this, data);
     };
 
     // PRIVATE
@@ -91,7 +90,12 @@
 
     // PRIVATE
     fs.prototype._tidyUp = function() {
-      this.image.parentNode && this.image.parentNode.removeChild(this.image);
+      if (this.image && this.image.parentNode) {
+        this.image.parentNode.removeChild(this.image);
+        return true;
+      } else {
+        return false;
+      }
     };
 
     // PRIVATE
@@ -103,15 +107,40 @@
           if(obj.hasOwnProperty(prop)) {
             if(typeof(obj[prop]) === "object") {
               for (var p in obj[prop]) {
-                s[s.length] = encodeURIComponent(p) + "=" + encodeURIComponent(obj[prop][p]);
+                s.push(this._toParam(key, p, obj[prop][p]));
               }
             } else {
-              s[s.length] = encodeURIComponent(prop) + "=" + encodeURIComponent(obj[prop]);
+              s.push(this._toParam(key, prop, obj[prop]));
             }
           }
         }
       }
       return s.join("&").replace(/%20/g, "+");
+    };
+
+    // PRIVATE
+    fs.prototype._toParam = function(index, key, val) {
+      return '[' + index + ']' + '[' + this._sanitizeValue(key) + ']' + '=' + this._sanitizeValue(val);
+    };
+
+    // PRIVATE
+    fs.prototype._sanitizeValue = function(val) {
+      if (typeof val == "string" && val == "") {
+        val = null;
+      }
+      return encodeURIComponent(val);
+    };
+
+    // PRIVATE
+    fs.prototype._addMetaData = function(data) {
+      if (data['t'] === undefined && this.isNowCapable()) {
+        data.t = window.performance.now();
+      }
+      data.session_id = this.session_id;
+      data.fid = this.fid;
+      data.schema = this.schema;
+
+      return data;
     };
 
     // PRIVATE
@@ -121,11 +150,7 @@
 
     // PRIVATE
     fs.prototype._processRum = function() {
-      var t = window.performance.timing, n = t.navigationStart, prop, perf = {};
-      for (prop in t) {
-        perf[prop] = (t[prop] >= n) ? t[prop] - n : t[prop];
-      }
-      return perf;
+      return window.performance.timing;
     };
 
     // PRIVATE
@@ -147,7 +172,6 @@
         window.addEventListener("unload", this._logRumAndFlush.bind(this));
       }
       this.flush();
-    
     };
 
     return fs;

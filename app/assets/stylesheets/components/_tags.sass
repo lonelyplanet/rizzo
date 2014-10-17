@@ -250,24 +250,34 @@
 // -----------------------------------------------------------------------------
 
 .tag--best-in-travel
-  +tag-curl-right($lpblue)
   bottom: auto
   top: 20px
   background-color: $lpblue
   width: 220px
-  padding: 7px 20px 7px 0
-  max-height: 30px
-  border-top-left-radius: 0
-  border-bottom-left-radius: 0
+  padding: 5px 0px 5px 10px
+  max-height: 26px
   .tag__ribbon
     +z-layer(below)
     position: absolute
     width: 0
     bottom: 0px
-    left: -20px
-    border: 15px solid $lpblue
-    border-left-color: transparent
-    border-left-width: 8px
+    border: 13px solid $lpblue
+  &.tag--horizontal--right
+    +tag-curl-right($lpblue)
+    border-top-left-radius: 0
+    border-bottom-left-radius: 0
+    .tag__ribbon
+      left: -10px
+      border-left-color: transparent
+      border-left-width: 6px
+  &.tag--horizontal--left
+    +tag-curl-left($lpblue)
+    border-top-right-radius: 0
+    border-bottom-right-radius: 0
+    .tag__ribbon
+      right: -10px
+      border-right-color: transparent
+      border-right-width: 6px
   img
     max-width: 100%
     display: block

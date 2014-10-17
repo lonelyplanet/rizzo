@@ -251,5 +251,59 @@ require([
         expect(":cards/received").toHaveBeenTriggeredOnAndWith(controller.$el, newParams);
       });
     });
+
+    describe("on layer request", function() {
+      beforeEach(function() {
+        window.controller = new Controller();
+        spyOn(controller, "_callServer").andReturn(true);
+        spyOn(controller.pushState, "navigate").andReturn(false);
+        $(LISTENER).trigger(":layer/request", { url: serialized.url });
+      });
+
+      it("initialise layer reset state", function() {
+        expect(window.controller.layerResetState).not.toBe(-1);
+      });
+
+      it("doesn't replace the url", function() {
+        expect(controller.pushState.navigate).toHaveBeenCalledWith("", serialized.url, false);
+      });
+
+      it("reset event resets layerResetState ", function() {
+        $(LISTENER).trigger(":controller/reset");
+        expect(window.controller.layerResetState).toBe(-1);
+      });
+
+    });
+
+    describe("on several layer requests", function() {
+      beforeEach(function() {
+        window.controller = new Controller();
+        spyOn(controller, "_callServer").andReturn(true);
+        spyOn(controller.pushState, "navigate").andReturn(false);
+        //Update path, so current state is 1
+        $(LISTENER).trigger(":controller/updatePath", { url: serialized.url });
+        //Trigger layer
+        $(LISTENER).trigger(":layer/request", { url: serialized.urlWithSearchAndFilters });
+        //Update path again, so current state is 3
+        $(LISTENER).trigger(":controller/updatePath", { url: serialized.url });
+        //Another layer request
+        $(LISTENER).trigger(":layer/request", { url: serialized.urlWithSearchAndFilters });
+
+      });
+
+      it("initialise layer reset state only once", function() {
+        expect(window.controller.layerResetState).toBe(1);
+      });
+
+      it("reset the state before opening the layer", function() {
+        $(LISTENER).trigger(":controller/reset");
+
+        expect(window.controller.layerResetState).toBe(-1);
+        expect(window.controller.currentState).toBe(0);
+        expect(window.controller.states[0].documentRoot).toBe( serialized.url );
+      });
+
+    });
+
   });
 });
