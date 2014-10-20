@@ -231,7 +231,7 @@
 
     /* Code to populate the last level of the pagename in destinations */
     if(s.channel == "dest" || s.channel == "thorntree"  || s.channel == "lphotels" ){
-      if (!(s.prop8=='video') && !(s.prop8=='photo') && s_objectID == undefined)
+      if (!(s.prop8=='video') && !(s.prop8=='photo') && !(s.prop9=='best in travel') && s_objectID == undefined)
       {
         if (s.prop7==null) {
           // Do nothing

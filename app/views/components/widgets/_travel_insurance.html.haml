@@ -3,7 +3,8 @@
 
     %h1.copy--h1.booking-title Travel insurance
 
-    %h4.copy--h4.booking-subtitle Get a quote for travel insurance
+    - if properties[:show_subheading]
+      %h4.copy--h4.booking-subtitle Get a quote for travel insurance
 
     = form_tag("http://www.worldnomads.com/afturnstile.aspx", method: "get", target: "_blank") do
 
@@ -65,3 +66,8 @@
                 Get a quote
                 .alert.alert--error.icon--cross--before.is-hidden
                   Please make sure all fields are filled out
+
+            - if properties[:show_sponsor]
+              .booking__powered-by
+                Powered by
+                %img.booking__powered-by__logo{ src: "//assets.staticlp.com/landing-pages/travel-insurance/worldnomads.png" }
