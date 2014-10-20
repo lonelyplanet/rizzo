@@ -37,12 +37,12 @@ define(function() {
   };
 
   LocalStore.prototype.getCookie = function(k, string) {
-    var c = string ? string.split(";") : document.cookie.split(";"),
+    var c = string ? string.split("; ") : document.cookie.split("; "),
         cookies = {};
 
     for (var i = 0, a; i < c.length; i++) {
       a = c[i].split("=");
-      cookies[a[0].trim()] = a[1].trim();
+      cookies[a[0]] = a[1];
     }
 
     return cookies[k];
@@ -54,11 +54,11 @@ define(function() {
     if (days && (days !== 0)) {
       exp = new Date();
       exp.setTime(exp.getTime() + (days * 86400000));
-      exp = ";expires=" + exp.toGMTString();
+      exp = "; expires=" + exp.toGMTString();
     }
 
-    domain = domain ? (";domain=" + domain) : "";
-    path = ";path=" + (path || "/");
+    domain = domain ? ("; domain=" + domain) : "";
+    path = "; path=" + (path || "/");
 
     return window.document.cookie = k + "=" + v + exp + domain + path;
   };

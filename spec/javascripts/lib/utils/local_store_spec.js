@@ -112,28 +112,28 @@ require([ "lib/utils/local_store" ], function(LocalStore) {
         describe("setCookie()", function() {
 
           it("should return session cookie string if no 'days' specified or equal 0", function() {
-            expect(ls.setCookie("rob", "duck")).toEqual("rob=duck;path=/");
+            expect(ls.setCookie("rob", "duck")).toEqual("rob=duck; path=/");
             expect(ls.setCookie("rob", "duck", 0, "duckland.pl", "/ducks"))
-              .toEqual("rob=duck;domain=duckland.pl;path=/ducks");
+              .toEqual("rob=duck; domain=duckland.pl; path=/ducks");
           });
 
           it("should return valid cookie string with proper date, domain & path if specified", function() {
             expect(ls.setCookie("rob", "duck", 1, "duckland.pl", "/ducks"))
-              .toEqual("rob=duck;expires=Fri, 02 Jan 1970 00:00:00 GMT;domain=duckland.pl;path=/ducks");
+              .toEqual("rob=duck; expires=Fri, 02 Jan 1970 00:00:00 GMT; domain=duckland.pl; path=/ducks");
           });
         });
 
         describe("getCookie()", function() {
 
           it("should return proper cookie value for given key", function() {
-            expect(ls.getCookie("madonna", "rob=duck;madonna=rabbit")).toEqual("rabbit");
+            expect(ls.getCookie("madonna", "rob=duck; madonna=rabbit")).toEqual("rabbit");
           });
         });
 
         describe("removeCookie()", function() {
 
           it("should return proper cookie deletion string", function() {
-            expect(ls.removeCookie("rob")).toEqual("rob=;expires=Wed, 31 Dec 1969 00:00:00 GMT;path=/");
+            expect(ls.removeCookie("rob")).toEqual("rob=; expires=Wed, 31 Dec 1969 00:00:00 GMT; path=/");
           });
         });
       });
