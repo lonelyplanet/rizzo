@@ -64,6 +64,20 @@ module.exports = function(grunt) {
           datapngcss: "critical.png.css",
           urlpngcss: "critical.css"
         }
+      },
+      ntk: {
+        files: [{
+          expand: true,
+          cwd: "app/assets/images/icons/need-to-know/",
+          dest: "app/assets/stylesheets/icons",
+          src: [ "*.svg" ]
+        }],
+        options: {
+          cssprefix: ".icon--",
+          datasvgcss: "need-to-know.svg.css",
+          datapngcss: "need-to-know.png.css",
+          urlpngcss: "need-to-know.css"
+       }
       }
     },
     svgmin: {
@@ -230,6 +244,7 @@ module.exports = function(grunt) {
   grunt.registerTask("imageoptim", [ "imageoptim" ]);
   grunt.registerTask("icon:active", [ "grunticon:active", "shell:cleanIcons", "shell:move" ]);
   grunt.registerTask("icon:critical", [ "grunticon:critical", "shell:cleanIcons", "shell:move" ]);
-  grunt.registerTask("icon", [ "svgmin", "icon:active", "icon:critical" ]);
+  grunt.registerTask("icon:ntk", [ "grunticon:ntk", "shell:cleanIcons", "shell:move" ]);
+  grunt.registerTask("icon", [ "svgmin", "grunticon:active", "grunticon:critical", "icon:ntk" ]);
   grunt.registerTask("setup", [ "shell:fetchSubmodules", "shell:enableHooks" ]);
 };
