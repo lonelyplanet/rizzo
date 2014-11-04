@@ -6,7 +6,6 @@ require([ "jquery" ], function($) {
     "lib/page/swipe",
     "lib/utils/konami",
     "lib/core/ad_manager",
-    "lib/page/scroll_perf",
     "lib/components/slider",
     "lib/components/thumb_slider",
     "lib/styleguide/charts",
