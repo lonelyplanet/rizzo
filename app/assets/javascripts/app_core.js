@@ -8,7 +8,6 @@ define([
   "polyfills/xdr",
   "lib/page/swipe",
   "lib/core/nav_search",
-  "lib/page/scroll_perf",
   "lib/core/authenticator",
   "lib/core/shopping_cart",
   "lib/core/feature_detect",
