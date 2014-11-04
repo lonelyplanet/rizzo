@@ -85,7 +85,7 @@ module CardsHelper
     end
   end
 
-  def card_grid_helper(card_index: 0, is_double: false, is_mpu: false, grid_columns: 5, reset: false)
+  def card_grid_helper(card_index=0, is_double=false, is_mpu=false, grid_columns=5, reset=false)
     class_str = ['col--one-whole']
 
     @grid_helper_doubles = 0 if card_index == 0 || reset
