@@ -105,7 +105,7 @@ define([
     $img.on("load", function() {
       ++imgCount;
 
-      if (imgCount === self.config.waitForThumbLoad) {
+      if (imgCount === self.config.waitForThumbLoad || $img.length < self.config.waitForThumbLoad) {
         if (!window.lp.supports.transitionend) {
           self.$el.slideToggle(1000);
         } else {
