@@ -13,7 +13,7 @@ define([
     scrollControlls:".js-thumb-arrow",
     listener: document,
     scrollDistance: 300,
-    waitForThumbLoad: 10,
+    waitForThumbLoad: 10
   };
 
   function ThumbSlider(args) {
@@ -102,17 +102,17 @@ define([
         $img = self.$el.find("img"),
         imgCount = 0;
 
-    $img.on("load", function() {
-      ++imgCount;
+    if ($img.length < self.config.waitForThumbLoad) {
+      self.$el.addClass("is-ready");
+    } else {
+      $img.on("load", function() {
+        ++imgCount;
 
-      if (imgCount === self.config.waitForThumbLoad || $img.length < self.config.waitForThumbLoad) {
-        if (!window.lp.supports.transitionend) {
-          self.$el.slideToggle(1000);
-        } else {
-          self.$el.addClass("ready");
+        if (imgCount === self.config.waitForThumbLoad) {
+          self.$el.addClass("is-ready");
         }
-      }
-    });
+      });
+    }
 
     self.$listener.on(":slider/slideChanged", function(e, index) {
       e.preventDefault();

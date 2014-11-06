@@ -139,22 +139,21 @@
 .slider__thumbs
   +z-layer(top)
   +alpha-background(black,0.8,black)
-  transition: 1s all ease-in
+  transition: 1s height ease-in, 1s opacity ease-in
   position: absolute
   bottom: 0
   height: 0
   width: 100%
   text-align: center
   opacity: 0
-
-.slider__thumbs.ready 
-  height: 60px
-  display: block
-  opacity: 1
+  &.is-ready 
+    height: 60px
+    display: block
+    opacity: 1
 
 .slider__thumbs__list
   height: 70px
-  margin: 5px 25px 0 25px
+  margin: 5px 25px 0
   overflow: hidden
   white-space: nowrap
   -ms-overflow-style: none
