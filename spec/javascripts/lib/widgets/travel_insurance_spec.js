@@ -4,7 +4,7 @@ require([ "public/assets/javascripts/lib/widgets/travel_insurance" ], function(T
 
   describe("TravelInsurance", function() {
     define("wnmock", function() {
-      return {}
+      return {};
     });
 
     it("pulls in the world nomad widget", function() {
@@ -12,7 +12,7 @@ require([ "public/assets/javascripts/lib/widgets/travel_insurance" ], function(T
 
       runs(function() {
         var widget = new TravelInsurance({
-          wnPath: "wnmock",
+          path: "wnmock",
           callback: function() {
             ready = true;
           }
@@ -33,7 +33,7 @@ require([ "public/assets/javascripts/lib/widgets/travel_insurance" ], function(T
 
       runs(function() {
         var widget = new TravelInsurance({
-          wnPath: "wnmock"
+          path: "wnmock"
         });
         
         widget.render().then(function() {
