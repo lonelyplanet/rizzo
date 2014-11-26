@@ -17,18 +17,23 @@ define([
       _transform = window.lp.supports.transform && window.lp.supports.transform.js;
 
   HeroParallax = function( args ) {
-    if (this.viewport().width <= 1024) { return; }
-
     this.$els = args.$els || $(".js-bg-parallax");
+    if (this.viewport().width <= 1024 || !this.$els.length) { return; }
 
+    this.$listener = $("#js-row--content");
     this.calculateInitialPosition( true );
+    this._listen();
 
     $(window).on("scroll", this._onScroll.bind(this));
     $(window).on("resize", debounce(this._onResize.bind(this), 100));
-
   };
 
   withViewportHelper.call(HeroParallax.prototype);
+
+  HeroParallax.prototype._listen = function() {
+    this.$listener.on(":lightbox/open", this._stopRAF.bind(this));
+    this.$listener.on(":lightbox/close", this._startRAF.bind(this));
+  };
 
   HeroParallax.prototype._onResize = function() {
     this.calculateInitialPosition( false );

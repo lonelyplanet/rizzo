@@ -68,6 +68,7 @@ define([
 
     this.$lightbox.on("click", ".js-lightbox-close", function(event) {
       event.preventDefault();
+      this.$el.trigger(":lightbox/close");
       this._closeFlyout(this.$el);
     }.bind(this));
 
