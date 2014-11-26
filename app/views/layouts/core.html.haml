@@ -6,7 +6,7 @@
 %body
   = ui_component('lightbox')
   %script#tmpl-preloader{ type: 'text-mustache' }
-    = ui_component('preloader')
+    = ui_component('preloader', properties: {styled: "true"})
 
   .wrapper.js-wrapper
   

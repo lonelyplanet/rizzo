@@ -1,0 +1,36 @@
+<div id="js-row--content">
+
+  <script id="tmpl-preloader" type="text-mustache">
+    <div class='preloader'></div>
+  </script>
+
+  <script id="tmpl-prerender" type="text-mustache">
+    <div class="new-content">
+      <div class="js-prerender-panel">
+        <div class='my-title'>{{title}}</div>
+        <div class='my-content'>{{content}}</div>
+      </div>
+    </div>
+  </script>
+
+
+  <div id="target">
+    <div class="js-prerender-container"></div>
+  </div>
+
+  <div id="opener">
+    <span class="js-prerender-title">Prerendered title</span>
+    <span class="js-prerender-content">Prerendered content</span>
+  </div>
+
+  <div id="next" data-direction="next">
+    <span class="js-prerender-title">Next prerendered title</span>
+    <span class="js-prerender-content">Next prerendered content</span>
+  </div>
+
+  <div id="previous" data-direction="previous">
+    <span class="js-prerender-title">Previous prerendered title</span>
+    <span class="js-prerender-content">Previous prerendered content</span>
+  </div>
+
+</div>

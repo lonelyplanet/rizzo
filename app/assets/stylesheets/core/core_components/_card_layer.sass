@@ -4,9 +4,11 @@
 //
 // -----------------------------------------------------------------------------
 
+$layer-max-width: 800px
+
 .card--layer
   width: 100%
-  max-width: 800px
+  max-width: $layer-max-width
   margin: 0px auto
 
   .row--billboard
@@ -36,6 +38,7 @@
   @extend %large-shadow
   position: relative
   margin-top: 50px
+  overflow: hidden
 
   .copy--h1
     width: 90%
@@ -62,6 +65,19 @@
 .card--layer__article
   padding-bottom: 10px
 
-.card--layer__prerender
+.card--layer__preloader
   position: relative
   margin-top: 50px
+
+.card--layer
+
+  .prerender-container
+    transition: .4s ease-in-out transform
+    will-change: transform
+
+  .prerender-panel
+    position: absolute
+    top: 0
+    width: $layer-max-width
+    .card--layer__content
+      margin-top: 0
