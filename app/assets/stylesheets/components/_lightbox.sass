@@ -1,4 +1,4 @@
-$lightbox-width: 880px !default
+$lightbox-width: 800px !default
 
 .lightbox
   +z-layer(modal)
@@ -62,15 +62,11 @@ $lightbox-width: 880px !default
     max-width: $lightbox-width
 
   .is-loading &
-    @extend %rounded-corners
-    @extend %large-shadow
-    width: 90px
-    transform: translate3d(0, 0, 0)
-    transition: transform 0.3s, opacity 0.3s
-    top: 45%
-    height: 50px
-    background-color: #FFF
     opacity: 1
+    height: 100%
+
+  .preloader
+    top: 30%
 
   > iframe
     background: black
@@ -97,7 +93,8 @@ $lightbox-width: 880px !default
     display: block
 
 .lightbox__controls
-  max-width: $lightbox-width
+  // Move the lightbox arrows slightly wider to fit in the thumbnails
+  max-width: $lightbox-width + 80px
   margin: auto
   position: relative
 

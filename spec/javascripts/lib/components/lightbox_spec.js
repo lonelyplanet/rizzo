@@ -139,26 +139,6 @@ require([ "jquery", "public/assets/javascripts/lib/components/lightbox.js" ], fu
 
       });
 
-      describe("prerendering content", function() {
-        beforeEach(function() {
-          loadFixtures("lightbox.html");
-          lightbox = new LightBox();
-          spyOn(lightbox, "viewport").andReturn({
-            width: 600
-          });
-
-          $("#js-row--content").trigger(":lightbox/open", {
-            opener: ".js-lightbox-with-prerender"
-          });
-        });
-
-        it("should have prerendered content", function() {
-          expect($(".js-lightbox-content .my-title").html()).toContain("Prerendered title");
-          expect($(".js-lightbox-content .my-content").html()).toContain("Prerendered content");
-        });
-
-      });
-
       describe("with viewport below breakpoint", function() {
 
         beforeEach(function() {
@@ -214,22 +194,6 @@ require([ "jquery", "public/assets/javascripts/lib/components/lightbox.js" ], fu
       it("should navigate to some other url with pagination links", function() {
         $(".js-lightbox-next").trigger("click");
         expect(lightbox._navigateTo).toHaveBeenCalled();
-      });
-
-      it("shouldn't prerender content if not all available", function(){
-        $("#js-row--content").trigger(":lightbox/navigate", paginationData.pagination.next);
-        expect($(".js-lightbox-content").html()).toBe("");
-        expect($("#js-lightbox")).not.toHaveClass("content-ready");
-      });
-
-      it("should prerender content if available", function(){
-        var data = jQuery.extend({}, paginationData);
-        data.pagination.next.content = "Some next content";
-        $("#js-row--content").trigger(":lightbox/navigate", data.pagination.next);
-
-        expect($(".js-lightbox-content").html()).toContain("Some next content");
-        expect($("#js-lightbox")).toHaveClass("content-ready");
-
       });
 
     });

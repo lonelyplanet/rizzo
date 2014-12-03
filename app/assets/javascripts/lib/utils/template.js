@@ -18,6 +18,7 @@ define(function() {
   // template: {string} The mustache-like template
   // obj: {object} The object to grab the data from
   Template.render = function(template, obj) {
+    if (!template) return;
     for (var key in obj) {
       template = template.replace(new RegExp("{{" + key + "}}", "gm"), obj[key]);
     }
