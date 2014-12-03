@@ -73,8 +73,9 @@ $layer-max-width: 800px
 
   .prerender-container
     height: 100%
-    transition: .4s ease-in-out transform
-    will-change: transform
+    &.will-transition
+      transition: .4s ease-in-out transform
+      will-change: transform
 
   .prerender-panel
     position: absolute

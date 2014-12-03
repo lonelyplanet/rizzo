@@ -37,7 +37,11 @@ define([
   // -------------------------------------------------------------------------
 
   Prerender.prototype._getContainerDimensions = function() {
-    return $(".js-prerender-container").find(".js-lightbox-content")[0].getBoundingClientRect();
+    return $(".js-prerender-container").find(".js-article-content")[0].getBoundingClientRect();
+  };
+
+  Prerender.prototype._getElementHtml = function($element) {
+    return $element[0].outerHTML;
   };
 
   Prerender.prototype._useElementIfAvailable = function($element, selector) {
@@ -65,11 +69,20 @@ define([
 
     var $newContent = this._getNewContent($(data.opener)),
         transition = this._getPrerenderTransitionAmounts(direction, this._getContainerDimensions()),
-        $content = this._useElementIfAvailable($newContent, ".js-prerender-panel").addClass("prerender-panel");
+        $content = this._useElementIfAvailable($newContent, ".js-prerender-panel"),
+        $target = this._useElementIfAvailable($(data.target), ".js-prerender-container"),
+        $contentHTML = this._getElementHtml($content.find(".js-prerender-content"));
 
-    this._useElementIfAvailable($(data.target), ".js-prerender-container")
-      .append($content.css(transition.panel))
-      .css(transition.container);
+    $target
+      .append($content.addClass("prerender-panel").css(transition.panel))
+      .addClass("will-transition").css(transition.container);
+
+    setTimeout(function() {
+      $target.find(".js-article-content").html($contentHTML);
+      $target.find(".js-lightbox-wrapper").scrollTop(0);
+      $content.remove();
+      $target.removeClass("will-transition").css("transform", "translateX(0)");
+    }, 500);
 
     this.$listener.trigger(":prerender/complete");
   };
