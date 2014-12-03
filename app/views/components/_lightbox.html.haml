@@ -1,22 +1,23 @@
 #js-lightbox.lightbox
-  .lightbox__wrapper.js-lightbox-wrapper
-    .lightbox__content
-      .lightbox__close.icon--cross.js-lightbox-close
-      .js-lightbox-content.js-prerender-container
+  .prerender-container.js-prerender-container
+    .lightbox__wrapper.js-lightbox-wrapper
+      .lightbox__content
+        .lightbox__close.icon--cross.js-lightbox-close
+        .js-lightbox-content
 
-  .lightbox__controls-wrapper
-    .lightbox__controls.js-lightbox-controls
+    .lightbox__controls-wrapper
+      .lightbox__controls.js-lightbox-controls
 
-      %a.lightbox__controls__arrow.js-lightbox-arrow.js-lightbox-previous.arrow--left.is-hidden.icon--chevron-left--after.icon--white--after{data: {direction: "previous"}}
-        %div.lightbox__tooltip.icon--tapered-arrow-down--after.icon--white--after
-          .lightbox__tooltip__inner
-            %img.lightbox__tooltip__image
-            .lightbox__tooltip__text.js-lightbox-arrow__text.js-prerender-title.icon--tapered-arrow-down--after
-            %span.js-prerender-content.is-hidden
+        %a.lightbox__controls__arrow.js-lightbox-arrow.js-lightbox-previous.arrow--left.is-hidden.icon--chevron-left--after.icon--white--after{data: {direction: "previous"}}
+          %div.lightbox__tooltip.icon--tapered-arrow-down--after.icon--white--after
+            .lightbox__tooltip__inner
+              %img.lightbox__tooltip__image
+              .lightbox__tooltip__text.js-lightbox-arrow__text.js-prerender-title.icon--tapered-arrow-down--after
+              %span.js-prerender-content.is-hidden
 
-      %a.lightbox__controls__arrow.js-lightbox-arrow.js-lightbox-next.arrow--right.is-hidden.icon--chevron-right--before.icon--white--before{data: {direction: "next"}}
-        %div.lightbox__tooltip.icon--tapered-arrow-down--after.icon--white--after
-          .lightbox__tooltip__inner
-            %img.lightbox__tooltip__image
-            .lightbox__tooltip__text.js-lightbox-arrow__text.js-prerender-title.icon--tapered-arrow-down--after
-            %span.js-prerender-content.is-hidden
+        %a.lightbox__controls__arrow.js-lightbox-arrow.js-lightbox-next.arrow--right.is-hidden.icon--chevron-right--before.icon--white--before{data: {direction: "next"}}
+          %div.lightbox__tooltip.icon--tapered-arrow-down--after.icon--white--after
+            .lightbox__tooltip__inner
+              %img.lightbox__tooltip__image
+              .lightbox__tooltip__text.js-lightbox-arrow__text.js-prerender-title.icon--tapered-arrow-down--after
+              %span.js-prerender-content.is-hidden

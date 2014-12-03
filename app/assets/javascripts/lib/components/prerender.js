@@ -37,7 +37,7 @@ define([
   // -------------------------------------------------------------------------
 
   Prerender.prototype._getContainerDimensions = function() {
-    return $(".js-prerender-container")[0].getBoundingClientRect();
+    return $(".js-prerender-container").find(".js-lightbox-content")[0].getBoundingClientRect();
   };
 
   Prerender.prototype._useElementIfAvailable = function($element, selector) {
@@ -72,11 +72,10 @@ define([
       .css(transition.container);
 
     this.$listener.trigger(":prerender/complete");
-
   };
 
   Prerender.prototype._getPrerenderTransitionAmounts = function(direction, panelDimensions) {
-    var offset = panelDimensions.width + (panelDimensions.left * 2);
+    var offset = this.getViewPort() + panelDimensions.left;
     if (direction == "next") {
       return {
         panel: { left: offset },
