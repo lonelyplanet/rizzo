@@ -5,15 +5,18 @@
       %button.slider__control.slider__control--next.js-slider-next.icon--chevron-right--before.icon--white--before{ value: "#" }<
         = "2 of #{properties[:images].length}"
       %button.slider__control.slider__control--prev.js-slider-previous.icon--chevron-left--after.icon--white--after{ value: "#" }
-        = "#{properties[:images].length} of #{properties[:images].length}"    
+        = "#{properties[:images].length} of #{properties[:images].length}"
 
   .slider__viewport.js-slider-viewport.js-onswipe.is-loading
     .slider__container.js-slider-container
       - properties[:images].each_with_index do |image, i|
+        - image_class = image[:orientation] == "VERTICAL" ? "slider__img slider__img--portrait" : "slider__img"
+
         - if i == 0 || !properties[:lazyLoad]
           .slider__slide.js-slide.is-loaded{ class: i == 0 ? "is-current" : "" }
             %img.slider__img{ src: image[:src], alt: image[:alt], data: { thumb: image[:thumb] } }
         - else
           .slider__slide.js-slide.is-hidden
-            %img{ data: { class: 'slider__img', src: image[:src], thumb: image[:thumb], alt: image[:alt] } }
+            %img{ data: { class: image_class, src: image[:src], thumb: image[:thumb], alt: image[:alt] } }
+
     = render :partial => "/components/preloader"
