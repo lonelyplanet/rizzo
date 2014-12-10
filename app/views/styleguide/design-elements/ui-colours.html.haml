@@ -10,6 +10,6 @@
     %a{href: 'https://github.com/lonelyplanet/rizzo/blob/master/app/assets/stylesheets/sass/variables/_colour_theme.sass'}
       colour_theme.sass
 
-.grid-wrapper--10
-  - @app.get_colours('_colour_theme').each do |group|
-    = render 'styleguide/partials/colour', group: group
+  .grid-wrapper--10
+    - @app.get_colours('_colour_theme').each do |group|
+      = render 'styleguide/partials/colour', group: group

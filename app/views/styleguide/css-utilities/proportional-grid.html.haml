@@ -14,24 +14,29 @@
     %p.copy--h2 Proportional Grid with a #{gutter} pixel gutter (.grid-wrapper--#{gutter})
     %div{class: "grid-wrapper--#{gutter}"}
       .col--one-whole
-        .card.copy--h4 .col--one-whole
+        .card
+          %code .col--one-whole
 
     %div{class: "grid-wrapper--#{gutter}"}
       - 2.times do
         .col--one-half
-          .card.copy--h4 .col--one-half
+          .card
+            %code .col--one-half
 
     %div{class: "grid-wrapper--#{gutter}"}
       - 3.times do
         .col--one-third
-          .card.copy--h4 .col--one-third
+          .card
+            %code .col--one-third
 
     %div{class: "grid-wrapper--#{gutter}"}
       - 4.times do
         .col--one-quarter
-          .card.copy--h4 .col--one-quarter
+          .card
+            %code .col--one-quarter
 
     %div{class: "grid-wrapper--#{gutter}"}
       - 5.times do
         .col--one-fifth
-          .card.copy--h4 .col--one-fifth
+          .card
+            %code .col--one-fifth

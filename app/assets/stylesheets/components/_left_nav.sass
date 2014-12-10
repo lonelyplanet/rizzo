@@ -27,15 +27,15 @@
     border-bottom: none
 
 .nav--left__item
-  color: $body-copy
+  color: $bodygray
   display: block
   line-height: 1.2em
   padding: 12px 25px 12px 15px
   position: relative
-  border-bottom: 1px solid $subduedgray
+  border-bottom: 1px solid rgba($subduedgray,.5)
   &:hover
     text-decoration: none
-    background-color: $body-background-offset
+    background-color: mix($lpblue,#fff,2%)
 
   &:after
     height: 10px
@@ -47,11 +47,11 @@
 
   &:last-child
     border-bottom: none
+    border-radius: 0 0 4px 4px
 
   &.is-active
-    font-weight: bold
     &:after
-      +icon-color(white)
+      background-position: 0 0
     &, &:hover
       @extend %active-background
 
@@ -74,7 +74,6 @@
 
 .nav--left__group
   @extend %rounded-corners
-  padding: 5px 0
 
 .nav--left__group--linked
   margin-top: 10px

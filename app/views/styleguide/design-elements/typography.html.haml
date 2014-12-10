@@ -13,33 +13,43 @@
     %p
       They get margins when they are inside a wrapper with a class of context--content. We may need to work on the naming but the principle is solid.
 
-  %p.copy--h2.styleguide-block__heading
-    Headings
-
-  .card.styleguide-intro.styleguide-block.copy--body.context--content
-
-    .copy--h1{title: ".copy--h1"} This is our H1, typically used for the main page heading
-    .copy--h2{title: ".copy--h2"} This is our H2, it is generally used to delimit body copy.
-    .copy--h3{title: ".copy--h3"} This is our H3, commonly used for section titles
-    .copy--h4{title: ".copy--h4"} This is our H4, commonly used for subsection titles and within body copy
-    .copy--h5{title: ".copy--h5"} This is our H5, most noticeably used within the left navigation
-
-  %p.copy--h2.styleguide-block__heading
-    Headings within a parent of .theme--dark
+  .card.styleguide-intro.styleguide-block.copy--body.context--content.styleguide-typography-block
+    %p.copy--label
+      Headings:
+      
+    %code.code--left
+      h1
+    .copy--h1{title: ".copy--h1"} The quick, brown fox
+      
+    %code.code--left
+      h2
+    .copy--h2{title: ".copy--h2"} The quick, brown fox
+      
+    %code.code--left
+      h3
+    .copy--h3{title: ".copy--h3"} The quick, brown fox
+      
+    %code.code--left
+      h4
+    .copy--h4{title: ".copy--h4"} The quick, brown fox
+      
+    %code.code--left
+      h5
+    .copy--h5{title: ".copy--h5"} The quick, brown fox
 
   .card.styleguide-intro.styleguide-block.copy--body.context--content.theme--dark
+    %p.copy--label
+      Headings within a parent of .theme--dark:
 
-    .copy--h1{title: ".copy--h1"} This is our H1, and other headings below, within a parent of .theme--dark
-    .copy--h2{title: ".copy--h2"} This is our H2, it is generally used to delimit body copy.
-    .copy--h3{title: ".copy--h3"} This is our H3, commonly used for section titles
-    .copy--h4{title: ".copy--h4"} This is our H4, commonly used for subsection titles and within body copy
-    .copy--h5{title: ".copy--h5"} This is our H5, most noticeably used within the left navigation
-
-
-  %p.copy--h2.styleguide-block__heading
-    Other Copy
+    .copy--h1{title: ".copy--h1"} The quick, brown fox
+    .copy--h2{title: ".copy--h2"} The quick, brown fox
+    .copy--h3{title: ".copy--h3"} The quick, brown fox
+    .copy--h4{title: ".copy--h4"} The quick, brown fox
+    .copy--h5{title: ".copy--h5"} The quick, brown fox
 
   .card.styleguide-intro.styleguide-block.copy--body.context--content
+    %p.copy--label
+      Other Copy:
 
     %p.copy--feature{title: ".copy--feature"} Feature text: typically used for intro paragraphs and rarely outside of copy--body. It is applied using the .copy--feature class.
 
@@ -57,10 +67,9 @@
     .copy--caption{title: ".copy--caption"} Caption text is used primarily below images and on our cards.
     .copy--disclaimer{title: ".copy--disclaimer"} Disclaimer text is used for legal and copyright text.
 
-  %p.copy--h2.styleguide-block__heading
-    Other Copy within a parent of .theme--dark
-
   .card.styleguide-intro.styleguide-block.copy--body.context--content.theme--dark
+    %p.copy--label
+      Other Copy within a parent of .theme--dark:
 
     %p.copy--feature{title: ".copy--feature"} Feature text: typically used for intro paragraphs and rarely outside of copy--body. It is applied using the .copy--feature class.
 
@@ -77,12 +86,10 @@
     .copy--meta{title: ".copy--meta"} Meta copy is used for styling ancillary content, usually in the details panel, that represents details about the content rather than the actual content itself.
     .copy--caption{title: ".copy--caption"} Caption text is used primarily below images and on our cards.
     .copy--disclaimer{title: ".copy--disclaimer"} Disclaimer text is used for legal and copyright text.
-
-
-  %p.copy--h2.styleguide-block__heading
-    Inline Icons
 
   .card.styleguide-intro.styleguide-block.copy--body.context--content.js-typography-icons
+    %p.copy--label
+      Inline Icons:
 
     %p
       These can be styled with any of the following three classes (along with

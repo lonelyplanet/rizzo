@@ -8,28 +8,34 @@
 .copy--h1
   @extend %heading--1
   .context--content &
-    margin-bottom: 0.8em
+    margin-bottom: 0.4em
 
 .copy--h2
   @extend %heading--2
   .context--content &
-    margin-top: 1.8em
-    margin-bottom: 0.9em
+    margin-bottom: 0.75em
     &:first-child
       margin-top: 0
 
 .copy--h3
   @extend %heading--3
   .context--content &
-    margin-bottom: 1em
+    margin-bottom: .9em
 
 .copy--h4
   @extend %heading--4
   .context--content &
-    margin-bottom: 1em
+    margin-bottom: .9em
 
 .copy--h5
   @extend %heading--5
+  
+.copy--label
+  +font-size(13)
+  color: $lightgray
+  text-transform: uppercase
+  letter-spacing: .05em
+  font-weight: bold
 
 // -----------------------------------------------------------------------------
 // Body content
@@ -40,6 +46,12 @@
 
 .copy--body
   @extend %text--body
+  color: $bodygray
+  
+  strong,
+  b
+    color: $titlegray
+  
 
 // Copy with a long line length
 .copy--full-width,
@@ -55,10 +67,12 @@
 
 .copy--caption
   @extend %text--caption
+  margin: 10px 0
+  text-align: left
 
 .copy--disclaimer
-  +font-size(11)
-  line-height: 1.5em
+  @extend %text--disclaimer
+
 
 // -----------------------------------------------------------------------------
 // Theming
@@ -67,14 +81,17 @@
 .theme--dark
   &,
   .copy--h1,
+  .copy--h2,
   .copy--h3,
+  .copy--h4,
   .copy--h5,
   .copy--feature
     color: white
-
-.theme--dark
-  .copy--h2
-    color: $lightgray
+    
+  .copy--meta,
+  .copy--caption,
+  .copy--disclaimer
+    color: $subduedgray
 
 // -----------------------------------------------------------------------------
 // Links
@@ -98,7 +115,7 @@
 .copy--list, ul, ol
   .context--content &
     padding-left: 1.2em
-    margin-bottom: 10px
+    margin-bottom: 15px
 
 .copy--list, ul, ol
   li
@@ -107,7 +124,7 @@
 
 .context--content ul,
 ul.copy--list
-  list-style-type: circle
+  list-style-type: square
 
 .list--alpha
   list-style-type: lower-alpha

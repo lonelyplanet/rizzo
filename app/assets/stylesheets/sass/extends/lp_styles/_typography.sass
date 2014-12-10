@@ -7,23 +7,23 @@
 %heading--1
   +font-size(32)
   color: $header-blue
-  line-height: 1.3em
+  line-height: 1.15em
 
 %heading--2
-  +font-size(16)
+  +font-size(20)
   font-weight: bold
   color: $header-blue
-  text-transform: uppercase
-  letter-spacing: 0.05em
 
 %heading--3
-  +font-size(20)
+  +font-size(18)
   color: $header-blue
   font-weight: bold
 
 %heading--4
   +font-size(16)
+  font-size: 1em
   font-weight: bold
+  color: $header-blue
 
 %heading--5
   +font-size(12)
@@ -44,10 +44,15 @@
     margin-bottom: 15px
 
 %text--meta
-  +font-size(15)
+  +font-size(14)
   line-height: 1.66em
 
 %text--caption
   +font-size(13)
   display: block
-  color: $bodygray
+  border-left: 2px solid $softgreen
+  padding-left: 10px
+  
+%text--disclaimer
+  +font-size(12)
+  color: $lightgray
