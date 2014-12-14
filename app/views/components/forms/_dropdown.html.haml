@@ -5,7 +5,7 @@
     selected_title = properties[:options].find{ |option| option[:value] == properties[:selected] || option[:title] == properties[:selected] }.try(:[], :title)
   end
 
-  label_text = properties[:label] || properties[:placeholder] || properties[:options].first[:title]
+  label_text = properties[:label] || properties[:placeholder] || properties[:options].first.try(:[], :title)
 
   select_properties = {
     id: properties[:id],
