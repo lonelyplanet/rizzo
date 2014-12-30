@@ -1,6 +1,6 @@
 {
   "name": "pickadate",
-  "version": "3.3.1",
+  "version": "3.5.4",
   "title": "pickadate.js",
   "description": "The mobile-friendly, responsive, and lightweight jQuery date & time input picker.",
   "author": {
@@ -22,10 +22,18 @@
     "responsive"
   ],
   "ignore": [
-    "*",
-    "!lib/**/*"
+    "*.md",
+    "*.htm",
+    "_docs",
+    "demo",
+    "tests",
+    "v2-(deprecated)"
   ],
-  "main": "lib/picker.js",
+  "main": [
+    "lib/picker.js",
+    "lib/picker.date.js",
+    "lib/picker.time.js"
+  ],
   "homepage": "http://amsul.github.io/pickadate.js",
   "docs": "http://amsul.github.io/pickadate.js",
   "demo": "http://amsul.github.io/pickadate.js",
@@ -38,29 +46,27 @@
     "jquery": ">=1.7"
   },
   "devDependencies": {
-    "grunt": "~0.4.1",
-    "phantomjs": "1.9.0-2",
-    "zlib-browserify": "0.0.1",
-    "grunt-contrib-concat": "~0.3.0",
-    "grunt-contrib-watch": "~0.3.1",
-    "grunt-contrib-jshint": "~0.4.3",
-    "grunt-contrib-qunit": "~0.2.0",
-    "grunt-contrib-copy": "~0.4.1",
-    "grunt-contrib-less": "~0.5.1",
-    "grunt-contrib-clean": "~0.4.1",
-    "grunt-contrib-cssmin": "~0.6.0",
-    "grunt-contrib-uglify": "~0.2.0"
+    "grunt": "^0.4.5",
+    "phantomjs": "^1.9.7-5",
+    "zlib-browserify": "0.0.3",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-contrib-jshint": "^0.10.0",
+    "grunt-contrib-qunit": "^0.4.0",
+    "grunt-contrib-copy": "^0.5.0",
+    "grunt-contrib-less": "^0.11.0",
+    "grunt-contrib-cssmin": "^0.9.0",
+    "grunt-contrib-uglify": "^0.4.0"
   },
   "scripts": {
     "test": "grunt travis --verbose"
   },
-  "_release": "3.3.1",
+  "_release": "3.5.4",
   "_resolution": {
     "type": "version",
-    "tag": "3.3.1",
-    "commit": "8f01c5418e0f74aff13f49e00b72c0838d396fb4"
+    "tag": "3.5.4",
+    "commit": "220533a86443b5e7bff6bf3fffd0199a5ddc6abe"
   },
   "_source": "git://github.com/amsul/pickadate.js.git",
-  "_target": "3.3.1",
+  "_target": "3.5.4",
   "_originalSource": "pickadate"
 }
