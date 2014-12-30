@@ -4,7 +4,7 @@
 //
 // ------------------------------------------------------------------------------
 
-define([ "jquery", "pickadate/lib/picker", "pickadate/lib/picker.date", "pickadate/lib/legacy" ], function($) {
+define([ "jquery", "picker", "pickerDate", "pickerLegacy" ], function($) {
 
   "use strict";
 
