@@ -6,7 +6,7 @@
 %body.responsive.minimal
   .wrapper.js-wrapper
 
-    .row--faux-banner
+    .faux-banner
       %a.media--lp-logo.logo--header.icon--lp-logo.icon--white{ href: 'http://www.lonelyplanet.com', title: 'Return to homepage' }
 
     .row.row--content{ id: 'js-row--content' }
@@ -15,7 +15,7 @@
           = yield :secondary
 
       - if (yield :alerts).present?
-        .row.row--alerts
+        .row.alerts
           = yield :alerts
 
       = yield
