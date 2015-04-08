@@ -1,0 +1,6 @@
+@mixin button-props($mobile) {
+  @include respond-to($mobile) {
+    padding: 14px 31px;
+    letter-spacing: 1px;
+  }
+}

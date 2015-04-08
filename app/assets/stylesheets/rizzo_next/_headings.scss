@@ -1,5 +1,7 @@
 @mixin h1-props($mobile) {
   font-size: 81px;
+  line-height: 0.8;
+  margin-bottom: 18px;
 
   @include respond-to($mobile) {
     font-size: 120px;
