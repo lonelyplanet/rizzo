@@ -5,13 +5,16 @@
     @extend %rounded-corners
     padding: 8px 20px
 
+.pagination__link,
+.pagination__ellipsis
+  color: $titlegray
+  display: inline-block
+  font-weight: bold
+
 .pagination__link
   border-radius: 5px
   background-color: #fff
   border: 2px solid mix($darkgray, white, 15%)
-  color: $titlegray
-  display: inline-block
-  font-weight: bold
   margin-left: 2px
   padding: 8px 12px
 
@@ -29,14 +32,20 @@
     position: relative
     top: 2px
 
-.pagination__backwards,
-.pagination__forwards
-  min-height: 35px
-  min-width: 100px
-
 .pagination__link--current
   color: $linkblue
-  border-color: $linkblue
+
+  &, &:hover
+    border-color: $linkblue
+
+.pagination__ellipsis
+  vertical-align: top
+  padding: 7px 8px
+
+.pagination__backwards,
+.pagination__forwards
+  min-height: 36px
+  min-width: 40px
 
 .pagination__numbers
   text-align: center

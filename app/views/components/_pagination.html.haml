@@ -13,46 +13,68 @@
 
     .pagination__forwards.split--right
       - if properties[:current_page] < total_pages
-        %a.pagination__link.pagination__link--last{ href: href.gsub(/%i/, total_pages.to_s) }<
-          Last
         %a.pagination__link.pagination__link--next.icon--chevron-right--before{ href: href.gsub(/%i/, (properties[:current_page] + 1).to_s)}
 
     .pagination__backwards.split--left
       - if properties[:current_page] > 1
         %a.pagination__link.pagination__link--prev.icon--chevron-left--before{ href: href.gsub(/%i/, (properties[:current_page] - 1).to_s) }<
-        %a.pagination__link.pagination__link--first{ href: href.gsub(/%i/, "1") }<
-          First
+
+    = single_content_for :pagination_links_rels do
+      - if properties[:current_page] > 1
+        %link{ rel: 'prev', href: href.gsub(/%i/, (properties[:current_page] - 1).to_s) }<
+      - if properties[:current_page] < total_pages
+        %link{ rel: 'next', href: href.gsub(/%i/, (properties[:current_page] + 1).to_s) }<
 
     - if properties[:total_results] > results_per_page
       .pagination__numbers
-        - start = 1
-        - finish = total_pages
+        - start = 2
+        - finish = total_pages - 1
         - num_visible = properties[:visible_pages] || 5
         - offset = (num_visible / 2.0).ceil # Force a floating point number
+        - is_first_page = properties[:current_page] == 1
+        - is_last_page = properties[:current_page] == total_pages
 
-        - if total_pages > num_visible
-          - if properties[:current_page] >= (total_pages - offset) # [x] [x] [x] [x] [√] [√] [c] [√] [√]
-            - start = total_pages - num_visible + 1
-          - elsif properties[:current_page] < offset # [√] [√] [c] [√] [√] [x] [x] [x] [x]
-            - finish = num_visible
-          - else # [x] [√] [√] [c] [√] [√] [x] [x] [x]
+        - if total_pages - 2 > num_visible
+          - if properties[:current_page] >= (total_pages - offset) # [1] ... [√] [√] [c] [√] [√] [n]
+            - start = total_pages - num_visible
+          - elsif properties[:current_page] < offset + 1           # [1] [√] [√] [c] [√] [√] ... [n]
+            - finish = num_visible + 1
+          - else                                                   # [1] ... [√] [√] [c] [√] [√] ... [n]
             - start = properties[:current_page] - offset + 1
             - finish = properties[:current_page] + offset - 1
+
+        - if is_first_page
+          .pagination__link.pagination__link--first.pagination__link--current<
+            1
+        - else
+          %a.pagination__link.pagination__link--first{ href: href.gsub(/%i/, "1") }<
+            1
+
+        - if properties[:current_page] > 2
+          %span.pagination__ellipsis.pagination__ellipsis--left{ class: "#{start <= 2 ? 'mv--hidden' : ''}" }<
+            &#8230;
+
         - for num in start..finish
           - if properties[:current_page] != num
-            %a.pagination__link.mv--inline-block{ href: href.gsub(/%i/, num.to_s), data: { current: properties[:current_page], num: num} }<
+            %a.pagination__link.mv--inline-block{ href: href.gsub(/%i/, num.to_s), data: { current: properties[:current_page], num: num } }<
               = num
           - else
             .pagination__link.pagination__link--current<
               = num
-        = single_content_for :pagination_links_rels do
-          - if (start..finish).cover?(properties[:current_page]-1)
-            %link{rel: 'prev', href: href.gsub(/%i/, (properties[:current_page]-1).to_s)}<
-          - if (start..finish).cover?(properties[:current_page]+1)
-            %link{rel: 'next', href: href.gsub(/%i/, (properties[:current_page]+1).to_s)}<
 
+        - if properties[:current_page] < (total_pages - 1)
+          %span.pagination__ellipsis.pagination__ellipsis--right{ class: "#{finish >= (total_pages - 1) ? 'mv--hidden' : ''}" }<
+            &#8230;
+
+        - if is_last_page
+          .pagination__link.pagination__link--last.pagination__link--current<
+            = total_pages
+        - else
+          %a.pagination__link.pagination__link--last{ href: href.gsub(/%i/, total_pages.to_s) }<
+            = total_pages
 
     - if properties[:show_detailed] && properties[:total_results] > 0
+
       .pagination__detailed-info
         - results_from = ((properties[:current_page]-1) * results_per_page).to_i + 1
         - results_to = ((properties[:current_page]) * results_per_page).to_i

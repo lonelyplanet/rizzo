@@ -75,7 +75,7 @@ describe "components/_pagination.html.haml" do
 
     end
 
-    it 'does not render previous and first page links when on the first page' do
+    it 'does not render previous page link when on the first page' do
 
       view.stub(properties: default_properties)
 
@@ -83,7 +83,6 @@ describe "components/_pagination.html.haml" do
 
       rendered.should_not have_css('.pagination__backwards .pagination__link')
       rendered.should_not have_css('.pagination__link--prev')
-      rendered.should_not have_css('.pagination__link--first')
     end
 
   end
@@ -102,7 +101,7 @@ describe "components/_pagination.html.haml" do
 
     end
 
-    it 'does not render next and last page links when on the last page' do
+    it 'does not render next page link when on the last page' do
 
       view.stub(properties: default_properties.merge( :current_page => 5 ))
 
@@ -110,7 +109,6 @@ describe "components/_pagination.html.haml" do
 
       rendered.should_not have_css('.pagination__forwards .pagination__link')
       rendered.should_not have_css('.pagination__link--next')
-      rendered.should_not have_css('.pagination__link--last')
 
     end
 
@@ -148,36 +146,128 @@ describe "components/_pagination.html.haml" do
 
     end
 
-    it 'renders numbers 1-5 given a total of 100 results and current page number of 2' do
+    it 'renders numbers 1-6 & 20 given a total of 100 results and current page number of 2' do
 
       view.stub(properties: default_properties.merge( :total_results => 100, :current_page => 2 ))
 
       render
 
       links = Capybara.string(rendered).all('.pagination__numbers .pagination__link').map { |el| el.text }
-      links.should eq( ['1', '2', '3', '4', '5'] )
+      links.should eq( ['1', '2', '3', '4', '5', '6', '20'] )
 
     end
 
-    it 'renders numbers 8-12 given a total of 100 results and current page number of 10' do
+    it 'renders numbers 1, 8-12 & 20 given a total of 100 results and current page number of 10' do
 
       view.stub(properties: default_properties.merge( :total_results => 100, :current_page => 10 ))
 
       render
 
       links = Capybara.string(rendered).all('.pagination__numbers .pagination__link').map { |el| el.text }
-      links.should eq( ['8', '9', '10', '11', '12'] )
+      links.should eq( ['1', '8', '9', '10', '11', '12', '20'] )
 
     end
 
-    it 'renders numbers 16-20 given a total of 100 results and current page number of 19' do
+    it 'renders numbers 1 & 15-20 given a total of 100 results and current page number of 19' do
 
       view.stub(properties: default_properties.merge( :total_results => 100, :current_page => 19 ))
 
       render
 
       links = Capybara.string(rendered).all('.pagination__numbers .pagination__link').map { |el| el.text }
-      links.should eq( ['16', '17', '18', '19', '20'] )
+      links.should eq( ['1', '15', '16', '17', '18', '19', '20'] )
+
+    end
+
+  end
+
+  describe 'pagination ellipsis' do
+
+    describe 'left' do
+
+      it 'is rendered if current page number is above 2' do
+
+        view.stub(properties: default_properties.merge( :total_results => 100, :current_page => 3 ))
+
+        render
+
+        rendered.should have_css('.pagination__numbers .pagination__ellipsis--left')
+
+      end
+
+      it 'is not rendered if current page number is below or equal 2' do
+
+        view.stub(properties: default_properties.merge( :total_results => 100, :current_page => 2 ))
+
+        render
+
+        rendered.should_not have_css('.pagination__ellipsis--left')
+
+      end
+
+      it 'has "mv--hidden" class if 1st visible page number is succeeding 1st page number' do
+
+        view.stub(properties: default_properties.merge( :total_results => 100, :current_page => 3 ))
+
+        render
+
+        rendered.should have_css('.pagination__ellipsis--left.mv--hidden')
+
+      end
+
+      it 'does not have "mv--hidden" class if 1st visible page number is not succeeding 1st page number' do
+
+        view.stub(properties: default_properties.merge( :total_results => 100, :current_page => 14 ))
+
+        render
+
+        rendered.should_not have_css('.pagination__ellipsis--left.mv--hidden')
+
+      end
+
+    end
+
+    describe 'right' do
+
+      it 'is rendered if current page number is below pre-last page number' do
+
+        view.stub(properties: default_properties.merge( :total_results => 100, :current_page => 4 ))
+
+        render
+
+        rendered.should have_css('.pagination__numbers .pagination__ellipsis--right')
+
+      end
+
+      it 'is not rendered if current page number is last page or one before' do
+
+        view.stub(properties: default_properties.merge( :total_results => 100, :current_page => 19 ))
+
+        render
+
+        rendered.should_not have_css('.pagination__ellipsis--right')
+
+      end
+
+      it 'has "mv--hidden" class if the last of visible pages is preceding last page' do
+
+        view.stub(properties: default_properties.merge( :total_results => 100, :current_page => 17 ))
+
+        render
+
+        rendered.should have_css('.pagination__ellipsis--right.mv--hidden')
+
+      end
+
+      it 'does not have "mv--hidden" class if the last of visible pages is not preceding last page' do
+
+        view.stub(properties: default_properties.merge( :total_results => 100, :current_page => 8 ))
+
+        render
+
+        rendered.should_not have_css('.pagination__ellipsis--right.mv--hidden')
+
+      end
 
     end
 
@@ -204,6 +294,7 @@ describe "components/_pagination.html.haml" do
       render
 
       links = Capybara.string(rendered).all('.pagination__numbers a.pagination__link').map { |el| el[:href] }
+
       links.should eq( [
         '/path/to/page?foo=bar&baz=qux&page=2',
         '/path/to/page?foo=bar&baz=qux&page=3',
