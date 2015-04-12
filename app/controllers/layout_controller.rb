@@ -15,4 +15,8 @@ class LayoutController < ActionController::Base
     render layout_details[:template], layout: layout_details[:layout], locals: get_layout_config(params[:route])
   end
 
+  def component
+    render "components/#{params[:component]}", :locals => { :properties => params }
+  end
+
 end
