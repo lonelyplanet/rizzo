@@ -6,6 +6,8 @@ define([
   "sCode",
   "trackjs",
   "polyfills/xdr",
+  "polyfills/function_bind",
+  "polyfills/array_index_of",
   "lib/page/swipe",
   "lib/core/nav_search",
   "lib/page/scroll_perf",
@@ -13,7 +15,6 @@ define([
   "lib/core/shopping_cart",
   "lib/core/feature_detect",
   "lib/core/place_title_nav",
-  "polyfills/function_bind",
   "lib/core/cookie_compliance",
   "lib/components/toggle_active",
   "lib/components/select_group_manager"
