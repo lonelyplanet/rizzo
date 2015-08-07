@@ -38,9 +38,6 @@ define([ "jquery", "lib/core/ad_sizes", "lib/core/ad_unit" ], function($, adSize
       collapseEmptyDivs: true,
       enableSingleRequest: false,
       afterEachAdLoaded: function($adunit) {
-        if ($adunit.has("adunit--leaderboard")) {
-          $(".row--sponsored").css({ display: "block" });
-        }
         self._adCallback.call(self, $adunit);
       }
     };

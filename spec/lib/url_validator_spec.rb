@@ -1,9 +1,10 @@
 require 'spec_helper'
 
 describe Rizzo::UrlValidator do
-  let(:expected_url)            { "http://www.lonelyplanet.com/africa" }
-  let(:expected_url_with_port)  { "http://www.lonelyplanet.com:80/africa" }
-  let(:expected_url_ssl)        { "https://www.lonelyplanet.com:443/africa" }
+  let(:expected_url)              { "http://www.lonelyplanet.com/africa" }
+  let(:expected_different_domain) { "http://www.lonelyplanet.es:80/" }
+  let(:expected_url_with_port)    { "http://www.lonelyplanet.com:80/africa" }
+  let(:expected_url_ssl)          { "https://www.lonelyplanet.com:443/africa" }
   subject { Rizzo::UrlValidator.validate(url) }
 
   describe 'validate' do
@@ -24,6 +25,12 @@ describe Rizzo::UrlValidator do
     it "raises InvalidUrl exception" do
       expect { described_class.validate(url)}.to raise_error(Rizzo::UrlValidator::InvalidUrl)
     end
+  end
+
+  context 'domain is whitelisted' do
+    let(:url) { "http://www.lonelyplanet.es" }
+
+    it { should eq(expected_different_domain) }
   end
 
   context 'different domain' do

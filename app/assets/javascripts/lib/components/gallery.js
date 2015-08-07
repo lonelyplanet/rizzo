@@ -41,6 +41,7 @@ define([
 
   Gallery.prototype._gatherElements = function() {
     this.galleryTitle = this.$gallery.find(".js-gallery-title");
+    this.gallerySource = this.$gallery.find(".js-gallery-source");
     this.galleryPoi = this.$gallery.find(".js-gallery-poi");
     this.galleryBreadcrumb = this.$gallery.find(".js-gallery-breadcrumb");
     this.gallerySocial = this.$gallery.find(".js-gallery-social");
@@ -49,11 +50,13 @@ define([
   Gallery.prototype._updateImageInfo = function() {
     var slideDetails = this.slider.$currentSlide.find(".js-slide-details"),
         caption = slideDetails.find(".js-slide-caption").text(),
+        source = slideDetails.find(".js-slide-source").text(),
         poi = slideDetails.find(".js-slide-poi").html(),
         breadcrumb = slideDetails.find(".js-slide-breadcrumb").html(),
         social = slideDetails.find(".js-slide-social").html();
 
     this.galleryTitle.text(caption);
+    this.gallerySource.text(source);
     this.galleryPoi.html(poi);
     this.galleryBreadcrumb.html(breadcrumb);
     this.gallerySocial.html(social);
