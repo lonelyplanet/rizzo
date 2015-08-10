@@ -25,7 +25,7 @@ define(function() {
   };
 
   AdUnit.prototype.isEmpty = function() {
-    if (this.$target.css("display") === "none") {
+    if ((this.$target.css("display") === "none") || (this.$iframe.attr("name").match(/__hidden__/))) {
       return true;
     }
 
