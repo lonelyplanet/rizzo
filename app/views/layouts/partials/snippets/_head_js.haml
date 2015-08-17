@@ -19,7 +19,7 @@
   // Allow legacy apps to add their own properties
   window.lp.tracking = window.lp.tracking || {};
   window.lp.supports = window.lp.supports || {};
-  
+
   // Setting up Adblock checker
   window.lp.isAdblockActive = true;
 
@@ -56,10 +56,11 @@
   }());
 
   window.lp.supports.woff2 = (function(){
-    if(!( "FontFace" in window)) { return false }
+    if (typeof window.FontFace != "function") return false;
 
     var f = new window.FontFace("t", 'url( "data:application/font-woff2," ) format( "woff2" )');
-    f.load();
+
+    f.load().catch(function() {});
     return f.status == 'loading';
   }());
 

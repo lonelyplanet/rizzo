@@ -127,7 +127,7 @@
             $adUnit.data('existingContent', $adUnit.html());
 
             // wipe html clean ready for ad and set the default display class.
-            $adUnit.html('').addClass('display-none');
+            $adUnit.html('').css({display: 'none'});
 
             // Push commands to DFP to create ads
             window.googletag.cmd.push(function () {
