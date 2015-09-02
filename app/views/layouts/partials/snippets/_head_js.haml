@@ -21,7 +21,7 @@
   window.lp.supports = window.lp.supports || {};
 
   // Setting up Adblock checker
-  window.lp.isAdblockActive = true;
+  // window.lp.isAdblockActive = true;
 
   // Allow apps to pass in requirejs configuration
   window.lp.require = {
@@ -85,7 +85,30 @@
     time: function(x){!!window.performance && !!window.performance.now && this.buffer.push({e: x, t: this.now()})}
   };
 
+  window.onload = function() {
+    setTimeout(function() {
+    var ads = $("iframe[id^=google_ads]")
+    if (ads && ads.length === 0)
+      { console.log("You seem to blocking Google AdSense ads in your browser.");
+        window.lp.analytics.api.trackEvent({
+          category: "advertising",
+          action: "loaded-with-adblock",
+          label: window.location.pathname
+        }); 
+        } else {
+          window.lp.analytics.api.trackEvent({
+            category: "advertising",
+            action: "loaded-without-adblock",
+            label: window.location.pathname
+          });
+
+        }
+    }, 5000); 
+  };
+
 = yield :head_js
+
+// %script{ src: "https://assets.staticlp.com/advertising.js"}
 
 = render 'layouts/partials/inline_js/load_css'
 = render 'layouts/partials/inline_js/krux'
