@@ -74,7 +74,8 @@ define([
 
     return this[type].$container
       .find(this.config.item)
-      .slice(0, latestCount);
+      .slice(0, latestCount)
+      .not(".is-author");
   };
 
   return Content;
