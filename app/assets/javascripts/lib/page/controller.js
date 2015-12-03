@@ -28,7 +28,7 @@ define([
 
   Controller.prototype.init  = function() {
     this.pushState = new PushState;
-    this._generateState(this.getDocumentRoot(), this.getParams());
+    this._generateState(this.getSlug());
   };
 
   // Subscribe
@@ -86,7 +86,7 @@ define([
 
     .on(":controller/back", function() {
       this._removeState();
-      this._generateState(this.getDocumentRoot(), this.getParams());
+      this._generateState();
       this.pushState.navigate(this._serializeState(), this._currentRoot());
     }.bind(this))
 
@@ -160,11 +160,11 @@ define([
   Controller.prototype._generateState = function(newDocumentRoot, newParams) {
     this.states || (this.states = []);
     this.currentState == null ? this.currentState = 0 : this.currentState += 1;
-
     this.states.push({
-      state: $.deparam(newParams || ""),
-      documentRoot: newDocumentRoot || ""
+      state: $.deparam(newParams || this.getParams()),
+      documentRoot: newDocumentRoot || this.getDocumentRoot()
     });
+    return this._removePageParam();
   };
 
   Controller.prototype._removeState = function() {
