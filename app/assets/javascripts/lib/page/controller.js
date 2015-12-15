@@ -167,9 +167,11 @@ define([
     this.currentState == null ? this.currentState = 0 : this.currentState += 1;
 
     this.states.push({
-      state: $.deparam(newParams || ""),
-      documentRoot: newDocumentRoot || ""
+      state: $.deparam(newParams || this.getParams()),
+      documentRoot: newDocumentRoot || this.getDocumentRoot()
     });
+
+    // return this._removePageParam();
   };
 
   Controller.prototype._removeState = function() {
@@ -194,6 +196,10 @@ define([
 
   Controller.prototype._removePageParam = function() {
     delete this.states[this.currentState].state.page;
+    delete this.states[this.currentState].state.nearby_offset; // jshint ignore:line
+  };
+
+  Controller.prototype._removeNearbyOffset = function() {
     delete this.states[this.currentState].state.nearby_offset; // jshint ignore:line
   };
 
