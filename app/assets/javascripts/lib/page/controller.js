@@ -171,7 +171,7 @@ define([
       documentRoot: newDocumentRoot || ""
     });
 
-    return this._removeNearbyOffset();
+    return this._removePageParam();
   };
 
   Controller.prototype._removeState = function() {
