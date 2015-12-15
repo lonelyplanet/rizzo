@@ -170,6 +170,8 @@ define([
       state: $.deparam(newParams || ""),
       documentRoot: newDocumentRoot || ""
     });
+
+    return this._removeNearbyOffset();
   };
 
   Controller.prototype._removeState = function() {
@@ -194,6 +196,10 @@ define([
 
   Controller.prototype._removePageParam = function() {
     delete this.states[this.currentState].state.page;
+    delete this.states[this.currentState].state.nearby_offset; // jshint ignore:line
+  };
+
+  Controller.prototype._removeNearbyOffset = function() {
     delete this.states[this.currentState].state.nearby_offset; // jshint ignore:line
   };
 
