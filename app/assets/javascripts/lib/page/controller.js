@@ -167,11 +167,11 @@ define([
     this.currentState == null ? this.currentState = 0 : this.currentState += 1;
 
     this.states.push({
-      state: $.deparam(newParams || ""),
-      documentRoot: newDocumentRoot || ""
+      state: $.deparam(newParams || this.getParams()),
+      documentRoot: newDocumentRoot || this.getDocumentRoot()
     });
 
-    return this._removePageParam();
+    // return this._removePageParam();
   };
 
   Controller.prototype._removeState = function() {
