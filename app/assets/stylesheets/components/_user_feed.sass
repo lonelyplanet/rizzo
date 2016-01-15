@@ -1,0 +1,234 @@
+//-----------------------------------------------------------------------------
+//
+// User Feed
+//
+//-----------------------------------------------------------------------------
+
+$feedWidth: 300px
+$feedOffset: 3px
+$feedTabWidth: 40px
+$feedTabHeight: 40px
+$feedTabOffset: 2px
+
+.user-feed
+  @extend %transition--base
+  +z-layer(top)
+  position: fixed
+  right: -$feedWidth
+  top: 15px
+  bottom: 15px // same as popup
+  width: $feedWidth
+  max-width: 100%
+
+  .show-nav &
+    @extend %invisible // hide when mobile sidenav opens
+
+.user-feed__list
+  @extend %fly-out-shadow
+  @extend %transition--base
+  +z-layer(middle)
+  position: absolute
+  bottom: 0
+  right: - $feedOffset
+  box-sizing: border-box
+  width: 100%
+  min-height: 380px
+  max-height: 100%
+  list-style: none
+  border: 1px solid whitesmoke
+  border-radius: 4px 0 0 4px
+  background-color: white
+
+  &:before
+    @extend %fly-out-shadow
+    @extend %transition--base
+    position: absolute
+    left: -$feedTabWidth
+    display: block
+    box-sizing: border-box
+    width: $feedTabWidth
+    height: $feedTabHeight
+    background-color: white
+    background-size: 25px
+    background-position: 40% 17%
+    opacity: 0.8
+    content: " "
+    cursor: pointer
+    pointer-events: all
+
+  &:nth-child(1):before
+    bottom: $feedTabHeight + $feedTabOffset
+    border-bottom: 1px solid $subduedgray
+    border-top-left-radius: 4px
+
+  &:nth-child(2):before
+    bottom: $feedTabOffset
+    border-bottom-left-radius: 4px
+
+  &.is-active
+    +z-layer(modal)
+    overflow-x: hidden
+    overflow-y: auto
+    transform: translate(-$feedWidth - $feedOffset, 0)
+
+    &:before
+      left: 0
+      bottom: 0
+      border: none
+      width: 100%
+      height: 100%
+      border-bottom: 1px solid $subduedgray        
+      background-size: 100%
+      background-position: 40% 18.4%
+      background-color: transparent
+      opacity: 0.1
+      cursor: default
+
+  &:not(.is-active).is-unread:before
+    background-color: $red
+    background-position-y: 39%
+
+
+.user-feed__list, .user-feed__popup
+
+  .activity-list__item
+    @extend %transition--base
+    +font-size(14)
+    position: relative
+    margin: 0
+    border-bottom: 1px solid $body-background
+    cursor: pointer
+    font-weight: normal
+    color: $titlegray
+
+    &.is-unread
+      background: rgba($linkblue, .03)
+
+    &:hover
+      background: rgba($linkblue, .1)
+
+    &, &:first-of-type // because it gets overwritten in Community
+      padding: 15px $primary-nav-height 30px 15px
+      min-height: 20px
+
+    &:last-child
+      border-bottom: 0
+      border-radius: 0 0 4px 4px
+
+  .activity-list__activity-content
+    display: block
+    padding-bottom: 5px
+
+  .activity-list__time
+    position: absolute
+    bottom: 15px
+    left: 15px
+    color: $bodygray
+    &:before
+      +size(1.1em)
+      display: inline-block
+      margin: -0.2em 0.2em 0 0
+      vertical-align: middle
+
+  .activity-list__link
+    font-weight: bold
+    color: $titlegray
+
+  .activity-list__avatar
+    +user-avatar-size(35)
+    position: absolute
+    right: 15px
+    margin: 0
+
+  .activity-list__item--empty
+    +font-size(16)
+    padding: 30px 0
+    text-align: center
+    color: $lightgray
+
+.user-feed__messages
+
+  li:nth-last-child(2)
+    margin-bottom: 63px // footer height
+
+.user-feed__footer
+  position: absolute
+  bottom: 0
+  left: 0
+  padding: 18px 15px 13px 28px
+  box-sizing: border-box
+  width: 100%
+
+  .btn
+    +font-size(13)
+    padding: 9px 0 8px
+    line-height: 13px
+    text-transform: uppercase
+
+.user-feed__shroud
+  +z-layer(middle)
+  top: 0
+  right: 0
+  bottom: 0
+  left: 0
+  display: none
+  opacity: 0
+
+  .is-active > &
+    position: fixed
+    display: block
+
+    +respond-to(wide-view)
+      display: none
+
+//-----------------------------------------------------------------------------
+// Feed Pop-up
+//-----------------------------------------------------------------------------
+
+.user-feed__popup
+  @extend %rounded-corners
+  @extend %transition--slower
+  @extend %fly-out-shadow
+  z-index: 19 // right below the slide-in (overlaps on narrow screens)
+  position: fixed
+  bottom: -150px
+  left: 0
+  display: block
+  box-sizing: border-box
+  border: 2px solid #297CBB
+  background: white
+  width: 80%
+  max-width: 350px
+  margin: 0 17% 0 3%
+  transition-timing-function: cubic-bezier(.16,.3,.08,1.48)
+
+  +respond-to(wide-view)
+    left: 15px
+    width: 350px
+    margin: 0
+
+  .activity-list__item
+    @extend %rounded-corners
+
+.user-feed__popup__close
+  @extend %transition--base
+  +size(20px)
+  position: absolute
+  top: -8px
+  right: -8px
+  border-radius: 50px
+  background-color: mix($red, white, 85%)
+  background-size: 12px
+  background-position: 4px -26px // because .icon--white is not accurate enough in this case
+  cursor: pointer
+
+  +respond-to(wide-view)
+    opacity: 0
+    .user-feed__popup:hover &
+      opacity: 1
+
+  &:hover
+    background-color: $red
+
+  .is-active &
+    opacity: 1

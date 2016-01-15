@@ -1,0 +1,46 @@
+// ----------------------------------------------------------------------------
+//
+// User Menu
+//
+// ----------------------------------------------------------------------------
+
+.user-menu
+  left: -200px
+  cursor: default
+  width: 360px
+
+.user-menu__container
+  +css-arrow(top, 30px, 317px)
+
+.user-menu__header
+  position: relative
+  padding: 20px 15px
+
+.user-menu__username
+  +font-size(22)
+  font-weight: bold
+  color: $titlegray
+
+.user-menu__email
+  +font-size(17)
+  padding-top: 5px
+  color: $titlegray
+  font-weight: normal
+
+.user-menu__buttons
+  padding-top: 15px
+
+  .btn
+    +font-size(13)
+    padding: 9px 0 8px
+    line-height: 13px
+    text-transform: uppercase
+
+  .btn--subtle
+    padding: 7px 0 6px
+
+  .icon--settings
+    +size(28px)
+    position: absolute
+    top: 14px
+    right: 14px

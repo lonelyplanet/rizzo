@@ -11,7 +11,7 @@ define([ "jquery" ], function($) {
   var defaults = {
     context: "body",
     templates: {
-      el: "<ul class='user-feed__list user-feed__popup'></ul>",
+      el: "<div class='user-feed__popup'></div>",
       close: "<span class='user-feed__popup__close icon icon--cross'></span>"
     },
     timers: {

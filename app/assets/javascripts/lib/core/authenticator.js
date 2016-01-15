@@ -8,11 +8,12 @@
 //
 // ------------------------------------------------------------------------------
 
-define([ "jquery", "lib/utils/template", "lib/core/user_feed" ], function($, Template, UserFeed) {
+define([ "jquery", "lib/utils/template" ], function($, Template) {
   "use strict";
 
   var Authenticator = function() {
     this.statusUrl = "https://auth.lonelyplanet.com/users/status.json";
+    this.feedUrl = "https://www.lonelyplanet.com/thorntree/users/feed";
 
     this.init();
   },
@@ -58,12 +59,26 @@ define([ "jquery", "lib/utils/template", "lib/core/user_feed" ], function($, Tem
     // Remove any previously generated user navigation.
     $(".js-user-signed-in, .js-user-signed-out").remove();
     _this.templateContainer.after($rendered);
-
-    // Initiate user feed component
-    new UserFeed();
+    _this._renderUnreadMessagesCounter();
 
     $userAvatar = $(".js-user-avatar");
     $userAvatar.attr("src", $userAvatar.data("src"));
+  };
+
+  Authenticator.prototype._renderUnreadMessagesCounter = function() {
+    $.ajax({
+      url:           this.feedUrl,
+      dataType:      "jsonp",
+      jsonpCallback: "lpUserFeedCallback",
+      cache:         false,
+      success:       function(data) {
+        var count = data.unreadMessagesCount,
+            $counter = $(".js-user-feed__messages__unread-counter"),
+            counterText = count > 0 ? "(" + count + ")" : "";
+
+        $counter.text("Messages " + counterText);
+      }
+    });
   };
 
   Authenticator.prototype._updateStatus = function(userStatus) {

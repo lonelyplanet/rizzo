@@ -14,15 +14,19 @@ define([
 
   var defaults = {
     container:     ".js-user-feed__messages",
-    unreadCounter: ".js-user-feed__messages__unread-counter",
-    footer:        ".js-user-feed__messages__footer"
+    footer:
+      "<li class='user-feed__footer js-user-feed__messages__footer'>" +
+        "<a class='btn btn--linkblue btn--full-width'" +
+            "href='https://www.lonelyplanet.com/thorntree/messages'>" +
+            "See all messages" +
+        "</a>" +
+      "</li>"
   };
 
   function Messages(args) {
     this.config = $.extend({}, defaults, args);
 
     this.$container = $(this.config.container);
-    this.$unreadCounter = $(this.config.unreadCounter);
     this.$footer = $(this.config.footer);
 
     this.localStore = new LocalStore();
@@ -46,11 +50,7 @@ define([
     if (itemsArray.length) {
       this._handleUpdate(
         itemsArray,
-        this._onRender.bind(
-          this,
-          !!itemsArray.length,
-          data.unreadMessagesCount
-        )
+        this._onRender.bind(this, !!itemsArray.length)
       );
     }
   };
@@ -71,16 +71,9 @@ define([
     this.localStore.set("lastMessageTimestamp", timestamp);
   };
 
-  Messages.prototype._onRender = function(showFooter, totalUnreadMessages) {
+  Messages.prototype._onRender = function(showFooter) {
     this._markUnread();
-    this._renderMobileCounter(totalUnreadMessages);
     this._updateFooter(showFooter);
-  };
-
-  Messages.prototype._renderMobileCounter = function(count) {
-    var counterText = count > 0 ? "(" + count + ")" : "";
-
-    this.$unreadCounter.text("Messages " + counterText);
   };
 
   Messages.prototype._updateFooter = function(state) {

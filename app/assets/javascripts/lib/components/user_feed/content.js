@@ -14,14 +14,13 @@ define([
   "use strict";
 
   var defaults = {
-    item:     ".js-user-feed__item",
-    itemLink: ".js-user-feed__item__link"
+    item: ".js-user-feed__item",
   };
 
   function Content(args) {
     this.config = $.extend({}, defaults, args);
 
-    this.$context = $(this.config.context);
+    this.$el = this.config.$el;
 
     this.init();
   }
@@ -29,9 +28,7 @@ define([
   Content.prototype.init = function() {
     this.activities = new Activities({ item: this.config.item });
     this.messages = new Messages({ item: this.config.item });
-    this.timeago = new Timeago({ context: this.$context });
-
-    this.listen();
+    this.timeago = new Timeago({ context: this.$el });
   };
 
   //---------------------------------------------------------------------------
@@ -42,6 +39,22 @@ define([
     this.activities.update(data);
     this.messages.update(data);
     this.timeago.refresh();
+
+    this._handleListStatusMarking();
+  };
+
+  Content.prototype.show = function() {
+    if (!this.isVisible) {
+      this.$el.removeClass("is-hidden");
+      this.isVisible = true;
+    }
+  };
+
+  Content.prototype.hide = function() {
+    if (this.isVisible) {
+      this.$el.addClass("is-hidden");
+      this.isVisible = false;
+    }
   };
 
   Content.prototype.getLatest = function(maxActivityAge) {
@@ -56,22 +69,15 @@ define([
   };
 
   //---------------------------------------------------------------------------
-  // Subscribe to events
-  //---------------------------------------------------------------------------
-
-  Content.prototype.listen = function() {
-    this.$context.on("click", this.config.item, this._handleClick.bind(this));
-  };
-
-  //---------------------------------------------------------------------------
   // Private functions
   //---------------------------------------------------------------------------
 
-  Content.prototype._handleClick = function(event) {
-    var $item = $(event.currentTarget),
-        targetUrl = $item.find(this.config.itemLink).attr("href");
+  Content.prototype._handleListStatusMarking = function() {
+    var $all = this.$el.find("ul"),
+        $unread = $all.find(".is-unread").not(".is-author").closest("ul");
 
-    window.location.href = targetUrl;
+    $all.removeClass("is-unread"); // marks as read on multiple tabs
+    $unread.addClass("is-unread");
   };
 
   Content.prototype._filterByMaxAge = function($collection, maxAge) {
