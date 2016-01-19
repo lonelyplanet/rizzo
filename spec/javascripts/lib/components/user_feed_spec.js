@@ -1,66 +1,183 @@
 define([
   "jquery",
-  "lib/core/user_feed",
+  "lib/components/user_feed",
 ], function($, UserFeed) {
 
   "use strict";
 
+  var instance, request;
+
   describe("UserFeed", function() {
-    var instance;
 
     beforeEach(function() {
       loadFixtures("user_feed.html");
+
+      jasmine.Ajax.install();
+
+      window.lp.user = undefined;
+
+      instance = new UserFeed({
+        context: "#context",
+        authUrl: "/foo",
+        feedUrl: "/bar",
+        maxActivityAgeForPopup: Infinity
+      });
+    });
+
+    afterEach(function() {
+      jasmine.Ajax.uninstall();
+    });
+
+    it("is defined", function() {
+      expect(instance).toBeDefined();
+    });
+
+    describe("Default props", function() {
+
+      beforeEach(function() {
+        instance = new UserFeed({ context: false }); // disable init
+      });
+
+      it("contain proper auth url", function() {
+        expect(instance.config.authUrl)
+          .toBe("https://auth.lonelyplanet.com/users/status");
+      });
+
+      it("contain proper feed url", function() {
+        expect(instance.config.feedUrl)
+          .toBe("https://www.lonelyplanet.com/thorntree/users/feed");
+      });
+
+      it("contain proper activity age for popup", function() {
+        expect(instance.config.maxActivityAgeForPopup).toEqual(60);
+      });
     });
 
     describe("Initialization", function() {
 
       beforeEach(function() {
-        spyOn(UserFeed.prototype, "init"); // prevents Fetcher from hitting production
-        instance = new UserFeed();
+        spyOn(instance, "init");
       });
 
-      it("is defined", function() {
-        expect(instance).toBeDefined();
+      describe("User signed out", function() {
+
+        beforeEach(function() {
+          // respond to Initializer's auth request
+          jasmine.Ajax.requests.mostRecent().respondWith({
+            status: 200,
+            responseText: "lpUserStatusCallback({})"
+          });
+        });
+
+        it("doesn't request feed data (sends auth request only)", function() {
+          expect(jasmine.Ajax.requests.count()).toEqual(1);
+        });
+
+        it("doesn't initialize", function() {
+          expect(instance.init).not.toHaveBeenCalled();
+        });
       });
 
-      it("finds user feed element", function() {
-        expect(instance.$el).toExist();
-      });
+      describe("User signed in", function() {
+        var authData, feedData;
 
-      it("defines proper request url", function() {
-        expect(instance.config.ajaxUrl)
-          .toBe("https://www.lonelyplanet.com/thorntree/users/feed");
+        beforeEach(function() {
+          authData = JSON.stringify({ username: "foo" });
+
+          // respond to Initializer's auth data request
+          jasmine.Ajax.requests.mostRecent().respondWith({
+            status: 200,
+            responseText: "lpUserStatusCallback(" + authData + ")"
+          });
+        });
+
+        describe("Slide-in & Popups disabled", function() {
+
+          beforeEach(function() {
+            feedData = JSON.stringify({ popupsMode: 0, slideInMode: 0 });
+
+            // respond to Initializer's feed data request
+            jasmine.Ajax.requests.mostRecent().respondWith({
+              status: 200,
+              responseText: "lpUserFeedCallback(" + feedData + ")"
+            });
+          });
+
+          it("doesn't initialize", function() {
+            expect(instance.init).not.toHaveBeenCalled();
+          });
+        });
+
+        describe("Only Slide-in enabled", function() {
+
+          beforeEach(function() {
+            feedData = JSON.stringify({ popupsMode: 0, slideInMode: 1 });
+
+            // respond to Initializer's feed data request
+            jasmine.Ajax.requests.mostRecent().respondWith({
+              status: 200,
+              responseText: "lpUserFeedCallback(" + feedData + ")"
+            });
+          });
+
+          it("initializes", function() {
+            expect(instance.init).toHaveBeenCalled();
+          });
+        });
+
+        describe("Only Popups enabled", function() {
+
+          beforeEach(function() {
+            feedData = JSON.stringify({ popupsMode: 1, slideInMode: 0 });
+
+            // respond to Initializer's feed data request
+            jasmine.Ajax.requests.mostRecent().respondWith({
+              status: 200,
+              responseText: "lpUserFeedCallback(" + feedData + ")"
+            });
+          });
+
+          it("initializes", function() {
+            expect(instance.init).toHaveBeenCalled();
+          });
+        });
       });
     });
 
     describe("Functionality", function() {
-      var tabs, flyout, content, activities,
-          messages, popups, unreadCounter, fetcher,
-          request, feedJSONP;
+      var container, content, activities, messages, isDesktopSpy,
+          popups, fetcher, request, feedJSONP, authData, feedData;
 
       beforeEach(function() {
-        jasmine.Ajax.install();
         jasmine.clock().install();
 
-        window.lp.userFeed.popups = true;
-        instance = new UserFeed({
-          ajaxUrl: "/foo",
-          context: "#context",
-          maxActivityAgeForPopup: false
+        isDesktopSpy = spyOn(instance, "_isDesktop");
+
+        isDesktopSpy.and.returnValue(true);
+
+        authData = JSON.stringify({ username: "foo" });
+        feedData = JSON.stringify({ popupsMode: 1, slideInMode: 1 });
+
+        // respond to Initializer's auth data request
+        jasmine.Ajax.requests.mostRecent().respondWith({
+          status: 200,
+          responseText: "lpUserStatusCallback(" + authData + ")"
         });
 
-        tabs = instance.tabs;
-        flyout = instance.flyout;
+        jasmine.Ajax.requests.mostRecent().respondWith({
+          status: 200,
+          responseText: "lpUserFeedCallback(" + feedData + ")"
+        });
+
+        container = instance.container;
         content = instance.content;
         popups = instance.popups;
         activities = content.activities;
         messages = content.messages;
-        unreadCounter = instance.unreadCounter;
         fetcher = instance.fetcher;
       });
 
       afterEach(function() {
-        jasmine.Ajax.uninstall();
         jasmine.clock().uninstall();
       });
 
@@ -68,7 +185,7 @@ define([
         var contentBeforeUpdate, contentAfterUpdate;
 
         beforeEach(function() {
-          contentBeforeUpdate = instance.$el.html();
+          contentBeforeUpdate = container.$el.html();
 
           request = jasmine.Ajax.requests.mostRecent();
           request.respondWith({
@@ -76,7 +193,7 @@ define([
             responseText: "lpUserFeedCallback({})"
           });
 
-          contentAfterUpdate = instance.$el.html();
+          contentAfterUpdate = container.$el.html();
         });
 
         it("leaves all feed elements unchanged", function() {
@@ -97,7 +214,7 @@ define([
         });
 
         it("from proper url with jsonp callback", function() {
-          expect(request.url.indexOf("/foo?callback=lpUserFeedCallback")).toBe(0);
+          expect(request.url.indexOf("/bar?callback=lpUserFeedCallback")).toBe(0);
         });
 
         it("renders activities list", function() {
@@ -113,10 +230,6 @@ define([
           expect(messages.$footer).not.toHaveClass("is-hidden");
         });
 
-        it("updates messages unread counters (tab & mobile menu)", function() {
-          expect(messages.$unreadCounter).toHaveText("Messages (3)");
-        });
-
         describe("and fetches again", function() {
           var contentBeforeUpdate, contentAfterUpdate;
 
@@ -128,14 +241,14 @@ define([
           describe("returns same data", function() {
 
             beforeEach(function() {
-              contentBeforeUpdate = instance.$el.html();
+              contentBeforeUpdate = container.$el.html();
 
               request.respondWith({
                 status: 200,
                 responseText: "lpUserFeedCallback(" + feedJSONP + ")"
               });
 
-              contentAfterUpdate = instance.$el.html();
+              contentAfterUpdate = container.$el.html();
             });
 
             it("leaves all feed elements unchanged", function() {
@@ -158,10 +271,6 @@ define([
 
             it("marks new activities as unread", function() {
               expect(activities.$container.find(".is-unread")).toHaveLength(2);
-            });
-
-            it("updates messages unread counters", function() {
-              expect(messages.$unreadCounter).toHaveText("Messages (4)");
             });
 
             it("shows popups for new items that are not self-activity", function() {
@@ -199,10 +308,6 @@ define([
                 expect(activities.$container.find(".is-unread")).toHaveLength(3);
               });
 
-              it("updates messages unread counters", function() {
-                expect(messages.$unreadCounter).toHaveText("Messages (5)");
-              });
-
               it("shows popups for latest items only", function() {
                 jasmine.clock().tick(2 * popupTimers.renderDelay + 1);
                 expect($(popups.selector)).toHaveLength(2);
@@ -217,44 +322,24 @@ define([
         });
       });
 
-      describe("Popups display", function() {
+      describe("Modules visibility", function() {
 
-        describe("when window argument is truthy", function() {
-
-          beforeEach(function() {
-            window.lp.userFeed.popups = true;
-          });
-
-          it("is disabled if mode === 0", function() {
-            expect(instance._canShowModule("popups", 0)).toBeFalsy();
-          });
-
-          it("is disabled if mode === 1 and the view has mobile width", function() {
-            spyOn(instance, "_isMobile").and.returnValue(true);
-            expect(instance._canShowModule("popups", 1)).toBeFalsy();
-          });
-
-          it("is enabled if mode === 1 and the view has desktop width", function() {
-            spyOn(instance, "_isMobile").and.returnValue(false);
-            expect(instance._canShowModule("popups", 1)).toBeTruthy();
-          });
-
-          it("is enabled if mode === 2", function() {
-            expect(instance._canShowModule("popups", 2)).toBeTruthy();
-          });
+        it("is disabled if mode is set to 0", function() {
+          expect(instance._canShowModule(0)).toBeFalsy();
         });
 
-        describe("when window argument is falsy", function() {
+        it("is disabled if mode is set to 1 and the viewport is mobile", function() {
+          isDesktopSpy.and.returnValue(false);
+          expect(instance._canShowModule(1)).toBeFalsy();
+        });
 
-          beforeEach(function() {
-            window.lp.userFeed.popups = false;
-          });
+        it("is enabled if mode is set to 1 and the viewport is desktop", function() {
+          isDesktopSpy.and.returnValue(true);
+          expect(instance._canShowModule(1)).toBeTruthy();
+        });
 
-          it("is always disabled", function() {
-            spyOn(instance, "_isMobile").and.returnValue(false);
-            expect(instance._canShowModule("popups", 1)).toBeFalsy();
-            expect(instance._canShowModule("popups", 2)).toBeFalsy();
-          });
+        it("is enabled if mode is set to 2", function() {
+          expect(instance._canShowModule(2)).toBeTruthy();
         });
       });
     });
