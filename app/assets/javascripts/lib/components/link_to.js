@@ -11,12 +11,13 @@ define([ "jquery" ], function($) {
   "use strict";
 
   var EXCLUDE = [ "A", "BUTTON", "INPUT", "LABEL", "OPTION", "SELECT" ],
+      _this,
       LinkTo = function(context) {
         _this = this;
         context = context || document;
 
         $("[data-link-to]", context).on("click", _this._determineEligibility);
-      }, _this;
+      };
 
   // e: {object} The jQuery click event object.
   LinkTo.prototype._determineEligibility = function(e) {
