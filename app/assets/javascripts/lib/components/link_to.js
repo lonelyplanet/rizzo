@@ -10,13 +10,13 @@
 define([ "jquery" ], function($) {
   "use strict";
 
-  var EXCLUDE = [ "A", "BUTTON", "INPUT", "LABEL", "OPTION", "SELECT" ],
-      LinkTo = function(context) {
-        _this = this;
-        context = context || document;
+  var EXCLUDE = [ "A", "BUTTON", "INPUT", "LABEL", "OPTION", "SELECT" ];
 
-        $("[data-link-to]", context).on("click", _this._determineEligibility);
-      }, _this;
+  function LinkTo(context) {
+    context = context || document;
+
+    $("[data-link-to]", context).on("click", this._determineEligibility.bind(this));
+  }
 
   // e: {object} The jQuery click event object.
   LinkTo.prototype._determineEligibility = function(e) {
@@ -27,7 +27,7 @@ define([ "jquery" ], function($) {
 
     // Make sure we don't hijack click events from certain elements.
     if (!excluded) {
-      _this._redirect($card.data("linkTo"));
+      this._redirect($card.data("linkTo"));
     }
   };
 
