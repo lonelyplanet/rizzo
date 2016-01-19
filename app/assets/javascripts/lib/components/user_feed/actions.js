@@ -69,7 +69,8 @@ define([ "jquery", "lib/utils/local_store" ], function($, LocalStore) {
     var $target = $(event.target);
 
     if ($target.is("ul")) {
-      !$target.hasClass("is-active") && this._setActive($target);
+      this.$el.find("ul").removeClass("is-active");
+      this._setActive($target);
     }
   };
 
