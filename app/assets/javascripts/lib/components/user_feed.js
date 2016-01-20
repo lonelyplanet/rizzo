@@ -59,6 +59,10 @@ define([
     this.listen();
   };
 
+  // -------------------------------------------------------------------------
+  // Subscribe to Events
+  // -------------------------------------------------------------------------
+
   UserFeed.prototype.listen = function() {
     $(window).on("resize", debounce(this._onWindowResize.bind(this), 300));
   };
@@ -124,6 +128,14 @@ define([
   UserFeed.prototype._isDesktop = function() {
     return window.innerWidth >= 980;
   };
+
+  // -------------------------------------------------------------------------
+  // Self-instantiate
+  // -------------------------------------------------------------------------
+
+  $(document).ready(function() {
+    new UserFeed();
+  });
 
   return UserFeed;
 });
