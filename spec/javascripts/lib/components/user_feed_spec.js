@@ -40,7 +40,7 @@ define([
 
       it("contain proper auth url", function() {
         expect(instance.config.authUrl)
-          .toBe("https://auth.lonelyplanet.com/users/status");
+          .toBe("https://auth.lonelyplanet.com/users/status.json");
       });
 
       it("contain proper feed url", function() {

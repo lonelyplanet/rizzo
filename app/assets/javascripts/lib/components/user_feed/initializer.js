@@ -9,7 +9,7 @@ define([ "jquery" ], function($) {
   "use strict";
 
   var defaults = {
-    authUrl: "https://auth.lonelyplanet.com/users/status",
+    authUrl: "https://auth.lonelyplanet.com/users/status.json",
     feedUrl: "https://www.lonelyplanet.com/thorntree/users/feed"
   };
 

@@ -20,7 +20,7 @@ define([
 
   var defaults = {
     context: "body",
-    authUrl: "https://auth.lonelyplanet.com/users/status",
+    authUrl: "https://auth.lonelyplanet.com/users/status.json",
     feedUrl: "https://www.lonelyplanet.com/thorntree/users/feed",
     maxActivityAgeForPopup: 60 //seconds
   };
