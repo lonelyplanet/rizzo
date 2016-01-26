@@ -54,11 +54,17 @@ define([ "jquery" ], function($) {
   };
 
   Initializer.prototype._handleAuthDataSuccess = function(data) {
-    data && data.username && this._getFeedData();
+    if (data && data.username) {
+      this._getFeedData();
+      console.log("UserFeed authentication data success", "(" + data.username + ")"); // jshint ignore:line
+    }
   };
 
   Initializer.prototype._handleFeedDataSuccess = function(data) {
-    data && this.config.onSuccess(data);
+    if (data) {
+      this.config.onSuccess(data);
+      console.log("UserFeed feed data success", data); // jshint ignore:line
+    }
   };
 
   Initializer.prototype._handleAuthDataError = function(error) {

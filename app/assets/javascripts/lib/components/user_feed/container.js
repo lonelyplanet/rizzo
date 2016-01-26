@@ -53,6 +53,8 @@ define([ "jquery" ], function($) {
     $container.append($activities, $messages, $shroud);
 
     this.$el = $container.appendTo(this.$context);
+
+    console.log("UserFeed appended", this.$el, this.$context); // jshint ignore:line
   };
 
   //---------------------------------------------------------------------------
