@@ -79,6 +79,8 @@ define([
       });
 
       this.init();
+    } else {
+      console.error("UserFeed initialization error", data); // jshint ignore:line
     }
   };
 
