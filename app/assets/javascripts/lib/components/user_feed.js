@@ -33,6 +33,8 @@ define([
 
     this.$context = $(this.config.context);
 
+    console.log("UserFeed call", this.$context); // jshint ignore:line
+
     this.$context.length && new Initializer({
       authUrl: this.config.authUrl,
       feedUrl: this.config.feedUrl,
