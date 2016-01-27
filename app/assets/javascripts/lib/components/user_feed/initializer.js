@@ -37,8 +37,7 @@ define([ "jquery" ], function($) {
       dataType: "jsonp",
       jsonpCallback: "lpUserStatusCallback",
       cache: false,
-      success: this._handleAuthDataSuccess.bind(this),
-      error: this._handleAuthDataError.bind(this)
+      success: this._handleAuthDataSuccess.bind(this)
     });
   };
 
@@ -47,31 +46,20 @@ define([ "jquery" ], function($) {
       url: this.config.feedUrl,
       dataType: "json",
       cache: false,
-      success: this._handleFeedDataSuccess.bind(this),
-      error: this._handleFeedDataError.bind(this)
+      success: this._handleFeedDataSuccess.bind(this)
     });
   };
 
   Initializer.prototype._handleAuthDataSuccess = function(data) {
     if (data && data.username) {
       this._getFeedData();
-      console.log("UserFeed authentication data success", "(" + data.username + ")"); // jshint ignore:line
     }
   };
 
   Initializer.prototype._handleFeedDataSuccess = function(data) {
     if (data) {
       this.config.onSuccess(data);
-      console.log("UserFeed feed data success", data); // jshint ignore:line
     }
-  };
-
-  Initializer.prototype._handleAuthDataError = function(error) {
-    console.error("UserFeed authentication data error", error); // jshint ignore:line
-  };
-
-  Initializer.prototype._handleFeedDataError = function(xhr, status, error) {
-    console.error("FeedFeed feed data error", xhr, status, error); // jshint ignore:line
   };
 
   return Initializer;

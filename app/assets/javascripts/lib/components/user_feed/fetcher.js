@@ -49,8 +49,7 @@ define([ "jquery" ], function($) {
   Fetcher.prototype._fetch = function() {
     $.ajax({
       url:           this.config.feedUrl,
-      dataType:      "jsonp",
-      jsonpCallback: "lpUserFeedCallback",
+      dataType:      "json",
       cache:         false,
       success:       this.config.onSuccess
     });
