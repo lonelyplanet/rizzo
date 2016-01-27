@@ -71,8 +71,8 @@ define([ "jquery" ], function($) {
     console.error("UserFeed authentication data error", error); // jshint ignore:line
   };
 
-  Initializer.prototype._handleFeedDataError = function(error) {
-    console.error("FeedFeed feed data error", error); // jshint ignore:line
+  Initializer.prototype._handleFeedDataError = function(xhr, status, error) {
+    console.error("FeedFeed feed data error", xhr, status, error); // jshint ignore:line
   };
 
   return Initializer;
