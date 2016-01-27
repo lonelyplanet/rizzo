@@ -45,8 +45,7 @@ define([ "jquery" ], function($) {
   Initializer.prototype._getFeedData = function() {
     $.ajax({
       url: this.config.feedUrl,
-      dataType: "jsonp",
-      jsonpCallback: "lpUserFeedCallback",
+      dataType: "json",
       cache: false,
       success: this._handleFeedDataSuccess.bind(this),
       error: this._handleFeedDataError.bind(this)
