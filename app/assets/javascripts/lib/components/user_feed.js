@@ -33,8 +33,6 @@ define([
 
     this.$context = $(this.config.context);
 
-    console.log("UserFeed call", this.$context); // jshint ignore:line
-
     this.$context.length && new Initializer({
       authUrl: this.config.authUrl,
       feedUrl: this.config.feedUrl,
@@ -74,16 +72,12 @@ define([
   //---------------------------------------------------------------------------
 
   UserFeed.prototype._handleInit = function(data) {
-    if (data.popupsMode || data.slideInMode) {
-      $.extend(this.config, {
-        popupsMode: data.popupsMode,
-        slideInMode: data.slideInMode
-      });
+    $.extend(this.config, {
+      popupsMode: data.popupsMode,
+      slideInMode: data.slideInMode
+    });
 
-      this.init();
-    } else {
-      console.error("UserFeed initialization error", data); // jshint ignore:line
-    }
+    this.init();
   };
 
   UserFeed.prototype._handleUpdate = function(data) {
