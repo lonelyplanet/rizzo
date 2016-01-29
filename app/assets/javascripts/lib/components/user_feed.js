@@ -72,14 +72,12 @@ define([
   //---------------------------------------------------------------------------
 
   UserFeed.prototype._handleInit = function(data) {
-    if (data.popupsMode || data.slideInMode) {
-      $.extend(this.config, {
-        popupsMode: data.popupsMode,
-        slideInMode: data.slideInMode
-      });
+    $.extend(this.config, {
+      popupsMode: data.popupsMode,
+      slideInMode: data.slideInMode
+    });
 
-      this.init();
-    }
+    this.init();
   };
 
   UserFeed.prototype._handleUpdate = function(data) {

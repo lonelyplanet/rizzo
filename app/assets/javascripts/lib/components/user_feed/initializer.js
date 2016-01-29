@@ -23,7 +23,7 @@ define([ "jquery" ], function($) {
     if (window.lp && window.lp.user) {
       this._handleAuthDataSuccess(window.lp.user);
     } else {
-      this._getAuthData(this._handleAuthDataSuccess.bind(this));
+      this._getAuthData();
     }
   };
 
@@ -31,34 +31,35 @@ define([ "jquery" ], function($) {
   // Private functions
   //---------------------------------------------------------------------------
 
-  Initializer.prototype._getAuthData = function(onSuccess) {
+  Initializer.prototype._getAuthData = function() {
     $.ajax({
       url: this.config.authUrl,
       dataType: "jsonp",
       jsonpCallback: "lpUserStatusCallback",
       cache: false,
-      success: onSuccess
+      success: this._handleAuthDataSuccess.bind(this)
     });
   };
 
-  Initializer.prototype._getFeedData = function(onSuccess) {
+  Initializer.prototype._getFeedData = function() {
     $.ajax({
       url: this.config.feedUrl,
-      dataType: "jsonp",
-      jsonpCallback: "lpUserFeedCallback",
+      dataType: "json",
       cache: false,
-      success: onSuccess
+      success: this._handleFeedDataSuccess.bind(this)
     });
   };
 
   Initializer.prototype._handleAuthDataSuccess = function(data) {
     if (data && data.username) {
-      this._getFeedData(this._handleFeedDataSuccess.bind(this));
+      this._getFeedData();
     }
   };
 
   Initializer.prototype._handleFeedDataSuccess = function(data) {
-    data && this.config.onSuccess(data);
+    if (data) {
+      this.config.onSuccess(data);
+    }
   };
 
   return Initializer;
