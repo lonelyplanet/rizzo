@@ -42,11 +42,9 @@ Then(/^the tynt tag should not be displayed$/) do
 end
 
 Then /^the global\-body\-header response should have the correct content$/ do
-  page.should have_selector 'div.accessibility'
-  page.should have_selector 'div.row--leaderboard'
-  page.should have_selector '.nav--primary'
-  page.should have_selector 'form.search--primary'
-  page.should have_selector '.nav--primary--user'
+  page.should have_selector '.lp-logo'
+  page.should have_selector '.lp-global-header'
+  page.should have_selector '.lp-global-header__search'
 end
 
 Then /^the secure global\-head content should be displayed$/ do
