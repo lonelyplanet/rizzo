@@ -42,7 +42,7 @@ Then(/^the tynt tag should not be displayed$/) do
 end
 
 Then /^the global\-body\-header response should have the correct content$/ do
-  page.should have_selector '.lp-logo'
+  page.should have_selector '.lp-global-header__logo'
   page.should have_selector '.lp-global-header'
   page.should have_selector '.lp-global-header__search'
 end
@@ -53,10 +53,9 @@ Then /^the secure global\-head content should be displayed$/ do
 end
 
 Then /^the secure global\-body\-header response should have the correct content$/ do
-  page.should have_selector 'div.accessibility'
-  page.should have_selector '.nav--primary'
-  page.should have_selector 'form.search--primary'
-  page.should have_selector '.nav--primary--user'
+  page.should have_selector '.lp-global-header__logo'
+  page.should have_selector '.lp-global-header'
+  page.should have_selector '.lp-global-header__search'
 end
 
 Then /^the global\-body\-footer should response have the correct content$/ do
@@ -111,11 +110,9 @@ Then(/^the client\-solutions global\-head should have the correct content$/) do
 end
 
 Then(/^the client\-solutions global\-body\-header response should have the correct content$/) do
-  page.should have_selector 'div.accessibility'
-  page.should_not have_selector 'div.row--leaderboard'
-  page.should have_selector '.nav--primary'
-  page.should have_selector 'form.search--primary'
-  page.should_not have_selector '.nav--primary--user'
+  page.should have_selector '.lp-global-header__logo'
+  page.should have_selector '.lp-global-header'
+  page.should have_selector '.lp-global-header__search'
 end
 
 Then(/^the client\-solutions body\-footer response should have the correct content$/) do

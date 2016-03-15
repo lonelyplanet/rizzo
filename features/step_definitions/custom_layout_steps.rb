@@ -14,9 +14,9 @@ Then(/^it should load the fixed width version$/) do
   page.should have_xpath("//link[contains(@href, '/assets/core_fixed_width')]")
 end
 
-Then(/^primary nav should not be present$/) do
-  find('#js-nav--primary').all("*").length.should == 0
-end
+# Then(/^primary nav should not be present$/) do
+#   find('#js-nav--primary').all("*").length.should == 0
+# end
 
 Then(/^user nav should not be present$/) do
   page.should_not have_selector '.js-user-nav'
