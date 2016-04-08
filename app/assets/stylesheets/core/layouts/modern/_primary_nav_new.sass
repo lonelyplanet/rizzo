@@ -105,12 +105,12 @@ $lp-notification-badge-size: 17px
   // header
   // ---------------------------------------------------------------------------
 
-  .header
+  .lp-global-header
     background-color: $navblue
     box-sizing: inherit
     font-family: "Benton Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif
 
-  .header__container
+  .lp-global-header__container
     max-width: rem-to-px(129rem)
     margin-left: auto
     margin-right: auto
@@ -131,28 +131,31 @@ $lp-notification-badge-size: 17px
       margin-left: auto
       margin-right: auto
 
-  .header__inner
+  .lp-global-header__inner
     border-bottom: 0
     height: rem-to-px(5rem)
 
     @media (min-width: $lp-min-720)
       height: rem-to-px(13rem)
 
-  .header__logo
+  .header__logo,
+  .lp-global-header__logo,
+  .lp-logo
     fill: #fff
     width: rem-to-px(7.2rem)
 
     @media (min-width: $lp-min-720)
       width: rem-to-px(14.2rem)
 
-  .header__search
+  .lp-global-header__search
     color: rgba(#fff, .38)
+    text-decoration: none
 
     @media (min-width: $lp-min-1080)
       +lp-font-size(2.4rem)
-      height: 100%
+      height: rem-to-px(13rem)
       margin-top: rem-to-px(-6.5rem)
-      line-height: 100%
+      line-height: rem-to-px(13rem)
 
     [class*="icon-"]
       +lp-font-size(2rem)
@@ -166,57 +169,57 @@ $lp-notification-badge-size: 17px
         margin-right: rem-to-px(.9rem)
 
   // override shop styles; reset to defaults because of `button span` declaration
-  .header__search-text,
-  .header__search-beyond
+  .lp-global-header__search-text,
+  .lp-global-header__search-beyond
     display: inline
     margin: 0
     padding: 0
     position: static
     white-space: normal
 
-  .header__search-text
+  .lp-global-header__search-text
     color: #fff
 
   // override shop styles; needed because of `button span` declaration
-  .header__search-beyond
+  .lp-global-header__search-beyond
     color: inherit
 
-  .header__search:hover .header__search-text,
-  .header__search:active .header__search-text,
-  .header__search:focus .header__search-text
+  .lp-global-header__search:hover .lp-global-header__search-text,
+  .lp-global-header__search:active .lp-global-header__search-text,
+  .lp-global-header__search:focus .lp-global-header__search-text
     color: rgba(#fff, .38)
 
-  .header__mobile
+  .lp-global-header__mobile
     right: ($lp-gutter / -2)
 
-  .header__mobile--left
+  .lp-global-header__mobile--left
     right: auto
     left: ($lp-gutter / -2)
 
-  .header__mobile-search
+  .lp-global-header__mobile-search
     +size(rem-to-px(5rem))
 
     &:before
       margin-left: rem-to-px(.4rem)
 
-  .header__mobile-menu
+  .lp-global-header__mobile-menu
     +size(rem-to-px(5rem))
 
   // Pixel value for line-height to be more precise
-  .header__mobile-search,
-  .header__mobile-menu,
-  .header__mobile-cart
+  .lp-global-header__mobile-search,
+  .lp-global-header__mobile-menu,
+  .lp-global-header__mobile-cart
     line-height: 50px
 
     &:before
       +lp-font-size(2.3rem)
 
-  .header--narrow .header__mobile-search,
-  .header--narrow .header__mobile-menu,
-  .header--narrow .header__mobile-cart
+  .lp-global-header--narrow .lp-global-header__mobile-search,
+  .lp-global-header--narrow .lp-global-header__mobile-menu,
+  .lp-global-header--narrow .lp-global-header__mobile-cart
     color: #fff
 
-  .header__mobile-menu .menu-icon
+  .lp-global-header__mobile-menu .menu-icon
     top: rem-to-px(2.4rem)
     left: ($lp-gutter / 2)
     right: ($lp-gutter / 2)
@@ -227,15 +230,15 @@ $lp-notification-badge-size: 17px
     &:after
       top: rem-to-px(.5rem)
 
-  .header__mobile-menu .menu-icon,
-  .header__mobile-menu .menu-icon:before,
-  .header__mobile-menu .menu-icon:after
+  .lp-global-header__mobile-menu .menu-icon,
+  .lp-global-header__mobile-menu .menu-icon:before,
+  .lp-global-header__mobile-menu .menu-icon:after
     +size(rem-to-px(2rem), rem-to-px(.2rem))
     background-color: #fff
 
-  .header--narrow .header__mobile-menu .menu-icon,
-  .header--narrow .header__mobile-menu .menu-icon:before,
-  .header--narrow .header__mobile-menu .menu-icon:after
+  .lp-global-header--narrow .lp-global-header__mobile-menu .menu-icon,
+  .lp-global-header--narrow .lp-global-header__mobile-menu .menu-icon:before,
+  .lp-global-header--narrow .lp-global-header__mobile-menu .menu-icon:after
     background-color: #fff
 
 
