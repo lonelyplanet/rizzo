@@ -72,10 +72,8 @@ define([
       alert: ".js-newsletter-footer"
     });
 
-    if (window.lp.isNewNav) {
-      new Rizzo.Header({ el: $(".header") });
-      new Rizzo.Login();
-    }
+    new Rizzo.default.Header({ el: $(".lp-global-header") });
+    new Rizzo.default.Login();
 
     // Navigation tracking
     $("#js-primary-nav").on("click", ".js-nav-item", function() {
