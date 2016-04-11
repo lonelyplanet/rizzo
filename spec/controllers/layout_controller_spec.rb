@@ -9,7 +9,7 @@ describe LayoutController do
         get :snippet, route: 'modern', snippet: 'header'
 
         response.body.should_not =~ /Basket/
-        response.body.should =~ /header-logo/
+        response.body.should =~ /lp-global-header/
       end
     end
   end
