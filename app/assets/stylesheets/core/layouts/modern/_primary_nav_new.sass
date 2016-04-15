@@ -174,7 +174,7 @@ $lp-notification-badge-size: 17px
       margin-top: rem-to-px(.5rem)
 
   .lp-global-header__search
-    color: rgba(#fff, .38)
+    color: #fff
     text-decoration: none
 
     @media (min-width: $lp-min-1080)
@@ -191,12 +191,13 @@ $lp-notification-badge-size: 17px
     &:hover,
     &:active,
     &:focus
+      color: rgba(#fff, .38)
+
       .svg-icon
         margin-right: rem-to-px(1.1rem)
 
   // override shop styles; reset to defaults because of `button span` declaration
-  body.shop .lp-global-header__search-text,
-  body.shop .lp-global-header__search-beyond
+  body.shop .lp-global-header__search-text
     display: inline
     margin: 0
     padding: 0
@@ -205,10 +206,6 @@ $lp-notification-badge-size: 17px
 
   .lp-global-header__search-text
     color: #fff
-
-  // override shop styles; needed because of `button span` declaration
-  .lp-global-header__search-beyond
-    color: inherit
 
   .lp-global-header__search:hover .lp-global-header__search-text,
   .lp-global-header__search:active .lp-global-header__search-text,
