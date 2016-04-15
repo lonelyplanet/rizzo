@@ -54,6 +54,25 @@
   @return strip-unit($value) * 10px
 
 // -----------------------------------------------------------------------------
+// Rizzo Next classes
+// -----------------------------------------------------------------------------
+
+.svg-icon
+  display: inline-block
+  fill: currentColor
+  height: 1em
+  vertical-align
+  width: 1em
+
+.svg-icon-inline
+  position: relative
+  top: -.0625em
+
+.svg-icon--fit
+  height: 100%
+  width: 100%
+
+// -----------------------------------------------------------------------------
 // Variables
 // -----------------------------------------------------------------------------
 
@@ -87,6 +106,24 @@ $lp-blue: #287bbb
 $lp-color-red: #dc221a
 $lp-notification-badge-size: 17px
 
+@mixin container-header
+  %clearfix
+  margin-left: ($lp-gutter / 2)
+  margin-right: ($lp-gutter / 2)
+  max-width: rem-to-px(129rem)
+
+  @media (min-width: $lp-min-720)
+    margin-left: $lp-gutter
+    margin-right: $lp-gutter
+
+  @media (min-width: $lp-min-1080)
+    margin-left: ($lp-gutter * 2)
+    margin-right: ($lp-gutter * 2)
+
+  @media (min-width: $lp-min-1410)
+    margin-left: auto
+    margin-right: auto
+
 [hidden]
   display: none
 
@@ -113,26 +150,11 @@ $lp-notification-badge-size: 17px
     box-sizing: inherit
     font-family: "Benton Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif
 
+    @media (max-width: $lp-max-720)
+      border-bottom: 0
+
   .lp-global-header__container
-    max-width: rem-to-px(129rem)
-    margin-left: auto
-    margin-right: auto
-
-    @media (max-width: $lp-max-480)
-      padding-left: ($lp-gutter / 2)
-      padding-right: ($lp-gutter / 2)
-
-    @media (min-width: $lp-min-480)
-      margin-left: $lp-gutter
-      margin-right: $lp-gutter
-
-    @media (min-width: $lp-min-1080)
-      margin-left: rem-to-px(6rem)
-      margin-right: rem-to-px(6rem)
-
-    @media (min-width: $lp-min-1410)
-      margin-left: auto
-      margin-right: auto
+    +container-header
 
   .lp-global-header__inner
     border-bottom: 0
@@ -142,11 +164,14 @@ $lp-notification-badge-size: 17px
       height: rem-to-px(13rem)
 
   .lp-logo
-    fill: #fff
+    color: #fff
     width: rem-to-px(7.2rem)
 
     @media (min-width: $lp-min-720)
       width: rem-to-px(14.2rem)
+
+    .svg-icon
+      margin-top: rem-to-px(.5rem)
 
   .lp-global-header__search
     color: rgba(#fff, .38)
@@ -158,16 +183,16 @@ $lp-notification-badge-size: 17px
       margin-top: rem-to-px(-6.5rem)
       line-height: rem-to-px(13rem)
 
-    [class*="icon-"]
-      +lp-font-size(2rem)
+    .svg-icon
+      +lp-font-size(1.8rem)
       color: #fff
-      margin-right: rem-to-px(1.2rem)
+      margin-right: rem-to-px(1.4rem)
 
     &:hover,
     &:active,
     &:focus
-      [class*="icon-"]
-        margin-right: rem-to-px(.9rem)
+      .svg-icon
+        margin-right: rem-to-px(1.1rem)
 
   // override shop styles; reset to defaults because of `button span` declaration
   body.shop .lp-global-header__search-text,
@@ -190,12 +215,11 @@ $lp-notification-badge-size: 17px
   .lp-global-header__search:focus .lp-global-header__search-text
     color: rgba(#fff, .38)
 
-  .lp-global-header__mobile
-    right: ($lp-gutter / -2)
+  .lp-global-header__mobile--right
+    right: rem-to-px(-1.3rem)
 
   .lp-global-header__mobile--left
-    right: auto
-    left: ($lp-gutter / -2)
+    left: rem-to-px(-1.3rem)
 
   .lp-global-header__mobile-search
     +size(rem-to-px(5rem))
@@ -203,15 +227,20 @@ $lp-notification-badge-size: 17px
     &:before
       margin-left: rem-to-px(.4rem)
 
+  .lp-global-header__mobile-search,
   .lp-global-header__mobile-menu
-    +size(rem-to-px(5rem))
+    +size(rem-to-px(5rem - 1.3rem - 1.3rem))
+    margin-top: rem-to-px(.1rem)
+    padding: rem-to-px(1.3rem)
 
   // Pixel value for line-height to be more precise
   .lp-global-header__mobile-search,
   .lp-global-header__mobile-menu,
   .lp-global-header__mobile-cart
-    line-height: 50px
+    +lp-font-size(2.4rem)
+    line-height: 1
 
+  .lp-global-header__mobile-cart
     &:before
       +lp-font-size(2.3rem)
 
@@ -222,19 +251,19 @@ $lp-notification-badge-size: 17px
 
   .lp-global-header__mobile-menu .menu-icon
     top: rem-to-px(2.4rem)
-    left: ($lp-gutter / 2)
-    right: ($lp-gutter / 2)
+    left: rem-to-px(1.3rem)
+    right: rem-to-px(1.3rem)
 
     &:before
-      top: rem-to-px(-.5rem)
+      top: rem-to-px(-.7rem)
 
     &:after
-      top: rem-to-px(.5rem)
+      top: rem-to-px(.7rem)
 
   .lp-global-header__mobile-menu .menu-icon,
   .lp-global-header__mobile-menu .menu-icon:before,
   .lp-global-header__mobile-menu .menu-icon:after
-    +size(rem-to-px(2rem), rem-to-px(.2rem))
+    +size(rem-to-px(2.4rem), rem-to-px(.2rem))
     background-color: #fff
 
   .lp-global-header--narrow .lp-global-header__mobile-menu .menu-icon,
@@ -656,32 +685,14 @@ $lp-notification-badge-size: 17px
   [class*=" icon-"]
     @extend %lp-icon-font
 
-  .icon-close-small:before
-    content: "\e605"
+  // .icon-close-small:before
+  //   content: "\e605"
 
   .icon-chevron-right:before
     content: "\e603"
 
 .lp-search__container
-  max-width: rem-to-px(129rem)
-  margin-left: auto
-  margin-right: auto
-
-  @media (max-width: $lp-max-480)
-    padding-left: ($lp-gutter / 2)
-    padding-right: ($lp-gutter / 2)
-
-  @media (min-width: $lp-min-480)
-    margin-left: $lp-gutter
-    margin-right: $lp-gutter
-
-  @media (min-width: $lp-min-1080)
-    margin-left: ($lp-gutter * 2)
-    margin-right: ($lp-gutter * 2)
-
-  @media (min-width: $lp-min-1410)
-    margin-left: auto
-    margin-right: auto
+  +container-header
 
 .lp-search__inner
   height: rem-to-px(5rem)
@@ -703,12 +714,13 @@ $lp-notification-badge-size: 17px
 
 .lp-search__label
   +size(rem-to-px(2rem))
+  top: rem-to-px(.1rem)
 
   @media (min-width: $lp-min-720)
-    top: rem-to-px(-.4rem)
+    top: rem-to-px(-.3rem)
 
-  &:before
-    +lp-font-size(2rem)
+  .svg-icon
+    +lp-font-size(1.8rem)
 
 .lp-search__input
   +lp-font-size(1.6rem)
@@ -732,12 +744,10 @@ $lp-notification-badge-size: 17px
 
   @media (min-width: $lp-min-720)
     right: 0
+    top: rem-to-px(-.4rem)
 
-  &:before
+  .svg-icon
     +lp-font-size(1.8rem)
-
-    @media (min-width: $lp-min-720)
-      +lp-font-size(2rem)
 
 .lp-search-results
   transform: translateY(rem-to-px(-2rem))
