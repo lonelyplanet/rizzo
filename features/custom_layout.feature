@@ -12,7 +12,6 @@ Feature: Custom Layouts
     Given I go to "/layouts/india"
     Then the Preview route should be displayed
     And the body should have a class of responsive
-    And primary nav should not be present
     And user nav should not be present
     And search should not be present
     And sitemap nav should not be present
