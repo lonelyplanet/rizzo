@@ -1,0 +1,256 @@
+<%
+  # This file is based on rizzo-next, it should be kept in sync manually with node_modules/rizzo-next/dist/header.html
+  # It has the following customizations:
+  #
+  # * injected LP_SERVICE_ID in sign-in URL
+
+  lp_service_id = ENV['LP_SERVICE_ID']
+%>
+<header class="header header--narrow header--no-images">
+  <div class="header__container">
+    <div class="header__inner">
+
+      <a class="header__logo" href="/">
+        <svg id="header-logo" alt="Lonely Planet" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 -117.2 400 198.3" enable-background="new 0 -117.2 400 198.3" xml:space="preserve">
+          <g>
+            <path d="M108.1 4.5c-7.4-1.6-12.3-5.8-15.6-13.1v14H78.6V-21c-0.8-5.8-9-5.8-9.8 0V5.3H54.9V-9.5 c-3.3 9-9.8 13.1-19.7 14c-9.8 0-16.4-4.9-20.5-13.1v14H0v-61.6h14.7v30.4c3.3-6.6 7.4-9.9 13.9-12.3c11.5-2.5 21.3 2.5 26.2 13.1 c3.3-9 9.8-14 19.7-14c9 0.8 15.6 4.9 18 14c2.5-6.6 8.2-11.5 16.4-13.1c11.5-1.6 19.7 3.3 24.6 13.1v-31.2h14.7v17.3h13.9V-12 c0 4.9 7.4 4.9 7.4 0v-27.1h13.9V7.8l0 0c0 4.9-1.6 8.2-4.9 12.3c-4.1 4.1-8.2 4.9-13.9 5.8c-7.4 0.8-12.3-1.6-18-5.8l8.2-10.7 c4.1 3.3 10.6 3.3 13.1-1.6c0.8-1.6 0.8-4.1 0.8-6.6c-7.4 7.4-18.8 4.1-21.3-5.8v9.9h-14.7v-18.9H104c1.6 6.6 9 9 14.7 4.1 l12.3 1.6C131.1-4.6 124.5 6.1 108.1 4.5z M42.6-16.9c0-4.9-4.1-9-9-9s-9 4.1-9 9s4.1 9 9 9C39.3-7.9 43.4-12 42.6-16.9z M103.2-19.4h18C118.8-28.4 106.5-28.4 103.2-19.4z"/>
+            <path d="M399.7 0.4c0 2.5-10.6 6.6-17.2 2.5S376-7 376-13.6h-29.5c3.3 8.2 13.1 7.4 16.4 3.3l12.3 2.5 c-4.1 14-16.4 16.4-27.8 12.3c-6.6-3.3-9.8-6.6-12.3-12.3v14h-13.9c0-9 0-18.1 0-27.1c-0.8-5.8-9.8-5.8-9.8 0V5.3h-13.9h-4.1h-5.7 v-8.2c0-3.3-3.3 8.2-8.2 8.2c-9.8 0.8-18-4.1-22.1-13.1V5.3h-14.7V-7.9c-4.1 9-14.7 14-25.4 11.5l-1.6-0.8c0 0 0.8 14.8 0.8 18.9 h-14.7v-38.6c0-18.1 19.7-28.8 34.4-18.1c2.5 2.5 4.9 5.8 6.6 9v-30.4h14.7v30.4c4.9-9 13.9-14 24.6-12.3 c7.4 1.6 12.3 5.8 15.6 13.1c4.1-11.5 14.7-16.4 27-12.3c5.7 2.5 8.2 6.6 10.6 12.3c4.9-11.5 16.4-16.4 28.7-12.3 c5.7 3.3 9.8 6.6 12.3 12.3v-23h13.9v9h9v13.1h-9c0 4.9-0.8 9 0.8 13.1c0.8 2.5 4.9 3.3 8.2 0.8l0 0L399.7 0.4z M232.6-16.9 c0-4.9-4.1-9-9-9c-4.9 0-9 4.1-9 9s4.1 9 9 9S232.6-12 232.6-16.9z M285.9-16.9c0-4.9-4.1-9-9-9l0 0c-4.9 0-9 4.1-9 9s4.1 9 9 9 S285.9-12 285.9-16.9z M363.7-20.2c-2.5-9-14.7-8.2-17.2 0H363.7z"/>
+            <path d="M116.3-46.5l-9.8-4.1c13.9-38.6 50-66.6 92.6-66.6s78.6 27.9 91.7 66.6l-4.9 1.6l-4.9 1.6 c-11.5-34.5-44.2-58.3-81.9-58.3S128.6-81 116.3-46.5z"/>
+            <path d="M280.9 11.9l9.8 4.1c-13.1 37.8-49.1 65.7-91.7 64.9c-42.6 0-78.6-27.1-91.7-64.9l4.9-1.6l4.9-1.6 c11.5 33.7 44.2 57.5 81.9 57.5S269.5 46.4 280.9 11.9z"/>
+          </g>
+        </svg>
+      </a>
+
+      <button class="header__search js-lp-search">
+        <i class="icon-search" aria-hidden="true"></i>
+        <span class="header__search-text">Search Lonely Planet</span>
+        <span class="header__search-beyond">and beyond</span>
+      </button>
+
+      <div class="header__navigation">
+        <nav class="navigation navigation--narrow navigation--no-images">
+          <ul class="navigation__list">
+              <li class="js-nav-item navigation__item navigation__item--search js-lp-search" data-lpa-category="Destinations Next" data-lpa-action="Global Navigation Click" data-lpa-label="Search">
+               <a class="navigation__link" href="//www.lonelyplanet.com/search">Search</a>
+        
+              </li>
+              <li class="js-nav-item navigation__item navigation__item--active" data-lpa-category="Destinations Next" data-lpa-action="Global Navigation Click" data-lpa-label="Destinations">
+               <a class="navigation__link" href="#">Destinations</a>
+        
+                <div class="sub-navigation">
+                  <a class="sub-navigation-feature" href="//www.lonelyplanet.com/best-in-us">
+                    <img class="sub-navigation-feature__image" src="http://lonelyplanetstatic.imgix.net/bit2016-bg-main.jpg?w&#x3D;80&amp;h&#x3D;60&amp;fit&#x3D;crop" alt="Best in the US">
+                    <div class="sub-navigation-feature__text">
+                      <div class="sub-navigation-feature__title">Best in the US</div>
+                      <div class="sub-navigation-feature__subtitle">Featured</div>
+                    </div>
+                  </a>
+        
+                  <ul class="sub-navigation__list">
+                    <li class="sub-navigation__item">
+                      <a class="sub-navigation__link" href="/asia">Asia</a>
+                    </li>
+                    <li class="sub-navigation__item">
+                      <a class="sub-navigation__link" href="/europe">Europe</a>
+                    </li>
+                    <li class="sub-navigation__item">
+                      <a class="sub-navigation__link" href="/north-america">North America</a>
+                    </li>
+                    <li class="sub-navigation__item">
+                      <a class="sub-navigation__link" href="/south-america">South America</a>
+                    </li>
+                    <li class="sub-navigation__item">
+                      <a class="sub-navigation__link" href="/central-america">Central America</a>
+                    </li>
+                    <li class="sub-navigation__item">
+                      <a class="sub-navigation__link" href="/africa">Africa</a>
+                    </li>
+                    <li class="sub-navigation__item">
+                      <a class="sub-navigation__link" href="/caribbean">Caribbean</a>
+                    </li>
+                    <li class="sub-navigation__item">
+                      <a class="sub-navigation__link" href="/middle-east">Middle East</a>
+                    </li>
+                    <li class="sub-navigation__item">
+                      <a class="sub-navigation__link" href="/pacific">Australia &amp; Pacific</a>
+                    </li>
+                    <li class="sub-navigation__item">
+                      <a class="sub-navigation__link" href="/antarctica-1007062">Antarctica</a>
+                    </li>
+                  </ul>
+        
+                  <a class="sub-navigation__button" href="//www.lonelyplanet.com/places">
+                    See All Countries
+                    <i class="icon-chevron-right" aria-hidden="true"></i>
+                  </a>
+                </div>
+              </li>
+              <li class="js-nav-item navigation__item " data-lpa-category="Destinations Next" data-lpa-action="Global Navigation Click" data-lpa-label="Bookings">
+               <a class="navigation__link" href="#">Bookings</a>
+        
+                <div class="sub-navigation">
+        
+                  <ul class="sub-navigation__list">
+                    <li class="sub-navigation__item">
+                      <a class="sub-navigation__link" href="/travel-insurance">Insurance</a>
+                    </li>
+                    <li class="sub-navigation__item">
+                      <a class="sub-navigation__link" href="/hotels">Hotels</a>
+                    </li>
+                    <li class="sub-navigation__item">
+                      <a class="sub-navigation__link" href="/flights">Flights</a>
+                    </li>
+                    <li class="sub-navigation__item">
+                      <a class="sub-navigation__link" href="/adventure-tours">Adventure tours</a>
+                    </li>
+                    <li class="sub-navigation__item">
+                      <a class="sub-navigation__link" href="/sightseeing-tours">Sightseeing tours</a>
+                    </li>
+                    <li class="sub-navigation__item">
+                      <a class="sub-navigation__link" href="/airport-transfers">Airport transfers</a>
+                    </li>
+                    <li class="sub-navigation__item">
+                      <a class="sub-navigation__link" href="/car-rental">Car rental</a>
+                    </li>
+                  </ul>
+        
+                </div>
+              </li>
+              <li class="js-nav-item navigation__item navigation__item--shop js-cart-notification" data-lpa-category="Destinations Next" data-lpa-action="Global Navigation Click" data-lpa-label="Shop">
+               <a class="navigation__link" href="http://shop.lonelyplanet.com">Shop</a>
+        
+              </li>
+              <li class="js-nav-item navigation__item navigation__item--user" data-lpa-category="Destinations Next" data-lpa-action="Global Navigation Click" data-lpa-label="Sign In">
+                <a class="navigation__link" href="//auth.lonelyplanet.com/users/sign_in<%= lp_service_id.present? ? "?source=#{lp_service_id}" : '' %>">Sign In</a>
+        
+              </li>
+          </ul>
+        
+          <nav class="mobile-navigation">
+            <button class="mobile-navigation__close icon-close-small js-close">Close</button>
+        
+            <ul class="mobile-navigation__list">
+                <li class="js-nav-item mobile-navigation__item mobile-navigation__item--search js-lp-search" data-lpa-category="Destinations Next" data-lpa-action="Mobile Global Navigation Click" data-lpa-label="Search">
+                  <a class="mobile-navigation__link" href="//www.lonelyplanet.com/search">Search
+                  </a>
+        
+        
+                </li>
+                <li class="js-nav-item mobile-navigation__item mobile-navigation__item--active" data-lpa-category="Destinations Next" data-lpa-action="Mobile Global Navigation Click" data-lpa-label="Destinations">
+                  <a class="mobile-navigation__link" href="#">Destinations
+                      <i class="icon icon--chevron-down" aria-hidden="true"></i>
+                  </a>
+        
+        
+                  <div class="mobile-sub-navigation">
+                    <a class="sub-navigation-feature" href="//www.lonelyplanet.com/best-in-us">
+                      <img class="sub-navigation-feature__image" src="http://lonelyplanetstatic.imgix.net/bit2016-bg-main.jpg?w&#x3D;80&amp;h&#x3D;60&amp;fit&#x3D;crop" alt="Best in the US">
+                      <div class="sub-navigation-feature__text">
+                        <div class="sub-navigation-feature__title">Best in the US</div>
+                        <div class="sub-navigation-feature__subtitle">Featured</div>
+                      </div>
+                    </a>
+        
+                    <ul class="sub-navigation__list">
+                      <li class="sub-navigation__item">
+                        <a class="sub-navigation__link" href="/asia">Asia</a>
+                      </li>
+                      <li class="sub-navigation__item">
+                        <a class="sub-navigation__link" href="/europe">Europe</a>
+                      </li>
+                      <li class="sub-navigation__item">
+                        <a class="sub-navigation__link" href="/north-america">North America</a>
+                      </li>
+                      <li class="sub-navigation__item">
+                        <a class="sub-navigation__link" href="/south-america">South America</a>
+                      </li>
+                      <li class="sub-navigation__item">
+                        <a class="sub-navigation__link" href="/central-america">Central America</a>
+                      </li>
+                      <li class="sub-navigation__item">
+                        <a class="sub-navigation__link" href="/africa">Africa</a>
+                      </li>
+                      <li class="sub-navigation__item">
+                        <a class="sub-navigation__link" href="/caribbean">Caribbean</a>
+                      </li>
+                      <li class="sub-navigation__item">
+                        <a class="sub-navigation__link" href="/middle-east">Middle East</a>
+                      </li>
+                      <li class="sub-navigation__item">
+                        <a class="sub-navigation__link" href="/pacific">Australia &amp; Pacific</a>
+                      </li>
+                      <li class="sub-navigation__item">
+                        <a class="sub-navigation__link" href="/antarctica-1007062">Antarctica</a>
+                      </li>
+                      <li class="sub-navigation__item">
+                        <a class="sub-navigation__link" href="//www.lonelyplanet.com/places">
+                          See All Countries
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+                <li class="js-nav-item mobile-navigation__item mobile-" data-lpa-category="Destinations Next" data-lpa-action="Mobile Global Navigation Click" data-lpa-label="Bookings">
+                  <a class="mobile-navigation__link" href="#">Bookings
+                      <i class="icon icon--chevron-down" aria-hidden="true"></i>
+                  </a>
+        
+        
+                  <div class="mobile-sub-navigation">
+        
+                    <ul class="sub-navigation__list">
+                      <li class="sub-navigation__item">
+                        <a class="sub-navigation__link" href="/travel-insurance">Insurance</a>
+                      </li>
+                      <li class="sub-navigation__item">
+                        <a class="sub-navigation__link" href="/hotels">Hotels</a>
+                      </li>
+                      <li class="sub-navigation__item">
+                        <a class="sub-navigation__link" href="/flights">Flights</a>
+                      </li>
+                      <li class="sub-navigation__item">
+                        <a class="sub-navigation__link" href="/adventure-tours">Adventure tours</a>
+                      </li>
+                      <li class="sub-navigation__item">
+                        <a class="sub-navigation__link" href="/sightseeing-tours">Sightseeing tours</a>
+                      </li>
+                      <li class="sub-navigation__item">
+                        <a class="sub-navigation__link" href="/airport-transfers">Airport transfers</a>
+                      </li>
+                      <li class="sub-navigation__item">
+                        <a class="sub-navigation__link" href="/car-rental">Car rental</a>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+                <li class="js-nav-item mobile-navigation__item mobile-navigation__item--shop js-cart-notification" data-lpa-category="Destinations Next" data-lpa-action="Mobile Global Navigation Click" data-lpa-label="Shop">
+                  <a class="mobile-navigation__link" href="http://shop.lonelyplanet.com">Shop
+                  </a>
+        
+        
+                </li>
+                <li class="js-nav-item mobile-navigation__item mobile-navigation__item--user" data-lpa-category="Destinations Next" data-lpa-action="Mobile Global Navigation Click" data-lpa-label="Sign In">
+                  <a class="mobile-navigation__link" href="//auth.lonelyplanet.com/users/sign_in">Sign In
+                  </a>
+        
+        
+                </li>
+            </ul>
+          </nav>
+        </nav>
+      </div>
+
+      <div class="header__mobile header__mobile--left">
+        <button class="header__mobile-search icon-search-thin js-lp-search">Search</button>
+      </div>
+
+      <div class="header__mobile js-header-mobile">
+
+        <button class="header__mobile-menu js-menu" aria-label="Menu">
+          <i class="menu-icon" aria-hidden="true"></i>
+        </button>
+      </div>
+
+    </div>
+  </div>
+</header>

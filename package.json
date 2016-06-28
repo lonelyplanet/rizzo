@@ -24,5 +24,8 @@
   },
   "dependencies": {
     "rizzo-next": "0.11.25"
+  },
+  "scripts": {
+    "postinstall": "node rizzo-next-post-install.js"
   }
 }
