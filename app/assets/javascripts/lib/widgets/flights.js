@@ -8,15 +8,13 @@ define([
   "jquery",
   "lib/widgets/flights_autocomplete",
   "lib/analytics/flights",
-  "lib/analytics/flights_omniture",
   "pickerDate"
-], function($, FlightsAutocomplete, GoogleAnalytics, Omniture) {
+], function($, FlightsAutocomplete, GoogleAnalytics) {
 
   "use strict";
 
   function FlightsWidget() {
     this.googleAnalytics        = new GoogleAnalytics("#js-flights-form");
-    this.omniture               = new Omniture("#js-flights-submit");
   }
 
   FlightsWidget.prototype.init = function() {
@@ -43,7 +41,6 @@ define([
     this.autocomplete = new FlightsAutocomplete(args);
     this.autocomplete.init();
 
-    this.omniture.init();
     this.initDatePickers();
     this.listen();
   };

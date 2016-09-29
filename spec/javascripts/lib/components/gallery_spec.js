@@ -17,7 +17,6 @@ define([ "jquery", "public/assets/javascripts/lib/components/gallery.js" ], func
       beforeEach(function() {
         spyEvent = spyOnEvent(gallery.$listener, ":ads/refresh");
 
-        spyOn(gallery.analytics, "track");
         spyOn(gallery, "_updateImageInfo");
         spyOn(gallery, "_updateSlug");
         spyOn(gallery, "_updateGoogleAnalytics");
@@ -27,7 +26,6 @@ define([ "jquery", "public/assets/javascripts/lib/components/gallery.js" ], func
 
       it("updates image meta data and refreshes the ads and oms", function() {
         expect(gallery._updateImageInfo).toHaveBeenCalled();
-        expect(gallery.analytics.track).toHaveBeenCalled();
         expect(gallery._updateSlug).toHaveBeenCalled();
         expect(gallery._updateGoogleAnalytics).toHaveBeenCalled();
         expect(spyEvent).toHaveBeenTriggered();

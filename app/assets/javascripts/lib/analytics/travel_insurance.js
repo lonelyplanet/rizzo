@@ -1,4 +1,4 @@
-require([ "jquery", "lib/analytics/analytics" ], function($, Analytics) {
+require([ "jquery" ], function($) {
 
   "use strict";
 

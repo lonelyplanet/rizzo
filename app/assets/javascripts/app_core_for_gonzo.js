@@ -1,8 +1,6 @@
 define([
   "jquery",
   "flamsteed",
-
-  "sCode",
   "trackjs",
   "polyfills/xdr",
   "polyfills/function_bind",

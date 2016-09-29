@@ -6,7 +6,6 @@ define([
   "lib/core/sailthru_form",
   "rizzo-next",
 
-  "sCode",
   "trackjs",
   "polyfills/xdr",
   "polyfills/function_bind",
