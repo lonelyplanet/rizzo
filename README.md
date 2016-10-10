@@ -11,7 +11,6 @@ The main goal of Rizzo is to enable sharing of templates and assets across all L
 $ git clone git@github.com:lonelyplanet/rizzo.git && cd rizzo
 $ cp .ruby-version.example .ruby-version
 $ cp .ruby-gemset.example .ruby-gemset
-$ cd .
 $ bundle install
 $ npm install
 $ grunt setup # sets up jscs & jshint git precommit hook for contributors, and inits the private font submodule
