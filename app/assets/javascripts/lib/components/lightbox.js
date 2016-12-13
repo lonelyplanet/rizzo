@@ -82,7 +82,8 @@ define([
       this.trigger(":lightbox/open", {
         listener: this.$el,
         opener: event.currentTarget,
-        target: this.$lightboxContent
+        clickedEl: event.target,
+        target: this.$lightboxContent,
       });
 
       event.stopPropagation();
