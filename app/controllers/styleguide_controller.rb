@@ -2,7 +2,7 @@ class StyleguideController < ActionController::Base
 
   include LayoutSupport
   layout proc{|c| c.request.xhr? ? false : "styleguide" }
-  before_action :setup
+  before_filter :setup
 
   def setup
     @app = StyleGuide.new(request.fullpath)
