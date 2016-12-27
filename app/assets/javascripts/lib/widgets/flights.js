@@ -7,15 +7,12 @@
 define([
   "jquery",
   "lib/widgets/flights_autocomplete",
-  "lib/analytics/flights",
   "pickerDate"
-], function($, FlightsAutocomplete, GoogleAnalytics) {
+], function($, FlightsAutocomplete) {
 
   "use strict";
 
-  function FlightsWidget() {
-    this.googleAnalytics        = new GoogleAnalytics("#js-flights-form");
-  }
+  function FlightsWidget() {}
 
   FlightsWidget.prototype.init = function() {
     this.$el          = $(".js-flights-widget");
@@ -152,8 +149,7 @@ define([
   };
 
   FlightsWidget.prototype._proceed = function() {
-    this.googleAnalytics.track();
-    window.open(this._buildUrl());
+
   };
 
   FlightsWidget.prototype._buildUrl = function() {
