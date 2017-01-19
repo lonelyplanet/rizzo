@@ -19,7 +19,6 @@
   // Allow legacy apps to add their own properties
   window.lp.tracking  = window.lp.tracking  || {};
   window.lp.supports  = window.lp.supports  || {};
-  window.lp.dataLayer = window.lp.dataLayer || {};
 
   // Setting up Adblock checker
   window.lp.isAdblockActive = true;
@@ -94,7 +93,7 @@
 
   // Universal Data Object to use with GTM; for now contains
   // data from Tealium and Omniture (if present)
-  window.lp.dataLayer = window.lp.analytics.utag_data;
+  window.lp.analytics.dataLayer["0"] = window.lp.analytics.utag_data;
   window.lp.dataLayer.omniture = window.lp.tracking;
 
 = render 'layouts/partials/inline_js/gtm'
