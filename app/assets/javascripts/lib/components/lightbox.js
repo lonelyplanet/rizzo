@@ -82,7 +82,8 @@ define([
       this.trigger(":lightbox/open", {
         listener: this.$el,
         opener: event.currentTarget,
-        target: this.$lightboxContent
+        clickedEl: event.target,
+        target: this.$lightboxContent,
       });
 
       event.stopPropagation();
@@ -109,10 +110,14 @@ define([
       this.$lightbox.addClass(this.customClassAdded = this.customClass || $opener.data() && $opener.data().lightboxClass);
 
       showPreloader = this.showPreloader || $opener.data().lightboxShowpreloader;
+
       if (showPreloader && !this.$lightbox.find(".js-preloader").length) {
-        this.preloaderTmpl = Template.render($("#tmpl-preloader").text(), {});
-        this.$lightboxContent.parent().append(this.preloaderTmpl);
+        var $preloaderTmpl = $(Template.render($("#tmpl-preloader").text(), {}));
+
+        if (showPreloader === "styled") $preloaderTmpl.addClass("preloader--styled");
+        this.$lightboxContent.parent().append($preloaderTmpl);
       }
+
       this.$lightbox.addClass("is-loading");
 
       setTimeout(function() {
@@ -216,14 +221,15 @@ define([
     // Waits for the end of the transition.
     setTimeout(function() {
       this.$lightboxContent.html(this.customRenderer ? this.customRenderer(content) : content);
-      this.$lightbox.addClass("content-ready");
+      this.$lightbox
+        .addClass("content-ready")
+        .removeClass("is-loading");
+
       this.trigger(":lightbox/contentReady", this);
 
       this.$lightbox.find(".js-lightbox-navigation").on("click", this._navigateTo.bind(this));
 
     }.bind(this), 300);
-
-    this.$lightbox.removeClass("is-loading");
   };
 
   LightBox.prototype._renderPagination = function(data) {

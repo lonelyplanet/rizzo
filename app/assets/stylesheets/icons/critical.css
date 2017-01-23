@@ -25,6 +25,12 @@
 .icon--cc--before:before, .icon--cc--after:after,
 .icon--cc { background-image: url('png/cc.png'); background-repeat: no-repeat; }
 
+.icon--chevron-down--before:before, .icon--chevron-down--after:after,
+.icon--chevron-down { background-image: url('png/chevron-down.png'); background-repeat: no-repeat; }
+
+.icon--chevron-up--before:before, .icon--chevron-up--after:after,
+.icon--chevron-up { background-image: url('png/chevron-up.png'); background-repeat: no-repeat; }
+
 .icon--comment--line--before:before, .icon--comment--line--after:after,
 .icon--comment--line { background-image: url('png/comment--line.png'); background-repeat: no-repeat; }
 
