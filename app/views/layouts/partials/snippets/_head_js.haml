@@ -17,7 +17,9 @@
   window.lp = window.lp || {};
 
   // Allow legacy apps to add their own properties
-  window.lp.supports = window.lp.supports || {};
+  window.lp.tracking  = window.lp.tracking  || {};
+  window.lp.supports  = window.lp.supports  || {};
+  window.lp.dataLayer = window.lp.dataLayer || {};
 
   // Setting up Adblock checker
   window.lp.isAdblockActive = true;
@@ -28,12 +30,15 @@
     shim: {}
   }
 
-  // Setup analytics namespace
   window.lp.analytics = window.lp.analytics || {
-    dataLayer: {
-      0: {}
-    },
-    eventBuffer: []
+    utag_data: {},
+    dataLayer: {},
+    eventBuffer: [],
+    api: {
+      trackEvent: function(data){
+        window.lp.analytics.eventBuffer.push(data);
+      }
+    }
   };
 
   // Utility cookie retrieval function
@@ -83,12 +88,31 @@
 
 = yield :head_js
 
+:javascript
+  // Alias for utag_data required by Tealium
+  window.utag_data = window.lp.analytics.utag_data;
+
+  // Universal Data Object to use with GTM; for now contains
+  // data from Tealium and Omniture (if present)
+  window.lp.dataLayer = window.lp.analytics.utag_data;
+  window.lp.dataLayer.omniture = window.lp.tracking;
+
 = render 'layouts/partials/inline_js/gtm'
 = render 'layouts/partials/inline_js/load_css'
 = render 'layouts/partials/inline_js/krux'
 = render 'layouts/partials/inline_js/a9'
 = render 'layouts/partials/inline_js/criteo'
 = render 'layouts/partials/inline_js/recaptcha'
+
+:javascript
+  // Google analytics
+  (function(d,t,c){
+    var filepath = d.cookie.match(/lpDev/) ? "analytics.dev.js?" +c.getTime() : "analytics.min.js",
+        g=d.createElement(t),
+        s=d.getElementsByTagName(t)[0];
+    g.src="//assets.staticlp.com/analytics/" + filepath;
+    s.parentNode.insertBefore(g,s);
+  }(document,"script",new Date));
 
 = render 'layouts/partials/inline_js/cut_the_mustard'
 - unless third_party
