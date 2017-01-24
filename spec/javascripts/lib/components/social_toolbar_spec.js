@@ -64,6 +64,13 @@ define([ "jquery", "public/assets/javascripts/lib/components/social_toolbar.js" 
         }
       });
 
+      it("we update each google analytics label", function() {
+        var shares = window.socialToolbar.shares, i = 0;
+        for (i; i < shares.length; i++) {
+          expect($(".js-" + shares[i].name + "-share").attr("data-lpa-label")).toBe(newUrl);
+        }
+      });
+
       it("we update the mailto subject", function() {
         expect($(".js-mailto-share").attr("href")).toContain("New article");
       });

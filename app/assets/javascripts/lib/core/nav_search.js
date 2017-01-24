@@ -65,6 +65,12 @@ define([ "jquery", "autocomplete" ], function($, Autocomplete) {
   NavSearch.prototype.onItem = function(item) {
     var url = $(item).data("value");
 
+    window.lp.analytics.api.trackEvent({
+      category: "search",
+      action: "autocomplete",
+      label: url
+    });
+
     window.lp.fs.log({
       autocompleteTerm: savedSearchTerm,
       autocompleteURL: url
