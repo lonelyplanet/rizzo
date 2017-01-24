@@ -1,8 +1,7 @@
 define([
   "jquery",
   "lib/components/slider",
-  "lib/analytics/analytics",
-], function($, Slider, Analytics) {
+], function($, Slider) {
 
   "use strict";
 
@@ -17,7 +16,6 @@ define([
 
     this.$listener = $(this.config.listener);
     this.$gallery = this.$listener.find(this.config.el);
-    this.analytics = new Analytics();
     this.slug = this.$gallery.data("href");
     this.init();
   }
@@ -66,21 +64,10 @@ define([
     window.history.pushState && window.history.pushState({}, "", this.slug + "/" + partial);
   };
 
-  /* jshint ignore:start */
-  Gallery.prototype._updateGoogleAnalytics = function(partial, ga) {
-    if (ga.dataLayer.summaryTag && ga.dataLayer.summaryTag.content_id) {
-      ga.dataLayer.summaryTag.content_id = partial;
-      ga.api.trackPageView(ga.dataLayer);
-    }
-  };
-  /* jshint ignore:end */
-
   Gallery.prototype._afterNavigation = function() {
     var partial = this.slider.$currentSlide.data("partial-slug");
-    this.analytics.track();
     this._updateImageInfo();
     this._updateSlug(partial);
-    this._updateGoogleAnalytics(partial, window.lp.analytics);
     this.$listener.trigger(":ads/refresh");
   };
 

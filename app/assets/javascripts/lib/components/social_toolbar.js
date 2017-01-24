@@ -55,7 +55,6 @@ define([ "jquery", "lib/mixins/page_state" ], function($, withPageState) {
     var url = this.getUrl(), i = 0, share;
     for (i; i < this.shares.length; i++) {
       share = this.shares[i];
-      this._updateAnalytics(share, url);
       if (!share.hasMeta) {
         this._updateLink(share, url);
       }
@@ -64,10 +63,6 @@ define([ "jquery", "lib/mixins/page_state" ], function($, withPageState) {
       this._updateTweetMeta(url, data);
       this._updateMailtoMeta(url, data);
     }
-  };
-
-  SocialToolbar.prototype._updateAnalytics = function(share, url) {
-    this.$el.find(".js-" + share.name + "-share").attr("data-lpa-label", url);
   };
 
   SocialToolbar.prototype._updateTweetMeta = function(url, data) {
