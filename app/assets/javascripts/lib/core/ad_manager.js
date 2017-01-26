@@ -30,19 +30,19 @@ define([ "jquery", "lib/core/ad_sizes", "lib/core/ad_unit" ], function($, adSize
   AdManager.prototype.init = function() {
     var self = this;
 
-    this.pluginConfig = {
-      dfpID: this.getNetworkID(),
-      setTargeting: this.formatKeywords(this.config),
-      namespace: this.config.layers.join("/"),
-      sizeMapping: this.config.sizeMapping,
-      collapseEmptyDivs: true,
-      enableSingleRequest: false,
-      afterEachAdLoaded: function($adunit) {
-        self._adCallback.call(self, $adunit);
-      }
-    };
-
     require([ "dfp" ], function() {
+
+      self.pluginConfig = {
+        dfpID: self.getNetworkID(),
+        setTargeting: self.formatKeywords(self.config),
+        namespace: self.config.layers.join("/"),
+        sizeMapping: self.config.sizeMapping,
+        collapseEmptyDivs: true,
+        enableSingleRequest: false,
+        afterEachAdLoaded: function($adunit) {
+          self._adCallback.call(self, $adunit);
+        }
+      };
 
       self.load();
 
