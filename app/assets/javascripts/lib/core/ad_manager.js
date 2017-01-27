@@ -1,4 +1,9 @@
-define([ "jquery", "lib/core/ad_sizes", "lib/core/ad_unit" ], function($, adSizes, AdUnit) {
+define([
+  "jquery",
+  "lib/core/ad_sizes",
+  "lib/core/ad_unit",
+  "dfp"
+], function($, adSizes, AdUnit) {
 
   "use strict";
 
@@ -30,31 +35,27 @@ define([ "jquery", "lib/core/ad_sizes", "lib/core/ad_unit" ], function($, adSize
   AdManager.prototype.init = function() {
     var self = this;
 
-    require([ "dfp" ], function() {
+    this.pluginConfig = {
+      dfpID: this.getNetworkID(),
+      setTargeting: this.formatKeywords(this.config),
+      namespace: this.config.layers.join("/"),
+      sizeMapping: this.config.sizeMapping,
+      collapseEmptyDivs: true,
+      enableSingleRequest: false,
+      afterEachAdLoaded: function($adunit) {
+        self._adCallback.call(self, $adunit);
+      }
+    };
 
-      self.pluginConfig = {
-        dfpID: self.getNetworkID(),
-        setTargeting: self.formatKeywords(self.config),
-        namespace: self.config.layers.join("/"),
-        sizeMapping: self.config.sizeMapping,
-        collapseEmptyDivs: true,
-        enableSingleRequest: false,
-        afterEachAdLoaded: function($adunit) {
-          self._adCallback.call(self, $adunit);
-        }
-      };
+    this.load();
 
+    this.$listener.on(":ads/refresh :page/updated", function(e, data) {
+      self.refresh(data);
+    });
+
+    this.$listener.on(":ads/reload :page/changed :lightbox/contentReady", function() {
+      self.pluginConfig.setTargeting = self.formatKeywords(window.lp.ads);
       self.load();
-
-      self.$listener.on(":ads/refresh :page/updated", function(e, data) {
-        self.refresh(data);
-      });
-
-      self.$listener.on(":ads/reload :page/changed :lightbox/contentReady", function() {
-        self.pluginConfig.setTargeting = self.formatKeywords(window.lp.ads);
-        self.load();
-      });
-
     });
   };
 
