@@ -6,7 +6,6 @@ define([
   "lib/core/sailthru_form",
   "rizzo-next",
 
-  "sCode",
   "trackjs",
   "polyfills/xdr",
   "polyfills/function_bind",
@@ -19,8 +18,6 @@ define([
   "lib/core/feature_detect",
   "lib/core/place_title_nav",
   "lib/core/cookie_compliance",
-  "lib/core/advertising",
-  "lib/core/block_checker",
   "lib/components/toggle_active",
   "lib/components/select_group_manager"
 
