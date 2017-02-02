@@ -1,11 +1,21 @@
 - tooltip = properties[:tooltip]
-.field.js-field{class:"#{properties[:extra_class]}"}
+.field.js-field{ class:"#{properties[:extra_class]}" }
   .field__content.field__content--checkbox{ class: (tooltip and !tooltip.nil?) ? 'tooltip--container' : '' }
-    .input__container.js-input{ class: properties[:error] ? 'field__input--error' : nil }
-      %input.input--hidden{ type: "hidden", name: properties[:name], id: properties[:id] ? "#{properties[:id]}--hidden" : nil , value: nil}
-      %input.input--checkbox{ type: "checkbox", name: properties[:name], id: properties[:id], checked: properties[:checked] ? 'checked' : nil, data: properties[:data], value: properties[:value], data: properties[:rules] ? { rules: properties[:rules] } : {} }
+    .input__container.js-input{ class: properties[:error] ? 'field__input--error' : nil, class: properties[:disabled] ? 'input--checkbox--disabled' : '' }
+      %input.input--hidden{ id: properties[:id] ? "#{properties[:id]}--hidden" : nil,
+        name: properties[:name],
+        type: "hidden",
+        value: nil }
+      %input.input--checkbox{ checked: properties[:checked] ? 'checked' : nil,
+        data: properties[:data],
+        data: properties[:rules] ? { rules: properties[:rules] } : {},
+        disabled: properties[:disabled],
+        id: properties[:id],
+        name: properties[:name],
+        type: "checkbox",
+        value: properties[:value] }
       - if properties[:tooltip]
-        = render :partial => 'components/forms/partials/tooltip', :locals => { tooltip: properties[:tooltip] }
+        = render partial: 'components/forms/partials/tooltip', locals: { tooltip: properties[:tooltip] }
       %label.js-field-label{ for: properties[:id] }<
         = properties[:label].html_safe
       - if properties[:error]

@@ -92,7 +92,8 @@ module FooterHelper
       ["www.lonelyplanetitalia.it", "Italiano"],
       ["www.lonelyplanet.ru", "&#x420;&#x443;&#x441;&#x441;&#x43A;&#x438;&#x439;"],
       ["www.lonelyplanetbrasil.com.br", "Portugu&ecirc;s"],
-      ["www.lonelyplanet.cz", "&#268;esky"]
+      ["www.lonelyplanet.cz", "&#268;esky"],
+      ["www.lonelyplanet.co.kr", "&#xD55C;&#xAD6D;&#xC5B4;"]
     ]
   end
 

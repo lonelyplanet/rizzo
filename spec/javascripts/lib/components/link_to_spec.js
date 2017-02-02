@@ -21,7 +21,7 @@ define([ "jquery", "public/assets/javascripts/lib/components/link_to" ], functio
         expect(linkTo._redirect).toHaveBeenCalledWith("/foo");
       });
 
-      it("happens when a non-blacklisted element is clicke on", function() {
+      it("happens when a non-blacklisted element is clicked on", function() {
         $container.find("p").trigger("click");
         expect(linkTo._redirect).toHaveBeenCalledWith("/foo");
       });
@@ -53,6 +53,11 @@ define([ "jquery", "public/assets/javascripts/lib/components/link_to" ], functio
 
       it("doesn't happen when a select element is clicked on", function() {
         $container.find("select").trigger("click");
+        expect(linkTo._redirect).not.toHaveBeenCalled();
+      });
+
+      it("doesn't happen when element with 'js-prevent-link-to' class is clicked on", function() {
+        $container.find(".js-prevent-link-to").trigger("click");
         expect(linkTo._redirect).not.toHaveBeenCalled();
       });
 

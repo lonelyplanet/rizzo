@@ -258,19 +258,49 @@ define([ "jquery", "public/assets/javascripts/lib/components/lightbox.js" ], fun
     });
 
     describe("Preloader", function() {
-      beforeEach(function() {
-        lightbox = new LightBox({ showPreloader: true });
-        spyOn(lightbox, "viewport").and.returnValue({
-          width: 600
+
+      describe("via component props", function() {
+
+        beforeEach(function() {
+          lightbox = new LightBox({ showPreloader: true });
+          spyOn(lightbox, "viewport").and.returnValue({
+            width: 600
+          });
+          $("#js-row--content").trigger(":lightbox/open", {
+            opener: lightbox.opener
+          });
         });
-        $("#js-row--content").trigger(":lightbox/open", {
-          opener: lightbox.opener
+
+        it("should append the preloader HTML", function() {
+          expect(lightbox.$lightbox.find(".preloader").length).toBe(1);
         });
+
       });
 
-      it("should append the preloader HTML", function() {
-        expect(lightbox.$lightbox.find(".preloader").length).toBe(1);
+      describe("via opener's data attribute (with 'styled' option)", function() {
+
+        beforeEach(function() {
+          var $opener = $(lightbox.opener);
+
+          $opener.data("lightbox-showpreloader", "styled");
+          lightbox = new LightBox();
+          spyOn(lightbox, "viewport").and.returnValue({
+            width: 600
+          });
+
+          $opener.click();
+        });
+
+        it("should append the preloader HTML", function() {
+          expect(lightbox.$lightbox.find(".preloader").length).toBe(1);
+        });
+
+        it("should add preloader--styled class to preloader element", function() {
+          expect(lightbox.$lightbox.find(".preloader")).toHaveClass("preloader--styled");
+        });
+
       });
+
     });
 
     describe("Custom renderer", function() {

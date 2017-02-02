@@ -1,5 +1,5 @@
 /**
- * jQuery DFP v1.1.4
+ * jQuery DFP v1.1.9
  * http://github.com/coop182/jquery.dfp.js
  *
  * Copyright 2014 Matt Cooper
@@ -83,11 +83,10 @@
             sizeMapping: {}
         };
 
-        if (typeof options.setUrlTargeting === 'undefined' || options.setUrlTargeting)
-        {
+        if (typeof options.setUrlTargeting === 'undefined' || options.setUrlTargeting) {
             // Get URL Targeting
-            var urlTargeting = getUrlTargeting();
-            $.extend(true, dfpOptions.setTargeting, { inURL: urlTargeting.inURL, URLIs: urlTargeting.URLIs, Query: urlTargeting.Query, Domain: window.location.host });
+            var urlTargeting = getUrlTargeting(options.url);
+            $.extend(true, dfpOptions.setTargeting, { inURL: urlTargeting.inURL, URLIs: urlTargeting.URLIs, Query: urlTargeting.Query, Domain: urlTargeting.Domain });
         }
 
         // Merge options objects
@@ -146,7 +145,13 @@
                     if ($adUnit.data('outofpage')) {
                         googleAdUnit = window.googletag.defineOutOfPageSlot('/' + dfpID + '/' + adUnitName, adUnitID).addService(window.googletag.pubads());
                     } else {
-                        googleAdUnit = window.googletag.defineSlot('/' + dfpID + '/' + adUnitName, dimensions, adUnitID).addService(window.googletag.pubads());
+                        if ($adUnit.data('companion')) {
+                            googleAdUnit = window.googletag.defineSlot('/' + dfpID + '/' + adUnitName, dimensions, adUnitID)
+                            .addService(window.googletag.companionAds()).addService(window.googletag.pubads());
+                        } else {
+                            googleAdUnit = window.googletag.defineSlot('/' + dfpID + '/' + adUnitName, dimensions, adUnitID)
+                            .addService(window.googletag.pubads());
+                        }
                     }
 
                 }
@@ -177,7 +182,7 @@
                 if (mapping && dfpOptions.sizeMapping[mapping]) {
                     // Convert verbose to DFP format
                     var map = window.googletag.sizeMapping();
-                    $.each(dfpOptions.sizeMapping[mapping], function(k, v) {
+                    $.each(dfpOptions.sizeMapping[mapping], function (k, v) {
                         map.addSize(v.browser, v.ad_sizes);
                     });
                     googleAdUnit.defineSizeMapping(map.build());
@@ -229,7 +234,13 @@
             if (dfpOptions.disablePublisherConsole) {
                 window.googletag.pubads().disablePublisherConsole();
             }
+            if (dfpOptions.companionAds) {
+                window.googletag.companionAds().setRefreshUnfilledSlots(true);
 
+                if (!dfpOptions.disableInitialLoad) {
+                    window.googletag.pubads().enableVideoAds();
+                }
+            }
             if (dfpOptions.disableInitialLoad) {
                 window.googletag.pubads().disableInitialLoad();
             }
@@ -239,7 +250,7 @@
             }
 
             // Setup event listener to listen for renderEnded event and fire callbacks.
-            window.googletag.pubads().addEventListener('slotRenderEnded', function(event) {
+            window.googletag.pubads().addEventListener('slotRenderEnded', function (event) {
 
                 rendered++;
 
@@ -304,16 +315,20 @@
      * Create an array of paths so that we can target DFP ads to Page URI's
      * @return Array an array of URL parts that can be targeted.
      */
-    getUrlTargeting = function () {
+    getUrlTargeting = function (url) {
 
-        // Get the paths for targeting against
-        var paths = window.location.pathname.replace(/\/$/, ''),
-            patt = new RegExp('\/([^\/]*)', 'ig'),
-            pathsMatches = paths.match(patt),
+        // Get the url and parse it to its component parts using regex from RFC2396 Appendix-B (https://tools.ietf.org/html/rfc2396#appendix-B)
+        var urlMatches = (url || window.location.toString()).match(/^(([^:/?#]+):)?(\/\/([^/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?/);
+        var parsedAuthority = urlMatches[4] || '';
+        var parsedPath = (urlMatches[5] || '').replace(/\/$/, '');
+        var parsedQuery = urlMatches[7] || '';
+
+        var patt = new RegExp('\/([^\/]*)', 'ig'),
+            pathsMatches = parsedPath.match(patt),
             targetPaths = ['/'],
             longestpath = '';
 
-        if (pathsMatches && paths !== '/') {
+        if (pathsMatches && parsedPath !== '/') {
             var target = '',
                 size = pathsMatches.length;
             if (size > 0) {
@@ -336,10 +351,10 @@
         targetPaths = targetPaths.reverse();
 
         // Get the query params for targeting against
-        var url = window.location.toString().replace(/\=/ig, ':').match(/\?(.+)$/),
-            params = RegExp.$1.split('&');
+        var params = parsedQuery.replace(/\=/ig, ':').split('&');
 
         return {
+            Domain: parsedAuthority,
             inURL: targetPaths,
             URLIs: targetPaths[0],
             Query: params
@@ -370,7 +385,7 @@
 
         var adUnitName = $adUnit.data('adunit') || dfpOptions.namespace || $adUnit.attr('id') || '';
         if (typeof dfpOptions.alterAdUnitName === 'function') {
-          adUnitName = dfpOptions.alterAdUnitName.call(this, adUnitName, $adUnit);
+            adUnitName = dfpOptions.alterAdUnitName.call(this, adUnitName, $adUnit);
         }
         return adUnitName;
 
@@ -480,7 +495,7 @@
                 },
                 ads: [],
                 pubads: function () { return this; },
-                noFetch:function () { return this; },
+                noFetch: function () { return this; },
                 disableInitialLoad: function () { return this; },
                 disablePublisherConsole: function () { return this; },
                 enableSingleRequest: function () { return this; },
@@ -510,33 +525,52 @@
     };
 
     /**
-     * Add function to the jQuery / Zepto / tire namespace
-     * @param  String id      (Optional) The DFP account ID
-     * @param  Object options (Optional) Custom options to apply
+     * Make plugin UMD compatible
+     * Uses CommonJS, AMD or browser globals to create plugin.
      */
-    $.dfp = $.fn.dfp = function (id, options) {
-
-        options = options || {};
-
-        if (id === undefined) {
-            id = dfpID;
+    (function (factory) {
+        if (typeof define === 'function' && define.amd) {
+            // AMD. Register as an anonymous module.
+            define(['jquery'], factory);
+        } else if (typeof exports === 'object') {
+            // Node/CommonJS
+            factory(require('jquery'));
+        } else {
+            // Browser globals
+            factory($);
         }
+    }(function ($) {
 
-        if (typeof id === 'object') {
-            options = id;
-            id = options.dfpID || dfpID;
-        }
+        /**
+         * Add function to the jQuery / Zepto / tire namespace
+         * @param  String id      (Optional) The DFP account ID
+         * @param  Object options (Optional) Custom options to apply
+         */
+        $.dfp = $.fn.dfp = function (id, options) {
 
-        var selector = this;
+            options = options || {};
 
-        if (typeof this === 'function') {
-            selector = dfpSelector;
-        }
+            if (id === undefined) {
+                id = dfpID;
+            }
 
-        init(id, selector, options);
+            if (typeof id === 'object') {
+                options = id;
+                id = options.dfpID || dfpID;
+            }
 
-        return this;
+            var selector = this;
 
-    };
+            if (typeof this === 'function') {
+                selector = dfpSelector;
+            }
+
+            init(id, selector, options);
+
+            return this;
+
+        };
+
+    }));
 
 })(window.jQuery || window.Zepto || window.tire, window);

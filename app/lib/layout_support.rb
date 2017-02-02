@@ -16,6 +16,7 @@ module LayoutSupport
       third_party:    false,
       legacy_lp:      false,
       app_core:       false,
+      legacy_header:  false,
       default_title:  true
     }
   end
@@ -33,7 +34,8 @@ module LayoutSupport
         tynt:           false,
         third_party:    true,
         app_core:       true,
-        default_title:  false
+        default_title:  false,
+        legacy_header:  true
       },
       modern: {
         app_core:       true,

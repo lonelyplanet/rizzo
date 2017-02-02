@@ -1,4 +1,9 @@
-define([ "jquery", "lib/core/ad_sizes", "lib/core/ad_unit" ], function($, adSizes, AdUnit) {
+define([
+  "jquery",
+  "lib/core/ad_sizes",
+  "lib/core/ad_unit",
+  "dfp"
+], function($, adSizes, AdUnit) {
 
   "use strict";
 
@@ -42,19 +47,15 @@ define([ "jquery", "lib/core/ad_sizes", "lib/core/ad_unit" ], function($, adSize
       }
     };
 
-    require([ "dfp" ], function() {
+    this.load();
 
+    this.$listener.on(":ads/refresh :page/updated", function(e, data) {
+      self.refresh(data);
+    });
+
+    this.$listener.on(":ads/reload :page/changed :lightbox/contentReady", function() {
+      self.pluginConfig.setTargeting = self.formatKeywords(window.lp.ads);
       self.load();
-
-      self.$listener.on(":ads/refresh :page/updated", function(e, data) {
-        self.refresh(data);
-      });
-
-      self.$listener.on(":ads/reload :page/changed :lightbox/contentReady", function() {
-        self.pluginConfig.setTargeting = self.formatKeywords(window.lp.ads);
-        self.load();
-      });
-
     });
   };
 
@@ -69,15 +70,6 @@ define([ "jquery", "lib/core/ad_sizes", "lib/core/ad_unit" ], function($, adSize
       currentUnit = new AdUnit($adunit);
       $adunit.data("adUnit", currentUnit);
     }
-
-    if (!currentUnit.isEmpty()) {
-      window.lp.analytics.api.trackEvent({
-        category: "advertising",
-        action: "page-load-impression",
-        label: $adunit.data().sizeMapping
-      });
-    }
-
   };
 
   AdManager.prototype.formatKeywords = function(config) {

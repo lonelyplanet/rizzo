@@ -13,3 +13,4 @@
   .grid-wrapper--10
     - @app.get_colours('../../assets/stylesheets/sass/variables/_colour_theme.sass').each do |group|
       = render 'styleguide/partials/colour', group: group
+  %input.colour-box-input.js-colour-box-input{ type: "text", value: "" }

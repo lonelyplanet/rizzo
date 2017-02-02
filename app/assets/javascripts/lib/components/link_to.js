@@ -23,7 +23,7 @@ define([ "jquery" ], function($) {
     var $target = $(e.target),
         $card = $target.data("data-link-to") ? e.target : $target.closest("[data-link-to]"),
         inExclude = $.inArray(e.target.nodeName.toUpperCase(), EXCLUDE) !== -1,
-        excluded = inExclude || $target.hasClass(".js-prevent-link-to");
+        excluded = inExclude || $target.hasClass("js-prevent-link-to");
 
     // Make sure we don't hijack click events from certain elements.
     if (!excluded) {

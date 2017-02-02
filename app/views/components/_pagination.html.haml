@@ -13,11 +13,13 @@
 
     .pagination__forwards.split--right
       - if properties[:current_page] < total_pages
-        %a.pagination__link.pagination__link--next.icon--chevron-right--before{ href: href.gsub(/%i/, (properties[:current_page] + 1).to_s)}
+        - nofollow = properties[:nofollow_page_number] ? 'nofollow' : nil
+        %a.pagination__link.pagination__link--next.icon--chevron-right--before{ href: href.gsub(/%i/, (properties[:current_page] + 1).to_s), rel: nofollow}
 
     .pagination__backwards.split--left
       - if properties[:current_page] > 1
-        %a.pagination__link.pagination__link--prev.icon--chevron-left--before{ href: href.gsub(/%i/, (properties[:current_page] - 1).to_s) }<
+        - nofollow = properties[:nofollow_page_number] ? 'nofollow' : nil
+        %a.pagination__link.pagination__link--prev.icon--chevron-left--before{ href: href.gsub(/%i/, (properties[:current_page] - 1).to_s), rel: nofollow }<
 
     = single_content_for :pagination_links_rels do
       - if properties[:current_page] > 1
@@ -56,7 +58,8 @@
 
         - for num in start..finish
           - if properties[:current_page] != num
-            %a.pagination__link.mv--inline-block{ href: href.gsub(/%i/, num.to_s), data: { current: properties[:current_page], num: num } }<
+            - nofollow = properties[:nofollow_page_number] && num > properties[:nofollow_page_number] ? 'nofollow' : nil
+            %a.pagination__link.mv--inline-block{ href: href.gsub(/%i/, num.to_s), rel: nofollow, data: { current: properties[:current_page], num: num } }<
               = num
           - else
             .pagination__link.pagination__link--current<
@@ -70,7 +73,8 @@
           .pagination__link.pagination__link--last.pagination__link--current<
             = total_pages
         - else
-          %a.pagination__link.pagination__link--last{ href: href.gsub(/%i/, total_pages.to_s) }<
+          - nofollow = properties[:nofollow_page_number] && total_pages > properties[:nofollow_page_number] ? 'nofollow' : nil
+          %a.pagination__link.pagination__link--last{ href: href.gsub(/%i/, total_pages.to_s), rel: nofollow }<
             = total_pages
 
     - if properties[:show_detailed] && properties[:total_results] > 0

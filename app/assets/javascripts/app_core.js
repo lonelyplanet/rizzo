@@ -6,7 +6,6 @@ define([
   "lib/core/sailthru_form",
   "rizzo-next",
 
-  "sCode",
   "trackjs",
   "polyfills/xdr",
   "polyfills/function_bind",
@@ -19,8 +18,6 @@ define([
   "lib/core/feature_detect",
   "lib/core/place_title_nav",
   "lib/core/cookie_compliance",
-  "lib/core/advertising",
-  "lib/core/block_checker",
   "lib/components/toggle_active",
   "lib/components/select_group_manager"
 
@@ -72,10 +69,8 @@ define([
       alert: ".js-newsletter-footer"
     });
 
-    if (window.lp.isNewNav) {
-      new Rizzo.Header({ el: $(".header") });
-      new Rizzo.Login();
-    }
+    new Rizzo.default.Header({ el: $(".lp-global-header") });
+    new Rizzo.default.Login();
 
     // Navigation tracking
     $("#js-primary-nav").on("click", ".js-nav-item", function() {

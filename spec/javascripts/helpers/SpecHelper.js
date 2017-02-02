@@ -12,7 +12,4 @@ window.lp = {
   },
   isMobile: false,
   getCookie: function() {},
-  userFeed: {
-    popups: false
-  }
 };

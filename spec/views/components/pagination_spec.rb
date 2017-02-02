@@ -8,7 +8,8 @@ describe "components/_pagination.html.haml" do
     :results_per_page => 5,
     :current_page => 1,
     :visible_pages => 5,
-    :path => "/?page=%i"
+    :path => "/?page=%i",
+    :nofollow_page_number => 2
   }
 
   describe 'pagination container' do
@@ -114,6 +115,33 @@ describe "components/_pagination.html.haml" do
 
   end
 
+  describe 'rel=nofollow attribute' do
+
+    it 'is added if :nofollow_page_number property is set' do
+
+      view.stub(properties: default_properties.merge( :current_page => 2 ))
+
+      render
+
+      (Capybara.string(rendered).find('.pagination__link--prev')[:rel]).should eq('nofollow')
+      (Capybara.string(rendered).find('.pagination__link--next')[:rel]).should eq('nofollow')
+      (Capybara.string(rendered).find('.pagination__link--first')[:rel]).should eq(nil)
+      (Capybara.string(rendered).find('.pagination__link--last')[:rel]).should eq('nofollow')
+    end
+
+    it 'is not added if :nofollow_page_number property is not set' do
+
+      view.stub(properties: default_properties.merge( :current_page => 2, :nofollow_page_number => nil ))
+
+      render
+
+      (Capybara.string(rendered).find('.pagination__link--prev')[:rel]).should eq(nil)
+      (Capybara.string(rendered).find('.pagination__link--next')[:rel]).should eq(nil)
+      (Capybara.string(rendered).find('.pagination__link--first')[:rel]).should eq(nil)
+      (Capybara.string(rendered).find('.pagination__link--last')[:rel]).should eq(nil)
+    end
+  end
+
   describe 'pagination numbers' do
 
     it 'renders pagination numbers given a total > results per page' do
@@ -176,6 +204,18 @@ describe "components/_pagination.html.haml" do
 
       links = Capybara.string(rendered).all('.pagination__numbers .pagination__link').map { |el| el.text }
       links.should eq( ['1', '15', '16', '17', '18', '19', '20'] )
+
+    end
+
+    it 'renders rel=nofollow attributes for pages above provided limit' do
+
+      view.stub(properties: default_properties.merge( :total_results => 25, :current_page => 2, :nofollow_page_number => 3 ))
+
+      render
+
+      links = Capybara.string(rendered).all('.pagination__numbers .pagination__link')
+      links.map { |el| el.text }.should eq( ['1', '2', '3', '4', '5'] )
+      links.map { |el| el[:rel] }.should eq( [nil, nil, nil, 'nofollow', 'nofollow'] )
 
     end
 

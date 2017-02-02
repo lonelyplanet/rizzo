@@ -25,6 +25,12 @@
 .icon--cc--before:before, .icon--cc--after:after,
 .icon--cc { background-image: url('png/cc.png'); background-repeat: no-repeat; }
 
+.icon--chevron-down--before:before, .icon--chevron-down--after:after,
+.icon--chevron-down { background-image: url('png/chevron-down.png'); background-repeat: no-repeat; }
+
+.icon--chevron-up--before:before, .icon--chevron-up--after:after,
+.icon--chevron-up { background-image: url('png/chevron-up.png'); background-repeat: no-repeat; }
+
 .icon--comment--line--before:before, .icon--comment--line--after:after,
 .icon--comment--line { background-image: url('png/comment--line.png'); background-repeat: no-repeat; }
 
@@ -87,6 +93,9 @@
 .icon--lp-reviewed--before:before, .icon--lp-reviewed--after:after,
 .icon--lp-reviewed { background-image: url('png/lp-reviewed.png'); background-repeat: no-repeat; }
 
+.icon--magazine--line--before:before, .icon--magazine--line--after:after,
+.icon--magazine--line { background-image: url('png/magazine--line.png'); background-repeat: no-repeat; }
+
 .icon--nd--before:before, .icon--nd--after:after,
 .icon--nd { background-image: url('png/nd.png'); background-repeat: no-repeat; }
 
@@ -96,11 +105,17 @@
 .icon--pen--before:before, .icon--pen--after:after,
 .icon--pen { background-image: url('png/pen.png'); background-repeat: no-repeat; }
 
+.icon--person--before:before, .icon--person--after:after,
+.icon--person { background-image: url('png/person.png'); background-repeat: no-repeat; }
+
 .icon--pinterest--before:before, .icon--pinterest--after:after,
 .icon--pinterest { background-image: url('png/pinterest.png'); background-repeat: no-repeat; }
 
 .icon--place--pin--line--before:before, .icon--place--pin--line--after:after,
 .icon--place--pin--line { background-image: url('png/place--pin--line.png'); background-repeat: no-repeat; }
+
+.icon--population--before:before, .icon--population--after:after,
+.icon--population { background-image: url('png/population.png'); background-repeat: no-repeat; }
 
 .icon--print--before:before, .icon--print--after:after,
 .icon--print { background-image: url('png/print.png'); background-repeat: no-repeat; }
@@ -132,6 +147,9 @@
 .icon--stumbleupon--before:before, .icon--stumbleupon--after:after,
 .icon--stumbleupon { background-image: url('png/stumbleupon.png'); background-repeat: no-repeat; }
 
+.icon--thumb--tack--before:before, .icon--thumb--tack--after:after,
+.icon--thumb--tack { background-image: url('png/thumb--tack.png'); background-repeat: no-repeat; }
+
 .icon--tick--before:before, .icon--tick--after:after,
 .icon--tick { background-image: url('png/tick.png'); background-repeat: no-repeat; }
 
@@ -155,4 +173,3 @@
 
 .icon--youtube--before:before, .icon--youtube--after:after,
 .icon--youtube { background-image: url('png/youtube.png'); background-repeat: no-repeat; }
-

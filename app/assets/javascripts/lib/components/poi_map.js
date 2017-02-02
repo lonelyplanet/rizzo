@@ -4,7 +4,7 @@ define([
   "lib/components/map_styles",
   "lib/components/toggle_active",
   "polyfills/function_bind"
-], function($, asEventEmitter, mapStyles, ToggleActive) {
+], function($, asEventEmitter, mapStyles) {
 
   "use strict";
 
@@ -42,11 +42,6 @@ define([
           closeBoxURL: ""
         });
         tooltip.open(_this.map, _this.marker);
-        window.google.maps.event.addListener(tooltip, "domready", function() {
-          new ToggleActive({
-            context: _this.config.container
-          });
-        });
       });
     }
   };

@@ -36,10 +36,8 @@ require([ "jquery" ], function($) {
         new AdManager(window.lp.ads).init();
       }
 
-      if (window.lp.isNewNav) {
-        new Rizzo.Header({ el: $(".header") });
-        new Rizzo.Login();
-      }
+      new Rizzo.default.Header({ el: $(".lp-global-header") });
+      new Rizzo.default.Login();
 
       if (!secure) {
         if (window.lp.getCookie) {

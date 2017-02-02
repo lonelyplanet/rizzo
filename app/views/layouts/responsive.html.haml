@@ -4,13 +4,14 @@
   = render 'layouts/custom/head', tynt: (defined?(tynt) ? tynt : true), include_js: true, responsive: true, third_party: false, legacy_lp: false, app_core: false, default_title: true
 
 %body.responsive
+  = render 'layouts/partials/snippets/gtm'
   = ui_component('lightbox')
   %script#tmpl-preloader{ type: 'text/html' }
     = ui_component('preloader')
   = render 'layouts/custom/pre_header', third_party: false
   .wrapper.js-wrapper
     - unless @no_nav
-      = render 'layouts/custom/post_header', search: true, user_nav: true, include_js: true, nav_primary: true, responsive: true, ads_header: true
+      = render 'layouts/custom/post_header', legacy_header: false, search: true, user_nav: true, include_js: true, nav_primary: true, responsive: true, ads_header: true
 
     .row.row--content{id: @no_wallpaper ? "" : "js-row--content"}
       - if (yield :secondary).present?

@@ -167,19 +167,11 @@ pre.styleguide.is-open
   .card
     overflow: hidden
     code
-      white-space: nowrap
-
-.styleguide-block__item--colour
-  +font-size(13)
-  padding: 25px 0
-  color: white
-  margin: 0
-  @extend %rounded-corners
-
-  &.is-light
-    color: $body-copy
-  .is-approximate &
-    border-color: transparent
+      @extend %truncate-text
+      display: block
+      box-sizing: border-box
+      width: 100%
+      line-height: 1.4
 
 .styleguide-block__description
   box-sizing: border-box
@@ -394,3 +386,63 @@ pre.styleguide.is-open
 
 .booking-widget
   margin-bottom: 220px
+
+
+//----------------------------------------------------------
+// Colour boxes in Design Palette and UI Colours sections
+//
+// These styles deal with click-to-copy functionality. A msg
+// about this feature appears on hover and disappears on
+// mouse leave.
+//----------------------------------------------------------
+
+.colour-box-input
+  @extend %visually-hide
+  position: fixed // This is necessary for the $.select() not to scroll in Firefox
+
+.colour-box
+  +font-size(13)
+  @extend %rounded-corners
+  position: relative
+  margin: 0
+  padding: 25px 0
+  cursor: copy
+  color: white
+  &.is-light
+    color: $body-copy
+  .is-approximate &
+    border-color: transparent
+  &.is-copied
+    cursor: default
+
+.colour-box__msg
+  @extend %transition--base
+  position: absolute
+  width: 100%
+  opacity: 0
+  .colour-box:hover &,
+  .colour-box.is-copied &
+    margin-bottom: 10px
+    margin-top: -10px
+
+.colour-box__msg--copy
+  .colour-box:hover &
+    opacity: 1
+  .colour-box.is-copied &
+    opacity: 0
+
+.colour-box__msg--copied
+  .colour-box:hover &
+    opacity: 0
+  .colour-box.is-copied &
+    opacity: 1
+
+.colour-box__hash
+  @extend %transition--base
+  width: 100%
+  height: 20px
+  line-height: 20px
+  .colour-box:hover &,
+  .colour-box.is-copied &
+    margin-bottom: -10px
+    margin-top: 10px

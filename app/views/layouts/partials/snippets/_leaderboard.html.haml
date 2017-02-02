@@ -1,6 +1,7 @@
 - unless @hide_leaderboard
   .row.row--sponsored.row--leaderboard.row--leaderboard--header
     .ad-leaderboard
+      .ads.adpartner
       .ad-leaderboard__inner
         = ui_component('ads/leaderboard', properties: { targeting: { position: 'header' } })
         .ad-leaderboard__sponsor

@@ -1,6 +1,5 @@
 require([
   "jquery",
-  "zeroclipboard",
   "lib/utils/konami",
   "lib/core/ad_manager",
   "lib/components/slider",
@@ -33,7 +32,7 @@ require([
   "picker",
   "pickerDate",
   "pickerLegacy",
-], function($, ZeroClipboard, Konami, AdManager, Slider, Charts, POIMap, POIList, PageHopper, ThumbSlider, CarRentalWidget, TravelInsurance, FlightsWidget) {
+], function($, Konami, AdManager, Slider, Charts, POIMap, POIList, PageHopper, ThumbSlider, CarRentalWidget, TravelInsurance, FlightsWidget) {
 
   "use strict";
 
@@ -47,10 +46,6 @@ require([
 
   new AdManager({
     template: "styleguide"
-  });
-
-  $("[data-clipboard-text]").each(function(_, element) {
-    new ZeroClipboard(element);
   });
 
   var d = new Date();

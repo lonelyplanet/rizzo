@@ -29,12 +29,10 @@ define([
     this.setupAutocomplete(this.$toCity);
   };
 
-  FlightsWidgetAutocomplete.prototype.API_KEY = "lp994363056324023341132625613270";
-
   FlightsWidgetAutocomplete.prototype.getCountryCode = function() {
     return $.ajax({
       type: "GET",
-      url: "http://www.lonelyplanet.com",
+      url: "https://www.lonelyplanet.com",
       success: function(data, textStatus, request) {
           this.countryCode = request.getResponseHeader("X-GeoIP-CountryCode") || "US";
         }.bind(this)
@@ -75,12 +73,12 @@ define([
 
   FlightsWidgetAutocomplete.prototype._fetchCountries = function(searchTerm, callback) {
     $.ajax({
-      type: "GET",
-      dataType: "JSONP",
+      type: "get",
+      dataType: "json",
       url: this._buildUrl(searchTerm)
     }).done(function(data) {
       var city, places;
-      places = data.Places.filter(function(el) {
+      places = data.filter(function(el) {
         return el.CityId !== "-sky";
       });
       city = "";
@@ -93,7 +91,7 @@ define([
   };
 
   FlightsWidgetAutocomplete.prototype._buildUrl = function(searchTerm) {
-    return "http://partners.api.skyscanner.net/apiservices/xd/autosuggest/v1.0/" + ("" + this.countryCode + "/" + this.userCurrency + "/en-GB?query=" + searchTerm + "&apikey=" + this.API_KEY);
+    return "https://www.lonelyplanet.com/skyscanner/location-autosuggest?" + "user_currency=" + this.userCurrency + "&user_locale=en-GB" + "&user_country_code=" + this.countryCode + "&location_name=" + searchTerm;
   };
 
   FlightsWidgetAutocomplete.prototype._onSelectCity = function($item) {

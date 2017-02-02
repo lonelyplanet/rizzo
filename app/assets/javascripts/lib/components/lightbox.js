@@ -71,26 +71,29 @@ define([
 
     this.$lightbox.on("click", ".js-lightbox-close", function(event) {
       event.preventDefault();
-      this.$el.trigger(":lightbox/close");
+      this.trigger(":lightbox/close");
       this._closeFlyout(this.$el);
     }.bind(this));
 
     this.$el.on("click", this.opener, function(event) {
-      if (this._isAboveBreakpoint(event.currentTarget)) {
-        event.preventDefault();
+      if (!this._isAboveBreakpoint(event.currentTarget) ||
+          "preventLightboxToggle" in $(event.target).data()) return;
 
-        this.trigger(":lightbox/open", {
-          listener: this.$el,
-          opener: event.currentTarget,
-          target: this.$lightboxContent
-        });
-      }
+      this.trigger(":lightbox/open", {
+        listener: this.$el,
+        opener: event.currentTarget,
+        clickedEl: event.target,
+        target: this.$lightboxContent,
+      });
+
+      event.stopPropagation();
+      event.preventDefault();
     }.bind(this));
 
     this.$previous.add(this.$next).on("click", this._navigateTo.bind(this));
 
     this.$el.on(":lightbox/navigate", function(event, data) {
-      this.$el.trigger(":lightbox/fetchContent", data.url);
+      this.trigger(":lightbox/fetchContent", data.url);
       this.$lightboxControls.find(".js-lightbox-arrow").addClass("is-hidden");
     }.bind(this));
 
@@ -107,20 +110,27 @@ define([
       this.$lightbox.addClass(this.customClassAdded = this.customClass || $opener.data() && $opener.data().lightboxClass);
 
       showPreloader = this.showPreloader || $opener.data().lightboxShowpreloader;
+
       if (showPreloader && !this.$lightbox.find(".js-preloader").length) {
-        this.preloaderTmpl = Template.render($("#tmpl-preloader").text(), {});
-        this.$lightboxContent.parent().append(this.preloaderTmpl);
+        var $preloaderTmpl = $(Template.render($("#tmpl-preloader").text(), {}));
+
+        if (showPreloader === "styled") $preloaderTmpl.addClass("preloader--styled");
+        this.$lightboxContent.parent().append($preloaderTmpl);
       }
+
       this.$lightbox.addClass("is-loading");
 
       setTimeout(function() {
         this.listenToFlyout(event, data);
       }.bind(this), 20);
+
+      event.stopPropagation();
     }.bind(this));
 
     this.$el.on(":lightbox/fetchContent", function(event, url) {
       this.requestMade = true;
       this._fetchContent(url);
+      event.stopPropagation();
     }.bind(this));
 
     this.$el.on(":flyout/close", function() {
@@ -152,6 +162,7 @@ define([
 
     this.$el.on(":lightbox/renderContent", function(event, content) {
       this._renderContent(content);
+      event.stopPropagation();
     }.bind(this));
 
     this.$controllerEl.on(":layer/received", function(event, data) {
@@ -210,14 +221,15 @@ define([
     // Waits for the end of the transition.
     setTimeout(function() {
       this.$lightboxContent.html(this.customRenderer ? this.customRenderer(content) : content);
-      this.$lightbox.addClass("content-ready");
-      this.trigger(":lightbox/contentReady");
+      this.$lightbox
+        .addClass("content-ready")
+        .removeClass("is-loading");
+
+      this.trigger(":lightbox/contentReady", this);
 
       this.$lightbox.find(".js-lightbox-navigation").on("click", this._navigateTo.bind(this));
 
     }.bind(this), 300);
-
-    this.$lightbox.removeClass("is-loading");
   };
 
   LightBox.prototype._renderPagination = function(data) {

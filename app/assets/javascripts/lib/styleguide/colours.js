@@ -33,11 +33,11 @@ define([ "jquery" ], function($) {
   matchProximity = function() {
     var colour = $("#proximityMatch").val(),
         $sections = $(".styleguide__colours").removeClass("has-match").removeAttr("style"),
-        $colourBlocks = $(".styleguide-block__item--colour");
+        $colourBoxes = $(".js-colour-box");
 
-    $colourBlocks.each(function() {
-      var proximity = colourProximity(colour, this.innerHTML),
-          $this = $(this);
+    $colourBoxes.each(function() {
+      var $this = $(this),
+          proximity = colourProximity(colour, $this.data("clipboard-text"));
 
       $this.parent()
         .removeAttr("style")
@@ -77,4 +77,24 @@ define([ "jquery" ], function($) {
   if ($input.val()) {
     handleInput();
   }
+
+  // Click-to-copy functionality
+
+  var $colourBoxInput = $(".js-colour-box-input");
+
+  $(document).on("click", ".js-colour-box", function() {
+    var $this = $(this);
+
+    $colourBoxInput
+      .val($this.data("clipboard-text"))
+      .select();
+    document.execCommand("copy");
+    $colourBoxInput.val("");
+
+    $this.addClass("is-copied");
+  });
+
+  $(document).on("mouseleave", ".js-colour-box", function() {
+    $(this).removeClass("is-copied");
+  });
 });
