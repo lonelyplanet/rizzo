@@ -10,7 +10,6 @@ paths:
   autocomplete: "autocomplete/dist/autocomplete"
   d3: "d3/d3"
   nvd3: "nvd3/nv.d3"
-  usabilla: "usabilla/usabilla"
   picker: "pickadate/lib/picker"
   pickerDate: "pickadate/lib/picker.date"
   pickerLegacy: "pickadate/lib/legacy"
