@@ -6,6 +6,7 @@
 define([
   "jquery",
   "autocomplete",
+  "lib/analytics/car_rental",
   "data/car_rental_data",
   "data/countries",
   "data/currencies",
@@ -13,7 +14,7 @@ define([
   "picker",
   "pickerDate",
   "pickerLegacy"
-], function($, AutoComplete, dataJSON, countries, currencies, LocalStore) {
+], function($, AutoComplete, GoogleAnalytics, dataJSON, countries, currencies, LocalStore) {
 
   "use strict";
 
@@ -22,7 +23,7 @@ define([
       $pickupLocation, $dropoffTime, $dropoffDate,
       $dropoffLocation, $currency, $currencyContainer,
       $residence, $residenceContainer,
-      localStore, userCurrency;
+      googleAnalytics, localStore, userCurrency;
 
   CarApp = function() {
 
@@ -57,6 +58,16 @@ define([
     $currencyContainer = $currency.closest(".js-select-group-manager").find(".js-select-overlay");
     $residence = $("#js-driver-country");
     $residenceContainer = $residence.closest(".js-select-group-manager").find(".js-select-overlay");
+
+    googleAnalytics = new GoogleAnalytics({
+      $locationStart: $pickupLocation,
+      $locationEnd: $dropoffLocation,
+      $dateStart: $pickupDate,
+      $dateEnd: $dropoffDate,
+      $timeStart: $pickupTime,
+      $timeEnd: $dropoffTime,
+      $locationResidence: $residence
+    });
 
     this.initDatepickers();
     this.initAutocompletes();
@@ -215,6 +226,7 @@ define([
       if (_this.validate()) {
         _this.config.pickupDateTime = _this.config.pickupDate + $pickupTime.val();
         _this.config.dropoffDateTime = _this.config.dropoffDate + $dropoffTime.val();
+        googleAnalytics.track();
         _this.constructDeepLink();
       } else {
         e.preventDefault();

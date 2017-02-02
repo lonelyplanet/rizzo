@@ -7,12 +7,17 @@
 define([
   "jquery",
   "lib/widgets/flights_autocomplete",
+  "lib/analytics/flights",
+  "lib/analytics/flights_omniture",
   "pickerDate"
-], function($, FlightsAutocomplete) {
+], function($, FlightsAutocomplete, GoogleAnalytics, Omniture) {
 
   "use strict";
 
-  function FlightsWidget() {}
+  function FlightsWidget() {
+    this.googleAnalytics        = new GoogleAnalytics("#js-flights-form");
+    this.omniture               = new Omniture("#js-flights-submit");
+  }
 
   FlightsWidget.prototype.init = function() {
     this.$el          = $(".js-flights-widget");
@@ -38,6 +43,7 @@ define([
     this.autocomplete = new FlightsAutocomplete(args);
     this.autocomplete.init();
 
+    this.omniture.init();
     this.initDatePickers();
     this.listen();
   };
@@ -149,7 +155,8 @@ define([
   };
 
   FlightsWidget.prototype._proceed = function() {
-
+    this.googleAnalytics.track();
+    window.open(this._buildUrl());
   };
 
   FlightsWidget.prototype._buildUrl = function() {

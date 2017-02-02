@@ -17,15 +17,19 @@ define([ "jquery", "public/assets/javascripts/lib/components/gallery.js" ], func
       beforeEach(function() {
         spyEvent = spyOnEvent(gallery.$listener, ":ads/refresh");
 
+        spyOn(gallery.analytics, "track");
         spyOn(gallery, "_updateImageInfo");
         spyOn(gallery, "_updateSlug");
+        spyOn(gallery, "_updateGoogleAnalytics");
 
         gallery._afterNavigation();
       });
 
       it("updates image meta data and refreshes the ads and oms", function() {
         expect(gallery._updateImageInfo).toHaveBeenCalled();
+        expect(gallery.analytics.track).toHaveBeenCalled();
         expect(gallery._updateSlug).toHaveBeenCalled();
+        expect(gallery._updateGoogleAnalytics).toHaveBeenCalled();
         expect(spyEvent).toHaveBeenTriggered();
       });
 
@@ -61,6 +65,30 @@ define([ "jquery", "public/assets/javascripts/lib/components/gallery.js" ], func
 
       afterEach(function() {
         window.history.replaceState({}, null, initialSlug)
+      });
+    });
+
+    describe("Google Analytics", function() {
+      var gaConfig = {
+        dataLayer: {
+          summaryTag: {
+            content_id: "an old image"
+          }
+        },
+        api: {}
+      };
+
+      beforeEach(function() {
+        gaConfig.api.trackPageView = jasmine.createSpy("gaSpy");
+        gallery._updateGoogleAnalytics("my-new-image", gaConfig);
+      });
+
+      it("updates the dataLayer", function() {
+        expect(gaConfig.dataLayer.summaryTag.content_id).toBe("my-new-image");
+      });
+
+      it("Tracks in GA", function() {
+        expect(gaConfig.api.trackPageView).toHaveBeenCalled();
       });
     });
 
