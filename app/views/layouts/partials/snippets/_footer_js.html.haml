@@ -8,3 +8,5 @@
   - if defined?($JS_VARS)
     :javascript
       #{js_hash($JS_VARS)}
+
+  = render 'layouts/partials/inline_js/social_remarketing' unless third_party
