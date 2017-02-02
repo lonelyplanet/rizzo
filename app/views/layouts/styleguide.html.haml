@@ -1,7 +1,7 @@
 = render 'layouts/partials/snippets/doctype_declaration'
 
 %head
-  = render 'layouts/custom/head', responsive: false, third_party: false, include_js: true, legacy_lp: false, app_core: false, default_title: true
+  = render 'layouts/custom/head', tynt: (defined?(tynt) ? tynt : true), responsive: false, third_party: false, include_js: true, legacy_lp: false, app_core: false, default_title: true
   = stylesheet_link_tag 'styleguide', :media => "all"
 
 %body

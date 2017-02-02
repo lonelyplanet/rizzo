@@ -18,6 +18,7 @@ Feature: Custom Layouts
     And sitemap nav should not be present
     And about nav should not be present
     And the header ad should be present
+    And the tynt tag should not be displayed
 
   Scenario: it serves the default preview file
     Given I go to "/layouts/responsive"
