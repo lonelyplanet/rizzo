@@ -10,7 +10,6 @@ module LayoutSupport
       nav_primary:    true,
       search:         true,
       nav_sitemap:    true,
-      tynt:           true,
       user_nav:       true,
       responsive:     true,
       third_party:    false,
@@ -31,7 +30,6 @@ module LayoutSupport
         search:         false,
         nav_sitemap:    false,
         user_nav:       false,
-        tynt:           false,
         third_party:    true,
         app_core:       true,
         default_title:  false,
@@ -49,19 +47,16 @@ module LayoutSupport
       },
       noscript: {
         include_js:     false,
-        tynt:           false,
         legacy_lp:      true,
         responsive:     false,
         secure:         true
       },
       secure: {
-        tynt:           false,
         secure:         true,
         legacy_lp:      true,
         responsive:     false
       },
       secure_responsive: {
-        tynt:           false,
         secure:         true,
         legacy_lp:      true
       },
@@ -70,9 +65,6 @@ module LayoutSupport
         user_nav:       false,
         nav_sitemap:    false,
         ads_header:     false
-      },
-      styleguide: {
-        tynt:           false
       },
       legacy: {
         responsive:     false,
