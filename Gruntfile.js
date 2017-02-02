@@ -165,6 +165,7 @@ module.exports = function(grunt) {
                 jquery: "./vendor/assets/javascripts/jquery/dist/jquery",
                 jtimeago: "./vendor/assets/javascripts/jquery-timeago/jquery.timeago",
                 sailthru: "./vendor/assets/javascripts/sailthru/v1",
+                sCode: "./vendor/assets/javascripts/omniture/s_code",
                 trackjs: "./vendor/assets/javascripts/trackjs/trackjs",
                 dfp: "./vendor/assets/javascripts/jquery.dfp.js/jquery.dfp",
                 autocomplete: "./vendor/assets/javascripts/autocomplete/dist/autocomplete",
