@@ -40,7 +40,7 @@
   .enhanced &
     background-color: rgba($darkgray, $percent)
 
-// [doc] A mixin to help clean up z-index madness. Options are: `below`, `default`, `middle`, `top`, and `modal` [/doc]
+// [doc] A mixin to help clean up z-index madness. Options are: `below`, `default`, `middle`, `top`, `modal`, and `above-ad` [/doc]
 @mixin z-layer( $layer: default )
   @if $layer == below
     z-index: -1
@@ -52,6 +52,8 @@
     z-index: 20
   @else if $layer == modal
     z-index: 9999
+  @else if $layer == above-ad
+    z-index: 1000001
   @else
     z-index: 1
 
