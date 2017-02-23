@@ -149,7 +149,7 @@ define([
   };
 
   FlightsWidget.prototype._proceed = function() {
-
+    window.open(this._buildUrl());
   };
 
   FlightsWidget.prototype._buildUrl = function() {
