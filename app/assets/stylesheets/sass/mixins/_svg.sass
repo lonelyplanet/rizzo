@@ -9,9 +9,10 @@
 //
 // [/doc]
 // -----------------------------------------------------------------------------
-@mixin icon-color($color: '')
-  $colors: body-grey, white, lp-blue, custom, custom-2
-  background-position: 0 percentage(index($colors, $color) * .2)
+@mixin icon-color($color: "")
+  $colors: "body-grey", "white", "lp-blue", "custom", "custom-2"
+  $index: index($colors, inspect(unquote($color)))
+  background-position: 0 percentage($index * .2)
 
 
 // -----------------------------------------------------------------------------
@@ -23,8 +24,9 @@
 // [/doc]
 // -----------------------------------------------------------------------------
 @mixin svg-bg-icon($iconName, $section)
-  .icon--#{$iconName},
-  .icon--#{$iconName}--after:after,
-  .icon--#{$iconName}--before:before
+  $name: inspect(unquote($iconName))
+  .icon--#{$name},
+  .icon--#{$name}--after:after,
+  .icon--#{$name}--before:before
     .supports-svg &
-      background-image: image-url(icons/#{$section}/#{$iconName}#{"."}svg)
+      background-image: image-url(icons/#{$section}/#{$name}#{"."}svg)
