@@ -67,6 +67,9 @@
           :name: "AutoComplete"
           :slug: "autocomplete"
         -
+          :name: "Datepicker"
+          :slug: "datepicker"
+        -
           :name: "Debounce"
           :slug: "debounce"
         -
