@@ -1,0 +1,99 @@
+= render 'styleguide/partials/shared'
+
+.styleguide-intro.card.copy--body.context--content
+  %h1.copy--h1
+    Datepicker
+
+  .copy--feature
+    A simple date selection component.
+
+.styleguide-block.card.copy--body.context--content
+
+  .styleguide-block__description
+
+    %h2.copy--h2.styleguide-block__heading
+      Arguments
+
+    %ul
+      %li
+        %code.language-markup target
+        \- parent selector (defines scope)
+      %li
+        %code.language-markup startSelector
+        \- start date input selector
+      %li
+        %code.language-markup endSelector
+        \- end date input selector
+      %li
+        %code.language-markup pickFuture
+        \- enables picking future dates
+      %li
+        %code.language-markup pickPast
+        \- enables picking past dates
+      %li
+        %code.language-markup selectMonths
+        \- enables months selecting
+      %li
+        %code.language-markup selectYears
+        \- enables years selecting
+
+.styleguide-block.card.copy--body.context--content
+
+  .styleguide-block__description{ style: "overflow: visible" }
+
+    %h2.copy--h2.styleguide-block__heading
+      Example
+
+    %h4.copy--h4.styleguide-block__subtitle
+      Demo
+
+    .grid-wrapper--10.js-datepicker
+
+      .col--one-quarter
+        = ui_component('forms/date_input',
+          properties: { id: "date_start",
+                        name: "date_start",
+                        placeholder: "Pick start date",
+                        class: "js-datepicker__start" })
+
+      .col--one-quarter
+        = ui_component('forms/date_input',
+          properties: { id: "date_end",
+                        name: "date_end",
+                        placeholder: "Pick end date",
+                        class: "js-datepicker__end" })
+
+  .styleguide-block__description
+
+    %h4.copy--h4.styleguide-block__subtitle
+      Markup
+
+    %pre.styleguide.copy--body.language-markup
+      %code
+        = preserve do
+          :escaped
+
+            <div class="js-datepicker">
+              <input class="js-datepicker__start" placeholder="Pick start date" />
+              <input class="js-datepicker__end" placeholder="Pick end date" />
+            </div>
+
+  .styleguide-block__description
+
+    %h4.copy--h4.styleguide-block__subtitle
+      Javascript
+
+    %pre.styleguide.copy--body.language-javascript
+      %code
+        = preserve do
+          :plain
+
+            new Datepicker({
+              target:         ".js-datepicker",
+              startSelector:  ".js-datepicker__start",
+              endSelector:    ".js-datepicker__end",
+              pickFuture:     true,
+              pickPast:       true,
+              selectMonths:   true,
+              selectYears:    true
+            });

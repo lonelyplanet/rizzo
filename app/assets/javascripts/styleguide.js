@@ -11,28 +11,33 @@ require([
   "lib/widgets/car_rental",
   "lib/widgets/travel_insurance",
   "lib/widgets/flights",
-  "lib/page/swipe",
-  "lib/styleguide/svg",
-  "lib/styleguide/copy",
-  "lib/styleguide/alert",
-  "lib/page/scroll_perf",
-  "lib/styleguide/swipe",
-  "lib/styleguide/konami",
-  "lib/styleguide/colours",
+
   "lib/components/lightbox",
-  "lib/styleguide/lightbox",
   "lib/components/parallax",
+  "lib/components/range_slider",
+  "lib/components/select_group_manager",
+  "lib/components/toggle_active",
+  "lib/page/scroll_perf",
+  "lib/page/swipe",
+  "lib/styleguide/alert",
+  "lib/styleguide/anchor_target",
+  "lib/styleguide/colours",
+  "lib/styleguide/copy",
+  "lib/styleguide/datepicker",
+  "lib/styleguide/konami",
+  "lib/styleguide/lightbox",
+  "lib/styleguide/snippet-expand",
+  "lib/styleguide/svg",
+  "lib/styleguide/swipe",
   "lib/styleguide/typography",
   "lib/utils/last_input_device",
-  "lib/components/range_slider",
-  "lib/styleguide/anchor_target",
-  "lib/components/toggle_active",
-  "lib/styleguide/snippet-expand",
-  "lib/components/select_group_manager",
   "picker",
   "pickerDate",
   "pickerLegacy",
-], function($, Konami, AdManager, Slider, Charts, POIMap, POIList, PageHopper, ThumbSlider, CarRentalWidget, TravelInsurance, FlightsWidget) {
+], function(
+  $, Konami, AdManager, Slider, Charts, POIMap, POIList, PageHopper,
+  ThumbSlider, CarRentalWidget, TravelInsurance, FlightsWidget
+) {
 
   "use strict";
 
