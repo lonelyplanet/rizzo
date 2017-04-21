@@ -3,7 +3,7 @@ define([ "jquery" ], function($) {
   "use strict";
 
   var defaults = {
-    listener: ".js-wrapper"
+    listener: "body"
   };
 
   function SelectGroupManager(context) {
