@@ -3,7 +3,7 @@ class PerformanceController < ActionController::Base
   include LayoutSupport
   layout "styleguide"
 
-  before_filter :setup
+  before_action :setup
 
   def css_index
     css_analysis = CSSAnalysis.new

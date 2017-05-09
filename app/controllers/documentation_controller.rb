@@ -5,7 +5,7 @@ class DocumentationController < ActionController::Base
 
   layout "styleguide"
 
-  before_filter :setup
+  before_action :setup
 
   def setup
     @app = Documentation.new(request.fullpath)
