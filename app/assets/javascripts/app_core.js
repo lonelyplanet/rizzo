@@ -72,27 +72,6 @@ define([
     new Rizzo.default.Header({ el: $(".lp-global-header") });
     new Rizzo.default.Login();
 
-    // Navigation tracking
-    $("#js-primary-nav").on("click", ".js-nav-item", function() {
-      window.s.linkstacker($(this).text());
-    });
-
-    $("#js-primary-nav").on("click", ".js-nav-cart", function() {
-      window.s.linkstacker("shopping-cart");
-    });
-
-    $("#js-secondary-nav").on("click", ".js-nav-item", function() {
-      window.s.linkstacker($(this).text() + "-sub");
-    });
-
-    $("#js-breadcrumbs").on("click", ".js-nav-item", function() {
-      window.s.linkstacker("breadcrumbs");
-    });
-
-    $("#js-footer-nav").on("click", ".js-nav-item", function() {
-      window.s.linkstacker("footer");
-    });
-
   });
 
 });
