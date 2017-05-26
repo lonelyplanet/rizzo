@@ -37,14 +37,16 @@ module FooterHelper
   def footer_nav_interests_items
     [
       {title:'Adventure travel', url:'adventure-travel'},
-      {title:'Beaches', url:'beaches'},
-      {title:'Budget travel', url:'budget-travel'},
-      {title:'Family travel', url:'family-travel'},
-      {title:'Festivals and events', url:'festivals-and-events'},
+      {title:'Art and culture', url:'art-and-culture'},
+      {title:'Backpacking', url:'backpacking'},
+      {title:'Beaches, coasts and islands', url:'beaches-coasts-and-islands'},
+      {title:'Family holidays', url:'family-holidays'},
+      {title:'Festivals', url:'festivals'},
       {title:'Food and drink', url:'food-and-drink'},
-      {title:'Honeymoons and romance', url:'honeymoons-and-romance'},
-      {title:'Luxury travel', url:'luxury-travel'},
-      {title:'Round the world travel', url:'round-the-world-travel'},
+      {title:'Honeymoon and romance', url:'honeymoon-and-romance'},
+      {title:'Road trips', url:'road-trips'},
+      {title:'Travel gear and tech', url:'travel-gear-and-tech'},
+      {title:'Travel on a budget', url:'travel-on-a-budget'},
       {title:'Wildlife and nature', url:'wildlife-and-nature'}
     ]
   end
