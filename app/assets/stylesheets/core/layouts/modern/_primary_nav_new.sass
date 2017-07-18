@@ -142,6 +142,30 @@ $lp-notification-badge-size: 17px
   box-sizing: border-box
 
   // ---------------------------------------------------------------------------
+  // beta banner
+  // ---------------------------------------------------------------------------
+
+  .lp-beta-banner
+    box-sizing: border-box
+    font-family: "Benton Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif
+    font-size: rem-to-px(1.6rem)
+    padding-bottom: rem-to-px(1.6rem)
+    padding-top: rem-to-px(1.6rem)
+
+    @media (max-width: $lp-max-720)
+      font-size: rem-to-px(1.2rem)
+
+  .lp-beta-banner--action-list li {
+    padding-left: rem-to-px(3.2rem)
+
+    @media (max-width: $lp-max-720)
+      font-size: rem-to-px(1.4rem)
+      padding-left: rem-to-px(.8rem)
+
+  .lp-beta-banner__container
+    +container-header
+
+  // ---------------------------------------------------------------------------
   // header
   // ---------------------------------------------------------------------------
 
