@@ -63,13 +63,7 @@ module FooterHelper
     [
       {title: 'twitter', url: 'https://twitter.com/lonelyplanet'},
       {title: 'facebook', url: 'https://www.facebook.com/lonelyplanet'},
-      {title: 'google-plus', url: 'https://plus.google.com/+LonelyPlanet/'},
-      {title: 'flickr', url: 'http://www.flickr.com/groups/lonelyplanetpublications/'},
-      {title: 'youtube', url: 'http://www.youtube.com/user/LonelyPlanet'},
       {title: 'pinterest', url: 'http://pinterest.com/lonelyplanet/'},
-      {title: 'instagram', url: 'http://instagram.com/lonelyplanet'},
-      {title: 'vine', url: 'https://vine.co/lonelyplanet'},
-      {title: 'article', url: '/blog'}
     ]
   end
 
@@ -79,6 +73,7 @@ module FooterHelper
       {title: 'Work for us', url: '/jobs/'},
       {title: 'Contact us', url: '/contact/'},
       {title: 'Press, trade &amp; advertising', url: '/press-trade-advertising/'},
+      {title: 'Tourism Solutions', url: '/tourism'},
       {title: 'Terms &amp; conditions', url: '/legal/website-terms/'},
       {title: 'Privacy policy', url: '/legal/privacy-policy/'}
     ]
