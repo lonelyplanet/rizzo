@@ -67,6 +67,7 @@ module LayoutSupport
         ads_header:     false
       },
       legacy: {
+        secure:         true,
         responsive:     false,
         legacy_lp:      true
       },
