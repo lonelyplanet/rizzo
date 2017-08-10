@@ -3,21 +3,23 @@ define(function() {
   "use strict";
 
   return function(callback, wait, scope) {
-    var last, timestamp, timeout, context, args;
+    var last, now, timeout, context, args;
 
     return function() {
-      last = Date.now() - timestamp;
-
-      if (last < wait) return;
-
-      clearTimeout(timeout);
       context = scope || this;
+      now = +new Date;
       args = arguments;
-      timestamp = Date.now();
-      timeout = setTimeout(function() {
+
+      if (last && now < last + wait) {
+        clearTimeout(timeout);
+        timeout = setTimeout(function() {
+          last = now;
+          callback.apply(context, args);
+        }, wait);
+      } else {
+        last = now;
         callback.apply(context, args);
-        context = args = null;
-      }, wait);
+      }
     };
   };
 
