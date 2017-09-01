@@ -16,7 +16,7 @@
       %form.newsletter-footer.js-newsletter-footer(action='//www.lonelyplanet.com/newsletter' method='post')
         %input{:type=>"hidden", :name=>"authenticity_token", :value=>form_authenticity_token.to_s}
         %label.polyfill--placeholder.newsletter-footer__placeholder Email
-        %input.input--small--newsletter(type='text' id='newsletter-email' autocomplete='off' name='newsletter[email]' placeholder='your@email.com' required='required')
+        %input.input--small--newsletter(type='text' id='newsletter-email' autocomplete='off' name='newsletter[email]' placeholder='your@email.com' required='required' type='email')
         %input(type='hidden' name='newsletter[source]' value='homepagefooter')
         %input(type='hidden' name='newsletter[email_template]' value='Welcome email')
         .dropdown.dropdown--country.js-select-group-manager
@@ -27,7 +27,7 @@
               %option(value="#{country[:title]}")
                 = country[:title]
         .newsletter-optin
-          %input.input--small--newsletter.newsletter-optin__checkbox(type='checkbox' id='newsletter-optin' name='newsletter[legalOptIn]' required='required')
+          %input.input--small--newsletter.newsletter-optin__checkbox(type='checkbox' id='newsletter-optin' name='newsletter[legalOptIn]' required='required' value='true')
           %div
             Tick to opt-in. Opt out at any time via the 'unsubscribe' link in the footer of the emails.
         %input.btn.btn--green.btn--large.newsletter-footer__btn{type: "submit", title: "Subscribe Newsletter", value: "Sign up", data: {lpa_category: "account", lpa_action: "newsletter"}}
