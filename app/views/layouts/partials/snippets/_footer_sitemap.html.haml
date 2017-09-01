@@ -27,7 +27,7 @@
               %option(value="#{country[:title]}")
                 = country[:title]
         .newsletter-optin
-          %input.input--small--newsletter.newsletter-optin__checkbox(type='checkbox' id='newsletter-optin' name='newsletter[legalOptIn]' required='required')
+          %input.input--small--newsletter.newsletter-optin__checkbox(type='checkbox' id='newsletter-optin' name='newsletter[legalOptIn]' required='required' value='true')
           %div
             Tick to opt-in. Opt out at any time via the 'unsubscribe' link in the footer of the emails.
         %input.btn.btn--green.btn--large.newsletter-footer__btn{type: "submit", title: "Subscribe Newsletter", value: "Sign up", data: {lpa_category: "account", lpa_action: "newsletter"}}
