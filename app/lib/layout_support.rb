@@ -72,6 +72,7 @@ module LayoutSupport
         legacy_lp:      true
       },
       legacy_responsive: {
+        secure:         true,
         legacy_lp:      true
       }
     }
