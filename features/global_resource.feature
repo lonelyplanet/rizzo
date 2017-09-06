@@ -19,7 +19,7 @@ Feature: Global Resources
   Scenario: it serves the responsive global-head
     Given I go to "/global-head/responsive"
     Then the responsive global-head content should be displayed
-    And the non-secure global-head content should be displayed
+    And the secure global-head content should be displayed
 
   Scenario: it serves the secure global head
     Given I go to "/secure/global-head"
