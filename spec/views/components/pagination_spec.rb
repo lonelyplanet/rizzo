@@ -364,6 +364,46 @@ describe "components/_pagination.html.haml" do
 
   end
 
+  describe 'page input' do
+
+    it 'is rendered instead current page number when :show_page_input property is set' do
+      view.stub(properties: default_properties.merge( :show_page_input => true ))
+
+      render
+
+      rendered.should have_css('.pagination__link--current form.pagination__page-input__form')
+      rendered.should have_css('form input[type=number].pagination__page-input__number')
+      rendered.should have_css('form input[type=submit].pagination__page-input__submit')
+      rendered.should have_css('form .pagination__page-input__icon')
+    end
+
+    it 'has properly configured form element' do
+      view.stub(properties: default_properties.merge( :show_page_input => true, :path => '/foo' ))
+
+      render
+
+      form = Capybara.string(rendered).find('form')
+
+      form[:action].should eq('/foo')
+      form[:method].should eq('get')
+    end
+
+    it 'has properly configured number input element' do
+      view.stub(properties: default_properties.merge( :show_page_input => true, :current_page => 3 ))
+
+      render
+
+      number_input = Capybara.string(rendered).find('.pagination__page-input__number')
+
+      (number_input[:name]).should eq('page')
+      (number_input[:min]).should eq('1')
+      (number_input[:max]).should eq('5')
+      (number_input[:value]).should eq('3')
+      (number_input[:step]).should eq('1')
+    end
+
+  end
+
   describe 'detailed position' do
 
     it 'displays detailed position information' do
