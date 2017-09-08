@@ -23,6 +23,7 @@
 
   &:hover
     border-color: mix($darkgray, white, 35%)
+    text-decoration: none
 
 .pagination__link--next,
 .pagination__link--prev
@@ -52,3 +53,46 @@
 
 .pagination__detailed-info
   padding-top: 15px
+
+.pagination__page-input__form
+  position: relative
+  margin: 0 -7px 0 -5px
+
+.pagination__page-input__number
+  @extend %transition--base
+  padding: 0 4px
+  margin: 0 1em -1px 0
+  width: 30px
+  text-align: center
+  border-bottom: 1px solid mix($darkgray, white, 15%)
+  font-weight: bold
+  color: $titlegray
+  appearance: textfield
+
+  &:focus
+    border-color: mix($darkgray, white, 35%)
+
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button
+    appearance: none
+    margin: 0
+
+.pagination__page-input__submit,
+.pagination__page-input__icon,
+  +size(1em)
+  position: absolute
+  top: 0
+  right: 0
+  margin: 0
+
+.pagination__page-input__submit
+  +z-layer(middle)
+  opacity: 0
+
+.pagination__page-input__icon
+  @extend %transition--base
+  +z-layer(default)
+  opacity: 0.5
+
+  .pagination__page-input__submit:hover + &
+    opacity: 0.8    
