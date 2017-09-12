@@ -47,7 +47,7 @@ describe RedirectorController do
   end
 
   describe "get#internal" do
-    let(:url) { 'http://www.lonelyplanet.com/this-place' }
+    let(:url) { 'https://www.lonelyplanet.com/this-place' }
     
     it 'validates the url' do
       Rizzo::UrlValidator.should_receive(:validate).with(url).and_return(url)

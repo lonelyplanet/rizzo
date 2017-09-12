@@ -10,10 +10,10 @@ define([
     LISTENER = "#js-card-holder";
 
     serialized = {
-      url: "http://www.lonelyplanet.com/france/paris/hotels",
-      urlJSON: "http://www.lonelyplanet.com/france/paris/hotels.json",
-      urlWithSearchAndFilters: "http://www.lonelyplanet.com/england/london/hotels?utf8=✓&search%5Bpage_offsets%5D=0%2C58&search%5Bfrom%5D=29+May+2013&search%5Bto%5D=30+May+2013&search%5Bguests%5D=2&search%5Bcurrency%5D=USD&filters%5Bproperty_type%5D%5B3star%5D=true&filters%5Blp_reviewed%5D=true",
-      urlWithSearchAndFiltersJSON: "http://www.lonelyplanet.com/england/london/hotels.json?utf8=✓&search%5Bpage_offsets%5D=0%2C58&search%5Bfrom%5D=29+May+2013&search%5Bto%5D=30+May+2013&search%5Bguests%5D=2&search%5Bcurrency%5D=USD&filters%5Bproperty_type%5D%5B3star%5D=true&filters%5Blp_reviewed%5D=true",
+      url: "https://www.lonelyplanet.com/france/paris/hotels",
+      urlJSON: "https://www.lonelyplanet.com/france/paris/hotels.json",
+      urlWithSearchAndFilters: "https://www.lonelyplanet.com/england/london/hotels?utf8=✓&search%5Bpage_offsets%5D=0%2C58&search%5Bfrom%5D=29+May+2013&search%5Bto%5D=30+May+2013&search%5Bguests%5D=2&search%5Bcurrency%5D=USD&filters%5Bproperty_type%5D%5B3star%5D=true&filters%5Blp_reviewed%5D=true",
+      urlWithSearchAndFiltersJSON: "https://www.lonelyplanet.com/england/london/hotels.json?utf8=✓&search%5Bpage_offsets%5D=0%2C58&search%5Bfrom%5D=29+May+2013&search%5Bto%5D=30+May+2013&search%5Bguests%5D=2&search%5Bcurrency%5D=USD&filters%5Bproperty_type%5D%5B3star%5D=true&filters%5Blp_reviewed%5D=true",
       urlParams: "utf8=✓&search%5Bfrom%5D=29+May+2013&search%5Bto%5D=30+May+2013&search%5Bguests%5D=2&search%5Bcurrency%5D=USD&filters%5Bproperty_type%5D%5B3star%5D=true&filters%5Blp_reviewed%5D=true",
       newUrlWithSearchAndFilters: "filters%5Bproperty_type%5D%5B4star%5D=true"
     };
@@ -176,7 +176,7 @@ define([
         window.controller = new Controller();
         spyOn($, "ajax");
         controller._callServer({
-          url: "http://www.lonelyplanet.com/foo.json?foo=bar",
+          url: "https://www.lonelyplanet.com/foo.json?foo=bar",
           callback: function() {}
         });
       });
@@ -190,7 +190,7 @@ define([
       beforeEach(function() {
         window.controller = new Controller();
         spyOn(controller, "_callServer");
-        spyOn(controller, "_createRequestUrl").and.returnValue("http://www.lonelyplanet.com/foo.json?foo=bar");
+        spyOn(controller, "_createRequestUrl").and.returnValue("https://www.lonelyplanet.com/foo.json?foo=bar");
         spyOn(controller.pushState, "navigate").and.returnValue(false);
         $(LISTENER).trigger(":cards/request", newParams, analytics);
       });
@@ -204,7 +204,7 @@ define([
           analytics: controller.analytics,
           callback: controller.replace,
           eventType: ":cards/request",
-          url: "http://www.lonelyplanet.com/foo.json?foo=bar"
+          url: "https://www.lonelyplanet.com/foo.json?foo=bar"
         });
       });
     });
@@ -213,7 +213,7 @@ define([
       beforeEach(function() {
         window.controller = new Controller();
         spyOn(controller, "_callServer");
-        spyOn(controller, "_createRequestUrl").and.returnValue("http://www.lonelyplanet.com/foo.json?foo=bar");
+        spyOn(controller, "_createRequestUrl").and.returnValue("https://www.lonelyplanet.com/foo.json?foo=bar");
         $(LISTENER).trigger(":cards/append", {
           page: 2
         }, analytics);
@@ -228,7 +228,7 @@ define([
           analytics: controller.analytics,
           callback: controller.append,
           eventType: ":cards/append",
-          url: "http://www.lonelyplanet.com/foo.json?foo=bar"
+          url: "https://www.lonelyplanet.com/foo.json?foo=bar"
         });
       });
     });

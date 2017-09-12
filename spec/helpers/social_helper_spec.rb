@@ -3,7 +3,7 @@ require 'spec_helper'
 describe SocialHelper do
   describe 'tweetify' do
     it 'returns a generic tweet' do
-      helper.tweetify.should == 'http://www.lonelyplanet.com via @lonelyplanet'
+      helper.tweetify.should == 'https://www.lonelyplanet.com via @lonelyplanet'
     end
 
     it 'does something' do

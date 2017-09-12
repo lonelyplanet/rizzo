@@ -137,7 +137,7 @@ define([ "jquery", "public/assets/javascripts/lib/components/slider.js" ], funct
       });
 
       it("updates the hidden content with the correctly sized url", function() {
-        expect($(".js-slide-2 img").attr("src")).toBe("//images-resrc.staticlp.com/S=W480/http://placehold.it/427x290&text=photo+2");
+        expect($(".js-slide-2 img").attr("src")).toBe("//images-resrc.staticlp.com/S=W480/https://placehold.it/427x290&text=photo+2");
       });
     });
 

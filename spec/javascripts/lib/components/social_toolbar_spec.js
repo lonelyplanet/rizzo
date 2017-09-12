@@ -4,7 +4,7 @@ define([ "jquery", "public/assets/javascripts/lib/components/social_toolbar.js" 
 
   describe("SocialToolbar", function() {
 
-    var newUrl = "http://www.lonelyplanet.com/bar",
+    var newUrl = "https://www.lonelyplanet.com/bar",
         encodedNewUrl = encodeURIComponent(newUrl);
 
     beforeEach(function() {

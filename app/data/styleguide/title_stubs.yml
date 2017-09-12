@@ -13,19 +13,19 @@ titles:
       :submenu:
         -
           :title: "Africa"
-          :slug: "http://www.lonelyplanet.com/africa"
+          :slug: "https://www.lonelyplanet.com/africa"
           :show_responsive_toggle: true
         -
           :title: "Antarctica"
-          :slug: "http://www.lonelyplanet.com/antarctica-1007062"
+          :slug: "https://www.lonelyplanet.com/antarctica-1007062"
           :show_responsive_toggle: true
         -
           :title: "Asia"
-          :slug: "http://www.lonelyplanet.com/asia"
+          :slug: "https://www.lonelyplanet.com/asia"
           :show_responsive_toggle: true
         -
           :title: "Caribbean"
-          :slug: "http://www.lonelyplanet.com/caribbean"
+          :slug: "https://www.lonelyplanet.com/caribbean"
           :show_responsive_toggle: true
 
   -
@@ -54,46 +54,46 @@ titles:
       :submenu:
         -
           :title: "Africa"
-          :slug: "http://www.lonelyplanet.com/africa"
+          :slug: "https://www.lonelyplanet.com/africa"
           :show_responsive_toggle: true
-          :image_url: http://cache.graphicslib.viator.com/graphicslib/thumbs674x446/5022/SITours/moulin-rouge-show-paris-in-paris-116546.jpg
+          :image_url: https://cache.graphicslib.viator.com/graphicslib/thumbs674x446/5022/SITours/moulin-rouge-show-paris-in-paris-116546.jpg
         -
           :title: "Antarctica"
-          :slug: "http://www.lonelyplanet.com/antarctica-1007062"
+          :slug: "https://www.lonelyplanet.com/antarctica-1007062"
           :show_responsive_toggle: true
-          :image_url: http://cache.graphicslib.viator.com/graphicslib/thumbs674x446/5022/SITours/moulin-rouge-show-paris-in-paris-116546.jpg
+          :image_url: https://cache.graphicslib.viator.com/graphicslib/thumbs674x446/5022/SITours/moulin-rouge-show-paris-in-paris-116546.jpg
         -
           :title: "Asia"
-          :slug: "http://www.lonelyplanet.com/asia"
+          :slug: "https://www.lonelyplanet.com/asia"
           :show_responsive_toggle: true
-          :image_url: http://cache.graphicslib.viator.com/graphicslib/thumbs674x446/5022/SITours/moulin-rouge-show-paris-in-paris-116546.jpg
+          :image_url: https://cache.graphicslib.viator.com/graphicslib/thumbs674x446/5022/SITours/moulin-rouge-show-paris-in-paris-116546.jpg
         -
           :title: "Caribbean"
-          :slug: "http://www.lonelyplanet.com/caribbean"
+          :slug: "https://www.lonelyplanet.com/caribbean"
           :show_responsive_toggle: true
-          :image_url: http://cache.graphicslib.viator.com/graphicslib/thumbs674x446/5022/SITours/moulin-rouge-show-paris-in-paris-116546.jpg
+          :image_url: https://cache.graphicslib.viator.com/graphicslib/thumbs674x446/5022/SITours/moulin-rouge-show-paris-in-paris-116546.jpg
     :parent_submenu:
       :submenu:
         -
           :title: "Africa"
-          :slug: "http://www.lonelyplanet.com/africa"
+          :slug: "https://www.lonelyplanet.com/africa"
           :show_responsive_toggle: true
-          :image_url: http://cache.graphicslib.viator.com/graphicslib/thumbs674x446/5022/SITours/moulin-rouge-show-paris-in-paris-116546.jpg
+          :image_url: https://cache.graphicslib.viator.com/graphicslib/thumbs674x446/5022/SITours/moulin-rouge-show-paris-in-paris-116546.jpg
         -
           :title: "Antarctica"
-          :slug: "http://www.lonelyplanet.com/antarctica-1007062"
+          :slug: "https://www.lonelyplanet.com/antarctica-1007062"
           :show_responsive_toggle: true
-          :image_url: http://cache.graphicslib.viator.com/graphicslib/thumbs674x446/5022/SITours/moulin-rouge-show-paris-in-paris-116546.jpg
+          :image_url: https://cache.graphicslib.viator.com/graphicslib/thumbs674x446/5022/SITours/moulin-rouge-show-paris-in-paris-116546.jpg
         -
           :title: "Asia"
-          :slug: "http://www.lonelyplanet.com/asia"
+          :slug: "https://www.lonelyplanet.com/asia"
           :show_responsive_toggle: true
-          :image_url: http://cache.graphicslib.viator.com/graphicslib/thumbs674x446/5022/SITours/moulin-rouge-show-paris-in-paris-116546.jpg
+          :image_url: https://cache.graphicslib.viator.com/graphicslib/thumbs674x446/5022/SITours/moulin-rouge-show-paris-in-paris-116546.jpg
         -
           :title: "Caribbean"
-          :slug: "http://www.lonelyplanet.com/caribbean"
+          :slug: "https://www.lonelyplanet.com/caribbean"
           :show_responsive_toggle: true
-          :image_url: http://cache.graphicslib.viator.com/graphicslib/thumbs674x446/5022/SITours/moulin-rouge-show-paris-in-paris-116546.jpg
+          :image_url: https://cache.graphicslib.viator.com/graphicslib/thumbs674x446/5022/SITours/moulin-rouge-show-paris-in-paris-116546.jpg
 
   -
     :styleguide_title: "Page title as a H1, with submenu"
@@ -103,19 +103,19 @@ titles:
       :submenu:
         -
           :title: "Africa"
-          :slug: "http://www.lonelyplanet.com/africa"
+          :slug: "https://www.lonelyplanet.com/africa"
           :show_responsive_toggle: true
         -
           :title: "Antarctica"
-          :slug: "http://www.lonelyplanet.com/antarctica-1007062"
+          :slug: "https://www.lonelyplanet.com/antarctica-1007062"
           :show_responsive_toggle: true
         -
           :title: "Asia"
-          :slug: "http://www.lonelyplanet.com/asia"
+          :slug: "https://www.lonelyplanet.com/asia"
           :show_responsive_toggle: true
         -
           :title: "Caribbean"
-          :slug: "http://www.lonelyplanet.com/caribbean"
+          :slug: "https://www.lonelyplanet.com/caribbean"
           :show_responsive_toggle: true
   -
     :styleguide_title: "Place title with a parent (not a link) and parent submenu only"
@@ -127,17 +127,17 @@ titles:
       :submenu:
         -
           :title: "Africa"
-          :slug: "http://www.lonelyplanet.com/africa"
+          :slug: "https://www.lonelyplanet.com/africa"
           :show_responsive_toggle: true
         -
           :title: "Antarctica"
-          :slug: "http://www.lonelyplanet.com/antarctica-1007062"
+          :slug: "https://www.lonelyplanet.com/antarctica-1007062"
           :show_responsive_toggle: true
         -
           :title: "Asia"
-          :slug: "http://www.lonelyplanet.com/asia"
+          :slug: "https://www.lonelyplanet.com/asia"
           :show_responsive_toggle: true
         -
           :title: "Caribbean"
-          :slug: "http://www.lonelyplanet.com/caribbean"
+          :slug: "https://www.lonelyplanet.com/caribbean"
           :show_responsive_toggle: true

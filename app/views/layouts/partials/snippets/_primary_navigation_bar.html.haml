@@ -2,7 +2,7 @@
 %input{ type: "checkbox", id: 'nav--primary__trigger', class: "is-hidden" }
 %label{ for: 'nav--primary__trigger', class: 'copy--h2 wv--hidden nav--primary__trigger icon--hamburger--before icon--white--before js-toggle-active', data: { toggle: { target: 'body', class: 'show-nav' } } } Menu
 
-%a.media--lp-logo.logo--header.icon--lp-logo.icon--white{ href: 'http://www.lonelyplanet.com', title: 'Return to homepage' }
+%a.media--lp-logo.logo--header.icon--lp-logo.icon--white{ href: 'https://www.lonelyplanet.com', title: 'Return to homepage' }
 
 .nav-container.m-hidden-menu
 
@@ -10,7 +10,7 @@
 
     .wv--nav--inline.split--right__inner.nav--user
       - if search
-        %form.search--primary.search--primary-wv.js-nav-search.wv--inline-block{ action: "//www.lonelyplanet.com/search", method: "get", role: "search" }
+        %form.search--primary.search--primary-wv.js-nav-search.wv--inline-block{ action: "https://www.lonelyplanet.com/search", method: "get", role: "search" }
           %label.accessibility(for='search-q') Search
           %input.search__input.search__input--primary.js-primary-search{ type: "search", id: "search-q", maxlength: "2048", name: "q", value: "", autocomplete: "off", tabindex: "1", placeholder: "Enter your search term" }
           %button.search__input__icon.js-search-icon.icon--search.icon--white{ class: "search__button", type: "submit", id: "search-q-submit" }
@@ -19,7 +19,7 @@
       - if user_nav
         %nav.nav__item.wv--nav--inline.nav--primary--user.js-user-nav.split--right__inner{ role: "navigation", title: "User navigation", aria: { label: "User navigation" }, itemscope: "itemscope", itemtype: "http://schema.org/SiteNavigationElement" }
           %h6.accessibility User navigation
-          %a.nav__item.nav__item--primary.nav__item--user.user-basket.wv--inline-block.js-user-basket.js-nav-cart{ href: 'http://shop.lonelyplanet.com/cart/view' }
+          %a.nav__item.nav__item--primary.nav__item--user.user-basket.wv--inline-block.js-user-basket.js-nav-cart{ href: 'https://shop.lonelyplanet.com/cart/view' }
             %span.user-basket__icon.icon--shop-basket.icon--white{ itemprop: "name" }
               View Basket
 

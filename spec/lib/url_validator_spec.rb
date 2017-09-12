@@ -1,9 +1,9 @@
 require 'spec_helper'
 
 describe Rizzo::UrlValidator do
-  let(:expected_url)              { "http://www.lonelyplanet.com/africa" }
-  let(:expected_different_domain) { "http://www.lonelyplanet.es:80/" }
-  let(:expected_url_with_port)    { "http://www.lonelyplanet.com:80/africa" }
+  let(:expected_url)              { "https://www.lonelyplanet.com/africa" }
+  let(:expected_different_domain) { "https://www.lonelyplanet.es:443/" }
+  let(:expected_url_with_port)    { "https://www.lonelyplanet.com:443/africa" }
   let(:expected_url_ssl)          { "https://www.lonelyplanet.com:443/africa" }
   subject { Rizzo::UrlValidator.validate(url) }
 
@@ -59,7 +59,7 @@ describe Rizzo::UrlValidator do
     end
 
     context 'scheme specified by env' do
-      let(:url) { 'http://www.lonelyplanet.com/africa' }
+      let(:url) { 'https://www.lonelyplanet.com/africa' }
 
       before do
         ENV.stub(:[]).with('APP_SCHEME').and_return('https')
@@ -71,7 +71,7 @@ describe Rizzo::UrlValidator do
   end
 
   context 'ensures correct port' do
-    let(:url) { "http://www.lonelyplanet.com:22/africa" }
+    let(:url) { "https://www.lonelyplanet.com:22/africa" }
 
     it { should eq(expected_url_with_port) }
   end

@@ -18,7 +18,7 @@ module AssetHelper
     if secure
       path = "https://secure.lonelyplanet.com/static-ui/style/#{stylesheet}.css"
     else
-      path = "http://static.lonelyplanet.com/static-ui/style/#{stylesheet}.css"
+      path = "https://static.lonelyplanet.com/static-ui/style/#{stylesheet}.css"
     end
     capture_haml do
       haml_tag(:link, href: "#{path}", media: "screen,projection", rel: 'stylesheet')
@@ -29,7 +29,7 @@ module AssetHelper
     if secure
       path = "https://secure.lonelyplanet.com/static-ui/js/#{script}.js"
     else
-      path = "http://static.lonelyplanet.com/static-ui/js/#{script}.js"
+      path = "https://static.lonelyplanet.com/static-ui/js/#{script}.js"
     end
     capture_haml do
       haml_tag(:script, src: "#{path}")

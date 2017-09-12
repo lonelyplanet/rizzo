@@ -30,7 +30,7 @@ define([ "jquery", "autocomplete" ], function($, Autocomplete) {
       fetch: function(searchTerm, callback) {
         savedSearchTerm = searchTerm;
         $.ajax({
-          url: "//www.lonelyplanet.com/search.json?q=" + searchTerm,
+          url: "https://www.lonelyplanet.com/search.json?q=" + searchTerm,
           dataType: "json",
           success: function(data) {
             var schemeSeparator = "://",
@@ -40,7 +40,7 @@ define([ "jquery", "autocomplete" ], function($, Autocomplete) {
               while (length) {
                 item = data[--length];
                 index = item.slug.indexOf(schemeSeparator);
-                item.url = index > -1 && index < 5  ? item.slug : "http://www.lonelyplanet.com/" + item.slug;
+                item.url = index > -1 && index < 5  ? item.slug : "https://www.lonelyplanet.com/" + item.slug;
               }
             }
             callback(data);
@@ -50,7 +50,7 @@ define([ "jquery", "autocomplete" ], function($, Autocomplete) {
               .append(
                 "<div class='autocomplete__list__item'>" +
                   "<a class='btn btn--medium btn--linkblue btn--full-width'" +
-                    " href='http://www.lonelyplanet.com/search?q=" + searchTerm + "'>" +
+                    " href='https://www.lonelyplanet.com/search?q=" + searchTerm + "'>" +
                     "See all results" +
                   "</a>" +
                 "</div>"

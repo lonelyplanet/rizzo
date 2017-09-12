@@ -8,8 +8,8 @@ define(function() {
 
   "use strict";
 
-  var IMAGE_REGEX = /.+?(http:\/\/.*)/,
-      SERVICE_REGEX = /(.+?)http:\/\//;
+  var IMAGE_REGEX = /.+?(https?:\/\/.*)/,
+      SERVICE_REGEX = /(.+?)https?:\/\//;
 
   function ResrcIt() {}
 

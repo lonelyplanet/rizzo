@@ -6,7 +6,7 @@ module GalleryHelper
       elsif breadcrumb[:slug].blank?
         haml_tag(:span, class: "gallery__breadcrumb-item", itemprop: "url") { haml_concat breadcrumb[:place] }
       else
-        haml_tag(:a, class: "gallery__breadcrumb-item", href: "http://www.lonelyplanet.com/#{breadcrumb[:slug]}", itemprop:"url") { haml_concat breadcrumb[:place] }
+        haml_tag(:a, class: "gallery__breadcrumb-item", href: "https://www.lonelyplanet.com/#{breadcrumb[:slug]}", itemprop:"url") { haml_concat breadcrumb[:place] }
       end
     end
   end

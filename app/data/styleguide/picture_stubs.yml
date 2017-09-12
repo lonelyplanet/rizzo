@@ -1,6 +1,6 @@
 :picture_base:
   :alt: "Foo"
-  :src: "http://media.lonelyplanet.com/a/g/hi/t/2efbfec4e203d6e47bb609bd9f016f82-adventure-travel.jpg"
+  :src: "https://media.lonelyplanet.com/a/g/hi/t/2efbfec4e203d6e47bb609bd9f016f82-adventure-travel.jpg"
   :retina: true
   :size:
     :resize:
