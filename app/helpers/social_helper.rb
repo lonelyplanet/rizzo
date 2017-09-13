@@ -6,7 +6,7 @@ module SocialHelper
 
     title = args[:title] || ''
     emission = '…'
-    url = args[:url] || 'http://www.lonelyplanet.com'
+    url = args[:url] || 'https://www.lonelyplanet.com'
     suffix = args[:suffix] || 'via @lonelyplanet'
     if (hashtags = args[:hashtags]).is_a?(Array) && hashtags.any?
       hashtags = hashtags.join(',')

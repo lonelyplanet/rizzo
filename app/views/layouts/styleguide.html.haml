@@ -13,7 +13,7 @@
       .nav-container.m-hidden-menu
         .split--left
           .wv--nav--inline.nav--primary#js-nav--primary
-            %a.media--lp-logo.logo--header.icon--lp-logo.icon--white{href: 'http://rizzo.lonelyplanet.com/styleguide'}
+            %a.media--lp-logo.logo--header.icon--lp-logo.icon--white{href: 'https://rizzo.lonelyplanet.com/styleguide'}
             - @app.primary_nav_items.each do |item|
               %a.nav__item.nav__item--primary{ href: "#{item[:slug]}" }<
                 = item[:name]

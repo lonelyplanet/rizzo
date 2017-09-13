@@ -29,8 +29,8 @@ Then /^the responsive global\-head content should be displayed$/ do
 end
 
 Then /^the non-secure global\-head content should be displayed$/ do
-  page.should have_xpath("//link[@href=\"http://static.lonelyplanet.com/static-ui/style/app-core-legacy.css\"]")
-  page.should have_xpath("//script[@src=\"http://static.lonelyplanet.com/static-ui/js/lp-js-library-legacy.js\"]")
+  page.should have_xpath("//link[@href=\"https://static.lonelyplanet.com/static-ui/style/app-core-legacy.css\"]")
+  page.should have_xpath("//script[@src=\"https://static.lonelyplanet.com/static-ui/js/lp-js-library-legacy.js\"]")
 end
 
 Then /^the global\-body\-header response should have the correct content$/ do

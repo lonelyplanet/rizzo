@@ -28,7 +28,7 @@ $ touch app/assets/stylesheets/fonts/_font_woff2.sass
 
 ## Documentation
 
-Full documentation about Rizzo and development guidelines is available at [http://rizzo.lonelyplanet.com/documentation/general/development-principles](http://rizzo.lonelyplanet.com/documentation/general/development-principles).
+Full documentation about Rizzo and development guidelines is available at [https://rizzo.lonelyplanet.com/documentation/general/development-principles](https://rizzo.lonelyplanet.com/documentation/general/development-principles).
 
 ## Jasmine Tests
 There is a suite of JavaScript tests in `spec/javascripts`. These tests are currently using Jasmine v1.x from `grunt-contrib-jasmine` v0.5.x.

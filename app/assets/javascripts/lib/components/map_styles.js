@@ -174,7 +174,7 @@ define([], function() {
         ]
       }
     ],
-    markerBackgroundImage: "//assets.staticlp.com/assets/shared/map-markers.png",
+    markerBackgroundImage: "https://assets.staticlp.com/assets/shared/map-markers.png",
     markerStyles: function( topic, size ) {
       if (size === "dot"){
         return markerStyles[size];

@@ -1,17 +1,17 @@
 .row.row--footer--about(role="contentinfo")
   .row__inner.row__inner--full-width
     .wv--split--left.nav--inline
-      %a.wv--inline-block.nav__item.row--footer--about__logo.media--lp-logo.icon--lp-logo(href='http://www.lonelyplanet.com')
+      %a.wv--inline-block.nav__item.row--footer--about__logo.media--lp-logo.icon--lp-logo(href='https://www.lonelyplanet.com')
       %nav.nav__item.wv--nav--inline(role="navigation" aria-label="About Lonely Planet" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement")
         %h6.accessibility About Lonely Planet
         - footer_nav_about_items.each do |item|
-          %a.nav__item.nav__item--about{href: "http://www.lonelyplanet.com#{item[:url]}"}(itemprop="url")<
+          %a.nav__item.nav__item--about{href: "https://www.lonelyplanet.com#{item[:url]}"}(itemprop="url")<
             %span(itemprop="name")
               = item[:title].html_safe
 
     .wv--split--right
       .nav--inline.nav--social.split--right__inner
-        %a.wv--hidden.row--footer--social__logo.media--lp-logo.icon--lp-logo(href='http://www.lonelyplanet.com')
+        %a.wv--hidden.row--footer--social__logo.media--lp-logo.icon--lp-logo(href='https://www.lonelyplanet.com')
         %nav.nav--social__inner.nav__item(role="navigation" aria-label="Social media links" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement")
           %h6.accessibility Social media links
           .nav--inline
@@ -40,4 +40,4 @@
         .split--right__inner.nav--inline.form--language.media
           %label.nav__item.form--language__label.title--footer.media__img International
           .media__body
-            = ui_component('navigation/dropdown', properties: { action: '//www.lonelyplanet.com/redirector', dropdown: dropdown })
+            = ui_component('navigation/dropdown', properties: { action: 'https://www.lonelyplanet.com/redirector', dropdown: dropdown })

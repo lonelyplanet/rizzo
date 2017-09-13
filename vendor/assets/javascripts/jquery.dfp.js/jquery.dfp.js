@@ -449,9 +449,7 @@
             dfpBlocked();
         };
 
-        var useSSL = 'https:' === document.location.protocol;
-        gads.src = (useSSL ? 'https:' : 'http:') +
-        '//www.googletagservices.com/tag/js/gpt.js';
+        gads.src = 'https://www.googletagservices.com/tag/js/gpt.js';
         var node = document.getElementsByTagName('script')[0];
         node.parentNode.insertBefore(gads, node);
 

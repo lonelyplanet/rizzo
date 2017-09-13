@@ -6,8 +6,8 @@ define([ "jquery", "public/assets/javascripts/lib/page/pushstate.js" ], function
       listener = $("#js-card-holder");
 
   serialized = {
-    url: "http://www.lonelyplanet.com/france/paris/hotels",
-    urlWithSearchAndFilters: "http://www.lonelyplanet.com/england/london/hotels?utf8=✓&search%5Bpage_offsets%5D=0%2C58&search%5Bfrom%5D=29+May+2013&search%5Bto%5D=30+May+2013&search%5Bguests%5D=2&search%5Bcurrency%5D=USD&filters%5Bproperty_type%5D%5B3star%5D=true&filters%5Blp_reviewed%5D=true",
+    url: "https://www.lonelyplanet.com/france/paris/hotels",
+    urlWithSearchAndFilters: "https://www.lonelyplanet.com/england/london/hotels?utf8=✓&search%5Bpage_offsets%5D=0%2C58&search%5Bfrom%5D=29+May+2013&search%5Bto%5D=30+May+2013&search%5Bguests%5D=2&search%5Bcurrency%5D=USD&filters%5Bproperty_type%5D%5B3star%5D=true&filters%5Blp_reviewed%5D=true",
     urlParams: "utf8=✓&search%5Bfrom%5D=29+May+2013&search%5Bto%5D=30+May+2013&search%5Bguests%5D=2&search%5Bcurrency%5D=USD&filters%5Bproperty_type%5D%5B3star%5D=true&filters%5Blp_reviewed%5D=true",
     newUrlWithSearchAndFilters: "filters%5Bproperty_type%5D%5B4star%5D=true"
   };
@@ -192,10 +192,10 @@ define([ "jquery", "public/assets/javascripts/lib/page/pushstate.js" ], function
     describe("after first load", function() {
       beforeEach(function() {
         window.pushstate = new Pushstate();
-        spyOn(pushstate, "getUrl").and.returnValue("http://www.lonelyplanet.com/england/london?search=foo");
+        spyOn(pushstate, "getUrl").and.returnValue("https://www.lonelyplanet.com/england/london?search=foo");
         spyOn(pushstate, "setUrl");
         pushstate.popStateFired = false;
-        pushstate.currentUrl = "http://www.lonelyplanet.com/england/london";
+        pushstate.currentUrl = "https://www.lonelyplanet.com/england/london";
         pushstate._handlePopState();
       });
 
@@ -207,10 +207,10 @@ define([ "jquery", "public/assets/javascripts/lib/page/pushstate.js" ], function
     describe("returning to the first page", function() {
       beforeEach(function() {
         window.pushstate = new Pushstate();
-        spyOn(pushstate, "getUrl").and.returnValue("http://www.lonelyplanet.com/england/london");
+        spyOn(pushstate, "getUrl").and.returnValue("https://www.lonelyplanet.com/england/london");
         spyOn(pushstate, "setUrl");
         pushstate.popStateFired = true;
-        pushstate.currentUrl = "http://www.lonelyplanet.com/england/london";
+        pushstate.currentUrl = "https://www.lonelyplanet.com/england/london";
         pushstate._handlePopState();
       });
       it("refreshes the page", function() {

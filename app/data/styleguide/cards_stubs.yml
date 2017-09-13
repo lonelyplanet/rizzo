@@ -9,7 +9,7 @@
   :title: "Moulin Rouge in Paris"
   :description: "Immortalised in the posters of Toulouse-Lautrec and later on screen by Baz Luhrmann, the Moulin Rouge twinkles beneath a 1925 replica of its original red windmill. Yes, it’s rife with bus-tour crowds. But from the opening bars of music to the last high kick it’s a whirl of fantastical costumes, sets, choreography and Champagne. Booking advised."
   :image_alt: ""
-  :image_url: "http://cache.graphicslib.viator.com/graphicslib/thumbs674x446/5022/SITours/moulin-rouge-show-paris-in-paris-116546.jpg"
+  :image_url: "https://cache.graphicslib.viator.com/graphicslib/thumbs674x446/5022/SITours/moulin-rouge-show-paris-in-paris-116546.jpg"
 -
   :styleguide_title: "Card with kind, context text and context pin"
   :url: "#"
@@ -24,7 +24,7 @@
   :title: "Classic Paris: a fresh look at the city of light"
   :description: "Immortalised in the posters of Toulouse-Lautrec and later on screen by Baz Luhrmann, the Moulin Rouge twinkles beneath a 1925 replica of its original red windmill. Yes, it’s rife with bus-tour crowds. But from the opening bars of music to the last high kick it’s a whirl of fantastical costumes, sets, choreography and Champagne. Booking advised."
   :image_alt: ""
-  :image_url: "http://www.lonelyplanet.com/travel-blog/tip-article/wordpress_uploads/2013/09/2-seine.jpg"
+  :image_url: "https://www.lonelyplanet.com/travel-blog/tip-article/wordpress_uploads/2013/09/2-seine.jpg"
   :author_avatar: "https://community-media.lonelyplanet.com/users/avatars/001/140/591/thumb/J_Crew_-_Crew_Mutt.jpg"
   :author_name: "Phil McCracken"
   :target: "_blank"
@@ -38,7 +38,7 @@
   :title: "Classic Paris: a fresh look at the city of light"
   :description: "Immortalised in the posters of Toulouse-Lautrec and later on screen by Baz Luhrmann, the Moulin Rouge twinkles beneath a 1925 replica of its original red windmill. Yes, it’s rife with bus-tour crowds. But from the opening bars of music to the last high kick it’s a whirl of fantastical costumes, sets, choreography and Champagne. Booking advised."
   :image_alt: ""
-  :image_url: "http://www.lonelyplanet.com/travel-blog/tip-article/wordpress_uploads/2013/09/2-seine.jpg"
+  :image_url: "https://www.lonelyplanet.com/travel-blog/tip-article/wordpress_uploads/2013/09/2-seine.jpg"
 -
   :styleguide_title: "Card with image, context text, context locale and all the tags"
   :url: "#"
@@ -47,7 +47,7 @@
   :title: "L'hôtel"
   :description: "In a quiet quayside street, this award-winning hostelry is the stuff of romance, Parisian myths and urban legends"
   :image_alt: ""
-  :image_url: "http://aff.bstatic.com/images/hotel/max300/135/13558989.jpg"
+  :image_url: "https://aff.bstatic.com/images/hotel/max300/135/13558989.jpg"
   :price_tag:
     :price: "223"
     :currency: "£"
@@ -93,7 +93,7 @@
   :title: "Travel shopping"
   :description: ""
   :image_alt: ""
-  :image_url: "http://images-resrc.staticlp.com/C=W3514,H3386,X1161,Y0/S=W300,H300/http://media.lonelyplanet.com/a/g/hi/t/a03b63e2de8b540613e1cab75404b5a2-travel-shopping.jpg"
+  :image_url: "https://images-resrc.staticlp.com/C=W3514,H3386,X1161,Y0/S=W300,H300/https://media.lonelyplanet.com/a/g/hi/t/a03b63e2de8b540613e1cab75404b5a2-travel-shopping.jpg"
   :author_avatar: "https://community-media.lonelyplanet.com/users/avatars/001/140/591/thumb/J_Crew_-_Crew_Mutt.jpg"
   :author_name: "Phil McCracken"
 -
@@ -104,7 +104,7 @@
   :title: "Kyoto"
   :description: ""
   :image_alt: ""
-  :image_url: "http://images-resrc.staticlp.com/C=W788,H760,X0,Y0/S=W192,H185/http://media.lonelyplanet.com/a/g/hi/t/93beb9e9226011d72bce4b41db62d4ff-top-things-to-do-in-kyoto.jpg"
+  :image_url: "https://images-resrc.staticlp.com/C=W788,H760,X0,Y0/S=W192,H185/https://media.lonelyplanet.com/a/g/hi/t/93beb9e9226011d72bce4b41db62d4ff-top-things-to-do-in-kyoto.jpg"
   :image_icon: "japan_kansai_kyoto"
 -
   :styleguide_title: "Card with cover image"
@@ -112,14 +112,14 @@
   :cover?: true
   :title: "The best bars in Paris"
   :image_alt: ""
-  :image_url: "http://media.lonelyplanet.com/a/g/hi/t/e420202c3c575b70c15a9307a525900a-best-places-to-drink-in-paris.jpg"
+  :image_url: "https://media.lonelyplanet.com/a/g/hi/t/e420202c3c575b70c15a9307a525900a-best-places-to-drink-in-paris.jpg"
 -
   :styleguide_title: "Card with cover image and author"
   :url: "#"
   :cover?: true
   :title: "The best bars in Paris"
   :image_alt: ""
-  :image_url: "http://media.lonelyplanet.com/a/g/hi/t/e420202c3c575b70c15a9307a525900a-best-places-to-drink-in-paris.jpg"
+  :image_url: "https://media.lonelyplanet.com/a/g/hi/t/e420202c3c575b70c15a9307a525900a-best-places-to-drink-in-paris.jpg"
   :author_avatar: "https://community-media.lonelyplanet.com/users/avatars/001/140/591/thumb/J_Crew_-_Crew_Mutt.jpg"
   :author_name: "Phil McCracken"
 -
@@ -129,4 +129,4 @@
   :double?: true
   :title: "Top things to do in Paris"
   :image_alt: ""
-  :image_url: "http://media.lonelyplanet.com/a/g/hi/t/d79818893c366ac9d63dd756a86cb968-best-places-to-stay-in-paris.jpg"
+  :image_url: "https://media.lonelyplanet.com/a/g/hi/t/d79818893c366ac9d63dd756a86cb968-best-places-to-stay-in-paris.jpg"

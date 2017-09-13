@@ -9,7 +9,7 @@
     - last = properties[:breadcrumbs].length == (index + 1)
 
     - if breadcrumb[:slug] && !last
-      %a.nav__item.js-nav-item.nav__item--breadcrumbs{href: "http://www.lonelyplanet.com/#{breadcrumb[:slug]}"}<>
+      %a.nav__item.js-nav-item.nav__item--breadcrumbs{href: "https://www.lonelyplanet.com/#{breadcrumb[:slug]}"}<>
         = breadcrumb[:place]
       
     - else
@@ -21,6 +21,6 @@
     - google_breadcrumbs = properties[:breadcrumbs].select {|item| !!(item[:slug] && item[:place])}[0..-2]
     - google_breadcrumbs.each_with_index do |breadcrumb, index|
       %div{id: "google-breadcrumb-#{index}", itemscope: true, itemprop:"child", itemtype: 'http://data-vocabulary.org/Breadcrumb', itemref: (!!google_breadcrumbs[index+1] ? "google-breadcrumb-#{index+1}" : nil)}
-        %a{href: "http://www.lonelyplanet.com/#{breadcrumb[:slug]}", itemprop: "url"}
+        %a{href: "https://www.lonelyplanet.com/#{breadcrumb[:slug]}", itemprop: "url"}
           %span{itemprop: "title"}
             = breadcrumb[:place]

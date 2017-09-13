@@ -28,7 +28,7 @@ $('<div/>').html('<script>alert("attacked");</script>');
 
 ```
 <iframe sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
-    src="http://lonelyplanet.com"></iframe>
+    src="https://lonelyplanet.com"></iframe>
 ```
 
  - implement content security policy [Content Security Policy (CSP)](https://developer.mozilla.org/en-US/docs/Web/Security/CSP) is an added layer of security that helps to detect and mitigate certain types of attacks, including Cross Site Scripting (XSS) and data injection attacks. These attacks are used for everything from data theft to site defacement or distribution of malware.
