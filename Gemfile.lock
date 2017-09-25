@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/lonelyplanet/image-resizer.git
-  revision: 8f239c8562b1fa4858d39b2f127e37db7285b979
+  revision: bea48628799716878313d03faa8b564e45803d52
   specs:
     image-resizer (0.0.1)
 
@@ -233,4 +233,4 @@ DEPENDENCIES
   unicorn
 
 BUNDLED WITH
-   1.12.5
+   1.13.7
