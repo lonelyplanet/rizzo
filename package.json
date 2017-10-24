@@ -23,6 +23,6 @@
     "matchdep": "^1.0.1"
   },
   "dependencies": {
-    "rizzo-next": "^0.26.4"
+    "rizzo-next": "^0.29.4"
   }
 }
