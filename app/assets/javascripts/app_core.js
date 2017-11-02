@@ -70,7 +70,7 @@ define([
       alert: ".js-newsletter-footer"
     });
 
-    new LanguageNav({el: ".js-language-select"});
+    new LanguageNav({ el: ".js-language-select" });
 
     new Rizzo.default.Header({ el: $(".lp-global-header") });
     new Rizzo.default.Login();
