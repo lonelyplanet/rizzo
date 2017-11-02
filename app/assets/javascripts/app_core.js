@@ -4,6 +4,7 @@ define([
   "lib/core/ad_manager",
   "lib/utils/local_store",
   "lib/core/sailthru_form",
+  "lib/core/language_nav",
   "rizzo-next",
 
   "trackjs",
@@ -21,7 +22,7 @@ define([
   "lib/components/toggle_active",
   "lib/components/select_group_manager"
 
-], function($, Flamsteed, AdManager, LocalStore, SailthruForm, Rizzo) {
+], function($, Flamsteed, AdManager, LocalStore, SailthruForm, LanguageNav, Rizzo) {
   /* global utag */
 
   "use strict";
@@ -68,6 +69,8 @@ define([
       el: ".js-newsletter-footer",
       alert: ".js-newsletter-footer"
     });
+
+    new LanguageNav({ el: ".js-language-select" });
 
     new Rizzo.default.Header({ el: $(".lp-global-header") });
     new Rizzo.default.Login();
