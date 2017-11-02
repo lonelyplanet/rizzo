@@ -30,7 +30,7 @@
 
     - if language_select
       :ruby
-        dropdown = { id: "languageSelect", name: "url", options: [], data: { form_submit: "true" } }
+        dropdown = { id: "languageSelect", dropdown_class: "js-language-select", name: "url", options: [], data: { form_submit: "true" } }
 
         language_options.each do |d|
           dropdown[:options].push({ title: d[1].html_safe, value: d[0] })

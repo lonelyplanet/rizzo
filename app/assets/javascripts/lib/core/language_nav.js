@@ -2,19 +2,26 @@ define([ "jquery" ], function($) {
 
   "use strict";
 
-  function LanguageNav() {
-
-    $("#languageSelect").on("change", function(event) {
-      var url = "http://" + $(this).val();
-      window.location = url;
-      event.preventDefault();
-    });
+  // @args = {}
+  // el: {string} selector for form
+  function LanguageNav(args) {
+    this.$el = $(args.el);
+    this.$el.length && this.init();
   }
 
-  $(document).ready(function() {
-    new LanguageNav;
-  });
+  LanguageNav.prototype.init = function() {
+    this.listen();
+  };
+
+  LanguageNav.prototype.listen = function() {
+    this.$el.on("change", this._handleSelect);
+  };
+
+  LanguageNav.prototype._handleSelect = function(event) {
+    event.preventDefault();
+    var url = "http://" + $(this).val();
+    window.location = url;
+  };
 
   return LanguageNav;
-
 });
