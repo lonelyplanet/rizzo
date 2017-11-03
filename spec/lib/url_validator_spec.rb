@@ -2,21 +2,21 @@ require 'spec_helper'
 
 describe Rizzo::UrlValidator do
   let(:expected_url)              { "https://www.lonelyplanet.com/africa" }
-  let(:expected_different_domain) { "https://www.lonelyplanet.es:443/" }
-  let(:expected_url_with_port)    { "https://www.lonelyplanet.com:443/africa" }
+  let(:expected_different_domain) { "http://www.lonelyplanet.es:80/" }
+  let(:expected_url_with_port)    { "http://www.lonelyplanet.com:80/africa" }
   let(:expected_url_ssl)          { "https://www.lonelyplanet.com:443/africa" }
   subject { Rizzo::UrlValidator.validate(url) }
 
   describe 'validate' do
     let(:url) { expected_url }
 
-    it { should eq(expected_url_with_port) }
+    it { should eq(expected_url_ssl) }
   end
 
   context 'domain not specified' do
     let(:url) { 'africa' }
 
-    it { should eq(expected_url_with_port) }
+    it { should eq(expected_url_ssl) }
   end
 
   context 'url is nil' do
@@ -49,7 +49,7 @@ describe Rizzo::UrlValidator do
     context 'unsupported scheme' do
       let(:url) { "ftp://www.lonelyplanet.com/africa" }
 
-      it { should eq(expected_url_with_port) }
+      it { should eq(expected_url_ssl) }
     end
 
     context 'missing scheme' do
@@ -73,7 +73,7 @@ describe Rizzo::UrlValidator do
   context 'ensures correct port' do
     let(:url) { "https://www.lonelyplanet.com:22/africa" }
 
-    it { should eq(expected_url_with_port) }
+    it { should eq(expected_url_ssl) }
   end
 
 end
