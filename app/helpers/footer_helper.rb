@@ -81,16 +81,16 @@ module FooterHelper
 
   def language_options
     [
-      ["www.lonelyplanet.com", "English"],
-      ["www.lonelyplanet.in", "English (India)"],
-      ["www.lonelyplanet.de", "Deutsch"],
-      ["www.lonelyplanet.fr", "Fran&#231;ais"],
-      ["www.lonelyplanet.es", "Espa&#241;ol"],
-      ["www.lonelyplanetitalia.it", "Italiano"],
-      ["www.lonelyplanet.ru", "&#x420;&#x443;&#x441;&#x441;&#x43A;&#x438;&#x439;"],
-      ["www.lonelyplanetbrasil.com.br", "Portugu&ecirc;s"],
-      ["www.lonelyplanet.cz", "&#268;esky"],
-      ["www.lonelyplanet.co.kr", "&#xD55C;&#xAD6D;&#xC5B4;"]
+      ["https://www.lonelyplanet.com", "English"],
+      ["http://www.lonelyplanet.in", "English (India)"],
+      ["https://www.lonelyplanet.de", "Deutsch"],
+      ["https://www.lonelyplanet.fr", "Fran&#231;ais"],
+      ["https://www.lonelyplanet.es", "Espa&#241;ol"],
+      ["http://www.lonelyplanetitalia.it", "Italiano"],
+      ["http://www.lonelyplanet.ru", "&#x420;&#x443;&#x441;&#x441;&#x43A;&#x438;&#x439;"],
+      ["http://www.lonelyplanetbrasil.com.br", "Portugu&ecirc;s"],
+      ["https://www.lonelyplanet.cz", "&#268;esky"],
+      ["https://www.lonelyplanet.co.kr", "&#xD55C;&#xAD6D;&#xC5B4;"]
     ]
   end
 
