@@ -64,6 +64,7 @@ module FooterHelper
       {title: 'twitter', url: 'https://twitter.com/lonelyplanet'},
       {title: 'facebook', url: 'https://www.facebook.com/lonelyplanet'},
       {title: 'pinterest', url: 'http://pinterest.com/lonelyplanet/'},
+      {title: 'flipboard', url: 'https://flipboard.com/@LonelyPlanet?utm_source=LonelyPlanet&utm_medium=follow&utm_campaign=tools'},
     ]
   end
 
