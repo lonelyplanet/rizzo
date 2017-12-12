@@ -5,14 +5,9 @@
     .col--footer--last
       %a.title--footer.title--list--footer(href='https://www.lonelyplanet.com/newsletter' itemprop="url")
         %span(itemprop="name")
-          Newsletter sign up
+          Subscribe
       %p.nav__item--footer
-        %strong
-          Subscribe now
-        and receive a
-        %strong
-          20% discount
-        on your next guidebook purchase
+        Get 20% off at our online shop.
       %form.newsletter-footer.js-newsletter-footer(action='https://www.lonelyplanet.com/newsletter' method='post')
         %input{:type=>"hidden", :name=>"authenticity_token", :value=>form_authenticity_token.to_s}
         %label.polyfill--placeholder.newsletter-footer__placeholder Email
@@ -26,10 +21,8 @@
             - footer_newsletter_country_items.each do |country|
               %option(value="#{country[:title]}")
                 = country[:title]
-        .newsletter-optin
-          %input.input--small--newsletter.newsletter-optin__checkbox(type='checkbox' id='newsletter-optin' name='newsletter[legalOptIn]' required='required' value='true')
-          %div
-            Tick to opt-in. Opt out at any time via the 'unsubscribe' link in the footer of the emails.
+        .newsletter-notice
+          I want emails from Lonely Planet with travel and product information, promotions, advertisements, third-party offers, and surveys. I can unsubscribe any time using the unsubscribe link at the end of all emails. Contact Lonely Planet <a href='https://www.lonelyplanet.com/contact'>here</a>. <a href='https://www.lonelyplanet.com/legal/privacy-policy/')>Lonely Planet Privacy Policy</a>.
         %input.btn.btn--green.btn--large.newsletter-footer__btn{type: "submit", title: "Subscribe Newsletter", value: "Sign up", data: {lpa_category: "account", lpa_action: "newsletter"}}
 
     .col--footer
