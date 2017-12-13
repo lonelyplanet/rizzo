@@ -23,8 +23,8 @@
               %option(value="#{country[:title]}")
                 = country[:title]
         .newsletter-notice
-          I want emails from Lonely Planet with travel and product information, promotions, advertisements, third-party offers, and surveys. I can unsubscribe any time using the unsubscribe link at the end of all emails. Contact Lonely Planet <a href='https://www.lonelyplanet.com/contact'>here</a>. <a href='https://www.lonelyplanet.com/legal/privacy-policy/')>Lonely Planet Privacy Policy</a>.
-        %input.btn.btn--green.btn--large.newsletter-footer__btn{type: "submit", title: "Subscribe Newsletter", value: "Sign up", data: {lpa_category: "account", lpa_action: "newsletter"}}
+          I want emails from Lonely Planet with travel and product information, promotions, advertisements, third-party offers, and surveys. I can unsubscribe any time using the unsubscribe link at the end of all emails. Contact Lonely Planet <a href='https://www.lonelyplanet.com/contact'>here.</a> Lonely Planet <a href='https://www.lonelyplanet.com/legal/privacy-policy/')>Privacy Policy.</a>
+        %input.btn.btn--green.btn--large.newsletter-footer__btn{type: "submit", title: "Subscribe Newsletter", value: "Subscribe", data: {lpa_category: "account", lpa_action: "newsletter"}}
 
     .col--footer
       %input{type: "checkbox", id: 'ac-destinations', class: "accordion__input"}
