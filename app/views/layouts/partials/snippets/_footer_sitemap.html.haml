@@ -5,20 +5,16 @@
     .col--footer--last
       %a.title--footer.title--list--footer(href='https://www.lonelyplanet.com/newsletter' itemprop="url")
         %span(itemprop="name")
-          Newsletter sign up
+          Subscribe
       %p.nav__item--footer
-        %strong
-          Subscribe now
-        and receive a
-        %strong
-          20% discount
-        on your next guidebook purchase
+        Get 20% off at our online shop.
       %form.newsletter-footer.js-newsletter-footer(action='https://www.lonelyplanet.com/newsletter' method='post')
         %input{:type=>"hidden", :name=>"authenticity_token", :value=>form_authenticity_token.to_s}
         %label.polyfill--placeholder.newsletter-footer__placeholder Email
         %input.input--small--newsletter(type='text' id='newsletter-email' autocomplete='off' name='newsletter[email]' placeholder='your@email.com' required='required' type='email')
         %input(type='hidden' name='newsletter[source]' value='homepagefooter')
         %input(type='hidden' name='newsletter[email_template]' value='Welcome email')
+        %input(type='hidden' name='newsletter[legalOptIn]' value='true')
         .dropdown.dropdown--country.js-select-group-manager
           %label.dropdown__value.dropdown__value--country.js-select-overlay.icon--chevron-down--after(for='select-country')
             Select country
@@ -26,11 +22,9 @@
             - footer_newsletter_country_items.each do |country|
               %option(value="#{country[:title]}")
                 = country[:title]
-        .newsletter-optin
-          %input.input--small--newsletter.newsletter-optin__checkbox(type='checkbox' id='newsletter-optin' name='newsletter[legalOptIn]' required='required' value='true')
-          %div
-            Tick to opt-in. Opt out at any time via the 'unsubscribe' link in the footer of the emails.
-        %input.btn.btn--green.btn--large.newsletter-footer__btn{type: "submit", title: "Subscribe Newsletter", value: "Sign up", data: {lpa_category: "account", lpa_action: "newsletter"}}
+        .newsletter-notice
+          I want emails from Lonely Planet with travel and product information, promotions, advertisements, third-party offers, and surveys. I can unsubscribe any time using the unsubscribe link at the end of all emails. Contact Lonely Planet <a href='https://www.lonelyplanet.com/contact'>here.</a> Lonely Planet <a href='https://www.lonelyplanet.com/legal/privacy-policy/')>Privacy Policy.</a>
+        %input.btn.btn--green.btn--large.newsletter-footer__btn{type: "submit", title: "Subscribe Newsletter", value: "Subscribe", data: {lpa_category: "account", lpa_action: "newsletter"}}
 
     .col--footer
       %input{type: "checkbox", id: 'ac-destinations', class: "accordion__input"}
