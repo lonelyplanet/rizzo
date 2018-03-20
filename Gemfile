@@ -20,7 +20,7 @@ gem 'typhoeus'
 group :test do
   gem 'rspec-rails', '~> 2.14.0'
   gem 'rubyzip', '~> 1.2.1'
-  gem 'selenium-webdriver', '2.26.0'
+  gem 'selenium-webdriver', '2.39.0'
   gem 'capybara', '< 2.0.0'
   gem 'cucumber'
   gem 'cucumber-rails', :require => false
