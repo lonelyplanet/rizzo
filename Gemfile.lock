@@ -157,7 +157,7 @@ GEM
       rspec-mocks (~> 2.14.0)
     ruby_parser (3.6.4)
       sexp_processor (~> 4.1)
-    rubyzip (0.9.9)
+    rubyzip (1.2.1)
     sass (3.4.23)
     sass-globbing (1.1.1)
       sass (>= 3.1)
@@ -222,7 +222,7 @@ DEPENDENCIES
   redcarpet
   requirejs-rails
   rspec-rails (~> 2.14.0)
-  rubyzip (< 1.0.0)
+  rubyzip (~> 1.2.1)
   sass
   sass-globbing
   sass-rails
