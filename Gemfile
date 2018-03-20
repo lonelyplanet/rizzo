@@ -23,7 +23,7 @@ group :test do
   gem 'selenium-webdriver', '2.39.0'
   gem 'capybara', '< 2.0.0'
   gem 'cucumber'
-  gem 'addressable'
+  gem 'addressable', "2.3.7"
   gem 'cucumber-rails', :require => false
 end
 
