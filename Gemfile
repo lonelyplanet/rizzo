@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 4.1.8'
+gem 'rails', '~> 4.2.5'
 gem 'haml'
 gem 'sass'
 gem 'sass-globbing'
@@ -16,13 +16,16 @@ gem 'dotenv'
 gem 'redcarpet'
 gem 'image-resizer', git: 'https://github.com/lonelyplanet/image-resizer.git', require: 'image_resizer'
 gem 'typhoeus'
+gem 'rails-deprecated_sanitizer'
+gem 'sprockets-rails', '2.3.3'
 
 group :test do
   gem 'rspec-rails', '~> 2.14.0'
-  gem 'rubyzip', '< 1.0.0'
-  gem 'selenium-webdriver', '2.26.0'
+  gem 'rubyzip', '~> 1.2.1'
+  gem 'selenium-webdriver', '2.39.0'
   gem 'capybara', '< 2.0.0'
   gem 'cucumber'
+  gem 'addressable', "2.3.7"
   gem 'cucumber-rails', :require => false
 end
 
