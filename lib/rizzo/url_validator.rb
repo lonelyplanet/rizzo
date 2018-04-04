@@ -19,6 +19,11 @@ module Rizzo
 
     def self.validate(url = "")
       target = Addressable::URI.heuristic_parse(url)
+
+      if Rails.env.development?
+        return target.to_s
+      end
+
       target.path = "/#{target.path}" unless target.path[0] == '/'
       target.host = whitelisted_hosts(target.host) || ENV['APP_HOST'] || 'www.lonelyplanet.com'
       target.scheme = ((target.scheme == 'http' || target.scheme == 'https') ? target.scheme : 'https')
