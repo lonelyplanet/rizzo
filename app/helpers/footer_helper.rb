@@ -16,12 +16,12 @@ module FooterHelper
 
   def footer_nav_shop_items
     [
-      {title: 'Destination guides', url: 'destination-guides'},
-      {title: 'eBooks', url: 'ebooks'},
-      {title: 'Pictorial & gifts', url: 'pictorials-and-gifts'},
-      {title: 'Phrasebooks', url: 'phrasebooks'},
-      {title: 'Lonely Planet Kids', url: 'childrens-books'},
-      {title: 'Special offers', url: 'special-offers'}
+      {title: 'Destination guides', url: 'pages/guide-books'},
+      {title: 'eBooks', url: 'categories/ebooks'},
+      {title: 'Pictorial & gifts', url: 'categories/pictorials-reference'},
+      {title: 'Phrasebooks', url: 'categories/phrasebooks'},
+      {title: 'Lonely Planet Kids', url: 'pages/lonely-planet-kids'},
+      {title: 'Special offers', url: 'pages/deals'}
     ]
   end
 

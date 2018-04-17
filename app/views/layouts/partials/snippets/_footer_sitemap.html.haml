@@ -42,11 +42,11 @@
       %input{type: "checkbox", id: 'ac-shop', class: "accordion__input"}
       .nav--stacked.accordion__target.accordion__target--mid
         %label{for: 'ac-shop', class: 'accordion__title accordion__title--footer icon--chevron-down--after'}
-        %a.js-nav-item.title--footer.title--list--footer(href='https://www.lonelyplanet.com/shop' itemprop="url")
+        %a.js-nav-item.title--footer.title--list--footer(href='https://shop.lonelyplanet.com' itemprop="url")
           %span(itemprop="name")
             Shop
         - footer_nav_shop_items.each do |shop|
-          %a.js-nav-item.nav__item.nav__item--sitemap.nav__item--footer{href: "https://www.lonelyplanet.com/shop/#{shop[:url]}"}(itemprop="url")<
+          %a.js-nav-item.nav__item.nav__item--sitemap.nav__item--footer{href: "https://shop.lonelyplanet.com/#{shop[:url]}"}(itemprop="url")<
             %span(itemprop="name")
               = shop[:title]
 
