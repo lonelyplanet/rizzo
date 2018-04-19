@@ -2,7 +2,7 @@ module FooterHelper
   def footer_nav_destination_items
     [
       {title: 'Africa', url: 'africa'},
-      {title: 'Antarctica', url: 'antarctica'},
+      {title: 'Antarctica', url: 'antarctica-1007062'},
       {title: 'Asia', url: 'asia'},
       {title: 'Caribbean Islands', url: 'caribbean'},
       {title: 'Central America', url: 'central-america'},
@@ -36,18 +36,18 @@ module FooterHelper
 
   def footer_nav_interests_items
     [
-      {title:'Adventure travel', url:'adventure-travel'},
-      {title:'Art and culture', url:'art-and-culture'},
-      {title:'Backpacking', url:'backpacking'},
-      {title:'Beaches, coasts and islands', url:'beaches-coasts-and-islands'},
-      {title:'Family holidays', url:'family-holidays'},
-      {title:'Festivals', url:'festivals'},
-      {title:'Food and drink', url:'food-and-drink'},
-      {title:'Honeymoon and romance', url:'honeymoon-and-romance'},
-      {title:'Road trips', url:'road-trips'},
-      {title:'Travel gear and tech', url:'travel-gear-and-tech'},
-      {title:'Travel on a budget', url:'travel-on-a-budget'},
-      {title:'Wildlife and nature', url:'wildlife-and-nature'}
+      {title:'Adventure travel', url:'adventure-travel/'},
+      {title:'Art and culture', url:'art-and-culture/'},
+      {title:'Backpacking', url:'backpacking/'},
+      {title:'Beaches, coasts and islands', url:'beaches-coasts-and-islands/'},
+      {title:'Family holidays', url:'family-holidays/'},
+      {title:'Festivals', url:'festivals/'},
+      {title:'Food and drink', url:'food-and-drink/'},
+      {title:'Honeymoon and romance', url:'honeymoon-and-romance/'},
+      {title:'Road trips', url:'road-trips/'},
+      {title:'Travel gear and tech', url:'travel-gear-and-tech/'},
+      {title:'Travel on a budget', url:'travel-on-a-budget/'},
+      {title:'Wildlife and nature', url:'wildlife-and-nature/'}
     ]
   end
 
@@ -71,7 +71,7 @@ module FooterHelper
   def footer_nav_about_items
     [
       {title: 'About us', url: '/about/'},
-      {title: 'Work for us', url: '/jobs/'},
+      {title: 'Work for us', url: '/about/careers/'},
       {title: 'Contact us', url: '/contact/'},
       {title: 'Press, trade &amp; advertising', url: '/press-trade-advertising/'},
       {title: 'Tourism Solutions', url: '/tourism'},
