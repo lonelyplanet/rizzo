@@ -26,7 +26,7 @@
   %select.dropdown__select.js-select{ select_properties }
 
     - if properties[:placeholder]
-      %option{ value: "", disabled: true, selected: !properties[:selected] }<
+      %option{ value: "", disabled: true, selected: properties[:selected].blank? }<
         = properties[:placeholder]
 
     - properties[:options].each do |option|
