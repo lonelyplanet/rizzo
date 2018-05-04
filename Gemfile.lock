@@ -34,9 +34,6 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
     addressable (2.3.7)
-    airbrake (5.8.1)
-      airbrake-ruby (~> 1.8)
-    airbrake-ruby (1.8.0)
     arel (5.0.1.20140414130214)
     autoprefixer-rails (6.7.7.1)
       execjs
@@ -203,7 +200,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  airbrake (~> 5)
   autoprefixer-rails
   better_errors
   binding_of_caller

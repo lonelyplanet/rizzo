@@ -25,7 +25,6 @@ module Rizzo
       target.port = target.scheme == 'https' ? 443 : 80
       target.to_s
     rescue => e
-      Airbrake.notify(e) if defined?(Airbrake)
       raise InvalidUrl
     end
 

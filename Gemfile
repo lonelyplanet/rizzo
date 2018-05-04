@@ -35,5 +35,4 @@ end
 group :production do
   gem "lograge"
   gem "logstash-event"
-  gem "airbrake", "~> 5"
 end
