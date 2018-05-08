@@ -42,7 +42,7 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     addressable (2.3.7)
-    arel (5.0.1.20140414130214)
+    arel (6.0.4)
     autoprefixer-rails (6.7.7.1)
       execjs
     better_errors (2.1.1)
@@ -224,6 +224,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  addressable (= 2.3.7)
   autoprefixer-rails
   better_errors
   binding_of_caller
