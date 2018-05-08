@@ -13,21 +13,30 @@ define([ "jquery" ], function($) {
   var EXCLUDE = [ "A", "BUTTON", "INPUT", "LABEL", "OPTION", "SELECT" ];
 
   function LinkTo(context) {
-    context = context || document;
+    this.$context = $(context || document);
+    this._determineEligibility = this._determineEligibility.bind(this);
 
-    $("[data-link-to]", context).on("click", this._determineEligibility.bind(this));
+    this._init();
   }
 
-  // e: {object} The jQuery click event object.
-  LinkTo.prototype._determineEligibility = function(e) {
-    var $target = $(e.target),
-        $card = $target.data("data-link-to") ? e.target : $target.closest("[data-link-to]"),
-        inExclude = $.inArray(e.target.nodeName.toUpperCase(), EXCLUDE) !== -1,
-        excluded = inExclude || $target.hasClass("js-prevent-link-to");
+  LinkTo.prototype._init = function() {
+    this._listen();
+  };
+
+  LinkTo.prototype._listen = function() {
+    this.$context.on("click", "[data-link-to]", this._determineEligibility);
+  };
+
+  // event: {object} The jQuery click event object.
+  LinkTo.prototype._determineEligibility = function(event) {
+    var $linkToEl = $(event.currentTarget),
+        $clickedEl = $(event.target),
+        inExclude = EXCLUDE.indexOf($clickedEl[0].nodeName.toUpperCase()) > -1,
+        excluded = inExclude || $clickedEl.hasClass("js-prevent-link-to");
 
     // Make sure we don't hijack click events from certain elements.
     if (!excluded) {
-      this._redirect($card.data("linkTo"));
+      this._redirect($linkToEl.data("linkTo"));
     }
   };
 

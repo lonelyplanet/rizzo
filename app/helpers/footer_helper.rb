@@ -2,7 +2,7 @@ module FooterHelper
   def footer_nav_destination_items
     [
       {title: 'Africa', url: 'africa'},
-      {title: 'Antarctica', url: 'antarctica'},
+      {title: 'Antarctica', url: 'antarctica-1007062'},
       {title: 'Asia', url: 'asia'},
       {title: 'Caribbean Islands', url: 'caribbean'},
       {title: 'Central America', url: 'central-america'},
@@ -16,12 +16,12 @@ module FooterHelper
 
   def footer_nav_shop_items
     [
-      {title: 'Destination guides', url: 'destination-guides'},
-      {title: 'eBooks', url: 'ebooks'},
-      {title: 'Pictorial & gifts', url: 'pictorials-and-gifts'},
-      {title: 'Phrasebooks', url: 'phrasebooks'},
-      {title: 'Lonely Planet Kids', url: 'childrens-books'},
-      {title: 'Special offers', url: 'special-offers'}
+      {title: 'Destination guides', url: 'pages/guide-books'},
+      {title: 'eBooks', url: 'categories/ebooks'},
+      {title: 'Pictorial & gifts', url: 'categories/pictorials-reference'},
+      {title: 'Phrasebooks', url: 'categories/phrasebooks'},
+      {title: 'Lonely Planet Kids', url: 'pages/lonely-planet-kids'},
+      {title: 'Special offers', url: 'pages/deals'}
     ]
   end
 
@@ -36,18 +36,18 @@ module FooterHelper
 
   def footer_nav_interests_items
     [
-      {title:'Adventure travel', url:'adventure-travel'},
-      {title:'Art and culture', url:'art-and-culture'},
-      {title:'Backpacking', url:'backpacking'},
-      {title:'Beaches, coasts and islands', url:'beaches-coasts-and-islands'},
-      {title:'Family holidays', url:'family-holidays'},
-      {title:'Festivals', url:'festivals'},
-      {title:'Food and drink', url:'food-and-drink'},
-      {title:'Honeymoon and romance', url:'honeymoon-and-romance'},
-      {title:'Road trips', url:'road-trips'},
-      {title:'Travel gear and tech', url:'travel-gear-and-tech'},
-      {title:'Travel on a budget', url:'travel-on-a-budget'},
-      {title:'Wildlife and nature', url:'wildlife-and-nature'}
+      {title:'Adventure travel', url:'adventure-travel/'},
+      {title:'Art and culture', url:'art-and-culture/'},
+      {title:'Backpacking', url:'backpacking/'},
+      {title:'Beaches, coasts and islands', url:'beaches-coasts-and-islands/'},
+      {title:'Family holidays', url:'family-holidays/'},
+      {title:'Festivals', url:'festivals/'},
+      {title:'Food and drink', url:'food-and-drink/'},
+      {title:'Honeymoon and romance', url:'honeymoon-and-romance/'},
+      {title:'Road trips', url:'road-trips/'},
+      {title:'Travel gear and tech', url:'travel-gear-and-tech/'},
+      {title:'Travel on a budget', url:'travel-on-a-budget/'},
+      {title:'Wildlife and nature', url:'wildlife-and-nature/'}
     ]
   end
 
@@ -71,7 +71,7 @@ module FooterHelper
   def footer_nav_about_items
     [
       {title: 'About us', url: '/about/'},
-      {title: 'Work for us', url: '/jobs/'},
+      {title: 'Work for us', url: '/about/careers/'},
       {title: 'Contact us', url: '/contact/'},
       {title: 'Press, trade &amp; advertising', url: '/press-trade-advertising/'},
       {title: 'Tourism Solutions', url: '/tourism'},

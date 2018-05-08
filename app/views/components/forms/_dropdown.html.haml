@@ -15,7 +15,7 @@
   }
 
 .dropdown.js-select-group-manager{ class: "#{properties[:class]}#{properties[:disabled] ? ' is-disabled' : ''}#{!tooltip.nil? ? ' tooltip--container' : ''}" }
-  
+
   - if properties[:label]
     %label.accessibility{ for: properties[:id] }
       = properties[:label]
@@ -26,11 +26,11 @@
   %select.dropdown__select.js-select{ select_properties }
 
     - if properties[:placeholder]
-      %option{ value: "" }<
+      %option{ value: "", disabled: true, selected: properties[:selected].blank? }<
         = properties[:placeholder]
 
     - properties[:options].each do |option|
-      %option{value: option[:value] || option[:title], disabled: option[:disabled], data: option[:data], selected: (properties[:selected] && (properties[:selected] == option[:value] || properties[:selected] == option[:title])) ? 'selected' : false}<
+      %option{ value: option[:value] || option[:title], disabled: option[:disabled], data: option[:data], selected: (properties[:selected] && (properties[:selected] == option[:value] || properties[:selected] == option[:title])) }<
         = option[:title]
 
   = render partial: 'components/forms/partials/tooltip', locals: { tooltip: tooltip }
