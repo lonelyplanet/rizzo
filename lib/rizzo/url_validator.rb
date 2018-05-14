@@ -14,7 +14,8 @@ module Rizzo
                     "www.lonelyplanet.ru",
                     "www.lonelyplanetbrasil.com.br",
                     "www.lonelyplanet.cz",
-                    "www.lonelyplanet.co.kr"
+                    "www.lonelyplanet.co.kr",
+                    "www.lonelyplanet.nl"
                   ]
 
     def self.validate(url = "")

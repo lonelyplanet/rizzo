@@ -74,7 +74,7 @@ module FooterHelper
       {title: 'Work for us', url: '/about/careers/'},
       {title: 'Contact us', url: '/contact/'},
       {title: 'Press, trade &amp; advertising', url: '/press-trade-advertising/'},
-      {title: 'Tourism Solutions', url: '/tourism'},
+      {title: 'Blog', url: '/blog'},
       {title: 'Terms &amp; conditions', url: '/legal/website-terms/'},
       {title: 'Privacy policy', url: '/legal/privacy-policy/'}
     ]
@@ -91,7 +91,8 @@ module FooterHelper
       ["http://www.lonelyplanet.ru", "&#x420;&#x443;&#x441;&#x441;&#x43A;&#x438;&#x439;"],
       ["http://www.lonelyplanetbrasil.com.br", "Portugu&ecirc;s"],
       ["https://www.lonelyplanet.cz", "&#268;esky"],
-      ["https://www.lonelyplanet.co.kr", "&#xD55C;&#xAD6D;&#xC5B4;"]
+      ["https://www.lonelyplanet.co.kr", "&#xD55C;&#xAD6D;&#xC5B4;"],
+      ["https://www.lonelyplanet.nl", "Nederlands"]
     ]
   end
 
