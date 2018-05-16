@@ -39,11 +39,20 @@ define([ "jquery" ], function($) {
 
       self.config.callback && self.config.callback.call(self);
 
-      if (self.config.showPreloader) {
-        self.$el.closest(".booking-widget__inner").removeClass("is-loading");
-        self.$el.addClass("is-ready");
-      }
-      dfd.resolve();
+      // Wait for the component to be fully rendered
+      var waitForRender = setInterval(function() {
+        var isRendered = !!self.$el.find("form").length;
+
+        if (isRendered) {
+          if (self.config.showPreloader) {
+            self.$el.closest(".booking-widget__inner").removeClass("is-loading");
+            self.$el.addClass("is-ready");
+          }
+
+          clearInterval(waitForRender);
+          dfd.resolve();
+        }
+      }, 100);
     });
 
     return dfd.promise();
