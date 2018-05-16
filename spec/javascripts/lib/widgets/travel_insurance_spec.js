@@ -4,6 +4,10 @@ define([ "public/assets/javascripts/lib/widgets/travel_insurance" ], function(Tr
 
   describe("TravelInsurance", function() {
 
+    beforeEach(function() {
+      loadFixtures("travel_insurance.html");
+    });
+
     define("wnmock", function() {
       return {};
     });
@@ -17,7 +21,7 @@ define([ "public/assets/javascripts/lib/widgets/travel_insurance" ], function(Tr
           callback: done
         });
 
-        widget.render()
+        widget.render();
       });
 
       it("has loaded", function() {
@@ -29,14 +33,21 @@ define([ "public/assets/javascripts/lib/widgets/travel_insurance" ], function(Tr
       var widget;
 
       beforeEach(function(done) {
+        jasmine.clock().install();
+
         widget = new TravelInsurance({
           path: "wnmock"
         });
 
         widget.render().then(done);
+        jasmine.clock().tick(200);
       });
 
-      it("has resolved", function() {
+      afterEach(function() {
+        jasmine.clock().uninstall();
+      });
+
+      it("has resolved when form has been rendered", function() {
         expect(widget.$el).toBeDefined();
       });
     });
