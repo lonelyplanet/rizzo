@@ -10,8 +10,12 @@
     item_classlist += " nav--left__item--icon icon--#{item[:icon]}--before icon--body-grey--before"
   end
 
-%a.nav--left__item{href: item_href, class: "#{item_classlist}", data: item_data}<
-  = item_title.html_safe
+- if item_href.blank?
+  %span.nav--left__item{class: "#{item_classlist}", data: item_data}<
+    = item_title.html_safe
+- else
+  %a.nav--left__item{href: item_href, class: "#{item_classlist}", data: item_data}<
+    = item_title.html_safe
 
-  - if item[:count]
-    %span{class: 'nav--left__item__facet'} (#{item[:count]})
+    - if item[:count]
+      %span{class: 'nav--left__item__facet'} (#{item[:count]})
