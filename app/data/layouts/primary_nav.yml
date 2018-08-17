@@ -149,11 +149,6 @@
         :slug: "https://www.lonelyplanet.com/sightseeing-tours/"
         :style: "sightseeing-tours"
         :icon_class: "icon--activity--before"
-      -
-        :title: "Airport transfers"
-        :slug: "https://www.lonelyplanet.com/airport-transfers/"
-        :style: "airport-transfers"
-        :icon_class: "icon--transfers--before"
 
   -
     :title: "Insurance"
