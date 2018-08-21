@@ -28,9 +28,9 @@ module FooterHelper
   def footer_nav_thorntree_items
     [
       {title: 'Country forums', url: 'categories/country-forums'},
-      {title: 'Talk to Lonely Planet', url: 'categories/talk-to-lonely-planet'},
       {title: 'Interest forums', url: 'categories/interest-forums'},
-      {title: 'Travel buddies & for sale', url: 'categories/sell-swap-meet-up'}
+      {title: 'Travel companions', url: 'categories/travel-companions'},
+      {title: 'Talk to Lonely Planet', url: 'categories/talk-to-lonely-planet'}
     ]
   end
 
