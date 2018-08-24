@@ -1,3 +1,0 @@
-[submodule "app/assets/stylesheets/fonts"]
-	path = app/assets/stylesheets/fonts
-	url = git@github.com:lonelyplanet/lp-fonts.git
