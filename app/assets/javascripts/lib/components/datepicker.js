@@ -32,7 +32,9 @@ define([ "jquery", "picker", "pickerDate", "pickerLegacy" ], function($) {
     var config = this.config,
         options = this._getOptions(),
         $inDate = this.$target.find(config.startSelector),
-        $outDate = this.$target.find(config.endSelector);
+        $outDate = this.$target.find(config.endSelector),
+        defaultInDate = $inDate.attr("value"),
+        defaultOutDate = $outDate.attr("value");
 
     this.$inLabel = $(config.startLabelSelector);
     this.$outLabel = $(config.endLabelSelector);
@@ -44,6 +46,13 @@ define([ "jquery", "picker", "pickerDate", "pickerLegacy" ], function($) {
 
     this.inPicker = $inDate.data("pickadate");
     this.outPicker = $outDate.data("pickadate");
+
+    if (defaultInDate) {
+      this.inPicker.set("select", defaultInDate, { format: config.dateFormat });
+    }
+    if (defaultOutDate) {
+      this.outPicker.set("select", defaultOutDate, { format: config.dateFormat });
+    }
 
     this.listen();
   };
