@@ -3,6 +3,15 @@ define([ "public/assets/javascripts/lib/components/availability_search.js" ], fu
   describe("Availability", function() {
     var LISTENER = "#js-card-holder";
 
+    beforeEach(function() {
+      jasmine.clock().install();
+      jasmine.clock().mockDate(new Date("1 Jun 2013"));
+    });
+
+    afterEach(function() {
+      jasmine.clock().uninstall();
+    });
+
     describe("Initialisation", function() {
       beforeEach(function() {
         loadFixtures("availability.html");
@@ -33,15 +42,18 @@ define([ "public/assets/javascripts/lib/components/availability_search.js" ], fu
 
         it("serializes the search data", function() {
           var expectedResult, values;
+
           values = av._getSearchData();
+
           expectedResult = {
             search: {
-              from: "06 Jun 2013",
-              to: "07 Jun 2013",
+              from: "6 Jun 2013",
+              to: "7 Jun 2013",
               guests: "1",
               currency: "USD"
             }
           };
+
           expect(values).toEqual(expectedResult);
         });
       });

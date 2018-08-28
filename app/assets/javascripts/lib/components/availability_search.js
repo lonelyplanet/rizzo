@@ -92,7 +92,7 @@ define([
   };
 
   AvailabilitySearch.prototype._getSearchData = function() {
-    if (!this.$startDate.val()) {
+    if (!this.$startDate.attr("value")) {
       this._setDefaultDates();
     }
 
