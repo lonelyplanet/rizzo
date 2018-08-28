@@ -33,11 +33,17 @@ define([ "public/assets/javascripts/lib/components/availability_search.js" ], fu
 
         it("serializes the search data", function() {
           var expectedResult, values;
-          values = av._getSearchData();
+          values = av._getSearchData(),
+
+          currentDate = new Date(),
+          currentYear = currentDate.getFullYear(),
+          currentMonth = currentDate.toLocaleDateString("en-US", { month: "short" }),
+          currentDay = currentDate.getDate();
+
           expectedResult = {
             search: {
-              from: "06 Jun 2013",
-              to: "07 Jun 2013",
+              from: `${currentDay} ${currentMonth} ${currentYear}`,
+              to: `${currentDay + 1} ${currentMonth} ${currentYear}`,
               guests: "1",
               currency: "USD"
             }
