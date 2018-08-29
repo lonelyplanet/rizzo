@@ -8,7 +8,7 @@ Gem::Specification.new do |gem|
   gem.summary       = %q{Rails engine for centralising user interface logic}
   gem.homepage      = "https://www.lonelyplanet.com"
 
-  gem.files         = `git ls-files`.split($\)
+  gem.files         = `git ls-files --recurse-submodules`.split($\)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
   gem.test_files    = gem.files.grep(%r{^(spec|features)/})
   gem.name          = "rizzo"
