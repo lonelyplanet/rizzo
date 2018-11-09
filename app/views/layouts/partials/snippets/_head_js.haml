@@ -81,9 +81,12 @@
     time: function(x){!!window.performance && !!window.performance.now && this.buffer.push({e: x, t: this.now()})}
   };
 
+= yield :lp_analytics
 = yield :head_js
 
-= render 'layouts/partials/inline_js/gtm'
+- unless (yield :lp_analytics).present?
+  = render 'layouts/partials/inline_js/gtm'
+
 = render 'layouts/partials/inline_js/load_css'
 = render 'layouts/partials/inline_js/recaptcha'
 
