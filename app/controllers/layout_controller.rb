@@ -4,7 +4,7 @@ class LayoutController < ActionController::Base
   include LayoutSupport
 
   def snippet
-    render "layouts/custom/_#{params[:snippet]}", locals: get_layout_config(params[:route])
+    render "layouts/custom/_#{params[:snippet]}", locals: get_layout_config(params[:route], request.query_parameters)
   end
 
   def preview
