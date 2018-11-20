@@ -25,7 +25,7 @@
 = csrf_meta_tags
 
 - if include_js
-  = render 'layouts/partials/snippets/head_js', third_party: third_party
+  = render 'layouts/partials/snippets/head_js', third_party: third_party, omit_gtm_snippet: omit_gtm_snippet
 
 - if legacy_lp
   = smart_stylesheet('core_legacy')

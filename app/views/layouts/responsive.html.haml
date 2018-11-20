@@ -1,7 +1,7 @@
 = render 'layouts/partials/snippets/doctype_declaration'
 
 %head
-  = render 'layouts/custom/head', include_js: true, responsive: true, third_party: false, legacy_lp: false, app_core: false, default_title: true
+  = render 'layouts/custom/head', include_js: true, responsive: true, third_party: false, legacy_lp: false, app_core: false, default_title: true, omit_gtm_snippet: false
 
 %body.responsive
   = render 'layouts/partials/snippets/gtm'

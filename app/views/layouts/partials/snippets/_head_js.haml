@@ -84,7 +84,7 @@
 = yield :lp_analytics
 = yield :head_js
 
-- unless (yield :lp_analytics).present?
+- unless (yield :lp_analytics).present? or omit_gtm_snippet
   = render 'layouts/partials/inline_js/gtm'
 
 = render 'layouts/partials/inline_js/load_css'

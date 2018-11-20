@@ -7,6 +7,7 @@ module LayoutSupport
       ads_footer:     false,
       include_js:     true,
       languages:      true,
+      omit_gtm_snippet: false,
       nav_primary:    true,
       search:         true,
       nav_sitemap:    true,
@@ -78,12 +79,23 @@ module LayoutSupport
     }
   end
 
-  def get_layout_config(layout_type)
+  def get_options_from_query_params(query_parameters)
+    # only include key/value pair if key is present in query params
+    # so as to not overwrite defaults/options when no query param was provided in the first place.
+    # When present, these will overwrite both layout defaults & layout options.
+    # Be sure to properly sanitize.
+    {
+      :omit_gtm_snippet => query_parameters.fetch("omit_gtm_snippet", "false").to_s == "true"
+    }
+    .select{ |key| query_parameters.key?(key.to_s) }
+  end
+
+  def get_layout_config(layout_type, query_parameters = {})
+    layout_config = layout_defaults.clone
     if layout_options[:"#{layout_type}"]
-      layout_defaults.merge(layout_options[:"#{layout_type}"])
-    else
-      layout_defaults
+      layout_config.merge!(layout_options[:"#{layout_type}"])
     end
+    layout_config.merge(get_options_from_query_params(query_parameters))
   end
 
   def get_layout(route)
