@@ -33,6 +33,17 @@ define([
   };
 
   SailthruForm.prototype._handleSubmitSuccess = function() {
+    var lpAnalyticsTrackerPresent =
+      window.lp &&
+      window.lp.analytics &&
+      window.lp.analytics.track &&
+      typeof window.lp.analytics.track === "function";
+
+    if (lpAnalyticsTrackerPresent) {
+      window.lp.analytics.track({
+        event: "newsletter-subscribe"
+      });
+    }
     this.alert.success({
       title: "Success!",
       content: "Thank you for subscribing, " +
