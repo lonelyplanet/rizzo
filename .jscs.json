@@ -173,7 +173,6 @@
     "node_modules/**",
     "public",
     "vendor",
-    "app/assets/javascripts/lib/components/usabilla.js",
     "app/assets/javascripts/data/**"
   ]
 }
