@@ -29,7 +29,6 @@ module FooterHelper
     [
       {title: 'Country forums', url: 'categories/country-forums'},
       {title: 'Interest forums', url: 'categories/interest-forums'},
-      {title: 'Travel companions', url: 'travel-companions'},
       {title: 'Talk to Lonely Planet', url: 'categories/talk-to-lonely-planet'}
     ]
   end
