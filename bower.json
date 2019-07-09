@@ -4,7 +4,7 @@
     "flamsteed": "latest",
     "hogan": "latest",
     "jquery": "jquery#1.11",
-    "jquery.dfp.js": "1.1.9",
+    "jquery.dfp.js": "2.4.2",
     "pickadate": "3.3.1",
     "requirejs": "~2.1.11",
     "autocomplete": "2.x",
