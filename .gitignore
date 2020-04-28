@@ -27,6 +27,7 @@ test/tmp
 test/version_tmp
 tmp
 log/*
+output/**/*
 public/
 node_modules/
 spec/reports
