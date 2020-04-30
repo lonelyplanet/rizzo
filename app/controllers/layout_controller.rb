@@ -1,4 +1,4 @@
-class LayoutController < ActionController::Base
+class LayoutController < ApplicationController
   layout nil
 
   include LayoutSupport

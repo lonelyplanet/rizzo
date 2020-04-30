@@ -1,4 +1,4 @@
-class RedirectorController < ActionController::Base
+class RedirectorController < ApplicationController
   include RedirectorSupport
   
   def show

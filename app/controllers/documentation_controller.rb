@@ -1,4 +1,4 @@
-class DocumentationController < ActionController::Base
+class DocumentationController < ApplicationController
 
   include LayoutSupport
   require "document_db"

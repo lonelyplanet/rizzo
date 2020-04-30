@@ -1,4 +1,4 @@
-class PerformanceController < ActionController::Base
+class PerformanceController < ApplicationController
 
   include LayoutSupport
   layout "styleguide"

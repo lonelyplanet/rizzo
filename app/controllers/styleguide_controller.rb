@@ -1,4 +1,4 @@
-class StyleguideController < ActionController::Base
+class StyleguideController < ApplicationController
 
   include LayoutSupport
   layout proc { |c| c.request.xhr? ? false : "styleguide" }
