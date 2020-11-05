@@ -1,6 +1,6 @@
 # Rizzo
 
-Rizzo is the UI layer for lonelyplanet.com. Rizzo also serves LP's header and footer, assets and Style Guide.
+Rizzo is a legacy UI layer for lonelyplanet.com. Rizzo also serves LP's header and footer, assets and Style Guide in some legacy apps.
 
 The main goal of Rizzo is to enable sharing of templates and assets across all LP applications. This helps us to reduce complexity and increase reusability. There is a write-up of the thought process behind Rizzo on the [engineering blog](http://engineering.lonelyplanet.com/2014/05/18/a-maintainable-styleguide.html).
 
@@ -27,29 +27,15 @@ $ touch app/assets/stylesheets/fonts/_font_woff2.sass
 
 ## Local Development
 
-You can test your rizzo changes locally by using a repo that requires rizzo. The following steps use [gonzo](https://github.com/lonelyplanet/gonzo) as an example.
+You can test your rizzo changes locally running the rails app.
 
-1. If you don't have gonzo working locally yet, follow the setup instructions for the repo.
-
-2. In gonzo's `Gemfile`, replace the existing rizzo path with the path to your local rizzo directory:
-
-   ```
-   gem 'rizzo', path: '/Users/local-path/rizzo', submodules: true
-   ```
-
-3. Reinstall the gems:
-
-   ```
-   bundle install
-   ```
-
-4. Run the repo's rails server:
+1. Run the repo's rails server:
 
    ```
    bundle exec rails s
    ```
 
-5. Open http://localhost:3000/newsletter
+2. Open http://localhost:3000/layouts/responsive
 
 ## Documentation
 

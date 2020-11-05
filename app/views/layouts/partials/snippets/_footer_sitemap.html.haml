@@ -30,10 +30,16 @@
         %a.js-nav-item.title--footer.title--list--footer(href='https://shop.lonelyplanet.com' itemprop="url")
           %span(itemprop="name")
             Shop
+        %a.js-nav-item.nav__item.nav__item--sitemap.nav__item--footer{href: "https://www.lonelyplanet.com/membership"}(itemprop="url")<
+          %span(itemprop="name")
+            Lonely Planet Membership
         - footer_nav_shop_items.each do |shop|
           %a.js-nav-item.nav__item.nav__item--sitemap.nav__item--footer{href: "https://shop.lonelyplanet.com/#{shop[:url]}"}(itemprop="url")<
             %span(itemprop="name")
               = shop[:title]
+        %a.js-nav-item.nav__item.nav__item--sitemap.nav__item--footer{href: "https://support.lonelyplanet.com/hc/en-us/articles/218157937-General-guidebook-information-#product3"}(itemprop="url")<
+          %span(itemprop="name")
+            Non-English Guides
 
     .col--footer
       %input{type: "checkbox", id: 'ac-thorntree', class: "accordion__input"}
